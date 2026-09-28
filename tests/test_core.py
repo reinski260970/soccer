@@ -226,3 +226,16 @@ def test_settle_by_ticker_and_no_side(tmp_path, monkeypatch):
     settle.settle_all(j)
     got = {r["ref"]: r["result"] for r in j.read("placed")}
     assert got == {"KX-E-A": "win", "KX-E-TIE": "loss", "KX-E-B": "win"}
+
+
+def test_mongo_readonly_guards(monkeypatch):
+    import pytest
+    from oddswatch.sources import mongo
+    monkeypatch.delenv("MONGO_URI_FOOTBALL", raising=False)
+    monkeypatch.setenv("MONGO_URI", "mongodb://tennis-nicht-verwenden")
+    with pytest.raises(RuntimeError, match="MONGO_URI_FOOTBALL"):
+        mongo._uri()  # greift nie auf die Tennis-URI zurück
+    db = mongo.ReadOnlyDB(client=object())
+    with pytest.raises(PermissionError):
+        db.aggregate("x", "y", [{"$match": {}}, {"$out": "z"}])
+    assert not any(hasattr(db, m) for m in ("insert", "update", "delete", "insert_one", "drop"))

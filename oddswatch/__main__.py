@@ -7,6 +7,8 @@
   python -m oddswatch summary
   python -m oddswatch kalshi-check      # Key prüfen (Kontostand, nur lesend)
   python -m oddswatch import-fills [--eh-usd 10]   # Kalshi-Trades -> placed.csv
+  python -m oddswatch db-overview       # Fußball-Datenbank: Datenbanken/Collections (nur lesend)
+  python -m oddswatch db-schema <db> <collection>
 """
 
 from __future__ import annotations
@@ -100,6 +102,27 @@ def _import_fills(a) -> int:
         return 2
 
 
+def _db_overview(a) -> int:
+    from .sources import mongo
+    try:
+        print("\n".join(mongo.overview()))
+        return 0
+    except Exception as e:  # noqa: BLE001
+        print(f"Fußball-Datenbank nicht erreichbar: {e}")
+        return 2
+
+
+def _db_schema(a) -> int:
+    from .sources import mongo
+    try:
+        for k, t in mongo.ReadOnlyDB().schema(a.db, a.coll).items():
+            print(f"{k}: {t}")
+        return 0
+    except Exception as e:  # noqa: BLE001
+        print(f"Fehler: {e}")
+        return 2
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="oddswatch")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -128,6 +151,11 @@ def main(argv: list[str] | None = None) -> int:
     im = sub.add_parser("import-fills")
     im.add_argument("--eh-usd", type=float, default=None, help="Dollar je Einheit (Default 10 bzw. ODDSWATCH_EH_USD)")
     im.set_defaults(fn=_import_fills)
+    sub.add_parser("db-overview").set_defaults(fn=_db_overview)
+    ds = sub.add_parser("db-schema")
+    ds.add_argument("db")
+    ds.add_argument("coll")
+    ds.set_defaults(fn=_db_schema)
     a = p.parse_args(argv)
     return a.fn(a)
 

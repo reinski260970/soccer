@@ -55,4 +55,11 @@ dedupliziert nach `placed.csv`: Quote inkl. Gebühr, Einsatz in EH (Standard 1 E
 änderbar über `ODDSWATCH_EH_USD` oder `--eh-usd`) und Verweis auf die zugehörige
 Valuebet-Freigabe. Das Modul sendet nur GET-Anfragen und platziert keine Orders.
 
+## Fußball-Datenbank (MongoDB, nur lesend)
+
+Die Verbindung kommt aus `MONGO_URI_FOOTBALL`. Wer die Variable anders nennen will, trägt
+den Namen in `ODDSWATCH_FOOTBALL_DB_ENV` ein. `MONGO_URI` ist die Tennis-Datenbank und
+wird hier nicht verwendet. Der Zugriff läuft nur über find, count und aggregate
+(`$out`/`$merge` sind gesperrt). Befehle: `db-overview`, `db-schema <db> <collection>`.
+
 Abhängigkeiten: `pip install -r requirements.txt`
