@@ -22,14 +22,45 @@ from pathlib import Path
 from . import matching, pricing
 from .journal import Journal
 from .models import fatigue
+from .models.elo import EloGoals
 from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import espn, football_data, kalshi, nhl
+from .sources import clubelo, eloratings, espn, football_data, kalshi, nhl
 from . import fetch, venues
 
 MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25, "nba": 0.25}
+# UEFA: reines Elo-Modell ohne Kader-/Aufstellungsinfo; ClubElo zusätzlich mit
+# geschätztem Heimvorteil und geliehener Tor-Kalibrierung -> geringeres Gewicht.
+LEAGUE_WEIGHT = {"nations": 0.4, "ucl": 0.3, "uel": 0.3, "uecl": 0.3}
+UEFA_CLUB = {"ucl": "Champions League", "uel": "Europa League", "uecl": "Conference League"}
+CLUB_HOME_ELO = 65.0      # Annahme, nicht kalibriert
+CLUB_GOALS = 1.35         # Tore je Team bei gleicher Stärke (Annahme, Vereinsfußball)
+# ESPN -> ClubElo, wo Name/Übersetzung abweicht (Prague/Praha, ø/æ, Kurzformen)
+CLUBELO_ALIASES = {
+    "Slavia Prague": "Slavia Praha", "Sparta Prague": "Sparta Praha",
+    "Bodo/Glimt": "Bodø/Glimt", "Lillestrom": "Lillestrøm", "FC Nordsjælland": "Nordsjaelland",
+    "Manchester City": "Man City", "Manchester United": "Man United",
+    "Paris Saint-Germain": "Paris SG", "Shakhtar Donetsk": "Shakhtar", "AEK Athens": "AEK",
+    "AZ Alkmaar": "AZ", "Hapoel Be'er": "Beer-Sheva", "Hapoel Beer Sheva": "Beer-Sheva",
+    "Union St.-Gilloise": "St Gillis", "Olympiacos": "Olympiakos", "Stade Rennais": "Rennes",
+    "OFI CRETE": "OFI", "AGF": "Aarhus", "Pafos": "Paphos", "F.C. København": "FC Kobenhavn",
+    "FC Copenhagen": "FC Kobenhavn", "Heart of Midlothian": "Hearts",
+    "Sint-Truidense": "St Truiden", "CSU Craiova": "Craiova", "Riga FC": "FK Riga",
+    "Red Star Belgrade": "Crvena Zvezda", "Mjällby AIF": "Mjällby", "Sporting CP": "Sporting",
+    "Bayern Munich": "Bayern München", "Internazionale": "Internazionale",
+}
+# ClubElo-Verband -> football-data-Liga (xG/xGA ab 2026/27)
+XG_LEAGUES = {"England": "E0", "Spain": "SP1", "Italy": "I1", "France": "F1",
+              "Germany": "D1", "Netherlands": "N1", "Portugal": "P1", "Belgium": "B1",
+              "Turkey": "T1", "Scotland": "SC0", "Greece": "G1"}
+# ClubElo -> football-data, wo der strenge Abgleich nicht greift
+FD_ALIASES = {"Internazionale": "Inter", "Paris SG": "Paris SG", "Sporting": "Sp Lisbon", "Braga": "Sp Braga",
+              "Atlético": "Ath Madrid", "St Gillis": "St. Gilloise", "Bayern München": "Bayern Munich",
+              "Forest": "Nott'm Forest", "Sittard": "For Sittard", "Real Sociedad": "Sociedad"}
+XG_SHRINK_GAMES = 10.0    # Pseudo-Spiele: bei n Spielen wirkt n/(n+10) der Differenz
+XG_SHARE = 0.5            # Anteil der xG-minus-Tore-Differenz, der ins Elo geht (Annahme)
 # Weicht das Modell stärker als das vom Referenzmarkt ab, fehlt ihm meist eine
 # Information (QB, Kader, Trainer) – dann keine Freigabe, sondern Prüfung.
 MAX_DIVERGENCE = 0.15
@@ -49,6 +80,7 @@ class Fixture:
     flags: dict[str, list[str]] = field(default_factory=dict)  # Seite -> Vorbehalte
     estimate: bool = False
     kalshi: dict[str, kalshi.KalshiQuote] = field(default_factory=dict)
+    model: str = ""                          # Modellkennung fürs Journal (Standard: sport)
 
 
 @dataclass
@@ -62,6 +94,10 @@ class ScanResult:
 
 
 # ---------------------------------------------------------------- helpers
+def _weight(fx: "Fixture") -> float:
+    return LEAGUE_WEIGHT.get(fx.league, MODEL_WEIGHT.get(fx.sport, 0.5))
+
+
 def _form(matches: list, team: str, before: date, n: int = 5) -> str:
     """Letzte n Ergebnisse als S/U/N plus Tordifferenz."""
     rows = [m for m in matches if (m.home == team or m.away == team) and m.date < before]
@@ -73,6 +109,24 @@ def _form(matches: list, team: str, before: date, n: int = 5) -> str:
         gd += f - a
         out += "S" if f > a else ("U" if f == a else "N")
     return f"{out or '–'} ({gd:+.0f})"
+
+
+def _xg_line(matches: list, team: str, before: date) -> tuple[str, dict[str, float] | None]:
+    """xG, xGA und tatsächliche Tore/Gegentore je Spiel (nur Spiele mit xG)."""
+    gf = ga = xf = xa = 0.0
+    n = 0
+    for m in matches:
+        if m.date >= before or m.home_xg is None or m.away_xg is None:
+            continue
+        if m.home == team:
+            gf, ga, xf, xa, n = gf + m.home_goals, ga + m.away_goals, xf + m.home_xg, xa + m.away_xg, n + 1
+        elif m.away == team:
+            gf, ga, xf, xa, n = gf + m.away_goals, ga + m.home_goals, xf + m.away_xg, xa + m.home_xg, n + 1
+    if not n:
+        return "", None
+    st = {"n": n, "gf": gf / n, "ga": ga / n, "xg": xf / n, "xga": xa / n}
+    return (f"{team}: xG {st['xg']:.2f}, xGA {st['xga']:.2f}, Tore {st['gf']:.2f}:"
+            f"{st['ga']:.2f} je Spiel ({n} Sp.)"), st
 
 
 def _rest_days(matches: list, team: str, kickoff: date) -> int | None:
@@ -224,6 +278,7 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
             kd = g.kickoff.date()
             ctx = [f"Form {h} {_form(ms, h, kd)}, {a} {_form(ms, a, kd)}",
                    f"Pause {_rest_days(ms, h, kd)}/{_rest_days(ms, a, kd)} Tage"]
+            ctx += [x for x in (_xg_line(ms, h, kd)[0], _xg_line(ms, a, kd)[0]) if x]
             xg_note = "Tore+xG 50/50" if lg != "austria" else "nur Tore (keine xG-Quelle für AT)"
             fx = Fixture(lg, "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
                          f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} ({xg_note}), "
@@ -233,6 +288,154 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
             _attach_kalshi(fx, kq)
             out.append(fx)
     return out
+
+
+# ---------------------------------------------------------------- UEFA
+def _nations_model(start: date, issues: list[str]
+                   ) -> tuple[EloGoals | None, list[eloratings.EloResult]]:
+    res: list[eloratings.EloResult] = []
+    for y in range(start.year - 4, start.year + 1):
+        t, err = fetch.get(eloratings.results_url(y), cache_days=0 if y == start.year else 30)
+        if t is None:
+            issues.append(f"eloratings {y}: {err}")
+            continue
+        res += eloratings.parse_results(t)
+    rows = [(r.elo_home - r.elo_away, r.home_edge, r.home_goals, r.away_goals) for r in res]
+    try:
+        return EloGoals.fit(rows, home=100.0), res
+    except ValueError as e:
+        issues.append(f"Elo-Kalibrierung: {e}")
+        return None, res
+
+
+def _upcoming_scheduled(lg: str, start: date, days: int, issues: list[str]) -> list[espn.EspnGame]:
+    games, errs = espn.upcoming(lg, start, days)
+    issues += errs
+    return [g for g in games if g.status == "STATUS_SCHEDULED"]
+
+
+def scan_nations(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
+    """UEFA Nations League: World-Football-Elo (eloratings.net), Tor-Kalibrierung
+    auf allen Länderspielen der letzten fünf Jahre."""
+    games = _upcoming_scheduled("nations", start, days, issues)
+    if not games:
+        notes.append(f"UEFA Nations League: keine offenen Spiele bis "
+                     f"{start + timedelta(days=days):%d.%m.}")
+        return []
+    rt, err = fetch.get(eloratings.RATINGS_URL)
+    tt, err2 = fetch.get(eloratings.TEAMS_URL, cache_days=30)
+    if rt is None or tt is None:
+        issues.append(f"eloratings: {err or err2}")
+        return []
+    elo, teams = eloratings.parse_ratings(rt), eloratings.parse_teams(tt)
+    model, res = _nations_model(start, issues)
+    if model is None:
+        return []
+    notes.append(f"UEFA Nations League: Elo-Tormodell aus {len(res)} Länderspielen "
+                 f"(eloratings.net), Heimvorteil {model.home:.0f} Elo, "
+                 f"Tore bei Gleichstand {math.exp(model.a):.2f} je Team, Steigung {model.b:.2f}")
+    kq, kerr = kalshi.fetch_series(kalshi.SERIES["nations"])
+    if kerr:
+        issues.append(f"Kalshi Nations League: {kerr}")
+    ms = [Match(r.date, r.home, r.away, r.home_goals, r.away_goals) for r in res]
+    out = []
+    for g in games:
+        h, a = eloratings.code_for(g.home.name, teams), eloratings.code_for(g.away.name, teams)
+        if not h or not a or h not in elo or a not in elo:
+            issues.append(f"Nations League: Team nicht zugeordnet ({g.title})")
+            continue
+        mk = model.markets(elo[h], elo[a], neutral=g.neutral)
+        kd = g.kickoff.date()
+        ctx = [f"Elo {g.home.name} {elo[h]:.0f}, {g.away.name} {elo[a]:.0f}"
+               + (" (neutraler Ort)" if g.neutral else f" (+{model.home:.0f} Heim)"),
+               f"Form {h} {_form(ms, h, kd)}, {a} {_form(ms, a, kd)}",
+               f"Pause {_rest_days(ms, h, kd)}/{_rest_days(ms, a, kd)} Tage"]
+        fx = Fixture("nations", "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
+                     f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} (Elo-Modell), "
+                     f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
+                     ref_probs=_devig_ref(g, three_way=True), model="elo-national")
+        _attach_kalshi(fx, kq)
+        out.append(fx)
+    return out
+
+
+def scan_club_cups(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
+    """Champions/Europa/Conference League: ClubElo, Tor-Steigung aus dem
+    Länderspielmodell, Heimvorteil und Torniveau als Annahme (Schätzung)."""
+    games = {lg: _upcoming_scheduled(lg, start, days, issues) for lg in UEFA_CLUB}
+    if not any(games.values()):
+        notes.append("UEFA-Vereinswettbewerbe: keine Spiele bis "
+                     f"{start + timedelta(days=days):%d.%m.} (nächster Spieltag später)")
+        return []
+    elo, errs = clubelo.ratings()
+    issues += errs[:3]
+    if not elo:
+        issues.append("UEFA-Vereinswettbewerbe: keine ClubElo-Werte – nicht bewertet")
+        return []
+    nat, _ = _nations_model(start, issues)
+    model = EloGoals(a=math.log(CLUB_GOALS), b=nat.b if nat else 0.7, home=CLUB_HOME_ELO)
+    elo_per_goal = 400 / (2 * CLUB_GOALS * model.b)
+    xg_ms: dict[str, list[Match]] = {}
+    for fed, lg_code in XG_LEAGUES.items():
+        t, err = fetch.get(football_data.csv_url(lg_code, start.year if start.month >= 7
+                                                  else start.year - 1))
+        if t is None:
+            issues.append(f"football-data {lg_code} (xG): {err}")
+            continue
+        xg_ms[fed] = football_data.parse(t)[0]
+    notes.append(f"UEFA-Vereinswettbewerbe: ClubElo ({len(elo)} Vereine), Heimvorteil "
+                 f"{CLUB_HOME_ELO:.0f} Elo und {CLUB_GOALS:.2f} Tore je Team angenommen – Schätzung. "
+                 f"xG-Korrektur: {XG_SHARE:.0%} von (xG-Diff. − Tordiff.) je Spiel × "
+                 f"{elo_per_goal:.0f} Elo/Tor × n/(n+{XG_SHRINK_GAMES:.0f}), Ligen: "
+                 f"{', '.join(sorted(xg_ms))}")
+    names = list(elo)
+
+    def rating(club: str, espn_name: str, kd: date) -> tuple[float, str]:
+        e, fed = elo[club]
+        ms = xg_ms.get(fed)
+        if not ms:
+            return e, f"{club} {e:.0f} ({fed}, keine xG-Quelle)"
+        teams = sorted({m.home for m in ms} | {m.away for m in ms})
+        fd = (matching.find_strict(club, teams, FD_ALIASES)
+              or matching.find_strict(espn_name, teams, FD_ALIASES))
+        line, st = _xg_line(ms, fd, kd) if fd else ("", None)
+        if not st:
+            return e, f"{club} {e:.0f} ({fed}, xG nicht zugeordnet)"
+        luck = (st["xg"] - st["xga"]) - (st["gf"] - st["ga"])
+        adj = XG_SHARE * luck * elo_per_goal * st["n"] / (st["n"] + XG_SHRINK_GAMES)
+        return e + adj, f"{line} → ClubElo {e:.0f} {adj:+.0f} = {e + adj:.0f}"
+
+    out = []
+    for lg, gs in games.items():
+        if not gs:
+            continue
+        kq, kerr = kalshi.fetch_series(kalshi.SERIES[lg])
+        if kerr:
+            issues.append(f"Kalshi {UEFA_CLUB[lg]}: {kerr}")
+        for g in gs:
+            h = (matching.find_strict(g.home.name, names, CLUBELO_ALIASES)
+                 or matching.find_strict(g.home.short, names, CLUBELO_ALIASES))
+            a = (matching.find_strict(g.away.name, names, CLUBELO_ALIASES)
+                 or matching.find_strict(g.away.short, names, CLUBELO_ALIASES))
+            if not h or not a:
+                issues.append(f"{UEFA_CLUB[lg]}: Team nicht in ClubElo zugeordnet ({g.title})")
+                continue
+            kd = g.kickoff.date()
+            (eh, ch), (ea, ca) = rating(h, g.home.name, kd), rating(a, g.away.name, kd)
+            mk = model.markets(eh, ea, neutral=g.neutral)
+            fx = Fixture(lg, "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
+                         f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} "
+                         f"(ClubElo, xG-korrigiert), O2.5 {mk['O2.5'] * 100:.0f} %", [ch, ca],
+                         ref_probs=_devig_ref(g, three_way=True), estimate=True,
+                         model="elo-club")
+            _attach_kalshi(fx, kq)
+            out.append(fx)
+    return out
+
+
+def scan_uefa(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
+    return (scan_nations(start, days, issues, notes)
+            + scan_club_cups(start, days, issues, notes))
 
 
 # ---------------------------------------------------------------- NFL
@@ -490,11 +693,11 @@ def _label(fx: Fixture, side: str) -> str:
     return f"{t} Sieg" + (" (90 Min.)" if fx.sport == "soccer" else " (inkl. OT)")
 
 
-def evaluate_fixture(fx: Fixture, release_until: datetime) -> list[Candidate]:
+def evaluate_fixture(fx: Fixture) -> list[Candidate]:
     keys = list(fx.probs)
     ref = fx.ref_probs or _devig_kalshi(fx.kalshi, keys)
     ref_src = "DraftKings" if fx.ref_probs else ("Kalshi-Mitte" if ref else "")
-    w = MODEL_WEIGHT.get(fx.sport, 0.5)
+    w = _weight(fx)
     out = []
     for side in keys:
         q = fx.kalshi.get(side)
@@ -508,8 +711,6 @@ def evaluate_fixture(fx: Fixture, release_until: datetime) -> list[Candidate]:
         if p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
             flags.append(f"Modell weicht {abs(p_model - p_ref) * 100:.0f} Pp vom Markt ab – "
                          "fehlende Kader-/QB-Info wahrscheinlicher als Value")
-        if fx.game.kickoff > release_until:
-            flags.append("Anstoß außerhalb des Freigabefensters – nur Watchlist")
         reason = (f"{fx.detail}. Modell {p_model * 100:.1f} %"
                   + (f", {ref_src} {p_ref * 100:.1f} %" if p_ref is not None else ", keine Referenz")
                   + f", Entscheidung {p_final * 100:.1f} % (Modellgewicht {w:.0%}). "
@@ -532,8 +733,7 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
     fixtures: list[Fixture] = []
     if "soccer" in sports:
         fixtures += scan_soccer(start, watch_days, issues, notes)
-        notes.append("UEFA-Wettbewerbe: nächster Spieltag außerhalb des Fensters bzw. "
-                     "kein ligaübergreifendes Stärkemodell – kein Trade")
+        fixtures += scan_uefa(start, watch_days, issues, notes)
     if "nfl" in sports:
         fixtures += scan_nfl(start, days, issues, notes)
     if "nhl" in sports:
@@ -544,9 +744,7 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
                  "verifizierten Orbit/bet365-Preise – nicht bewertet")
     notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "
                  "nur Kalshi-Preise sind verifiziert")
-    release_until = datetime.combine(start + timedelta(days=days + 1), datetime.min.time(),
-                                     tzinfo=timezone.utc)
-    cands = [c for fx in fixtures for c in evaluate_fixture(fx, release_until)]
+    cands = [c for fx in fixtures for c in evaluate_fixture(fx)]
     picks = pick(cands)
     stand = now.strftime("%d.%m.%Y %H:%M UTC")
     if journal is not None:
@@ -556,18 +754,18 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
 
 
 def _log(j: Journal, fixtures: list[Fixture], picks: list[Candidate]) -> None:
-    w = MODEL_WEIGHT
     rows = []
     for fx in fixtures:
         ref = fx.ref_probs or _devig_kalshi(fx.kalshi, list(fx.probs))
+        w = _weight(fx)
         for side, p in fx.probs.items():
             pr = ref.get(side)
-            pf = w.get(fx.sport, 0.5) * p + (1 - w.get(fx.sport, 0.5)) * pr if pr is not None else p
+            pf = w * p + (1 - w) * pr if pr is not None else p
             rows.append({"league": fx.league, "event_id": fx.game.id, "event": fx.game.title,
                          "kickoff": fx.game.kickoff.isoformat(timespec="minutes"),
                          "market": side, "p_model": p, "p_ref": pr if pr is not None else "",
                          "p_final": pf, "fair_odds": 1 / pf, "estimate": fx.estimate,
-                         "model": fx.sport, "inputs": fx.detail})
+                         "model": fx.model or fx.sport, "inputs": fx.detail})
     j.append("forecasts", rows)
     open_vb = {(r["event"], r["market"], r["source"]) for r in j.read("valuebets")
                if not r.get("result")}

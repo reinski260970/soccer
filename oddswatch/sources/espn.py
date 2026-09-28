@@ -20,6 +20,7 @@ PATHS = {
     "bundesliga": "soccer/ger.1", "2bundesliga": "soccer/ger.2",
     "austria": "soccer/aut.1", "ucl": "soccer/uefa.champions",
     "uel": "soccer/uefa.europa", "uecl": "soccer/uefa.europa.conf",
+    "nations": "soccer/uefa.nations",
     "nfl": "football/nfl", "nhl": "hockey/nhl", "nba": "basketball/nba",
 }
 
@@ -88,8 +89,8 @@ def parse_scoreboard(data: dict, league: str) -> list[EspnGame]:
             except (TypeError, ValueError):
                 return None
         ref = {}
-        if comp.get("odds"):
-            o = comp["odds"][0]
+        o = next((x for x in comp.get("odds") or [] if x), None)
+        if o:
             ml = o.get("moneyline") or {}
 
             def mline(side: str, legacy: dict | None):

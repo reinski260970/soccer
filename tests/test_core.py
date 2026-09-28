@@ -171,7 +171,7 @@ def test_divergence_blocks_release():
     q = lambda s, a: KalshiQuote("", "E", f"E-{s}", s, s, a - 0.01, a, 0, 0, "now")
     fx = Fixture("nfl", "nfl", g, {"home": 0.70, "away": 0.30}, "", ref_probs={"home": 0.45, "away": 0.55},
                  kalshi={"home": q("home", 0.46), "away": q("away", 0.56)})
-    cands = evaluate_fixture(fx, datetime(2026, 10, 10, tzinfo=timezone.utc))
+    cands = evaluate_fixture(fx)
     home = [c for c in cands if c.market == "home"][0]
     assert home.flags and "weicht" in home.flags[0]
     assert pick(cands) == []
@@ -351,3 +351,99 @@ def test_news_forum_never_confirms_and_rss_dates():
     it = news.parse_rss(xml, "Austrian Soccer Board", "austria")[0]
     assert it.title.startswith("Rapid") and it.published.hour == 10
     assert "Austrian Soccer Board" in news.FORUMS
+
+
+# ---------------------------------------------------------------- UEFA / Elo
+def test_eloratings_results_reconstruct_pre_match_elo():
+    from oddswatch.sources.eloratings import parse_results, parse_ratings, code_for, parse_teams
+    txt = ("2025\t01\t02\tVN\tTH\t2\t1\tSEA\t\t21\t1327\t1408\t+5\t−5\t130\t102\n"
+           "2025\t01\t04\tBH\tOM\t2\t1\tGLF\tKW\t21\t1530\t1513\t+3\t−4\t77\t80\n")
+    r = parse_results(txt)
+    assert (r[0].elo_home, r[0].elo_away) == (1306, 1429)   # nachher -/+ Änderung
+    assert r[0].home_edge == 1 and r[1].home_edge == 0      # Spielort KW = neutral
+    assert parse_ratings("1\t1\tES\t2277\t1\n2\t2\tAR\t2173\t1\n") == {"ES": 2277.0, "AR": 2173.0}
+    teams = parse_teams("IE\tIreland\nEI\tNorthern Ireland\tN Ireland\nTR\tTurkey\n")
+    assert code_for("Northern Ireland", teams) == "EI"
+    assert code_for("Republic of Ireland", teams) == "IE"
+    assert code_for("Türkiye", teams) == "TR"
+
+
+def test_elo_goal_model_fit_and_markets():
+    import math
+    from oddswatch.models.elo import EloGoals
+    rnd = random.Random(3)
+    rows = []
+    for _ in range(3000):
+        diff = rnd.uniform(-400, 400)
+        d = (diff + 100) / 400
+        rows.append((diff, 1, _pois(rnd, math.exp(0.2 + 0.7 * d)), _pois(rnd, math.exp(0.2 - 0.7 * d))))
+    m = EloGoals.fit(rows, home=100)
+    assert abs(m.a - 0.2) < 0.05 and abs(m.b - 0.7) < 0.08
+    mk = m.markets(1800, 1600)
+    assert abs(mk["1"] + mk["X"] + mk["2"] - 1) < 1e-9
+    assert mk["1"] > mk["2"]
+    n = m.markets(1700, 1700, neutral=True)
+    assert abs(n["1"] - n["2"]) < 1e-9
+
+
+def test_clubelo_page_parse_and_strict_matching():
+    from oddswatch import matching
+    from oddswatch.sources.clubelo import parse_page
+    html = ('"data-1": [{"Colour": "#d00027", "Elo": 1937.1, "Federation": "England", '
+            '"Level": 1, "Name": "Liverpool", "TLC": "LIV"}, {"Elo": 1812.0, '
+            '"Federation": "France", "Name": "Lille"}]')
+    assert parse_page(html) == {"Liverpool": (1937.1, "England"), "Lille": (1812.0, "France")}
+    names = ["Lille", "Sparta", "Sparta Praha", "Celje", "Omonia", "Omonia Aradippou",
+             "Red Star", "Crvena Zvezda", "Paris SG", "Paris FC"]
+    assert matching.find_strict("Lillestrom", names) is None          # kein Präfix-Treffer
+    assert matching.find_strict("NK Celje", names) == "Celje"
+    assert matching.find_strict("Omonia Nicosia", names) == "Omonia"
+    assert matching.find_strict("Paris Saint-Germain", names) is None  # mehrdeutig -> kein Tipp
+    al = {"Sparta Prague": "Sparta Praha", "Red Star Belgrade": "Crvena Zvezda"}
+    assert matching.find_strict("Sparta Prague", names, al) == "Sparta Praha"
+    assert matching.find_strict("Red Star Belgrade", names, al) == "Crvena Zvezda"
+
+
+def test_xg_line_uses_xg_xga_and_goals():
+    from oddswatch.scan import _xg_line
+    ms = [Match(date(2026, 9, 1), "A", "B", 3, 0, 1.0, 1.5),
+          Match(date(2026, 9, 8), "C", "A", 1, 1, 2.0, 0.5)]
+    line, st = _xg_line(ms, "A", date(2026, 9, 10))
+    assert st == {"n": 2, "gf": 2.0, "ga": 0.5, "xg": 0.75, "xga": 1.75}
+    assert "xG 0.75, xGA 1.75, Tore 2.00:0.50" in line
+
+
+def test_snapshot_open_gives_closing_line(tmp_path):
+    from datetime import datetime, timezone
+    from oddswatch import settle
+    j = Journal(tmp_path / "j")
+    j.append("placed", [{"event": "Luxembourg – Iceland", "kickoff": "2026-09-29T18:45+00:00",
+                         "market": "home", "selection": "Luxembourg Sieg", "odds_taken": 3.4,
+                         "stake_eh": 0.75, "ref": "KXUEFANLGAME-26SEP29LUXISL-LUX"}])
+    ev = {"markets": [
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-LUX", "yes_sub_title": "Luxembourg",
+         "yes_bid_dollars": "0.30", "yes_ask_dollars": "0.31"},
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-ISL", "yes_sub_title": "Iceland",
+         "yes_bid_dollars": "0.41", "yes_ask_dollars": "0.42"},
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-TIE", "yes_sub_title": "Tie",
+         "yes_bid_dollars": "0.28", "yes_ask_dollars": "0.29"}]}
+    snaps = str(tmp_path / "s")
+    before = datetime(2026, 9, 29, 18, 35, tzinfo=timezone.utc)
+    log = settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=before)
+    assert "Luxembourg 0.30/0.31" in log[0]
+    after = datetime(2026, 9, 29, 19, 0, tzinfo=timezone.utc)
+    assert settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=after) == \
+        ["keine offenen Tipps vor Anstoß"]
+    cfo = settle.closing_fair_odds("KXUEFANLGAME-26SEP29LUXISL-LUX", snaps)
+    assert abs(cfo - 1 / (0.305 / (0.305 + 0.415 + 0.285))) < 1e-9
+
+
+def test_play_whenever_odds_reach_min_odds():
+    off = Offer("Finland – Belarus", "2026-09-29", "away", "Belarus Sieg", 6.29, "kalshi", "now")
+    c = evaluate(off, 1.03 / 5.66 + 0.005)            # Quote über "spielbar ab", Quote > 6
+    assert c.odds >= c.min_odds
+    assert pick([c]) == [c] and c.stake_eh >= 0.25
+    below = evaluate(off, 1.03 / 6.29 - 0.005)        # knapp unter spielbar ab
+    assert pick([below]) == []
+    flagged = evaluate(off, 0.2, flags=["QB fehlt"])
+    assert pick([flagged]) == []

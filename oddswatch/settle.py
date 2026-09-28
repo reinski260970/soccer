@@ -8,7 +8,7 @@ Anstoß bleibt der CLV leer statt geschätzt.
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .journal import Journal
@@ -39,6 +39,48 @@ def closing_fair_odds(ticker: str, root: str = "data/snapshots") -> float | None
     s = sum(mids.values())
     p = mids[ticker] / s if s else 0
     return 1 / p if p > 0 else None
+
+
+def _fetch_event(event_ticker: str) -> tuple[dict | None, str | None]:
+    from . import fetch
+    return fetch.get_json(f"{kalshi.API}/events/{event_ticker}?with_nested_markets=true")
+
+
+def snapshot_open(j: Journal, root: str = "data/snapshots", fetch_event=_fetch_event,
+                  now: datetime | None = None) -> list[str]:
+    """Kalshi-Preise aller offenen Tipps (valuebets + placed) vor Anstoß sichern –
+    der letzte Snapshot vor Anstoß ist die Closing Line. Anstoß aus dem Journal
+    (Kalshi-occurrence_datetime ist das erwartete Spielende)."""
+    now = now or datetime.now(timezone.utc)
+    events: dict[str, str] = {}
+    for name in ("valuebets", "placed"):
+        for r in j.read(name):
+            ref, ko = r.get("ref", ""), r.get("kickoff", "")
+            if r.get("result") or not ref.startswith("KX") or not ko:
+                continue
+            if datetime.fromisoformat(ko.replace("Z", "+00:00")) > now:
+                events.setdefault(ref.rsplit("-", 1)[0], ko)
+    log, rows = [], []
+    obs = now.isoformat(timespec="seconds")
+    for ev, ko in sorted(events.items()):
+        d, err = fetch_event(ev)
+        if d is None:
+            log.append(f"{ev}: Abruf fehlgeschlagen ({err})")
+            continue
+        ms = d.get("markets") or (d.get("event") or {}).get("markets") or []
+        for m in ms:
+            q = kalshi.parse_event_markets({"events": [{"event_ticker": ev, "markets": [m]}]})[0]
+            rows.append({"ticker": q.ticker, "event_ticker": ev, "side": q.label,
+                         "bid": q.yes_bid, "ask": q.yes_ask, "observed_at": obs,
+                         "kickoff": datetime.fromisoformat(ko.replace("Z", "+00:00")).isoformat()})
+        log.append(f"{ev} (Anstoß {ko}): " + ", ".join(
+            f"{r['side']} {r['bid']:.2f}/{r['ask']:.2f}" for r in rows if r["event_ticker"] == ev))
+    if rows:
+        Path(root).mkdir(parents=True, exist_ok=True)
+        with (Path(root) / f"kalshi-{now:%Y-%m}.jsonl").open("a", encoding="utf-8") as f:
+            for r in rows:
+                f.write(json.dumps(r) + "\n")
+    return log or ["keine offenen Tipps vor Anstoß"]
 
 
 def settle_all(j: Journal) -> list[str]:

@@ -4,6 +4,7 @@
   python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
   python -m oddswatch news [--send]      # News-Agent: Warnungen zu Freigaben/Watchlist
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
+  python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -116,6 +117,13 @@ def _settle(a) -> int:
     return 0
 
 
+def _closing(a) -> int:
+    from . import settle
+    for line in settle.snapshot_open(Journal()):
+        print(line)
+    return 0
+
+
 def _place(a) -> int:
     j = Journal()
     vb = [r for r in j.read("valuebets") if a.ref in (r.get("ref"), r.get("event"))]
@@ -197,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
     nw.add_argument("--send", action="store_true")
     nw.set_defaults(fn=_news)
     sub.add_parser("settle").set_defaults(fn=_settle)
+    sub.add_parser("closing").set_defaults(fn=_closing)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)

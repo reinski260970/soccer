@@ -10,7 +10,9 @@ from .selection import Candidate
 _TZ = ZoneInfo("Europe/Berlin")
 _WD = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 _LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
-            "austria": "Österr. Bundesliga", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
+            "austria": "Österr. Bundesliga", "ucl": "Champions League",
+            "uel": "Europa League", "uecl": "Conference League",
+            "nations": "UEFA Nations League", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
 
 
 def _pct(x: float) -> str:
@@ -59,8 +61,8 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
                data_issues: list[str], notes: list[str] | None = None,
                fixtures: list | None = None, watch: list[Candidate] | None = None) -> str:
     lines = [f"# Sportanalyse – Stand {stand}", ""]
-    lines.append(f"Bewertete Spiele: {scanned}. Freigabe nur mit verifiziertem Preis, "
-                 f"EV ≥ 3 % und Edge ≥ 2 Prozentpunkte, ohne offenen Newsvorbehalt.")
+    lines.append(f"Bewertete Spiele: {scanned}. PLAY, sobald der verifizierte Preis die "
+                 f"spielbare Mindestquote (EV ≥ 3 %) erreicht und kein Newsvorbehalt offen ist.")
     lines += ["", "## CEO-Entscheidung"]
     if not picks:
         lines.append("⛔ **NO PLAY**: kein belegter Vorteil nach Gebühren/Marge.")
@@ -69,7 +71,7 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
     if watch:
         lines += ["", "## WATCH (nicht freigegeben)"]
         for c in watch:
-            why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
+            why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
             lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
                          f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
     if fixtures:
@@ -105,7 +107,7 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
     if watch:
         out += ["", "👀 WATCH (nicht freigegeben)"]
         for c in watch[:5]:
-            why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
+            why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
             out += ["", f"• {_head(c)}", f"🆚 {c.event}",
                     f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
                     f"   Grund: {why}"]

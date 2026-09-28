@@ -25,7 +25,7 @@ OTHER_SERIES = {"KXNHLGAME": "NHL", "KXNBAGAME": "NBA", "KXNFLGAME": "NFL"}
 # Achtung: KXAUTBSLGAME ist österreichischer Basketball, kein Fußball.
 SERIES = {
     "bundesliga": "KXBUNDESLIGAGAME", "2bundesliga": "KXBUNDESLIGA2GAME",
-    "ucl": "KXUCLGAME", "uel": "KXUELGAME", "uecl": "KXUECLGAME",
+    "ucl": "KXUCLGAME", "uel": "KXUELGAME", "uecl": "KXUECLGAME", "nations": "KXUEFANLGAME",
     "nfl": "KXNFLGAME", "nhl": "KXNHLGAME", "nba": "KXNBAGAME", "del": "KXDELGAME",
 }
 

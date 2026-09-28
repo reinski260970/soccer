@@ -21,6 +21,7 @@ _ALIASES = {
     "a lustenau": "lustenau", "austria lustenau": "lustenau",
     "josko ried": "ried", "swarovski tirol": "tirol", "wsg tirol": "tirol",
     "fc cologne": "koln",
+    "bosniaherzegovina": "bosnia and herzegovina", "turkiye": "turkey",
 }
 
 
@@ -77,3 +78,20 @@ def match_label(label: str, aliases: list[str]) -> bool:
             if na.startswith(city + " " + nl.split()[-1]):
                 return True
     return False
+
+
+def find_strict(name: str, candidates: list[str], aliases: dict[str, str] | None = None
+                ) -> str | None:
+    """Strenger Abgleich (Vereine über Ligagrenzen): Alias, gleicher Name oder
+    Token-Teilmenge ("NK Celje" ~ "Celje") – nur bei genau einem Treffer.
+    Kein Präfix-Abgleich (Lillestrom ≠ Lille)."""
+    if aliases and name in aliases and aliases[name] in candidates:
+        return aliases[name]
+    n = norm(name)
+    exact = [c for c in candidates if norm(c) == n]
+    if exact:
+        return exact[0] if len(exact) == 1 else None
+    tn = set(n.split())
+    hits = [c for c in candidates
+            if (tc := set(norm(c).split())) and (tc <= tn or tn <= tc)]
+    return hits[0] if len(hits) == 1 else None
