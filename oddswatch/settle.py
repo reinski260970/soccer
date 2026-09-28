@@ -44,9 +44,13 @@ def closing_fair_odds(ticker: str, root: str = "data/snapshots") -> float | None
 def settle_all(j: Journal) -> list[str]:
     log = []
     for name in ("valuebets", "placed"):
+        done: set[tuple[str, str]] = set()
         for r in j.read(name):
             if r.get("result") or not r.get("ref", "").startswith("KX"):
                 continue
+            if (r["ref"], r["market"]) in done:
+                continue
+            done.add((r["ref"], r["market"]))
             m, err = kalshi.fetch_market(r["ref"])
             if err or not m:
                 log.append(f"{name}: {r['event']} – Abruf fehlgeschlagen ({err})")
@@ -55,9 +59,14 @@ def settle_all(j: Journal) -> list[str]:
             if res not in ("yes", "no"):
                 log.append(f"{name}: {r['event']} – offen (Status {m.get('status')})")
                 continue
+            # Importierte Kalshi-Fills führen die gekaufte Seite (yes/no) als market
+            side = r["market"] if r["market"] in ("yes", "no") else "yes"
+            won = res == side
             cfo = closing_fair_odds(r["ref"])
-            n = j.settle(name, r["event"], r["market"], res == "yes", cfo)
-            log.append(f"{name}: {r['event']} {r['selection']} -> {'Gewinn' if res == 'yes' else 'Verlust'}"
+            if cfo and side == "no":
+                cfo = 1 / (1 - 1 / cfo) if cfo > 1 else None
+            n = j.settle(name, r["event"], r["market"], won, cfo, ref=r["ref"])
+            log.append(f"{name}: {r['event']} {r['selection']} -> {'Gewinn' if won else 'Verlust'}"
                        + (f", Closing fair {cfo:.2f}" if cfo else ", kein Closing-Snapshot")
                        + f" ({n} Zeile/n)")
     for name in ("valuebets", "placed"):

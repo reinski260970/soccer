@@ -5,6 +5,8 @@
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
+  python -m oddswatch kalshi-check      # Key prüfen (Kontostand, nur lesend)
+  python -m oddswatch import-fills [--eh-usd 10]   # Kalshi-Trades -> placed.csv
 """
 
 from __future__ import annotations
@@ -76,6 +78,28 @@ def _summary(a) -> int:
     return 0
 
 
+def _kalshi_check(a) -> int:
+    from .sources.kalshi_auth import Client
+    try:
+        c = Client()
+        print(f"Kalshi-Key ok – Kontostand {c.balance_usd():.2f} $")
+        return 0
+    except Exception as e:  # noqa: BLE001 – Fehlertext ist die Auskunft
+        print(f"Kalshi-Key NICHT nutzbar: {e}")
+        return 2
+
+
+def _import_fills(a) -> int:
+    from .portfolio import import_fills
+    try:
+        for line in import_fills(Journal(), eh_usd=a.eh_usd):
+            print(line)
+        return 0
+    except Exception as e:  # noqa: BLE001
+        print(f"Import fehlgeschlagen: {e}")
+        return 2
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="oddswatch")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -100,6 +124,10 @@ def main(argv: list[str] | None = None) -> int:
     se.add_argument("file")
     se.set_defaults(fn=_send)
     sub.add_parser("summary").set_defaults(fn=_summary)
+    sub.add_parser("kalshi-check").set_defaults(fn=_kalshi_check)
+    im = sub.add_parser("import-fills")
+    im.add_argument("--eh-usd", type=float, default=None, help="Dollar je Einheit (Default 10 bzw. ODDSWATCH_EH_USD)")
+    im.set_defaults(fn=_import_fills)
     a = p.parse_args(argv)
     return a.fn(a)
 

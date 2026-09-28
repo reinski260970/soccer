@@ -14,6 +14,8 @@ python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen,
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
 python -m oddswatch summary
+python -m oddswatch kalshi-check         # Kalshi-Key prüfen (nur lesend: Kontostand)
+python -m oddswatch import-fills         # deine Kalshi-Trades -> data/journal/placed.csv
 python -m pytest -q
 ```
 
@@ -44,3 +46,13 @@ python -m pytest -q
 Die Umgebungsvariablen `TELEGRAM_BOT_TOKEN` und `TELEGRAM_CHAT_ID` setzen, dann
 `python -m oddswatch scan --send` oder `python -m oddswatch send <datei>`.
 Als gesendet gilt eine Nachricht nur, wenn Telegram `ok=true` und eine `message_id` liefert.
+
+## Kalshi-Konto (nur lesend)
+
+Die Variablen `KALSHI_API_KEY_ID` und `KALSHI_PRIVATE_KEY` (PEM-Text, auch einzeilig
+mit `\n`) oder `KALSHI_PRIVATE_KEY_PATH` setzen. `import-fills` übernimmt Käufe
+dedupliziert nach `placed.csv`: Quote inkl. Gebühr, Einsatz in EH (Standard 1 EH = 10 $,
+änderbar über `ODDSWATCH_EH_USD` oder `--eh-usd`) und Verweis auf die zugehörige
+Valuebet-Freigabe. Das Modul sendet nur GET-Anfragen und platziert keine Orders.
+
+Abhängigkeiten: `pip install -r requirements.txt`

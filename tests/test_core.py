@@ -175,3 +175,54 @@ def test_divergence_blocks_release():
     home = [c for c in cands if c.market == "home"][0]
     assert home.flags and "weicht" in home.flags[0]
     assert pick(cands) == []
+
+
+def test_kalshi_sign_and_fill_import(tmp_path, monkeypatch):
+    import base64
+    from cryptography.hazmat.primitives import hashes, serialization
+    from cryptography.hazmat.primitives.asymmetric import padding, rsa
+    from oddswatch import portfolio
+    from oddswatch.sources import kalshi_auth
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    pem = key.private_bytes(serialization.Encoding.PEM, serialization.PrivateFormat.TraditionalOpenSSL,
+                            serialization.NoEncryption()).decode()
+    # einzeilig mit literalen \n, wie oft in Umgebungsvariablen eingefügt
+    loaded = kalshi_auth._load_key(pem.replace("\n", "\\n"))
+    sig = kalshi_auth.sign(loaded, "1700000000000", "get", "/trade-api/v2/portfolio/fills?limit=5")
+    key.public_key().verify(base64.b64decode(sig), b"1700000000000GET/trade-api/v2/portfolio/fills",
+                            padding.PSS(mgf=padding.MGF1(hashes.SHA256()),
+                                        salt_length=padding.PSS.DIGEST_LENGTH), hashes.SHA256())
+
+    class FakeClient:
+        def fills(self):
+            return [{"fill_id": "f1", "ticker": "KXNFLGAME-26OCT04DETCAR-CAR", "side": "yes",
+                     "action": "buy", "count_fp": "10", "yes_price_dollars": "0.36", "is_taker": True},
+                    {"fill_id": "f2", "ticker": "KXNFLGAME-26OCT04DETCAR-CAR", "side": "yes",
+                     "action": "sell", "count_fp": "5", "yes_price_dollars": "0.40"}]
+    monkeypatch.setattr(portfolio.kalshi, "fetch_market",
+                        lambda t: ({"yes_sub_title": "Carolina", "event_ticker": "KXNFLGAME-26OCT04DETCAR"}, None))
+    monkeypatch.setattr(portfolio, "_event_title", lambda e, c: "DET Lions vs CAR Panthers")
+    j = Journal(tmp_path)
+    j.append("valuebets", [{"ref": "KXNFLGAME-26OCT04DETCAR-CAR", "event": "x", "market": "home"}])
+    log = portfolio.import_fills(j, client=FakeClient(), eh_usd=10)
+    assert "1 neu verbucht" in log[0] and "1 Verkäufe" in log[0]
+    row = j.read("placed")[0]
+    assert row["selection"] == "Carolina" and row["valuebet_ref"]
+    assert abs(float(row["odds_taken"]) - 10 / (3.6 + 0.17)) < 1e-3  # Gebühr ceil(0.07*10*.36*.64)=0.17
+    portfolio.import_fills(j, client=FakeClient(), eh_usd=10)
+    assert len(j.read("placed")) == 1  # dedupliziert
+
+
+def test_settle_by_ticker_and_no_side(tmp_path, monkeypatch):
+    from oddswatch import settle
+    j = Journal(tmp_path)
+    j.append("placed", [
+        {"event": "E", "market": "yes", "selection": "A", "odds_taken": 2.0, "stake_eh": 1, "ref": "KX-E-A"},
+        {"event": "E", "market": "yes", "selection": "TIE", "odds_taken": 4.0, "stake_eh": 1, "ref": "KX-E-TIE"},
+        {"event": "E", "market": "no", "selection": "NICHT B", "odds_taken": 1.5, "stake_eh": 1, "ref": "KX-E-B"}])
+    res = {"KX-E-A": "yes", "KX-E-TIE": "no", "KX-E-B": "no"}
+    monkeypatch.setattr(settle.kalshi, "fetch_market", lambda t: ({"result": res[t]}, None))
+    monkeypatch.setattr(settle, "closing_fair_odds", lambda t: None)
+    settle.settle_all(j)
+    got = {r["ref"]: r["result"] for r in j.read("placed")}
+    assert got == {"KX-E-A": "win", "KX-E-TIE": "loss", "KX-E-B": "win"}

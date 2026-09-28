@@ -20,7 +20,7 @@ LEDGERS = {
                   "fair_odds", "min_odds", "edge", "ev", "stake_eh", "estimate", "reason",
                   "result", "closing_fair_odds", "clv", "pnl_eh"],
     "placed": ["placed_at", "event", "kickoff", "market", "selection", "bookmaker",
-               "odds_taken", "stake_eh", "valuebet_ref", "ref", "result",
+               "odds_taken", "stake_eh", "stake_usd", "valuebet_ref", "ref", "fill_id", "result",
                "closing_fair_odds", "clv", "pnl_eh"],
 }
 
@@ -65,13 +65,16 @@ class Journal:
                 w.writerow({k: _fmt(r.get(k, "")) for k in cols})
 
     def settle(self, name: str, event: str, market: str, won: bool | None,
-               closing_fair_odds: float | None = None) -> int:
-        """won=None -> Push/Void (Einsatz zurück). Gibt Anzahl Treffer zurück."""
+               closing_fair_odds: float | None = None, ref: str | None = None) -> int:
+        """won=None -> Push/Void (Einsatz zurück). ref grenzt auf einen
+        Kalshi-Ticker ein (mehrere Outcomes eines Events). Gibt Anzahl Treffer zurück."""
         rows = self.read(name)
         odds_key = "odds" if name == "valuebets" else "odds_taken"
         n = 0
         for r in rows:
             if r["event"] != event or r["market"] != market or r.get("result"):
+                continue
+            if ref is not None and r.get("ref") != ref:
                 continue
             odds, stake = float(r[odds_key]), float(r["stake_eh"])
             r["result"] = "void" if won is None else ("win" if won else "loss")
