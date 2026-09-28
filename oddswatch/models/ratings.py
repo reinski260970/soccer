@@ -57,7 +57,7 @@ class PointsModel:
                     continue
                 num += w * ((g.home_pts - base - off[g.home] + dfn[g.away]) -
                             (g.away_pts - base - off[g.away] + dfn[g.home]))
-                den += 2 * w
+                den += w  # Differenz Heim - Aus enthält home_adv genau einmal
             home = num / den if den else 0.0
             delta = 0.0
             for t in teams:

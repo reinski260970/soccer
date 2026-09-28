@@ -8,12 +8,13 @@ from __future__ import annotations
 
 import csv
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 LEDGERS = {
     "forecasts": ["created_at", "event", "kickoff", "market", "p_model", "fair_odds",
                   "estimate", "model", "inputs"],
-    "valuebets": ["created_at", "event", "kickoff", "market", "selection", "source",
+    "valuebets": ["created_at", "observed_at", "event", "kickoff", "market", "selection", "source",
                   "odds", "p_model", "fair_odds", "min_odds", "edge", "ev",
                   "stake_eh", "estimate", "reason", "result", "closing_fair_odds",
                   "clv", "pnl_eh"],
@@ -46,7 +47,12 @@ class Journal:
             w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
             if new:
                 w.writeheader()
+            now = datetime.now(timezone.utc).isoformat(timespec="seconds")
             for r in rows:
+                r = {**r}
+                for ts in ("created_at", "placed_at"):
+                    if ts in cols and not r.get(ts):
+                        r[ts] = now
                 w.writerow({k: _fmt(r.get(k, "")) for k in cols})
 
     def write(self, name: str, rows: list[dict]) -> None:

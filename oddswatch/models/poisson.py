@@ -82,37 +82,46 @@ class PoissonModel:
         mu = math.log(max(mean_goals, 0.05))
         home = 0.2
 
+        # Jede Tor-Beobachtung als (Angreifer, Verteidiger, ist_heim, tore, w).
+        obs = []
+        for h, a, hg, ag, w in rows:
+            obs.append((h, a, 1.0, hg, w))
+            obs.append((a, h, 0.0, ag, w))
+        by_att: dict[str, list] = {t: [] for t in teams}
+        by_def: dict[str, list] = {t: [] for t in teams}
+        for o in obs:
+            by_att[o[0]].append(o)
+            by_def[o[1]].append(o)
+
+        def lam(o) -> float:
+            return math.exp(mu + home * o[2] + att[o[0]] - dfn[o[1]])
+
+        def sums(os_) -> tuple[float, float]:
+            y = sum(o[4] * o[3] for o in os_)
+            m = sum(o[4] * lam(o) for o in os_)
+            return y, m
+
+        home_obs = [o for o in obs if o[2]]
         for _ in range(iterations):
-            # Newton-Schritt für jeden Parameter (Poisson: Gradient = y - lam,
-            # Hesse = -lam), Ridge-Term shrink*theta.
-            g_mu = h_mu = 0.0
-            g_home = h_home = 0.0
-            g_att = {t: -shrink * att[t] for t in teams}
-            h_att = {t: shrink for t in teams}
-            g_def = {t: -shrink * dfn[t] for t in teams}
-            h_def = {t: shrink for t in teams}
-            for h, a, hg, ag, w in rows:
-                lh = math.exp(mu + home + att[h] - dfn[a])
-                la = math.exp(mu + att[a] - dfn[h])
-                rh, ra = w * (hg - lh), w * (ag - la)
-                g_mu += rh + ra
-                h_mu += w * (lh + la)
-                g_home += rh
-                h_home += w * lh
-                g_att[h] += rh
-                h_att[h] += w * lh
-                g_att[a] += ra
-                h_att[a] += w * la
-                g_def[a] -= rh
-                h_def[a] += w * lh
-                g_def[h] -= ra
-                h_def[h] += w * la
-            step = 0.0
-            mu += g_mu / h_mu
-            home += g_home / h_home
+            # Gauss-Seidel: jeder Parameter wird mit frisch berechneten
+            # Residuen aktualisiert (gekoppelte Parameter überkorrigieren
+            # sonst gemeinsam und divergieren).
+            y, m = sums(obs)
+            d_mu = math.log(y / m)
+            mu += d_mu
+            y, m = sums(home_obs)
+            d_home = math.log(y / m) if y > 0 else 0.0
+            home += d_home
+            step = max(abs(d_mu), abs(d_home))
             for t in teams:
-                da, dd = g_att[t] / h_att[t], g_def[t] / h_def[t]
+                # Newton-Schritt mit Ridge-Strafe, gedämpft auf |Schritt| <= 1
+                y, m = sums(by_att[t])
+                da = (y - m - shrink * att[t]) / (m + shrink)
+                da = max(-1.0, min(1.0, da))
                 att[t] += da
+                y, m = sums(by_def[t])
+                dd = (m - y - shrink * dfn[t]) / (m + shrink)
+                dd = max(-1.0, min(1.0, dd))
                 dfn[t] += dd
                 step = max(step, abs(da), abs(dd))
             # Identifizierbarkeit: Stärken um 0 zentrieren

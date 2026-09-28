@@ -56,7 +56,7 @@ def test_points_model():
                     mar = 3 + r[h] - r[a] + rnd.gauss(0, 11)
                     gs.append(Game(date(2026, 1, 1) + timedelta(days=k), h, a, base + mar / 2, base - mar / 2))
     m = PointsModel.fit(gs, date(2026, 3, 1), half_life_days=1e6)
-    assert 1 < m.home_adv < 5
+    assert 2 < m.home_adv < 4  # wahr: 3
     mk = m.markets("X", "Z", spread=-10.5, total=220.5)
     assert mk["ML1"] > 0.8
     assert 8 < m.sigma_margin < 14
@@ -95,3 +95,29 @@ def test_selection_and_journal(tmp_path):
     assert j.settle("valuebets", "A vs B", "1", True, closing_fair_odds=2.1) == 1
     s = j.summary("valuebets")
     assert s["pnl_eh"] > 0 and s["avg_clv"] > 0
+
+
+def test_poisson_constant_scores_regression():
+    teams = "ABCD"
+    ms = [Match(date(2026, 1, 1), h, a, 2, 1) for h in teams for a in teams if h != a]
+    m = PoissonModel.fit(ms, date(2026, 2, 1), rho=0, shrink=0)
+    lh, la = m.expected_goals("A", "B")
+    assert abs(lh - 2) < 1e-6 and abs(la - 1) < 1e-6
+
+
+def test_points_home_adv_not_halved():
+    teams = "ABCD"
+    gs = [Game(date(2026, 1, 1), h, a, 105, 95) for h in teams for a in teams if h != a]
+    m = PointsModel.fit(gs, date(2026, 2, 1))
+    ph, pa = m.expected_points("A", "B")
+    assert abs(m.home_adv - 10) < 1e-6
+    assert abs(ph - 105) < 1e-6 and abs(pa - 95) < 1e-6
+
+
+def test_journal_keeps_timestamps(tmp_path):
+    off = Offer("A vs B", "k", "1", "A Sieg", 2.0, "kalshi", "2026-09-28T10:00:00Z")
+    j = Journal(tmp_path)
+    j.append("valuebets", [evaluate(off, 0.6).as_row()])
+    row = j.read("valuebets")[0]
+    assert row["observed_at"] == "2026-09-28T10:00:00Z"
+    assert row["created_at"]
