@@ -1,7 +1,7 @@
 """CLI.
 
   python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba] [--send]
-  python -m oddswatch daily [--no-scan] [--send]   # Auswertung, Profit-Status, Ausblick
+  python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
@@ -67,8 +67,16 @@ def _daily(a) -> int:
     (out / f"{date.today():%Y-%m-%d}-daily.txt").write_text(txt, encoding="utf-8")
     print("--- Telegram ---\n" + txt)
     if a.send:
+        state = Path("data/journal/daily_state.txt")
+        key = daily.news_key(j, picks, watch)
+        last = state.read_text(encoding="utf-8").strip() if state.exists() else ""
+        if key == last and not a.force:
+            print("Telegram: keine Neuigkeiten seit dem letzten Bericht – nicht gesendet")
+            return 0
         r = telegram.send(txt)
         print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
+        if r["sent"]:
+            state.write_text(key + "\n", encoding="utf-8")
         return 0 if r["sent"] else 2
     return 0
 
@@ -155,6 +163,7 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--no-scan", action="store_true", help="nur Journal auswerten, kein neuer Scan")
     d.add_argument("--sports", default="soccer,nfl,nhl,nba")
     d.add_argument("--send", action="store_true")
+    d.add_argument("--force", action="store_true", help="auch ohne Neuigkeiten senden")
     d.set_defaults(fn=_daily)
     sub.add_parser("settle").set_defaults(fn=_settle)
     pl = sub.add_parser("place")

@@ -111,3 +111,20 @@ def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = N
             out += [f"• {_head(c)}", f"🆚 {c.event}",
                     f"➡️ {c.selection} spielbar ab {_q(c.min_odds)} (jetzt {_q(c.odds)})"]
     return "\n".join(out)
+
+
+def news_key(j: Journal, picks: list[Candidate] | None = None,
+             watch: list[Candidate] | None = None) -> str:
+    """Fingerabdruck des berichtsrelevanten Inhalts ohne Zeitstempel und
+    laufende Kursbewegungen: Ergebnisse, offene Freigaben, Watchlist-Einträge."""
+    import hashlib
+    import json
+    rows = j.read("valuebets") + j.read("placed")
+    key = {
+        "settled": sorted(f"{r['event']}|{r['market']}|{r.get('ref', '')}|{r['result']}"
+                          for r in rows if r.get("result")),
+        "open": sorted({f"{r['event']}|{r['market']}" for r in rows if not r.get("result")}
+                       | {f"{c.event}|{c.market}" for c in picks or []}),
+        "watch": sorted(f"{c.event}|{c.market}" for c in (watch or [])[:5]),
+    }
+    return hashlib.sha256(json.dumps(key, sort_keys=True).encode()).hexdigest()[:16]

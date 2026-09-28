@@ -288,3 +288,18 @@ def test_fatigue_effects_recover_synthetic_b2b_penalty():
         ys.append(-2.0 * x[0] + rnd.gauss(0, 12))
     eff = Effects.fit(xs, ys)
     assert -2.8 < eff.coef["short"] < -1.2 and abs(eff.coef["travel"]) < 1e-9
+
+
+def test_daily_news_key_ignores_price_moves_but_not_results(tmp_path):
+    from oddswatch import daily
+    from oddswatch.journal import Journal
+    j = Journal(tmp_path)
+    j.append("valuebets", [{"event": "A – B", "market": "home", "ref": "KX1", "odds": 2.0,
+                            "stake_eh": 1.0}])
+    k1 = daily.news_key(j)
+    rows = j.read("valuebets")
+    rows[0]["odds"] = 2.1                      # nur Kursbewegung
+    j.write("valuebets", rows)
+    assert daily.news_key(j) == k1
+    j.settle("valuebets", "A – B", "home", True)
+    assert daily.news_key(j) != k1             # Ergebnis = Neuigkeit
