@@ -1,4 +1,4 @@
-"""Vom fairen Preis zum Value-Kandidaten (max. 5)."""
+"""Vom fairen Preis zum Value-Kandidaten: PLAY ab spielbarer Mindestquote."""
 
 from __future__ import annotations
 
@@ -71,20 +71,23 @@ def evaluate(offer: Offer, p_model: float, *, min_ev: float = 0.03,
     )
 
 
-def pick(cands: list[Candidate], max_n: int = 5, min_ev: float = 0.03,
-         min_edge: float = 0.02, max_odds: float = 6.0) -> list[Candidate]:
-    """Filter + Ranking. Pro Event höchstens ein Tipp (korrelierte Märkte).
+def pick(cands: list[Candidate], max_n: int | None = None, min_stake: float = 0.25
+         ) -> list[Candidate]:
+    """PLAY, sobald die Marktquote die spielbare Mindestquote erreicht
+    (odds >= min_odds, d. h. EV >= 3 %) und kein Informationsvorbehalt
+    (News, Modell-Markt-Divergenz) vorliegt. Pro Event höchstens ein Tipp
+    (korrelierte Märkte), bester EV zuerst. Einsatz mindestens min_stake.
     Liquidität ist kein Ausschlusskriterium, wird aber ausgewiesen."""
-    ok = [c for c in cands
-          if c.ev >= min_ev and c.edge >= min_edge and c.odds <= max_odds
-          and c.stake_eh > 0 and not c.flags]
+    ok = [c for c in cands if c.odds >= c.min_odds and not c.flags]
     ok.sort(key=lambda c: (c.estimate, -c.ev))
     seen, out = set(), []
     for c in ok:
         if c.event in seen:
             continue
         seen.add(c.event)
+        if c.stake_eh < min_stake:
+            c.stake_eh = min_stake
         out.append(c)
-        if len(out) == max_n:
+        if max_n and len(out) == max_n:
             break
     return out

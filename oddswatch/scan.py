@@ -693,7 +693,7 @@ def _label(fx: Fixture, side: str) -> str:
     return f"{t} Sieg" + (" (90 Min.)" if fx.sport == "soccer" else " (inkl. OT)")
 
 
-def evaluate_fixture(fx: Fixture, release_until: datetime) -> list[Candidate]:
+def evaluate_fixture(fx: Fixture) -> list[Candidate]:
     keys = list(fx.probs)
     ref = fx.ref_probs or _devig_kalshi(fx.kalshi, keys)
     ref_src = "DraftKings" if fx.ref_probs else ("Kalshi-Mitte" if ref else "")
@@ -711,8 +711,6 @@ def evaluate_fixture(fx: Fixture, release_until: datetime) -> list[Candidate]:
         if p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
             flags.append(f"Modell weicht {abs(p_model - p_ref) * 100:.0f} Pp vom Markt ab – "
                          "fehlende Kader-/QB-Info wahrscheinlicher als Value")
-        if fx.game.kickoff > release_until:
-            flags.append("Anstoß außerhalb des Freigabefensters – nur Watchlist")
         reason = (f"{fx.detail}. Modell {p_model * 100:.1f} %"
                   + (f", {ref_src} {p_ref * 100:.1f} %" if p_ref is not None else ", keine Referenz")
                   + f", Entscheidung {p_final * 100:.1f} % (Modellgewicht {w:.0%}). "
@@ -746,9 +744,7 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
                  "verifizierten Orbit/bet365-Preise – nicht bewertet")
     notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "
                  "nur Kalshi-Preise sind verifiziert")
-    release_until = datetime.combine(start + timedelta(days=days + 1), datetime.min.time(),
-                                     tzinfo=timezone.utc)
-    cands = [c for fx in fixtures for c in evaluate_fixture(fx, release_until)]
+    cands = [c for fx in fixtures for c in evaluate_fixture(fx)]
     picks = pick(cands)
     stand = now.strftime("%d.%m.%Y %H:%M UTC")
     if journal is not None:

@@ -54,13 +54,13 @@ python -m pytest -q
    NFL, NHL und NBA je 0,25).
 4. **Preis**: Kalshi-Ask inkl. Taker-Gebühr (Order ≈ 100 Kontrakte).
    Orbit und bet365 sind hier nicht abrufbar und werden nie ungeprüft verwendet.
-5. **Freigabe**: höchstens 5 Kandidaten, je Event einer. Bedingungen:
-   - EV ≥ 3 % und Edge ≥ 2 Pp
-   - kein Newsvorbehalt (z. B. QB fehlt, NBA-Leistungsträger ≥ 15 PPG fehlt),
-     keine Modell-Markt-Divergenz > 15 Pp
-   - Anstoß im Freigabefenster
+5. **Freigabe (PLAY)**: immer, wenn die Marktquote die spielbare Mindestquote
+   („spielbar ab“ = Quote mit EV 3 %) erreicht – ohne Obergrenze für Anzahl oder Quote,
+   für alle bewerteten Spiele (Fußball 14 Tage, NFL/NHL/NBA 7 Tage voraus), je Event einer.
+   Zurückgehalten (WATCH) wird nur bei Informationsvorbehalt: News (z. B. QB fehlt,
+   NBA-Leistungsträger ≥ 15 PPG fehlt) oder Modell-Markt-Divergenz > 15 Pp.
 
-   Einsatz: ¼-Kelly mit Schätzungsabschlag, maximal 2 EH.
+   Einsatz: ¼-Kelly mit Schätzungsabschlag, mindestens 0,25 und maximal 2 EH.
 6. **Journal** (`data/journal/`): `forecasts.csv` (alle Prognosen),
    `valuebets.csv` (freigegebene Tipps), `placed.csv` (tatsächlich gespielt).
    Kalshi-Snapshots (`data/snapshots/`) liefern die Closing Line für den CLV.

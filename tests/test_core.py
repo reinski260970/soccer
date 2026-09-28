@@ -171,7 +171,7 @@ def test_divergence_blocks_release():
     q = lambda s, a: KalshiQuote("", "E", f"E-{s}", s, s, a - 0.01, a, 0, 0, "now")
     fx = Fixture("nfl", "nfl", g, {"home": 0.70, "away": 0.30}, "", ref_probs={"home": 0.45, "away": 0.55},
                  kalshi={"home": q("home", 0.46), "away": q("away", 0.56)})
-    cands = evaluate_fixture(fx, datetime(2026, 10, 10, tzinfo=timezone.utc))
+    cands = evaluate_fixture(fx)
     home = [c for c in cands if c.market == "home"][0]
     assert home.flags and "weicht" in home.flags[0]
     assert pick(cands) == []
@@ -388,3 +388,14 @@ def test_snapshot_open_gives_closing_line(tmp_path):
         ["keine offenen Tipps vor Anstoß"]
     cfo = settle.closing_fair_odds("KXUEFANLGAME-26SEP29LUXISL-LUX", snaps)
     assert abs(cfo - 1 / (0.305 / (0.305 + 0.415 + 0.285))) < 1e-9
+
+
+def test_play_whenever_odds_reach_min_odds():
+    off = Offer("Finland – Belarus", "2026-09-29", "away", "Belarus Sieg", 6.29, "kalshi", "now")
+    c = evaluate(off, 1.03 / 5.66 + 0.005)            # Quote über "spielbar ab", Quote > 6
+    assert c.odds >= c.min_odds
+    assert pick([c]) == [c] and c.stake_eh >= 0.25
+    below = evaluate(off, 1.03 / 6.29 - 0.005)        # knapp unter spielbar ab
+    assert pick([below]) == []
+    flagged = evaluate(off, 0.2, flags=["QB fehlt"])
+    assert pick([flagged]) == []
