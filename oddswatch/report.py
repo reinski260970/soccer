@@ -2,7 +2,15 @@
 
 from __future__ import annotations
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from .selection import Candidate
+
+_TZ = ZoneInfo("Europe/Berlin")
+_WD = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+_LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
+            "austria": "Österr. Bundesliga", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
 
 
 def _pct(x: float) -> str:
@@ -17,11 +25,29 @@ def _eh(x: float) -> str:
     return _q(x).rstrip("0").rstrip(",")
 
 
+def _league(code: str) -> str:
+    return _LEAGUES.get(code, code.upper())
+
+
+def _kick(iso: str) -> str:
+    """ISO-Anstoß (UTC) -> 'Sa 11.10. 17:30 MESZ' in deutscher Zeit."""
+    try:
+        t = datetime.fromisoformat(iso).astimezone(_TZ)
+    except (TypeError, ValueError):
+        return iso or "Anstoß unbekannt"
+    tz = {"CEST": "MESZ", "CET": "MEZ"}.get(t.tzname(), t.tzname())
+    return f"{_WD[t.weekday()]} {t:%d.%m. %H:%M} {tz}"
+
+
+def _head(c: Candidate) -> str:
+    return " · ".join(x for x in (_league(c.league) if c.league else "", _kick(c.kickoff)) if x)
+
+
 def _pick_lines(i: int, c: Candidate) -> list[str]:
     tag = " (Schätzung)" if c.estimate else ""
     liq = f", Ask-Tiefe ≈ {c.liquidity:,.0f} $".replace(",", ".") if c.liquidity else ""
     return [
-        f"{i}. ✅ **PLAY**: **{c.event}**: {c.selection}{tag}",
+        f"{i}. ✅ **PLAY**: **{c.event}** ({_head(c)}): {c.selection}{tag}",
         f"   Preis {_q(c.odds)} ({c.source}, inkl. Gebühr{liq}) | fair {_q(c.fair_odds)} "
         f"({_pct(c.p_final or c.p_model)}) | spielbar ab {_q(c.min_odds)} | "
         f"Edge {_pct(c.edge)} | EV {_pct(c.ev)} | Einsatz {_eh(c.stake_eh)} EH",
@@ -44,7 +70,7 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
         lines += ["", "## WATCH (nicht freigegeben)"]
         for c in watch:
             why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
-            lines.append(f"- 👀 WATCH {c.event}: {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
+            lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
                          f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
@@ -71,11 +97,16 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
     else:
         out = [f"📊 CEO-Freigaben {stand}"]
         for c in picks:
-            tag = " ⚠️Schätzung" if c.estimate else ""
-            out.append(f"✅ PLAY {c.event}: {c.selection} @ {_q(c.odds)} ({c.source}) | "
-                       f"fair {_q(c.fair_odds)} | min {_q(c.min_odds)} | "
-                       f"{_eh(c.stake_eh)} EH{tag}")
+            tag = "\n   ⚠️ Schätzung" if c.estimate else ""
+            out += ["", f"✅ PLAY · {_head(c)}", f"🆚 {c.event}",
+                    f"➡️ {c.selection} @ {_q(c.odds)} ({c.source})",
+                    f"   fair {_q(c.fair_odds)} | min {_q(c.min_odds)} | EV {_pct(c.ev)} | "
+                    f"{_eh(c.stake_eh)} EH{tag}"]
     if watch:
-        out.append("👀 WATCH: " + "; ".join(
-            f"{c.selection} ab {_q(c.min_odds)}" for c in watch[:5]))
+        out += ["", "👀 WATCH (nicht freigegeben)"]
+        for c in watch[:5]:
+            why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
+            out += ["", f"• {_head(c)}", f"🆚 {c.event}",
+                    f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
+                    f"   Grund: {why}"]
     return "\n".join(out)

@@ -226,3 +226,36 @@ def test_settle_by_ticker_and_no_side(tmp_path, monkeypatch):
     settle.settle_all(j)
     got = {r["ref"]: r["result"] for r in j.read("placed")}
     assert got == {"KX-E-A": "win", "KX-E-TIE": "loss", "KX-E-B": "win"}
+
+
+def test_telegram_text_shows_league_date_and_opponent():
+    from oddswatch import report
+    from oddswatch.selection import Candidate
+    c = Candidate(event="SC Freiburg – Schalke 04", kickoff="2026-10-11T15:30+00:00",
+                  market="away", selection="Schalke 04 Sieg (90 Min.)", source="kalshi",
+                  odds=4.98, p_model=0.22, fair_odds=4.53, min_odds=4.66, edge=0.02,
+                  ev=0.10, stake_eh=0.0, estimate=False, reason="", observed_at="",
+                  liquidity=None, league="bundesliga",
+                  flags=["Anstoß außerhalb des Freigabefensters"])
+    txt = report.telegram_text("28.09.2026", [], [c])
+    assert "Bundesliga · So 11.10. 17:30 MESZ" in txt
+    assert "SC Freiburg – Schalke 04" in txt and "Grund: Anstoß außerhalb" in txt
+
+
+def test_daily_text_evaluation_profit_and_outlook(tmp_path):
+    from datetime import datetime, timezone
+    from oddswatch import daily
+    from oddswatch.journal import Journal
+    j = Journal(tmp_path)
+    base = {"league": "nhl", "source": "kalshi", "estimate": False, "reason": ""}
+    j.append("valuebets", [
+        {**base, "event": "A – B", "kickoff": "2026-09-28T00:00+00:00", "market": "home",
+         "selection": "A Sieg", "ref": "KX1", "odds": 2.0, "stake_eh": 1.0,
+         "result": "win", "pnl_eh": 1.0, "clv": 0.05},
+        {**base, "event": "C – D", "kickoff": "2026-09-30T18:00+00:00", "market": "away",
+         "selection": "D Sieg", "ref": "KX2", "odds": 3.0, "stake_eh": 0.5}])
+    txt = daily.daily_text(j, now=datetime(2026, 9, 28, 12, tzinfo=timezone.utc), eh_usd=10)
+    assert "A Sieg @ 2,00 → ✅ Gewinn +1.00 EH | CLV +5.0 %" in txt
+    assert "G/V +1.00 EH (+10.00 $)" in txt and "Bilanz 1-0" in txt
+    assert "Offen: 1 Wetten, 0,5 EH im Risiko" in txt
+    assert "NHL · Mi 30.09. 20:00 MESZ" in txt and "🆚 C – D" in txt

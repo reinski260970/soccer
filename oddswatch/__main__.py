@@ -1,6 +1,7 @@
 """CLI.
 
   python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl] [--send]
+  python -m oddswatch daily [--no-scan] [--send]   # Auswertung, Profit-Status, Ausblick
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
@@ -21,14 +22,18 @@ from . import report, telegram
 from .journal import Journal
 
 
+def _watchlist(res) -> list:
+    picked = {(c.event, c.market) for c in res.picks}
+    return sorted([c for c in res.candidates if (c.event, c.market) not in picked
+                   and c.ev >= 0.0 and c.edge > 0], key=lambda c: -c.ev)[:5]
+
+
 def _scan(a) -> int:
     from . import scan
     j = Journal()
     res = scan.run(days=a.days, watch_days=a.watch_days, sports=tuple(a.sports.split(",")),
                    journal=None if a.dry else j)
-    picked = {(c.event, c.market) for c in res.picks}
-    watch = sorted([c for c in res.candidates if (c.event, c.market) not in picked
-                    and c.ev >= 0.0 and c.edge > 0], key=lambda c: -c.ev)[:5]
+    watch = _watchlist(res)
     md = report.ceo_report(res.stand, res.picks, len(res.fixtures), res.issues, res.notes,
                            fixtures=res.fixtures, watch=watch)
     tg = report.telegram_text(res.stand, res.picks, watch)
@@ -41,6 +46,28 @@ def _scan(a) -> int:
     print("--- Telegram ---\n" + tg)
     if a.send:
         r = telegram.send(tg)
+        print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
+        return 0 if r["sent"] else 2
+    return 0
+
+
+def _daily(a) -> int:
+    from . import daily, settle
+    j = Journal()
+    for line in settle.settle_all(j):
+        print(line)
+    picks, watch = [], []
+    if not a.no_scan:
+        from . import scan
+        res = scan.run(sports=tuple(a.sports.split(",")), journal=j)
+        picks, watch = res.picks, _watchlist(res)
+    txt = daily.daily_text(j, picks=picks, watch=watch)
+    out = Path("reports")
+    out.mkdir(exist_ok=True)
+    (out / f"{date.today():%Y-%m-%d}-daily.txt").write_text(txt, encoding="utf-8")
+    print("--- Telegram ---\n" + txt)
+    if a.send:
+        r = telegram.send(txt)
         print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
         return 0 if r["sent"] else 2
     return 0
@@ -124,6 +151,11 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--send", action="store_true")
     s.add_argument("--dry", action="store_true", help="nichts ins Journal schreiben")
     s.set_defaults(fn=_scan)
+    d = sub.add_parser("daily")
+    d.add_argument("--no-scan", action="store_true", help="nur Journal auswerten, kein neuer Scan")
+    d.add_argument("--sports", default="soccer,nfl,nhl")
+    d.add_argument("--send", action="store_true")
+    d.set_defaults(fn=_daily)
     sub.add_parser("settle").set_defaults(fn=_settle)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
