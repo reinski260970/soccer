@@ -10,6 +10,7 @@ mit getrennten Ledgern, CLV-Nachkontrolle und deutschen CEO- und Telegram-Texten
 python -m oddswatch scan                 # Scan (7 Tage Freigabe, 14 Tage Watchlist) + Journal + Bericht
 python -m oddswatch scan --dry           # nur Bericht, nichts ins Journal
 python -m oddswatch scan --send          # zusätzlich Telegram-Versand (Bot API)
+python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
@@ -22,18 +23,26 @@ python -m pytest -q
 ## Ablauf
 
 1. **Daten**: football-data.co.uk (Ergebnisse, echte xG ab 2026/27, bet365-Closing
-   für AT), ESPN (Spielpläne, Ergebnisse, NFL-Verletzungen, DraftKings-Referenzlinie),
+   für AT), ESPN (Spielpläne, Ergebnisse, NFL-/NBA-Verletzungen, NBA-Leistungsträger
+   nach PPG, DraftKings-Referenzlinie),
    NHL-API (Ergebnisse, 5v5-Tore, PP/PK), Kalshi-API (Preise, Orderbuch-Tiefe, Ergebnisse).
 2. **Modelle**: Fußball und Eishockey mit Poisson (Dixon-Coles, Zeitverfall, im Fußball
-   Tore und xG je 50 %), NFL mit Punkte-Rating (Offense/Defense, Heimvorteil, σ aus Residuen).
+   Tore und xG je 50 %), NFL und NBA mit Punkte-Rating (Offense/Defense, Heimvorteil,
+   σ aus Residuen). NBA zu Saisonbeginn aus der Vorsaison (als Schätzung markiert).
+   **Belastung** (NBA/NFL/NHL, `models/fatigue.py`, Spielorte in `venues.py`): je Team
+   Ruhetage (Back-to-back bzw. kurze Woche/Bye), Anreise in km und Stunden, Zeitzonen-
+   Abstand zur Heimat, Höhe ≥ 1000 m, Klimazonenwechsel und in der NFL Kälte im Freien.
+   Die Effekte werden per Ridge-Regression auf die Modellresiduen der Vorsaison
+   geschätzt (nicht angenommen) und als Margenkorrektur eingerechnet.
 3. **Fair**: `p_final = w·p_model + (1−w)·p_ref`. Die Referenz ist die de-vigged
    DraftKings-Linie, ersatzweise der Kalshi-Mittelkurs. `w` ist die angenommene
-   Modellzuverlässigkeit (Fußball 0,5, NFL 0,25, NHL 0,25).
+   Modellzuverlässigkeit (Fußball 0,5, NFL, NHL und NBA je 0,25).
 4. **Preis**: Kalshi-Ask inkl. Taker-Gebühr (Order ≈ 100 Kontrakte).
    Orbit und bet365 sind hier nicht abrufbar und werden nie ungeprüft verwendet.
 5. **Freigabe**: höchstens 5 Kandidaten, je Event einer. Bedingungen:
    - EV ≥ 3 % und Edge ≥ 2 Pp
-   - kein Newsvorbehalt (z. B. QB fehlt), keine Modell-Markt-Divergenz > 15 Pp
+   - kein Newsvorbehalt (z. B. QB fehlt, NBA-Leistungsträger ≥ 15 PPG fehlt),
+     keine Modell-Markt-Divergenz > 15 Pp
    - Anstoß im Freigabefenster
 
    Einsatz: ¼-Kelly mit Schätzungsabschlag, maximal 2 EH.

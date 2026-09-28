@@ -161,3 +161,74 @@ def injuries(league: str, event_id: str) -> tuple[dict[str, list[tuple[str, str,
              (i.get("athlete", {}).get("position") or {}).get("abbreviation", ""),
              i.get("status", "")) for i in t.get("injuries", [])]
     return out, None
+
+
+CORE = "https://sports.core.api.espn.com/v2/sports"
+
+
+def _score(c: dict) -> float | None:
+    s = c.get("score")
+    if isinstance(s, dict):
+        s = s.get("value")
+    try:
+        return float(s)
+    except (TypeError, ValueError):
+        return None
+
+
+def team_ids(league: str) -> tuple[list[str], str | None]:
+    data, err = fetch.get_json(f"{SITE}/{PATHS[league]}/teams", cache_days=30)
+    if data is None:
+        return [], err
+    teams = data["sports"][0]["leagues"][0]["teams"]
+    return [str(t["team"]["id"]) for t in teams], None
+
+
+def team_schedule(league: str, team_id: str, season: int, season_type: int = 2,
+                  cache_days: float = 0.0) -> tuple[list[EspnGame], str | None]:
+    """Alle Spiele eines Teams einer Saison (ESPN-Saisonjahr = Endjahr, NBA 2026 = 2025/26)."""
+    url = (f"{SITE}/{PATHS[league]}/teams/{team_id}/schedule"
+           f"?season={season}&seasontype={season_type}")
+    data, err = fetch.get_json(url, cache_days=cache_days)
+    if data is None:
+        return [], err
+    out = []
+    for e in data.get("events", []):
+        comp = e["competitions"][0]
+        cs = {c["homeAway"]: c for c in comp.get("competitors", [])}
+        if "home" not in cs or "away" not in cs:
+            continue
+        st = (comp.get("status") or e.get("status") or {}).get("type", {}).get("name", "")
+        final = st == "STATUS_FINAL"
+        out.append(EspnGame(
+            id=str(e["id"]), league=league,
+            kickoff=datetime.fromisoformat(e["date"].replace("Z", "+00:00")),
+            home=_team(cs["home"]), away=_team(cs["away"]), status=st,
+            home_score=_score(cs["home"]) if final else None,
+            away_score=_score(cs["away"]) if final else None,
+            neutral=bool(comp.get("neutralSite")), season_type=season_type))
+    return out, None
+
+
+def key_players(league: str, season: int, top: int = 3) -> tuple[dict[str, tuple[str, float]], list[str]]:
+    """Leistungsträger: je Team die Top-n nach Punkten pro Spiel der Saison.
+
+    Gibt Spielername -> (Team der Saison, PPG) zurück; Namen über die Athleten-Refs."""
+    ids, err = team_ids(league)
+    if err:
+        return {}, [err]
+    sport = PATHS[league].split("/")[0]
+    out, errs = {}, []
+    for tid in ids:
+        d, err = fetch.get_json(f"{CORE}/{sport}/leagues/{league}/seasons/{season}/types/2/"
+                                f"teams/{tid}/leaders", cache_days=14)
+        if d is None:
+            errs.append(err)
+            continue
+        cat = next((c for c in d.get("categories", []) if c.get("name") == "pointsPerGame"), None)
+        for ld in (cat or {}).get("leaders", [])[:top]:
+            ref = (ld.get("athlete") or {}).get("$ref", "")
+            a, aerr = fetch.get_json(ref, cache_days=60) if ref else (None, "kein Ref")
+            if a and a.get("displayName"):
+                out[a["displayName"]] = (tid, float(ld.get("value", 0)))
+    return out, errs

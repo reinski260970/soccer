@@ -1,6 +1,6 @@
 """CLI.
 
-  python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl] [--send]
+  python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba] [--send]
   python -m oddswatch daily [--no-scan] [--send]   # Auswertung, Profit-Status, Ausblick
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
@@ -147,13 +147,13 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("scan")
     s.add_argument("--days", type=int, default=7)
     s.add_argument("--watch-days", type=int, default=14)
-    s.add_argument("--sports", default="soccer,nfl,nhl")
+    s.add_argument("--sports", default="soccer,nfl,nhl,nba")
     s.add_argument("--send", action="store_true")
     s.add_argument("--dry", action="store_true", help="nichts ins Journal schreiben")
     s.set_defaults(fn=_scan)
     d = sub.add_parser("daily")
     d.add_argument("--no-scan", action="store_true", help="nur Journal auswerten, kein neuer Scan")
-    d.add_argument("--sports", default="soccer,nfl,nhl")
+    d.add_argument("--sports", default="soccer,nfl,nhl,nba")
     d.add_argument("--send", action="store_true")
     d.set_defaults(fn=_daily)
     sub.add_parser("settle").set_defaults(fn=_settle)

@@ -21,13 +21,15 @@ from pathlib import Path
 
 from . import matching, pricing
 from .journal import Journal
+from .models import fatigue
+from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
 from .sources import espn, football_data, kalshi, nhl
-from . import fetch
+from . import fetch, venues
 
-MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25}
+MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25, "nba": 0.25}
 # Weicht das Modell stärker als das vom Referenzmarkt ab, fehlt ihm meist eine
 # Information (QB, Kader, Trainer) – dann keine Freigabe, sondern Prüfung.
 MAX_DIVERGENCE = 0.15
@@ -122,6 +124,40 @@ def _attach_kalshi(fx: Fixture, quotes: list[kalshi.KalshiQuote]) -> None:
                 pass
             fx.kalshi = found
             return
+
+
+# ---------------------------------------------------------------- Belastung
+def _fatigue(sport: str, hist: list[tuple[Slot, float, float]], ups: list[Slot]
+             ) -> tuple[Effects, list[tuple[TeamLoad, TeamLoad]]]:
+    """hist: (Spiel, tatsächliche Marge, Modellmarge). Schätzt die Effekte von
+    Ruhezeit/Reise/Zeitzone/Höhe/Klima auf die Residuen und liefert die
+    Belastung der anstehenden Spiele (Spielplan inkl. Vorspielen)."""
+    ld = fatigue.loads(sport, [h[0] for h in hist] + ups)
+    xs = [fatigue.diff(*l) for l in ld[:len(hist)]]
+    eff = Effects.fit(xs, [y - m for _, y, m in hist])
+    return eff, ld[len(hist):]
+
+
+def _points_fatigue(sport: str, model: PointsModel, games: list[Game], ups: list[espn.EspnGame]
+                    ) -> tuple[Effects, list[tuple[TeamLoad, TeamLoad]]]:
+    hist = []
+    for g in games:
+        try:
+            ph, pa = model.expected_points(g.home, g.away, g.neutral)
+        except KeyError:
+            continue
+        hist.append((Slot(g.date, g.home, g.away, g.neutral), g.home_pts - g.away_pts, ph - pa))
+    return _fatigue(sport, hist, [_slot(sport, g.home.name, g.away.name, g.kickoff, g.neutral)
+                                  for g in ups])
+
+
+def _load_ctx(h: str, a: str, lh: TeamLoad, la: TeamLoad, adj: float, unit: str) -> str:
+    return (f"Belastung {h}: {lh.text()} | {a}: {la.text()} → {adj:+.1f} {unit} Heim-Sicht")
+
+
+def _slot(sport: str, home: str, away: str, kickoff: datetime, neutral: bool) -> Slot:
+    v = None if neutral else venues.LEAGUES[sport].get(home)
+    return Slot(fatigue.local_day(kickoff, v), home, away, neutral)
 
 
 # ---------------------------------------------------------------- soccer
@@ -221,7 +257,8 @@ def _nfl_games(season_now: int, issues: list[str]) -> list[Game]:
     for g in raw:
         if g.final and g.id not in seen and g.home_score is not None:
             seen.add(g.id)
-            games.append(Game(g.kickoff.date(), g.home.name, g.away.name,
+            day = fatigue.local_day(g.kickoff, None if g.neutral else venues.NFL.get(g.home.name))
+            games.append(Game(day, g.home.name, g.away.name,
                               g.home_score, g.away_score, g.neutral))
     return games
 
@@ -240,12 +277,16 @@ def scan_nfl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     ups, errs = espn.upcoming("nfl", start, days)
     issues += errs
     as_ms = [Match(g.date, g.home, g.away, g.home_pts, g.away_pts) for g in games]
+    eff, loads = _points_fatigue("nfl", model, games, ups)
+    notes.append(f"NFL-Belastung (Punkte je Einheit): {eff.text('Pkt')}")
     out = []
-    for g in ups:
+    for g, (lh, la) in zip(ups, loads):
         if g.status != "STATUS_SCHEDULED":
             continue
+        adj = eff.margin_adj(lh, la)
         try:
-            mk = model.markets(g.home.name, g.away.name, neutral=g.neutral)
+            mk = model.markets(g.home.name, g.away.name, neutral=g.neutral,
+                               home_adj=adj / 2, away_adj=-adj / 2)
         except KeyError as e:
             issues.append(f"NFL: {e}")
             continue
@@ -253,6 +294,7 @@ def scan_nfl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
         ctx = [f"Form {g.home.abbr} {_form(as_ms, g.home.name, kd)}, "
                f"{g.away.abbr} {_form(as_ms, g.away.name, kd)}",
                f"Pause {_rest_days(as_ms, g.home.name, kd)}/{_rest_days(as_ms, g.away.name, kd)} Tage"]
+        ctx.append(_load_ctx(g.home.abbr, g.away.abbr, lh, la, adj, "Pkt"))
         if g.ref_line.get("details"):
             ctx.append(f"DK-Linie {g.ref_line['details']}, O/U {g.ref_line.get('total')}")
         flags: dict[str, list[str]] = {}
@@ -298,16 +340,34 @@ def scan_nhl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     ups, errs = espn.upcoming("nhl", start, days)
     issues += errs
     abbr_by_name = {v: k for k, v in names.items()}
+
+    def abbr(name: str) -> str:
+        return abbr_by_name.get(matching.find(name, list(abbr_by_name)) or "", "")
+    pairs = [(g, abbr(g.home.name), abbr(g.away.name)) for g in ups]
+    pairs = [(g, h, a) for g, h, a in pairs if h and a]
+    hist = []
+    for m in ms:
+        if m.home in model.attack and m.away in model.attack:
+            lh, la = model.expected_goals(m.home, m.away)
+            hist.append((Slot(m.date, m.home, m.away), m.home_goals - m.away_goals, lh - la))
+    eff, loads = _fatigue("nhl", hist, [_slot("nhl", h, a, g.kickoff, g.neutral)
+                                        for g, h, a in pairs])
+    notes.append(f"NHL-Belastung (Tore je Einheit): {eff.text('Tore')}")
+    load_by_id = {g.id: l for (g, _, _), l in zip(pairs, loads)}
     out = []
     for g in ups:
         if g.status != "STATUS_SCHEDULED":
             continue
-        h = abbr_by_name.get(matching.find(g.home.name, list(abbr_by_name)) or "")
-        a = abbr_by_name.get(matching.find(g.away.name, list(abbr_by_name)) or "")
+        h, a = abbr(g.home.name), abbr(g.away.name)
         if not h or not a or h not in model.attack or a not in model.attack:
             issues.append(f"NHL: Team nicht zugeordnet ({g.title})")
             continue
-        mk = model.markets(h, a)
+        lh, la = model.expected_goals(h, a)
+        l_h, l_a = load_by_id[g.id]
+        adj = eff.margin_adj(l_h, l_a)
+        # Margenkorrektur je zur Hälfte auf beide Torerwartungen (log-Skala)
+        mk = model.markets(h, a, home_adj=math.log(max(lh + adj / 2, 0.2) / lh),
+                           away_adj=math.log(max(la - adj / 2, 0.2) / la))
         ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
         ctx = []
         for t, ab in ((g.home.name, h), (g.away.name, a)):
@@ -315,10 +375,107 @@ def scan_nhl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
             if st:
                 ctx.append(f"{ab} Vorsaison: 5v5-GF% {st.gf_pct_5v5 * 100:.0f} %, "
                            f"PP {st.pp_pct * 100:.0f} %, PK {st.pk_pct * 100:.0f} %")
+        ctx.append(_load_ctx(h, a, l_h, l_a, adj, "Tore"))
         fx = Fixture("nhl", "nhl", g, {"home": ph, "away": pa},
                      f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, "
                      f"60-Min-Remis {mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)", ctx,
                      ref_probs=_devig_ref(g, three_way=False), estimate=True)
+        _attach_kalshi(fx, kq)
+        out.append(fx)
+    return out
+
+
+# ---------------------------------------------------------------- NBA
+def _nba_games(season: int, issues: list[str], cache_days: float) -> list[Game]:
+    ids, err = espn.team_ids("nba")
+    if err:
+        issues.append(f"NBA-Teams: {err}")
+    seen, games = set(), []
+    for tid in ids:
+        for st in (2, 3):
+            gs, err = espn.team_schedule("nba", tid, season, st, cache_days=cache_days)
+            if err and st == 2:
+                issues.append(f"NBA-Spielplan {tid}/{season}: {err}")
+            for g in gs:
+                if g.final and g.id not in seen and g.home_score is not None:
+                    seen.add(g.id)
+                    v = None if g.neutral else venues.NBA.get(g.home.name)
+                    games.append(Game(fatigue.local_day(g.kickoff, v), g.home.name, g.away.name,
+                                      g.home_score, g.away_score, g.neutral))
+    return games
+
+
+def scan_nba(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
+    cur = start.year + 1 if start.month >= 8 else start.year   # ESPN-Saisonjahr = Endjahr
+    prev_games = _nba_games(cur - 1, issues, cache_days=30)
+    cur_games = _nba_games(cur, issues, cache_days=0)
+    games = prev_games + cur_games
+    if len(games) < 500:
+        issues.append(f"NBA: nur {len(games)} Spiele geladen – kein Modell")
+        return []
+    ups, errs = espn.upcoming("nba", start, days)
+    issues += errs
+    regular = [g for g in ups if g.season_type == 2]
+    if not regular:
+        first = "20.10." if not cur_games else "–"
+        notes.append(f"NBA: keine Regular-Season-Spiele bis {start + timedelta(days=days):%d.%m.} "
+                     f"(Preseason wird nicht bewertet; Saisonstart {first})")
+        return []
+    # Saisonbeginn: Vorsaison mit Halbwertszeit 90 Tage und Ridge 8 (Kaderwechsel)
+    model = PointsModel.fit(games, start, half_life_days=90, ridge=8.0)
+    n_cur: dict[str, int] = {}
+    for g in cur_games:
+        n_cur[g.home] = n_cur.get(g.home, 0) + 1
+        n_cur[g.away] = n_cur.get(g.away, 0) + 1
+    notes.append(f"NBA-Modell: {len(prev_games)} Vorsaison- + {len(cur_games)} aktuelle Spiele, "
+                 f"Heimvorteil {model.home_adv:.1f} Pkt, σ Marge {model.sigma_margin:.1f}")
+    eff, loads = _points_fatigue("nba", model, games, ups)
+    notes.append(f"NBA-Belastung (Punkte je Einheit): {eff.text('Pkt')}")
+    keys, kerr = espn.key_players("nba", cur - 1)
+    issues += kerr[:2]
+    kq, err = kalshi.fetch_series(kalshi.SERIES["nba"])
+    if err:
+        issues.append(f"Kalshi NBA: {err}")
+    as_ms = [Match(g.date, g.home, g.away, g.home_pts, g.away_pts) for g in cur_games]
+    out = []
+    for g, (lh, la) in zip(ups, loads):
+        if g.status != "STATUS_SCHEDULED" or g.season_type != 2:
+            continue
+        adj = eff.margin_adj(lh, la)
+        try:
+            mk = model.markets(g.home.name, g.away.name, neutral=g.neutral,
+                               home_adj=adj / 2, away_adj=-adj / 2)
+        except KeyError as e:
+            issues.append(f"NBA: {e}")
+            continue
+        kd = g.kickoff.date()
+        ctx = [_load_ctx(g.home.abbr, g.away.abbr, lh, la, adj, "Pkt")]
+        if as_ms:
+            ctx.append(f"Form {g.home.abbr} {_form(as_ms, g.home.name, kd)}, "
+                       f"{g.away.abbr} {_form(as_ms, g.away.name, kd)}")
+        if g.ref_line.get("details"):
+            ctx.append(f"DK-Linie {g.ref_line['details']}, O/U {g.ref_line.get('total')}")
+        flags: dict[str, list[str]] = {}
+        inj, ierr = espn.injuries("nba", g.id)
+        if ierr:
+            issues.append(f"NBA-Verletzungen {g.title}: {ierr}")
+        for side, t in (("home", g.home), ("away", g.away)):
+            lst = inj.get(t.name, [])
+            out_keys = [f"{n} ({keys[n][1]:.0f} PPG, {s})" for n, _, s in lst
+                        if n in keys and keys[n][1] >= 15 and s in ("Out", "Doubtful")]
+            dtd = [n for n, _, s in lst if n in keys and keys[n][1] >= 15 and s == "Day-To-Day"]
+            if out_keys:
+                ctx.append(f"Ausfall Leistungsträger {t.abbr}: {', '.join(out_keys)}")
+                flags.setdefault(side, []).append(
+                    f"Leistungsträger {', '.join(out_keys)} fehlt – im Teamrating nicht abgezogen")
+            if dtd:
+                ctx.append(f"fraglich {t.abbr}: {', '.join(dtd)}")
+        early = min(n_cur.get(g.home.name, 0), n_cur.get(g.away.name, 0)) < 10
+        fx = Fixture("nba", "nba", g, {"home": mk["ML1"], "away": mk["ML2"]},
+                     f"erw. Punkte {mk['pts_home']:.1f}:{mk['pts_away']:.1f} "
+                     f"(Marge {mk['margin']:+.1f}, Total {mk['total']:.1f})"
+                     + (", Saisonstart: Rating aus Vorsaison" if early else ""), ctx,
+                     ref_probs=_devig_ref(g, three_way=False), flags=flags, estimate=early)
         _attach_kalshi(fx, kq)
         out.append(fx)
     return out
@@ -366,7 +523,7 @@ def evaluate_fixture(fx: Fixture, release_until: datetime) -> list[Candidate]:
 
 
 def run(start: date | None = None, days: int = 7, watch_days: int = 14,
-        sports: tuple[str, ...] = ("soccer", "nfl", "nhl"),
+        sports: tuple[str, ...] = ("soccer", "nfl", "nhl", "nba"),
         journal: Journal | None = None) -> ScanResult:
     start = start or date.today()
     now = datetime.now(timezone.utc)
@@ -381,7 +538,8 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_nfl(start, days, issues, notes)
     if "nhl" in sports:
         fixtures += scan_nhl(start, days, issues, notes)
-    notes.append("NBA: Regular Season startet erst am 20.10. – Preseason wird nicht bewertet")
+    if "nba" in sports:
+        fixtures += scan_nba(start, days, issues, notes)
     notes.append("Europ. Eishockey (DEL/ICEHL): keine offenen Kalshi-Märkte, keine "
                  "verifizierten Orbit/bet365-Preise – nicht bewertet")
     notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "

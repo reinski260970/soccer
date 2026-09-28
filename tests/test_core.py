@@ -259,3 +259,32 @@ def test_daily_text_evaluation_profit_and_outlook(tmp_path):
     assert "G/V +1.00 EH (+10.00 $)" in txt and "Bilanz 1-0" in txt
     assert "Offen: 1 Wetten, 0,5 EH im Risiko" in txt
     assert "NHL · Mi 30.09. 20:00 MESZ" in txt and "🆚 C – D" in txt
+
+
+def test_fatigue_back_to_back_travel_and_climate_zone():
+    from datetime import date
+    from oddswatch.models import fatigue
+    from oddswatch.models.fatigue import Slot
+    slots = [Slot(date(2026, 11, 1), "Boston Celtics", "Miami Heat"),
+             Slot(date(2026, 11, 2), "Denver Nuggets", "Miami Heat"),
+             Slot(date(2026, 11, 2), "Boston Celtics", "Utah Jazz")]
+    (bh, ba), (dh, da), _ = fatigue.loads("nba", slots)
+    assert ba.km > 1500 and ba.feats["zone"] == 1 and ba.zones == ("subtropisch", "kontinental-kalt")
+    assert da.rest == 1 and da.feats["short"] == 1          # Miami: Back-to-back
+    assert da.feats["altitude"] == 1 and da.feats["tz"] == 2  # Denver: Höhe, 2 Zeitzonen
+    assert 2500 < da.km < 3200 and "Anreise" in da.text() and "Höhe" in da.text()
+    assert bh.km == 0 and bh.feats["zone"] == 0
+
+
+def test_fatigue_effects_recover_synthetic_b2b_penalty():
+    import random
+    from oddswatch.models.fatigue import FEATURES, Effects
+    rnd = random.Random(1)
+    xs, ys = [], []
+    for _ in range(3000):
+        x = [0.0] * len(FEATURES)
+        x[0] = rnd.choice([-1.0, 0.0, 0.0, 1.0])       # short-Differenz
+        xs.append(x)
+        ys.append(-2.0 * x[0] + rnd.gauss(0, 12))
+    eff = Effects.fit(xs, ys)
+    assert -2.8 < eff.coef["short"] < -1.2 and abs(eff.coef["travel"]) < 1e-9
