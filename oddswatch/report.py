@@ -13,37 +13,69 @@ def _q(x: float) -> str:
     return f"{x:.2f}".replace(".", ",")
 
 
+def _eh(x: float) -> str:
+    return _q(x).rstrip("0").rstrip(",")
+
+
+def _pick_lines(i: int, c: Candidate) -> list[str]:
+    tag = " (Schätzung)" if c.estimate else ""
+    liq = f", Ask-Tiefe ≈ {c.liquidity:,.0f} $".replace(",", ".") if c.liquidity else ""
+    return [
+        f"{i}. **{c.event}**: {c.selection}{tag}",
+        f"   Preis {_q(c.odds)} ({c.source}, inkl. Gebühr{liq}) | fair {_q(c.fair_odds)} "
+        f"({_pct(c.p_final or c.p_model)}) | spielbar ab {_q(c.min_odds)} | "
+        f"Edge {_pct(c.edge)} | EV {_pct(c.ev)} | Einsatz {_eh(c.stake_eh)} EH",
+        f"   Begründung: {c.reason}",
+    ]
+
+
 def ceo_report(stand: str, picks: list[Candidate], scanned: int,
-               data_issues: list[str], notes: list[str] | None = None) -> str:
+               data_issues: list[str], notes: list[str] | None = None,
+               fixtures: list | None = None, watch: list[Candidate] | None = None) -> str:
     lines = [f"# Sportanalyse – Stand {stand}", ""]
-    lines.append(f"Gescannte Spiele mit Preis und Modell: {scanned}")
-    if data_issues:
-        lines += ["", "## Datenlage (ungelöst)"] + [f"- {i}" for i in data_issues]
+    lines.append(f"Bewertete Spiele: {scanned}. Freigabe nur mit verifiziertem Preis, "
+                 f"EV ≥ 3 % und Edge ≥ 2 Prozentpunkte, ohne offenen Newsvorbehalt.")
     lines += ["", "## Entscheidung"]
     if not picks:
-        lines.append("Kein Trade: kein belegter Vorteil nach Gebühren/Marge.")
+        lines.append("**Kein Trade**: kein belegter Vorteil nach Gebühren/Marge.")
     for i, c in enumerate(picks, 1):
-        tag = " (Schätzung)" if c.estimate else ""
-        liq = f", Liquidität {c.liquidity:,.0f} $" if c.liquidity else ""
-        lines += [
-            f"{i}. **{c.event}** – {c.selection}{tag}",
-            f"   Preis {_q(c.odds)} ({c.source}{liq}) | fair {_q(c.fair_odds)} "
-            f"({_pct(c.p_model)}) | spielbar ab {_q(c.min_odds)} | "
-            f"Edge {_pct(c.edge)} | EV {_pct(c.ev)} | Einsatz {c.stake_eh:g} EH",
-            f"   Begründung: {c.reason}",
-        ]
+        lines += _pick_lines(i, c)
+    if watch:
+        lines += ["", "## Watchlist (nicht freigegeben)"]
+        for c in watch:
+            why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
+            lines.append(f"- {c.event}: {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
+                         f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
+    if fixtures:
+        lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
+                  "| Liga | Spiel | Anstoß (UTC) | Modell H/X/A | Referenz | Kalshi Ask | Kennzahlen |",
+                  "|---|---|---|---|---|---|---|"]
+        for fx in sorted(fixtures, key=lambda f: (f.league, f.game.kickoff)):
+            ks = list(fx.probs)
+            mod = " / ".join(_pct(fx.probs[k]) for k in ks)
+            ref = " / ".join(_pct(fx.ref_probs[k]) for k in ks) if fx.ref_probs else "–"
+            ka = " / ".join(f"{fx.kalshi[k].yes_ask * 100:.0f}¢" if k in fx.kalshi else "–"
+                            for k in ks) if fx.kalshi else "–"
+            lines.append(f"| {fx.league} | {fx.game.title} | {fx.game.kickoff:%d.%m. %H:%M} | "
+                         f"{mod} | {ref} | {ka} | {fx.detail} |")
+    if data_issues:
+        lines += ["", "## Datenlage (ungelöst)"] + [f"- {i}" for i in data_issues]
     if notes:
         lines += ["", "## Hinweise"] + [f"- {n}" for n in notes]
     return "\n".join(lines) + "\n"
 
 
-def telegram_text(stand: str, picks: list[Candidate]) -> str:
+def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | None = None) -> str:
     if not picks:
-        return f"📊 Update {stand}\nKein Trade – kein belegter Vorteil."
-    out = [f"📊 Value-Kandidaten {stand}"]
-    for c in picks:
-        tag = " ⚠️Schätzung" if c.estimate else ""
-        out.append(f"• {c.event}: {c.selection} @ {_q(c.odds)} ({c.source}) | "
-                   f"fair {_q(c.fair_odds)} | min {_q(c.min_odds)} | "
-                   f"{c.stake_eh:g} EH{tag}")
+        out = [f"📊 Update {stand}", "Kein Trade: kein belegter Vorteil."]
+    else:
+        out = [f"📊 Value-Kandidaten {stand}"]
+        for c in picks:
+            tag = " ⚠️Schätzung" if c.estimate else ""
+            out.append(f"• {c.event}: {c.selection} @ {_q(c.odds)} ({c.source}) | "
+                       f"fair {_q(c.fair_odds)} | min {_q(c.min_odds)} | "
+                       f"{_eh(c.stake_eh)} EH{tag}")
+    if watch:
+        out.append("👀 Watchlist: " + "; ".join(
+            f"{c.selection} ab {_q(c.min_odds)}" for c in watch[:5]))
     return "\n".join(out)

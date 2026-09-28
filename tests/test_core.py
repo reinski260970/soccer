@@ -121,3 +121,57 @@ def test_journal_keeps_timestamps(tmp_path):
     row = j.read("valuebets")[0]
     assert row["observed_at"] == "2026-09-28T10:00:00Z"
     assert row["created_at"]
+
+
+def test_matching_names():
+    from oddswatch.matching import find, match_label
+    fd = ["M'gladbach", "FC Koln", "Ein Frankfurt", "RB Leipzig", "Bayern Munich", "A. Lustenau", "Ried"]
+    assert find("Borussia Mönchengladbach", fd) == "M'gladbach"
+    assert find("FC Cologne", fd) == "FC Koln"
+    assert find("Eintracht Frankfurt", fd) == "Ein Frankfurt"
+    assert find("Austria Lustenau", fd) == "A. Lustenau"
+    assert find("SV Josko Ried", fd) == "Ried"
+    assert match_label("M´gladbach", ["Borussia Mönchengladbach", "Gladbach", "BMG"])
+    assert match_label("Los Angeles C", ["Los Angeles Chargers", "Los Angeles", "Chargers", "LAC"])
+    assert not match_label("Los Angeles R", ["Los Angeles Chargers", "Los Angeles", "Chargers", "LAC"])
+
+
+def test_telegram_chunks_and_missing_token(monkeypatch):
+    from oddswatch import telegram
+    text = "\n".join("x" * 100 for _ in range(100))
+    parts = telegram.chunks(text)
+    assert all(len(p) <= telegram.LIMIT for p in parts) and "".join(parts) == text
+    monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
+    r = telegram.send("hi")
+    assert r["sent"] is False and "nicht gesetzt" in r["error"]
+
+
+def test_espn_moneyline_parse():
+    from oddswatch.sources.espn import parse_scoreboard
+    ev = {"events": [{"id": "1", "date": "2026-10-04T17:00Z",
+                      "status": {"type": {"name": "STATUS_SCHEDULED"}},
+                      "competitions": [{"competitors": [
+                          {"homeAway": "home", "team": {"displayName": "Washington Commanders"}},
+                          {"homeAway": "away", "team": {"displayName": "Indianapolis Colts"}}],
+                          "odds": [{"provider": {"name": "DraftKings"}, "details": "IND -3.5",
+                                    "moneyline": {"home": {"close": {"odds": "+150"}},
+                                                  "away": {"close": {"odds": "-180"}}}}]}]}]}
+    g = parse_scoreboard(ev, "nfl")[0]
+    assert abs(g.ref_line["ml_home"] - 2.5) < 1e-9
+    assert abs(g.ref_line["ml_away"] - (1 + 100 / 180)) < 1e-9
+
+
+def test_divergence_blocks_release():
+    from datetime import datetime, timezone
+    from oddswatch.scan import Fixture, evaluate_fixture
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("1", "nfl", datetime(2026, 10, 4, 17, tzinfo=timezone.utc),
+                 Team("Home Team"), Team("Away Team"), "STATUS_SCHEDULED")
+    q = lambda s, a: KalshiQuote("", "E", f"E-{s}", s, s, a - 0.01, a, 0, 0, "now")
+    fx = Fixture("nfl", "nfl", g, {"home": 0.70, "away": 0.30}, "", ref_probs={"home": 0.45, "away": 0.55},
+                 kalshi={"home": q("home", 0.46), "away": q("away", 0.56)})
+    cands = evaluate_fixture(fx, datetime(2026, 10, 10, tzinfo=timezone.utc))
+    home = [c for c in cands if c.market == "home"][0]
+    assert home.flags and "weicht" in home.flags[0]
+    assert pick(cands) == []

@@ -56,12 +56,20 @@ def _f(row: dict, *keys: str) -> tuple[float, ...] | None:
     return vals if all(v > 1.0 for v in vals) else None
 
 
+def _num(v) -> float | None:
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
 def parse(text: str, shots_as_xg: bool = False) -> tuple[list[Match], list[OddsRow]]:
     """Liest eine football-data-CSV.
 
+    Echte xG (Spalten HxG/AxG, ab 2026/27 geliefert) haben Vorrang.
     shots_as_xg: Ersatz-xG aus Schüssen aufs Tor (0.30 je SoT + 0.03 je
-    Schuss daneben). Nur Notlösung, wenn keine echten xG vorliegen – wird im
-    Bericht als Schätzung gekennzeichnet.
+    Schuss daneben), nur wenn keine echten xG vorliegen – wird im Bericht als
+    Schätzung gekennzeichnet.
     """
     matches, odds = [], []
     for row in csv.DictReader(io.StringIO(text.lstrip("﻿"))):
@@ -70,8 +78,9 @@ def parse(text: str, shots_as_xg: bool = False) -> tuple[list[Match], list[OddsR
         d = _d(row["Date"])
         hg, ag = row.get("FTHG", ""), row.get("FTAG", "")
         if hg not in ("", None) and ag not in ("", None):
-            hx = ax = None
-            if shots_as_xg:
+            hx = _num(row.get("HxG"))
+            ax = _num(row.get("AxG"))
+            if (hx is None or ax is None) and shots_as_xg:
                 try:
                     hst, ast = float(row["HST"]), float(row["AST"])
                     hs, as_ = float(row["HS"]), float(row["AS"])
@@ -88,4 +97,25 @@ def parse(text: str, shots_as_xg: bool = False) -> tuple[list[Match], list[OddsR
             _f(row, "B365>2.5", "B365<2.5"),
             _f(row, "B365C>2.5", "B365C<2.5"),
         ))
+    return matches, odds
+
+
+AUT_URL = "https://www.football-data.co.uk/new/AUT.csv"
+
+
+def parse_new_league(text: str, seasons: set[str] | None = None) -> tuple[list[Match], list[OddsRow]]:
+    """'new/'-Format (z. B. AUT.csv): Country,League,Season,Date,Time,Home,Away,
+    HG,AG,...,B365CH/CD/CA (nur Closing-Quoten, keine xG, keine Schüsse)."""
+    matches, odds = [], []
+    for row in csv.DictReader(io.StringIO(text.lstrip("\ufeff"))):
+        if seasons and row.get("Season") not in seasons:
+            continue
+        if not row.get("Home") or not row.get("Date"):
+            continue
+        d = _d(row["Date"])
+        hg, ag = _num(row.get("HG")), _num(row.get("AG"))
+        if hg is not None and ag is not None:
+            matches.append(Match(d, row["Home"], row["Away"], hg, ag))
+        odds.append(OddsRow(d, row["Home"], row["Away"], None,
+                            _f(row, "B365CH", "B365CD", "B365CA"), None, None))
     return matches, odds

@@ -12,14 +12,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 LEDGERS = {
-    "forecasts": ["created_at", "event", "kickoff", "market", "p_model", "fair_odds",
-                  "estimate", "model", "inputs"],
-    "valuebets": ["created_at", "observed_at", "event", "kickoff", "market", "selection", "source",
-                  "odds", "p_model", "fair_odds", "min_odds", "edge", "ev",
-                  "stake_eh", "estimate", "reason", "result", "closing_fair_odds",
-                  "clv", "pnl_eh"],
+    "forecasts": ["created_at", "league", "event_id", "event", "kickoff", "market",
+                  "p_model", "p_ref", "p_final", "fair_odds", "estimate", "model", "inputs",
+                  "outcome"],
+    "valuebets": ["created_at", "observed_at", "league", "event", "kickoff", "market",
+                  "selection", "source", "ref", "odds", "p_model", "p_ref", "p_final",
+                  "fair_odds", "min_odds", "edge", "ev", "stake_eh", "estimate", "reason",
+                  "result", "closing_fair_odds", "clv", "pnl_eh"],
     "placed": ["placed_at", "event", "kickoff", "market", "selection", "bookmaker",
-               "odds_taken", "stake_eh", "valuebet_ref", "result",
+               "odds_taken", "stake_eh", "valuebet_ref", "ref", "result",
                "closing_fair_odds", "clv", "pnl_eh"],
 }
 
