@@ -5,6 +5,7 @@
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
+  python -m oddswatch telegram-chatid   # Chat-ID(s) aus getUpdates anzeigen
   python -m oddswatch kalshi-check      # Key prüfen (Kontostand, nur lesend)
   python -m oddswatch import-fills [--eh-usd 10]   # Kalshi-Trades -> placed.csv
 """
@@ -100,6 +101,19 @@ def _import_fills(a) -> int:
         return 2
 
 
+def _chatid(a) -> int:
+    ids, err = telegram.chat_ids()
+    if err:
+        print(err)
+        return 2
+    if not ids:
+        print("Keine Chats gefunden – dem Bot zuerst eine Nachricht schreiben (/start).")
+        return 1
+    for cid, name in ids:
+        print(f"TELEGRAM_CHAT_ID={cid}  ({name})")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="oddswatch")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -124,6 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     se.add_argument("file")
     se.set_defaults(fn=_send)
     sub.add_parser("summary").set_defaults(fn=_summary)
+    sub.add_parser("telegram-chatid").set_defaults(fn=_chatid)
     sub.add_parser("kalshi-check").set_defaults(fn=_kalshi_check)
     im = sub.add_parser("import-fills")
     im.add_argument("--eh-usd", type=float, default=None, help="Dollar je Einheit (Default 10 bzw. ODDSWATCH_EH_USD)")

@@ -65,3 +65,27 @@ def send(text: str, token: str | None = None, chat_id: str | None = None,
                              + (f" (nach {len(ids)} gesendeten Teilen)" if ids else "")}
         ids.append(mid)
     return {"sent": True, "message_ids": ids, "error": None}
+
+
+def chat_ids(token: str | None = None, timeout: float = 20.0) -> tuple[list[tuple[int, str]], str | None]:
+    """Chats, die dem Bot zuletzt geschrieben haben (getUpdates): [(id, name)]."""
+    token = token or os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        return [], "TELEGRAM_BOT_TOKEN nicht gesetzt"
+    try:
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/getUpdates",
+                                    timeout=timeout) as r:
+            res = json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        return [], f"Telegram: HTTP {e.code}"
+    except (urllib.error.URLError, OSError) as e:
+        return [], f"Telegram: {getattr(e, 'reason', e)}"
+    if not res.get("ok"):
+        return [], f"Telegram: {res.get('description')}"
+    seen: dict[int, str] = {}
+    for u in res.get("result", []):
+        msg = u.get("message") or u.get("channel_post") or u.get("my_chat_member") or {}
+        chat = msg.get("chat") or {}
+        if "id" in chat:
+            seen[chat["id"]] = chat.get("title") or chat.get("username") or chat.get("first_name", "")
+    return list(seen.items()), None
