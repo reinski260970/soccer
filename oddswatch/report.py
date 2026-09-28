@@ -12,7 +12,8 @@ _WD = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 _LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
             "austria": "Österr. Bundesliga", "ucl": "Champions League",
             "uel": "Europa League", "uecl": "Conference League",
-            "nations": "UEFA Nations League", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
+            "nations": "UEFA Nations League", "del": "DEL", "nl": "National League (CH)",
+            "shl": "SHL", "liiga": "Liiga", "khl": "KHL", "icehl": "ICE Hockey League", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
 
 
 def _pct(x: float) -> str:

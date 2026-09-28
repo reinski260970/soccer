@@ -28,7 +28,9 @@ python -m pytest -q
    nach PPG, DraftKings-Referenzlinie),
    NHL-API (Ergebnisse, 5v5-Tore, PP/PK), Kalshi-API (Preise, Orderbuch-Tiefe, Ergebnisse),
    eloratings.net (Elo der Nationalteams, Länderspiele mit Elo vor dem Spiel),
-   ClubElo (Elo der Vereine, aus den UEFA-Länderseiten, da die CSV-API HTTP 502 liefert).
+   ClubElo (Elo der Vereine, aus den UEFA-Länderseiten, da die CSV-API HTTP 502 liefert),
+   hockeyarchives.info (europäisches Eishockey, Ergebnisse mit Dritteln, Vorsaison und
+   laufende Saison), Liiga-API, SHL-API, ICEHL-Datenfeed (Spielplan + Ergebnisse).
 2. **Modelle**: Fußball und Eishockey mit Poisson (Dixon-Coles, Zeitverfall, im Fußball
    Tore und xG je 50 %), NFL und NBA mit Punkte-Rating (Offense/Defense, Heimvorteil,
    σ aus Residuen). NBA zu Saisonbeginn aus der Vorsaison (als Schätzung markiert).
@@ -43,6 +45,12 @@ python -m pytest -q
    Spiel; in Bundesliga und 2. BL ebenso (dort Tore und xG je 50 % im Poisson-Fit).
    Vereinsnamen werden streng abgeglichen (Alias, gleicher Name oder Token-Teilmenge,
    nur eindeutig); ohne Treffer wird das Spiel nicht bewertet.
+   **Eishockey Europa** (`scan_hockey_eu`): DEL, National League (CH), SHL, Liiga und KHL
+   über die Kalshi-Serien (Spielplan + Preis; Titel „Gast vs Heim“, Anspielzeit aus dem
+   Ticker in US-Ostküstenzeit). Poisson auf 60-Minuten-Tore (Vorsaison + laufende Saison,
+   Halbwertszeit 240 Tage, Ridge 8), Verlängerung/Penalty wie NHL geschätzt verteilt.
+   ICE Hockey League: faire Quoten aus dem ICEHL-Feed, ohne Kalshi-Serie nicht handelbar;
+   Extraliga CZ/SK, Norwegen, Dänemark ebenso ohne Preis.
    **Belastung** (NBA/NFL/NHL, `models/fatigue.py`, Spielorte in `venues.py`): je Team
    Ruhetage (Back-to-back bzw. kurze Woche/Bye), Anreise in km und Stunden, Zeitzonen-
    Abstand zur Heimat, Höhe ≥ 1000 m, Klimazonenwechsel und in der NFL Kälte im Freien.
@@ -51,14 +59,16 @@ python -m pytest -q
 3. **Fair**: `p_final = w·p_model + (1−w)·p_ref`. Die Referenz ist die de-vigged
    DraftKings-Linie, ersatzweise der Kalshi-Mittelkurs. `w` ist die angenommene
    Modellzuverlässigkeit (Fußball 0,5, Nations League 0,4, UEFA-Vereinswettbewerbe 0,3,
-   NFL, NHL und NBA je 0,25).
+   NFL, NHL, NBA und europäisches Eishockey je 0,25).
 4. **Preis**: Kalshi-Ask inkl. Taker-Gebühr (Order ≈ 100 Kontrakte).
    Orbit und bet365 sind hier nicht abrufbar und werden nie ungeprüft verwendet.
 5. **Freigabe (PLAY)**: immer, wenn die Marktquote die spielbare Mindestquote
    („spielbar ab“ = Quote mit EV 3 %) erreicht – ohne Obergrenze für Anzahl oder Quote,
    für alle bewerteten Spiele (Fußball 14 Tage, NFL/NHL/NBA 7 Tage voraus), je Event einer.
    Zurückgehalten (WATCH) wird nur bei Informationsvorbehalt: News (z. B. QB fehlt,
-   NBA-Leistungsträger ≥ 15 PPG fehlt) oder Modell-Markt-Divergenz > 15 Pp.
+   NBA-Leistungsträger ≥ 15 PPG fehlt), Modell-Markt-Divergenz > 15 Pp oder dünnem
+   Kalshi-Orderbuch (Spread > 10 ¢ bzw. keine verlässliche Marktreferenz). Bei
+   Zwei-Wege-Märkten dient die liquide Seite als Referenz.
 
    Einsatz: ¼-Kelly mit Schätzungsabschlag, mindestens 0,25 und maximal 2 EH.
 6. **Journal** (`data/journal/`): `forecasts.csv` (alle Prognosen),

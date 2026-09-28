@@ -1,6 +1,6 @@
 """CLI.
 
-  python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba] [--send]
+  python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba,hockey_eu] [--send]
   python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
@@ -163,13 +163,13 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("scan")
     s.add_argument("--days", type=int, default=7)
     s.add_argument("--watch-days", type=int, default=14)
-    s.add_argument("--sports", default="soccer,nfl,nhl,nba")
+    s.add_argument("--sports", default="soccer,nfl,nhl,nba,hockey_eu")
     s.add_argument("--send", action="store_true")
     s.add_argument("--dry", action="store_true", help="nichts ins Journal schreiben")
     s.set_defaults(fn=_scan)
     d = sub.add_parser("daily")
     d.add_argument("--no-scan", action="store_true", help="nur Journal auswerten, kein neuer Scan")
-    d.add_argument("--sports", default="soccer,nfl,nhl,nba")
+    d.add_argument("--sports", default="soccer,nfl,nhl,nba,hockey_eu")
     d.add_argument("--send", action="store_true")
     d.add_argument("--force", action="store_true", help="auch ohne Neuigkeiten senden")
     d.set_defaults(fn=_daily)

@@ -399,3 +399,66 @@ def test_play_whenever_odds_reach_min_odds():
     assert pick([below]) == []
     flagged = evaluate(off, 0.2, flags=["QB fehlt"])
     assert pick([flagged]) == []
+
+
+def test_hockeyarchives_parse_and_kalshi_kickoff():
+    from oddswatch.scan import _kalshi_kickoff
+    from oddswatch.sources.hockeyarchives import parse_page, parse_liiga
+    html = ("<A NAME=\"DEL\">1<sup>re</sup> journ&eacute;e (vendredi 18 septembre 2026) "
+            "Munich - Mannheim 4-3 t.a.b. (1-0,2-1,0-2,0-0,1-0) "
+            "Wolfsburg - Cologne 4-3 a.p. (1-1,2-2,0-0,1-0) "
+            "<A NAME=\"Amicaux\">18/08/2026 Zell am See - Villach 4-1 (0-0,3-0,1-1)")
+    rs = parse_page(html, 2026)
+    assert [(r.home, r.away, r.reg_home, r.reg_away, r.extra) for r in rs] == [
+        ("Munich", "Mannheim", 3, 3, "SO"), ("Wolfsburg", "Cologne", 3, 3, "OT")]
+    assert rs[0].date == date(2026, 9, 18)
+    done, up = parse_liiga([
+        {"homeTeam": {"teamName": "Ilves"}, "awayTeam": {"teamName": "TPS"}, "start": "2026-09-01T15:30:00Z",
+         "ended": True, "finishedType": "ENDED_DURING_EXTENDED_GAME_TIME",
+         "periods": [{"category": "NORMAL", "homeTeamGoals": 1, "awayTeamGoals": 0}] * 2
+         + [{"category": "NORMAL", "homeTeamGoals": 0, "awayTeamGoals": 2},
+            {"category": "OVERTIME", "homeTeamGoals": 1, "awayTeamGoals": 0}]},
+        {"homeTeam": {"teamName": "HPK"}, "awayTeam": {"teamName": "Lukko"}, "start": "2026-10-01T15:30:00Z",
+         "ended": False}])
+    assert (done[0].reg_home, done[0].reg_away, done[0].extra) == (2, 2, "OT") and len(up) == 1
+    ko = _kalshi_kickoff("KXNLGAME-26SEP291345EHCKGEN")
+    assert ko.isoformat() == "2026-09-29T17:45:00+00:00"
+
+
+def test_wide_spread_blocks_release():
+    from datetime import datetime, timezone
+    from oddswatch.scan import Fixture, evaluate_fixture
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("1", "nl", datetime(2026, 9, 29, 17, 45, tzinfo=timezone.utc),
+                 Team("Genève Servette"), Team("EHC Kloten"), "STATUS_SCHEDULED")
+    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
+    fx = Fixture("nl", "hockey", g, {"home": 0.65, "away": 0.35}, "",
+                 kalshi={"home": q("home", 0.12, 0.40), "away": q("away", 0.12, 0.78)})
+    home = [c for c in evaluate_fixture(fx) if c.market == "home"][0]
+    assert any("Spread" in f for f in home.flags) and pick([home]) == []
+
+
+def test_kalshi_reference_uses_liquid_side():
+    from oddswatch.scan import _devig_kalshi
+    from oddswatch.sources.kalshi import KalshiQuote
+    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
+    ref = _devig_kalshi({"home": q("home", 0.63, 0.66), "away": q("away", 0.06, 0.40)}, ["home", "away"])
+    assert abs(ref["home"] - 0.645) < 1e-9 and abs(ref["away"] - 0.355) < 1e-9
+    assert _devig_kalshi({"home": q("home", 0.1, 0.7), "away": q("away", 0.1, 0.7)}, ["home", "away"]) == {}
+
+
+def test_icehl_feed_parse():
+    from oddswatch.sources.hockeyarchives import parse_icehl
+    per = lambda h, g: {"score_home": h, "score_guest": g}
+    data = {"matches": [
+        {"start_date": "2026-09-18 18:30:00", "status": "AFTER_MATCH",
+         "home": {"name": "FTC-Telekom"}, "guest": {"name": "Olimpija Ljubljana"},
+         "results": {"extra_time": True, "shooting": False, "score": {
+             "final": per(3, 2), "first_period": per(1, 1), "second_period": per(1, 0),
+             "third_period": per(0, 1)}}},
+        {"start_date": "2026-09-30 18:30:00", "status": "BEFORE_MATCH",
+         "home": {"name": "FTC-Telekom"}, "guest": {"name": "Steinbach Black Wings Linz"}}]}
+    done, up = parse_icehl(data)
+    assert (done[0].reg_home, done[0].reg_away, done[0].extra) == (2, 2, "OT")
+    assert up[0]["start"].utcoffset().total_seconds() == 7200     # Wien, Sommerzeit

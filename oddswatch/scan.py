@@ -27,10 +27,10 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, kalshi, nhl
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl
 from . import fetch, venues
 
-MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25, "nba": 0.25}
+MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25, "nba": 0.25, "hockey": 0.25}
 # UEFA: reines Elo-Modell ohne Kader-/Aufstellungsinfo; ClubElo zusätzlich mit
 # geschätztem Heimvorteil und geliehener Tor-Kalibrierung -> geringeres Gewicht.
 LEAGUE_WEIGHT = {"nations": 0.4, "ucl": 0.3, "uel": 0.3, "uecl": 0.3}
@@ -64,6 +64,8 @@ XG_SHARE = 0.5            # Anteil der xG-minus-Tore-Differenz, der ins Elo geht
 # Weicht das Modell stärker als das vom Referenzmarkt ab, fehlt ihm meist eine
 # Information (QB, Kader, Trainer) – dann keine Freigabe, sondern Prüfung.
 MAX_DIVERGENCE = 0.15
+# Breiter als 10 ¢ zwischen Geld und Brief: kein verlässlicher Marktpreis
+MAX_SPREAD = 0.10
 SOCCER_LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
                   "austria": "Admiral Bundesliga (AT)"}
 
@@ -144,14 +146,25 @@ def _devig_ref(g: espn.EspnGame, three_way: bool) -> dict[str, float]:
 
 
 def _devig_kalshi(qs: dict[str, kalshi.KalshiQuote], keys: list[str]) -> dict[str, float]:
-    mids = []
+    """Kalshi-Mittelkurse als Referenz. Seiten mit Spread > MAX_SPREAD sind
+    kein Marktpreis: eine einzelne dünne Seite ergibt sich als Rest (1 − Summe
+    der liquiden Mittelkurse), bei mehreren dünnen Seiten gibt es keine Referenz."""
+    mids, thin = {}, []
     for k in keys:
         q = qs.get(k)
         if not q or q.yes_ask <= 0:
             return {}
-        mids.append(q.mid if q.yes_bid > 0 else q.yes_ask)
-    s = sum(mids)
-    return {k: m / s for k, m in zip(keys, mids)} if s > 0 else {}
+        if q.yes_bid <= 0 or q.yes_ask - q.yes_bid > MAX_SPREAD:
+            thin.append(k)
+        else:
+            mids[k] = q.mid
+    if not thin:
+        s = sum(mids.values())
+        return {k: m / s for k, m in mids.items()} if s > 0 else {}
+    rest = 1 - sum(mids.values())
+    if len(thin) > 1 or not 0 < rest < 1:
+        return {}
+    return {**mids, thin[0]: rest}
 
 
 def _attach_kalshi(fx: Fixture, quotes: list[kalshi.KalshiQuote]) -> None:
@@ -588,6 +601,197 @@ def scan_nhl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     return out
 
 
+# ---------------------------------------------------------------- Eishockey Europa
+# Liga -> (Name, Kalshi-Serie). Kalshi-Titel lauten "Gast vs Heim" (Untertitel
+# "GEN at EHC"); Anspielzeit steht im Event-Ticker (US-Ostküstenzeit).
+HOCKEY_EU = {"del": ("DEL", "KXDELGAME"), "nl": ("National League (CH)", "KXNLGAME"),
+             "shl": ("SHL", "KXSHLGAME"), "liiga": ("Liiga", "KXLIIGAGAME"),
+             "khl": ("KHL", "KXKHLGAME")}
+# Ligen ohne Kalshi-Serie: kein verifizierter Preis -> nicht handelbar
+HOCKEY_EU_NO_PRICE = {"extraliga": "Extraliga (CZ)",
+                      "slovakia": "Extraliga (SK)", "norway": "EHL (NO)", "denmark": "Metal Ligaen (DK)"}
+# Kalshi-/Liiga-API-Name -> hockeyarchives-Name (französisch)
+HOCKEY_ALIASES = {
+    "del": {"Adler Mannheim": "Mannheim", "Augsburger Panther": "Augsbourg",
+            "ERC Ingolstadt": "Ingolstadt", "Eisbären Berlin": "Berlin",
+            "Fischtown Pinguins": "Bremerhaven", "Grizzlys Wolfsburg": "Wolfsburg",
+            "Iserlohn Roosters": "Iserlohn", "Kolner Haie": "Cologne", "Krefeld Pinguine": "Krefeld",
+            "Lowen Frankfurt": "Francfort", "Nuremberg Ice Tigers": "Nuremberg",
+            "Red Bull Munich": "Munich", "Schwenninger Wild Wings": "Schwenningen",
+            "Straubing Tigers": "Straubing", "Dresdner Eislöwen": "Dresde"},
+    "nl": {"EHC Biel": "Bienne", "EHC Kloten": "Kloten", "EV Zug": "Zoug",
+           "Fribourg Gottéron": "Fribourg", "Genève Servette": "Genève-Servette", "HC Ajoie": "Ajoie",
+           "HC Ambri-Piotta": "Ambrì-Piotta", "HC Davos": "Davos", "HC Lausanne": "Lausanne",
+           "HC Lugano": "Lugano", "SC Bern": "Berne", "SC Langnau Tigers": "Langnau",
+           "SC Rapperswil-Jona Lakers": "Rapperswil", "ZSC Lions": "ZSC Lions"},
+    "shl": {"Brynas IF": "Brynäs", "Djurgardens IF": "Djurgården", "Frolunda HC": "Frölunda",
+            "Färjestad": "Färjestad", "HC Orebro": "Örebro", "HV71": "HV 71",
+            "IF Bjorkloven": "Björklöven", "Linkoping HC": "Linköping", "Lulea Hockey": "Luleå",
+            "Malmo Redhawks": "Malmö", "Rogle BK": "Rögle", "Skellefteå": "Skellefteå",
+            "Timra IK": "Timrå", "Växjö Lakers": "Växjö", "Leksands IF": "Leksand",
+            "Djurgårdens IF": "Djurgården", "HV71": "HV 71", "Brynäs IF": "Brynäs",
+            "Skellefteå AIK": "Skellefteå"},
+    "liiga": {"HPK Hameenlinna": "HPK Hämeenlinna", "JYP Jyvaskyla": "JYP Jyväskylä",
+              "Lahti Pelicans": "Pelicans Lahti", "Mikkelin Jukurit": "Jukurit Mikkeli",
+              "Oulun Karpat": "Kärpät Oulu", "Porin Assat": "Ässät Pori",
+              "Tampereen Ilves": "Ilves Tampere", "Vaasan Sport": "Sport Vaasa",
+              # Liiga-API-Kurznamen
+              "HIFK": "HIFK Helsinki", "HPK": "HPK Hämeenlinna", "Ilves": "Ilves Tampere",
+              "JYP": "JYP Jyväskylä", "Jokerit": "Jokerit Helsinki", "Jukurit": "Jukurit Mikkeli",
+              "K-Espoo": "Kiekko-Espoo", "KalPa": "KalPa Kuopio", "KooKoo": "KooKoo Kouvola",
+              "Kärpät": "Kärpät Oulu", "Lukko": "Lukko Rauma", "Pelicans": "Pelicans Lahti",
+              "SaiPa": "SaiPa Lappeenranta", "Sport": "Sport Vaasa", "TPS": "TPS Turku",
+              "Tappara": "Tappara Tampere", "Ässät": "Ässät Pori"},
+    "khl": {"Avtomobilist Yekaterinburg": "Avtomobilist Ekaterinburg", "CSKA Moscow": "CSKA Moscou",
+            "HC Barys": "Barys Astana", "HC Dynamo Moscow": "Dynamo Moscou", "HC Sochi": "HK Sotchi",
+            "HK Avangard Omsk": "Avangard Omsk", "Kunlun Red Star": "Shanghai Dragons",
+            "Neftekhimik Nizhnekamsk": "Neftekhimik Nijnekamsk",
+            "SKA St. Petersburg": "SKA Saint-Pétersbourg", "Salavat Yulaev UFA": "Salavat Yulaev Ufa",
+            "Spartak Moscow": "Spartak Moscou", "Torpedo Nizhny Novgorod": "Torpedo Nijni Novgorod"},
+}
+# Schreibvarianten innerhalb von hockeyarchives vereinheitlichen
+HA_CANON = {"Rapperswil-Jona": "Rapperswil", "Bietigheim-Bissingen": "Bietigheim"}
+
+
+def _kalshi_kickoff(event_ticker: str) -> datetime | None:
+    """KXNLGAME-26SEP291345EHCKGEN -> 29.09.2026 13:45 US-Ostküste -> UTC."""
+    import re
+    from zoneinfo import ZoneInfo
+    m = re.search(r"-(\d{2})([A-Z]{3})(\d{2})(\d{4})", event_ticker)
+    if not m:
+        return None
+    try:
+        local = datetime.strptime(f"20{m.group(1)}{m.group(2).title()}{m.group(3)}{m.group(4)}",
+                                  "%Y%b%d%H%M")
+    except ValueError:
+        return None
+    return local.replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+
+
+def _hockey_results(lg: str, season_start: int, issues: list[str]
+                    ) -> tuple[list[Match], int]:
+    """Vorsaison + laufende Saison als 60-Minuten-Ergebnisse; Anzahl aktueller
+    Spiele. Fehlt die laufende Saison bei hockeyarchives, kommen Liiga/SHL aus
+    den offiziellen APIs; deren Namen werden auf hockeyarchives abgebildet."""
+    al = HOCKEY_ALIASES.get(lg, {})
+    prev, err = hockeyarchives.season_results(lg, season_start - 1, 30.0)
+    if err:
+        issues.append(f"hockeyarchives {lg} {season_start - 1}/{season_start}: {err}")
+    cur, _ = hockeyarchives.season_results(lg, season_start, 0.5)
+    known = sorted({HA_CANON.get(n, n) for r in prev + cur for n in (r.home, r.away)})
+
+    def name(n: str, api: bool) -> str:
+        n = HA_CANON.get(n, n)
+        return (matching.find_strict(n, known, al) or n) if api else n
+    api = False
+    if not cur and lg in ("liiga", "shl"):
+        cur, _, err2 = (hockeyarchives.liiga(season_start + 1) if lg == "liiga"
+                        else hockeyarchives.shl(season_start))
+        api = True
+        if err2:
+            issues.append(f"{lg}-API: {err2}")
+    ms = [Match(r.date, name(r.home, False), name(r.away, False), r.reg_home, r.reg_away)
+          for r in prev]
+    ms += [Match(r.date, name(r.home, api), name(r.away, api), r.reg_home, r.reg_away) for r in cur]
+    return ms, len(cur)
+
+
+def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
+    """Europäische Ligen mit Kalshi-Markt: Spielplan und Preise aus Kalshi,
+    Ergebnisse von hockeyarchives (Liiga zusätzlich API), Poisson auf
+    60-Minuten-Tore, Verlängerung/Penalty wie NHL geschätzt aufgeteilt."""
+    season_start = start.year if start.month >= 7 else start.year - 1
+    now = datetime.now(timezone.utc)
+    until = datetime.combine(start + timedelta(days=days + 1), datetime.min.time(), tzinfo=timezone.utc)
+    out: list[Fixture] = []
+    for lg, (label, series) in HOCKEY_EU.items():
+        kq, kerr = kalshi.fetch_series(series)
+        if kerr:
+            issues.append(f"Kalshi {label}: {kerr}")
+        by_ev: dict[str, list[kalshi.KalshiQuote]] = {}
+        for q in kq:
+            by_ev.setdefault(q.event_ticker, []).append(q)
+        events = []
+        for ev, qs in by_ev.items():
+            ko = _kalshi_kickoff(ev)
+            title = qs[0].event
+            if ko is None or " vs " not in title or not (now < ko <= until):
+                continue
+            away, home = [x.strip() for x in title.split(" vs ", 1)]
+            events.append((ev, ko, home, away, qs))
+        if not events:
+            notes.append(f"{label}: keine offenen Kalshi-Märkte bis {start + timedelta(days=days):%d.%m.}")
+            continue
+        ms, n_cur = _hockey_results(lg, season_start, issues)
+        if len(ms) < 150:
+            issues.append(f"{label}: nur {len(ms)} Spiele geladen – kein Modell")
+            continue
+        model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
+        notes.append(f"{label}: Poisson aus {len(ms)} Spielen (hockeyarchives"
+                     + {"liiga": ", Liiga-API", "shl": ", SHL-API"}.get(lg, "")
+                     + f"), davon {n_cur} aktuelle Saison"
+                     + (" – Vorsaison stark gewichtet, Kaderwechsel nicht modelliert" if n_cur < 60 else ""))
+        teams = list(model.attack)
+        al = HOCKEY_ALIASES.get(lg, {})
+        for ev, ko, home, away, qs in sorted(events, key=lambda e: e[1]):
+            h = matching.find_strict(home, teams, al)
+            a = matching.find_strict(away, teams, al)
+            if not h or not a:
+                issues.append(f"{label}: Team nicht zugeordnet ({away} at {home})")
+                continue
+            mk = model.markets(h, a)
+            ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
+            g = espn.EspnGame(ev, lg, ko, espn.Team(home), espn.Team(away), "STATUS_SCHEDULED")
+            kd = ko.date()
+            ctx = [f"Form {h} {_form(ms, h, kd)}, {a} {_form(ms, a, kd)} (60 Min.)",
+                   f"Pause {_rest_days(ms, h, kd)}/{_rest_days(ms, a, kd)} Tage"]
+            fx = Fixture(lg, "hockey", g, {"home": ph, "away": pa},
+                         f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, 60-Min-Remis "
+                         f"{mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)", ctx,
+                         estimate=True, model="poisson-hockey-eu")
+            _attach_kalshi(fx, qs)
+            out.append(fx)
+    out += _scan_icehl(start, until, now, issues, notes)
+    notes.append("Eishockey ohne Kalshi-Serie (" + ", ".join(HOCKEY_EU_NO_PRICE.values())
+                 + "): kein verifizierter Preis – nicht handelbar")
+    return out
+
+
+def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
+                notes: list[str]) -> list[Fixture]:
+    """ICE Hockey League: Spielplan und Ergebnisse aus dem ICEHL-Datenfeed.
+    Keine Kalshi-Serie -> nur faire Quoten im Bericht, keine Freigabe."""
+    season_start = start.year if start.month >= 7 else start.year - 1
+    prev, _, err = hockeyarchives.icehl(season_start - 1, cache_days=30)
+    cur, up, err2 = hockeyarchives.icehl(season_start)
+    if err or err2:
+        issues.append(f"ICEHL-Feed: {err or err2}")
+    ms = [Match(r.date, r.home, r.away, r.reg_home, r.reg_away) for r in prev + cur]
+    if len(ms) < 150:
+        issues.append(f"ICEHL: nur {len(ms)} Spiele geladen – kein Modell")
+        return []
+    model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
+    notes.append(f"ICE Hockey League: Poisson aus {len(ms)} Spielen (ICEHL-Feed), davon "
+                 f"{len(cur)} aktuelle Saison – keine Kalshi-Serie, nur faire Quoten (nicht handelbar)")
+    out = []
+    for u in sorted(up, key=lambda x: x["start"]):
+        ko = u["start"].astimezone(timezone.utc)
+        if not (now < ko <= until) or u["home"] not in model.attack or u["away"] not in model.attack:
+            continue
+        mk = model.markets(u["home"], u["away"])
+        ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
+        g = espn.EspnGame(f"icehl-{ko:%Y%m%d%H%M}-{u['home']}", "icehl", ko, espn.Team(u["home"]),
+                          espn.Team(u["away"]), "STATUS_SCHEDULED")
+        kd = ko.date()
+        out.append(Fixture("icehl", "hockey", g, {"home": ph, "away": pa},
+                           f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, 60-Min-Remis "
+                           f"{mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)",
+                           [f"Form {u['home']} {_form(ms, u['home'], kd)}, "
+                            f"{u['away']} {_form(ms, u['away'], kd)} (60 Min.)"],
+                           estimate=True, model="poisson-hockey-eu"))
+    return out
+
+
 # ---------------------------------------------------------------- NBA
 def _nba_games(season: int, issues: list[str], cache_days: float) -> list[Game]:
     ids, err = espn.team_ids("nba")
@@ -708,6 +912,11 @@ def evaluate_fixture(fx: Fixture) -> list[Candidate]:
         p_final = w * p_model + (1 - w) * p_ref if p_ref is not None else p_model
         odds = pricing.kalshi_decimal_odds(q.yes_ask * 100, contracts=100)
         flags = list(fx.flags.get(side, []))
+        if p_ref is None:
+            flags.append("keine verlässliche Marktreferenz (Orderbuch zu dünn)")
+        spread = q.yes_ask - q.yes_bid if q.yes_bid > 0 else q.yes_ask
+        if spread > MAX_SPREAD:
+            flags.append(f"Orderbuch dünn (Spread {spread * 100:.0f} ¢) – Preis nicht verlässlich")
         if p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
             flags.append(f"Modell weicht {abs(p_model - p_ref) * 100:.0f} Pp vom Markt ab – "
                          "fehlende Kader-/QB-Info wahrscheinlicher als Value")
@@ -724,7 +933,7 @@ def evaluate_fixture(fx: Fixture) -> list[Candidate]:
 
 
 def run(start: date | None = None, days: int = 7, watch_days: int = 14,
-        sports: tuple[str, ...] = ("soccer", "nfl", "nhl", "nba"),
+        sports: tuple[str, ...] = ("soccer", "nfl", "nhl", "nba", "hockey_eu"),
         journal: Journal | None = None) -> ScanResult:
     start = start or date.today()
     now = datetime.now(timezone.utc)
@@ -740,8 +949,8 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_nhl(start, days, issues, notes)
     if "nba" in sports:
         fixtures += scan_nba(start, days, issues, notes)
-    notes.append("Europ. Eishockey (DEL/ICEHL): keine offenen Kalshi-Märkte, keine "
-                 "verifizierten Orbit/bet365-Preise – nicht bewertet")
+    if "hockey_eu" in sports:
+        fixtures += scan_hockey_eu(start, days, issues, notes)
     notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "
                  "nur Kalshi-Preise sind verifiziert")
     cands = [c for fx in fixtures for c in evaluate_fixture(fx)]
