@@ -161,3 +161,4 @@ cython_debug/
 
 # oddswatch
 data/cache/
+data/raw/
