@@ -1,4 +1,4 @@
-📊 CEO-Freigaben 28.09.2026 20:39 UTC
+📊 CEO-Freigaben 28.09.2026 21:01 UTC
 
 ✅ PLAY · Bundesliga · Sa 10.10. 15:30 MESZ
 🆚 SC Paderborn 07 – VfB Stuttgart
@@ -15,20 +15,30 @@
 ➡️ SV Elversberg Sieg (90 Min.) @ 2,89 (kalshi)
    fair 2,54 | min 2,61 | EV 14,1 % | 1,25 EH
 
-✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
-🆚 Luxembourg – Iceland
-➡️ Luxembourg Sieg (90 Min.) @ 3,52 (kalshi)
-   fair 3,10 | min 3,19 | EV 13,7 % | 1 EH
-
 ✅ PLAY · Bundesliga · So 11.10. 17:30 MESZ
 🆚 SC Freiburg – Schalke 04
 ➡️ Schalke 04 Sieg (90 Min.) @ 4,98 (kalshi)
    fair 4,53 | min 4,66 | EV 10,0 % | 0,25 EH
 
+✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
+🆚 Luxembourg – Iceland
+➡️ Luxembourg Sieg (90 Min.) @ 3,40 (kalshi)
+   fair 3,10 | min 3,19 | EV 9,7 % | 0,75 EH
+
+✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
+🆚 Bulgaria – Estonia
+➡️ Estonia Sieg (90 Min.) @ 5,90 (kalshi)
+   fair 5,44 | min 5,61 | EV 8,4 % | 0,25 EH
+
 ✅ PLAY · NFL · Mo 05.10. 02:20 MESZ
 🆚 Carolina Panthers – Detroit Lions
 ➡️ Carolina Panthers Sieg (inkl. OT) @ 2,66 (kalshi)
    fair 2,50 | min 2,57 | EV 6,4 % | 0,5 EH
+
+✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
+🆚 Slovakia – Kazakhstan
+➡️ Kazakhstan Sieg (90 Min.) @ 13,40 (kalshi)
+   fair 12,63 | min 13,01 | EV 6,1 % | 0,25 EH
 
 ✅ PLAY · UEFA Nations League · Do 01.10. 20:45 MESZ
 🆚 Wales – Norway
@@ -48,27 +58,27 @@
 
 👀 WATCH (nicht freigegeben)
 
+• UEFA Nations League · So 04.10. 20:45 MESZ
+🆚 Greece – Germany
+➡️ Greece Sieg (90 Min.) @ 3,28 | spielbar ab 2,78 | EV 21,6 %
+   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn)
+
+• Liiga · Mi 30.09. 17:30 MESZ
+🆚 Oulun Karpat – SaiPa Lappeenranta
+➡️ SaiPa Lappeenranta Sieg (inkl. OT) @ 1,83 | spielbar ab 1,61 | EV 16,7 %
+   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn); Orderbuch dünn (Spread 47 ¢) – Preis nicht verlässlich
+
+• NFL · So 04.10. 19:00 MESZ
+🆚 Buffalo Bills – New England Patriots
+➡️ New England Patriots Sieg (inkl. OT) @ 3,66 | spielbar ab 3,37 | EV 11,9 %
+   Grund: Modell weicht 18 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
+
 • NFL · Di 29.09. 02:15 MESZ
 🆚 Chicago Bears – Philadelphia Eagles
 ➡️ Chicago Bears Sieg (inkl. OT) @ 2,66 | spielbar ab 2,45 | EV 11,8 %
    Grund: QB Caleb Williams (Out) – im Punktemodell nicht enthalten; Modell weicht 24 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
 
-• NFL · So 04.10. 19:00 MESZ
-🆚 Buffalo Bills – New England Patriots
-➡️ New England Patriots Sieg (inkl. OT) @ 3,52 | spielbar ab 3,37 | EV 7,8 %
-   Grund: Modell weicht 18 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
-
-• NFL · So 04.10. 19:00 MESZ
-🆚 Cincinnati Bengals – Jacksonville Jaguars
-➡️ Jacksonville Jaguars Sieg (inkl. OT) @ 2,19 | spielbar ab 2,10 | EV 7,1 %
-   Grund: Modell weicht 27 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
-
-• NFL · So 04.10. 19:00 MESZ
-🆚 Chicago Bears – New York Jets
-➡️ Chicago Bears Sieg (inkl. OT) @ 1,65 | spielbar ab 1,64 | EV 3,5 %
-   Grund: QB Caleb Williams (Out) – im Punktemodell nicht enthalten; Modell weicht 16 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
-
-• UEFA Nations League · So 04.10. 20:45 MESZ
-🆚 Greece – Germany
-➡️ Greece Sieg (90 Min.) @ 3,80 | spielbar ab 3,80 | EV 3,0 %
-   Grund: Modell weicht 17 Pp vom Markt ab – fehlende Kader-/QB-Info wahrscheinlicher als Value
+• UEFA Nations League · Fr 02.10. 20:45 MESZ
+🆚 Ukraine – Northern Ireland
+➡️ Ukraine Sieg (90 Min.) @ 1,70 | spielbar ab 1,63 | EV 7,4 %
+   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn); Orderbuch dünn (Spread 15 ¢) – Preis nicht verlässlich
