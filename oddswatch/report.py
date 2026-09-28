@@ -21,7 +21,7 @@ def _pick_lines(i: int, c: Candidate) -> list[str]:
     tag = " (Schätzung)" if c.estimate else ""
     liq = f", Ask-Tiefe ≈ {c.liquidity:,.0f} $".replace(",", ".") if c.liquidity else ""
     return [
-        f"{i}. **{c.event}**: {c.selection}{tag}",
+        f"{i}. ✅ **PLAY**: **{c.event}**: {c.selection}{tag}",
         f"   Preis {_q(c.odds)} ({c.source}, inkl. Gebühr{liq}) | fair {_q(c.fair_odds)} "
         f"({_pct(c.p_final or c.p_model)}) | spielbar ab {_q(c.min_odds)} | "
         f"Edge {_pct(c.edge)} | EV {_pct(c.ev)} | Einsatz {_eh(c.stake_eh)} EH",
@@ -35,16 +35,16 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
     lines = [f"# Sportanalyse – Stand {stand}", ""]
     lines.append(f"Bewertete Spiele: {scanned}. Freigabe nur mit verifiziertem Preis, "
                  f"EV ≥ 3 % und Edge ≥ 2 Prozentpunkte, ohne offenen Newsvorbehalt.")
-    lines += ["", "## Entscheidung"]
+    lines += ["", "## CEO-Entscheidung"]
     if not picks:
-        lines.append("**Kein Trade**: kein belegter Vorteil nach Gebühren/Marge.")
+        lines.append("⛔ **NO PLAY**: kein belegter Vorteil nach Gebühren/Marge.")
     for i, c in enumerate(picks, 1):
         lines += _pick_lines(i, c)
     if watch:
-        lines += ["", "## Watchlist (nicht freigegeben)"]
+        lines += ["", "## WATCH (nicht freigegeben)"]
         for c in watch:
             why = "; ".join(c.flags or []) or "Schwelle knapp verfehlt"
-            lines.append(f"- {c.event}: {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
+            lines.append(f"- 👀 WATCH {c.event}: {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
                          f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
@@ -67,15 +67,15 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
 
 def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | None = None) -> str:
     if not picks:
-        out = [f"📊 Update {stand}", "Kein Trade: kein belegter Vorteil."]
+        out = [f"📊 CEO-Update {stand}", "⛔ NO PLAY: kein belegter Vorteil."]
     else:
-        out = [f"📊 Value-Kandidaten {stand}"]
+        out = [f"📊 CEO-Freigaben {stand}"]
         for c in picks:
             tag = " ⚠️Schätzung" if c.estimate else ""
-            out.append(f"• {c.event}: {c.selection} @ {_q(c.odds)} ({c.source}) | "
+            out.append(f"✅ PLAY {c.event}: {c.selection} @ {_q(c.odds)} ({c.source}) | "
                        f"fair {_q(c.fair_odds)} | min {_q(c.min_odds)} | "
                        f"{_eh(c.stake_eh)} EH{tag}")
     if watch:
-        out.append("👀 Watchlist: " + "; ".join(
+        out.append("👀 WATCH: " + "; ".join(
             f"{c.selection} ab {_q(c.min_odds)}" for c in watch[:5]))
     return "\n".join(out)
