@@ -303,3 +303,51 @@ def test_daily_news_key_ignores_price_moves_but_not_results(tmp_path):
     assert daily.news_key(j) == k1
     j.settle("valuebets", "A – B", "home", True)
     assert daily.news_key(j) != k1             # Ergebnis = Neuigkeit
+
+
+def _news_target():
+    from oddswatch.news import Target
+    return Target("PLAY", "nfl", "Carolina Panthers – Detroit Lions", "2026-10-05T00:20+00:00",
+                  "home", "Carolina Panthers Sieg (inkl. OT)", 2.66, 2.50, 2.57,
+                  ["Carolina Panthers", "Carolina", "Panthers", "CAR"],
+                  ["Detroit Lions", "Detroit", "Lions", "DET"])
+
+
+def test_news_alert_for_own_team_injury_and_no_false_matches():
+    from datetime import datetime, timezone
+    from oddswatch import news
+    from oddswatch.news import Item
+    now = datetime(2026, 9, 28, 20, tzinfo=timezone.utc)
+    pub = datetime(2026, 9, 28, 18, tzinfo=timezone.utc)
+    items = [
+        Item("ESPN", "nfl", "Panthers CB Jaycee Horn out indefinitely with torn quad", "", "u1", pub,
+             ["Carolina Panthers"]),
+        Item("CBS Sports", "nfl", "Panthers lose Jaycee Horn, headed for injured reserve", "", "u2", pub),
+        # Gegner nur im Text erwähnt -> betrifft die Jets, nicht Detroit
+        Item("ESPN", "nfl", "Jets RB Breece Hall week-to-week with quad injury",
+             "suffered in the loss to the Lions", "u3", pub, ["New York Jets"]),
+        # Sammelartikel mit vielen Teams
+        Item("ESPN", "nfl", "Big Week 3 losses: Seahawks, Pats, Panthers", "injuries", "u4", pub,
+             ["Seattle Seahawks", "New England Patriots", "Carolina Panthers"]),
+    ]
+    alerts = news.find_alerts([_news_target()], items, set(), now)
+    assert {a.item.link for a in alerts} == {"u1", "u2"}
+    a = next(a for a in alerts if a.item.link == "u1")
+    assert a.category == "Ausfall" and a.severe and a.confirmed_by == ["CBS Sports"]
+    txt = news.alert_text(alerts, "28.09.2026")
+    assert "Freigabe prüfen/aussetzen" in txt and "Entscheidung beim CEO" in txt
+    # bereits gemeldete Artikel kommen nicht wieder
+    assert news.find_alerts([_news_target()], items, {a.item.uid for a in alerts}, now) == []
+
+
+def test_news_forum_never_confirms_and_rss_dates():
+    from oddswatch import news
+    assert news.classify("Bears expected to start Case Keenum at QB")[1] is True
+    assert news.classify("Kreuzbandriss: Stürmer fällt monatelang aus")[0] == "Ausfall"
+    d = news._parse_date("Mon, 28 Sep 2026 11:24:00 AM PDT")
+    assert d and d.hour == 11 and d.utcoffset().total_seconds() == -7 * 3600
+    xml = ('<rss><channel><item><title>Rapid: Kapitän verletzt</title><link>x</link>'
+           '<pubDate>Mon, 28 Sep 2026 10:00:00 GMT</pubDate></item></channel></rss>')
+    it = news.parse_rss(xml, "Austrian Soccer Board", "austria")[0]
+    assert it.title.startswith("Rapid") and it.published.hour == 10
+    assert "Austrian Soccer Board" in news.FORUMS

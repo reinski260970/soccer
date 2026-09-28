@@ -10,7 +10,8 @@ mit getrennten Ledgern, CLV-Nachkontrolle und deutschen CEO- und Telegram-Texten
 python -m oddswatch scan                 # Scan (7 Tage Freigabe, 14 Tage Watchlist) + Journal + Bericht
 python -m oddswatch scan --dry           # nur Bericht, nichts ins Journal
 python -m oddswatch scan --send          # zusätzlich Telegram-Versand (Bot API)
-python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick
+python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick (nur bei Neuigkeiten)
+python -m oddswatch news --send          # News-Agent: Warnungen zu Freigaben/Watchlist
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
@@ -49,6 +50,25 @@ python -m pytest -q
 6. **Journal** (`data/journal/`): `forecasts.csv` (alle Prognosen),
    `valuebets.csv` (freigegebene Tipps), `placed.csv` (tatsächlich gespielt).
    Kalshi-Snapshots (`data/snapshots/`) liefern die Closing Line für den CLV.
+
+## News-Agent
+
+`news.py` prüft die Spiele mit Freigabe oder Watchlist-Eintrag (`data/journal/watchlist.json`,
+nach jedem Scan aktualisiert, plus offene Freigaben aus dem Journal) gegen Sportseiten:
+
+| Liga | Quellen |
+|---|---|
+| NFL / NBA | ESPN, CBS Sports, RotoWire |
+| NHL | ESPN, NHL.com, RotoWire |
+| Bundesliga / 2. Bundesliga | ESPN, kicker (+ Sportschau für die 1. Liga) |
+| Österreich | ORF, derStandard, abseits.at, Austrian Soccer Board (Forum) |
+
+Materiell sind Ausfall, Sperre, Trainerwechsel, fraglich, Verletzung, Rückkehr/Startelf
+und Schonung; QB-Themen gelten immer als schwer. Das Team muss Hauptthema sein (Titel
+bzw. einzige ESPN-Teamkategorie), Sammelartikel zählen nicht. Bestätigt ist eine
+Meldung, wenn eine zweite Redaktion dieselbe Person/dasselbe Team meldet; Forumsbeiträge
+gelten als Hinweis und bestätigen nie. Der Agent warnt nur, der CEO entscheidet.
+Gemeldete Artikel stehen in `news_seen.txt` (keine Wiederholung), alle in `news.csv`.
 
 ## Telegram ohne Make
 

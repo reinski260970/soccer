@@ -2,6 +2,7 @@
 
   python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba] [--send]
   python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
+  python -m oddswatch news [--send]      # News-Agent: Warnungen zu Freigaben/Watchlist
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
@@ -34,6 +35,9 @@ def _scan(a) -> int:
     res = scan.run(days=a.days, watch_days=a.watch_days, sports=tuple(a.sports.split(",")),
                    journal=None if a.dry else j)
     watch = _watchlist(res)
+    if not a.dry:
+        from . import news
+        news.save_targets(res.fixtures, res.picks, watch)
     md = report.ceo_report(res.stand, res.picks, len(res.fixtures), res.issues, res.notes,
                            fixtures=res.fixtures, watch=watch)
     tg = report.telegram_text(res.stand, res.picks, watch)
@@ -61,6 +65,8 @@ def _daily(a) -> int:
         from . import scan
         res = scan.run(sports=tuple(a.sports.split(",")), journal=j)
         picks, watch = res.picks, _watchlist(res)
+        from . import news
+        news.save_targets(res.fixtures, picks, watch)
     txt = daily.daily_text(j, picks=picks, watch=watch)
     out = Path("reports")
     out.mkdir(exist_ok=True)
@@ -78,6 +84,28 @@ def _daily(a) -> int:
         if r["sent"]:
             state.write_text(key + "\n", encoding="utf-8")
         return 0 if r["sent"] else 2
+    return 0
+
+
+def _news(a) -> int:
+    from . import news
+    j = Journal()
+    alerts, issues, n = news.run(j)
+    for i in issues:
+        print(f"Quelle nicht erreichbar: {i}")
+    print(f"{n} Artikel geprüft, {len(alerts)} neue materielle Meldungen")
+    if not alerts:
+        print("Telegram: keine neuen News – nicht gesendet")
+        return 0
+    from datetime import datetime, timezone
+    txt = news.alert_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"))
+    print("--- Telegram ---\n" + txt)
+    if a.send:
+        r = telegram.send(txt)
+        print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
+        if not r["sent"]:
+            return 2
+        news.mark_seen(alerts, j)   # nur gesendete Meldungen gelten als gemeldet
     return 0
 
 
@@ -165,6 +193,9 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--send", action="store_true")
     d.add_argument("--force", action="store_true", help="auch ohne Neuigkeiten senden")
     d.set_defaults(fn=_daily)
+    nw = sub.add_parser("news")
+    nw.add_argument("--send", action="store_true")
+    nw.set_defaults(fn=_news)
     sub.add_parser("settle").set_defaults(fn=_settle)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
