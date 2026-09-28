@@ -303,3 +303,63 @@ def test_daily_news_key_ignores_price_moves_but_not_results(tmp_path):
     assert daily.news_key(j) == k1
     j.settle("valuebets", "A – B", "home", True)
     assert daily.news_key(j) != k1             # Ergebnis = Neuigkeit
+
+
+# ---------------------------------------------------------------- UEFA / Elo
+def test_eloratings_results_reconstruct_pre_match_elo():
+    from oddswatch.sources.eloratings import parse_results, parse_ratings, code_for, parse_teams
+    txt = ("2025\t01\t02\tVN\tTH\t2\t1\tSEA\t\t21\t1327\t1408\t+5\t−5\t130\t102\n"
+           "2025\t01\t04\tBH\tOM\t2\t1\tGLF\tKW\t21\t1530\t1513\t+3\t−4\t77\t80\n")
+    r = parse_results(txt)
+    assert (r[0].elo_home, r[0].elo_away) == (1306, 1429)   # nachher -/+ Änderung
+    assert r[0].home_edge == 1 and r[1].home_edge == 0      # Spielort KW = neutral
+    assert parse_ratings("1\t1\tES\t2277\t1\n2\t2\tAR\t2173\t1\n") == {"ES": 2277.0, "AR": 2173.0}
+    teams = parse_teams("IE\tIreland\nEI\tNorthern Ireland\tN Ireland\nTR\tTurkey\n")
+    assert code_for("Northern Ireland", teams) == "EI"
+    assert code_for("Republic of Ireland", teams) == "IE"
+    assert code_for("Türkiye", teams) == "TR"
+
+
+def test_elo_goal_model_fit_and_markets():
+    import math
+    from oddswatch.models.elo import EloGoals
+    rnd = random.Random(3)
+    rows = []
+    for _ in range(3000):
+        diff = rnd.uniform(-400, 400)
+        d = (diff + 100) / 400
+        rows.append((diff, 1, _pois(rnd, math.exp(0.2 + 0.7 * d)), _pois(rnd, math.exp(0.2 - 0.7 * d))))
+    m = EloGoals.fit(rows, home=100)
+    assert abs(m.a - 0.2) < 0.05 and abs(m.b - 0.7) < 0.08
+    mk = m.markets(1800, 1600)
+    assert abs(mk["1"] + mk["X"] + mk["2"] - 1) < 1e-9
+    assert mk["1"] > mk["2"]
+    n = m.markets(1700, 1700, neutral=True)
+    assert abs(n["1"] - n["2"]) < 1e-9
+
+
+def test_clubelo_page_parse_and_strict_matching():
+    from oddswatch import matching
+    from oddswatch.sources.clubelo import parse_page
+    html = ('"data-1": [{"Colour": "#d00027", "Elo": 1937.1, "Federation": "England", '
+            '"Level": 1, "Name": "Liverpool", "TLC": "LIV"}, {"Elo": 1812.0, '
+            '"Federation": "France", "Name": "Lille"}]')
+    assert parse_page(html) == {"Liverpool": (1937.1, "England"), "Lille": (1812.0, "France")}
+    names = ["Lille", "Sparta", "Sparta Praha", "Celje", "Omonia", "Omonia Aradippou",
+             "Red Star", "Crvena Zvezda", "Paris SG", "Paris FC"]
+    assert matching.find_strict("Lillestrom", names) is None          # kein Präfix-Treffer
+    assert matching.find_strict("NK Celje", names) == "Celje"
+    assert matching.find_strict("Omonia Nicosia", names) == "Omonia"
+    assert matching.find_strict("Paris Saint-Germain", names) is None  # mehrdeutig -> kein Tipp
+    al = {"Sparta Prague": "Sparta Praha", "Red Star Belgrade": "Crvena Zvezda"}
+    assert matching.find_strict("Sparta Prague", names, al) == "Sparta Praha"
+    assert matching.find_strict("Red Star Belgrade", names, al) == "Crvena Zvezda"
+
+
+def test_xg_line_uses_xg_xga_and_goals():
+    from oddswatch.scan import _xg_line
+    ms = [Match(date(2026, 9, 1), "A", "B", 3, 0, 1.0, 1.5),
+          Match(date(2026, 9, 8), "C", "A", 1, 1, 2.0, 0.5)]
+    line, st = _xg_line(ms, "A", date(2026, 9, 10))
+    assert st == {"n": 2, "gf": 2.0, "ga": 0.5, "xg": 0.75, "xga": 1.75}
+    assert "xG 0.75, xGA 1.75, Tore 2.00:0.50" in line

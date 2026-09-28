@@ -25,10 +25,23 @@ python -m pytest -q
 1. **Daten**: football-data.co.uk (Ergebnisse, echte xG ab 2026/27, bet365-Closing
    für AT), ESPN (Spielpläne, Ergebnisse, NFL-/NBA-Verletzungen, NBA-Leistungsträger
    nach PPG, DraftKings-Referenzlinie),
-   NHL-API (Ergebnisse, 5v5-Tore, PP/PK), Kalshi-API (Preise, Orderbuch-Tiefe, Ergebnisse).
+   NHL-API (Ergebnisse, 5v5-Tore, PP/PK), Kalshi-API (Preise, Orderbuch-Tiefe, Ergebnisse),
+   eloratings.net (Elo der Nationalteams, Länderspiele mit Elo vor dem Spiel),
+   ClubElo (Elo der Vereine, aus den UEFA-Länderseiten, da die CSV-API HTTP 502 liefert).
 2. **Modelle**: Fußball und Eishockey mit Poisson (Dixon-Coles, Zeitverfall, im Fußball
    Tore und xG je 50 %), NFL und NBA mit Punkte-Rating (Offense/Defense, Heimvorteil,
    σ aus Residuen). NBA zu Saisonbeginn aus der Vorsaison (als Schätzung markiert).
+   **UEFA** (`models/elo.py`): Elo → Torerwartung `log λ = a ± b·(ΔElo + Heim)/400` →
+   Dixon-Coles-1X2. Nations League: a, b per Poisson-ML auf ~5.000 Länderspielen der
+   letzten fünf Jahre kalibriert (Heimvorteil 100 Elo, Remisquote 22,7 % vs. 23,2 % real).
+   Champions/Europa/Conference League: ClubElo mit der Steigung b aus dem
+   Länderspielmodell, Heimvorteil 65 Elo und 1,35 Tore je Team angenommen (Schätzung),
+   dazu eine **xG-Korrektur**: 50 % von (xG − xGA) − (Tore − Gegentore) je Spiel ×
+   ≈ 216 Elo/Tor × n/(n+10), aus den football-data-Ligen mit xG (E0, SP1, I1, F1, D1,
+   N1, P1, B1, T1, SC0, G1). Im Bericht stehen je Team xG, xGA und Tore:Gegentore je
+   Spiel; in Bundesliga und 2. BL ebenso (dort Tore und xG je 50 % im Poisson-Fit).
+   Vereinsnamen werden streng abgeglichen (Alias, gleicher Name oder Token-Teilmenge,
+   nur eindeutig); ohne Treffer wird das Spiel nicht bewertet.
    **Belastung** (NBA/NFL/NHL, `models/fatigue.py`, Spielorte in `venues.py`): je Team
    Ruhetage (Back-to-back bzw. kurze Woche/Bye), Anreise in km und Stunden, Zeitzonen-
    Abstand zur Heimat, Höhe ≥ 1000 m, Klimazonenwechsel und in der NFL Kälte im Freien.
@@ -36,7 +49,8 @@ python -m pytest -q
    geschätzt (nicht angenommen) und als Margenkorrektur eingerechnet.
 3. **Fair**: `p_final = w·p_model + (1−w)·p_ref`. Die Referenz ist die de-vigged
    DraftKings-Linie, ersatzweise der Kalshi-Mittelkurs. `w` ist die angenommene
-   Modellzuverlässigkeit (Fußball 0,5, NFL, NHL und NBA je 0,25).
+   Modellzuverlässigkeit (Fußball 0,5, Nations League 0,4, UEFA-Vereinswettbewerbe 0,3,
+   NFL, NHL und NBA je 0,25).
 4. **Preis**: Kalshi-Ask inkl. Taker-Gebühr (Order ≈ 100 Kontrakte).
    Orbit und bet365 sind hier nicht abrufbar und werden nie ungeprüft verwendet.
 5. **Freigabe**: höchstens 5 Kandidaten, je Event einer. Bedingungen:

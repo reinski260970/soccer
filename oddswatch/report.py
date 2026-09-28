@@ -10,7 +10,9 @@ from .selection import Candidate
 _TZ = ZoneInfo("Europe/Berlin")
 _WD = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 _LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
-            "austria": "Österr. Bundesliga", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
+            "austria": "Österr. Bundesliga", "ucl": "Champions League",
+            "uel": "Europa League", "uecl": "Conference League",
+            "nations": "UEFA Nations League", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
 
 
 def _pct(x: float) -> str:
