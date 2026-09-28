@@ -363,3 +363,28 @@ def test_xg_line_uses_xg_xga_and_goals():
     line, st = _xg_line(ms, "A", date(2026, 9, 10))
     assert st == {"n": 2, "gf": 2.0, "ga": 0.5, "xg": 0.75, "xga": 1.75}
     assert "xG 0.75, xGA 1.75, Tore 2.00:0.50" in line
+
+
+def test_snapshot_open_gives_closing_line(tmp_path):
+    from datetime import datetime, timezone
+    from oddswatch import settle
+    j = Journal(tmp_path / "j")
+    j.append("placed", [{"event": "Luxembourg – Iceland", "kickoff": "2026-09-29T18:45+00:00",
+                         "market": "home", "selection": "Luxembourg Sieg", "odds_taken": 3.4,
+                         "stake_eh": 0.75, "ref": "KXUEFANLGAME-26SEP29LUXISL-LUX"}])
+    ev = {"markets": [
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-LUX", "yes_sub_title": "Luxembourg",
+         "yes_bid_dollars": "0.30", "yes_ask_dollars": "0.31"},
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-ISL", "yes_sub_title": "Iceland",
+         "yes_bid_dollars": "0.41", "yes_ask_dollars": "0.42"},
+        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-TIE", "yes_sub_title": "Tie",
+         "yes_bid_dollars": "0.28", "yes_ask_dollars": "0.29"}]}
+    snaps = str(tmp_path / "s")
+    before = datetime(2026, 9, 29, 18, 35, tzinfo=timezone.utc)
+    log = settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=before)
+    assert "Luxembourg 0.30/0.31" in log[0]
+    after = datetime(2026, 9, 29, 19, 0, tzinfo=timezone.utc)
+    assert settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=after) == \
+        ["keine offenen Tipps vor Anstoß"]
+    cfo = settle.closing_fair_odds("KXUEFANLGAME-26SEP29LUXISL-LUX", snaps)
+    assert abs(cfo - 1 / (0.305 / (0.305 + 0.415 + 0.285))) < 1e-9

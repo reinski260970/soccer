@@ -11,6 +11,7 @@ python -m oddswatch scan                 # Scan (7 Tage Freigabe, 14 Tage Watchl
 python -m oddswatch scan --dry           # nur Bericht, nichts ins Journal
 python -m oddswatch scan --send          # zusätzlich Telegram-Versand (Bot API)
 python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick
+python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (kurz vor Anstoß = Closing Line)
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
