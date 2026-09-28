@@ -1,0 +1,163 @@
+[
+ {
+  "status": "PLAY",
+  "league": "nfl",
+  "event": "Carolina Panthers – Detroit Lions",
+  "kickoff": "2026-10-05T00:20+00:00",
+  "market": "home",
+  "selection": "Carolina Panthers Sieg (inkl. OT)",
+  "odds": 2.658160552897395,
+  "fair": 2.497209082405129,
+  "min_odds": 2.5721253548772833,
+  "home": [
+   "Carolina Panthers",
+   "Carolina",
+   "Panthers",
+   "CAR"
+  ],
+  "away": [
+   "Detroit Lions",
+   "Detroit",
+   "Lions",
+   "DET"
+  ]
+ },
+ {
+  "status": "PLAY",
+  "league": "nhl",
+  "event": "Carolina Hurricanes – Florida Panthers",
+  "kickoff": "2026-09-29T21:00+00:00",
+  "market": "home",
+  "selection": "Carolina Hurricanes Sieg (inkl. OT)",
+  "odds": 1.8264840182648403,
+  "fair": 1.7603864146973551,
+  "min_odds": 1.8131980071382758,
+  "home": [
+   "Carolina Hurricanes",
+   "Carolina",
+   "Hurricanes",
+   "CAR"
+  ],
+  "away": [
+   "Florida Panthers",
+   "Florida",
+   "Panthers",
+   "FLA"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "bundesliga",
+  "event": "SC Paderborn 07 – VfB Stuttgart",
+  "kickoff": "2026-10-10T13:30+00:00",
+  "market": "home",
+  "selection": "SC Paderborn 07 Sieg (90 Min.)",
+  "odds": 4.734848484848485,
+  "fair": 3.8588323856441824,
+  "min_odds": 3.9745973572135083,
+  "home": [
+   "SC Paderborn 07",
+   "SC Paderborn 07",
+   "Paderborn",
+   "SCP"
+  ],
+  "away": [
+   "VfB Stuttgart",
+   "VfB Stuttgart",
+   "Stuttgart",
+   "VFB"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "bundesliga",
+  "event": "1. FC Union Berlin – SV Elversberg",
+  "kickoff": "2026-10-10T13:30+00:00",
+  "market": "away",
+  "selection": "SV Elversberg Sieg (90 Min.)",
+  "odds": 2.894356005788712,
+  "fair": 2.5373529576938947,
+  "min_odds": 2.6134735464247116,
+  "home": [
+   "1. FC Union Berlin",
+   "1. FC Union Berlin",
+   "Union Berlin",
+   "FCU"
+  ],
+  "away": [
+   "SV Elversberg",
+   "SV Elversberg",
+   "Elversberg",
+   "ELV"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Chicago Bears – Philadelphia Eagles",
+  "kickoff": "2026-09-29T00:15+00:00",
+  "market": "home",
+  "selection": "Chicago Bears Sieg (inkl. OT)",
+  "odds": 2.658160552897395,
+  "fair": 2.339972572014086,
+  "min_odds": 2.4101717491745083,
+  "home": [
+   "Chicago Bears",
+   "Chicago",
+   "Bears",
+   "CHI"
+  ],
+  "away": [
+   "Philadelphia Eagles",
+   "Philadelphia",
+   "Eagles",
+   "PHI"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "bundesliga",
+  "event": "SC Freiburg – Schalke 04",
+  "kickoff": "2026-10-11T15:30+00:00",
+  "market": "away",
+  "selection": "Schalke 04 Sieg (90 Min.)",
+  "odds": 4.9800796812749,
+  "fair": 4.528280049079601,
+  "min_odds": 4.664128450551989,
+  "home": [
+   "SC Freiburg",
+   "SC Freiburg",
+   "Freiburg",
+   "SCF"
+  ],
+  "away": [
+   "Schalke 04",
+   "Schalke 04",
+   "Schalke",
+   "S04"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Buffalo Bills – New England Patriots",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "away",
+  "selection": "New England Patriots Sieg (inkl. OT)",
+  "odds": 3.5236081747709656,
+  "fair": 3.268089458678683,
+  "min_odds": 3.366132142439043,
+  "home": [
+   "Buffalo Bills",
+   "Buffalo",
+   "Bills",
+   "BUF"
+  ],
+  "away": [
+   "New England Patriots",
+   "New England",
+   "Patriots",
+   "NE"
+  ]
+ }
+]
