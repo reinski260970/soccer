@@ -602,3 +602,15 @@ def test_lines_total_and_spread_vs_draftkings(monkeypatch):
     assert abs(by["O38.5"].p_final - 0.5) < 1e-9          # DK -110/-110 de-vigged
     assert [c.market for c in _pick(cs)] == ["O38.5"]    # 45 ¢ inkl. Gebühr < fair 50 % -> Wert
     assert abs(by["U38.5:no"].odds - pricing.kalshi_decimal_odds(56, contracts=100)) < 1e-9
+
+
+def test_clubelo_stops_after_repeated_failures(monkeypatch):
+    from oddswatch.sources import clubelo
+    calls = []
+
+    def fake_get(url, **kw):
+        calls.append(url)
+        return None, f"{url}: HTTP 504"
+    monkeypatch.setattr(clubelo.fetch, "get", fake_get)
+    out, errs = clubelo.ratings()
+    assert out == {} and len(calls) == 3 and "abgebrochen" in errs[0]
