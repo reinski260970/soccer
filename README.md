@@ -14,6 +14,7 @@ python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Stat
 python -m oddswatch news --send          # News-Agent: Warnungen zu Freigaben/Watchlist
 python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (kurz vor Anstoß = Closing Line)
 python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
+python -m oddswatch backtest             # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
@@ -58,19 +59,25 @@ python -m pytest -q
    Abstand zur Heimat, Höhe ≥ 1000 m, Klimazonenwechsel und in der NFL Kälte im Freien.
    Die Effekte werden per Ridge-Regression auf die Modellresiduen der Vorsaison
    geschätzt (nicht angenommen) und als Margenkorrektur eingerechnet.
-3. **Fair**: `p_final = w·p_model + (1−w)·p_ref`. Die Referenz ist die de-vigged
-   DraftKings-Linie, ersatzweise der Kalshi-Mittelkurs. `w` ist die angenommene
-   Modellzuverlässigkeit (Fußball 0,5, Nations League 0,4, UEFA-Vereinswettbewerbe 0,3,
-   NFL, NHL, NBA und europäisches Eishockey je 0,25).
+3. **Fair – nur besser als der Markt**: Referenz ist der de-vigged DraftKings-Kurs
+   (über ESPN), unabhängig vom Kalshi-Preis. `p_final = w·p_model + (1−w)·p_markt`,
+   wobei `w > 0` nur gilt, wenn das Modell für Liga und Marktart im Walk-forward-Backtest
+   besser war als der Markt (`python -m oddswatch backtest` → `data/validation.json`:
+   LogLoss-bestes w > 0, ≥ 200 Tipps, positiver CLV gegen die Pinnacle-Closing-Line).
+   Stand 29.09.2026: in keiner Liga/Marktart erfüllt (Bundesliga 1X2 CLV −7,6 %,
+   Über/Unter −4,1 %, 2. BL 1X2 −4,5 %) → `w = 0`, reiner Preisvergleich; das Modell
+   steht nur zur Information im Bericht. Ohne DraftKings-Linie keine Freigabe
+   (NFL/NHL/NBA/UEFA/Eishockey ohne historische Quoten gelten als nicht validiert).
 4. **Preis**: Kalshi-Ask inkl. Taker-Gebühr (Order ≈ 100 Kontrakte).
    Orbit und bet365 sind hier nicht abrufbar und werden nie ungeprüft verwendet.
-5. **Freigabe (PLAY)**: immer, wenn die Marktquote die spielbare Mindestquote
-   („spielbar ab“ = Quote mit EV 3 %) erreicht – ohne Obergrenze für Anzahl oder Quote,
-   für alle bewerteten Spiele (Fußball 14 Tage, NFL/NHL/NBA 7 Tage voraus), je Event einer.
-   Zurückgehalten (WATCH) wird nur bei Informationsvorbehalt: News (z. B. QB fehlt,
-   NBA-Leistungsträger ≥ 15 PPG fehlt), Modell-Markt-Divergenz > 15 Pp oder dünnem
-   Kalshi-Orderbuch (Spread > 10 ¢ bzw. keine verlässliche Marktreferenz). Bei
-   Zwei-Wege-Märkten dient die liquide Seite als Referenz.
+   **Über/Unter & Handicap** (`lines.py`): Kalshi-Linienleiter gegen die DraftKings-Linie,
+   nur exakt gleiche Linie (Total: JA = Über, NEIN = Unter; Handicap: JA = Favorit −x,
+   NEIN = Außenseiter +x) für NFL, NHL, NBA, Bundesliga, 2. BL, UCL, UEL, UECL, Nations
+   League. BTTS: keine DraftKings-Referenz über ESPN, nicht bewertet.
+5. **Freigabe (PLAY)**: wenn der Kalshi-Preis inkl. Gebühr die spielbare Mindestquote
+   (1,03 / p_final, also EV ≥ 3 % gegen den fairen Marktpreis) erreicht, je Event einer.
+   WATCH bei Informationsvorbehalt (News, z. B. QB fehlt), dünnem Kalshi-Orderbuch
+   (Spread > 10 ¢) oder fehlender DraftKings-Referenz.
 
    Einsatz: ¼-Kelly mit Schätzungsabschlag, mindestens 0,25 und maximal 2 EH.
 6. **Journal** (`data/journal/`): `forecasts.csv` (alle Prognosen),

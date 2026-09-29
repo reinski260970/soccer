@@ -36,8 +36,11 @@ def closing_fair_odds(ticker: str, root: str = "data/snapshots") -> float | None
     if ticker not in snap:
         return None
     mids = {t: ((r["bid"] + r["ask"]) / 2 if r["bid"] > 0 else r["ask"]) for t, r in snap.items()}
-    s = sum(mids.values())
-    p = mids[ticker] / s if s else 0
+    if "TOTAL" in ev or "SPREAD" in ev:
+        p = mids[ticker]            # Linien-Leiter: jede Linie ist ein eigener Ja/Nein-Markt
+    else:
+        s = sum(mids.values())
+        p = mids[ticker] / s if s else 0
     return 1 / p if p > 0 else None
 
 
@@ -102,7 +105,9 @@ def settle_all(j: Journal) -> list[str]:
                 log.append(f"{name}: {r['event']} – offen (Status {m.get('status')})")
                 continue
             # Importierte Kalshi-Fills führen die gekaufte Seite (yes/no) als market
-            side = r["market"] if r["market"] in ("yes", "no") else "yes"
+            # Über/Unter & Handicap: NEIN-Seite als "...:no" im Markt-Code
+            side = ("no" if r["market"].endswith(":no") else
+                    r["market"] if r["market"] in ("yes", "no") else "yes")
             won = res == side
             cfo = closing_fair_odds(r["ref"])
             if cfo and side == "no":

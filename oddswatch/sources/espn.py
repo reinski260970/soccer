@@ -97,7 +97,21 @@ def parse_scoreboard(data: dict, league: str) -> list[EspnGame]:
                 cur = (ml.get(side) or {}).get("close") or (ml.get(side) or {}).get("open") or {}
                 v = _ml(str(cur.get("odds", "")).replace("+", "")) if cur.get("odds") else None
                 return v or _ml((legacy or {}).get("moneyLine"))
+            def line(block: dict | None) -> tuple[float | None, float | None]:
+                cur = (block or {}).get("close") or (block or {}).get("open") or {}
+                try:
+                    ln = float(str(cur.get("line", "")).lstrip("ou").replace("+", ""))
+                except ValueError:
+                    ln = None
+                od = _ml(str(cur.get("odds", "")).replace("+", "")) if cur.get("odds") else None
+                return ln, od
+            ps, tot = o.get("pointSpread") or {}, o.get("total") or {}
+            (hs_line, hs_odds), (as_line, as_odds) = line(ps.get("home")), line(ps.get("away"))
+            (ov_line, ov_odds), (_, un_odds) = line(tot.get("over")), line(tot.get("under"))
             ref = {"provider": (o.get("provider") or {}).get("name", ""),
+                   "total_line": ov_line, "ml_over": ov_odds, "ml_under": un_odds,
+                   "spread_home": hs_line, "odds_spread_home": hs_odds,
+                   "spread_away": as_line, "odds_spread_away": as_odds,
                    "details": o.get("details", ""), "total": o.get("overUnder"),
                    "spread": o.get("spread"),
                    "ml_home": mline("home", o.get("homeTeamOdds")),

@@ -58,6 +58,8 @@ def verify(j: Journal, fetch_market=kalshi.fetch_market) -> list[str]:
             continue
         bid = kalshi._price(m, "yes_bid")
         ask = kalshi._price(m, "yes_ask")
+        if (vb.get("market") or r.get("market", "")).endswith(":no"):   # NEIN-Seite
+            bid, ask = (1 - ask, 1 - bid) if ask > 0 else (0.0, 0.0)
         mn = float(vb["min_odds"]) if vb.get("min_odds") else None
         if m.get("status") not in ("active", "open") or ask <= 0:
             status, odds = f"geschlossen ({m.get('status')})", None

@@ -171,7 +171,8 @@ def test_divergence_blocks_release():
     q = lambda s, a: KalshiQuote("", "E", f"E-{s}", s, s, a - 0.01, a, 0, 0, "now")
     fx = Fixture("nfl", "nfl", g, {"home": 0.70, "away": 0.30}, "", ref_probs={"home": 0.45, "away": 0.55},
                  kalshi={"home": q("home", 0.46), "away": q("away", 0.56)})
-    cands = evaluate_fixture(fx)
+    val = {"nfl:1x2": {"validated": True, "w": 0.25, "clv": 0.01, "n": 300}}
+    cands = evaluate_fixture(fx, val)
     home = [c for c in cands if c.market == "home"][0]
     assert home.flags and "weicht" in home.flags[0]
     assert pick(cands) == []
@@ -528,3 +529,76 @@ def test_verify_against_live_price(tmp_path):
     assert "https://www.espn.com/soccer/match/_/gameId/401861086" in out
     moved = lambda t: ({"status": "active", "yes_bid_dollars": "0.31", "yes_ask_dollars": "0.32"}, None)
     assert "❌ unter Mindestquote" in "\n".join(verify.verify(j, fetch_market=moved))
+
+
+def test_release_only_when_better_than_market():
+    from datetime import datetime, timezone
+    from oddswatch.scan import Fixture, evaluate_fixture
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("1", "bundesliga", datetime(2026, 10, 10, 13, 30, tzinfo=timezone.utc),
+                 Team("SC Paderborn 07"), Team("VfB Stuttgart"), "STATUS_SCHEDULED")
+    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
+    kal = {"home": q("home", 0.18, 0.20), "draw": q("draw", 0.22, 0.24), "away": q("away", 0.58, 0.60)}
+    ref = {"home": 0.187, "draw": 0.233, "away": 0.58}
+    fx = Fixture("bundesliga", "soccer", g, {"home": 0.33, "draw": 0.25, "away": 0.42}, "",
+                 ref_probs=ref, kalshi=kal)
+    # Modell sieht Paderborn bei 33 %, Markt bei 18,7 %: ohne Validierung kein PLAY
+    no_val = {"bundesliga:1x2": {"validated": False, "w": 0.0, "clv": -0.067, "n": 520}}
+    c = [x for x in evaluate_fixture(fx, no_val) if x.market == "home"][0]
+    assert abs(c.p_final - 0.187) < 1e-9 and pick([c]) == []
+    assert "nicht besser als der Markt" in c.reason
+    # echter Preisfehler bei Kalshi (Ask 15 ¢ bei fairen 18,7 %) -> PLAY auch ohne Modell
+    fx.kalshi["home"] = q("home", 0.14, 0.15)
+    c = [x for x in evaluate_fixture(fx, no_val) if x.market == "home"][0]
+    assert pick([c]) == [c]
+    # ohne DraftKings-Linie keine unabhängige Referenz -> keine Freigabe
+    fx.ref_probs = {}
+    assert all(pick([x]) == [] for x in evaluate_fixture(fx, no_val))
+
+
+def test_backtest_validates_only_when_better_than_market():
+    from oddswatch.backtest import evaluate
+    rnd = random.Random(7)
+    good, bad = [], []
+    for _ in range(3000):
+        p_true = rnd.uniform(0.3, 0.7)
+        y = rnd.random() < p_true
+        p_mkt = min(max(p_true + rnd.gauss(0, 0.06), 0.05), 0.95)   # Markt verrauscht
+        odds = [1 / p_mkt * 0.97, 1 / (1 - p_mkt) * 0.97]
+        close = [p_true, 1 - p_true]
+        good.append(([p_true, 1 - p_true], [p_mkt, 1 - p_mkt], [y, not y], odds, close))
+        noisy = min(max(p_mkt + rnd.gauss(0, 0.1), 0.05), 0.95)          # Modell schlechter
+        bad.append(([noisy, 1 - noisy], [p_mkt, 1 - p_mkt], [y, not y], odds, close))
+    assert evaluate(good)["validated"] and evaluate(good)["w"] > 0
+    assert not evaluate(bad)["validated"] and evaluate(bad)["w"] == 0.0
+
+
+def test_lines_total_and_spread_vs_draftkings(monkeypatch):
+    from datetime import datetime, timezone
+    from oddswatch import lines
+    from oddswatch.scan import Fixture
+    from oddswatch.selection import pick as _pick
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("401872964", "nfl", datetime(2026, 10, 2, 0, 15, tzinfo=timezone.utc),
+                 Team("Cleveland Browns", "Cleveland", "Browns", "CLE"),
+                 Team("Pittsburgh Steelers", "Pittsburgh", "Steelers", "PIT"), "STATUS_SCHEDULED",
+                 ref_line={"total_line": 38.5, "ml_over": 1.91, "ml_under": 1.91, "spread_home": 2.5,
+                           "odds_spread_home": 2.0, "spread_away": -2.5, "odds_spread_away": 1.83})
+    q = KalshiQuote("", "KXNFLGAME-26OCT01PITCLE", "KXNFLGAME-26OCT01PITCLE-CLE", "home", "Cleveland",
+                    0.43, 0.44, 0, 0, "now")
+    fx = Fixture("nfl", "nfl", g, {"home": 0.45, "away": 0.55}, "", kalshi={"home": q})
+    events = {
+        "KXNFLTOTAL": {"26OCT01PITCLE": [{"ticker": "T-39", "floor_strike": 38.5,
+                                          "yes_bid_dollars": "0.44", "yes_ask_dollars": "0.45"}]},
+        "KXNFLSPREAD": {"26OCT01PITCLE": [{"ticker": "S-PIT3", "floor_strike": 2.5,
+                                           "yes_sub_title": "PIT Steelers wins by over 2.5 points",
+                                           "yes_bid_dollars": "0.52", "yes_ask_dollars": "0.53"}]}}
+    monkeypatch.setattr(lines, "_events", lambda s: (events.get(s, {}), None))
+    cs = lines.candidates([fx], [], [])
+    by = {c.market: c for c in cs}
+    assert set(by) == {"O38.5", "U38.5:no", "HC-2.5 PIT", "HC+2.5 CLE:no"}
+    assert abs(by["O38.5"].p_final - 0.5) < 1e-9          # DK -110/-110 de-vigged
+    assert [c.market for c in _pick(cs)] == ["O38.5"]    # 45 ¢ inkl. Gebühr < fair 50 % -> Wert
+    assert abs(by["U38.5:no"].odds - pricing.kalshi_decimal_odds(56, contracts=100)) < 1e-9

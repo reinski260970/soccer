@@ -6,6 +6,7 @@
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
   python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
+  python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -27,8 +28,10 @@ from .journal import Journal
 
 def _watchlist(res) -> list:
     picked = {(c.event, c.market) for c in res.picks}
+    # Ohne unabhängige Referenz (DraftKings) ist "fair" nur der Kalshi-Mittelkurs – kein Hinweis
     return sorted([c for c in res.candidates if (c.event, c.market) not in picked
-                   and c.ev >= 0.0 and c.edge > 0], key=lambda c: -c.ev)[:5]
+                   and c.ev >= 0.0 and c.edge > 0 and c.p_ref is not None],
+                  key=lambda c: -c.ev)[:5]
 
 
 def _scan(a) -> int:
@@ -125,6 +128,13 @@ def _closing(a) -> int:
     return 0
 
 
+def _backtest(a) -> int:
+    from . import backtest
+    for line in backtest.run():
+        print(line)
+    return 0
+
+
 def _verify(a) -> int:
     from . import verify
     for line in verify.verify(Journal()):
@@ -215,6 +225,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("settle").set_defaults(fn=_settle)
     sub.add_parser("closing").set_defaults(fn=_closing)
     sub.add_parser("verify").set_defaults(fn=_verify)
+    sub.add_parser("backtest").set_defaults(fn=_backtest)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)

@@ -3,12 +3,14 @@ Kalshi-Vergleich -> max. 5 Value-Kandidaten -> Journal, Bericht, Telegram-Text.
 
 Entscheidungswahrscheinlichkeit
 -------------------------------
-p_model ist die unabhängige Modellschätzung. Wo ein unabhängiger
-Referenzmarkt vorliegt (DraftKings-Linie über ESPN, de-vigged), wird
-p_final = w * p_model + (1 - w) * p_ref gebildet; w ist die angenommene
-Modellzuverlässigkeit je Sport (MODEL_WEIGHT). Ohne Referenz dient der
-de-vigged Kalshi-Mittelkurs als Referenz. So erzeugt Modellrauschen allein
-keinen Kandidaten. Alle Gewichte sind Annahmen und im Bericht ausgewiesen.
+Freigabe nur, wenn wir nachweislich besser sind als der Markt. Referenz ist
+der de-vigged DraftKings-Kurs (über ESPN) – unabhängig vom Kalshi-Preis.
+p_final = w * p_model + (1 - w) * p_markt, wobei w nur dann > 0 ist, wenn
+das Modell für diese Liga/Marktart im Walk-forward-Backtest gegen die
+Closing Line besser war als der Markt (data/validation.json, erzeugt von
+`python -m oddswatch backtest`). Sonst ist w = 0: reiner Preisvergleich
+Kalshi gegen DraftKings, das Modell steht nur zur Information im Bericht.
+Ohne DraftKings-Linie gibt es keine unabhängige Referenz und keine Freigabe.
 """
 
 from __future__ import annotations
@@ -30,10 +32,7 @@ from .selection import Candidate, Offer, evaluate, pick
 from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl
 from . import fetch, venues
 
-MODEL_WEIGHT = {"soccer": 0.5, "nfl": 0.25, "nhl": 0.25, "nba": 0.25, "hockey": 0.25}
-# UEFA: reines Elo-Modell ohne Kader-/Aufstellungsinfo; ClubElo zusätzlich mit
-# geschätztem Heimvorteil und geliehener Tor-Kalibrierung -> geringeres Gewicht.
-LEAGUE_WEIGHT = {"nations": 0.4, "ucl": 0.3, "uel": 0.3, "uecl": 0.3}
+VALIDATION = Path("data/validation.json")
 UEFA_CLUB = {"ucl": "Champions League", "uel": "Europa League", "uecl": "Conference League"}
 CLUB_HOME_ELO = 65.0      # Annahme, nicht kalibriert
 CLUB_GOALS = 1.35         # Tore je Team bei gleicher Stärke (Annahme, Vereinsfußball)
@@ -96,8 +95,23 @@ class ScanResult:
 
 
 # ---------------------------------------------------------------- helpers
-def _weight(fx: "Fixture") -> float:
-    return LEAGUE_WEIGHT.get(fx.league, MODEL_WEIGHT.get(fx.sport, 0.5))
+def _validation() -> dict:
+    try:
+        return json.loads(VALIDATION.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def model_weight(league: str, mtype: str, val: dict | None = None) -> tuple[float, str]:
+    """Modellgewicht aus dem Backtest: > 0 nur, wenn das Modell für Liga und
+    Marktart nachweislich besser war als der Markt; sonst 0 mit Begründung."""
+    v = (val if val is not None else _validation()).get(f"{league}:{mtype}")
+    if not v:
+        return 0.0, "Modell nicht validiert (kein Backtest mit historischen Quoten möglich)"
+    if not v.get("validated"):
+        return 0.0, (f"Modell nicht besser als der Markt (Backtest: {v['n']} Tipps, "
+                     f"CLV {v['clv'] * 100:+.1f} %)")
+    return float(v["w"]), f"Modell validiert (Backtest-CLV {v['clv'] * 100:+.1f} %, n={v['n']})"
 
 
 def _form(matches: list, team: str, before: date, n: int = 5) -> str:
@@ -897,11 +911,10 @@ def _label(fx: Fixture, side: str) -> str:
     return f"{t} Sieg" + (" (90 Min.)" if fx.sport == "soccer" else " (inkl. OT)")
 
 
-def evaluate_fixture(fx: Fixture) -> list[Candidate]:
+def evaluate_fixture(fx: Fixture, val: dict | None = None) -> list[Candidate]:
     keys = list(fx.probs)
-    ref = fx.ref_probs or _devig_kalshi(fx.kalshi, keys)
-    ref_src = "DraftKings" if fx.ref_probs else ("Kalshi-Mitte" if ref else "")
-    w = _weight(fx)
+    ref = fx.ref_probs                      # DraftKings: unabhängig vom Kalshi-Preis
+    w, wnote = model_weight(fx.league, "1x2", val)
     out = []
     for side in keys:
         q = fx.kalshi.get(side)
@@ -909,21 +922,25 @@ def evaluate_fixture(fx: Fixture) -> list[Candidate]:
             continue
         p_model = fx.probs[side]
         p_ref = ref.get(side)
-        p_final = w * p_model + (1 - w) * p_ref if p_ref is not None else p_model
         odds = pricing.kalshi_decimal_odds(q.yes_ask * 100, contracts=100)
         flags = list(fx.flags.get(side, []))
         if p_ref is None:
-            flags.append("keine verlässliche Marktreferenz (Orderbuch zu dünn)")
+            flags.append("keine unabhängige Marktreferenz (keine DraftKings-Linie)")
+            mid = _devig_kalshi(fx.kalshi, keys).get(side)
+            p_final = mid if mid is not None else p_model
+        else:
+            p_final = w * p_model + (1 - w) * p_ref
         spread = q.yes_ask - q.yes_bid if q.yes_bid > 0 else q.yes_ask
         if spread > MAX_SPREAD:
             flags.append(f"Orderbuch dünn (Spread {spread * 100:.0f} ¢) – Preis nicht verlässlich")
-        if p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
+        if w > 0 and p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
             flags.append(f"Modell weicht {abs(p_model - p_ref) * 100:.0f} Pp vom Markt ab – "
                          "fehlende Kader-/QB-Info wahrscheinlicher als Value")
-        reason = (f"{fx.detail}. Modell {p_model * 100:.1f} %"
-                  + (f", {ref_src} {p_ref * 100:.1f} %" if p_ref is not None else ", keine Referenz")
+        reason = ((f"Markt (DraftKings) {p_ref * 100:.1f} %" if p_ref is not None
+                   else "keine DraftKings-Linie")
+                  + f", Modell {p_model * 100:.1f} % – {wnote}"
                   + f", Entscheidung {p_final * 100:.1f} % (Modellgewicht {w:.0%}). "
-                  + "; ".join(fx.context))
+                  + f"{fx.detail}. " + "; ".join(fx.context))
         off = Offer(fx.game.title, fx.game.kickoff.isoformat(timespec="minutes"), side,
                     _label(fx, side), odds, "kalshi", q.observed_at,
                     liquidity=q.liquidity or None, ref=q.ticker, league=fx.league)
@@ -953,7 +970,10 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_hockey_eu(start, days, issues, notes)
     notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "
                  "nur Kalshi-Preise sind verifiziert")
-    cands = [c for fx in fixtures for c in evaluate_fixture(fx)]
+    val = _validation()
+    cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
+    from . import lines
+    cands += lines.candidates(fixtures, issues, notes)
     picks = pick(cands)
     stand = now.strftime("%d.%m.%Y %H:%M UTC")
     if journal is not None:
@@ -963,10 +983,11 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
 
 
 def _log(j: Journal, fixtures: list[Fixture], picks: list[Candidate]) -> None:
+    val = _validation()
     rows = []
     for fx in fixtures:
-        ref = fx.ref_probs or _devig_kalshi(fx.kalshi, list(fx.probs))
-        w = _weight(fx)
+        ref = fx.ref_probs
+        w = model_weight(fx.league, "1x2", val)[0]
         for side, p in fx.probs.items():
             pr = ref.get(side)
             pf = w * p + (1 - w) * pr if pr is not None else p
