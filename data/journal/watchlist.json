@@ -1,48 +1,25 @@
 [
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "Minnesota Vikings – Miami Dolphins",
-  "kickoff": "2026-10-04T20:05+00:00",
-  "market": "home",
-  "selection": "Minnesota Vikings Sieg (inkl. OT)",
-  "odds": 1.1771630370806359,
-  "fair": 1.1494904518742934,
-  "min_odds": 1.1839751654305222,
+  "league": "nhl",
+  "event": "New Jersey Devils – Philadelphia Flyers",
+  "kickoff": "2026-10-01T23:00+00:00",
+  "market": "HC+1.5 PHI:no",
+  "selection": "Philadelphia Flyers +1.5",
+  "odds": 1.5710919088766695,
+  "fair": 1.5289473670002272,
+  "min_odds": 1.574815788010234,
   "home": [
-   "Minnesota Vikings",
-   "Minnesota",
-   "Vikings",
-   "MIN"
+   "New Jersey Devils",
+   "New Jersey",
+   "Devils",
+   "NJ"
   ],
   "away": [
-   "Miami Dolphins",
-   "Miami",
-   "Dolphins",
-   "MIA"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nations",
-  "event": "Slovakia – Kazakhstan",
-  "kickoff": "2026-09-29T18:45+00:00",
-  "market": "O2.5",
-  "selection": "Über 2.5 Tore",
-  "odds": 1.7322016282695305,
-  "fair": 1.7005540326200743,
-  "min_odds": 1.7515706535986766,
-  "home": [
-   "Slovakia",
-   "Slovakia",
-   "Slovakia",
-   "SVK"
-  ],
-  "away": [
-   "Kazakhstan",
-   "Kazakhstan",
-   "Kazakhstan",
-   "KAZ"
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
   ]
  },
  {
@@ -71,47 +48,70 @@
  {
   "status": "WATCH",
   "league": "nfl",
-  "event": "Las Vegas Raiders – Kansas City Chiefs",
-  "kickoff": "2026-10-04T20:25+00:00",
-  "market": "away",
-  "selection": "Kansas City Chiefs Sieg (inkl. OT)",
-  "odds": 1.5015015015015014,
-  "fair": 1.482837531449986,
-  "min_odds": 1.5273226573934857,
+  "event": "Minnesota Vikings – Miami Dolphins",
+  "kickoff": "2026-10-04T20:05+00:00",
+  "market": "home",
+  "selection": "Minnesota Vikings Sieg (inkl. OT)",
+  "odds": 1.1641443538998837,
+  "fair": 1.1494904518742934,
+  "min_odds": 1.1839751654305222,
   "home": [
-   "Las Vegas Raiders",
-   "Las Vegas",
-   "Raiders",
-   "LV"
+   "Minnesota Vikings",
+   "Minnesota",
+   "Vikings",
+   "MIN"
   ],
   "away": [
-   "Kansas City Chiefs",
-   "Kansas City",
-   "Chiefs",
-   "KC"
+   "Miami Dolphins",
+   "Miami",
+   "Dolphins",
+   "MIA"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nhl",
-  "event": "New Jersey Devils – Philadelphia Flyers",
-  "kickoff": "2026-10-01T23:00+00:00",
-  "market": "HC+1.5 PHI:no",
-  "selection": "Philadelphia Flyers +1.5",
-  "odds": 1.547029702970297,
-  "fair": 1.5289473670002272,
-  "min_odds": 1.574815788010234,
+  "league": "nfl",
+  "event": "Baltimore Ravens – Tennessee Titans",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "home",
+  "selection": "Baltimore Ravens Sieg (inkl. OT)",
+  "odds": 1.1514104778353484,
+  "fair": 1.1494904518742934,
+  "min_odds": 1.1839751654305222,
   "home": [
-   "New Jersey Devils",
-   "New Jersey",
-   "Devils",
-   "NJ"
+   "Baltimore Ravens",
+   "Baltimore",
+   "Ravens",
+   "BAL"
   ],
   "away": [
-   "Philadelphia Flyers",
-   "Philadelphia",
-   "Flyers",
-   "PHI"
+   "Tennessee Titans",
+   "Tennessee",
+   "Titans",
+   "TEN"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Seattle Seahawks – Los Angeles Chargers",
+  "kickoff": "2026-10-04T20:25+00:00",
+  "market": "home",
+  "selection": "Seattle Seahawks Sieg (inkl. OT)",
+  "odds": 1.310272536687631,
+  "fair": 1.3082807441147797,
+  "min_odds": 1.3475291664382232,
+  "home": [
+   "Seattle Seahawks",
+   "Seattle",
+   "Seahawks",
+   "SEA"
+  ],
+  "away": [
+   "Los Angeles Chargers",
+   "Los Angeles",
+   "Chargers",
+   "LAC"
   ]
  }
 ]
