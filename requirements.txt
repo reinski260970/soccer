@@ -1,3 +1,4 @@
 cryptography>=41
 cffi>=1.15
 pytest>=7
+openpyxl>=3.1
