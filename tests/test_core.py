@@ -602,3 +602,29 @@ def test_lines_total_and_spread_vs_draftkings(monkeypatch):
     assert abs(by["O38.5"].p_final - 0.5) < 1e-9          # DK -110/-110 de-vigged
     assert [c.market for c in _pick(cs)] == ["O38.5"]    # 45 ¢ inkl. Gebühr < fair 50 % -> Wert
     assert abs(by["U38.5:no"].odds - pricing.kalshi_decimal_odds(56, contracts=100)) < 1e-9
+
+
+def test_quick_scan_alerts_once_per_price_level(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    from oddswatch import quick, lines
+    from oddswatch.scan import Fixture
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("1", "nfl", datetime(2026, 10, 4, 17, tzinfo=timezone.utc),
+                 Team("Chicago Bears"), Team("New York Jets"), "STATUS_SCHEDULED")
+    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
+    fx = Fixture("nfl", "nfl", g, {"home": 0.6, "away": 0.4}, "", ref_probs={"home": 0.6, "away": 0.4},
+                 kalshi={"home": q("home", 0.54, 0.55), "away": q("away", 0.44, 0.46)})
+    monkeypatch.setattr(quick, "fixtures", lambda *a, **k: [fx])
+    monkeypatch.setattr(quick, "snapshot", lambda f: None)
+    monkeypatch.setattr(quick, "STATE", tmp_path / "alerts.json")
+    monkeypatch.setattr(lines, "candidates", lambda *a, **k: [])
+    monkeypatch.setattr(quick.settle, "snapshot_open", lambda j: [])
+    monkeypatch.setattr(quick.settle, "settle_all", lambda j: [])
+    sent = []
+    monkeypatch.setattr(quick.telegram, "send", lambda t: sent.append(t) or {"sent": True, "message_ids": [1]})
+    j = Journal(tmp_path / "j")
+    quick.run(j, send=True)
+    quick.run(j, send=True)                       # gleicher Preis -> keine zweite Meldung
+    assert len(sent) == 1 and "Chicago Bears" in sent[0]
+    assert [r["market"] for r in j.read("valuebets")] == ["home"]
