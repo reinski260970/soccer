@@ -16,6 +16,7 @@ python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (
 python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
 python -m oddswatch backtest             # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
 python -m oddswatch quick --send         # Schnellscan Kalshi vs. DraftKings (für den 15-Minuten-Takt)
+python -m oddswatch tennis --send        # Tennis-Valuebets aus MongoDB Atlas (tennis_db), nur neue Tipps
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
@@ -120,6 +121,25 @@ dedupliziert nach `placed.csv`: Quote inkl. Gebühr, Einsatz in EH (Standard 1 E
 Valuebet-Freigabe. Das Modul sendet nur GET-Anfragen und platziert keine Orders.
 
 Abhängigkeiten: `pip install -r requirements.txt`
+
+## Tennis (MongoDB Atlas, nur lesend)
+
+`python -m oddswatch tennis` liest aus der Datenbank `tennis_db` des Tennis-Runners
+(`sources/tennis_atlas.py`): offene, freigegebene Valuebets ab heute aus
+`valuebets_active` und die Bilanz aus `valuebets_history` (Tipps, Ergebnis in EH, ROI,
+Median-CLV). Bericht: `reports/<datum>-tennis.md`. Mit `--send` gehen nur neue Tipps
+bzw. neue Quoten an Telegram (Zustand in `data/journal/tennis_alerts.json`), `--all`
+sendet alle offenen.
+
+Die Tipps kommen aus dem ML-Modell des Runners (Quoten von tennisexplorer) und werden
+von oddswatch nie als PLAY freigegeben: KANDIDAT nur bei belegtem Vorteil
+(≥ 200 abgerechnete Tipps, ROI > 0, Median-CLV > 0), sonst INFO.
+Stand 29.09.2026: 319 Tipps, −5,9 EH bei 196 EH Einsatz (ROI ≈ −3 %) → INFO.
+
+Verbindung: `MONGODB_URI` (Connection-String eines Datenbankbenutzers mit Rolle
+`read` auf `tennis_db`, in Atlas unter *Database Access* anlegen; die IP bzw. GitHub-
+Runner unter *Network Access* freigeben), optional `MONGODB_DB` (Standard `tennis_db`).
+Ohne `MONGODB_URI` meldet der Bericht das und bricht nichts anderes ab.
 
 ## Schnellscan (15-Minuten-Takt)
 

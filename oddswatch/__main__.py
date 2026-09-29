@@ -9,6 +9,7 @@
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
   python -m oddswatch quick [--send]    # Schnellscan Kalshi vs. DraftKings (15-Min-Takt), Closing, Abrechnung
+  python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -144,6 +145,13 @@ def _quick(a) -> int:
     return 0
 
 
+def _tennis(a) -> int:
+    from . import tennis
+    for line in tennis.run(send=a.send, all_bets=a.all):
+        print(line)
+    return 0
+
+
 def _backtest(a) -> int:
     from . import backtest
     for line in backtest.run():
@@ -247,6 +255,10 @@ def main(argv: list[str] | None = None) -> int:
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
     qk.set_defaults(fn=_quick)
+    tn = sub.add_parser("tennis")
+    tn.add_argument("--send", action="store_true")
+    tn.add_argument("--all", action="store_true", help="alle offenen Tipps senden, nicht nur neue")
+    tn.set_defaults(fn=_tennis)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)
