@@ -13,6 +13,7 @@ python -m oddswatch scan --send          # zusätzlich Telegram-Versand (Bot API
 python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick (nur bei Neuigkeiten)
 python -m oddswatch news --send          # News-Agent: Warnungen zu Freigaben/Watchlist
 python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (kurz vor Anstoß = Closing Line)
+python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt

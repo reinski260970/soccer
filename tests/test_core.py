@@ -510,3 +510,21 @@ def test_icehl_feed_parse():
     done, up = parse_icehl(data)
     assert (done[0].reg_home, done[0].reg_away, done[0].extra) == (2, 2, "OT")
     assert up[0]["start"].utcoffset().total_seconds() == 7200     # Wien, Sommerzeit
+
+
+def test_verify_against_live_price(tmp_path):
+    from oddswatch import verify
+    j = Journal(tmp_path)
+    j.append("valuebets", [{"event": "Luxembourg – Iceland", "kickoff": "2026-09-29T18:45+00:00",
+                            "league": "nations", "market": "home", "selection": "Luxembourg Sieg",
+                            "ref": "KXUEFANLGAME-26SEP29LUXISL-LUX", "odds": 3.4, "p_model": 0.3751,
+                            "p_ref": 0.2876, "p_final": 0.3226, "min_odds": 3.1929}])
+    j.append("forecasts", [{"event": "Luxembourg – Iceland", "market": "home", "league": "nations",
+                            "event_id": "401861086"}])
+    live = lambda t: ({"status": "active", "yes_bid_dollars": "0.27", "yes_ask_dollars": "0.28"}, None)
+    out = "\n".join(verify.verify(j, fetch_market=live))
+    assert "| 27/28 ¢ | 3.40 | 3.19 | ✅ PLAY |" in out
+    assert "1 / (0.28 + 0.0142 Gebühr) = 3.40" in out
+    assert "https://www.espn.com/soccer/match/_/gameId/401861086" in out
+    moved = lambda t: ({"status": "active", "yes_bid_dollars": "0.31", "yes_ask_dollars": "0.32"}, None)
+    assert "❌ unter Mindestquote" in "\n".join(verify.verify(j, fetch_market=moved))

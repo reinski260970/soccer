@@ -5,6 +5,7 @@
   python -m oddswatch news [--send]      # News-Agent: Warnungen zu Freigaben/Watchlist
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
+  python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -124,6 +125,13 @@ def _closing(a) -> int:
     return 0
 
 
+def _verify(a) -> int:
+    from . import verify
+    for line in verify.verify(Journal()):
+        print(line)
+    return 0
+
+
 def _place(a) -> int:
     j = Journal()
     vb = [r for r in j.read("valuebets") if a.ref in (r.get("ref"), r.get("event"))]
@@ -206,6 +214,7 @@ def main(argv: list[str] | None = None) -> int:
     nw.set_defaults(fn=_news)
     sub.add_parser("settle").set_defaults(fn=_settle)
     sub.add_parser("closing").set_defaults(fn=_closing)
+    sub.add_parser("verify").set_defaults(fn=_verify)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)
