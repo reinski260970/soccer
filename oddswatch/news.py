@@ -119,6 +119,7 @@ class Alert:
     category: str
     severe: bool
     confirmed_by: list[str]
+    names: set[str] = field(default_factory=set)
 
 
 # ---------------------------------------------------------------- Parsing
@@ -240,11 +241,26 @@ def _mentions(item: Item, aliases: list[str]) -> bool:
     return not item.teams and item.source in TEXT_MATCH and _in(item.text, aliases)
 
 
+_STOP = {"sources", "source", "report", "reports", "latest", "breaking", "grades", "grading",
+         "trade", "trades", "deadline", "updates", "update", "news", "week", "what", "when",
+         "why", "how", "who", "will", "after", "could", "should", "with", "from", "into",
+         "this", "that", "their", "season", "game", "games", "injury", "status", "notes",
+         "live", "odds", "picks", "preview", "takeaways", "power", "rankings", "nach", "gegen",
+         "auch", "sich", "ohne", "über", "trainer", "verletzung", "saison", "spiel", "bundesliga"}
+
+
 def _names(item: Item, aliases: list[str]) -> set[str]:
-    """Eigennamen (Spieler/Trainer) aus dem Titel, ohne Teamnamen."""
+    """Eigennamen (Spieler/Trainer) aus dem Titel, ohne Teamnamen und Füllwörter."""
     team_words = {w.lower() for a in aliases for w in a.split()}
     words = re.findall(r"\b[A-ZÄÖÜ][\wäöüßé'-]{3,}\b", item.title)
-    return {w for w in words if w.lower() not in team_words}
+    return {w.rstrip("'s").rstrip("'") for w in words
+            if w.lower() not in team_words and w.lower().rstrip("'s") not in _STOP}
+
+
+def story_keys(event: str, names: set[str]) -> set[str]:
+    """Eine Geschichte = Spiel + Person. Weitere Artikel dazu sind keine Neuigkeit."""
+    return {"story:" + hashlib.sha1(f"{event}|{n.lower()}".encode()).hexdigest()[:12]
+            for n in names}
 
 
 def find_alerts(targets: list[Target], items: list[Item], seen: set[str],
@@ -270,13 +286,19 @@ def find_alerts(targets: list[Target], items: list[Item], seen: set[str],
                 conf = sorted({o.source for o in rel if o.source != it.source
                                and o.source not in FORUMS and classify(o.title, o.text)
                                and (not names or names & _names(o, aliases))})
-                alerts.append(Alert(t, side, aliases[0], it, c[0], c[1], conf))
-    # je Spiel/Artikel nur einmal, schwere Meldungen zuerst
-    uniq: dict[tuple[str, str], Alert] = {}
+                alerts.append(Alert(t, side, aliases[0], it, c[0], c[1], conf, names))
+    # je Spiel nur ein Artikel pro Geschichte (Person) – auch über Läufe hinweg;
+    # bevorzugt schwer, bestätigt, früh veröffentlicht
+    alerts.sort(key=lambda a: (not a.severe, not a.confirmed_by,
+                               a.item.published or now))
+    out, taken = [], set(seen)
     for a in alerts:
-        uniq.setdefault((a.target.event, a.item.uid), a)
-    return sorted(uniq.values(), key=lambda a: (not a.severe, a.target.status != "PLAY",
-                                                a.target.kickoff))
+        keys = story_keys(a.target.event, a.names) | {f"{a.target.event}|{a.item.uid}"}
+        if keys & taken:
+            continue
+        taken |= keys
+        out.append(a)
+    return sorted(out, key=lambda a: (not a.severe, a.target.status != "PLAY", a.target.kickoff))
 
 
 def alert_text(alerts: list[Alert], stand: str) -> str:
@@ -361,11 +383,17 @@ def run(j: Journal, now: datetime | None = None) -> tuple[list[Alert], list[str]
     return find_alerts(targets, items, seen, now), issues, len(items)
 
 
+def seen_keys(alerts: list[Alert]) -> set[str]:
+    """Artikel-IDs und Geschichten-Schlüssel gemeldeter Warnungen."""
+    return {a.item.uid for a in alerts}.union(
+        *(story_keys(a.target.event, a.names) for a in alerts))
+
+
 def mark_seen(alerts: list[Alert], j: Journal) -> None:
     SEEN_FILE.parent.mkdir(parents=True, exist_ok=True)
     with SEEN_FILE.open("a") as f:
-        for a in alerts:
-            f.write(a.item.uid + "\n")
+        for k in sorted(seen_keys(alerts)):
+            f.write(k + "\n")
     j.append("news", [{"published": a.item.published.isoformat() if a.item.published else "",
                        "league": a.target.league, "event": a.target.event,
                        "status": a.target.status, "team": a.team, "side": a.side,

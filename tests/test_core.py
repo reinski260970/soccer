@@ -332,13 +332,13 @@ def test_news_alert_for_own_team_injury_and_no_false_matches():
              ["Seattle Seahawks", "New England Patriots", "Carolina Panthers"]),
     ]
     alerts = news.find_alerts([_news_target()], items, set(), now)
-    assert {a.item.link for a in alerts} == {"u1", "u2"}
+    assert {a.item.link for a in alerts} == {"u1"}          # u2 = gleiche Geschichte (Horn)
     a = next(a for a in alerts if a.item.link == "u1")
     assert a.category == "Ausfall" and a.severe and a.confirmed_by == ["CBS Sports"]
     txt = news.alert_text(alerts, "28.09.2026")
     assert "Freigabe prüfen/aussetzen" in txt and "Entscheidung beim CEO" in txt
     # bereits gemeldete Artikel kommen nicht wieder
-    assert news.find_alerts([_news_target()], items, {a.item.uid for a in alerts}, now) == []
+    assert news.find_alerts([_news_target()], items, news.seen_keys(alerts), now) == []
 
 
 def test_news_forum_never_confirms_and_rss_dates():
@@ -665,7 +665,24 @@ def test_news_ignores_opponent_mentions_ambiguous_city_and_trade_category():
            for a in news.find_alerts([jets, vik], items, set(), now)}
     assert ("Chicago Bears – New York Jets", "a", "Trade/Wechsel", True) not in got
     assert not any(link == "b" for _, link, _, _ in got)
-    assert ("Minnesota Vikings – Miami Dolphins", "a", "Trade/Wechsel", False) in got
-    assert ("Minnesota Vikings – Miami Dolphins", "c", "Trade/Wechsel", True) in got
+    # a und c sind dieselbe Geschichte (McCarthy) -> nur eine Meldung, die schwere (QB)
+    vik_alerts = [x for x in got if x[0] == "Minnesota Vikings – Miami Dolphins"]
+    assert vik_alerts == [("Minnesota Vikings – Miami Dolphins", "c", "Trade/Wechsel", True)]
     assert news.classify("Lions post 31 points for record-setting third time",
                          "They could return to form") is None
+
+
+def test_news_same_story_not_repeated_in_later_runs():
+    from datetime import datetime, timezone
+    from oddswatch import news
+    from oddswatch.news import Item
+    now = datetime(2026, 9, 28, 20, tzinfo=timezone.utc)
+    pub = datetime(2026, 9, 28, 18, tzinfo=timezone.utc)
+    first = [Item("ESPN", "nfl", "Panthers CB Jaycee Horn out with torn quad", "", "x1", pub,
+                  ["Carolina Panthers"])]
+    alerts = news.find_alerts([_news_target()], first, set(), now)
+    seen = news.seen_keys(alerts)
+    later = [Item("CBS Sports", "nfl", "Grading the Panthers after Jaycee Horn injury", "", "x2", pub),
+             Item("ESPN", "nfl", "Panthers QB Bryce Young ruled out", "", "x3", pub, ["Carolina Panthers"])]
+    got = news.find_alerts([_news_target()], later, seen, now)
+    assert [a.item.link for a in got] == ["x3"]             # Horn nicht erneut, Young neu
