@@ -686,3 +686,11 @@ def test_news_same_story_not_repeated_in_later_runs():
              Item("ESPN", "nfl", "Panthers QB Bryce Young ruled out", "", "x3", pub, ["Carolina Panthers"])]
     got = news.find_alerts([_news_target()], later, seen, now)
     assert [a.item.link for a in got] == ["x3"]             # Horn nicht erneut, Young neu
+
+
+def test_news_debut_is_return_and_season_start_is_not_news():
+    from oddswatch import news
+    assert news.classify("Jonathan Greenard (pectoral) makes Eagles debut on Monday",
+                         "He tore his pectoral last year")[0] == "Rückkehr/Startelf"
+    assert news.classify("Flyers host the Penguins to start season", "") is None
+    assert news.classify("Bears expected to start Case Keenum at QB")[0] == "Rückkehr/Startelf"
