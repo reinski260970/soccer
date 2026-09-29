@@ -604,6 +604,18 @@ def test_lines_total_and_spread_vs_draftkings(monkeypatch):
     assert abs(by["U38.5:no"].odds - pricing.kalshi_decimal_odds(56, contracts=100)) < 1e-9
 
 
+def test_clubelo_stops_after_repeated_failures(monkeypatch):
+    from oddswatch.sources import clubelo
+    calls = []
+
+    def fake_get(url, **kw):
+        calls.append(url)
+        return None, f"{url}: HTTP 504"
+    monkeypatch.setattr(clubelo.fetch, "get", fake_get)
+    out, errs = clubelo.ratings()
+    assert out == {} and len(calls) == 3 and "abgebrochen" in errs[0]
+
+
 def test_quick_scan_alerts_once_per_price_level(tmp_path, monkeypatch):
     from datetime import datetime, timezone
     from oddswatch import quick, lines
@@ -628,3 +640,32 @@ def test_quick_scan_alerts_once_per_price_level(tmp_path, monkeypatch):
     quick.run(j, send=True)                       # gleicher Preis -> keine zweite Meldung
     assert len(sent) == 1 and "Chicago Bears" in sent[0]
     assert [r["market"] for r in j.read("valuebets")] == ["home"]
+
+
+def test_news_ignores_opponent_mentions_ambiguous_city_and_trade_category():
+    from datetime import datetime, timezone
+    from oddswatch import news
+    from oddswatch.news import Item, Target
+    now = datetime(2026, 9, 29, 5, tzinfo=timezone.utc)
+    pub = datetime(2026, 9, 28, 20, tzinfo=timezone.utc)
+    jets = Target("WATCH", "nfl", "Chicago Bears – New York Jets", "2026-10-04T17:00+00:00", "home",
+                  "Chicago Bears Sieg", 2.0, 1.9, 1.95, ["Chicago Bears", "Chicago", "Bears", "CHI"],
+                  ["New York Jets", "New York", "Jets", "NYJ"])
+    vik = Target("WATCH", "nfl", "Minnesota Vikings – Miami Dolphins", "2026-10-04T20:05+00:00",
+                 "home", "Vikings Sieg", 1.5, 1.45, 1.5, ["Minnesota Vikings", "Minnesota", "Vikings", "MIN"],
+                 ["Miami Dolphins", "Miami", "Dolphins", "MIA"])
+    items = [
+        Item("ESPN", "nfl", "J.J. McCarthy traded to Giants: Will he succeed in New York?", "", "a", pub,
+             ["New York Giants", "Minnesota Vikings"]),
+        Item("CBS Sports", "nfl", "Bucs' Baker Mayfield to miss several weeks after loss to Vikings",
+             "", "b", pub),
+        Item("CBS Sports", "nfl", "J.J. McCarthy trade: Giants acquire Vikings QB", "", "c", pub),
+    ]
+    got = {(a.target.event, a.item.link, a.category, a.severe)
+           for a in news.find_alerts([jets, vik], items, set(), now)}
+    assert ("Chicago Bears – New York Jets", "a", "Trade/Wechsel", True) not in got
+    assert not any(link == "b" for _, link, _, _ in got)
+    assert ("Minnesota Vikings – Miami Dolphins", "a", "Trade/Wechsel", False) in got
+    assert ("Minnesota Vikings – Miami Dolphins", "c", "Trade/Wechsel", True) in got
+    assert news.classify("Lions post 31 points for record-setting third time",
+                         "They could return to form") is None

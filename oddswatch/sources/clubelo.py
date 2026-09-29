@@ -41,12 +41,19 @@ def ratings(cache_days: float = 1.0) -> tuple[dict[str, tuple[float, str]], list
     """Alle Vereine der UEFA-Verbände: Name -> (Elo, Verband)."""
     out: dict[str, tuple[float, str]] = {}
     errs = []
+    fails = 0
     for c in UEFA:
         h, e = fetch.get(f"{BASE}/{c}", timeout=40, cache_days=cache_days, retries=1,
                          user_agent=UA)
         if h is None:
             errs.append(f"ClubElo {c}: {e}")
+            fails += 1
+            if fails >= 3 and not out:
+                # Dienst gestört: nicht alle 54 Verbände einzeln abwarten
+                errs.insert(0, f"ClubElo nicht erreichbar ({e}) – Abruf nach {fails} Fehlern abgebrochen")
+                break
             continue
+        fails = 0
         for name, v in parse_page(h).items():
             out.setdefault(name, v)
     return out, errs

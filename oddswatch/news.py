@@ -59,6 +59,8 @@ FORUMS = {"Austrian Soccer Board"}
 
 # (Muster, Kategorie, schwer?) – Reihenfolge = Priorität
 MATERIAL = [
+    (r"\btraded?\b|trades for|acquires?|acquired|waived|released by|signs with|verpflichtet"
+     r"|wechselt (zu|nach)|transfer", "Trade/Wechsel", False),
     (r"ruled out|out for (the )?(season|year|weeks?|game)|season-ending|torn|surgery|fractur"
      r"|injured reserve|placed on IR|will miss|to miss|won'?t play|will not play|sidelined",
      "Ausfall", True),
@@ -198,9 +200,12 @@ def collect(leagues: set[str], issues: list[str]) -> list[Item]:
 
 # ---------------------------------------------------------------- Bewertung
 def classify(title: str, text: str = "") -> tuple[str, bool] | None:
-    """Kategorie aus dem Titel, ersatzweise aus dem Text. QB-Themen sind schwer."""
+    """Kategorie aus dem Titel, ersatzweise aus dem Text – aus dem Text nur schwere
+    Kategorien (sonst zu viele Zufallstreffer). QB-Themen sind schwer."""
     for part in (title, text):
         for pat, cat, severe in MATERIAL:
+            if part is text and not severe:
+                continue
             if part and re.search(pat, part, re.I):
                 qb = re.search(r"\bQB\b|quarterback", title, re.I)
                 return cat, severe or bool(qb and cat != "Schonung")
@@ -212,15 +217,24 @@ def _in(text: str, aliases: list[str]) -> bool:
                for a in aliases)
 
 
+# Ortsnamen mehrerer Teams einer Liga – kein eindeutiger Alias
+AMBIGUOUS = {"new york", "los angeles", "la", "ny", "nyc"}
+# "loss to the Vikings", "win over Detroit": dort ist das Team nur Gegner
+_OPPONENT = re.compile(r"\b(loss|losses|lose|losing|lost|win|wins|won|victory|defeat\w*|rout\w*"
+                       r"|game|matchup|clash)\s+(to|over|against|vs\.?|at|with)\s+(the\s+)?"
+                       r"[\w'.-]+(\s+[A-Z][\w'.-]+)?", re.I)
+
+
 def _mentions(item: Item, aliases: list[str]) -> bool:
-    """Team ist Hauptthema: im Titel genannt oder einzige ESPN-Teamkategorie.
-    Sammelartikel (> 2 Teams als Kategorie) zählen nicht."""
+    """Team ist Hauptthema: im Titel genannt (nicht nur als Gegner) bzw. unter den
+    ESPN-Teamkategorien. Sammelartikel (> 2 Teams als Kategorie) zählen nicht."""
+    aliases = [a for a in aliases if a.lower() not in AMBIGUOUS]
     if len(item.teams) > 2:
         return False
-    if item.teams == [t for t in item.teams if any(t.lower() == a.lower() for a in aliases)] \
-            and item.teams:
-        return True
-    if _in(item.title, aliases):
+    if item.teams:
+        # ESPN ordnet Artikel Teams zu – ist das Team nicht dabei, geht es nicht um es
+        return any(t.lower() == a.lower() for t in item.teams for a in aliases)
+    if _in(_OPPONENT.sub(" ", item.title), aliases):
         return True
     # Feeds ohne Teamangabe im Titel (z. B. RotoWire "Spieler: Notiz"): Text, falls keine Kategorien
     return not item.teams and item.source in TEXT_MATCH and _in(item.text, aliases)
