@@ -1,5 +1,28 @@
 [
  {
+  "status": "PLAY",
+  "league": "nfl",
+  "event": "Chicago Bears – New York Jets",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "away",
+  "selection": "New York Jets Sieg (inkl. OT)",
+  "odds": 2.587991718426501,
+  "fair": 2.4955479406622545,
+  "min_odds": 2.5704143788821225,
+  "home": [
+   "Chicago Bears",
+   "Chicago",
+   "Bears",
+   "CHI"
+  ],
+  "away": [
+   "New York Jets",
+   "New York",
+   "Jets",
+   "NYJ"
+  ]
+ },
+ {
   "status": "WATCH",
   "league": "nfl",
   "event": "Minnesota Vikings – Miami Dolphins",
@@ -20,29 +43,6 @@
    "Miami",
    "Dolphins",
    "MIA"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Toronto Maple Leafs – Montreal Canadiens",
-  "kickoff": "2026-09-29T23:00+00:00",
-  "market": "home",
-  "selection": "Toronto Maple Leafs Sieg (inkl. OT)",
-  "odds": 1.9704433497536948,
-  "fair": 1.9283595389867023,
-  "min_odds": 1.9862103251563032,
-  "home": [
-   "Toronto Maple Leafs",
-   "Toronto",
-   "Maple Leafs",
-   "TOR"
-  ],
-  "away": [
-   "Montreal Canadiens",
-   "Montreal",
-   "Canadiens",
-   "MTL"
   ]
  },
  {
@@ -71,47 +71,70 @@
  {
   "status": "WATCH",
   "league": "nfl",
-  "event": "Chicago Bears – New York Jets",
+  "event": "Philadelphia Eagles – Los Angeles Rams",
   "kickoff": "2026-10-04T17:00+00:00",
-  "market": "HC-3.5 CHI",
-  "selection": "Chicago Bears −3.5 (gewinnt mit mehr als 3.5)",
-  "odds": 1.9704433497536948,
-  "fair": 1.954635052935206,
-  "min_odds": 2.013274104523262,
+  "market": "home",
+  "selection": "Philadelphia Eagles Sieg (inkl. OT)",
+  "odds": 2.399232245681382,
+  "fair": 2.362674398063013,
+  "min_odds": 2.4335546300049034,
   "home": [
-   "Chicago Bears",
-   "Chicago",
-   "Bears",
-   "CHI"
+   "Philadelphia Eagles",
+   "Philadelphia",
+   "Eagles",
+   "PHI"
   ],
   "away": [
-   "New York Jets",
-   "New York",
-   "Jets",
-   "NYJ"
+   "Los Angeles Rams",
+   "Los Angeles",
+   "Rams",
+   "LAR"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nations",
-  "event": "San Marino – Albania",
-  "kickoff": "2026-09-29T18:45+00:00",
-  "market": "away",
-  "selection": "Albania Sieg (90 Min.)",
-  "odds": 1.0488777008600798,
-  "fair": 1.0447363963440452,
-  "min_odds": 1.0760784882343666,
+  "league": "nhl",
+  "event": "New Jersey Devils – Philadelphia Flyers",
+  "kickoff": "2026-10-01T23:00+00:00",
+  "market": "HC+1.5 PHI:no",
+  "selection": "Philadelphia Flyers +1.5",
+  "odds": 1.547029702970297,
+  "fair": 1.5289473670002272,
+  "min_odds": 1.574815788010234,
   "home": [
-   "San Marino",
-   "San Marino",
-   "San Marino",
-   "SMR"
+   "New Jersey Devils",
+   "New Jersey",
+   "Devils",
+   "NJ"
   ],
   "away": [
-   "Albania",
-   "Albania",
-   "Albania",
-   "ALB"
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Minnesota Vikings – Miami Dolphins",
+  "kickoff": "2026-10-04T20:05+00:00",
+  "market": "HC-10.5 MIN",
+  "selection": "Minnesota Vikings −10.5 (gewinnt mit mehr als 10.5)",
+  "odds": 1.9704433497536948,
+  "fair": 1.954635052935206,
+  "min_odds": 2.013274104523262,
+  "home": [
+   "Minnesota Vikings",
+   "Minnesota",
+   "Vikings",
+   "MIN"
+  ],
+  "away": [
+   "Miami Dolphins",
+   "Miami",
+   "Dolphins",
+   "MIA"
   ]
  }
 ]

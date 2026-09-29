@@ -1,4 +1,4 @@
-🗞 Tagesbericht Di 29.09. 07:31 MESZ
+🗞 Tagesbericht Di 29.09. 12:03 MESZ
 
 📋 AUSWERTUNG (letzte 24 h)
    Keine abgerechneten Wetten.
@@ -7,7 +7,7 @@
 📈 Freigaben (Modell-Portfolio)
    G/V +0.00 EH (+0.00 $) | Einsatz 0 EH | ROI –
    Bilanz 0-0 (0 abgerechnet) | Ø CLV –
-   Offen: 14 Wetten, 6,75 EH im Risiko
+   Offen: 15 Wetten, 7 EH im Risiko
 🎯 Gespielte Wetten
    G/V +0.00 EH (+0.00 $) | Einsatz 0 EH | ROI –
    Bilanz 0-0 (0 abgerechnet) | Ø CLV –
@@ -35,6 +35,9 @@
 ✅ UEFA Nations League · Do 01.10. 20:45 MESZ
 🆚 Germany – Serbia
 ➡️ Serbia Sieg (90 Min.) @ 10,44 | 0,25 EH
+✅ NFL · So 04.10. 19:00 MESZ
+🆚 Chicago Bears – New York Jets
+➡️ New York Jets Sieg (inkl. OT) @ 2,59 | 0,25 EH
 ✅ UEFA Nations League · So 04.10. 20:45 MESZ
 🆚 Greece – Germany
 ➡️ Unentschieden (90 Min.) @ 4,13 | 0,25 EH
@@ -46,15 +49,15 @@
 • NFL · So 04.10. 22:05 MESZ
 🆚 Minnesota Vikings – Miami Dolphins
 ➡️ Minnesota Vikings Sieg (inkl. OT) spielbar ab 1,18 (jetzt 1,18)
-• NHL · Mi 30.09. 01:00 MESZ
-🆚 Toronto Maple Leafs – Montreal Canadiens
-➡️ Toronto Maple Leafs Sieg (inkl. OT) spielbar ab 1,99 (jetzt 1,97)
 • NFL · So 04.10. 22:25 MESZ
 🆚 Las Vegas Raiders – Kansas City Chiefs
 ➡️ Kansas City Chiefs Sieg (inkl. OT) spielbar ab 1,52 (jetzt 1,50)
 • NFL · So 04.10. 19:00 MESZ
-🆚 Chicago Bears – New York Jets
-➡️ Chicago Bears −3.5 (gewinnt mit mehr als 3.5) spielbar ab 2,01 (jetzt 1,97)
-• UEFA Nations League · Di 29.09. 20:45 MESZ
-🆚 San Marino – Albania
-➡️ Albania Sieg (90 Min.) spielbar ab 1,08 (jetzt 1,05)
+🆚 Philadelphia Eagles – Los Angeles Rams
+➡️ Philadelphia Eagles Sieg (inkl. OT) spielbar ab 2,43 (jetzt 2,40)
+• NHL · Fr 02.10. 01:00 MESZ
+🆚 New Jersey Devils – Philadelphia Flyers
+➡️ Philadelphia Flyers +1.5 spielbar ab 1,57 (jetzt 1,55)
+• NFL · So 04.10. 22:05 MESZ
+🆚 Minnesota Vikings – Miami Dolphins
+➡️ Minnesota Vikings −10.5 (gewinnt mit mehr als 10.5) spielbar ab 2,01 (jetzt 1,97)
