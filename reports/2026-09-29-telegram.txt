@@ -1,96 +1,29 @@
-📊 CEO-Freigaben 29.09.2026 04:25 UTC
-
-✅ PLAY · Bundesliga · Sa 10.10. 15:30 MESZ
-🆚 SC Paderborn 07 – VfB Stuttgart
-➡️ SC Paderborn 07 Sieg (90 Min.) @ 4,73 (kalshi)
-   fair 3,86 | min 3,97 | EV 22,7 % | 1 EH
-
-✅ PLAY · Bundesliga · Sa 10.10. 15:30 MESZ
-🆚 1. FC Union Berlin – SV Elversberg
-➡️ SV Elversberg Sieg (90 Min.) @ 2,89 (kalshi)
-   fair 2,54 | min 2,61 | EV 14,1 % | 1,25 EH
-
-✅ PLAY · UEFA Nations League · Di 29.09. 18:00 MESZ
-🆚 Finland – Belarus
-➡️ Belarus Sieg (90 Min.) @ 6,29 (kalshi)
-   fair 5,55 | min 5,72 | EV 13,3 % | 0,25 EH
-
-✅ PLAY · Bundesliga · So 11.10. 17:30 MESZ
-🆚 SC Freiburg – Schalke 04
-➡️ Schalke 04 Sieg (90 Min.) @ 4,98 (kalshi)
-   fair 4,53 | min 4,66 | EV 10,0 % | 0,25 EH
-
-✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
-🆚 Luxembourg – Iceland
-➡️ Luxembourg Sieg (90 Min.) @ 3,40 (kalshi)
-   fair 3,17 | min 3,26 | EV 7,3 % | 0,5 EH
-
-✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
-🆚 Slovakia – Kazakhstan
-➡️ Kazakhstan Sieg (90 Min.) @ 13,40 (kalshi)
-   fair 12,62 | min 13,00 | EV 6,2 % | 0,25 EH
-
-✅ PLAY · UEFA Nations League · Di 29.09. 20:45 MESZ
-🆚 Bulgaria – Estonia
-➡️ Estonia Sieg (90 Min.) @ 5,56 (kalshi)
-   fair 5,25 | min 5,40 | EV 6,0 % | 0,25 EH
-
-✅ PLAY · NFL · Mo 05.10. 02:20 MESZ
-🆚 Carolina Panthers – Detroit Lions
-➡️ Carolina Panthers Sieg (inkl. OT) @ 2,66 (kalshi)
-   fair 2,52 | min 2,60 | EV 5,3 % | 0,5 EH
-
-✅ PLAY · UEFA Nations League · Do 01.10. 20:45 MESZ
-🆚 Germany – Serbia
-➡️ Serbia Sieg (90 Min.) @ 10,44 (kalshi)
-   fair 10,10 | min 10,40 | EV 3,4 % | 0,25 EH
-
-✅ PLAY · UEFA Nations League · So 04.10. 20:45 MESZ
-🆚 Greece – Germany
-➡️ Unentschieden (90 Min.) @ 4,13 (kalshi)
-   fair 3,99 | min 4,11 | EV 3,4 % | 0,25 EH
-
-✅ PLAY · Champions League · Di 13.10. 21:00 MESZ
-🆚 Viking FK – Bayern Munich
-➡️ Unentschieden (90 Min.) @ 13,40 (kalshi)
-   fair 9,70 | min 9,99 | EV 38,2 % | 0,25 EH
-   ⚠️ Schätzung
-
-✅ PLAY · Champions League · Di 13.10. 21:00 MESZ
-🆚 Galatasaray – Barcelona
-➡️ Galatasaray Sieg (90 Min.) @ 7,85 (kalshi)
-   fair 6,28 | min 6,47 | EV 25,0 % | 0,25 EH
-   ⚠️ Schätzung
-
-✅ PLAY · NHL · Di 29.09. 23:00 MESZ
-🆚 Carolina Hurricanes – Florida Panthers
-➡️ Carolina Hurricanes Sieg (inkl. OT) @ 1,79 (kalshi)
-   fair 1,74 | min 1,79 | EV 3,4 % | 0,5 EH
-   ⚠️ Schätzung
+📊 CEO-Update 29.09.2026 04:47 UTC
+⛔ NO PLAY: kein belegter Vorteil.
 
 👀 WATCH (nicht freigegeben)
 
-• Liiga · Mi 30.09. 17:30 MESZ
-🆚 Oulun Karpat – SaiPa Lappeenranta
-➡️ SaiPa Lappeenranta Sieg (inkl. OT) @ 1,83 | spielbar ab 1,61 | EV 16,7 %
-   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn); Orderbuch dünn (Spread 46 ¢) – Preis nicht verlässlich
-
-• UEFA Nations League · Mo 05.10. 20:45 MESZ
-🆚 Northern Ireland – Georgia
-➡️ Northern Ireland Sieg (90 Min.) @ 2,52 | spielbar ab 2,26 | EV 14,9 %
-   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn)
-
-• Champions League · Di 13.10. 21:00 MESZ
-🆚 Galatasaray – Barcelona
-➡️ Unentschieden (90 Min.) @ 6,29 | spielbar ab 5,88 | EV 10,2 %
+• NFL · So 04.10. 22:05 MESZ
+🆚 Minnesota Vikings – Miami Dolphins
+➡️ Minnesota Vikings Sieg (inkl. OT) @ 1,18 | spielbar ab 1,18 | EV 2,4 %
    Grund: Quote unter spielbar ab
 
-• UEFA Nations League · Fr 02.10. 20:45 MESZ
-🆚 Ukraine – Northern Ireland
-➡️ Ukraine Sieg (90 Min.) @ 1,73 | spielbar ab 1,63 | EV 9,7 %
-   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn); Orderbuch dünn (Spread 11 ¢) – Preis nicht verlässlich
+• NFL · So 04.10. 22:25 MESZ
+🆚 Las Vegas Raiders – Kansas City Chiefs
+➡️ Kansas City Chiefs Sieg (inkl. OT) @ 1,50 | spielbar ab 1,52 | EV 2,1 %
+   Grund: Quote unter spielbar ab
 
-• UEFA Nations League · Sa 03.10. 18:00 MESZ
-🆚 Estonia – Luxembourg
-➡️ Estonia Sieg (90 Min.) @ 3,08 | spielbar ab 2,93 | EV 8,1 %
-   Grund: keine verlässliche Marktreferenz (Orderbuch zu dünn); Orderbuch dünn (Spread 22 ¢) – Preis nicht verlässlich
+• NFL · So 04.10. 19:00 MESZ
+🆚 Chicago Bears – New York Jets
+➡️ Chicago Bears −3.5 (gewinnt mit mehr als 3.5) @ 1,97 | spielbar ab 2,01 | EV 0,8 %
+   Grund: Quote unter spielbar ab
+
+• UEFA Nations League · Di 29.09. 20:45 MESZ
+🆚 San Marino – Albania
+➡️ Albania Sieg (90 Min.) @ 1,05 | spielbar ab 1,08 | EV 0,4 %
+   Grund: Quote unter spielbar ab
+
+• NHL · So 04.10. 01:00 MESZ
+🆚 Buffalo Sabres – Chicago Blackhawks
+➡️ Buffalo Sabres Sieg (inkl. OT) @ 1,50 | spielbar ab 1,54 | EV 0,3 %
+   Grund: Quote unter spielbar ab
