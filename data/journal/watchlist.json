@@ -24,6 +24,29 @@
  },
  {
   "status": "WATCH",
+  "league": "nhl",
+  "event": "Toronto Maple Leafs – Montreal Canadiens",
+  "kickoff": "2026-09-29T23:00+00:00",
+  "market": "home",
+  "selection": "Toronto Maple Leafs Sieg (inkl. OT)",
+  "odds": 1.9704433497536948,
+  "fair": 1.9283595389867023,
+  "min_odds": 1.9862103251563032,
+  "home": [
+   "Toronto Maple Leafs",
+   "Toronto",
+   "Maple Leafs",
+   "TOR"
+  ],
+  "away": [
+   "Montreal Canadiens",
+   "Montreal",
+   "Canadiens",
+   "MTL"
+  ]
+ },
+ {
+  "status": "WATCH",
   "league": "nfl",
   "event": "Las Vegas Raiders – Kansas City Chiefs",
   "kickoff": "2026-10-04T20:25+00:00",
@@ -89,29 +112,6 @@
    "Albania",
    "Albania",
    "ALB"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Buffalo Sabres – Chicago Blackhawks",
-  "kickoff": "2026-10-03T23:00+00:00",
-  "market": "home",
-  "selection": "Buffalo Sabres Sieg (inkl. OT)",
-  "odds": 1.5015015015015014,
-  "fair": 1.4977457543591228,
-  "min_odds": 1.5426781269898966,
-  "home": [
-   "Buffalo Sabres",
-   "Buffalo",
-   "Sabres",
-   "BUF"
-  ],
-  "away": [
-   "Chicago Blackhawks",
-   "Chicago",
-   "Blackhawks",
-   "CHI"
   ]
  }
 ]
