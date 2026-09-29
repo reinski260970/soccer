@@ -694,3 +694,42 @@ def test_news_debut_is_return_and_season_start_is_not_news():
                          "He tore his pectoral last year")[0] == "Rückkehr/Startelf"
     assert news.classify("Flyers host the Penguins to start season", "") is None
     assert news.classify("Bears expected to start Case Keenum at QB")[0] == "Rückkehr/Startelf"
+
+
+def test_tennis_atlas_bets_record_and_alert_state(tmp_path):
+    from oddswatch import tennis
+    from oddswatch.sources.tennis_atlas import to_bet, track_record
+    doc = {"p1": "Vidmanova D.", "p2": "Timofeeva M.", "selection": "P1", "selected_odds": 2.3,
+           "prob": 0.5144, "stake_eh": 0.5, "tour": "WTA", "tournament": "Beijing",
+           "match_day": "2026-09-30", "scheduled_time_vienna": "04:00", "valuebet_key": "k1"}
+    b = to_bet(doc)
+    assert b.selection == "Vidmanova D." and round(b.ev, 3) == 0.183
+    assert round(b.fair_odds, 2) == 1.94 and round(b.min_odds, 2) == 2.00
+    assert to_bet({**doc, "selection": None}) is None
+    assert to_bet({**doc, "prob": 1.2}) is None
+    assert to_bet({**doc, "selection": "P2"}).selection == "Timofeeva M."
+    hist = ([{"status": "won", "stake_eh": 1, "profit_eh": 0.8, "match_day": "2026-01-01",
+              "clv_odds_pct": 2.0, "closing_status": "captured"}] * 150
+            + [{"status": "lost", "stake_eh": 1, "profit_eh": -1, "match_day": "2026-02-01",
+                "clv_odds_pct": -1.0, "closing_status": "captured"}] * 100
+            + [{"status": "open", "stake_eh": 1}])
+    tr = track_record(hist)
+    assert tr.settled == 250 and tr.won == 150 and round(tr.roi, 2) == 0.08
+    assert tr.clv_median_pct == 2.0 and tennis.validated(tr)
+    losing = track_record(hist[150:])
+    assert not tennis.validated(losing)          # ROI < 0 -> nur INFO
+    assert "INFO" in tennis.report([b], losing, None, "x")
+    assert "MONGODB_URI" in tennis.report([], None, "MONGODB_URI nicht gesetzt", "x")
+    st = tmp_path / "s.json"
+    assert tennis.new_bets([b], st) == [b]
+    tennis.mark_sent([b], st)
+    assert tennis.new_bets([b], st) == []
+    b.odds = 2.4                                  # neue Quote -> erneut melden
+    assert tennis.new_bets([b], st) == [b]
+
+
+def test_tennis_without_uri_reports_honestly(monkeypatch):
+    from oddswatch.sources import tennis_atlas
+    monkeypatch.delenv("MONGODB_URI", raising=False)
+    bets, tr, err = tennis_atlas.fetch()
+    assert bets == [] and tr is None and "MONGODB_URI" in err
