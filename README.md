@@ -15,6 +15,7 @@ python -m oddswatch news --send          # News-Agent: Warnungen zu Freigaben/Wa
 python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (kurz vor Anstoß = Closing Line)
 python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
 python -m oddswatch backtest             # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
+python -m oddswatch quick --send         # Schnellscan Kalshi vs. DraftKings (für den 15-Minuten-Takt)
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
 python -m oddswatch send reports/<datum>-telegram.txt
@@ -119,3 +120,25 @@ dedupliziert nach `placed.csv`: Quote inkl. Gebühr, Einsatz in EH (Standard 1 E
 Valuebet-Freigabe. Das Modul sendet nur GET-Anfragen und platziert keine Orders.
 
 Abhängigkeiten: `pip install -r requirements.txt`
+
+## Schnellscan (15-Minuten-Takt)
+
+`python -m oddswatch quick --send` vergleicht ohne Modell-Fit (≈ 1 Minute) alle Spiele
+der nächsten 7 Tage mit DraftKings-Linie (ESPN) und Kalshi-Orderbuch: Sieger, Über/Unter
+und Handicap auf identischer Linie; NFL, NHL, NBA, Bundesliga, 2. BL, UCL, UEL, UECL,
+Nations League, Premier League, La Liga, Serie A. Freigabe bei Kalshi inkl. Gebühr ≥ 3 %
+über dem de-vigged DraftKings-Kurs. Neue Tipps: Journal + Telegram (je Tipp und
+Preisstufe einmal, Zustand in `data/journal/quick_alerts.json`). Jeder Lauf sichert die
+Kalshi-Preise offener Tipps (Closing Line) und rechnet beendete Tipps ab.
+
+Zeitsteuerung: `.github/workflows/quick-scan.yml` (cron alle 15 Minuten). Geplante
+Workflows laufen nur vom Standard-Branch – aktiv, sobald die Datei auf `main` liegt und
+die Repository-Secrets `TELEGRAM_BOT_TOKEN` und `TELEGRAM_CHAT_ID` gesetzt sind.
+
+## Modellforschung
+
+`python -m oddswatch research` vergleicht Modellvarianten über 13 Ligen mit Tuning- und
+Holdout-Saisons: sagt die Abweichung Modell − Eröffnungsquote die Linienbewegung bis zum
+Closing voraus (CLV)? Stand 29.09.2026: Schuss-xG-Varianten zeigen ein echtes, aber
+kleines Signal (Steigung ≈ 0,03), die Tipps nach Abweichung haben dennoch CLV −7 bis
+−10 % (Holdout) – kein Modell ist besser als der Markt, daher reiner Preisvergleich.

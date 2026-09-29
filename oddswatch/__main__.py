@@ -7,6 +7,8 @@
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
   python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
+  python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
+  python -m oddswatch quick [--send]    # Schnellscan Kalshi vs. DraftKings (15-Min-Takt), Closing, Abrechnung
   python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -128,6 +130,20 @@ def _closing(a) -> int:
     return 0
 
 
+def _research(a) -> int:
+    from . import research
+    for line in research.run():
+        print(line)
+    return 0
+
+
+def _quick(a) -> int:
+    from . import quick
+    for line in quick.run(send=a.send, days=a.days):
+        print(line)
+    return 0
+
+
 def _backtest(a) -> int:
     from . import backtest
     for line in backtest.run():
@@ -226,6 +242,11 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("closing").set_defaults(fn=_closing)
     sub.add_parser("verify").set_defaults(fn=_verify)
     sub.add_parser("backtest").set_defaults(fn=_backtest)
+    sub.add_parser("research").set_defaults(fn=_research)
+    qk = sub.add_parser("quick")
+    qk.add_argument("--send", action="store_true")
+    qk.add_argument("--days", type=int, default=7)
+    qk.set_defaults(fn=_quick)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)
