@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 
 from .selection import Candidate
 
-_TZ = ZoneInfo("Europe/Berlin")
+_TZ = ZoneInfo("Europe/Vienna")
 _WD = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 _LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
             "austria": "Österr. Bundesliga", "ucl": "Champions League",
@@ -34,13 +34,20 @@ def _league(code: str) -> str:
 
 
 def _kick(iso: str) -> str:
-    """ISO-Anstoß (UTC) -> 'Sa 11.10. 17:30 MESZ' in deutscher Zeit."""
+    """ISO-Anstoß (UTC) -> 'Sa 11.10. 17:30 MESZ' in Wiener Zeit."""
     try:
         t = datetime.fromisoformat(iso).astimezone(_TZ)
     except (TypeError, ValueError):
         return iso or "Anstoß unbekannt"
     tz = {"CEST": "MESZ", "CET": "MEZ"}.get(t.tzname(), t.tzname())
     return f"{_WD[t.weekday()]} {t:%d.%m. %H:%M} {tz}"
+
+
+def stand(t: datetime | None = None) -> str:
+    """Zeitstempel in Wiener Zeit: '30.09.2026 21:10 MESZ'."""
+    t = (t or datetime.now(_TZ)).astimezone(_TZ)
+    tz = {"CEST": "MESZ", "CET": "MEZ"}.get(t.tzname(), t.tzname())
+    return f"{t:%d.%m.%Y %H:%M} {tz}"
 
 
 def _head(c: Candidate) -> str:
@@ -78,7 +85,7 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
                          f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
-                  "| Liga | Spiel | Anstoß (UTC) | Modell H/X/A | Referenz | Kalshi Ask | Kennzahlen |",
+                  "| Liga | Spiel | Anstoß (Wien) | Modell H/X/A | Referenz | Kalshi Ask | Kennzahlen |",
                   "|---|---|---|---|---|---|---|"]
         for fx in sorted(fixtures, key=lambda f: (f.league, f.game.kickoff)):
             ks = list(fx.probs)
@@ -86,7 +93,7 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
             ref = " / ".join(_pct(fx.ref_probs[k]) for k in ks) if fx.ref_probs else "–"
             ka = " / ".join(f"{fx.kalshi[k].yes_ask * 100:.0f}¢" if k in fx.kalshi else "–"
                             for k in ks) if fx.kalshi else "–"
-            lines.append(f"| {fx.league} | {fx.game.title} | {fx.game.kickoff:%d.%m. %H:%M} | "
+            lines.append(f"| {fx.league} | {fx.game.title} | {fx.game.kickoff.astimezone(_TZ):%d.%m. %H:%M} | "
                          f"{mod} | {ref} | {ka} | {fx.detail} |")
     if data_issues:
         lines += ["", "## Datenlage (ungelöst)"] + [f"- {i}" for i in data_issues]

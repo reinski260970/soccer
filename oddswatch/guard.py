@@ -112,12 +112,12 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
     j = j or Journal()
     now = now or datetime.now(timezone.utc)
     if not apifootball.api_key():
-        log = [f"Quotenwächter {now:%d.%m.%Y %H:%M} UTC: APIKEY (API-Football) nicht gesetzt – übersprungen"]
+        log = [f"Quotenwächter {report.stand(now)}: APIKEY (API-Football) nicht gesetzt – übersprungen"]
         STATUS.parent.mkdir(parents=True, exist_ok=True)
         STATUS.write_text(log[0] + "\n", encoding="utf-8")
         return log
     targets = _targets(j, now)
-    log = [f"Quotenwächter {now:%d.%m.%Y %H:%M} UTC: {len(targets)} Fußball-Tipp(s) des CEO "
+    log = [f"Quotenwächter {report.stand(now)}: {len(targets)} Fußball-Tipp(s) des CEO "
            f"gegen Pinnacle/Bet365/Betfair"]
     days: dict[str, list] = {}
     odds_cache: dict[int, dict] = {}
@@ -154,7 +154,7 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
         seen = set()
     new = [(k, m) for k, m in msgs if k not in seen]
     if send and new:
-        txt = "\n".join([f"🛡️ QUOTENWÄCHTER {now:%d.%m.%Y %H:%M} UTC",
+        txt = "\n".join([f"🛡️ QUOTENWÄCHTER {report.stand(now)}",
                          "CEO-Tipps gegen Pinnacle (fair) · Bet365/Betfair (spielbar)"]
                         + [line for _, m in new for line in m])
         r = telegram.send(txt)

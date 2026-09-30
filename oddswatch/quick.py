@@ -84,7 +84,7 @@ def run(j: Journal | None = None, send: bool = False, days: int = 7,
     fx = fixtures(now.date(), days, issues)
     cands = [c for f in fx for c in evaluate_fixture(f, {})] + lines.candidates(fx, issues, notes)
     picks = pick(cands)
-    log = [f"Schnellscan {now:%d.%m.%Y %H:%M} UTC: {len(fx)} Spiele mit DraftKings- und Kalshi-Preis, "
+    log = [f"Schnellscan {report.stand(now)}: {len(fx)} Spiele mit DraftKings- und Kalshi-Preis, "
            f"{len(cands)} Märkte verglichen, {len(picks)} Freigabe(n)"]
     snapshot(fx)
     log += settle.snapshot_open(j)
@@ -99,7 +99,7 @@ def run(j: Journal | None = None, send: bool = False, days: int = 7,
         log.append(f"  PLAY {c.event}: {c.selection} @ {c.odds:.2f} (spielbar ab {c.min_odds:.2f}, "
                    f"EV {c.ev * 100:+.1f} %)" + ("  [neu]" if c in new else ""))
     if send and new:
-        txt = report.telegram_text(now.strftime("%d.%m.%Y %H:%M UTC"), new, [])
+        txt = report.telegram_text(report.stand(now), new, [])
         r = telegram.send("⚡ Schnellscan – Kalshi günstiger als DraftKings\n" + txt)
         log.append("Telegram: " + (f"gesendet {r['message_ids']}" if r["sent"] else f"NICHT gesendet – {r['error']}"))
         if r["sent"]:

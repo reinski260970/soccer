@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import matching, pricing
+from . import matching, pricing, report
 from .journal import Journal
 from .models import fatigue
 from .models.elo import EloGoals
@@ -996,7 +996,7 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         notes.append("Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert "
                      "(Bundesliga-1X2 bisher CLV −7,6 %, ROI −42 % bei 100 Tipps) – nur Watchlist")
     picks = pick(cands)
-    stand = now.strftime("%d.%m.%Y %H:%M UTC")
+    stand = report.stand(now)
     if journal is not None:
         _log(journal, fixtures, picks)
     snapshot(fixtures)

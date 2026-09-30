@@ -107,7 +107,7 @@ def _news(a) -> int:
         issues: list[str] = []
         items = news.collect({t.league for t in targets}, issues)
         alerts = news.find_alerts(targets, items, set(), datetime.now(timezone.utc))
-        txt = news.digest_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"))
+        txt = news.digest_text(alerts, report.stand())
         print(f"{len(items)} Artikel geprüft, {len(alerts)} Meldungen in der Übersicht")
         print("--- Telegram ---\n" + txt)
         if a.send:
@@ -123,7 +123,7 @@ def _news(a) -> int:
         print("Telegram: keine neuen News – nicht gesendet")
         return 0
     from datetime import datetime, timezone
-    txt = news.alert_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"))
+    txt = news.alert_text(alerts, report.stand())
     print("--- Telegram ---\n" + txt)
     if a.send:
         r = telegram.send(txt)

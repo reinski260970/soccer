@@ -12,7 +12,7 @@ import json
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from .report import _eh, _pct, _q
+from .report import _eh, _pct, _q, stand as _stand
 from .sources import tennis_atlas
 from .sources.tennis_atlas import TennisBet, TrackRecord
 
@@ -96,7 +96,7 @@ def mark_sent(bets: list[TennisBet], state: Path = STATE) -> None:
 
 def run(send: bool = False, all_bets: bool = False) -> list[str]:
     from . import telegram
-    stand = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
+    stand = _stand()
     bets, tr, err = tennis_atlas.fetch()
     md = report(bets, tr, err, stand)
     out = Path("reports")
