@@ -48,9 +48,14 @@ def _scan(a) -> int:
     if not a.dry:
         from . import news
         news.save_targets(res.fixtures, res.picks, watch)
+    from . import outlook
+    rows = outlook.build(res.fixtures, res.candidates, res.picks)
+    note = outlook.soccer_note(res.notes, res.issues)
     md = report.ceo_report(res.stand, res.picks, len(res.fixtures), res.issues, res.notes,
-                           fixtures=res.fixtures, watch=watch)
-    tg = report.telegram_text(res.stand, res.picks, watch)
+                           fixtures=res.fixtures, watch=watch,
+                           outlook=outlook.report_lines(rows, notes=note))
+    tg = report.telegram_text(res.stand, res.picks, watch,
+                              outlook=outlook.telegram_lines(rows, notes=note))
     out = Path("reports")
     out.mkdir(exist_ok=True)
     stem = f"{date.today():%Y-%m-%d}"
@@ -70,14 +75,16 @@ def _daily(a) -> int:
     j = Journal()
     for line in settle.settle_all(j):
         print(line)
-    picks, watch = [], []
+    picks, watch, ol = [], [], None
     if not a.no_scan:
-        from . import scan
+        from . import outlook, scan
         res = scan.run(sports=tuple(a.sports.split(",")), journal=j)
         picks, watch = res.picks, _watchlist(res)
         from . import news
         news.save_targets(res.fixtures, picks, watch)
-    txt = daily.daily_text(j, picks=picks, watch=watch)
+        ol = outlook.telegram_lines(outlook.build(res.fixtures, res.candidates, picks),
+                                    notes=outlook.soccer_note(res.notes, res.issues))
+    txt = daily.daily_text(j, picks=picks, watch=watch, outlook=ol)
     out = Path("reports")
     out.mkdir(exist_ok=True)
     (out / f"{date.today():%Y-%m-%d}-daily.txt").write_text(txt, encoding="utf-8")

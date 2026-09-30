@@ -68,7 +68,8 @@ def _pick_lines(i: int, c: Candidate) -> list[str]:
 
 def ceo_report(stand: str, picks: list[Candidate], scanned: int,
                data_issues: list[str], notes: list[str] | None = None,
-               fixtures: list | None = None, watch: list[Candidate] | None = None) -> str:
+               fixtures: list | None = None, watch: list[Candidate] | None = None,
+               outlook: list[str] | None = None) -> str:
     lines = [f"# Sportanalyse – Stand {stand}", ""]
     lines.append(f"Bewertete Spiele: {scanned}. PLAY, sobald der verifizierte Preis die "
                  f"spielbare Mindestquote (EV ≥ 3 %) erreicht und kein Newsvorbehalt offen ist.")
@@ -83,6 +84,7 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
             why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
             lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
                          f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
+    lines += outlook or []
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
                   "| Liga | Spiel | Anstoß (Wien) | Modell H/X/A | Referenz | Kalshi Ask | Kennzahlen |",
@@ -102,7 +104,8 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
     return "\n".join(lines) + "\n"
 
 
-def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | None = None) -> str:
+def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | None = None,
+                  outlook: list[str] | None = None) -> str:
     if not picks:
         out = [f"📊 CEO-Update {stand}", "⛔ NO PLAY: kein belegter Vorteil."]
     else:
@@ -120,4 +123,5 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
             out += ["", f"• {_head(c)}", f"🆚 {c.event}",
                     f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
                     f"   Grund: {why}"]
+    out += outlook or []
     return "\n".join(out)

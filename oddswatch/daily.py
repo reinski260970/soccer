@@ -54,7 +54,7 @@ def _odds(r: dict) -> float:
 
 def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = None,
                picks: list[Candidate] | None = None, watch: list[Candidate] | None = None,
-               horizon_days: int = 7) -> str:
+               horizon_days: int = 7, outlook: list[str] | None = None) -> str:
     now = now or datetime.now(timezone.utc)
     eh_usd = eh_usd or float(os.environ.get("ODDSWATCH_EH_USD", "10"))
     vb, placed = j.read("valuebets"), j.read("placed")
@@ -110,6 +110,7 @@ def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = N
         for c in watch[:5]:
             out += [f"• {_head(c)}", f"🆚 {c.event}",
                     f"➡️ {c.selection} spielbar ab {_q(c.min_odds)} (jetzt {_q(c.odds)})"]
+    out += outlook or []
     return "\n".join(out)
 
 
