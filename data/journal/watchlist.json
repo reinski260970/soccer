@@ -1,71 +1,48 @@
 [
  {
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "New Jersey Devils – Philadelphia Flyers",
-  "kickoff": "2026-10-01T23:00+00:00",
-  "market": "HC+1.5 PHI:no",
-  "selection": "Philadelphia Flyers +1.5",
-  "odds": 1.5710919088766695,
-  "fair": 1.5289473670002272,
-  "min_odds": 1.574815788010234,
+  "status": "PLAY",
+  "league": "nations",
+  "event": "Switzerland – Slovenia",
+  "kickoff": "2026-10-03T18:45+00:00",
+  "market": "away",
+  "selection": "Slovenia Sieg (90 Min.)",
+  "odds": 9.40733772342427,
+  "fair": 8.966535847206423,
+  "min_odds": 9.235531922622615,
   "home": [
-   "New Jersey Devils",
-   "New Jersey",
-   "Devils",
-   "NJ"
+   "Switzerland",
+   "Switzerland",
+   "Switzerland",
+   "SUI"
   ],
   "away": [
-   "Philadelphia Flyers",
-   "Philadelphia",
-   "Flyers",
-   "PHI"
+   "Slovenia",
+   "Slovenia",
+   "Slovenia",
+   "SVN"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "San Francisco 49ers – Denver Broncos",
-  "kickoff": "2026-10-04T20:25+00:00",
-  "market": "U47.5:no",
-  "selection": "Unter 47.5 Punkte",
-  "odds": 2.0512820512820515,
-  "fair": 1.9999999999999996,
-  "min_odds": 2.0599999999999996,
+  "league": "nations",
+  "event": "Azerbaijan – Liechtenstein",
+  "kickoff": "2026-10-01T16:00+00:00",
+  "market": "HC-2.5 AZE",
+  "selection": "Azerbaijan −2.5 (gewinnt mit mehr als 2.5)",
+  "odds": 2.34192037470726,
+  "fair": 2.295409535482067,
+  "min_odds": 2.364271821546529,
   "home": [
-   "San Francisco 49ers",
-   "San Francisco",
-   "49ers",
-   "SF"
+   "Azerbaijan",
+   "Azerbaijan",
+   "Azerbaijan",
+   "AZE"
   ],
   "away": [
-   "Denver Broncos",
-   "Denver",
-   "Broncos",
-   "DEN"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nfl",
-  "event": "Baltimore Ravens – Tennessee Titans",
-  "kickoff": "2026-10-04T17:00+00:00",
-  "market": "home",
-  "selection": "Baltimore Ravens Sieg (inkl. OT)",
-  "odds": 1.1641443538998837,
-  "fair": 1.1494904518742934,
-  "min_odds": 1.1839751654305222,
-  "home": [
-   "Baltimore Ravens",
-   "Baltimore",
-   "Ravens",
-   "BAL"
-  ],
-  "away": [
-   "Tennessee Titans",
-   "Tennessee",
-   "Titans",
-   "TEN"
+   "Liechtenstein",
+   "Liechtenstein",
+   "Liechtenstein",
+   "LIE"
   ]
  },
  {
@@ -93,25 +70,71 @@
  },
  {
   "status": "WATCH",
-  "league": "ucl",
-  "event": "LASK Linz – Liverpool",
-  "kickoff": "2026-10-14T16:45+00:00",
-  "market": "away",
-  "selection": "Liverpool Sieg (90 Min.)",
-  "odds": 1.2939958592132506,
-  "fair": 1.2856660133671638,
-  "min_odds": 1.3242359937681787,
+  "league": "nhl",
+  "event": "New Jersey Devils – Philadelphia Flyers",
+  "kickoff": "2026-10-01T23:00+00:00",
+  "market": "HC+1.5 PHI:no",
+  "selection": "Philadelphia Flyers +1.5",
+  "odds": 1.547029702970297,
+  "fair": 1.5289473670002272,
+  "min_odds": 1.574815788010234,
   "home": [
-   "LASK Linz",
-   "LASK Linz",
-   "LASK Linz",
-   "LAS"
+   "New Jersey Devils",
+   "New Jersey",
+   "Devils",
+   "NJ"
   ],
   "away": [
-   "Liverpool",
-   "Liverpool",
-   "Liverpool",
-   "LIV"
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Seattle Seahawks – Los Angeles Chargers",
+  "kickoff": "2026-10-04T20:25+00:00",
+  "market": "home",
+  "selection": "Seattle Seahawks Sieg (inkl. OT)",
+  "odds": 1.2939958592132506,
+  "fair": 1.287455303063492,
+  "min_odds": 1.326078962155397,
+  "home": [
+   "Seattle Seahawks",
+   "Seattle",
+   "Seahawks",
+   "SEA"
+  ],
+  "away": [
+   "Los Angeles Chargers",
+   "Los Angeles",
+   "Chargers",
+   "LAC"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Minnesota Vikings – Miami Dolphins",
+  "kickoff": "2026-10-04T20:05+00:00",
+  "market": "home",
+  "selection": "Minnesota Vikings Sieg (inkl. OT)",
+  "odds": 1.1771630370806359,
+  "fair": 1.1712600642281261,
+  "min_odds": 1.2063978661549701,
+  "home": [
+   "Minnesota Vikings",
+   "Minnesota",
+   "Vikings",
+   "MIN"
+  ],
+  "away": [
+   "Miami Dolphins",
+   "Miami",
+   "Dolphins",
+   "MIA"
   ]
  }
 ]
