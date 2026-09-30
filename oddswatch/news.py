@@ -111,6 +111,8 @@ class Target:
     min_odds: float
     home: list[str]
     away: list[str]
+    stake: float = 0.0     # gesetzte Wette (placed.csv): Einsatz in EH
+    taken: float = 0.0     # und genommene Quote
 
 
 @dataclass
@@ -123,6 +125,7 @@ class Alert:
     severe: bool
     confirmed_by: list[str]
     names: set[str] = field(default_factory=set)
+    impact: str = "mittel"         # hoch / mittel / gering
 
 
 # ---------------------------------------------------------------- Parsing
@@ -216,6 +219,33 @@ def classify(title: str, text: str = "") -> tuple[str, bool] | None:
     return None
 
 
+# Fragen, Spielberichte, Meinung, Wett-/Vorschau-Artikel: keine Nachricht über den Kader
+_NOISE = re.compile(
+    r"\?\s*$|^(can|could|should|will|would|why|how|what|who|is|are|does|do)\b"
+    r"|\b(routed|rout|thrash\w*|beat[s]?|stun\w*|edge[sd]?|cruise[sd]?|hammer\w*|draw[sn]? with"
+    r"|takeaways|grades|player ratings|power rankings|preview|prediction|picks|odds|recap"
+    r"|highlights|report card|mailbag|mock draft|fantasy|best bets|comeback victor\w*"
+    r"|siegt|gewinnt|verliert|remis gegen|noten|einzelkritik|vorschau|tipp)\b", re.I)
+_HIGH = re.compile(r"\bQB\b|quarterback|goalkeeper|goalie|keeper|torwart|torhüter|captain|kapitän"
+                   r"|star\b|top scorer|torjäger|leading scorer|starting|stammspieler|leistungsträger"
+                   r"|head coach|cheftrainer|franchise", re.I)
+_LOW = re.compile(r"backup|depth|reserve|practice squad|rookie|u21|u23|prospect|nachwuchs"
+                  r"|ergänzungsspieler|bankdrücker|third-string|call-up", re.I)
+
+
+def is_noise(title: str) -> bool:
+    return bool(_NOISE.search(title or ""))
+
+
+def impact(title: str, text: str = "") -> str:
+    t = f"{title} {text}"
+    high = bool(_HIGH.search(title) or re.search(r"\bQB\b|quarterback", t, re.I))
+    low = bool(_LOW.search(t))
+    if high and low:          # z. B. "QB in den Practice Squad" – kein Leistungsträger
+        return "mittel"
+    return "hoch" if high else ("gering" if low else "mittel")
+
+
 def _in(text: str, aliases: list[str]) -> bool:
     return any(len(a) >= 4 and re.search(rf"(?<!\w){re.escape(a)}(?!\w)", text, re.I)
                for a in aliases)
@@ -283,13 +313,16 @@ def find_alerts(targets: list[Target], items: list[Item], seen: set[str],
                 if it.uid in seen:
                     continue
                 c = classify(it.title, it.text)
-                if not c:
+                # Fragen/Spielberichte/Meinung: nur, wenn schon der Titel eine schwere Meldung ist
+                ct = classify(it.title) if is_noise(it.title) else c
+                if not c or not ct or (is_noise(it.title) and not ct[1]):
                     continue
                 names = _names(it, aliases)
                 conf = sorted({o.source for o in rel if o.source != it.source
                                and o.source not in FORUMS and classify(o.title, o.text)
                                and (not names or names & _names(o, aliases))})
-                alerts.append(Alert(t, side, aliases[0], it, c[0], c[1], conf, names))
+                alerts.append(Alert(t, side, aliases[0], it, c[0], c[1], conf, names,
+                                    impact(it.title, it.text)))
     # je Spiel nur ein Artikel pro Geschichte (Person) – auch über Läufe hinweg;
     # bevorzugt schwer, bestätigt, früh veröffentlicht
     alerts.sort(key=lambda a: (not a.severe, not a.confirmed_by,
@@ -301,17 +334,24 @@ def find_alerts(targets: list[Target], items: list[Item], seen: set[str],
             continue
         taken |= keys
         out.append(a)
-    return sorted(out, key=lambda a: (not a.severe, a.target.status != "PLAY", a.target.kickoff))
+    rank = {"GESETZT": 0, "PLAY": 1, "WATCH": 2}
+    imp = {"hoch": 0, "mittel": 1, "gering": 2}
+    return sorted(out, key=lambda a: (rank.get(a.target.status, 3), not a.severe,
+                                      imp.get(a.impact, 1), a.target.kickoff))
 
 
-def alert_text(alerts: list[Alert], stand: str) -> str:
+def alert_text(alerts: list[Alert], stand: str, views: dict | None = None) -> str:
+    """views: Ereignis -> newsmarket.MarketView (Preis-Check), optional."""
+    from .newsmarket import position
+    views = views or {}
     out = [f"🚨 NEWS-AGENT {stand}", "Nur Warnung – Entscheidung beim CEO."]
     for a in alerts:
         t = a.target
         own = (t.market == a.side)
-        icon = "✅ PLAY" if t.status == "PLAY" else "👀 WATCH"
+        icon = {"PLAY": "✅ PLAY", "GESETZT": "💼 GESETZT"}.get(t.status, "👀 WATCH")
         pub = f", {_kick(a.item.published.isoformat())}" if a.item.published else ""
-        out += ["", f"{'🔴' if a.severe else '🟡'} {a.category.upper()} · {_league(t.league)} · {_kick(t.kickoff)}",
+        out += ["", f"{'🔴' if a.severe else '🟡'} {a.category.upper()} (Bedeutung {a.impact}) · "
+                    f"{_league(t.league)} · {_kick(t.kickoff)}",
                 f"🆚 {t.event}",
                 f"{icon}: {t.selection} @ {_q(t.odds)} | fair {_q(t.fair)} | min {_q(t.min_odds)}",
                 f"📰 {a.item.title} ({a.item.source}{pub})"]
@@ -323,11 +363,18 @@ def alert_text(alerts: list[Alert], stand: str) -> str:
         else:
             out.append("✔️ bestätigt: " + ", ".join(a.confirmed_by) if a.confirmed_by
                        else "⚠️ nur eine Quelle – unbestätigt")
-        if own and t.status == "PLAY":
+        v = views.get(t.event)
+        if v:
+            out.append(f"📈 {v.verdict}")
+            if t.status == "GESETZT":
+                pos = position(v, t.market, t.stake, t.taken)
+                if pos:
+                    out.append(pos)
+        if own and t.status in ("PLAY", "GESETZT"):
             rec = ("Freigabe prüfen/aussetzen – Ausfall ist im Modell nicht enthalten"
                    if a.category in ("Ausfall", "Sperre", "Trainerwechsel", "fraglich", "Verletzung", "Schonung")
                    else "positiv für den Tipp – Preis kann anziehen, Einstieg prüfen")
-        elif t.status == "PLAY":
+        elif t.status in ("PLAY", "GESETZT"):
             rec = ("Gegner geschwächt – Tipp gestützt, Preis kann sich verschieben"
                    if a.category not in ("Rückkehr/Startelf",) else "Gegner gestärkt – Freigabe prüfen")
         else:
@@ -374,7 +421,38 @@ def load_targets(j: Journal, path: Path = WATCH_FILE) -> list[Target]:
                      "min_odds": float(r["min_odds"]), "home": [h, h.split()[-1]],
                      "away": [a, a.split()[-1]]})
         known.add((r["event"], r["market"]))
-    return [Target(**{k: r[k] for k in Target.__dataclass_fields__}) for r in rows]
+    # gesetzte Wetten (placed.csv) mit Einsatz und Quote – höchste Priorität
+    for r in j.read("placed"):
+        if r.get("result") or not r.get("event") or " – " not in r["event"]:
+            continue
+        h, _, a = r["event"].partition(" – ")
+        vb = next((x for x in rows if x["event"] == r["event"] and x["market"] == r["market"]), {})
+        from .quick import LEAGUES
+        lg = vb.get("league") or next((k for k, v in LEAGUES.items()
+                                       if r.get("ref", "").startswith(v[1] + "-")), "")
+        rows.append({"status": "GESETZT", "league": lg,
+                     "event": r["event"], "kickoff": r.get("kickoff", ""), "market": r["market"],
+                     "selection": r.get("selection", ""), "odds": float(r["odds_taken"] or 0),
+                     "fair": vb.get("fair", 0.0), "min_odds": vb.get("min_odds", 0.0),
+                     "home": vb.get("home") or [h, h.split()[-1]],
+                     "away": vb.get("away") or [a, a.split()[-1]],
+                     "stake": float(r.get("stake_eh") or 0), "taken": float(r["odds_taken"] or 0)})
+    fields = Target.__dataclass_fields__
+    return [Target(**{k: r[k] for k in fields if k in r}) for r in rows]
+
+
+def market_views(alerts: list[Alert], j: Journal) -> dict:
+    """Preis-Check je betroffenem Spiel (DraftKings vorher/jetzt, Kalshi)."""
+    from .newsmarket import view
+    out, cache = {}, {}
+    for a in alerts:
+        t = a.target
+        if t.event not in out:
+            try:
+                out[t.event] = view(t.league, t.event, t.kickoff, j, cache)
+            except Exception:   # noqa: BLE001 – Preis-Check darf die Warnung nie verhindern
+                out[t.event] = None
+    return {k: v for k, v in out.items() if v}
 
 
 def run(j: Journal, now: datetime | None = None) -> tuple[list[Alert], list[str], int]:
