@@ -6,9 +6,9 @@
   "kickoff": "2026-10-03T18:45+00:00",
   "market": "away",
   "selection": "Slovenia Sieg (90 Min.)",
-  "odds": 9.40733772342427,
-  "fair": 8.966535847206423,
-  "min_odds": 9.235531922622615,
+  "odds": 11.737089201877934,
+  "fair": 10.507247776562409,
+  "min_odds": 10.822465209859281,
   "home": [
    "Switzerland",
    "Switzerland",
@@ -24,71 +24,48 @@
  },
  {
   "status": "WATCH",
-  "league": "nations",
-  "event": "Azerbaijan – Liechtenstein",
-  "kickoff": "2026-10-01T16:00+00:00",
-  "market": "HC-2.5 AZE",
-  "selection": "Azerbaijan −2.5 (gewinnt mit mehr als 2.5)",
-  "odds": 2.34192037470726,
-  "fair": 2.295409535482067,
-  "min_odds": 2.364271821546529,
+  "league": "ucl",
+  "event": "Arsenal – Lille",
+  "kickoff": "2026-10-13T19:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 6.734006734006733,
+  "fair": 6.5401470481123996,
+  "min_odds": 6.736351459555772,
   "home": [
-   "Azerbaijan",
-   "Azerbaijan",
-   "Azerbaijan",
-   "AZE"
+   "Arsenal",
+   "Arsenal",
+   "Arsenal",
+   "ARS"
   ],
   "away": [
-   "Liechtenstein",
-   "Liechtenstein",
-   "Liechtenstein",
-   "LIE"
+   "Lille",
+   "Lille",
+   "Lille",
+   "LILL"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "Las Vegas Raiders – Kansas City Chiefs",
-  "kickoff": "2026-10-04T20:25+00:00",
+  "league": "ucl",
+  "event": "LASK Linz – Liverpool",
+  "kickoff": "2026-10-14T16:45+00:00",
   "market": "away",
-  "selection": "Kansas City Chiefs Sieg (inkl. OT)",
-  "odds": 1.5015015015015014,
-  "fair": 1.482837531449986,
-  "min_odds": 1.5273226573934857,
+  "selection": "Liverpool Sieg (90 Min.)",
+  "odds": 1.2939958592132506,
+  "fair": 1.2856660133671638,
+  "min_odds": 1.3242359937681787,
   "home": [
-   "Las Vegas Raiders",
-   "Las Vegas",
-   "Raiders",
-   "LV"
+   "LASK Linz",
+   "LASK Linz",
+   "LASK Linz",
+   "LAS"
   ],
   "away": [
-   "Kansas City Chiefs",
-   "Kansas City",
-   "Chiefs",
-   "KC"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "New Jersey Devils – Philadelphia Flyers",
-  "kickoff": "2026-10-01T23:00+00:00",
-  "market": "HC+1.5 PHI:no",
-  "selection": "Philadelphia Flyers +1.5",
-  "odds": 1.547029702970297,
-  "fair": 1.5289473670002272,
-  "min_odds": 1.574815788010234,
-  "home": [
-   "New Jersey Devils",
-   "New Jersey",
-   "Devils",
-   "NJ"
-  ],
-  "away": [
-   "Philadelphia Flyers",
-   "Philadelphia",
-   "Flyers",
-   "PHI"
+   "Liverpool",
+   "Liverpool",
+   "Liverpool",
+   "LIV"
   ]
  },
  {
@@ -117,24 +94,47 @@
  {
   "status": "WATCH",
   "league": "nfl",
-  "event": "Minnesota Vikings – Miami Dolphins",
-  "kickoff": "2026-10-04T20:05+00:00",
-  "market": "home",
-  "selection": "Minnesota Vikings Sieg (inkl. OT)",
-  "odds": 1.1771630370806359,
-  "fair": 1.1712600642281261,
-  "min_odds": 1.2063978661549701,
+  "event": "San Francisco 49ers – Denver Broncos",
+  "kickoff": "2026-10-04T20:25+00:00",
+  "market": "U47.5:no",
+  "selection": "Unter 47.5 Punkte",
+  "odds": 2.0100502512562812,
+  "fair": 1.9999999999999996,
+  "min_odds": 2.0599999999999996,
   "home": [
-   "Minnesota Vikings",
-   "Minnesota",
-   "Vikings",
-   "MIN"
+   "San Francisco 49ers",
+   "San Francisco",
+   "49ers",
+   "SF"
   ],
   "away": [
-   "Miami Dolphins",
-   "Miami",
-   "Dolphins",
-   "MIA"
+   "Denver Broncos",
+   "Denver",
+   "Broncos",
+   "DEN"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nations",
+  "event": "Azerbaijan – Liechtenstein",
+  "kickoff": "2026-10-01T16:00+00:00",
+  "market": "home",
+  "selection": "Azerbaijan Sieg (90 Min.)",
+  "odds": 1.1514104778353484,
+  "fair": 1.1485312481699592,
+  "min_odds": 1.182987185615058,
+  "home": [
+   "Azerbaijan",
+   "Azerbaijan",
+   "Azerbaijan",
+   "AZE"
+  ],
+  "away": [
+   "Liechtenstein",
+   "Liechtenstein",
+   "Liechtenstein",
+   "LIE"
   ]
  }
 ]
