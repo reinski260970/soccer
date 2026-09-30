@@ -11,6 +11,7 @@ python -m oddswatch scan                 # Scan (7 Tage Freigabe, 14 Tage Watchl
 python -m oddswatch scan --dry           # nur Bericht, nichts ins Journal
 python -m oddswatch scan --send          # zusätzlich Telegram-Versand (Bot API)
 python -m oddswatch daily --send         # Tagesbericht: Auswertung, Profit-Status, Ausblick (nur bei Neuigkeiten)
+                                         # automatisch jeden Morgen 8:00 Wien (.github/workflows/daily-report.yml)
 python -m oddswatch news --send          # News-Agent: Warnungen zu Freigaben/Watchlist
 python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (kurz vor Anstoß = Closing Line)
 python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
@@ -175,6 +176,18 @@ Zustand in `data/journal/odds_guard.json`):
 Läuft in jedem Schnellscan mit (15-Minuten-Takt, ≈ 1 Abruf je Spieltag und je Spiel,
 also ≈ 1.000 von 7.500 Anfragen/Tag). Ohne `APIKEY` wird er übersprungen, Fehler brechen
 den Schnellscan nie ab. NFL/NHL/NBA/Eishockey sind nicht abgedeckt (API-Football = Fußball).
+
+## Ausblick nach Sportart und Tagesbericht
+
+CEO-Bericht, CEO-Nachricht und Tagesbericht enthalten einen Ausblick je Sportart
+(`outlook.py`): Fußball, Eishockey Europa, NHL, NBA, NFL und Tennis mit den Spielen der
+nächsten 7 Tage (davon mit Kalshi-Preis), Freigaben und den zwei Märkten, die der
+spielbaren Mindestquote am nächsten sind. Ohne Spiele im Zeitraum steht der nächste
+Spieltag da. Eishockey Europa hat keine Marktreferenz und ist als „nur Modell – nicht
+validiert“ markiert. Tennis braucht `MONGODB_URI`.
+
+`.github/workflows/daily-report.yml` schickt den Tagesbericht mit Ausblick jeden Morgen
+um 8:00 Wiener Zeit (Sommer- und Winterzeit) per Telegram und sichert Journal und Bericht.
 
 ## Modellforschung
 

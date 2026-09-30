@@ -1,0 +1,53 @@
+# Tagesbericht mit Ausblick nach Sportart, jeden Morgen um 8:00 Wiener Zeit.
+# GitHub-Zeitpläne laufen in UTC: 06:00 UTC = 8:00 MESZ (Sommer), 07:00 UTC =
+# 8:00 MEZ (Winter). Beide Zeiten sind eingeplant, der Prüfschritt lässt nur den
+# Lauf zu, der in Wien in die Stunde 8 fällt. Von Hand (Run workflow) immer.
+# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, optional MONGODB_URI (Tennis).
+name: daily-report
+on:
+  schedule:
+    - cron: "0 6,7 * * *"
+  workflow_dispatch:
+concurrency:
+  group: quick-scan
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: 8 Uhr in Wien?
+        id: gate
+        run: |
+          h=$(TZ=Europe/Vienna date +%H)
+          echo "Wien: $(TZ=Europe/Vienna date '+%d.%m.%Y %H:%M %Z')"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$h" = "08" ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.gate.outputs.run == 'yes'
+        uses: actions/checkout@v4
+      - if: steps.gate.outputs.run == 'yes'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - if: steps.gate.outputs.run == 'yes'
+        run: pip install -r requirements.txt
+      - name: Tagesbericht mit Ausblick
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: python -m oddswatch daily --send --force
+      - name: Journal und Bericht sichern
+        if: steps.gate.outputs.run == 'yes'
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add data/journal data/snapshots reports
+          git diff --cached --quiet || git commit -m "Tagesbericht $(TZ=Europe/Vienna date '+%d.%m.%Y %H:%M')"
+          git pull --rebase --autostash && git push
