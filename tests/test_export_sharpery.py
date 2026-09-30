@@ -29,3 +29,13 @@ def test_open_bet_is_pending_and_files_written(tmp_path):
     row = next(csv.DictReader(csvp.open(encoding="utf-8")))
     assert row["Result"] == "pending" and row["Sport"] == "Ice Hockey" and row["Market"] == "Moneyline"
     assert "Schaetzung" in row["Tags"]
+
+
+def test_withdrawn_not_exported(tmp_path):
+    j = Journal(tmp_path / "j")
+    base = {"league": "nations", "event": "A – B", "kickoff": "2026-10-01T18:45+00:00",
+            "market": "home", "selection": "A Sieg", "source": "kalshi", "odds": 3.0,
+            "ev": 0.05, "stake_eh": 0.25}
+    j.append("valuebets", [base, {**base, "event": "C – D", "result": "withdrawn"}])
+    _, _, n = export(str(tmp_path / "j"), str(tmp_path / "out" / "s"))
+    assert n == 1

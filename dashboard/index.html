@@ -70,7 +70,7 @@ section { display: grid; gap: 12px; }
 .filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
 .filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .tablewrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
-table { width: 100%; border-collapse: collapse; min-width: 820px; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
 th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
 th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 500; white-space: nowrap; }
 tbody tr:last-child td { border-bottom: 0; }
@@ -144,22 +144,281 @@ td .ev-cell { display: flex; align-items: center; justify-content: flex-end; gap
 </div>
 
 <script>
-const STAND = "2026-09-29T06:30:00+00:00";
+const STAND = "2026-09-30T19:17:00+00:00";
 const LEAGUES = { bundesliga: "Bundesliga", "2bundesliga": "2. Bundesliga", austria: "Österr. Bundesliga",
   ucl: "Champions League", uel: "Europa League", uecl: "Conference League", nations: "Nations League",
   nfl: "NFL", nhl: "NHL", nba: "NBA", del: "DEL", icehl: "ICE Hockey League" };
 const BOOK = [
-  {"league":"nfl","event":"Carolina Panthers – Detroit Lions","kickoff":"2026-10-05T00:20+00:00","sel":"Carolina Panthers Sieg (inkl. OT)","odds":2.66,"fair":2.49,"min":2.56,"ev":0.0681,"eh":0.75,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nhl","event":"Carolina Hurricanes – Florida Panthers","kickoff":"2026-09-29T21:00+00:00","sel":"Carolina Hurricanes Sieg (inkl. OT)","odds":1.83,"fair":1.75,"min":1.81,"ev":0.0412,"eh":0.5,"est":true,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Luxemburg – Island","kickoff":"2026-09-29T18:45+00:00","sel":"Luxemburg Sieg (90 Min.)","odds":3.4,"fair":3.1,"min":3.19,"ev":0.0965,"eh":0.75,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"bundesliga","event":"SC Paderborn 07 – VfB Stuttgart","kickoff":"2026-10-10T13:30+00:00","sel":"Paderborn Sieg (90 Min.)","odds":4.73,"fair":3.86,"min":3.97,"ev":0.227,"eh":1.0,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Finnland – Belarus","kickoff":"2026-09-29T16:00+00:00","sel":"Belarus Sieg (90 Min.)","odds":6.29,"fair":5.5,"min":5.66,"ev":0.144,"eh":0.5,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"bundesliga","event":"1. FC Union Berlin – SV Elversberg","kickoff":"2026-10-10T13:30+00:00","sel":"Elversberg Sieg (90 Min.)","odds":2.89,"fair":2.54,"min":2.61,"ev":0.1407,"eh":1.25,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"bundesliga","event":"SC Freiburg – Schalke 04","kickoff":"2026-10-11T15:30+00:00","sel":"Schalke Sieg (90 Min.)","odds":4.98,"fair":4.53,"min":4.66,"ev":0.0998,"eh":0.25,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Wales – Norwegen","kickoff":"2026-10-01T18:45+00:00","sel":"Wales Sieg (90 Min.)","odds":5.9,"fair":5.67,"min":5.84,"ev":0.0401,"eh":0.25,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Deutschland – Serbien","kickoff":"2026-10-01T18:45+00:00","sel":"Serbien Sieg (90 Min.)","odds":10.44,"fair":10.1,"min":10.41,"ev":0.0332,"eh":0.25,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Bulgarien – Estland","kickoff":"2026-09-29T18:45+00:00","sel":"Estland Sieg (90 Min.)","odds":5.9,"fair":5.44,"min":5.61,"ev":0.0836,"eh":0.25,"est":false,"result":"","clv":"","pnl":""},
-  {"league":"nations","event":"Slowakei – Kasachstan","kickoff":"2026-09-29T18:45+00:00","sel":"Kasachstan Sieg (90 Min.)","odds":13.4,"fair":12.63,"min":13.01,"ev":0.0613,"eh":0.25,"est":false,"result":"","clv":"","pnl":""}
+{
+"league": "nfl",
+"event": "Carolina Panthers – Detroit Lions",
+"kickoff": "2026-10-05T00:20+00:00",
+"sel": "Carolina Panthers Sieg (inkl. OT)",
+"odds": 2.66,
+"fair": 2.49,
+"min": 2.56,
+"ev": 0.0681,
+"eh": 0.75,
+"est": false,
+"result": "",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nhl",
+"event": "Carolina Hurricanes – Florida Panthers",
+"kickoff": "2026-09-29T21:00+00:00",
+"sel": "Carolina Hurricanes Sieg (inkl. OT)",
+"odds": 1.83,
+"fair": 1.75,
+"min": 1.81,
+"ev": 0.0412,
+"eh": 0.5,
+"est": true,
+"result": "loss",
+"clv": "-0.0046",
+"pnl": "-0.5000"
+},
+{
+"league": "nations",
+"event": "Luxembourg – Iceland",
+"kickoff": "2026-09-29T18:45+00:00",
+"sel": "Luxembourg Sieg (90 Min.)",
+"odds": 3.4,
+"fair": 3.1,
+"min": 3.19,
+"ev": 0.0965,
+"eh": 0.75,
+"est": false,
+"result": "loss",
+"clv": "-0.0699",
+"pnl": "-0.7500"
+},
+{
+"league": "bundesliga",
+"event": "SC Paderborn 07 – VfB Stuttgart",
+"kickoff": "2026-10-10T13:30+00:00",
+"sel": "SC Paderborn 07 Sieg (90 Min.)",
+"odds": 4.73,
+"fair": 3.86,
+"min": 3.97,
+"ev": 0.227,
+"eh": 1.0,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Finland – Belarus",
+"kickoff": "2026-09-29T16:00+00:00",
+"sel": "Belarus Sieg (90 Min.)",
+"odds": 6.29,
+"fair": 5.5,
+"min": 5.66,
+"ev": 0.144,
+"eh": 0.5,
+"est": false,
+"result": "loss",
+"clv": "-0.2099",
+"pnl": "-0.5000"
+},
+{
+"league": "bundesliga",
+"event": "1. FC Union Berlin – SV Elversberg",
+"kickoff": "2026-10-10T13:30+00:00",
+"sel": "SV Elversberg Sieg (90 Min.)",
+"odds": 2.89,
+"fair": 2.54,
+"min": 2.61,
+"ev": 0.1407,
+"eh": 1.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "bundesliga",
+"event": "SC Freiburg – Schalke 04",
+"kickoff": "2026-10-11T15:30+00:00",
+"sel": "Schalke 04 Sieg (90 Min.)",
+"odds": 4.98,
+"fair": 4.53,
+"min": 4.66,
+"ev": 0.0998,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Wales – Norway",
+"kickoff": "2026-10-01T18:45+00:00",
+"sel": "Wales Sieg (90 Min.)",
+"odds": 5.9,
+"fair": 5.67,
+"min": 5.84,
+"ev": 0.0401,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Germany – Serbia",
+"kickoff": "2026-10-01T18:45+00:00",
+"sel": "Serbia Sieg (90 Min.)",
+"odds": 10.44,
+"fair": 10.1,
+"min": 10.41,
+"ev": 0.0332,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Bulgaria – Estonia",
+"kickoff": "2026-09-29T18:45+00:00",
+"sel": "Estonia Sieg (90 Min.)",
+"odds": 5.9,
+"fair": 5.44,
+"min": 5.61,
+"ev": 0.0836,
+"eh": 0.25,
+"est": false,
+"result": "loss",
+"clv": "0.1447",
+"pnl": "-0.2500"
+},
+{
+"league": "nations",
+"event": "Slovakia – Kazakhstan",
+"kickoff": "2026-09-29T18:45+00:00",
+"sel": "Kazakhstan Sieg (90 Min.)",
+"odds": 13.4,
+"fair": 12.63,
+"min": 13.01,
+"ev": 0.0613,
+"eh": 0.25,
+"est": false,
+"result": "loss",
+"clv": "-0.2590",
+"pnl": "-0.2500"
+},
+{
+"league": "nations",
+"event": "Greece – Germany",
+"kickoff": "2026-10-04T18:45+00:00",
+"sel": "Unentschieden (90 Min.)",
+"odds": 4.13,
+"fair": 3.99,
+"min": 4.11,
+"ev": 0.0336,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "ucl",
+"event": "Viking FK – Bayern Munich",
+"kickoff": "2026-10-13T19:00+00:00",
+"sel": "Unentschieden (90 Min.)",
+"odds": 13.4,
+"fair": 9.7,
+"min": 9.99,
+"ev": 0.382,
+"eh": 0.25,
+"est": true,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "ucl",
+"event": "Galatasaray – Barcelona",
+"kickoff": "2026-10-13T19:00+00:00",
+"sel": "Galatasaray Sieg (90 Min.)",
+"odds": 7.85,
+"fair": 6.28,
+"min": 6.47,
+"ev": 0.2496,
+"eh": 0.25,
+"est": true,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nfl",
+"event": "Chicago Bears – New York Jets",
+"kickoff": "2026-10-04T17:00+00:00",
+"sel": "New York Jets Sieg (inkl. OT)",
+"odds": 2.59,
+"fair": 2.5,
+"min": 2.57,
+"ev": 0.037,
+"eh": 0.25,
+"est": false,
+"result": "",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Faroe Islands – Slovakia",
+"kickoff": "2026-10-02T18:45+00:00",
+"sel": "Faroe Islands Sieg (90 Min.)",
+"odds": 6.29,
+"fair": 6.1,
+"min": 6.28,
+"ev": 0.0309,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Switzerland – Slovenia",
+"kickoff": "2026-10-03T18:45+00:00",
+"sel": "Slovenia Sieg (90 Min.)",
+"odds": 9.41,
+"fair": 8.97,
+"min": 9.24,
+"ev": 0.0492,
+"eh": 0.25,
+"est": false,
+"result": "withdrawn",
+"clv": "",
+"pnl": ""
+},
+{
+"league": "nations",
+"event": "Portugal – Norway",
+"kickoff": "2026-10-04T18:45+00:00",
+"sel": "Unentschieden (90 Min.)",
+"odds": 4.31,
+"fair": 4.13,
+"min": 4.25,
+"ev": 0.044,
+"eh": 0.25,
+"est": false,
+"result": "",
+"clv": "",
+"pnl": ""
+}
 ];
 
 const TZ = "Europe/Berlin";
@@ -181,6 +440,7 @@ function status(b, now) {
   if (b.result === "win") return ["win", "Gewonnen"];
   if (b.result === "loss") return ["loss", "Verloren"];
   if (b.result === "void") return ["open", "Void"];
+  if (b.result === "withdrawn") return ["wait", "Zurückgezogen"];
   if (new Date(b.kickoff) <= now) return ["wait", "Wartet auf Abrechnung"];
   return ["open", "Offen"];
 }
@@ -188,8 +448,10 @@ function status(b, now) {
 function render(filter) {
   const now = new Date();
   const book = [...BOOK].sort((a, b) => a.kickoff.localeCompare(b.kickoff));
-  const settled = book.filter(b => b.result);
+  const SETTLED = ["win", "loss", "void"];
+  const settled = book.filter(b => SETTLED.includes(b.result));
   const open = book.filter(b => !b.result);
+  const withdrawn = book.filter(b => b.result === "withdrawn");
 
   document.getElementById("stand").textContent = "Stand " + when(STAND) + " · Bankroll 100 EH";
 
@@ -199,13 +461,13 @@ function render(filter) {
   const clvs = settled.map(b => parseFloat(b.clv)).filter(x => !isNaN(x));
   const clv = clvs.length ? clvs.reduce((s, x) => s + x, 0) / clvs.length : null;
   document.getElementById("kpis").innerHTML = `
-    <div class="kpi"><span class="lbl">Offene PLAYs</span><span class="val">${open.length}</span><span class="sub">${settled.length} abgerechnet</span></div>
+    <div class="kpi"><span class="lbl">Offene PLAYs</span><span class="val">${open.length}</span><span class="sub">${settled.length} abgerechnet · ${withdrawn.length} zurückgezogen</span></div>
     <div class="kpi"><span class="lbl">Einsatz offen</span><span class="val">${fmtNum(stake, 2)}</span><span class="sub">EH im Risiko</span></div>
     <div class="kpi"><span class="lbl">Erwarteter Gewinn</span><span class="val pos">${signed(expected)}</span><span class="sub">EH, Ø EV ${fmtPct(stake ? expected / stake : 0)}</span></div>
     <div class="kpi"><span class="lbl">Ergebnis</span><span class="val ${pnl > 0 ? "pos" : pnl < 0 ? "neg" : ""}">${signed(pnl)}</span><span class="sub">EH · CLV ${clv === null ? "–" : signed(clv * 100, 1) + " %"}</span></div>`;
 
   const todayKey = dayKey(now.toISOString());
-  const today = book.filter(b => dayKey(b.kickoff) === todayKey);
+  const today = book.filter(b => dayKey(b.kickoff) === todayKey && b.result !== "withdrawn");
   const tStake = today.reduce((s, b) => s + b.eh, 0);
   document.getElementById("today-sub").textContent = today.length
     ? `${today.length} Tipps, zusammen ${fmtEH(tStake)}`
@@ -229,7 +491,7 @@ function render(filter) {
   const in7 = new Date(now.getTime() + 7 * 864e5);
   const rows = book.filter(b =>
     filter === "open" ? !b.result :
-    filter === "done" ? !!b.result :
+    filter === "done" ? SETTLED.includes(b.result) :
     filter === "week" ? new Date(b.kickoff) >= now && new Date(b.kickoff) <= in7 : true);
   const maxEv = Math.max(...BOOK.map(b => b.ev));
   document.getElementById("rows").innerHTML = rows.length ? rows.map(b => {
@@ -248,7 +510,15 @@ function render(filter) {
   }).join("") : `<tr><td colspan="9" style="color:var(--muted)">Keine Einträge in diesem Zeitraum.</td></tr>`;
 
   document.getElementById("settled").innerHTML = settled.length
-    ? `<p class="note">${settled.length} Tipps abgerechnet: ${signed(pnl)} EH, ROI ${fmtPct(pnl / settled.reduce((s, b) => s + b.eh, 0))}.</p>`
+    ? `<p class="note">${settled.length} Tipps abgerechnet: ${signed(pnl)} EH, ROI ${fmtPct(pnl / settled.reduce((s, b) => s + b.eh, 0))}, Ø CLV ${clv === null ? "–" : signed(clv * 100, 1) + " %"}.
+       Ein negativer CLV heißt: Der Markt hat sich bis zum Anstoß gegen unsere Tipps bewegt.</p>
+       <div class="tablewrap"><table><thead><tr><th>Anstoß</th><th>Spiel / Tipp</th><th class="num">Preis</th><th class="num">Einsatz</th><th class="num">CLV</th><th class="num">G/V</th><th>Status</th></tr></thead><tbody>
+       ${settled.map(b => { const [c, t] = status(b, now); const cv = parseFloat(b.clv); const pl = parseFloat(b.pnl) || 0;
+         return `<tr><td class="when">${when(b.kickoff)}</td><td><div>${esc(b.event)}</div><div class="sel">${esc(b.sel)}</div></td>
+         <td class="num">${fmtNum(b.odds)}</td><td class="num">${fmtEH(b.eh)}</td>
+         <td class="num ${cv > 0 ? "pos" : cv < 0 ? "neg" : ""}">${isNaN(cv) ? "–" : signed(cv * 100, 1) + " %"}</td>
+         <td class="num ${pl > 0 ? "pos" : pl < 0 ? "neg" : ""}">${signed(pl)}</td><td><span class="tag ${c}">${t}</span></td></tr>`; }).join("")}
+       </tbody></table></div>`
     : `<div class="empty">Noch nichts abgerechnet. Die ersten fünf Tipps laufen heute Abend (Nations League ab 18:00, NHL um 23:00). Danach erscheinen hier Ergebnis, Gewinn oder Verlust in EH und der CLV je Tipp.</div>`;
 }
 
