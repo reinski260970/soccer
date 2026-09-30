@@ -772,3 +772,29 @@ def test_news_digest_groups_by_game():
     txt = news.digest_text(alerts, "28.09.2026")
     assert "NEWS-ÜBERSICHT" in txt and "🆚 Carolina Panthers – Detroit Lions" in txt and "Jaycee Horn" in txt
     assert "Keine materiellen" in news.digest_text([], "x")
+
+
+def test_soccer_freeze_blocks_unvalidated_leagues_only():
+    from oddswatch.scan import soccer_freeze
+    from oddswatch.selection import Candidate
+    def cand(league, market):
+        return Candidate(event=f"{league}-{market}", kickoff="", market=market, selection="x",
+                         source="kalshi", odds=3.0, p_model=0.4, fair_odds=2.5, min_odds=2.6,
+                         edge=0.05, ev=0.2, stake_eh=0.5, estimate=False, reason="", observed_at="",
+                         liquidity=None, league=league, flags=[])
+    cs = [cand("nations", "away"), cand("bundesliga", "home"), cand("bundesliga", "over"), cand("nfl", "home")]
+    val = {"bundesliga:1x2": {"validated": True}, "bundesliga:ou": {"validated": False}}
+    assert soccer_freeze(cs, {"nations", "bundesliga"}, val) == 2
+    assert cs[0].flags and not cs[1].flags and cs[2].flags and not cs[3].flags
+
+
+def test_withdrawn_valuebets_excluded_from_balance(tmp_path):
+    from oddswatch.journal import Journal
+    j = Journal(tmp_path)
+    j.append("valuebets", [{"event": "A – B", "market": "away", "league": "nations", "odds": 9.0, "stake_eh": 0.25},
+                           {"event": "C – D", "market": "home", "league": "nfl", "odds": 2.0, "stake_eh": 0.5}])
+    assert j.withdraw("valuebets", lambda r: r["league"] == "nations", "Test") == 1
+    s = j.summary("valuebets")
+    assert s["settled"] == 0 and s["stake_eh"] == 0
+    rows = j.read("valuebets")
+    assert rows[0]["result"] == "withdrawn" and "ZURÜCKGEZOGEN" in rows[0]["reason"] and not rows[1]["result"]

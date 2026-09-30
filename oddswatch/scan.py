@@ -102,6 +102,23 @@ def _validation() -> dict:
         return {}
 
 
+def soccer_freeze(cands: list[Candidate], soccer_leagues: set[str], val: dict) -> int:
+    """Fußball-Kandidaten ohne validierten Backtest werden nicht freigegeben
+    (Flag -> Watchlist). Die Sperre endet je Liga/Marktart automatisch, sobald
+    data/validation.json sie als validiert führt. Gibt die Anzahl gesperrter zurück."""
+    n = 0
+    for c in cands:
+        if c.league not in soccer_leagues:
+            continue
+        mtypes = ("1x2",) if c.market in ("home", "draw", "away") else ("ou", "ah")
+        if any((val.get(f"{c.league}:{m}") or {}).get("validated") for m in mtypes):
+            continue
+        c.flags = (c.flags or []) + ["Fußball-Freigaben ausgesetzt: Modell im Backtest nicht besser "
+                                     "als der Markt – nur Watchlist"]
+        n += 1
+    return n
+
+
 def model_weight(league: str, mtype: str, val: dict | None = None) -> tuple[float, str]:
     """Modellgewicht aus dem Backtest: > 0 nur, wenn das Modell für Liga und
     Marktart nachweislich besser war als der Markt; sonst 0 mit Begründung."""
@@ -974,6 +991,10 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
     cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
     from . import lines
     cands += lines.candidates(fixtures, issues, notes)
+    soccer = {fx.league for fx in fixtures if fx.sport == "soccer"}
+    if soccer_freeze(cands, soccer, val):
+        notes.append("Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert "
+                     "(Bundesliga-1X2 bisher CLV −7,6 %, ROI −42 % bei 100 Tipps) – nur Watchlist")
     picks = pick(cands)
     stand = now.strftime("%d.%m.%Y %H:%M UTC")
     if journal is not None:

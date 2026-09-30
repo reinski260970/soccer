@@ -32,7 +32,7 @@ def _f(v, default: float = 0.0) -> float:
 
 
 def _status(rows: list[dict], eh_usd: float) -> list[str]:
-    done = [r for r in rows if r.get("result")]
+    done = [r for r in rows if r.get("result") and r["result"] != "withdrawn"]
     open_ = [r for r in rows if not r.get("result")]
     stake = sum(_f(r["stake_eh"]) for r in done if r["result"] != "void")
     pnl = sum(_f(r.get("pnl_eh")) for r in done)
@@ -63,7 +63,7 @@ def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = N
     # Auswertung: abgerechnete Wetten mit Anstoß in den letzten 24 h
     out += ["", "📋 AUSWERTUNG (letzte 24 h)"]
     recent = [(n, r) for n, rows in (("Freigabe", vb), ("Gespielt", placed)) for r in rows
-              if r.get("result") and (k := _ko(r)) and now - timedelta(hours=24) <= k <= now]
+              if r.get("result") and r["result"] != "withdrawn" and (k := _ko(r)) and now - timedelta(hours=24) <= k <= now]
     if not recent:
         out.append("   Keine abgerechneten Wetten.")
     for n, r in recent:

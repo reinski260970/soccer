@@ -88,8 +88,21 @@ class Journal:
         self.write(name, rows)
         return n
 
+    def withdraw(self, name: str, pred, reason: str) -> int:
+        """Offene Einträge zurückziehen (result=withdrawn, reason ergänzt)."""
+        rows = self.read(name)
+        n = 0
+        for r in rows:
+            if not r.get("result") and pred(r):
+                r["result"] = "withdrawn"
+                r["reason"] = (r.get("reason", "") + f" | ZURÜCKGEZOGEN: {reason}").strip(" |")
+                n += 1
+        self.write(name, rows)
+        return n
+
     def summary(self, name: str) -> dict:
-        rows = [r for r in self.read(name) if r.get("result")]
+        # "withdrawn" = Freigabe zurückgezogen, bevor gespielt: zählt nicht zur Bilanz
+        rows = [r for r in self.read(name) if r.get("result") and r["result"] != "withdrawn"]
         stake = sum(float(r["stake_eh"]) for r in rows if r["result"] != "void")
         pnl = sum(float(r["pnl_eh"] or 0) for r in rows)
         clvs = [float(r["clv"]) for r in rows if r.get("clv")]
