@@ -1,71 +1,25 @@
 [
  {
-  "status": "PLAY",
-  "league": "nations",
-  "event": "Switzerland – Slovenia",
-  "kickoff": "2026-10-03T18:45+00:00",
-  "market": "away",
-  "selection": "Slovenia Sieg (90 Min.)",
-  "odds": 11.737089201877934,
-  "fair": 10.507247776562409,
-  "min_odds": 10.822465209859281,
-  "home": [
-   "Switzerland",
-   "Switzerland",
-   "Switzerland",
-   "SUI"
-  ],
-  "away": [
-   "Slovenia",
-   "Slovenia",
-   "Slovenia",
-   "SVN"
-  ]
- },
- {
   "status": "WATCH",
-  "league": "ucl",
-  "event": "Arsenal – Lille",
-  "kickoff": "2026-10-13T19:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 6.734006734006733,
-  "fair": 6.5401470481123996,
-  "min_odds": 6.736351459555772,
+  "league": "nfl",
+  "event": "Tampa Bay Buccaneers – Green Bay Packers",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "HC-3.5 GB",
+  "selection": "Green Bay Packers −3.5 (gewinnt mit mehr als 3.5)",
+  "odds": 1.9704433497536948,
+  "fair": 1.954635052935206,
+  "min_odds": 2.013274104523262,
   "home": [
-   "Arsenal",
-   "Arsenal",
-   "Arsenal",
-   "ARS"
+   "Tampa Bay Buccaneers",
+   "Tampa Bay",
+   "Buccaneers",
+   "TB"
   ],
   "away": [
-   "Lille",
-   "Lille",
-   "Lille",
-   "LILL"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "ucl",
-  "event": "LASK Linz – Liverpool",
-  "kickoff": "2026-10-14T16:45+00:00",
-  "market": "away",
-  "selection": "Liverpool Sieg (90 Min.)",
-  "odds": 1.2939958592132506,
-  "fair": 1.2856660133671638,
-  "min_odds": 1.3242359937681787,
-  "home": [
-   "LASK Linz",
-   "LASK Linz",
-   "LASK Linz",
-   "LAS"
-  ],
-  "away": [
-   "Liverpool",
-   "Liverpool",
-   "Liverpool",
-   "LIV"
+   "Green Bay Packers",
+   "Green Bay",
+   "Packers",
+   "GB"
   ]
  },
  {
@@ -116,25 +70,25 @@
  },
  {
   "status": "WATCH",
-  "league": "nations",
-  "event": "Azerbaijan – Liechtenstein",
-  "kickoff": "2026-10-01T16:00+00:00",
-  "market": "home",
-  "selection": "Azerbaijan Sieg (90 Min.)",
-  "odds": 1.1514104778353484,
-  "fair": 1.1485312481699592,
-  "min_odds": 1.182987185615058,
+  "league": "nfl",
+  "event": "Houston Texans – Dallas Cowboys",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "HC+2.5 DAL:no",
+  "selection": "Dallas Cowboys +2.5",
+  "odds": 2.0512820512820515,
+  "fair": 2.0475207221076897,
+  "min_odds": 2.1089463437709206,
   "home": [
-   "Azerbaijan",
-   "Azerbaijan",
-   "Azerbaijan",
-   "AZE"
+   "Houston Texans",
+   "Houston",
+   "Texans",
+   "HOU"
   ],
   "away": [
-   "Liechtenstein",
-   "Liechtenstein",
-   "Liechtenstein",
-   "LIE"
+   "Dallas Cowboys",
+   "Dallas",
+   "Cowboys",
+   "DAL"
   ]
  }
 ]

@@ -1,17 +1,12 @@
-📊 CEO-Update 30.09.2026 17:33 UTC
+📊 CEO-Update 30.09.2026 19:10 UTC
 ⛔ NO PLAY: kein belegter Vorteil.
 
 👀 WATCH (nicht freigegeben)
 
-• UEFA Nations League · Sa 03.10. 20:45 MESZ
-🆚 Switzerland – Slovenia
-➡️ Slovenia Sieg (90 Min.) @ 11,74 | spielbar ab 11,43 | EV 5,7 %
-   Grund: Fußball-Freigaben ausgesetzt: Modell im Backtest nicht besser als der Markt – nur Watchlist
-
-• Champions League · Di 13.10. 21:00 MESZ
-🆚 Arsenal – Lille
-➡️ Unentschieden (90 Min.) @ 6,73 | spielbar ab 6,74 | EV 3,0 %
-   Grund: Fußball-Freigaben ausgesetzt: Modell im Backtest nicht besser als der Markt – nur Watchlist
+• NFL · So 04.10. 19:00 MESZ
+🆚 Tampa Bay Buccaneers – Green Bay Packers
+➡️ Green Bay Packers −3.5 (gewinnt mit mehr als 3.5) @ 1,97 | spielbar ab 2,01 | EV 0,8 %
+   Grund: Quote unter spielbar ab
 
 • NFL · So 04.10. 22:25 MESZ
 🆚 Seattle Seahawks – Los Angeles Chargers
@@ -23,7 +18,7 @@
 ➡️ Unter 47.5 Punkte @ 2,01 | spielbar ab 2,06 | EV 0,5 %
    Grund: Quote unter spielbar ab
 
-• UEFA Nations League · Do 01.10. 18:00 MESZ
-🆚 Azerbaijan – Liechtenstein
-➡️ Azerbaijan Sieg (90 Min.) @ 1,15 | spielbar ab 1,18 | EV 0,3 %
-   Grund: Fußball-Freigaben ausgesetzt: Modell im Backtest nicht besser als der Markt – nur Watchlist
+• NFL · So 04.10. 19:00 MESZ
+🆚 Houston Texans – Dallas Cowboys
+➡️ Dallas Cowboys +2.5 @ 2,05 | spielbar ab 2,11 | EV 0,2 %
+   Grund: Quote unter spielbar ab
