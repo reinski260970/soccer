@@ -24,71 +24,71 @@
  },
  {
   "status": "WATCH",
-  "league": "nations",
-  "event": "San Marino – Albania",
-  "kickoff": "2026-09-29T18:45+00:00",
+  "league": "nfl",
+  "event": "Las Vegas Raiders – Kansas City Chiefs",
+  "kickoff": "2026-10-04T20:25+00:00",
   "market": "away",
-  "selection": "Albania Sieg (90 Min.)",
-  "odds": 1.0593220338983051,
-  "fair": 1.0455620952809908,
-  "min_odds": 1.0769289581394206,
+  "selection": "Kansas City Chiefs Sieg (inkl. OT)",
+  "odds": 1.5015015015015014,
+  "fair": 1.482837531449986,
+  "min_odds": 1.5273226573934857,
   "home": [
-   "San Marino",
-   "San Marino",
-   "San Marino",
-   "SMR"
+   "Las Vegas Raiders",
+   "Las Vegas",
+   "Raiders",
+   "LV"
   ],
   "away": [
-   "Albania",
-   "Albania",
-   "Albania",
-   "ALB"
+   "Kansas City Chiefs",
+   "Kansas City",
+   "Chiefs",
+   "KC"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "Minnesota Vikings – Miami Dolphins",
-  "kickoff": "2026-10-04T20:05+00:00",
+  "league": "ucl",
+  "event": "LASK Linz – Liverpool",
+  "kickoff": "2026-10-14T16:45+00:00",
+  "market": "away",
+  "selection": "Liverpool Sieg (90 Min.)",
+  "odds": 1.2939958592132506,
+  "fair": 1.2856660133671638,
+  "min_odds": 1.3242359937681787,
+  "home": [
+   "LASK Linz",
+   "LASK Linz",
+   "LASK Linz",
+   "LAS"
+  ],
+  "away": [
+   "Liverpool",
+   "Liverpool",
+   "Liverpool",
+   "LIV"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nations",
+  "event": "Azerbaijan – Liechtenstein",
+  "kickoff": "2026-10-01T16:00+00:00",
   "market": "home",
-  "selection": "Minnesota Vikings Sieg (inkl. OT)",
+  "selection": "Azerbaijan Sieg (90 Min.)",
   "odds": 1.1641443538998837,
-  "fair": 1.1494904518742934,
-  "min_odds": 1.1839751654305222,
+  "fair": 1.1568037324179572,
+  "min_odds": 1.1915078443904958,
   "home": [
-   "Minnesota Vikings",
-   "Minnesota",
-   "Vikings",
-   "MIN"
+   "Azerbaijan",
+   "Azerbaijan",
+   "Azerbaijan",
+   "AZE"
   ],
   "away": [
-   "Miami Dolphins",
-   "Miami",
-   "Dolphins",
-   "MIA"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nfl",
-  "event": "Baltimore Ravens – Tennessee Titans",
-  "kickoff": "2026-10-04T17:00+00:00",
-  "market": "home",
-  "selection": "Baltimore Ravens Sieg (inkl. OT)",
-  "odds": 1.1514104778353484,
-  "fair": 1.1494904518742934,
-  "min_odds": 1.1839751654305222,
-  "home": [
-   "Baltimore Ravens",
-   "Baltimore",
-   "Ravens",
-   "BAL"
-  ],
-  "away": [
-   "Tennessee Titans",
-   "Tennessee",
-   "Titans",
-   "TEN"
+   "Liechtenstein",
+   "Liechtenstein",
+   "Liechtenstein",
+   "LIE"
   ]
  },
  {
@@ -98,9 +98,9 @@
   "kickoff": "2026-10-04T20:25+00:00",
   "market": "home",
   "selection": "Seattle Seahawks Sieg (inkl. OT)",
-  "odds": 1.310272536687631,
-  "fair": 1.3082807441147797,
-  "min_odds": 1.3475291664382232,
+  "odds": 1.2939958592132506,
+  "fair": 1.287455303063492,
+  "min_odds": 1.326078962155397,
   "home": [
    "Seattle Seahawks",
    "Seattle",
