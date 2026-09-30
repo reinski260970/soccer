@@ -2,7 +2,7 @@
 
   python -m oddswatch scan [--days 7] [--watch-days 14] [--sports soccer,nfl,nhl,nba,hockey_eu] [--send]
   python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
-  python -m oddswatch news [--send]      # News-Agent: Warnungen zu Freigaben/Watchlist
+  python -m oddswatch news [--send] [--digest]   # News-Agent: Warnungen bzw. Übersicht
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
   python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
@@ -98,6 +98,21 @@ def _daily(a) -> int:
 def _news(a) -> int:
     from . import news
     j = Journal()
+    if a.digest:
+        from datetime import datetime, timezone
+        from pathlib import Path as _P
+        targets = news.load_targets(j)
+        issues: list[str] = []
+        items = news.collect({t.league for t in targets}, issues)
+        alerts = news.find_alerts(targets, items, set(), datetime.now(timezone.utc))
+        txt = news.digest_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"))
+        print(f"{len(items)} Artikel geprüft, {len(alerts)} Meldungen in der Übersicht")
+        print("--- Telegram ---\n" + txt)
+        if a.send:
+            r = telegram.send(txt)
+            print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
+            return 0 if r["sent"] else 2
+        return 0
     alerts, issues, n = news.run(j)
     for i in issues:
         print(f"Quelle nicht erreichbar: {i}")
@@ -245,6 +260,7 @@ def main(argv: list[str] | None = None) -> int:
     d.set_defaults(fn=_daily)
     nw = sub.add_parser("news")
     nw.add_argument("--send", action="store_true")
+    nw.add_argument("--digest", action="store_true", help="Übersicht aller Meldungen (72 h), auch bereits gemeldete")
     nw.set_defaults(fn=_news)
     sub.add_parser("settle").set_defaults(fn=_settle)
     sub.add_parser("closing").set_defaults(fn=_closing)

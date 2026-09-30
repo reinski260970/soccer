@@ -403,3 +403,24 @@ def mark_seen(alerts: list[Alert], j: Journal) -> None:
                        "category": a.category, "severe": a.severe, "source": a.item.source,
                        "confirmed_by": "; ".join(a.confirmed_by), "title": a.item.title,
                        "link": a.item.link} for a in alerts])
+
+
+def digest_text(alerts: list[Alert], stand: str) -> str:
+    """Übersicht aller materiellen Meldungen je Spiel (auch bereits gemeldete)."""
+    if not alerts:
+        return f"📰 NEWS-ÜBERSICHT {stand}\nKeine materiellen Meldungen zu Freigaben/Watchlist (72 h)."
+    by_event: dict[str, list[Alert]] = {}
+    for a in alerts:
+        by_event.setdefault(a.target.event, []).append(a)
+    out = [f"📰 NEWS-ÜBERSICHT {stand}", "Letzte 72 h · Freigaben und Watchlist · nur Info, Entscheidung beim CEO"]
+    order = sorted(by_event.values(), key=lambda v: (v[0].target.status != "PLAY", v[0].target.kickoff))
+    for group in order:
+        t = group[0].target
+        icon = "✅ PLAY" if t.status == "PLAY" else "👀 WATCH"
+        out += ["", f"{icon} · {_league(t.league)} · {_kick(t.kickoff)}", f"🆚 {t.event}",
+                f"   Tipp: {t.selection} @ {_q(t.odds)}"]
+        for a in sorted(group, key=lambda a: (not a.severe, a.item.published or datetime.max.replace(tzinfo=timezone.utc))):
+            conf = "✔️" if a.confirmed_by else "⚠️"
+            out.append(f"{'🔴' if a.severe else '🟡'} {a.category}: {a.item.title} ({a.item.source}) {conf}")
+    out += ["", "✔️ bestätigt durch 2. Quelle · ⚠️ nur eine Quelle"]
+    return "\n".join(out)

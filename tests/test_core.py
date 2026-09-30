@@ -759,3 +759,16 @@ def test_news_match_report_debut_is_not_return():
     from oddswatch import news
     assert news.classify("Scotland routed by Swiss in Pocognoli's home debut") is None
     assert news.classify("Jonathan Greenard (pectoral) makes Eagles debut on Monday")[0] == "Rückkehr/Startelf"
+
+
+def test_news_digest_groups_by_game():
+    from datetime import datetime, timezone
+    from oddswatch import news
+    from oddswatch.news import Item
+    now = datetime(2026, 9, 28, 20, tzinfo=timezone.utc)
+    pub = datetime(2026, 9, 28, 18, tzinfo=timezone.utc)
+    items = [Item("ESPN", "nfl", "Panthers CB Jaycee Horn out with torn quad", "", "d1", pub, ["Carolina Panthers"])]
+    alerts = news.find_alerts([_news_target()], items, set(), now)
+    txt = news.digest_text(alerts, "28.09.2026")
+    assert "NEWS-ÜBERSICHT" in txt and "🆚 Carolina Panthers – Detroit Lions" in txt and "Jaycee Horn" in txt
+    assert "Keine materiellen" in news.digest_text([], "x")
