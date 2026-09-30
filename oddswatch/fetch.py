@@ -20,12 +20,14 @@ CACHE = Path("data/cache")
 
 
 def get(url: str, timeout: float = 20.0, cache_days: float = 0.0,
-        retries: int = 3, user_agent: str = "oddswatch/0.2") -> tuple[str | None, str | None]:
+        retries: int = 3, user_agent: str = "oddswatch/0.2",
+        headers: dict[str, str] | None = None) -> tuple[str | None, str | None]:
     cp = CACHE / (hashlib.sha1(url.encode()).hexdigest() + ".txt")
     if cache_days > 0 and cp.exists() and time.time() - cp.stat().st_mtime < cache_days * 86400:
         return cp.read_text(encoding="utf-8"), None
     req = urllib.request.Request(url, headers={"User-Agent": user_agent,
-                                               "Accept": "application/json, text/csv, */*"})
+                                               "Accept": "application/json, text/csv, */*",
+                                               **(headers or {})})
     err = None
     for attempt in range(retries + 1):
         try:

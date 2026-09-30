@@ -17,7 +17,7 @@ import json
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import lines, report, settle, telegram
+from . import guard, lines, report, settle, telegram
 from .journal import Journal
 from .scan import Fixture, _attach_kalshi, _devig_ref, evaluate_fixture, snapshot
 from .selection import Candidate, pick
@@ -108,4 +108,8 @@ def run(j: Journal | None = None, send: bool = False, days: int = 7,
     STATE.write_text(json.dumps(sorted(seen)), encoding="utf-8")
     log += settle.settle_all(j)[-2:]
     log += [f"  Hinweis: {i}" for i in issues[:5]]
+    try:
+        log += guard.run(j, send=send, now=now)
+    except Exception as e:  # Wächter darf den Schnellscan nie abbrechen
+        log.append(f"Quotenwächter: Fehler {type(e).__name__}: {e}")
     return log

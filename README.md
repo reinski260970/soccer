@@ -16,6 +16,7 @@ python -m oddswatch closing              # Kalshi-Preise offener Tipps sichern (
 python -m oddswatch verify               # offene Tipps gegen Live-Preis prüfen (mit Rechenweg und Links)
 python -m oddswatch backtest             # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
 python -m oddswatch quick --send         # Schnellscan Kalshi vs. DraftKings (für den 15-Minuten-Takt)
+python -m oddswatch guard --send         # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair
 python -m oddswatch tennis --send        # Tennis-Valuebets aus MongoDB Atlas (tennis_db), nur neue Tipps
 python -m oddswatch settle               # Kalshi-Ergebnisse abrufen, abrechnen, CLV
 python -m oddswatch place --ref KXNFLGAME-26OCT04DETCAR-CAR --odds 2.66 --stake 0.75
@@ -153,7 +154,27 @@ Kalshi-Preise offener Tipps (Closing Line) und rechnet beendete Tipps ab.
 
 Zeitsteuerung: `.github/workflows/quick-scan.yml` (cron alle 15 Minuten). Geplante
 Workflows laufen nur vom Standard-Branch – aktiv, sobald die Datei auf `main` liegt und
-die Repository-Secrets `TELEGRAM_BOT_TOKEN` und `TELEGRAM_CHAT_ID` gesetzt sind.
+die Repository-Secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` und `APIKEY`
+(API-Football, für den Quotenwächter) gesetzt sind.
+
+## Quotenwächter (Pinnacle, Bet365, Betfair)
+
+`python -m oddswatch guard --send` beobachtet alles, was der CEO ausgibt – Freigaben und
+Watchlist (`data/journal/watchlist.json`) plus offene Freigaben aus dem Journal – in den
+Fußball-Märkten 1X2 und Über/Unter, bis 14 Tage vor Anstoß. Quelle ist API-Football
+(`sources/apifootball.py`, Schlüssel in `APIKEY`): Pinnacle de-vigged als faire Referenz,
+Bet365 und Betfair (Sportsbook, nicht Exchange) als spielbare Preise. Spiele werden über
+Anstoß (±90 Min.) und beide Teamnamen zugeordnet, U19/U21 zu anderer Zeit fallen raus.
+
+Telegram-Meldung, einmal je Tipp, Buchmacher und Preisstufe (+5 %,
+Zustand in `data/journal/odds_guard.json`):
+- **SPIELBAR**: Bet365/Betfair ≥ spielbare Mindestquote (EV ≥ 3 % gegen Pinnacle fair)
+- **MARKT GEGEN FREIGABE** (nur PLAY): Pinnacle fair liegt über dem Freigabepreis.
+  Der Wächter warnt nur, der CEO entscheidet.
+
+Läuft in jedem Schnellscan mit (15-Minuten-Takt, ≈ 1 Abruf je Spieltag und je Spiel,
+also ≈ 1.000 von 7.500 Anfragen/Tag). Ohne `APIKEY` wird er übersprungen, Fehler brechen
+den Schnellscan nie ab. NFL/NHL/NBA/Eishockey sind nicht abgedeckt (API-Football = Fußball).
 
 ## Modellforschung
 
