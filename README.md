@@ -141,6 +141,7 @@ Verbindung: `MONGODB_URI` (Connection-String eines Datenbankbenutzers mit Rolle
 `read` auf `tennis_db`, in Atlas unter *Database Access* anlegen; die IP bzw. GitHub-
 Runner unter *Network Access* freigeben), optional `MONGODB_DB` (Standard `tennis_db`).
 Ohne `MONGODB_URI` meldet der Bericht das und bricht nichts anderes ab.
+Im Schnellscan-Workflow läuft `tennis --send` nach dem Kalshi-Scan (Secret `MONGODB_URI`).
 
 ## Schnellscan (15-Minuten-Takt)
 

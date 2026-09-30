@@ -633,6 +633,9 @@ def test_quick_scan_alerts_once_per_price_level(tmp_path, monkeypatch):
     monkeypatch.setattr(lines, "candidates", lambda *a, **k: [])
     monkeypatch.setattr(quick.settle, "snapshot_open", lambda j: [])
     monkeypatch.setattr(quick.settle, "settle_all", lambda j: [])
+    monkeypatch.setattr(quick.apifootball, "api_key", lambda: None)   # kein Live-Betfair-Scan im Test
+    monkeypatch.setattr(quick.bfscan, "settle", lambda j: [])
+    monkeypatch.setattr(quick.guard, "run", lambda *a, **k: [])
     sent = []
     monkeypatch.setattr(quick.telegram, "send", lambda t: sent.append(t) or {"sent": True, "message_ids": [1]})
     j = Journal(tmp_path / "j")
