@@ -808,3 +808,46 @@ def test_tune_calibration_and_score():
     s = [(date(2025, 1, 1), [0.5, 0.3, 0.2], [0.5, 0.3, 0.2], [True, False, False], [2.0, 3.4, 5.0], [0.5, 0.3, 0.2])]
     r = tune.score(s, 1.0, 0.0)
     assert r["n"] == 1 and abs(r["gain_vs_market"]) < 1e-12
+
+
+def test_news_noise_filter_and_impact():
+    from oddswatch import news
+    assert news.is_noise("Can the Broncos keep pulling off unlikely comeback victories?")
+    assert news.is_noise("Scotland routed by Swiss in Pocognoli's home debut")
+    assert not news.is_noise("Panthers CB Jaycee Horn out indefinitely with torn quad")
+    assert news.impact("Bears expected to start Case Keenum at QB") == "hoch"
+    assert news.impact("Torwart fällt wochenlang aus") == "hoch"
+    assert news.impact("Backup safety placed on IR") == "gering"
+    assert news.impact("Ravens center out 2-3 months") == "mittel"
+
+
+def test_news_market_view_and_position(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    from oddswatch import newsmarket
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.sources.kalshi import KalshiQuote
+    g = EspnGame("1", "nfl", datetime(2026, 10, 4, 17, tzinfo=timezone.utc),
+                 Team("Chicago Bears"), Team("New York Jets"), "STATUS_SCHEDULED",
+                 ref_line={"ml_home": 1.60, "ml_away": 2.55})
+    monkeypatch.setattr(newsmarket, "_game", lambda lg, ev, ko: g)
+    q = lambda s, lab, b, a: KalshiQuote("", "E", f"E-{s}", s, lab, b, a, 0, 0, "now")
+    j = Journal(tmp_path)
+    j.append("forecasts", [{"event": g.title, "market": "home", "p_ref": 0.70},
+                           {"event": g.title, "market": "away", "p_ref": 0.30}])
+    # Kalshi hinkt hinterher: Jets noch 34 ¢, DraftKings sieht sie bei ~38 %
+    cache = {"KXNFLGAME": [q("home", "Chicago", 0.64, 0.65), q("away", "New York J", 0.33, 0.34)]}
+    v = newsmarket.view("nfl", g.title, g.kickoff.isoformat(), j, cache)
+    assert v.window and "Fenster offen" in v.verdict and "Jets" in v.verdict
+    # Kalshi hat nachgezogen -> eingepreist (DraftKings 30 % -> ~38 %)
+    cache = {"KXNFLGAME": [q("home", "Chicago", 0.60, 0.61), q("away", "New York J", 0.39, 0.40)]}
+    v = newsmarket.view("nfl", g.title, g.kickoff.isoformat(), j, cache)
+    assert not v.window and "eingepreist" in v.verdict
+    pos = newsmarket.position(v, "home", 0.5, 1.83)
+    assert "Verkauf jetzt" in pos and "Haltewert" in pos
+
+
+def test_news_match_report_not_an_alert_and_mixed_impact():
+    from oddswatch import news
+    assert news.impact("Buccaneers put WR McMillan on IR, add QB Rypien to practice squad") == "mittel"
+    assert news.is_noise("Spain beat Croatia with Yamal double, unbeaten run now at 40")
+    assert not (news.classify("Spain beat Croatia with Yamal double, unbeaten run now at 40") or ("", False))[1]

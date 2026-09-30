@@ -123,7 +123,8 @@ def _news(a) -> int:
         print("Telegram: keine neuen News – nicht gesendet")
         return 0
     from datetime import datetime, timezone
-    txt = news.alert_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"))
+    txt = news.alert_text(alerts, datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
+                          news.market_views(alerts, j))
     print("--- Telegram ---\n" + txt)
     if a.send:
         r = telegram.send(txt)
