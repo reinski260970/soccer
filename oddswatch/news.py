@@ -73,7 +73,7 @@ MATERIAL = [
      r"|beurlaubt|trainerwechsel|neuer trainer", "Trainerwechsel", True),
     (r"questionable|doubtful|day-to-day|game-time decision|limited in practice|did not practice"
      r"|\bDNP\b|fraglich|angeschlagen|wackelt|einsatz (ist )?offen", "fraglich", False),
-    (r"activated|returns?\b|return to|back in (the )?lineup|\bdebut|named (the )?starter|clear(ed|ing|s)\b"
+    (r"activated|returns?\b|return to|back in (the )?lineup|\bmakes?\s+(his|her|\w+)\s+debut|(set|expected|poised) to (make\s+\w+\s+)?debut|will debut|named (the )?starter|clear(ed|ing|s)\b"
      r"|(will|to|expected to) start(?!\s+(the\s+)?(season|year|camp|preseason|training|week|homestand|road))"
      r"|comeback(?!\s+(win|wins|victor|victories|bid|attempt))|rückkehr|kehrt zurück|wieder (fit|im training|dabei)|einsatzbereit",
      "Rückkehr/Startelf", False),

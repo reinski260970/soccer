@@ -753,3 +753,9 @@ def test_clubelo_stops_after_consecutive_failures_even_with_partial_data(monkeyp
     monkeypatch.setattr(clubelo, "parse_page", lambda h: {"Club A": (1500.0, "ALB")})
     out, errs = clubelo.ratings()
     assert out and len(calls) == 4 and "abgebrochen" in errs[0]
+
+
+def test_news_match_report_debut_is_not_return():
+    from oddswatch import news
+    assert news.classify("Scotland routed by Swiss in Pocognoli's home debut") is None
+    assert news.classify("Jonathan Greenard (pectoral) makes Eagles debut on Monday")[0] == "Rückkehr/Startelf"
