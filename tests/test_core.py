@@ -731,6 +731,7 @@ def test_tennis_atlas_bets_record_and_alert_state(tmp_path):
 def test_tennis_without_uri_reports_honestly(monkeypatch):
     from oddswatch.sources import tennis_atlas
     monkeypatch.delenv("MONGODB_URI", raising=False)
+    monkeypatch.delenv("MONGO_URI", raising=False)
     bets, tr, err = tennis_atlas.fetch()
     assert bets == [] and tr is None and "MONGODB_URI" in err
 
