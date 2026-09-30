@@ -740,3 +740,16 @@ def test_news_recovery_story_and_game_comeback():
     assert news.classify("Inside George Kittle's 243-day recovery from torn Achilles")[0] == "Rückkehr/Startelf"
     assert news.classify("Can the Broncos keep pulling off unlikely comeback victories?") is None
     assert news.classify("Panthers CB Jaycee Horn out indefinitely with torn quad")[0] == "Ausfall"
+
+
+def test_clubelo_stops_after_consecutive_failures_even_with_partial_data(monkeypatch):
+    from oddswatch.sources import clubelo
+    calls = []
+
+    def fake_get(url, **kw):
+        calls.append(url)
+        return ("<html></html>", None) if len(calls) == 1 else (None, f"{url}: timed out")
+    monkeypatch.setattr(clubelo.fetch, "get", fake_get)
+    monkeypatch.setattr(clubelo, "parse_page", lambda h: {"Club A": (1500.0, "ALB")})
+    out, errs = clubelo.ratings()
+    assert out and len(calls) == 4 and "abgebrochen" in errs[0]

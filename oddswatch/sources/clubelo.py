@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 
 from .. import fetch
 
@@ -37,20 +38,28 @@ def parse_page(html: str) -> dict[str, tuple[float, str]]:
     return out
 
 
-def ratings(cache_days: float = 1.0) -> tuple[dict[str, tuple[float, str]], list[str]]:
-    """Alle Vereine der UEFA-Verbände: Name -> (Elo, Verband)."""
+def ratings(cache_days: float = 1.0, budget_s: float = 120.0
+            ) -> tuple[dict[str, tuple[float, str]], list[str]]:
+    """Alle Vereine der UEFA-Verbände: Name -> (Elo, Verband).
+
+    Bei gestörtem Dienst: Abbruch nach 3 Fehlern in Folge oder nach budget_s
+    Sekunden – der Scan darf nicht an einer Einzelquelle hängen."""
     out: dict[str, tuple[float, str]] = {}
     errs = []
     fails = 0
+    t0 = time.monotonic()
     for c in UEFA:
-        h, e = fetch.get(f"{BASE}/{c}", timeout=40, cache_days=cache_days, retries=1,
+        if time.monotonic() - t0 > budget_s:
+            errs.insert(0, f"ClubElo: Zeitbudget {budget_s:.0f} s überschritten – Abruf abgebrochen")
+            break
+        h, e = fetch.get(f"{BASE}/{c}", timeout=20, cache_days=cache_days, retries=0,
                          user_agent=UA)
         if h is None:
             errs.append(f"ClubElo {c}: {e}")
             fails += 1
-            if fails >= 3 and not out:
+            if fails >= 3:
                 # Dienst gestört: nicht alle 54 Verbände einzeln abwarten
-                errs.insert(0, f"ClubElo nicht erreichbar ({e}) – Abruf nach {fails} Fehlern abgebrochen")
+                errs.insert(0, f"ClubElo nicht erreichbar ({e}) – Abruf nach {fails} Fehlern in Folge abgebrochen")
                 break
             continue
         fails = 0
