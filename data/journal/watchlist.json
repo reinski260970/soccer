@@ -25,6 +25,52 @@
  {
   "status": "WATCH",
   "league": "nfl",
+  "event": "San Francisco 49ers – Denver Broncos",
+  "kickoff": "2026-10-04T20:25+00:00",
+  "market": "U47.5:no",
+  "selection": "Unter 47.5 Punkte",
+  "odds": 2.0512820512820515,
+  "fair": 1.9999999999999996,
+  "min_odds": 2.0599999999999996,
+  "home": [
+   "San Francisco 49ers",
+   "San Francisco",
+   "49ers",
+   "SF"
+  ],
+  "away": [
+   "Denver Broncos",
+   "Denver",
+   "Broncos",
+   "DEN"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
+  "event": "Baltimore Ravens – Tennessee Titans",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "home",
+  "selection": "Baltimore Ravens Sieg (inkl. OT)",
+  "odds": 1.1641443538998837,
+  "fair": 1.1494904518742934,
+  "min_odds": 1.1839751654305222,
+  "home": [
+   "Baltimore Ravens",
+   "Baltimore",
+   "Ravens",
+   "BAL"
+  ],
+  "away": [
+   "Tennessee Titans",
+   "Tennessee",
+   "Titans",
+   "TEN"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nfl",
   "event": "Las Vegas Raiders – Kansas City Chiefs",
   "kickoff": "2026-10-04T20:25+00:00",
   "market": "away",
@@ -66,52 +112,6 @@
    "Liverpool",
    "Liverpool",
    "LIV"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nations",
-  "event": "Azerbaijan – Liechtenstein",
-  "kickoff": "2026-10-01T16:00+00:00",
-  "market": "home",
-  "selection": "Azerbaijan Sieg (90 Min.)",
-  "odds": 1.1641443538998837,
-  "fair": 1.1568037324179572,
-  "min_odds": 1.1915078443904958,
-  "home": [
-   "Azerbaijan",
-   "Azerbaijan",
-   "Azerbaijan",
-   "AZE"
-  ],
-  "away": [
-   "Liechtenstein",
-   "Liechtenstein",
-   "Liechtenstein",
-   "LIE"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nfl",
-  "event": "Seattle Seahawks – Los Angeles Chargers",
-  "kickoff": "2026-10-04T20:25+00:00",
-  "market": "home",
-  "selection": "Seattle Seahawks Sieg (inkl. OT)",
-  "odds": 1.2939958592132506,
-  "fair": 1.287455303063492,
-  "min_odds": 1.326078962155397,
-  "home": [
-   "Seattle Seahawks",
-   "Seattle",
-   "Seahawks",
-   "SEA"
-  ],
-  "away": [
-   "Los Angeles Chargers",
-   "Los Angeles",
-   "Chargers",
-   "LAC"
   ]
  }
 ]
