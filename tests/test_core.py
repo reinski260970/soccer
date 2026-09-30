@@ -851,3 +851,26 @@ def test_news_match_report_not_an_alert_and_mixed_impact():
     assert news.impact("Buccaneers put WR McMillan on IR, add QB Rypien to practice squad") == "mittel"
     assert news.is_noise("Spain beat Croatia with Yamal double, unbeaten run now at 40")
     assert not (news.classify("Spain beat Croatia with Yamal double, unbeaten run now at 40") or ("", False))[1]
+
+
+def test_bfscan_parse_fair_and_settle():
+    from oddswatch import bfscan
+    rows = [{"fixture": {"id": 7}, "bookmakers": [
+        {"id": 4, "bets": [
+            {"name": "Match Winner", "values": [{"value": "Home", "odd": "2.00"},
+                                                {"value": "Draw", "odd": "3.60"},
+                                                {"value": "Away", "odd": "4.00"}]},
+            {"name": "Goals Over/Under", "values": [{"value": "Over 2.5", "odd": "1.95"},
+                                                    {"value": "Under 2.5", "odd": "1.95"},
+                                                    {"value": "Over 2.25", "odd": "1.80"}]},
+            {"name": "Asian Handicap", "values": [{"value": "Home -0.5", "odd": "2.02"},
+                                                  {"value": "Away -0.5", "odd": "1.88"}]}]},
+        {"id": 3, "bets": [{"name": "Goals Over/Under", "values": [{"value": "Over 2.5", "odd": "2.10"}]}]}]}]
+    b = bfscan.parse(rows)[7]
+    assert "O2.25" not in b["Pinnacle"]                       # Viertel-Linie ignoriert
+    p = bfscan.fair(b["Pinnacle"])
+    assert abs(p["O2.5"] - 0.5) < 1e-9 and abs(p["home"] + p["draw"] + p["away"] - 1) < 1e-9
+    assert abs(p["AH-0.5:home"] + p["AH+0.5:away"] - 1) < 1e-9
+    assert b["Betfair"]["O2.5"][0] * p["O2.5"] - 1 > 0.03    # Betfair 2,10 vs fair 2,00 -> Wert
+    assert bfscan.won("AH-0.5:home", 2, 1) and not bfscan.won("AH+0.5:away", 2, 1)
+    assert bfscan.won("U2.5", 1, 1) and bfscan.won("draw", 0, 0)

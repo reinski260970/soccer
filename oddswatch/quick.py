@@ -17,11 +17,11 @@ import json
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import guard, lines, report, settle, telegram
+from . import bfscan, guard, lines, report, settle, telegram
 from .journal import Journal
 from .scan import Fixture, _attach_kalshi, _devig_ref, evaluate_fixture, snapshot
 from .selection import Candidate, pick
-from .sources import espn, kalshi
+from .sources import apifootball, espn, kalshi
 
 # Liga -> (ESPN-Pfad, Kalshi-Serie Sieger, Sportart, Dreiweg?)
 LEAGUES = {
@@ -42,6 +42,8 @@ LINE_SERIES = {"epl": ("KXEPLTOTAL", "KXEPLSPREAD", "Tore"),
                "laliga": ("KXLALIGATOTAL", "KXLALIGASPREAD", "Tore"),
                "seriea": ("KXSERIEATOTAL", "KXSERIEASPREAD", "Tore")}
 STATE = Path("data/journal/quick_alerts.json")
+BF_LAST = Path("data/journal/bfscan_last.txt")
+BF_EVERY = timedelta(minutes=55)      # Betfair-Scan stündlich (API-Football-Kontingent)
 
 
 def fixtures(start: date, days: int, issues: list[str]) -> list[Fixture]:
@@ -83,9 +85,24 @@ def run(j: Journal | None = None, send: bool = False, days: int = 7,
         lines.SERIES.setdefault(lg, s)
     fx = fixtures(now.date(), days, issues)
     cands = [c for f in fx for c in evaluate_fixture(f, {})] + lines.candidates(fx, issues, notes)
+    bf_log: list[str] = []
+    try:
+        last = datetime.fromisoformat(BF_LAST.read_text(encoding="utf-8").strip())
+    except (OSError, ValueError):
+        last = None
+    if apifootball.api_key() and (last is None or now - last >= BF_EVERY):
+        bf, snaps, bf_issues = bfscan.scan(now)
+        cands += bf
+        issues += bf_issues
+        bf_picks = {c.ref for c in pick(bf)}
+        bfscan.save_snapshots(snaps, bfscan.open_refs(j) | bf_picks, now)
+        BF_LAST.parent.mkdir(parents=True, exist_ok=True)
+        BF_LAST.write_text(now.isoformat(), encoding="utf-8")
+        bf_log.append(f"Betfair-Scan: {len(bf)} Betfair/Bet365-Preise gegen Pinnacle-fair, "
+                      f"{len(bf_picks)} Freigabe(n)")
     picks = pick(cands)
     log = [f"Schnellscan {now:%d.%m.%Y %H:%M} UTC: {len(fx)} Spiele mit DraftKings- und Kalshi-Preis, "
-           f"{len(cands)} Märkte verglichen, {len(picks)} Freigabe(n)"]
+           f"{len(cands)} Märkte verglichen, {len(picks)} Freigabe(n)"] + bf_log
     snapshot(fx)
     log += settle.snapshot_open(j)
     try:
@@ -100,12 +117,14 @@ def run(j: Journal | None = None, send: bool = False, days: int = 7,
                    f"EV {c.ev * 100:+.1f} %)" + ("  [neu]" if c in new else ""))
     if send and new:
         txt = report.telegram_text(now.strftime("%d.%m.%Y %H:%M UTC"), new, [])
-        r = telegram.send("⚡ Schnellscan – Kalshi günstiger als DraftKings\n" + txt)
+        r = telegram.send("⚡ Schnellscan – Preis über dem fairen Kurs (Kalshi vs. DraftKings, "
+                          "Betfair/Bet365 vs. Pinnacle)\n" + txt)
         log.append("Telegram: " + (f"gesendet {r['message_ids']}" if r["sent"] else f"NICHT gesendet – {r['error']}"))
         if r["sent"]:
             seen |= {_key(c) for c in new}
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(sorted(seen)), encoding="utf-8")
+    log += bfscan.settle(j)
     log += settle.settle_all(j)[-2:]
     log += [f"  Hinweis: {i}" for i in issues[:5]]
     try:

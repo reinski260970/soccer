@@ -183,3 +183,16 @@ Holdout-Saisons: sagt die Abweichung Modell − Eröffnungsquote die Linienbeweg
 Closing voraus (CLV)? Stand 29.09.2026: Schuss-xG-Varianten zeigen ein echtes, aber
 kleines Signal (Steigung ≈ 0,03), die Tipps nach Abweichung haben dennoch CLV −7 bis
 −10 % (Holdout) – kein Modell ist besser als der Markt, daher reiner Preisvergleich.
+
+## Betfair-/Bet365-Scan (API-Football)
+
+Stündlich im Schnellscan (`oddswatch/bfscan.py`, Schlüssel `APIKEY`): alle Spiele der
+nächsten 7 Tage in Bundesliga, 2. BL, AT-Bundesliga, Premier League, La Liga, Serie A,
+Ligue 1, UCL, UEL, UECL und Nations League. Pinnacle (de-vigged je Markt) ist der faire
+Kurs, Betfair- und Bet365-**Sportsbook** sind die spielbaren Preise (API-Football liefert
+nicht die Betfair-Börse; Marge 106–111 % im 1X2). Märkte: 1X2, Über/Unter und Asian
+Handicap auf halben Linien. Freigabe bei EV ≥ 3 % gegen Pinnacle-fair. Journal-Referenz
+`AF:<Fixture>:<Markt>`; Closing Line = letzter Pinnacle-Snapshot vor Anstoß
+(`data/snapshots/apifootball-*.jsonl`), Abrechnung über das API-Football-Ergebnis.
+Achtung: API-Football nennt beim Asian Handicap für beide Seiten die Heim-Linie
+("Away -0.5" = Gast +0,5).
