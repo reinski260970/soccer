@@ -127,10 +127,14 @@ def evaluate(samples: list) -> dict:
             "validated": best > 0 and n >= MIN_BETS and avg_clv > 0}
 
 
-def run(today: date | None = None, out: Path = OUT) -> list[str]:
+def run(today: date | None = None, out: Path = OUT, us: bool = False) -> list[str]:
     today = today or date.today()
     cur = today.year if today.month >= 7 else today.year - 1
-    result, log = {}, []
+    try:   # bestehende Einträge (z. B. NFL/NHL aus einem früheren --us-Lauf) behalten
+        result = json.loads(out.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        result = {}
+    log = []
     for league, code in LEAGUES.items():
         ms, rows = _load(code, [cur - 3, cur - 2, cur - 1, cur])
         samples = _samples(ms, rows, date(cur - 2, 7, 1))
@@ -142,9 +146,20 @@ def run(today: date | None = None, out: Path = OUT) -> list[str]:
                        f"Regel (w={ev.get('w_rule', 0)}): {ev['n']} Tipps, CLV {ev['clv'] * 100:+.1f} %, "
                        f"ROI {ev['roi'] * 100:+.1f} % → "
                        + ("VALIDIERT" if ev["validated"] else "nicht besser als der Markt"))
+    if us:
+        from . import backtest_us
+        for key, samples in (("nfl:1x2", backtest_us.nfl_samples(cur)),
+                             ("nhl:1x2", backtest_us.nhl_samples(cur))):
+            ev = evaluate(samples)
+            result[key] = ev
+            log.append(f"{key}: {ev['n_games']} Spiele, LogLoss Markt "
+                       f"{ev.get('logloss', {}).get('0.0', 0):.4f} / bestes w {ev.get('best_w', 0)}, "
+                       f"Regel: {ev['n']} Tipps, CLV {ev['clv'] * 100:+.1f} %, "
+                       f"ROI {ev['roi'] * 100:+.1f} % → "
+                       + ("VALIDIERT" if ev["validated"] else "nicht besser als der Markt"))
     result["_stand"] = today.isoformat()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=1, ensure_ascii=False), encoding="utf-8")
-    log.append(f"gespeichert: {out}. Alle übrigen Ligen/Märkte (NFL, NHL, NBA, UEFA, Eishockey, "
-               "AT) haben keine historischen Quoten hier – gelten als nicht validiert.")
+    log.append(f"gespeichert: {out}. Ohne Eintrag (NBA, UEFA, europ. Eishockey, AT"
+               + ("" if us else "; NFL/NHL nur mit --us") + ") gilt: nicht validiert.")
     return log
