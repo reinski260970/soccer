@@ -7,7 +7,7 @@ tennisexplorer). oddswatch liest daraus nur:
   ``PUBLICATION_APPROVED``, Status ``open``) ab heute,
 - ``valuebets_history``: abgerechnete Tipps für Bilanz und CLV.
 
-Verbindung über die Umgebungsvariable ``MONGODB_URI`` (Connection-String eines
+Verbindung über die Umgebungsvariable ``MONGODB_URI`` bzw. ``MONGO_URI`` (Connection-String eines
 Read-only-Datenbankbenutzers), Datenbankname über ``MONGODB_DB`` (Standard
 ``tennis_db``). Ohne URI oder bei Verbindungsfehlern kommt ein Fehlertext zurück –
 es wird nie auf alte oder erfundene Daten zurückgefallen.
@@ -118,9 +118,9 @@ def track_record(docs: list[dict]) -> TrackRecord:
 
 
 def _db(uri: str | None, db_name: str | None):
-    uri = uri or os.environ.get("MONGODB_URI")
+    uri = uri or os.environ.get("MONGODB_URI") or os.environ.get("MONGO_URI")
     if not uri:
-        return None, "MONGODB_URI nicht gesetzt – Tennis (tennis_db) nicht abrufbar"
+        return None, "MONGODB_URI/MONGO_URI nicht gesetzt – Tennis (tennis_db) nicht abrufbar"
     try:
         from pymongo import MongoClient
     except ImportError:
