@@ -733,3 +733,10 @@ def test_tennis_without_uri_reports_honestly(monkeypatch):
     monkeypatch.delenv("MONGODB_URI", raising=False)
     bets, tr, err = tennis_atlas.fetch()
     assert bets == [] and tr is None and "MONGODB_URI" in err
+
+
+def test_news_recovery_story_and_game_comeback():
+    from oddswatch import news
+    assert news.classify("Inside George Kittle's 243-day recovery from torn Achilles")[0] == "Rückkehr/Startelf"
+    assert news.classify("Can the Broncos keep pulling off unlikely comeback victories?") is None
+    assert news.classify("Panthers CB Jaycee Horn out indefinitely with torn quad")[0] == "Ausfall"

@@ -59,6 +59,8 @@ FORUMS = {"Austrian Soccer Board"}
 
 # (Muster, Kategorie, schwer?) – Reihenfolge = Priorität
 MATERIAL = [
+    # Genesung/Rückkehr vor Ausfall prüfen: "recovery from torn Achilles" ist eine Rückkehr
+    (r"recover(y|ed|ing) from|return(s|ing)? from|back from (injury|IR|the)", "Rückkehr/Startelf", False),
     (r"\btraded?\b|trades for|acquires?|acquired|waived|released by|signs with|verpflichtet"
      r"|wechselt (zu|nach)|transfer", "Trade/Wechsel", False),
     (r"ruled out|out for (the )?(season|year|weeks?|game)|season-ending|torn|surgery|fractur"
@@ -73,7 +75,7 @@ MATERIAL = [
      r"|\bDNP\b|fraglich|angeschlagen|wackelt|einsatz (ist )?offen", "fraglich", False),
     (r"activated|returns?\b|return to|back in (the )?lineup|\bdebut|named (the )?starter|clear(ed|ing|s)\b"
      r"|(will|to|expected to) start(?!\s+(the\s+)?(season|year|camp|preseason|training|week|homestand|road))"
-     r"|comeback|rückkehr|kehrt zurück|wieder (fit|im training|dabei)|einsatzbereit",
+     r"|comeback(?!\s+(win|wins|victor|victories|bid|attempt))|rückkehr|kehrt zurück|wieder (fit|im training|dabei)|einsatzbereit",
      "Rückkehr/Startelf", False),
     (r"concussion|injur|hamstring|ankle|knee|illness|verletz|erkrankt|krank", "Verletzung", False),
     (r"\brest(ed|ing)?\b|load management|rotation|geschont|rotiert", "Schonung", False),
