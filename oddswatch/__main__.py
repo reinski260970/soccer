@@ -186,7 +186,7 @@ def _tune(a) -> int:
 
 def _backtest(a) -> int:
     from . import backtest
-    for line in backtest.run():
+    for line in backtest.run(us=getattr(a, "us", False)):
         print(line)
     return 0
 
@@ -282,7 +282,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("settle").set_defaults(fn=_settle)
     sub.add_parser("closing").set_defaults(fn=_closing)
     sub.add_parser("verify").set_defaults(fn=_verify)
-    sub.add_parser("backtest").set_defaults(fn=_backtest)
+    bt = sub.add_parser("backtest")
+    bt.add_argument("--us", action="store_true", help="zusätzlich NFL/NHL gegen ESPN-Linien (langsam)")
+    bt.set_defaults(fn=_backtest)
     sub.add_parser("tune").set_defaults(fn=_tune)
     sub.add_parser("research").set_defaults(fn=_research)
     qk = sub.add_parser("quick")
