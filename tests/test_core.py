@@ -798,3 +798,13 @@ def test_withdrawn_valuebets_excluded_from_balance(tmp_path):
     assert s["settled"] == 0 and s["stake_eh"] == 0
     rows = j.read("valuebets")
     assert rows[0]["result"] == "withdrawn" and "ZURÜCKGEZOGEN" in rows[0]["reason"] and not rows[1]["result"]
+
+
+def test_tune_calibration_and_score():
+    from datetime import date
+    from oddswatch import tune
+    p = tune.calibrate([0.6, 0.25, 0.15], 0.6)
+    assert abs(sum(p) - 1) < 1e-9 and p[0] < 0.6 and p[2] > 0.15      # a<1 zieht zur Mitte
+    s = [(date(2025, 1, 1), [0.5, 0.3, 0.2], [0.5, 0.3, 0.2], [True, False, False], [2.0, 3.4, 5.0], [0.5, 0.3, 0.2])]
+    r = tune.score(s, 1.0, 0.0)
+    assert r["n"] == 1 and abs(r["gain_vs_market"]) < 1e-12

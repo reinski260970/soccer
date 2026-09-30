@@ -1,0 +1,75 @@
+{
+ "bundesliga": {
+  "params": {
+   "half_life_days": 90,
+   "shrink": 3.0,
+   "xg_weight": 0.0
+  },
+  "calib": 0.6,
+  "w": 0.0,
+  "train": {
+   "n": 304,
+   "logloss": 0.9915339480794386,
+   "logloss_market": 0.9915339480794386,
+   "gain_vs_market": 0.0,
+   "bets": 0,
+   "roi": 0.0,
+   "clv": 0.0
+  },
+  "test": {
+   "n": 148,
+   "logloss": 0.9167345046173486,
+   "logloss_market": 0.9167345046173486,
+   "gain_vs_market": 0.0,
+   "bets": 0,
+   "roi": 0.0,
+   "clv": 0.0
+  },
+  "test_w0": {
+   "n": 148,
+   "logloss": 0.9167345046173486,
+   "logloss_market": 0.9167345046173486,
+   "gain_vs_market": 0.0,
+   "bets": 0,
+   "roi": 0.0,
+   "clv": 0.0
+  }
+ },
+ "2bundesliga": {
+  "params": {
+   "half_life_days": 365,
+   "shrink": 3.0,
+   "xg_weight": 0.0
+  },
+  "calib": 0.6,
+  "w": 0.3,
+  "train": {
+   "n": 301,
+   "logloss": 1.0604876763043605,
+   "logloss_market": 1.0630436611951635,
+   "gain_vs_market": 0.002555984890802998,
+   "bets": 76,
+   "roi": -0.039999999999999966,
+   "clv": -0.07956560301044298
+  },
+  "test": {
+   "n": 86,
+   "logloss": 1.032124786043817,
+   "logloss_market": 1.0235164937078884,
+   "gain_vs_market": -0.008608292335928525,
+   "bets": 16,
+   "roi": -0.11562499999999998,
+   "clv": -0.054154780129318084
+  },
+  "test_w0": {
+   "n": 86,
+   "logloss": 1.0235164937078884,
+   "logloss_market": 1.0235164937078884,
+   "gain_vs_market": 0.0,
+   "bets": 0,
+   "roi": 0.0,
+   "clv": 0.0
+  }
+ },
+ "_stand": "2026-09-30"
+}

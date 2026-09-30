@@ -6,6 +6,7 @@
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
   python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
   python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
+  python -m oddswatch tune              # Fußball-Modell: Tuning auf Saison N, Test auf N+1
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
   python -m oddswatch quick [--send]    # Schnellscan Kalshi vs. DraftKings (15-Min-Takt), Closing, Abrechnung
@@ -167,6 +168,13 @@ def _tennis(a) -> int:
     return 0
 
 
+def _tune(a) -> int:
+    from . import tune
+    for line in tune.run():
+        print(line)
+    return 0
+
+
 def _backtest(a) -> int:
     from . import backtest
     for line in backtest.run():
@@ -266,6 +274,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("closing").set_defaults(fn=_closing)
     sub.add_parser("verify").set_defaults(fn=_verify)
     sub.add_parser("backtest").set_defaults(fn=_backtest)
+    sub.add_parser("tune").set_defaults(fn=_tune)
     sub.add_parser("research").set_defaults(fn=_research)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
