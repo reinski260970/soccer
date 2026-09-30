@@ -59,7 +59,9 @@ def test_find_fixture_excludes_youth_by_kickoff():
     assert apifootball.find_fixture(fx, ["Chelsea"], ["Lille"], ko) is None
 
 
-def test_run_without_key(monkeypatch):
+def test_run_without_key(monkeypatch, tmp_path):
+    monkeypatch.setattr(guard, "STATUS", tmp_path / "status.txt")
     for k in ("APIKEY", "API_FOOTBALL_KEY", "API_KEY"):
         monkeypatch.delenv(k, raising=False)
     assert "nicht gesetzt" in guard.run(send=False)[0]
+    assert "nicht gesetzt" in (tmp_path / "status.txt").read_text(encoding="utf-8")

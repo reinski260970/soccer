@@ -27,6 +27,7 @@ PLAYABLE = ("Bet365", "Betfair")
 MIN_EV = 0.03
 HORIZON_DAYS = 14
 STATE = Path("data/journal/odds_guard.json")
+STATUS = Path("data/journal/odds_guard_status.txt")
 
 
 def _group(market: str) -> list[str] | None:
@@ -111,7 +112,10 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
     j = j or Journal()
     now = now or datetime.now(timezone.utc)
     if not apifootball.api_key():
-        return ["Quotenwächter: APIKEY (API-Football) nicht gesetzt – übersprungen"]
+        log = [f"Quotenwächter {now:%d.%m.%Y %H:%M} UTC: APIKEY (API-Football) nicht gesetzt – übersprungen"]
+        STATUS.parent.mkdir(parents=True, exist_ok=True)
+        STATUS.write_text(log[0] + "\n", encoding="utf-8")
+        return log
     targets = _targets(j, now)
     log = [f"Quotenwächter {now:%d.%m.%Y %H:%M} UTC: {len(targets)} Fußball-Tipp(s) des CEO "
            f"gegen Pinnacle/Bet365/Betfair"]
@@ -161,4 +165,6 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
         log.append(f"  {len(new)} neue Meldung(en), nicht gesendet (ohne --send)")
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(sorted(seen), ensure_ascii=False), encoding="utf-8")
+    # Letzter Lauf zum Nachsehen im Repo (ohne das Protokoll des Workflows)
+    STATUS.write_text("\n".join(log) + "\n", encoding="utf-8")
     return log
