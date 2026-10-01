@@ -5,3 +5,10 @@
 {"ticker": "KXUEFANLGAME-26OCT04PORNOR-POR", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Portugal", "bid": 0.55, "ask": 0.56, "observed_at": "2026-10-01T18:36:17+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
 {"ticker": "KXUEFANLGAME-26OCT04PORNOR-NOR", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Norway", "bid": 0.23, "ask": 0.24, "observed_at": "2026-10-01T18:36:17+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
 {"ticker": "KXUEFANLGAME-26OCT04PORNOR-TIE", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Tie", "bid": 0.21, "ask": 0.22, "observed_at": "2026-10-01T18:36:17+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
+{"ticker": "KXNFLGAME-26OCT04DETCAR-CAR", "event_ticker": "KXNFLGAME-26OCT04DETCAR", "side": "Carolina", "bid": 0.35, "ask": 0.36, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-05T00:20:00+00:00"}
+{"ticker": "KXNFLGAME-26OCT04DETCAR-DET", "event_ticker": "KXNFLGAME-26OCT04DETCAR", "side": "Detroit", "bid": 0.64, "ask": 0.65, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-05T00:20:00+00:00"}
+{"ticker": "KXNFLGAME-26OCT04NYJCHI-CHI", "event_ticker": "KXNFLGAME-26OCT04NYJCHI", "side": "Chicago", "bid": 0.62, "ask": 0.63, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-04T17:00:00+00:00"}
+{"ticker": "KXNFLGAME-26OCT04NYJCHI-NYJ", "event_ticker": "KXNFLGAME-26OCT04NYJCHI", "side": "New York J", "bid": 0.38, "ask": 0.39, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-04T17:00:00+00:00"}
+{"ticker": "KXUEFANLGAME-26OCT04PORNOR-POR", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Portugal", "bid": 0.55, "ask": 0.56, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
+{"ticker": "KXUEFANLGAME-26OCT04PORNOR-NOR", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Norway", "bid": 0.23, "ask": 0.24, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
+{"ticker": "KXUEFANLGAME-26OCT04PORNOR-TIE", "event_ticker": "KXUEFANLGAME-26OCT04PORNOR", "side": "Tie", "bid": 0.21, "ask": 0.22, "observed_at": "2026-10-01T18:36:27+00:00", "kickoff": "2026-10-04T18:45:00+00:00"}
