@@ -1,0 +1,63 @@
+🗞 Tagesbericht Fr 02.10. 16:05 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.25 EH (-22.50 $) | Einsatz 2,25 EH | ROI -100,0 %
+   Bilanz 0-5 (5 abgerechnet) | Ø CLV -8.0 % (n=5)
+   Offen: 3 Wetten, 1,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ NFL · So 04.10. 19:00 MESZ
+🆚 Chicago Bears – New York Jets
+➡️ New York Jets Sieg (inkl. OT) @ 2,59 | 0,25 EH
+✅ UEFA Nations League · So 04.10. 20:45 MESZ
+🆚 Portugal – Norway
+➡️ Unentschieden (90 Min.) @ 4,31 | 0,25 EH
+✅ NFL · Mo 05.10. 02:20 MESZ
+🆚 Carolina Panthers – Detroit Lions
+➡️ Carolina Panthers Sieg (inkl. OT) @ 2,66 | 0,75 EH
+
+👀 Watchlist
+• Conference League · Do 15.10. 21:00 MESZ
+🆚 Brighton & Hove Albion – Kauno Zalgiris
+➡️ Brighton & Hove Albion Sieg (90 Min.) spielbar ab 1,06 (jetzt 1,06)
+• UEFA Nations League · Sa 03.10. 20:45 MESZ
+🆚 North Macedonia – Scotland
+➡️ North Macedonia Sieg (90 Min.) spielbar ab 5,36 (jetzt 5,25)
+• Europa League · Do 15.10. 21:00 MESZ
+🆚 AFC Bournemouth – SK Sturm Graz
+➡️ AFC Bournemouth Sieg (90 Min.) spielbar ab 1,25 (jetzt 1,22)
+• UEFA Nations League · Sa 03.10. 20:45 MESZ
+🆚 Spain – Czechia
+➡️ Spain Sieg (90 Min.) spielbar ab 1,11 (jetzt 1,08)
+• NHL · So 04.10. 01:30 MESZ
+🆚 New York Islanders – New Jersey Devils
+➡️ New York Islanders Sieg (inkl. OT) spielbar ab 1,99 (jetzt 1,93)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 43 Spiele (43 mit Kalshi-Preis), 0 PLAY
+   • North Macedonia – Scotland · Sa 03.10. 20:45 MESZ: North Macedonia Sieg (90 Min.) @ 5,25, spielbar ab 5,36 (EV 1,0 %)
+   • Spain – Czechia · Sa 03.10. 20:45 MESZ: Spain Sieg (90 Min.) @ 1,08, spielbar ab 1,11 (EV 0,2 %)
+🏒 Eishockey Europa: 64 Spiele (50 mit Kalshi-Preis), 0 PLAY
+   • Linkoping HC – IF Bjorkloven · Sa 03.10. 18:00 MESZ: IF Bjorkloven Sieg (inkl. OT) @ 1,50, spielbar ab 1,38 (EV 12,1 %, nur Modell – nicht validiert)
+   • Frolunda HC – Djurgardens IF · Sa 03.10. 15:15 MESZ: Frolunda HC Sieg (inkl. OT) @ 1,25, spielbar ab 1,27 (EV 0,8 %, nur Modell – nicht validiert)
+🏒 NHL: 49 Spiele (49 mit Kalshi-Preis), 0 PLAY
+   • New York Islanders – New Jersey Devils · So 04.10. 01:30 MESZ: New York Islanders Sieg (inkl. OT) @ 1,93, spielbar ab 1,99 (EV 0,2 %)
+   • Detroit Red Wings – New York Rangers · Sa 03.10. 00:30 MESZ: Über 5.5 Tore @ 1,79, spielbar ab 1,86 (EV -0,5 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 16 Spiele (16 mit Kalshi-Preis), 0 PLAY
+   • Cincinnati Bengals – Jacksonville Jaguars · So 04.10. 19:00 MESZ: Unter 51.5 Punkte @ 1,93, spielbar ab 1,99 (EV 0,2 %)
+   • Seattle Seahawks – Los Angeles Chargers · So 04.10. 22:25 MESZ: Seattle Seahawks Sieg (inkl. OT) @ 1,29, spielbar ab 1,33 (EV 0,2 %)
+🎾 Tennis: 2 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Kraus S. vs Potapova A. · WTA · Beijing · WTA 1000 · hard · Fr 02.10. 05:05 (Zeit unbestätigt): Kraus S. @ 3,35 (EV 21,9 %)
+   • Timofeeva M. vs Osaka N. · WTA · Beijing · WTA 1000 · hard · Fr 02.10. 10:30 (Zeit unbestätigt): Osaka N. @ 1,25 (EV 9,1 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 09.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

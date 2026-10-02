@@ -1,94 +1,117 @@
 [
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "Tampa Bay Buccaneers – Green Bay Packers",
-  "kickoff": "2026-10-04T17:00+00:00",
-  "market": "HC-3.5 GB",
-  "selection": "Green Bay Packers −3.5 (gewinnt mit mehr als 3.5)",
-  "odds": 1.9704433497536948,
-  "fair": 1.954635052935206,
-  "min_odds": 2.013274104523262,
-  "home": [
-   "Tampa Bay Buccaneers",
-   "Tampa Bay",
-   "Buccaneers",
-   "TB"
-  ],
-  "away": [
-   "Green Bay Packers",
-   "Green Bay",
-   "Packers",
-   "GB"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nfl",
-  "event": "Seattle Seahawks – Los Angeles Chargers",
-  "kickoff": "2026-10-04T20:25+00:00",
+  "league": "uecl",
+  "event": "Brighton & Hove Albion – Kauno Zalgiris",
+  "kickoff": "2026-10-15T19:00+00:00",
   "market": "home",
-  "selection": "Seattle Seahawks Sieg (inkl. OT)",
-  "odds": 1.2939958592132506,
-  "fair": 1.287455303063492,
-  "min_odds": 1.326078962155397,
+  "selection": "Brighton & Hove Albion Sieg (90 Min.)",
+  "odds": 1.0593220338983051,
+  "fair": 1.03382304298442,
+  "min_odds": 1.0648377342739526,
   "home": [
-   "Seattle Seahawks",
-   "Seattle",
-   "Seahawks",
-   "SEA"
+   "Brighton & Hove Albion",
+   "Brighton & Hove Albion",
+   "Brighton",
+   "BHA"
   ],
   "away": [
-   "Los Angeles Chargers",
-   "Los Angeles",
-   "Chargers",
-   "LAC"
+   "Kauno Zalgiris",
+   "Kauno Zalgiris",
+   "Kauno Zalgiris",
+   "ZAL"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "San Francisco 49ers – Denver Broncos",
-  "kickoff": "2026-10-04T20:25+00:00",
-  "market": "U47.5:no",
-  "selection": "Unter 47.5 Punkte",
-  "odds": 2.0100502512562812,
-  "fair": 1.9999999999999996,
-  "min_odds": 2.0599999999999996,
+  "league": "nations",
+  "event": "North Macedonia – Scotland",
+  "kickoff": "2026-10-03T18:45+00:00",
+  "market": "home",
+  "selection": "North Macedonia Sieg (90 Min.)",
+  "odds": 5.2521008403361344,
+  "fair": 5.200966915903931,
+  "min_odds": 5.356995923381049,
   "home": [
-   "San Francisco 49ers",
-   "San Francisco",
-   "49ers",
-   "SF"
+   "North Macedonia",
+   "North Macedonia",
+   "North Macedonia",
+   "MKD"
   ],
   "away": [
-   "Denver Broncos",
-   "Denver",
-   "Broncos",
-   "DEN"
+   "Scotland",
+   "Scotland",
+   "Scotland",
+   "SCO"
   ]
  },
  {
   "status": "WATCH",
-  "league": "nfl",
-  "event": "Houston Texans – Dallas Cowboys",
-  "kickoff": "2026-10-04T17:00+00:00",
-  "market": "HC+2.5 DAL:no",
-  "selection": "Dallas Cowboys +2.5",
-  "odds": 2.0512820512820515,
-  "fair": 2.0475207221076897,
-  "min_odds": 2.1089463437709206,
+  "league": "uel",
+  "event": "AFC Bournemouth – SK Sturm Graz",
+  "kickoff": "2026-10-15T19:00+00:00",
+  "market": "home",
+  "selection": "AFC Bournemouth Sieg (90 Min.)",
+  "odds": 1.2183235867446391,
+  "fair": 1.2146511829700937,
+  "min_odds": 1.2510907184591964,
   "home": [
-   "Houston Texans",
-   "Houston",
-   "Texans",
-   "HOU"
+   "AFC Bournemouth",
+   "AFC Bournemouth",
+   "Bournemouth",
+   "BOU"
   ],
   "away": [
-   "Dallas Cowboys",
-   "Dallas",
-   "Cowboys",
-   "DAL"
+   "SK Sturm Graz",
+   "SK Sturm Graz",
+   "Sturm Graz",
+   "STG"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nations",
+  "event": "Spain – Czechia",
+  "kickoff": "2026-10-03T18:45+00:00",
+  "market": "home",
+  "selection": "Spain Sieg (90 Min.)",
+  "odds": 1.0808473843493298,
+  "fair": 1.0785073365924307,
+  "min_odds": 1.1108625566902035,
+  "home": [
+   "Spain",
+   "Spain",
+   "Spain",
+   "ESP"
+  ],
+  "away": [
+   "Czechia",
+   "Czechia",
+   "Czechia",
+   "CZE"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nhl",
+  "event": "New York Islanders – New Jersey Devils",
+  "kickoff": "2026-10-03T23:30+00:00",
+  "market": "home",
+  "selection": "New York Islanders Sieg (inkl. OT)",
+  "odds": 1.9323671497584543,
+  "fair": 1.9283595389867023,
+  "min_odds": 1.9862103251563032,
+  "home": [
+   "New York Islanders",
+   "New York",
+   "Islanders",
+   "NYI"
+  ],
+  "away": [
+   "New Jersey Devils",
+   "New Jersey",
+   "Devils",
+   "NJ"
   ]
  }
 ]
