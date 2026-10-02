@@ -1,12 +1,13 @@
-# Tagesbericht mit Ausblick nach Sportart, jeden Morgen um 8:00 Wiener Zeit.
-# GitHub-Zeitpläne laufen in UTC: 06:00 UTC = 8:00 MESZ (Sommer), 07:00 UTC =
-# 8:00 MEZ (Winter). Beide Zeiten sind eingeplant, der Prüfschritt lässt nur den
-# Lauf zu, der in Wien in die Stunde 8 fällt. Von Hand (Run workflow) immer.
+# Tagesbericht mit Ausblick nach Sportart, jeden Morgen ab 8:00 Wiener Zeit.
+# GitHub startet geplante Läufe oft Stunden zu spät oder lässt einzelne aus.
+# Deshalb mehrere Startzeiten (06:17–11:17 UTC); der Prüfschritt lässt den
+# ersten Lauf ab 8 Uhr Wien zu, für den es heute noch keinen Tagesbericht
+# (reports/<datum>-daily.txt) gibt. Von Hand (Run workflow) immer.
 # Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, optional MONGODB_URI (Tennis).
 name: daily-report
 on:
   schedule:
-    - cron: "0 6,7 * * *"
+    - cron: "17 6-11 * * *"
   workflow_dispatch:
 concurrency:
   group: quick-scan
@@ -18,18 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - name: 8 Uhr in Wien?
+      - uses: actions/checkout@v4
+      - name: Heute schon gelaufen?
         id: gate
         run: |
-          h=$(TZ=Europe/Vienna date +%H)
+          h=$(TZ=Europe/Vienna date +%-H)
+          f="reports/$(date -u +%Y-%m-%d)-daily.txt"
           echo "Wien: $(TZ=Europe/Vienna date '+%d.%m.%Y %H:%M %Z')"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$h" = "08" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          elif [ "$h" -ge 8 ] && [ ! -f "$f" ]; then
             echo "run=yes" >> "$GITHUB_OUTPUT"
           else
+            echo "Übersprungen: vor 8 Uhr oder $f existiert bereits"
             echo "run=no" >> "$GITHUB_OUTPUT"
           fi
-      - if: steps.gate.outputs.run == 'yes'
-        uses: actions/checkout@v4
       - if: steps.gate.outputs.run == 'yes'
         uses: actions/setup-python@v5
         with:
