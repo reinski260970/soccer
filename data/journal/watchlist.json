@@ -25,24 +25,47 @@
  {
   "status": "WATCH",
   "league": "nations",
-  "event": "North Macedonia – Scotland",
-  "kickoff": "2026-10-03T18:45+00:00",
-  "market": "home",
-  "selection": "North Macedonia Sieg (90 Min.)",
-  "odds": 5.2521008403361344,
-  "fair": 5.200966915903931,
-  "min_odds": 5.356995923381049,
+  "event": "Malta – Andorra",
+  "kickoff": "2026-10-04T16:00+00:00",
+  "market": "away",
+  "selection": "Andorra Sieg (90 Min.)",
+  "odds": 7.246376811594202,
+  "fair": 7.115630653609682,
+  "min_odds": 7.329099573217973,
   "home": [
-   "North Macedonia",
-   "North Macedonia",
-   "North Macedonia",
-   "MKD"
+   "Malta",
+   "Malta",
+   "Malta",
+   "MLT"
   ],
   "away": [
-   "Scotland",
-   "Scotland",
-   "Scotland",
-   "SCO"
+   "Andorra",
+   "Andorra",
+   "Andorra",
+   "AND"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "nations",
+  "event": "Spain – Czechia",
+  "kickoff": "2026-10-03T18:45+00:00",
+  "market": "home",
+  "selection": "Spain Sieg (90 Min.)",
+  "odds": 1.0699764605178685,
+  "fair": 1.0533082203321869,
+  "min_odds": 1.0849074669421526,
+  "home": [
+   "Spain",
+   "Spain",
+   "Spain",
+   "ESP"
+  ],
+  "away": [
+   "Czechia",
+   "Czechia",
+   "Czechia",
+   "CZE"
   ]
  },
  {
@@ -70,48 +93,25 @@
  },
  {
   "status": "WATCH",
-  "league": "nations",
-  "event": "Spain – Czechia",
-  "kickoff": "2026-10-03T18:45+00:00",
-  "market": "home",
-  "selection": "Spain Sieg (90 Min.)",
-  "odds": 1.0808473843493298,
-  "fair": 1.0785073365924307,
-  "min_odds": 1.1108625566902035,
-  "home": [
-   "Spain",
-   "Spain",
-   "Spain",
-   "ESP"
-  ],
-  "away": [
-   "Czechia",
-   "Czechia",
-   "Czechia",
-   "CZE"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "New York Islanders – New Jersey Devils",
-  "kickoff": "2026-10-03T23:30+00:00",
-  "market": "home",
-  "selection": "New York Islanders Sieg (inkl. OT)",
+  "league": "nfl",
+  "event": "Cincinnati Bengals – Jacksonville Jaguars",
+  "kickoff": "2026-10-04T17:00+00:00",
+  "market": "U51.5:no",
+  "selection": "Unter 51.5 Punkte",
   "odds": 1.9323671497584543,
   "fair": 1.9283595389867023,
   "min_odds": 1.9862103251563032,
   "home": [
-   "New York Islanders",
-   "New York",
-   "Islanders",
-   "NYI"
+   "Cincinnati Bengals",
+   "Cincinnati",
+   "Bengals",
+   "CIN"
   ],
   "away": [
-   "New Jersey Devils",
-   "New Jersey",
-   "Devils",
-   "NJ"
+   "Jacksonville Jaguars",
+   "Jacksonville",
+   "Jaguars",
+   "JAX"
   ]
  }
 ]

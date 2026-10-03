@@ -1,0 +1,66 @@
+🗞 Tagesbericht Sa 03.10. 13:42 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.25 EH (-22.50 $) | Einsatz 2,25 EH | ROI -100,0 %
+   Bilanz 0-5 (5 abgerechnet) | Ø CLV -8.0 % (n=5)
+   Offen: 4 Wetten, 1,5 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ UEFA Nations League · Sa 03.10. 20:45 MESZ
+🆚 Switzerland – Slovenia
+➡️ Slovenia Sieg (90 Min.) @ 11,74 | 0,25 EH
+✅ NFL · So 04.10. 19:00 MESZ
+🆚 Chicago Bears – New York Jets
+➡️ New York Jets Sieg (inkl. OT) @ 2,59 | 0,25 EH
+✅ UEFA Nations League · So 04.10. 20:45 MESZ
+🆚 Portugal – Norway
+➡️ Unentschieden (90 Min.) @ 4,31 | 0,25 EH
+✅ NFL · Mo 05.10. 02:20 MESZ
+🆚 Carolina Panthers – Detroit Lions
+➡️ Carolina Panthers Sieg (inkl. OT) @ 2,66 | 0,75 EH
+
+👀 Watchlist
+• Conference League · Do 15.10. 21:00 MESZ
+🆚 Brighton & Hove Albion – Kauno Zalgiris
+➡️ Brighton & Hove Albion Sieg (90 Min.) spielbar ab 1,06 (jetzt 1,06)
+• UEFA Nations League · So 04.10. 18:00 MESZ
+🆚 Malta – Andorra
+➡️ Andorra Sieg (90 Min.) spielbar ab 7,33 (jetzt 7,25)
+• UEFA Nations League · Sa 03.10. 20:45 MESZ
+🆚 Spain – Czechia
+➡️ Spain Sieg (90 Min.) spielbar ab 1,08 (jetzt 1,07)
+• Europa League · Do 15.10. 21:00 MESZ
+🆚 AFC Bournemouth – SK Sturm Graz
+➡️ AFC Bournemouth Sieg (90 Min.) spielbar ab 1,25 (jetzt 1,22)
+• NFL · So 04.10. 19:00 MESZ
+🆚 Cincinnati Bengals – Jacksonville Jaguars
+➡️ Unter 51.5 Punkte spielbar ab 1,99 (jetzt 1,93)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 40 Spiele (35 mit Kalshi-Preis), 0 PLAY
+   • Malta – Andorra · So 04.10. 18:00 MESZ: Andorra Sieg (90 Min.) @ 7,25, spielbar ab 7,33 (EV 1,8 %)
+   • Spain – Czechia · Sa 03.10. 20:45 MESZ: Spain Sieg (90 Min.) @ 1,07, spielbar ab 1,08 (EV 1,6 %)
+🏒 Eishockey Europa: 51 Spiele (37 mit Kalshi-Preis), 0 PLAY
+   • Grizzlys Wolfsburg – Adler Mannheim · So 04.10. 16:30 MESZ: Grizzlys Wolfsburg Sieg (inkl. OT) @ 2,40, spielbar ab 2,17 (EV 13,9 %, nur Modell – nicht validiert)
+   • Fribourg Gottéron – HC Ambri-Piotta · Sa 03.10. 19:45 MESZ: Fribourg Gottéron Sieg (inkl. OT) @ 1,34, spielbar ab 1,37 (EV 1,1 %, nur Modell – nicht validiert)
+🏒 NHL: 48 Spiele (48 mit Kalshi-Preis), 0 PLAY
+   • Edmonton Oilers – Seattle Kraken · So 04.10. 01:00 MESZ: Unter 6.5 Tore @ 1,97, spielbar ab 2,04 (EV -0,6 %)
+   • Edmonton Oilers – Seattle Kraken · So 04.10. 01:00 MESZ: Edmonton Oilers Sieg (inkl. OT) @ 1,48, spielbar ab 1,54 (EV -1,2 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 16 Spiele (16 mit Kalshi-Preis), 0 PLAY
+   • Cincinnati Bengals – Jacksonville Jaguars · So 04.10. 19:00 MESZ: Unter 51.5 Punkte @ 1,93, spielbar ab 1,99 (EV 0,2 %)
+   • Seattle Seahawks – Los Angeles Chargers · So 04.10. 22:25 MESZ: Seattle Seahawks Sieg (inkl. OT) @ 1,29, spielbar ab 1,33 (EV 0,2 %)
+🎾 Tennis: 2 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Harris L. vs Bolt A. · ATP · Jingshan challenger · ATP Challenger · hard · Sa 03.10. 05:05 (Zeit unbestätigt): Bolt A. @ 4,55 (EV 89,7 %)
+   • Becroft I. vs Purcell M. · ATP · Bari challenger · ATP Challenger · hard · Sa 03.10. 04:00 (Zeit unbestätigt): Becroft I. @ 3,10 (EV 8,0 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 10.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
