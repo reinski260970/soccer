@@ -1,0 +1,67 @@
+🗞 Tagesbericht So 04.10. 14:22 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+• UEFA Nations League · Sa 03.10. 20:45 MESZ (Freigabe)
+🆚 Switzerland – Slovenia
+➡️ Slovenia Sieg (90 Min.) @ 11,74 → ❌ Verlust -0.25 EH | CLV -0.7 %
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.50 EH (-25.00 $) | Einsatz 2,5 EH | ROI -100,0 %
+   Bilanz 0-6 (6 abgerechnet) | Ø CLV -6.8 % (n=6)
+   Offen: 5 Wetten, 3 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ NFL · So 04.10. 19:00 MESZ
+🆚 Chicago Bears – New York Jets
+➡️ New York Jets Sieg (inkl. OT) @ 2,59 | 0,25 EH
+✅ UEFA Nations League · So 04.10. 20:45 MESZ
+🆚 Portugal – Norway
+➡️ Unentschieden (90 Min.) @ 4,31 | 0,25 EH
+✅ NFL · Mo 05.10. 02:20 MESZ
+🆚 Carolina Panthers – Detroit Lions
+➡️ Carolina Panthers Sieg (inkl. OT) @ 2,66 | 0,75 EH
+✅ UEFA Nations League · Di 06.10. 16:00 MESZ
+🆚 Kazakhstan – Faroe Islands
+➡️ Über 2.5 Tore @ 2,52 | 0,25 EH
+
+👀 Watchlist
+• UEFA Nations League · Di 06.10. 16:00 MESZ
+🆚 Kazakhstan – Faroe Islands
+➡️ Über 2.5 Tore spielbar ab 2,50 (jetzt 2,59)
+• Champions League · Di 13.10. 21:00 MESZ
+🆚 Arsenal – Lille
+➡️ Unentschieden (90 Min.) spielbar ab 6,74 (jetzt 6,73)
+• Conference League · Do 15.10. 21:00 MESZ
+🆚 Brighton & Hove Albion – Kauno Zalgiris
+➡️ Brighton & Hove Albion Sieg (90 Min.) spielbar ab 1,06 (jetzt 1,05)
+• UEFA Nations League · Mo 05.10. 20:45 MESZ
+🆚 Romania – Sweden
+➡️ Romania Sieg (90 Min.) spielbar ab 4,63 (jetzt 4,51)
+• Europa League · Do 15.10. 21:00 MESZ
+🆚 AFC Bournemouth – SK Sturm Graz
+➡️ AFC Bournemouth Sieg (90 Min.) spielbar ab 1,25 (jetzt 1,22)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 45 Spiele (33 mit Kalshi-Preis), 0 PLAY
+   • Kazakhstan – Faroe Islands · Di 06.10. 16:00 MESZ: Über 2.5 Tore @ 2,59, spielbar ab 2,50 (EV 6,6 %)
+   • Romania – Sweden · Mo 05.10. 20:45 MESZ: Romania Sieg (90 Min.) @ 4,51, spielbar ab 4,63 (EV 0,4 %)
+🏒 Eishockey Europa: 18 Spiele (5 mit Kalshi-Preis), 0 PLAY
+   • Spartak Moscow – HC Barys · So 04.10. 16:00 MESZ: Spartak Moscow Sieg (inkl. OT) @ 1,46, spielbar ab 1,51 (EV -0,5 %, nur Modell – nicht validiert)
+   • ERC Ingolstadt – Kolner Haie · So 04.10. 16:30 MESZ: Kolner Haie Sieg (inkl. OT) @ 1,67, spielbar ab 1,76 (EV -2,2 %, nur Modell – nicht validiert)
+🏒 NHL: 49 Spiele (49 mit Kalshi-Preis), 0 PLAY
+   • Detroit Red Wings – Winnipeg Jets · So 04.10. 19:00 MESZ: Winnipeg Jets +1.5 @ 1,36, spielbar ab 1,42 (EV -0,9 %)
+   • Detroit Red Wings – Winnipeg Jets · So 04.10. 19:00 MESZ: Detroit Red Wings Sieg (inkl. OT) @ 1,93, spielbar ab 2,01 (EV -1,1 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 16 Spiele (16 mit Kalshi-Preis), 0 PLAY
+   • Seattle Seahawks – Los Angeles Chargers · So 04.10. 22:25 MESZ: Seattle Seahawks Sieg (inkl. OT) @ 1,29, spielbar ab 1,33 (EV 0,2 %)
+   • Dallas Cowboys – Tampa Bay Buccaneers · Fr 09.10. 02:15 MESZ: Dallas Cowboys Sieg (inkl. OT) @ 1,20, spielbar ab 1,24 (EV -0,2 %)
+🎾 Tennis: 1 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Campana Lee G. vs Marino P. · ATP · Palermo challenger · ATP Challenger · hard · So 04.10. 10:00 (Zeit unbestätigt): Marino P. @ 5,18 (EV 93,9 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 11.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

@@ -1,12 +1,58 @@
 [
  {
   "status": "WATCH",
+  "league": "nations",
+  "event": "Kazakhstan – Faroe Islands",
+  "kickoff": "2026-10-06T14:00+00:00",
+  "market": "O2.5",
+  "selection": "Über 2.5 Tore",
+  "odds": 2.587991718426501,
+  "fair": 2.427441643951425,
+  "min_odds": 2.500264893269968,
+  "home": [
+   "Kazakhstan",
+   "Kazakhstan",
+   "Kazakhstan",
+   "KAZ"
+  ],
+  "away": [
+   "Faroe Islands",
+   "Faroe Islands",
+   "Faroe Islands",
+   "FRO"
+  ]
+ },
+ {
+  "status": "WATCH",
+  "league": "ucl",
+  "event": "Arsenal – Lille",
+  "kickoff": "2026-10-13T19:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 6.734006734006733,
+  "fair": 6.5401470481123996,
+  "min_odds": 6.736351459555772,
+  "home": [
+   "Arsenal",
+   "Arsenal",
+   "Arsenal",
+   "ARS"
+  ],
+  "away": [
+   "Lille",
+   "Lille",
+   "Lille",
+   "LILL"
+  ]
+ },
+ {
+  "status": "WATCH",
   "league": "uecl",
   "event": "Brighton & Hove Albion – Kauno Zalgiris",
   "kickoff": "2026-10-15T19:00+00:00",
   "market": "home",
   "selection": "Brighton & Hove Albion Sieg (90 Min.)",
-  "odds": 1.0593220338983051,
+  "odds": 1.0488777008600798,
   "fair": 1.03382304298442,
   "min_odds": 1.0648377342739526,
   "home": [
@@ -25,47 +71,24 @@
  {
   "status": "WATCH",
   "league": "nations",
-  "event": "Malta – Andorra",
-  "kickoff": "2026-10-04T16:00+00:00",
-  "market": "away",
-  "selection": "Andorra Sieg (90 Min.)",
-  "odds": 7.246376811594202,
-  "fair": 7.115630653609682,
-  "min_odds": 7.329099573217973,
-  "home": [
-   "Malta",
-   "Malta",
-   "Malta",
-   "MLT"
-  ],
-  "away": [
-   "Andorra",
-   "Andorra",
-   "Andorra",
-   "AND"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nations",
-  "event": "Spain – Czechia",
-  "kickoff": "2026-10-03T18:45+00:00",
+  "event": "Romania – Sweden",
+  "kickoff": "2026-10-05T18:45+00:00",
   "market": "home",
-  "selection": "Spain Sieg (90 Min.)",
-  "odds": 1.0699764605178685,
-  "fair": 1.0533082203321869,
-  "min_odds": 1.0849074669421526,
+  "selection": "Romania Sieg (90 Min.)",
+  "odds": 4.510599909788002,
+  "fair": 4.491048419886053,
+  "min_odds": 4.625779872482635,
   "home": [
-   "Spain",
-   "Spain",
-   "Spain",
-   "ESP"
+   "Romania",
+   "Romania",
+   "Romania",
+   "ROU"
   ],
   "away": [
-   "Czechia",
-   "Czechia",
-   "Czechia",
-   "CZE"
+   "Sweden",
+   "Sweden",
+   "Sweden",
+   "SWE"
   ]
  },
  {
@@ -89,29 +112,6 @@
    "SK Sturm Graz",
    "Sturm Graz",
    "STG"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "nfl",
-  "event": "Cincinnati Bengals – Jacksonville Jaguars",
-  "kickoff": "2026-10-04T17:00+00:00",
-  "market": "U51.5:no",
-  "selection": "Unter 51.5 Punkte",
-  "odds": 1.9323671497584543,
-  "fair": 1.9283595389867023,
-  "min_odds": 1.9862103251563032,
-  "home": [
-   "Cincinnati Bengals",
-   "Cincinnati",
-   "Bengals",
-   "CIN"
-  ],
-  "away": [
-   "Jacksonville Jaguars",
-   "Jacksonville",
-   "Jaguars",
-   "JAX"
   ]
  }
 ]
