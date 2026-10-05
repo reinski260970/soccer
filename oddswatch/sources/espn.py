@@ -17,10 +17,16 @@ from .. import fetch
 SITE = "https://site.api.espn.com/apis/site/v2/sports"
 
 PATHS = {
-    "bundesliga": "soccer/ger.1", "2bundesliga": "soccer/ger.2",
-    "austria": "soccer/aut.1", "ucl": "soccer/uefa.champions",
-    "uel": "soccer/uefa.europa", "uecl": "soccer/uefa.europa.conf",
-    "nations": "soccer/uefa.nations",
+    "bundesliga": "soccer/ger.1", "2bundesliga": "soccer/ger.2", "3liga": "soccer/ger.3",
+    "austria": "soccer/aut.1",
+    "epl": "soccer/eng.1", "championship": "soccer/eng.2",
+    "laliga": "soccer/esp.1", "seriea": "soccer/ita.1", "ligue1": "soccer/fra.1",
+    "eredivisie": "soccer/ned.1", "primeira": "soccer/por.1", "belgium": "soccer/bel.1",
+    "switzerland": "soccer/sui.1", "turkey": "soccer/tur.1", "scotland": "soccer/sco.1",
+    "sweden": "soccer/swe.1", "norway": "soccer/nor.1", "denmark": "soccer/den.1",
+    "poland": "soccer/pol.1", "greece": "soccer/gre.1",
+    "ucl": "soccer/uefa.champions", "uel": "soccer/uefa.europa",
+    "uecl": "soccer/uefa.europa.conf", "nations": "soccer/uefa.nations",
     "nfl": "football/nfl", "nhl": "hockey/nhl", "nba": "basketball/nba",
 }
 
