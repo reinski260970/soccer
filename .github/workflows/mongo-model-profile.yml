@@ -1,0 +1,22 @@
+name: mongo-model-profile
+on:
+  push:
+    branches:
+      - mongo-model-profile
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Soccer Mongo Model Profile
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+        run: python -m oddswatch football-mongo-profile
