@@ -1,35 +1,36 @@
-# Fußball-Quotenwächter über API-Football; Mongo separat und nur lesend.
-name: quick-scan
+name: sharpery-oos-backtest
 on:
-  schedule:
-    - cron: "*/15 * * * *"
+  push:
+    branches:
+      - sharpery-oos-backtest
+    paths:
+      - data/run_oos_backtest.txt
   workflow_dispatch:
-concurrency:
-  group: quick-scan
-  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
-  scan:
+  backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Schnellscan
+      - name: Tests
+        run: python -m pytest -q tests/test_m13.py tests/test_m14.py tests/test_export_sharpery.py
+      - name: Run OOS Sharpery backtest
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          APIKEY: ${{ secrets.APIKEY }}
-        run: python -m oddswatch quick --full --send
-      - name: Journal sichern
-        if: always()
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+        run: python -m oddswatch.backtest_sharpery
+      - name: Commit backtest exports
         run: |
-          git config user.name "oddswatch-bot"
-          git config user.email "oddswatch-bot@users.noreply.github.com"
-          git add data/journal
-          git diff --cached --quiet || git commit -m "Schnellscan $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase --autostash && git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p archive/backtests
+          cp exports/sharpery_oos_backtest.csv archive/backtests/sharpery_oos_backtest.csv
+          cp exports/sharpery_oos_backtest.xlsx archive/backtests/sharpery_oos_backtest.xlsx
+          git add archive/backtests/sharpery_oos_backtest.csv archive/backtests/sharpery_oos_backtest.xlsx
+          git commit -m "Backtest: Sharpery OOS 2025-26 export" || exit 0
+          git push
