@@ -50,8 +50,22 @@ XG_SHARE = 0.5            # Anteil der xG-minus-Tore-Differenz, der ins Elo geht
 # Weicht das Modell stärker als das vom Referenzmarkt ab, fehlt ihm meist eine
 # Information (QB, Kader, Trainer) – dann keine Freigabe, sondern Prüfung.
 MAX_DIVERGENCE = 0.15
-SOCCER_LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
-                  "austria": "Admiral Bundesliga (AT)"}
+SOCCER_LEAGUES = {
+    "bundesliga": ("Bundesliga", "D1"),
+    "2bundesliga": ("2. Bundesliga", "D2"),
+    "epl": ("Premier League", "E0"),
+    "championship": ("Championship", "E1"),
+    "laliga": ("La Liga", "SP1"),
+    "seriea": ("Serie A", "I1"),
+    "ligue1": ("Ligue 1", "F1"),
+    "eredivisie": ("Eredivisie", "N1"),
+    "primeira": ("Primeira Liga", "P1"),
+    "belgium": ("Belgian Pro League", "B1"),
+    "turkey": ("Süper Lig", "T1"),
+    "scotland": ("Scottish Premiership", "SC0"),
+    "greece": ("Super League Greece", "G1"),
+    "austria": ("Admiral Bundesliga (AT)", None),
+}
 
 
 @dataclass
@@ -229,16 +243,21 @@ def _aut_model(issues: list[str]) -> tuple[PoissonModel | None, list[Match]]:
 
 def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
     out: list[Fixture] = []
-    ger, ger_ms = _soccer_model(["D1", "D2"], issues)
     aut, aut_ms = _aut_model(issues)
-    for lg, label in SOCCER_LEAGUES.items():
+    cache: dict[str, tuple[PoissonModel | None, list[Match]]] = {}
+    for lg, (label, code) in SOCCER_LEAGUES.items():
         games, errs = espn.upcoming(lg, start, days)
         issues += errs
-        model, ms = (aut, aut_ms) if lg == "austria" else (ger, ger_ms)
         games = [g for g in games if g.status == "STATUS_SCHEDULED"]
         if not games:
             notes.append(f"{label}: keine Spiele bis {start + timedelta(days=days):%d.%m.}")
             continue
+        if lg == "austria":
+            model, ms = aut, aut_ms
+        else:
+            if code not in cache:
+                cache[code] = _soccer_model([code], issues)
+            model, ms = cache[code]
         if model is None:
             issues.append(f"{label}: kein Modell (Daten fehlen)")
             continue
