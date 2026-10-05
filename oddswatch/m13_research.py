@@ -16,9 +16,10 @@ from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 
-from . import pricing
+from . import pricing, matching
 from .m12_research import load_mongo
 from .models.m11 import M11Model, M11Params
+from .models.poisson import Match
 from .sources import understat, xg_merge
 
 LEAGUES = {
@@ -61,30 +62,111 @@ def _dedupe_matches(matches):
     return out
 
 
+def _swapped_date(d: date) -> date | None:
+    if d.day > 12:
+        return None
+    try:
+        return date(d.year, d.day, d.month)
+    except ValueError:
+        return None
+
+
+def _unique_understat(home: str, away: str, us_matches):
+    hits = [u for u in us_matches
+            if matching.same(home, u.home) and matching.same(away, u.away)]
+    return hits[0] if len(hits) == 1 else None
+
+
+def _canonical_kind(d: date, udate: date) -> str | None:
+    """Nur sichere Datumsnormalisierung.
+
+    exact: gleiche/benachbarte Kalendertage.
+    swap: DD/MM<->MM/DD ergibt das Understat-Datum.
+    Größere Verschiebungen werden absichtlich NICHT geraten.
+    """
+    if abs((udate - d).days) <= 1:
+        return "exact"
+    sw = _swapped_date(d)
+    if sw is not None and abs((udate - sw).days) <= 1:
+        return "swap"
+    return None
+
+
 def load_real_xg(code: str, start_year: int = 2017, end_year: int = 2025):
-    """Mongo-Ergebnisse + echtes Understat-xG. Keine Future-Spiele jenseits 2025/26."""
+    """Mongo + echtes Understat-xG mit kanonischem Spieldatum.
+
+    Understat darf nur das Spieldatum/xG normalisieren. Ergebnisse und Odds
+    bleiben aus Mongo. Nicht eindeutig versöhnte Datumsabweichungen werden
+    ausgeschlossen statt geraten.
+    """
     base, rows = load_mongo(code, start_year, end_year)
     base = _dedupe_matches(base)
     by_season = {}
+    rows_by_season = {}
     for m in base:
         y = m.date.year if m.date.month >= 7 else m.date.year - 1
         by_season.setdefault(y, []).append(m)
+    for r in rows:
+        rows_by_season.setdefault(r[0], []).append(r)
 
     merged_all = []
+    canonical_rows = []
     coverage = {}
+
     for y in range(start_year, end_year + 1):
         fm = by_season.get(y, [])
+        rr = rows_by_season.get(y, [])
         if not fm:
-            coverage[str(y)] = {"total": 0, "matched": 0, "coverage": 0.0}
+            coverage[str(y)] = {
+                "total": 0, "matched": 0, "coverage": 0.0,
+                "exact_dates": 0, "day_month_fixed": 0,
+                "excluded_date_mismatch": 0,
+            }
             continue
-        um, err = understat.season_matches(code, y, cache_days=30 if y < end_year else 1)
-        merged, st = xg_merge.merge_xg(fm, um)
-        st["understat_error"] = err
-        coverage[str(y)] = st
-        merged_all.extend(merged)
 
-    # load_mongo endet hart am 01.07.2026 für end_year=2025; keine Future-Leakage.
-    return _dedupe_matches(merged_all), rows, coverage
+        um, err = understat.season_matches(code, y, cache_days=30 if y < end_year else 1)
+        exact = swapped = excluded = unmatched = 0
+
+        for m in fm:
+            u = _unique_understat(m.home, m.away, um)
+            if u is None:
+                unmatched += 1
+                continue
+            kind = _canonical_kind(m.date, u.date)
+            if kind is None:
+                excluded += 1
+                continue
+            if kind == "exact":
+                exact += 1
+            else:
+                swapped += 1
+            merged_all.append(Match(
+                u.date, m.home, m.away, m.home_goals, m.away_goals,
+                u.home_xg, u.away_xg,
+            ))
+
+        for season, d, h, a, hg, ag, op, cl in rr:
+            u = _unique_understat(h, a, um)
+            if u is None or _canonical_kind(d, u.date) is None:
+                continue
+            # Odds/Resultat bleiben aus Mongo, nur das Datum wird kanonisiert.
+            canonical_rows.append((season, u.date, h, a, hg, ag, op, cl))
+
+        matched = exact + swapped
+        coverage[str(y)] = {
+            "total": len(fm),
+            "matched": matched,
+            "coverage": matched / len(fm) if fm else 0.0,
+            "exact_dates": exact,
+            "day_month_fixed": swapped,
+            "excluded_date_mismatch": excluded,
+            "unmatched_team_pair": unmatched,
+            "understat_error": err,
+        }
+
+    merged_all = _dedupe_matches(merged_all)
+    canonical_rows.sort(key=lambda x: x[1])
+    return merged_all, canonical_rows, coverage
 
 
 def samples(matches, rows, seasons: set[int], params: M11Params):
