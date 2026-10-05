@@ -16,8 +16,13 @@ from datetime import date, datetime
 from ..models.poisson import Match
 
 BASE = "https://www.football-data.co.uk/mmz4281"
-LEAGUES = {"D1": "Bundesliga", "D2": "2. Bundesliga", "E0": "Premier League",
-           "SP1": "La Liga", "I1": "Serie A", "F1": "Ligue 1"}
+LEAGUES = {
+    "D1": "Bundesliga", "D2": "2. Bundesliga",
+    "E0": "Premier League", "E1": "Championship",
+    "SP1": "La Liga", "I1": "Serie A", "F1": "Ligue 1",
+    "N1": "Eredivisie", "P1": "Primeira Liga", "B1": "Belgian Pro League",
+    "T1": "Süper Lig", "SC0": "Scottish Premiership", "G1": "Super League Greece",
+}
 
 
 def season_code(start_year: int) -> str:
