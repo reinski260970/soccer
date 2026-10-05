@@ -1,0 +1,54 @@
+🗞 Tagesbericht Mo 05.10. 16:40 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+• NFL · So 04.10. 19:00 MESZ (Freigabe)
+🆚 Chicago Bears – New York Jets
+➡️ New York Jets Sieg (inkl. OT) @ 2,59 → ❌ Verlust -0.25 EH | CLV -5.5 %
+• UEFA Nations League · So 04.10. 20:45 MESZ (Freigabe)
+🆚 Portugal – Norway
+➡️ Unentschieden (90 Min.) @ 4,31 → ❌ Verlust -0.25 EH | CLV -8.7 %
+   ⏳ 2 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -3.00 EH (-30.00 $) | Einsatz 3 EH | ROI -100,0 %
+   Bilanz 0-8 (8 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 8 Wetten, 7 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 Werder Bremen – SC Paderborn 07
+➡️ SC Paderborn 07 Sieg (90 Min.) spielbar ab 4,29 (jetzt 5,50)
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 1. FC Union Berlin – Borussia Dortmund
+➡️ 1. FC Union Berlin Sieg (90 Min.) spielbar ab 4,99 (jetzt 6,00)
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,25)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,50)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,40)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 64 Spiele (54 mit Buchmacherpreis), 0 PLAY
+   • Sassuolo – AC Milan · So 11.10. 18:00 MESZ: AC Milan Sieg (90 Min.) @ 1,85, spielbar ab 1,88 (EV 1,4 %)
+   • Internazionale – Parma · Sa 10.10. 18:00 MESZ: Parma Sieg (90 Min.) @ 20,00, spielbar ab 20,38 (EV 1,1 %)
+🏒 Eishockey Europa: 45 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏒 NHL: 47 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 12.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
