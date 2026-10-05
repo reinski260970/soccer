@@ -9,11 +9,13 @@ data/cache/ kommen; aktuelle Preise und Spielpläne werden immer frisch geladen.
 
 from __future__ import annotations
 
+import gzip
 import hashlib
 import json
 import time
 import urllib.error
 import urllib.request
+import zlib
 from pathlib import Path
 
 CACHE = Path("data/cache")
@@ -32,7 +34,16 @@ def get(url: str, timeout: float = 20.0, cache_days: float = 0.0,
     for attempt in range(retries + 1):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                text = r.read().decode("utf-8", "replace")
+                raw = r.read()
+                enc = (r.headers.get("Content-Encoding") or "").lower()
+                if enc == "gzip" or raw[:2] == b"\x1f\x8b":
+                    raw = gzip.decompress(raw)
+                elif enc == "deflate":
+                    try:
+                        raw = zlib.decompress(raw)
+                    except zlib.error:
+                        raw = zlib.decompress(raw, -zlib.MAX_WBITS)
+                text = raw.decode("utf-8", "replace")
             if cache_days > 0:
                 CACHE.mkdir(parents=True, exist_ok=True)
                 cp.write_text(text, encoding="utf-8")
