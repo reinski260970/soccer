@@ -1,35 +1,32 @@
 # Fußball-Quotenwächter über API-Football; Mongo separat und nur lesend.
 name: quick-scan
 on:
-  schedule:
-    - cron: "*/15 * * * *"
+  push:
+    branches:
+      - m13-real-xg-oos
   workflow_dispatch:
 concurrency:
-  group: quick-scan
+  group: m13-real-xg-oos
   cancel-in-progress: false
 permissions:
   contents: write
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        league: [bundesliga, epl, laliga, seriea, ligue1]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Schnellscan
+      - name: M13 Tests
+        run: python -m pytest -q tests/test_m13.py
+      - name: M13 Real-xG OOS
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          APIKEY: ${{ secrets.APIKEY }}
-        run: python -m oddswatch quick --full --send
-      - name: Journal sichern
-        if: always()
-        run: |
-          git config user.name "oddswatch-bot"
-          git config user.email "oddswatch-bot@users.noreply.github.com"
-          git add data/journal
-          git diff --cached --quiet || git commit -m "Schnellscan $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase --autostash && git push
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+        run: python -m oddswatch m13-research --leagues "${{ matrix.league }}"
