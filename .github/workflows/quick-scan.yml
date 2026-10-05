@@ -8,7 +8,7 @@ on:
     - cron: "*/15 * * * *"
   workflow_dispatch:
 concurrency:
-  group: complete-football-hockey-scan
+  group: complete-scan-telegram-now
   cancel-in-progress: false
 permissions:
   contents: write
