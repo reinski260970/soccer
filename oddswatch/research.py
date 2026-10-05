@@ -42,11 +42,19 @@ class Variant:
 
 
 VARIANTS = [
+    Variant("Tore, HWZ 90", half_life=90),
     Variant("Tore, HWZ 180"),
     Variant("Tore, HWZ 365", half_life=365),
+    Variant("Tore, Shrink 8", shrink=8.0),
+    Variant("Tore, rho -0.10", rho=-0.10),
+    Variant("Tore, rho 0", rho=0.0),
+    Variant("Schuss-xG 25 %", shots_as_xg=True, xg_weight=0.25),
     Variant("Schuss-xG 50 %", shots_as_xg=True, xg_weight=0.5),
+    Variant("Schuss-xG 75 %", shots_as_xg=True, xg_weight=0.75),
     Variant("Schuss-xG 100 %", shots_as_xg=True, xg_weight=1.0),
     Variant("Schuss-xG 50 %, HWZ 90", shots_as_xg=True, xg_weight=0.5, half_life=90),
+    Variant("Schuss-xG 50 %, HWZ 365", shots_as_xg=True, xg_weight=0.5, half_life=365),
+    Variant("Schuss-xG 50 %, Shrink 8", shots_as_xg=True, xg_weight=0.5, shrink=8.0),
 ]
 
 
@@ -120,7 +128,7 @@ def metrics(rows: list[tuple], w: float) -> dict:
     res = [y - my - slope * (x - mx) for x, y in zip(xs, ys)]
     se = math.sqrt(sum(e * e for e in res) / (n - 2) / sxx)
     ll_o = ll_b = 0.0
-    clv, bets = [], 0
+    clv, bets, pnl = [], 0, 0.0
     for _, pm, po, pc, y, odds in rows:
         i = y.index(True)
         ll_o -= math.log(po[i])
@@ -130,9 +138,11 @@ def metrics(rows: list[tuple], w: float) -> dict:
             if w > 0 and odds[k] >= 1.03 / p:
                 bets += 1
                 clv.append(odds[k] * pc[k] - 1)
+                pnl += (odds[k] - 1) if y[k] else -1
     return {"n": len(rows), "slope": slope, "t": slope / se if se else 0.0,
             "dLL": (ll_b - ll_o) / len(rows), "bets": bets,
-            "clv": sum(clv) / len(clv) if clv else 0.0}
+            "clv": sum(clv) / len(clv) if clv else 0.0,
+            "roi": pnl / bets if bets else 0.0}
 
 
 def best_w(rows: list[tuple]) -> float:
@@ -157,5 +167,21 @@ def run(today: date | None = None, variants: list[Variant] | None = None,
         log.append(f"{v.name}: w={w} | Tuning n={mt['n']} slope {mt['slope']:+.3f} (t {mt['t']:+.1f}) "
                    f"dLL {mt['dLL'] * 1000:+.2f}‰ | Holdout n={mh['n']} slope {mh['slope']:+.3f} "
                    f"(t {mh['t']:+.1f}) dLL {mh['dLL'] * 1000:+.2f}‰ Tipps {mh['bets']} "
-                   f"CLV {mh['clv'] * 100:+.2f} %")
+                   f"CLV {mh['clv'] * 100:+.2f} % ROI {mh['roi'] * 100:+.2f} %")
+        for lg, texts in data.items():
+            lr = samples(texts, v, tune | hold)
+            ltr = [s for s in lr if s[0] in tune]
+            lho = [s for s in lr if s[0] in hold]
+            if len(ltr) < 100 or len(lho) < 100:
+                continue
+            lw = best_w(ltr)
+            lm = metrics(lho, lw)
+            if lw > 0 or lm["clv"] > 0 or lm["roi"] > 0:
+                gate = (lw > 0 and lm["bets"] >= 30 and lm["clv"] > 0 and lm["roi"] > 0
+                        and lm["dLL"] < 0)
+                log.append(
+                    f"  {lg}: w={lw} Holdout n={lm['n']} dLL {lm['dLL'] * 1000:+.2f}‰ "
+                    f"Tipps {lm['bets']} CLV {lm['clv'] * 100:+.2f} % ROI {lm['roi'] * 100:+.2f} % "
+                    + ("→ KANDIDAT" if gate else "→ nein")
+                )
     return log
