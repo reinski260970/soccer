@@ -245,6 +245,67 @@ def audit_for_m13(client, db_name=None):
         "AST": {"$exists": True, "$ne": None},
     })
 
+    recent_start = datetime(2017, 7, 1, tzinfo=timezone.utc)
+    recent_end = datetime(2026, 7, 1, tzinfo=timezone.utc)
+    recent_dup = list(col.aggregate([
+        {"$match": {**completed,
+                    "Date": {"$gte": recent_start, "$lt": recent_end},
+                    "Div": {"$exists": True, "$ne": None},
+                    "HomeTeam": {"$exists": True, "$ne": None},
+                    "AwayTeam": {"$exists": True, "$ne": None}}},
+        {"$group": {
+            "_id": {"Date": "$Date", "Div": "$Div", "H": "$HomeTeam", "A": "$AwayTeam"},
+            "n": {"$sum": 1},
+        }},
+        {"$match": {"n": {"$gt": 1}}},
+        {"$group": {
+            "_id": None,
+            "duplicate_groups": {"$sum": 1},
+            "excess_rows": {"$sum": {"$subtract": ["$n", 1]}},
+            "max_copies": {"$max": "$n"},
+        }},
+    ], allowDiskUse=True))
+    recent_dup_stats = recent_dup[0] if recent_dup else {
+        "duplicate_groups": 0, "excess_rows": 0, "max_copies": 0
+    }
+    recent_dup_stats.pop("_id", None)
+
+    # Prüft die Hypothese Tag/Monat vertauscht bei Future-Ergebnissen.
+    # Es werden nur öffentliche Match-Felder verglichen, keine Nutzer-/Accountdaten.
+    swap_candidates = 0
+    swap_counterparts = 0
+    future_docs = list(col.find(
+        {**completed, "Date": {"$gt": now},
+         "Div": {"$exists": True, "$ne": None},
+         "HomeTeam": {"$exists": True, "$ne": None},
+         "AwayTeam": {"$exists": True, "$ne": None}},
+        {"_id": 0, "Date": 1, "Div": 1, "HomeTeam": 1, "AwayTeam": 1,
+         "FTHG": 1, "FTAG": 1},
+    ).limit(500))
+    for doc in future_docs:
+        dt = doc.get("Date")
+        if not hasattr(dt, "month") or not hasattr(dt, "day"):
+            continue
+        if dt.day > 12:
+            continue
+        try:
+            swapped = datetime(dt.year, dt.day, dt.month, tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if swapped >= now:
+            continue
+        swap_candidates += 1
+        counterpart = col.count_documents({
+            "Date": swapped,
+            "Div": doc.get("Div"),
+            "HomeTeam": doc.get("HomeTeam"),
+            "AwayTeam": doc.get("AwayTeam"),
+            "FTHG": doc.get("FTHG"),
+            "FTAG": doc.get("FTAG"),
+        }, limit=1)
+        if counterpart:
+            swap_counterparts += 1
+
     future_by_div = list(col.aggregate([
         {"$match": {**completed, "Date": {"$gt": now},
                     "Div": {"$exists": True, "$ne": None}}},
@@ -279,6 +340,11 @@ def audit_for_m13(client, db_name=None):
         "score_result_mismatches": score_result_mismatch,
         "invalid_shot_rows": bad_shots,
         "duplicates_completed": dup_stats,
+        "duplicates_2017_to_2026_holdout": recent_dup_stats,
+        "future_date_swap_check": {
+            "swap_candidates": swap_candidates,
+            "matching_swapped_counterparts": swap_counterparts,
+        },
         "pinnacle_open_and_close": {"count": pinnacle_both, "pct_of_completed": pct(pinnacle_both)},
         "bet365_open_and_close": {"count": b365_both, "pct_of_completed": pct(b365_both)},
         "complete_shot_stats": {"count": shot_complete, "pct_of_completed": pct(shot_complete)},
