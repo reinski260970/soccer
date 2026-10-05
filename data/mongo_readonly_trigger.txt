@@ -1,0 +1,1 @@
+trigger soccer mongo readonly test 2026-10-05
