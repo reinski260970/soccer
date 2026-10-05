@@ -14,7 +14,13 @@ _LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
             "uel": "Europa League", "uecl": "Conference League",
             "nations": "UEFA Nations League", "del": "DEL", "nl": "National League (CH)",
             "shl": "SHL", "liiga": "Liiga", "khl": "KHL", "icehl": "ICE Hockey League", "epl": "Premier League",
-            "laliga": "La Liga", "seriea": "Serie A", "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
+            "laliga": "La Liga", "seriea": "Serie A", "ligue1": "Ligue 1",
+            "eredivisie": "Eredivisie", "primeira": "Primeira Liga", "belgium": "Belgian Pro League",
+            "switzerland": "Swiss Super League", "turkey": "Süper Lig", "scotland": "Scottish Premiership",
+            "sweden": "Allsvenskan", "norway": "Eliteserien", "denmark": "Superliga",
+            "poland": "Ekstraklasa", "greece": "Super League Greece",
+            "championship": "Championship", "3liga": "3. Liga",
+            "nfl": "NFL", "nhl": "NHL", "nba": "NBA"}
 
 
 def _pct(x: float) -> str:
