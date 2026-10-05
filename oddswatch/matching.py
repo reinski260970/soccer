@@ -1,4 +1,4 @@
-"""Teamnamen zwischen Quellen abgleichen (ESPN, football-data, Kalshi, NHL)."""
+"""Teamnamen zwischen Quellen abgleichen (ESPN, football-data, NHL)."""
 
 from __future__ import annotations
 
@@ -63,7 +63,7 @@ def find(name: str, candidates: list[str]) -> str | None:
 
 
 def match_label(label: str, aliases: list[str]) -> bool:
-    """Kalshi-Label ('Los Angeles C', 'New York R', 'Kansas City') gegen die
+    """Quellen-Label ('Los Angeles C', 'New York R', 'Kansas City') gegen die
     Namensvarianten eines Teams."""
     nl = norm(label)
     for a in aliases:

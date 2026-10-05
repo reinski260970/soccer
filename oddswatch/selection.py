@@ -9,16 +9,16 @@ from . import pricing
 
 @dataclass
 class Offer:
-    """Ein verifizierter Preis. source: 'kalshi' | 'bet365' | 'orbit'."""
+    """Ein verifizierter Preis. source: 'bet365' | 'orbit'."""
     event: str
     kickoff: str
     market: str       # z. B. "1", "X", "2", "O2.5"
     selection: str    # lesbar: "Dortmund Sieg (90 Min.)"
-    odds: float       # effektive Dezimalquote (Kalshi inkl. Gebühr)
+    odds: float       # effektive Dezimalquote nach Gebühren
     source: str
     observed_at: str
     liquidity: float | None = None
-    ref: str = ""     # z. B. Kalshi-Ticker, für Abrechnung/CLV
+    ref: str = ""     # z. B. Anbieter-Referenz, für Abrechnung/CLV
     league: str = ""
 
 

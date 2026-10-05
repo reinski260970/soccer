@@ -6,7 +6,6 @@ from oddswatch.journal import Journal
 from oddswatch.models.poisson import Match, PoissonModel
 from oddswatch.models.ratings import Game, PointsModel
 from oddswatch.selection import Offer, evaluate, pick
-from oddswatch.sources.kalshi import group_1x2, parse_make_snapshots
 
 
 def _league(seed=1):
@@ -66,27 +65,14 @@ def test_pricing():
     assert abs(sum(pricing.devig([2.0, 3.5, 4.0])) - 1) < 1e-9
     assert abs(pricing.ev(0.5, 2.1) - 0.05) < 1e-12
     assert abs(pricing.min_odds(0.5, 0.03) - 2.06) < 1e-12
-    assert pricing.kalshi_fee_per_contract(0.5) == 0.02
-    assert abs(pricing.kalshi_decimal_odds(50) - 1 / 0.52) < 1e-12
     assert pricing.stake_units(0.4, 2.0) == 0.0
     assert 0 < pricing.stake_units(0.6, 2.0) <= 2.0
 
 
-def test_make_snapshot_parse():
-    rules = "If {t} wins the Stuttgart vs Dortmund professional Bundesliga soccer game"
-    recs = [
-        {"key": "K-VFB", "data": {"ticker": "KXB-26SEP19VFBBVB-VFB", "title": "Stuttgart wins", "ask": 0.4, "bid": 0.39, "rules": rules.format(t="Stuttgart")}},
-        {"key": "K-TIE", "data": {"ticker": "KXB-26SEP19VFBBVB-TIE", "title": "Tie is the result", "ask": 0.26, "bid": 0.24, "rules": "If Tie is the result of the Stuttgart vs Dortmund professional"}},
-        {"key": "K-BVB", "data": {"ticker": "KXB-26SEP19VFBBVB-BVB", "title": "Dortmund wins", "ask": 0.36, "bid": 0.35, "rules": rules.format(t="Dortmund")}},
-        {"key": "BATCH", "data": {"markets": "[]"}},
-    ]
-    g = group_1x2(parse_make_snapshots(recs))
-    assert list(g) == ["KXB-26SEP19VFBBVB"]
-    assert g["KXB-26SEP19VFBBVB"]["home"].yes_ask == 0.4
 
 
 def test_selection_and_journal(tmp_path):
-    off = Offer("A vs B", "2026-10-01", "1", "A Sieg", 2.3, "kalshi", "now")
+    off = Offer("A vs B", "2026-10-01", "1", "A Sieg", 2.3, "bet365", "now")
     c = evaluate(off, 0.52, reason="test")
     assert c.ev > 0.19 and c.stake_eh > 0
     assert pick([c, evaluate(off, 0.40)]) == [c]
@@ -115,7 +101,7 @@ def test_points_home_adv_not_halved():
 
 
 def test_journal_keeps_timestamps(tmp_path):
-    off = Offer("A vs B", "k", "1", "A Sieg", 2.0, "kalshi", "2026-09-28T10:00:00Z")
+    off = Offer("A vs B", "k", "1", "A Sieg", 2.0, "bet365", "2026-09-28T10:00:00Z")
     j = Journal(tmp_path)
     j.append("valuebets", [evaluate(off, 0.6).as_row()])
     row = j.read("valuebets")[0]
@@ -165,12 +151,11 @@ def test_divergence_blocks_release():
     from datetime import datetime, timezone
     from oddswatch.scan import Fixture, evaluate_fixture
     from oddswatch.sources.espn import EspnGame, Team
-    from oddswatch.sources.kalshi import KalshiQuote
     g = EspnGame("1", "nfl", datetime(2026, 10, 4, 17, tzinfo=timezone.utc),
                  Team("Home Team"), Team("Away Team"), "STATUS_SCHEDULED")
-    q = lambda s, a: KalshiQuote("", "E", f"E-{s}", s, s, a - 0.01, a, 0, 0, "now")
+    q = lambda s, a: [Offer(g.title, g.kickoff.isoformat(), s, s, 1/a, "bet365", "now")]
     fx = Fixture("nfl", "nfl", g, {"home": 0.70, "away": 0.30}, "", ref_probs={"home": 0.45, "away": 0.55},
-                 kalshi={"home": q("home", 0.46), "away": q("away", 0.56)})
+                 offers={"home": q("home", 0.46), "away": q("away", 0.56)})
     val = {"nfl:1x2": {"validated": True, "w": 0.25, "clv": 0.01, "n": 300}}
     cands = evaluate_fixture(fx, val)
     home = [c for c in cands if c.market == "home"][0]
@@ -178,62 +163,15 @@ def test_divergence_blocks_release():
     assert pick(cands) == []
 
 
-def test_kalshi_sign_and_fill_import(tmp_path, monkeypatch):
-    import base64
-    from cryptography.hazmat.primitives import hashes, serialization
-    from cryptography.hazmat.primitives.asymmetric import padding, rsa
-    from oddswatch import portfolio
-    from oddswatch.sources import kalshi_auth
-    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-    pem = key.private_bytes(serialization.Encoding.PEM, serialization.PrivateFormat.TraditionalOpenSSL,
-                            serialization.NoEncryption()).decode()
-    # einzeilig mit literalen \n, wie oft in Umgebungsvariablen eingefügt
-    loaded = kalshi_auth._load_key(pem.replace("\n", "\\n"))
-    sig = kalshi_auth.sign(loaded, "1700000000000", "get", "/trade-api/v2/portfolio/fills?limit=5")
-    key.public_key().verify(base64.b64decode(sig), b"1700000000000GET/trade-api/v2/portfolio/fills",
-                            padding.PSS(mgf=padding.MGF1(hashes.SHA256()),
-                                        salt_length=padding.PSS.DIGEST_LENGTH), hashes.SHA256())
-
-    class FakeClient:
-        def fills(self):
-            return [{"fill_id": "f1", "ticker": "KXNFLGAME-26OCT04DETCAR-CAR", "side": "yes",
-                     "action": "buy", "count_fp": "10", "yes_price_dollars": "0.36", "is_taker": True},
-                    {"fill_id": "f2", "ticker": "KXNFLGAME-26OCT04DETCAR-CAR", "side": "yes",
-                     "action": "sell", "count_fp": "5", "yes_price_dollars": "0.40"}]
-    monkeypatch.setattr(portfolio.kalshi, "fetch_market",
-                        lambda t: ({"yes_sub_title": "Carolina", "event_ticker": "KXNFLGAME-26OCT04DETCAR"}, None))
-    monkeypatch.setattr(portfolio, "_event_title", lambda e, c: "DET Lions vs CAR Panthers")
-    j = Journal(tmp_path)
-    j.append("valuebets", [{"ref": "KXNFLGAME-26OCT04DETCAR-CAR", "event": "x", "market": "home"}])
-    log = portfolio.import_fills(j, client=FakeClient(), eh_usd=10)
-    assert "1 neu verbucht" in log[0] and "1 Verkäufe" in log[0]
-    row = j.read("placed")[0]
-    assert row["selection"] == "Carolina" and row["valuebet_ref"]
-    assert abs(float(row["odds_taken"]) - 10 / (3.6 + 0.17)) < 1e-3  # Gebühr ceil(0.07*10*.36*.64)=0.17
-    portfolio.import_fills(j, client=FakeClient(), eh_usd=10)
-    assert len(j.read("placed")) == 1  # dedupliziert
 
 
-def test_settle_by_ticker_and_no_side(tmp_path, monkeypatch):
-    from oddswatch import settle
-    j = Journal(tmp_path)
-    j.append("placed", [
-        {"event": "E", "market": "yes", "selection": "A", "odds_taken": 2.0, "stake_eh": 1, "ref": "KX-E-A"},
-        {"event": "E", "market": "yes", "selection": "TIE", "odds_taken": 4.0, "stake_eh": 1, "ref": "KX-E-TIE"},
-        {"event": "E", "market": "no", "selection": "NICHT B", "odds_taken": 1.5, "stake_eh": 1, "ref": "KX-E-B"}])
-    res = {"KX-E-A": "yes", "KX-E-TIE": "no", "KX-E-B": "no"}
-    monkeypatch.setattr(settle.kalshi, "fetch_market", lambda t: ({"result": res[t]}, None))
-    monkeypatch.setattr(settle, "closing_fair_odds", lambda t: None)
-    settle.settle_all(j)
-    got = {r["ref"]: r["result"] for r in j.read("placed")}
-    assert got == {"KX-E-A": "win", "KX-E-TIE": "loss", "KX-E-B": "win"}
 
 
 def test_telegram_text_shows_league_date_and_opponent():
     from oddswatch import report
     from oddswatch.selection import Candidate
     c = Candidate(event="SC Freiburg – Schalke 04", kickoff="2026-10-11T15:30+00:00",
-                  market="away", selection="Schalke 04 Sieg (90 Min.)", source="kalshi",
+                  market="away", selection="Schalke 04 Sieg (90 Min.)", source="bet365",
                   odds=4.98, p_model=0.22, fair_odds=4.53, min_odds=4.66, edge=0.02,
                   ev=0.10, stake_eh=0.0, estimate=False, reason="", observed_at="",
                   liquidity=None, league="bundesliga",
@@ -248,7 +186,7 @@ def test_daily_text_evaluation_profit_and_outlook(tmp_path):
     from oddswatch import daily
     from oddswatch.journal import Journal
     j = Journal(tmp_path)
-    base = {"league": "nhl", "source": "kalshi", "estimate": False, "reason": ""}
+    base = {"league": "nhl", "source": "bet365", "estimate": False, "reason": ""}
     j.append("valuebets", [
         {**base, "event": "A – B", "kickoff": "2026-09-28T00:00+00:00", "market": "home",
          "selection": "A Sieg", "ref": "KX1", "odds": 2.0, "stake_eh": 1.0,
@@ -414,33 +352,10 @@ def test_xg_line_uses_xg_xga_and_goals():
     assert "xG 0.75, xGA 1.75, Tore 2.00:0.50" in line
 
 
-def test_snapshot_open_gives_closing_line(tmp_path):
-    from datetime import datetime, timezone
-    from oddswatch import settle
-    j = Journal(tmp_path / "j")
-    j.append("placed", [{"event": "Luxembourg – Iceland", "kickoff": "2026-09-29T18:45+00:00",
-                         "market": "home", "selection": "Luxembourg Sieg", "odds_taken": 3.4,
-                         "stake_eh": 0.75, "ref": "KXUEFANLGAME-26SEP29LUXISL-LUX"}])
-    ev = {"markets": [
-        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-LUX", "yes_sub_title": "Luxembourg",
-         "yes_bid_dollars": "0.30", "yes_ask_dollars": "0.31"},
-        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-ISL", "yes_sub_title": "Iceland",
-         "yes_bid_dollars": "0.41", "yes_ask_dollars": "0.42"},
-        {"ticker": "KXUEFANLGAME-26SEP29LUXISL-TIE", "yes_sub_title": "Tie",
-         "yes_bid_dollars": "0.28", "yes_ask_dollars": "0.29"}]}
-    snaps = str(tmp_path / "s")
-    before = datetime(2026, 9, 29, 18, 35, tzinfo=timezone.utc)
-    log = settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=before)
-    assert "Luxembourg 0.30/0.31" in log[0]
-    after = datetime(2026, 9, 29, 19, 0, tzinfo=timezone.utc)
-    assert settle.snapshot_open(j, snaps, fetch_event=lambda e: (ev, None), now=after) == \
-        ["keine offenen Tipps vor Anstoß"]
-    cfo = settle.closing_fair_odds("KXUEFANLGAME-26SEP29LUXISL-LUX", snaps)
-    assert abs(cfo - 1 / (0.305 / (0.305 + 0.415 + 0.285))) < 1e-9
 
 
 def test_play_whenever_odds_reach_min_odds():
-    off = Offer("Finland – Belarus", "2026-09-29", "away", "Belarus Sieg", 6.29, "kalshi", "now")
+    off = Offer("Finland – Belarus", "2026-09-29", "away", "Belarus Sieg", 6.29, "bet365", "now")
     c = evaluate(off, 1.03 / 5.66 + 0.005)            # Quote über "spielbar ab", Quote > 6
     assert c.odds >= c.min_odds
     assert pick([c]) == [c] and c.stake_eh >= 0.25
@@ -450,8 +365,7 @@ def test_play_whenever_odds_reach_min_odds():
     assert pick([flagged]) == []
 
 
-def test_hockeyarchives_parse_and_kalshi_kickoff():
-    from oddswatch.scan import _kalshi_kickoff
+def test_hockeyarchives_parse():
     from oddswatch.sources.hockeyarchives import parse_page, parse_liiga
     html = ("<A NAME=\"DEL\">1<sup>re</sup> journ&eacute;e (vendredi 18 septembre 2026) "
             "Munich - Mannheim 4-3 t.a.b. (1-0,2-1,0-2,0-0,1-0) "
@@ -470,31 +384,10 @@ def test_hockeyarchives_parse_and_kalshi_kickoff():
         {"homeTeam": {"teamName": "HPK"}, "awayTeam": {"teamName": "Lukko"}, "start": "2026-10-01T15:30:00Z",
          "ended": False}])
     assert (done[0].reg_home, done[0].reg_away, done[0].extra) == (2, 2, "OT") and len(up) == 1
-    ko = _kalshi_kickoff("KXNLGAME-26SEP291345EHCKGEN")
-    assert ko.isoformat() == "2026-09-29T17:45:00+00:00"
 
 
-def test_wide_spread_blocks_release():
-    from datetime import datetime, timezone
-    from oddswatch.scan import Fixture, evaluate_fixture
-    from oddswatch.sources.espn import EspnGame, Team
-    from oddswatch.sources.kalshi import KalshiQuote
-    g = EspnGame("1", "nl", datetime(2026, 9, 29, 17, 45, tzinfo=timezone.utc),
-                 Team("Genève Servette"), Team("EHC Kloten"), "STATUS_SCHEDULED")
-    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
-    fx = Fixture("nl", "hockey", g, {"home": 0.65, "away": 0.35}, "",
-                 kalshi={"home": q("home", 0.12, 0.40), "away": q("away", 0.12, 0.78)})
-    home = [c for c in evaluate_fixture(fx) if c.market == "home"][0]
-    assert any("Spread" in f for f in home.flags) and pick([home]) == []
 
 
-def test_kalshi_reference_uses_liquid_side():
-    from oddswatch.scan import _devig_kalshi
-    from oddswatch.sources.kalshi import KalshiQuote
-    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
-    ref = _devig_kalshi({"home": q("home", 0.63, 0.66), "away": q("away", 0.06, 0.40)}, ["home", "away"])
-    assert abs(ref["home"] - 0.645) < 1e-9 and abs(ref["away"] - 0.355) < 1e-9
-    assert _devig_kalshi({"home": q("home", 0.1, 0.7), "away": q("away", 0.1, 0.7)}, ["home", "away"]) == {}
 
 
 def test_icehl_feed_parse():
@@ -513,43 +406,26 @@ def test_icehl_feed_parse():
     assert up[0]["start"].utcoffset().total_seconds() == 7200     # Wien, Sommerzeit
 
 
-def test_verify_against_live_price(tmp_path):
-    from oddswatch import verify
-    j = Journal(tmp_path)
-    j.append("valuebets", [{"event": "Luxembourg – Iceland", "kickoff": "2026-09-29T18:45+00:00",
-                            "league": "nations", "market": "home", "selection": "Luxembourg Sieg",
-                            "ref": "KXUEFANLGAME-26SEP29LUXISL-LUX", "odds": 3.4, "p_model": 0.3751,
-                            "p_ref": 0.2876, "p_final": 0.3226, "min_odds": 3.1929}])
-    j.append("forecasts", [{"event": "Luxembourg – Iceland", "market": "home", "league": "nations",
-                            "event_id": "401861086"}])
-    live = lambda t: ({"status": "active", "yes_bid_dollars": "0.27", "yes_ask_dollars": "0.28"}, None)
-    out = "\n".join(verify.verify(j, fetch_market=live))
-    assert "| 27/28 ¢ | 3.40 | 3.19 | ✅ PLAY |" in out
-    assert "1 / (0.28 + 0.0142 Gebühr) = 3.40" in out
-    assert "https://www.espn.com/soccer/match/_/gameId/401861086" in out
-    moved = lambda t: ({"status": "active", "yes_bid_dollars": "0.31", "yes_ask_dollars": "0.32"}, None)
-    assert "❌ unter Mindestquote" in "\n".join(verify.verify(j, fetch_market=moved))
 
 
 def test_release_only_when_better_than_market():
     from datetime import datetime, timezone
     from oddswatch.scan import Fixture, evaluate_fixture
     from oddswatch.sources.espn import EspnGame, Team
-    from oddswatch.sources.kalshi import KalshiQuote
     g = EspnGame("1", "bundesliga", datetime(2026, 10, 10, 13, 30, tzinfo=timezone.utc),
                  Team("SC Paderborn 07"), Team("VfB Stuttgart"), "STATUS_SCHEDULED")
-    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
+    q = lambda s, b, a: [Offer(g.title, g.kickoff.isoformat(), s, s, 1/a, "bet365", "now")]
     kal = {"home": q("home", 0.18, 0.20), "draw": q("draw", 0.22, 0.24), "away": q("away", 0.58, 0.60)}
     ref = {"home": 0.187, "draw": 0.233, "away": 0.58}
     fx = Fixture("bundesliga", "soccer", g, {"home": 0.33, "draw": 0.25, "away": 0.42}, "",
-                 ref_probs=ref, kalshi=kal)
+                 ref_probs=ref, offers=kal)
     # Modell sieht Paderborn bei 33 %, Markt bei 18,7 %: ohne Validierung kein PLAY
     no_val = {"bundesliga:1x2": {"validated": False, "w": 0.0, "clv": -0.067, "n": 520}}
     c = [x for x in evaluate_fixture(fx, no_val) if x.market == "home"][0]
     assert abs(c.p_final - 0.187) < 1e-9 and pick([c]) == []
     assert "nicht besser als der Markt" in c.reason
-    # echter Preisfehler bei Kalshi (Ask 15 ¢ bei fairen 18,7 %) -> PLAY auch ohne Modell
-    fx.kalshi["home"] = q("home", 0.14, 0.15)
+    # echter Preisfehler beim Buchmacher (Quote 6,67 bei fairen 18,7 %) -> PLAY auch ohne Modell
+    fx.offers["home"] = q("home", 0.14, 0.15)
     c = [x for x in evaluate_fixture(fx, no_val) if x.market == "home"][0]
     assert pick([c]) == [c]
     # ohne DraftKings-Linie keine unabhängige Referenz -> keine Freigabe
@@ -574,34 +450,6 @@ def test_backtest_validates_only_when_better_than_market():
     assert not evaluate(bad)["validated"] and evaluate(bad)["w"] == 0.0
 
 
-def test_lines_total_and_spread_vs_draftkings(monkeypatch):
-    from datetime import datetime, timezone
-    from oddswatch import lines
-    from oddswatch.scan import Fixture
-    from oddswatch.selection import pick as _pick
-    from oddswatch.sources.espn import EspnGame, Team
-    from oddswatch.sources.kalshi import KalshiQuote
-    g = EspnGame("401872964", "nfl", datetime(2026, 10, 2, 0, 15, tzinfo=timezone.utc),
-                 Team("Cleveland Browns", "Cleveland", "Browns", "CLE"),
-                 Team("Pittsburgh Steelers", "Pittsburgh", "Steelers", "PIT"), "STATUS_SCHEDULED",
-                 ref_line={"total_line": 38.5, "ml_over": 1.91, "ml_under": 1.91, "spread_home": 2.5,
-                           "odds_spread_home": 2.0, "spread_away": -2.5, "odds_spread_away": 1.83})
-    q = KalshiQuote("", "KXNFLGAME-26OCT01PITCLE", "KXNFLGAME-26OCT01PITCLE-CLE", "home", "Cleveland",
-                    0.43, 0.44, 0, 0, "now")
-    fx = Fixture("nfl", "nfl", g, {"home": 0.45, "away": 0.55}, "", kalshi={"home": q})
-    events = {
-        "KXNFLTOTAL": {"26OCT01PITCLE": [{"ticker": "T-39", "floor_strike": 38.5,
-                                          "yes_bid_dollars": "0.44", "yes_ask_dollars": "0.45"}]},
-        "KXNFLSPREAD": {"26OCT01PITCLE": [{"ticker": "S-PIT3", "floor_strike": 2.5,
-                                           "yes_sub_title": "PIT Steelers wins by over 2.5 points",
-                                           "yes_bid_dollars": "0.52", "yes_ask_dollars": "0.53"}]}}
-    monkeypatch.setattr(lines, "_events", lambda s: (events.get(s, {}), None))
-    cs = lines.candidates([fx], [], [])
-    by = {c.market: c for c in cs}
-    assert set(by) == {"O38.5", "U38.5:no", "HC-2.5 PIT", "HC+2.5 CLE:no"}
-    assert abs(by["O38.5"].p_final - 0.5) < 1e-9          # DK -110/-110 de-vigged
-    assert [c.market for c in _pick(cs)] == ["O38.5"]    # 45 ¢ inkl. Gebühr < fair 50 % -> Wert
-    assert abs(by["U38.5:no"].odds - pricing.kalshi_decimal_odds(56, contracts=100)) < 1e-9
 
 
 def test_clubelo_stops_after_repeated_failures(monkeypatch):
@@ -616,30 +464,6 @@ def test_clubelo_stops_after_repeated_failures(monkeypatch):
     assert out == {} and len(calls) == 3 and "abgebrochen" in errs[0]
 
 
-def test_quick_scan_alerts_once_per_price_level(tmp_path, monkeypatch):
-    from datetime import datetime, timezone
-    from oddswatch import quick, lines
-    from oddswatch.scan import Fixture
-    from oddswatch.sources.espn import EspnGame, Team
-    from oddswatch.sources.kalshi import KalshiQuote
-    g = EspnGame("1", "nfl", datetime(2026, 10, 4, 17, tzinfo=timezone.utc),
-                 Team("Chicago Bears"), Team("New York Jets"), "STATUS_SCHEDULED")
-    q = lambda s, b, a: KalshiQuote("", "E", f"E-{s}", s, s, b, a, 0, 0, "now")
-    fx = Fixture("nfl", "nfl", g, {"home": 0.6, "away": 0.4}, "", ref_probs={"home": 0.6, "away": 0.4},
-                 kalshi={"home": q("home", 0.54, 0.55), "away": q("away", 0.44, 0.46)})
-    monkeypatch.setattr(quick, "fixtures", lambda *a, **k: [fx])
-    monkeypatch.setattr(quick, "snapshot", lambda f: None)
-    monkeypatch.setattr(quick, "STATE", tmp_path / "alerts.json")
-    monkeypatch.setattr(lines, "candidates", lambda *a, **k: [])
-    monkeypatch.setattr(quick.settle, "snapshot_open", lambda j: [])
-    monkeypatch.setattr(quick.settle, "settle_all", lambda j: [])
-    sent = []
-    monkeypatch.setattr(quick.telegram, "send", lambda t: sent.append(t) or {"sent": True, "message_ids": [1]})
-    j = Journal(tmp_path / "j")
-    quick.run(j, send=True)
-    quick.run(j, send=True)                       # gleicher Preis -> keine zweite Meldung
-    assert len(sent) == 1 and "Chicago Bears" in sent[0]
-    assert [r["market"] for r in j.read("valuebets")] == ["home"]
 
 
 def test_news_ignores_opponent_mentions_ambiguous_city_and_trade_category():
@@ -779,7 +603,7 @@ def test_soccer_freeze_blocks_unvalidated_leagues_only():
     from oddswatch.selection import Candidate
     def cand(league, market):
         return Candidate(event=f"{league}-{market}", kickoff="", market=market, selection="x",
-                         source="kalshi", odds=3.0, p_model=0.4, fair_odds=2.5, min_odds=2.6,
+                         source="bet365", odds=3.0, p_model=0.4, fair_odds=2.5, min_odds=2.6,
                          edge=0.05, ev=0.2, stake_eh=0.5, estimate=False, reason="", observed_at="",
                          liquidity=None, league=league, flags=[])
     cs = [cand("nations", "away"), cand("bundesliga", "home"), cand("bundesliga", "over"), cand("nfl", "home")]

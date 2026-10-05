@@ -1,17 +1,4 @@
-"""Vollständiger Scan: Daten laden -> Modelle fitten -> faire Preise ->
-Kalshi-Vergleich -> max. 5 Value-Kandidaten -> Journal, Bericht, Telegram-Text.
-
-Entscheidungswahrscheinlichkeit
--------------------------------
-Freigabe nur, wenn wir nachweislich besser sind als der Markt. Referenz ist
-der de-vigged DraftKings-Kurs (über ESPN) – unabhängig vom Kalshi-Preis.
-p_final = w * p_model + (1 - w) * p_markt, wobei w nur dann > 0 ist, wenn
-das Modell für diese Liga/Marktart im Walk-forward-Backtest gegen die
-Closing Line besser war als der Markt (data/validation.json, erzeugt von
-`python -m oddswatch backtest`). Sonst ist w = 0: reiner Preisvergleich
-Kalshi gegen DraftKings, das Modell steht nur zur Information im Bericht.
-Ohne DraftKings-Linie gibt es keine unabhängige Referenz und keine Freigabe.
-"""
+"""Modelle und unabhängige Referenzen; Fußballpreise über API-Football."""
 
 from __future__ import annotations
 
@@ -29,7 +16,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl
 from . import fetch, venues
 
 VALIDATION = Path("data/validation.json")
@@ -63,8 +50,6 @@ XG_SHARE = 0.5            # Anteil der xG-minus-Tore-Differenz, der ins Elo geht
 # Weicht das Modell stärker als das vom Referenzmarkt ab, fehlt ihm meist eine
 # Information (QB, Kader, Trainer) – dann keine Freigabe, sondern Prüfung.
 MAX_DIVERGENCE = 0.15
-# Breiter als 10 ¢ zwischen Geld und Brief: kein verlässlicher Marktpreis
-MAX_SPREAD = 0.10
 SOCCER_LEAGUES = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
                   "austria": "Admiral Bundesliga (AT)"}
 
@@ -80,7 +65,7 @@ class Fixture:
     ref_probs: dict[str, float] = field(default_factory=dict)
     flags: dict[str, list[str]] = field(default_factory=dict)  # Seite -> Vorbehalte
     estimate: bool = False
-    kalshi: dict[str, kalshi.KalshiQuote] = field(default_factory=dict)
+    offers: dict[str, list[Offer]] = field(default_factory=dict)
     model: str = ""                          # Modellkennung fürs Journal (Standard: sport)
 
 
@@ -176,54 +161,6 @@ def _devig_ref(g: espn.EspnGame, three_way: bool) -> dict[str, float]:
     return dict(zip(keys, pricing.devig(odds)))
 
 
-def _devig_kalshi(qs: dict[str, kalshi.KalshiQuote], keys: list[str]) -> dict[str, float]:
-    """Kalshi-Mittelkurse als Referenz. Seiten mit Spread > MAX_SPREAD sind
-    kein Marktpreis: eine einzelne dünne Seite ergibt sich als Rest (1 − Summe
-    der liquiden Mittelkurse), bei mehreren dünnen Seiten gibt es keine Referenz."""
-    mids, thin = {}, []
-    for k in keys:
-        q = qs.get(k)
-        if not q or q.yes_ask <= 0:
-            return {}
-        if q.yes_bid <= 0 or q.yes_ask - q.yes_bid > MAX_SPREAD:
-            thin.append(k)
-        else:
-            mids[k] = q.mid
-    if not thin:
-        s = sum(mids.values())
-        return {k: m / s for k, m in mids.items()} if s > 0 else {}
-    rest = 1 - sum(mids.values())
-    if len(thin) > 1 or not 0 < rest < 1:
-        return {}
-    return {**mids, thin[0]: rest}
-
-
-def _attach_kalshi(fx: Fixture, quotes: list[kalshi.KalshiQuote]) -> None:
-    g = fx.game
-    by_ev: dict[str, list[kalshi.KalshiQuote]] = {}
-    for q in quotes:
-        by_ev.setdefault(q.event_ticker, []).append(q)
-    for qs in by_ev.values():
-        found: dict[str, kalshi.KalshiQuote] = {}
-        for q in qs:
-            if q.outcome == "draw":
-                found["draw"] = q
-            elif matching.match_label(q.label, g.home.aliases()) or matching.same(q.label, g.home.name):
-                found["home"] = q
-            elif matching.match_label(q.label, g.away.aliases()) or matching.same(q.label, g.away.name):
-                found["away"] = q
-        if "home" in found and "away" in found:
-            ko = qs[0].kickoff
-            try:
-                kt = datetime.fromisoformat(ko.replace("Z", "+00:00"))
-                if abs((kt - g.kickoff).total_seconds()) > 40 * 3600:
-                    continue
-            except ValueError:
-                pass
-            fx.kalshi = found
-            return
-
-
 # ---------------------------------------------------------------- Belastung
 def _fatigue(sport: str, hist: list[tuple[Slot, float, float]], ups: list[Slot]
              ) -> tuple[Effects, list[tuple[TeamLoad, TeamLoad]]]:
@@ -294,12 +231,6 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
     out: list[Fixture] = []
     ger, ger_ms = _soccer_model(["D1", "D2"], issues)
     aut, aut_ms = _aut_model(issues)
-    kq: list[kalshi.KalshiQuote] = []
-    for lg in ("bundesliga", "2bundesliga"):
-        q, err = kalshi.fetch_series(kalshi.SERIES[lg])
-        if err:
-            issues.append(f"Kalshi {lg}: {err}")
-        kq += q
     for lg, label in SOCCER_LEAGUES.items():
         games, errs = espn.upcoming(lg, start, days)
         issues += errs
@@ -329,7 +260,6 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
                          f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
                          ref_probs=_devig_ref(g, three_way=True),
                          estimate=lg == "austria")
-            _attach_kalshi(fx, kq)
             out.append(fx)
     return out
 
@@ -378,9 +308,6 @@ def scan_nations(start: date, days: int, issues: list[str], notes: list[str]) ->
     notes.append(f"UEFA Nations League: Elo-Tormodell aus {len(res)} Länderspielen "
                  f"(eloratings.net), Heimvorteil {model.home:.0f} Elo, "
                  f"Tore bei Gleichstand {math.exp(model.a):.2f} je Team, Steigung {model.b:.2f}")
-    kq, kerr = kalshi.fetch_series(kalshi.SERIES["nations"])
-    if kerr:
-        issues.append(f"Kalshi Nations League: {kerr}")
     ms = [Match(r.date, r.home, r.away, r.home_goals, r.away_goals) for r in res]
     out = []
     for g in games:
@@ -398,7 +325,6 @@ def scan_nations(start: date, days: int, issues: list[str], notes: list[str]) ->
                      f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} (Elo-Modell), "
                      f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
                      ref_probs=_devig_ref(g, three_way=True), model="elo-national")
-        _attach_kalshi(fx, kq)
         out.append(fx)
     return out
 
@@ -453,9 +379,6 @@ def scan_club_cups(start: date, days: int, issues: list[str], notes: list[str]) 
     for lg, gs in games.items():
         if not gs:
             continue
-        kq, kerr = kalshi.fetch_series(kalshi.SERIES[lg])
-        if kerr:
-            issues.append(f"Kalshi {UEFA_CLUB[lg]}: {kerr}")
         for g in gs:
             h = (matching.find_strict(g.home.name, names, CLUBELO_ALIASES)
                  or matching.find_strict(g.home.short, names, CLUBELO_ALIASES))
@@ -472,7 +395,6 @@ def scan_club_cups(start: date, days: int, issues: list[str], notes: list[str]) 
                          f"(ClubElo, xG-korrigiert), O2.5 {mk['O2.5'] * 100:.0f} %", [ch, ca],
                          ref_probs=_devig_ref(g, three_way=True), estimate=True,
                          model="elo-club")
-            _attach_kalshi(fx, kq)
             out.append(fx)
     return out
 
@@ -518,9 +440,6 @@ def scan_nfl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     model = PointsModel.fit(games, start, half_life_days=120, ridge=3.0)
     notes.append(f"NFL-Modell: {len(games)} Spiele, Heimvorteil {model.home_adv:.1f} Pkt, "
                  f"σ Marge {model.sigma_margin:.1f}")
-    kq, err = kalshi.fetch_series(kalshi.SERIES["nfl"])
-    if err:
-        issues.append(f"Kalshi NFL: {err}")
     ups, errs = espn.upcoming("nfl", start, days)
     issues += errs
     as_ms = [Match(g.date, g.home, g.away, g.home_pts, g.away_pts) for g in games]
@@ -558,7 +477,6 @@ def scan_nfl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
                      f"erw. Punkte {mk['pts_home']:.1f}:{mk['pts_away']:.1f} "
                      f"(Marge {mk['margin']:+.1f}, Total {mk['total']:.1f})", ctx,
                      ref_probs=_devig_ref(g, three_way=False), flags=flags)
-        _attach_kalshi(fx, kq)
         out.append(fx)
     return out
 
@@ -581,9 +499,6 @@ def scan_nhl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     issues += serr
     notes.append(f"NHL-Modell: {len(ms)} Spiele ({len(ms_cur)} aus {cur}), "
                  f"Vorsaison stark regressiert – Kaderwechsel nicht modelliert")
-    kq, err = kalshi.fetch_series(kalshi.SERIES["nhl"])
-    if err:
-        issues.append(f"Kalshi NHL: {err}")
     ups, errs = espn.upcoming("nhl", start, days)
     issues += errs
     abbr_by_name = {v: k for k, v in names.items()}
@@ -627,21 +542,12 @@ def scan_nhl(start: date, days: int, issues: list[str], notes: list[str]) -> lis
                      f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, "
                      f"60-Min-Remis {mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)", ctx,
                      ref_probs=_devig_ref(g, three_way=False), estimate=True)
-        _attach_kalshi(fx, kq)
         out.append(fx)
     return out
 
 
 # ---------------------------------------------------------------- Eishockey Europa
-# Liga -> (Name, Kalshi-Serie). Kalshi-Titel lauten "Gast vs Heim" (Untertitel
-# "GEN at EHC"); Anspielzeit steht im Event-Ticker (US-Ostküstenzeit).
-HOCKEY_EU = {"del": ("DEL", "KXDELGAME"), "nl": ("National League (CH)", "KXNLGAME"),
-             "shl": ("SHL", "KXSHLGAME"), "liiga": ("Liiga", "KXLIIGAGAME"),
-             "khl": ("KHL", "KXKHLGAME")}
-# Ligen ohne Kalshi-Serie: kein verifizierter Preis -> nicht handelbar
-HOCKEY_EU_NO_PRICE = {"extraliga": "Extraliga (CZ)",
-                      "slovakia": "Extraliga (SK)", "norway": "EHL (NO)", "denmark": "Metal Ligaen (DK)"}
-# Kalshi-/Liiga-API-Name -> hockeyarchives-Name (französisch)
+# Team-Aliasse der historischen Ergebnisquellen
 HOCKEY_ALIASES = {
     "del": {"Adler Mannheim": "Mannheim", "Augsburger Panther": "Augsbourg",
             "ERC Ingolstadt": "Ingolstadt", "Eisbären Berlin": "Berlin",
@@ -684,21 +590,6 @@ HOCKEY_ALIASES = {
 HA_CANON = {"Rapperswil-Jona": "Rapperswil", "Bietigheim-Bissingen": "Bietigheim"}
 
 
-def _kalshi_kickoff(event_ticker: str) -> datetime | None:
-    """KXNLGAME-26SEP291345EHCKGEN -> 29.09.2026 13:45 US-Ostküste -> UTC."""
-    import re
-    from zoneinfo import ZoneInfo
-    m = re.search(r"-(\d{2})([A-Z]{3})(\d{2})(\d{4})", event_ticker)
-    if not m:
-        return None
-    try:
-        local = datetime.strptime(f"20{m.group(1)}{m.group(2).title()}{m.group(3)}{m.group(4)}",
-                                  "%Y%b%d%H%M")
-    except ValueError:
-        return None
-    return local.replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
-
-
 def _hockey_results(lg: str, season_start: int, issues: list[str]
                     ) -> tuple[list[Match], int]:
     """Vorsaison + laufende Saison als 60-Minuten-Ergebnisse; Anzahl aktueller
@@ -728,70 +619,44 @@ def _hockey_results(lg: str, season_start: int, issues: list[str]
 
 
 def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
-    """Europäische Ligen mit Kalshi-Markt: Spielplan und Preise aus Kalshi,
-    Ergebnisse von hockeyarchives (Liiga zusätzlich API), Poisson auf
-    60-Minuten-Tore, Verlängerung/Penalty wie NHL geschätzt aufgeteilt."""
-    season_start = start.year if start.month >= 7 else start.year - 1
     now = datetime.now(timezone.utc)
     until = datetime.combine(start + timedelta(days=days + 1), datetime.min.time(), tzinfo=timezone.utc)
-    out: list[Fixture] = []
-    for lg, (label, series) in HOCKEY_EU.items():
-        kq, kerr = kalshi.fetch_series(series)
-        if kerr:
-            issues.append(f"Kalshi {label}: {kerr}")
-        by_ev: dict[str, list[kalshi.KalshiQuote]] = {}
-        for q in kq:
-            by_ev.setdefault(q.event_ticker, []).append(q)
-        events = []
-        for ev, qs in by_ev.items():
-            ko = _kalshi_kickoff(ev)
-            title = qs[0].event
-            if ko is None or " vs " not in title or not (now < ko <= until):
-                continue
-            away, home = [x.strip() for x in title.split(" vs ", 1)]
-            events.append((ev, ko, home, away, qs))
-        if not events:
-            notes.append(f"{label}: keine offenen Kalshi-Märkte bis {start + timedelta(days=days):%d.%m.}")
+    issues.append("Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig")
+    out = _scan_icehl(start, until, now, issues, notes)
+    season = start.year if start.month >= 7 else start.year - 1
+    for lg in ("liiga", "shl"):
+        _, upcoming, err = (hockeyarchives.liiga(season + 1) if lg == "liiga" else hockeyarchives.shl(season))
+        if err:
+            issues.append(f"{lg}: {err}")
             continue
-        ms, n_cur = _hockey_results(lg, season_start, issues)
+        upcoming = [g for g in upcoming if now < g["start"] <= until]
+        if not upcoming:
+            continue
+        ms, _ = _hockey_results(lg, season, issues)
         if len(ms) < 150:
-            issues.append(f"{label}: nur {len(ms)} Spiele geladen – kein Modell")
+            issues.append(f"{lg}: zu wenige Ergebnisse für ein Modell")
             continue
         model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
-        notes.append(f"{label}: Poisson aus {len(ms)} Spielen (hockeyarchives"
-                     + {"liiga": ", Liiga-API", "shl": ", SHL-API"}.get(lg, "")
-                     + f"), davon {n_cur} aktuelle Saison"
-                     + (" – Vorsaison stark gewichtet, Kaderwechsel nicht modelliert" if n_cur < 60 else ""))
-        teams = list(model.attack)
-        al = HOCKEY_ALIASES.get(lg, {})
-        for ev, ko, home, away, qs in sorted(events, key=lambda e: e[1]):
-            h = matching.find_strict(home, teams, al)
-            a = matching.find_strict(away, teams, al)
+        for g in upcoming:
+            h = matching.find_strict(g["home"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
+            a = matching.find_strict(g["away"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
             if not h or not a:
-                issues.append(f"{label}: Team nicht zugeordnet ({away} at {home})")
+                issues.append(f"{lg}: Team nicht zugeordnet ({g['home']} / {g['away']})")
                 continue
             mk = model.markets(h, a)
             ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
-            g = espn.EspnGame(ev, lg, ko, espn.Team(home), espn.Team(away), "STATUS_SCHEDULED")
-            kd = ko.date()
-            ctx = [f"Form {h} {_form(ms, h, kd)}, {a} {_form(ms, a, kd)} (60 Min.)",
-                   f"Pause {_rest_days(ms, h, kd)}/{_rest_days(ms, a, kd)} Tage"]
-            fx = Fixture(lg, "hockey", g, {"home": ph, "away": pa},
-                         f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, 60-Min-Remis "
-                         f"{mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)", ctx,
-                         estimate=True, model="poisson-hockey-eu")
-            _attach_kalshi(fx, qs)
-            out.append(fx)
-    out += _scan_icehl(start, until, now, issues, notes)
-    notes.append("Eishockey ohne Kalshi-Serie (" + ", ".join(HOCKEY_EU_NO_PRICE.values())
-                 + "): kein verifizierter Preis – nicht handelbar")
+            game = espn.EspnGame(f"{lg}:{g['start'].isoformat()}:{h}:{a}", lg, g["start"],
+                                 espn.Team(g["home"]), espn.Team(g["away"]), "STATUS_SCHEDULED")
+            out.append(Fixture(lg, "hockey", game, {"home": ph, "away": pa},
+                               f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}; kein Buchmacherpreis",
+                               estimate=True, model="poisson-hockey-eu"))
     return out
 
 
 def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
                 notes: list[str]) -> list[Fixture]:
     """ICE Hockey League: Spielplan und Ergebnisse aus dem ICEHL-Datenfeed.
-    Keine Kalshi-Serie -> nur faire Quoten im Bericht, keine Freigabe."""
+    Nur faire Quoten im Bericht, solange kein Buchmacherpreis angebunden ist."""
     season_start = start.year if start.month >= 7 else start.year - 1
     prev, _, err = hockeyarchives.icehl(season_start - 1, cache_days=30)
     cur, up, err2 = hockeyarchives.icehl(season_start)
@@ -803,7 +668,7 @@ def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
         return []
     model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
     notes.append(f"ICE Hockey League: Poisson aus {len(ms)} Spielen (ICEHL-Feed), davon "
-                 f"{len(cur)} aktuelle Saison – keine Kalshi-Serie, nur faire Quoten (nicht handelbar)")
+                 f"{len(cur)} aktuelle Saison – nur faire Quoten, kein verifizierter Buchmacherpreis")
     out = []
     for u in sorted(up, key=lambda x: x["start"]):
         ko = u["start"].astimezone(timezone.utc)
@@ -871,9 +736,6 @@ def scan_nba(start: date, days: int, issues: list[str], notes: list[str]) -> lis
     notes.append(f"NBA-Belastung (Punkte je Einheit): {eff.text('Pkt')}")
     keys, kerr = espn.key_players("nba", cur - 1)
     issues += kerr[:2]
-    kq, err = kalshi.fetch_series(kalshi.SERIES["nba"])
-    if err:
-        issues.append(f"Kalshi NBA: {err}")
     as_ms = [Match(g.date, g.home, g.away, g.home_pts, g.away_pts) for g in cur_games]
     out = []
     for g, (lh, la) in zip(ups, loads):
@@ -914,7 +776,6 @@ def scan_nba(start: date, days: int, issues: list[str], notes: list[str]) -> lis
                      f"(Marge {mk['margin']:+.1f}, Total {mk['total']:.1f})"
                      + (", Saisonstart: Rating aus Vorsaison" if early else ""), ctx,
                      ref_probs=_devig_ref(g, three_way=False), flags=flags, estimate=early)
-        _attach_kalshi(fx, kq)
         out.append(fx)
     return out
 
@@ -929,40 +790,22 @@ def _label(fx: Fixture, side: str) -> str:
 
 
 def evaluate_fixture(fx: Fixture, val: dict | None = None) -> list[Candidate]:
-    keys = list(fx.probs)
-    ref = fx.ref_probs                      # DraftKings: unabhängig vom Kalshi-Preis
     w, wnote = model_weight(fx.league, "1x2", val)
     out = []
-    for side in keys:
-        q = fx.kalshi.get(side)
-        if not q or q.yes_ask <= 0 or q.yes_ask >= 0.99:
+    for side, offers in fx.offers.items():
+        if side not in fx.probs:
             continue
-        p_model = fx.probs[side]
-        p_ref = ref.get(side)
-        odds = pricing.kalshi_decimal_odds(q.yes_ask * 100, contracts=100)
+        pm, pr = fx.probs[side], fx.ref_probs.get(side)
+        pf = w * pm + (1 - w) * pr if pr is not None else pm
         flags = list(fx.flags.get(side, []))
-        if p_ref is None:
-            flags.append("keine unabhängige Marktreferenz (keine DraftKings-Linie)")
-            mid = _devig_kalshi(fx.kalshi, keys).get(side)
-            p_final = mid if mid is not None else p_model
-        else:
-            p_final = w * p_model + (1 - w) * p_ref
-        spread = q.yes_ask - q.yes_bid if q.yes_bid > 0 else q.yes_ask
-        if spread > MAX_SPREAD:
-            flags.append(f"Orderbuch dünn (Spread {spread * 100:.0f} ¢) – Preis nicht verlässlich")
-        if w > 0 and p_ref is not None and abs(p_model - p_ref) > MAX_DIVERGENCE:
-            flags.append(f"Modell weicht {abs(p_model - p_ref) * 100:.0f} Pp vom Markt ab – "
-                         "fehlende Kader-/QB-Info wahrscheinlicher als Value")
-        reason = ((f"Markt (DraftKings) {p_ref * 100:.1f} %" if p_ref is not None
-                   else "keine DraftKings-Linie")
-                  + f", Modell {p_model * 100:.1f} % – {wnote}"
-                  + f", Entscheidung {p_final * 100:.1f} % (Modellgewicht {w:.0%}). "
-                  + f"{fx.detail}. " + "; ".join(fx.context))
-        off = Offer(fx.game.title, fx.game.kickoff.isoformat(timespec="minutes"), side,
-                    _label(fx, side), odds, "kalshi", q.observed_at,
-                    liquidity=q.liquidity or None, ref=q.ticker, league=fx.league)
-        out.append(evaluate(off, p_model, estimate=fx.estimate, reason=reason,
-                            p_ref=p_ref, p_final=p_final, flags=flags))
+        if pr is None:
+            flags.append("keine unabhängige Marktreferenz")
+        if w > 0 and pr is not None and abs(pm - pr) > MAX_DIVERGENCE:
+            flags.append("Modell weicht stark vom Markt ab – Kader-/Newsprüfung nötig")
+        reason = f"Unabhängige Referenz {pr}, Modell {pm:.3f} – {wnote}. {fx.detail}. " + "; ".join(fx.context)
+        for offer in offers:
+            out.append(evaluate(offer, pm, estimate=fx.estimate, reason=reason,
+                                p_ref=pr, p_final=pf, flags=flags))
     return out
 
 
@@ -985,12 +828,11 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_nba(start, days, issues, notes)
     if "hockey_eu" in sports:
         fixtures += scan_hockey_eu(start, days, issues, notes)
-    notes.append("Orbit/bet365: in dieser Umgebung nicht direkt abrufbar (bet365 HTTP 403); "
-                 "nur Kalshi-Preise sind verifiziert")
+    from .bookmaker import attach_prices
+    attach_prices(fixtures, issues)
+    notes.append("Fußball: Bet365/Betfair Sportsbook über API-Football. Orbit noch nicht angebunden.")
     val = _validation()
     cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
-    from . import lines
-    cands += lines.candidates(fixtures, issues, notes)
     soccer = {fx.league for fx in fixtures if fx.sport == "soccer"}
     if soccer_freeze(cands, soccer, val):
         notes.append("Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert "
@@ -999,7 +841,6 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
     stand = report.stand(now)
     if journal is not None:
         _log(journal, fixtures, picks)
-    snapshot(fixtures)
     return ScanResult(stand, fixtures, cands, picks, issues, notes)
 
 
@@ -1022,16 +863,3 @@ def _log(j: Journal, fixtures: list[Fixture], picks: list[Candidate]) -> None:
                if not r.get("result")}
     new = [c.as_row() for c in picks if (c.event, c.market, c.source) not in open_vb]
     j.append("valuebets", new)
-
-
-def snapshot(fixtures: list[Fixture], root: str = "data/snapshots") -> None:
-    """Kalshi-Preise je Lauf sichern – Basis für die Closing Line (CLV)."""
-    Path(root).mkdir(parents=True, exist_ok=True)
-    p = Path(root) / f"kalshi-{date.today():%Y-%m}.jsonl"
-    with p.open("a", encoding="utf-8") as f:
-        for fx in fixtures:
-            for side, q in fx.kalshi.items():
-                f.write(json.dumps({"ticker": q.ticker, "event_ticker": q.event_ticker,
-                                    "side": side, "bid": q.yes_bid, "ask": q.yes_ask,
-                                    "observed_at": q.observed_at,
-                                    "kickoff": fx.game.kickoff.isoformat()}) + "\n")

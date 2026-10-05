@@ -20,6 +20,7 @@ from pathlib import Path
 
 from . import fetch
 from .journal import Journal
+from .active import eligible
 from .report import _kick, _league, _q
 
 ESPN = "https://site.api.espn.com/apis/site/v2/sports"
@@ -352,7 +353,7 @@ def save_targets(fixtures: list, picks: list, watch: list, path: Path = WATCH_FI
             fx = by_title.get(c.event)
             if not fx:
                 continue
-            rows.append({"status": status, "league": c.league, "event": c.event,
+            rows.append({"source": c.source, "status": status, "league": c.league, "event": c.event,
                          "kickoff": c.kickoff, "market": c.market, "selection": c.selection,
                          "odds": c.odds, "fair": c.fair_odds, "min_odds": c.min_odds,
                          "home": fx.game.home.aliases(), "away": fx.game.away.aliases()})
@@ -362,10 +363,11 @@ def save_targets(fixtures: list, picks: list, watch: list, path: Path = WATCH_FI
 
 def load_targets(j: Journal, path: Path = WATCH_FILE) -> list[Target]:
     rows = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    rows = [r for r in rows if eligible(r)]
     known = {(r["event"], r["market"]) for r in rows}
     # offene Freigaben früherer Scans ergänzen (Aliasse aus dem Spieltitel)
     for r in j.read("valuebets"):
-        if r.get("result") or (r["event"], r["market"]) in known:
+        if not eligible(r) or r.get("result") or (r["event"], r["market"]) in known:
             continue
         h, _, a = r["event"].partition(" – ")
         rows.append({"status": "PLAY", "league": r["league"], "event": r["event"],

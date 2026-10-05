@@ -19,7 +19,7 @@ from .. import matching
 BASE = "https://www.eloratings.net"
 RATINGS_URL = f"{BASE}/World.tsv"
 TEAMS_URL = f"{BASE}/en.teams.tsv"
-# ESPN-/Kalshi-Schreibweisen, die in en.teams.tsv fehlen
+# ESPN-Schreibweisen, die in en.teams.tsv fehlen
 EXTRA_NAMES = {"Türkiye": "TR", "Turkiye": "TR", "Republic of Ireland": "IE",
                "Bosnia-Herzegovina": "BA", "Czech Republic": "CZ", "IR Iran": "IR",
                "Korea Republic": "KR", "USA": "US", "Cabo Verde": "CV"}

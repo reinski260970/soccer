@@ -1,7 +1,4 @@
-# Schnellscan Kalshi vs. DraftKings alle 15 Minuten (Preisvergleich, Closing-Snapshots,
-# Abrechnung). Geplante Workflows laufen nur vom Standard-Branch aus: aktiv, sobald
-# diese Datei auf main liegt. Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID,
-# APIKEY (API-Football, für den Quotenwächter Pinnacle/Bet365/Betfair).
+# Fußball-Quotenwächter über API-Football; Mongo separat und nur lesend.
 name: quick-scan
 on:
   schedule:
@@ -29,9 +26,28 @@ jobs:
           APIKEY: ${{ secrets.APIKEY }}
         run: python -m oddswatch quick --send
       - name: Journal sichern
+        if: always()
         run: |
           git config user.name "oddswatch-bot"
           git config user.email "oddswatch-bot@users.noreply.github.com"
-          git add data/journal data/snapshots
+          git add data/journal
           git diff --cached --quiet || git commit -m "Schnellscan $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase --autostash && git push
+
+  football-mongo:
+    name: Fußball Mongo (lesend)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Fußball-Verbindung und Schema prüfen
+        env:
+          MONGO: ${{ secrets.MONGO }}
+          MONGO_DB: ${{ vars.MONGO_DB }}
+        run: python -m oddswatch football-mongo

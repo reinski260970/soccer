@@ -108,14 +108,17 @@ def _targets(j: Journal, now: datetime) -> list[Target]:
     return out
 
 
-def run(j: Journal | None = None, send: bool = False, now: datetime | None = None) -> list[str]:
+def run(j: Journal | None = None, send: bool = False, now: datetime | None = None, strict: bool = False) -> list[str]:
     j = j or Journal()
     now = now or datetime.now(timezone.utc)
     if not apifootball.api_key():
         log = [f"Quotenwächter {report.stand(now)}: APIKEY (API-Football) nicht gesetzt – übersprungen"]
         STATUS.parent.mkdir(parents=True, exist_ok=True)
         STATUS.write_text(log[0] + "\n", encoding="utf-8")
+        if strict:
+            raise RuntimeError(log[0])
         return log
+    failures = []
     targets = _targets(j, now)
     log = [f"Quotenwächter {report.stand(now)}: {len(targets)} Fußball-Tipp(s) des CEO "
            f"gegen Pinnacle/Bet365/Betfair"]
@@ -129,6 +132,7 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
             days[day], err = apifootball.fixtures_on(day)
             if err:
                 log.append(f"  Hinweis: {err}")
+                failures.append("API-Football-Abruf fehlgeschlagen")
         fx = apifootball.find_fixture(days[day], t.home, t.away, ko)
         if not fx:
             log.append(f"  {t.event}: bei API-Football nicht eindeutig gefunden")
@@ -137,6 +141,7 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
             odds_cache[fx.id], err = apifootball.odds(fx.id)
             if err:
                 log.append(f"  Hinweis: {err}")
+                failures.append("API-Football-Abruf fehlgeschlagen")
         a = assess(t, odds_cache[fx.id])
         if not a:
             log.append(f"  {t.event} – {t.selection}: noch keine Pinnacle-Quote")
@@ -159,6 +164,8 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
                         + [line for _, m in new for line in m])
         r = telegram.send(txt)
         log.append("  Telegram: " + (f"gesendet {r['message_ids']}" if r["sent"] else f"NICHT gesendet – {r['error']}"))
+        if not r["sent"]:
+            failures.append("Telegram-Versand fehlgeschlagen")
         if r["sent"]:
             seen |= {k for k, _ in new}
     elif new:
@@ -167,4 +174,6 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
     STATE.write_text(json.dumps(sorted(seen), ensure_ascii=False), encoding="utf-8")
     # Letzter Lauf zum Nachsehen im Repo (ohne das Protokoll des Workflows)
     STATUS.write_text("\n".join(log) + "\n", encoding="utf-8")
+    if strict and failures:
+        raise RuntimeError("; ".join(sorted(set(failures))))
     return log

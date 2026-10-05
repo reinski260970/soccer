@@ -11,6 +11,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 from .journal import Journal
+from .active import eligible
 from .report import _eh, _head, _kick, _league, _pct, _q
 from .selection import Candidate
 
@@ -81,7 +82,7 @@ def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = N
     # Profit-Status
     out += ["", "💰 PROFIT-STATUS (gesamt)", "📈 Freigaben (Modell-Portfolio)"] + _status(vb, eh_usd)
     out.append("🎯 Gespielte Wetten")
-    out += _status(placed, eh_usd) if placed else ["   Noch keine Wetten verbucht (Kalshi-Fills: import-fills)"]
+    out += _status(placed, eh_usd) if placed else ["   Noch keine Wetten verbucht"]
 
     # Ausblick: offene Freigaben + aktuelle Watchlist
     out += ["", f"🔭 AUSBLICK (nächste {horizon_days} Tage)"]
@@ -91,7 +92,7 @@ def daily_text(j: Journal, now: datetime | None = None, eh_usd: float | None = N
     for r in vb + placed:
         k = _ko(r)
         key = (r["event"], r["market"])
-        if r.get("result") or not k or not now < k <= until or key in seen:
+        if not eligible(r) or r.get("result") or not k or not now < k <= until or key in seen:
             continue
         seen.add(key)
         upcoming.append((k, r))
