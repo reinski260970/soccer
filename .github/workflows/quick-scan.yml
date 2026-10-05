@@ -1,6 +1,9 @@
 # Fußball-Quotenwächter über API-Football; Mongo separat und nur lesend.
 name: quick-scan
 on:
+  push:
+    branches:
+      - fullscan-fresh-run
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
