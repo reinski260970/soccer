@@ -2,7 +2,7 @@
 
 Aufruf:  python -m oddswatch.export_sharpery [--out exports/sharpery]
 Schreibt <out>.xlsx und <out>.csv mit den Sharpery-Spalten. Jede PLAY-Freigabe
-gilt als gespielt; Einsatz = stake_eh (Einheiten). Offene Tipps -> Result "pending".
+gilt als gespielt; für Sharpery gilt 1 EH = 10 EUR. Offene Tipps -> Result "pending".
 """
 
 from __future__ import annotations
@@ -28,6 +28,10 @@ LEAGUE = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
           "del": "DEL", "icehl": "ICE Hockey League", "shl": "SHL", "liiga": "Liiga",
           "nl": "National League", "khl": "KHL"}
 RESULT = {"win": "won", "loss": "lost", "void": "void"}
+
+# Sharpery-Bankrollkonvention: 1 Einsatz-Einheit (EH) = 10 EUR.
+# Das interne Journal bleibt weiterhin in EH; nur der Export wird in EUR umgerechnet.
+SHARPERY_EH_EUR = 10.0
 
 
 def _iso_z(s: str) -> str:
@@ -73,7 +77,8 @@ def to_row(r: dict) -> dict:
         "Closing Novig Odds": _f(r.get("closing_fair_odds")),
         "EV %": round(ev * 100, 2) if ev is not None else None,
         "CLV %": round(clv * 100, 2) if clv is not None else None,
-        "Stake": _f(r.get("stake_eh")),
+        "Stake": (round(_f(r.get("stake_eh")) * SHARPERY_EH_EUR, 2)
+                  if _f(r.get("stake_eh")) is not None else None),
         "Result": RESULT.get(r.get("result", ""), "pending"),
         "Liquidity": None,
         "Live": "no",
