@@ -1,117 +1,74 @@
 [
  {
+  "source": "betfair",
   "status": "WATCH",
   "league": "nations",
-  "event": "Kazakhstan – Faroe Islands",
-  "kickoff": "2026-10-06T14:00+00:00",
-  "market": "O2.5",
-  "selection": "Über 2.5 Tore",
-  "odds": 2.587991718426501,
-  "fair": 2.427441643951425,
-  "min_odds": 2.500264893269968,
-  "home": [
-   "Kazakhstan",
-   "Kazakhstan",
-   "Kazakhstan",
-   "KAZ"
-  ],
-  "away": [
-   "Faroe Islands",
-   "Faroe Islands",
-   "Faroe Islands",
-   "FRO"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "ucl",
-  "event": "Arsenal – Lille",
-  "kickoff": "2026-10-13T19:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 6.734006734006733,
-  "fair": 6.5401470481123996,
-  "min_odds": 6.736351459555772,
-  "home": [
-   "Arsenal",
-   "Arsenal",
-   "Arsenal",
-   "ARS"
-  ],
-  "away": [
-   "Lille",
-   "Lille",
-   "Lille",
-   "LILL"
-  ]
- },
- {
-  "status": "WATCH",
-  "league": "uecl",
-  "event": "Brighton & Hove Albion – Kauno Zalgiris",
-  "kickoff": "2026-10-15T19:00+00:00",
+  "event": "Moldova – Slovakia",
+  "kickoff": "2026-10-06T18:45:00+00:00",
   "market": "home",
-  "selection": "Brighton & Hove Albion Sieg (90 Min.)",
-  "odds": 1.0488777008600798,
-  "fair": 1.03382304298442,
-  "min_odds": 1.0648377342739526,
+  "selection": "Moldova Sieg (90 Min.)",
+  "odds": 9.0,
+  "fair": 8.651252972073427,
+  "min_odds": 8.91079056123563,
   "home": [
-   "Brighton & Hove Albion",
-   "Brighton & Hove Albion",
-   "Brighton",
-   "BHA"
+   "Moldova",
+   "Moldova",
+   "Moldova",
+   "MDA"
   ],
   "away": [
-   "Kauno Zalgiris",
-   "Kauno Zalgiris",
-   "Kauno Zalgiris",
-   "ZAL"
+   "Slovakia",
+   "Slovakia",
+   "Slovakia",
+   "SVK"
   ]
  },
  {
+  "source": "bet365",
   "status": "WATCH",
   "league": "nations",
-  "event": "Romania – Sweden",
-  "kickoff": "2026-10-05T18:45+00:00",
+  "event": "Albania – San Marino",
+  "kickoff": "2026-10-06T18:45:00+00:00",
   "market": "home",
-  "selection": "Romania Sieg (90 Min.)",
-  "odds": 4.510599909788002,
-  "fair": 4.491048419886053,
-  "min_odds": 4.625779872482635,
+  "selection": "Albania Sieg (90 Min.)",
+  "odds": 1.03,
+  "fair": 1.0252313050472066,
+  "min_odds": 1.0559882441986228,
   "home": [
-   "Romania",
-   "Romania",
-   "Romania",
-   "ROU"
+   "Albania",
+   "Albania",
+   "Albania",
+   "ALB"
   ],
   "away": [
-   "Sweden",
-   "Sweden",
-   "Sweden",
-   "SWE"
+   "San Marino",
+   "San Marino",
+   "San Marino",
+   "SMR"
   ]
  },
  {
+  "source": "betfair",
   "status": "WATCH",
-  "league": "uel",
-  "event": "AFC Bournemouth – SK Sturm Graz",
-  "kickoff": "2026-10-15T19:00+00:00",
+  "league": "nations",
+  "event": "Albania – San Marino",
+  "kickoff": "2026-10-06T18:45:00+00:00",
   "market": "home",
-  "selection": "AFC Bournemouth Sieg (90 Min.)",
-  "odds": 1.2183235867446391,
-  "fair": 1.2146511829700937,
-  "min_odds": 1.2510907184591964,
+  "selection": "Albania Sieg (90 Min.)",
+  "odds": 1.03,
+  "fair": 1.0252313050472066,
+  "min_odds": 1.0559882441986228,
   "home": [
-   "AFC Bournemouth",
-   "AFC Bournemouth",
-   "Bournemouth",
-   "BOU"
+   "Albania",
+   "Albania",
+   "Albania",
+   "ALB"
   ],
   "away": [
-   "SK Sturm Graz",
-   "SK Sturm Graz",
-   "Sturm Graz",
-   "STG"
+   "San Marino",
+   "San Marino",
+   "San Marino",
+   "SMR"
   ]
  }
 ]
