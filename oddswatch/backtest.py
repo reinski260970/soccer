@@ -26,7 +26,12 @@ from . import fetch, pricing
 from .models.poisson import PoissonModel
 from .sources import football_data as fd
 
-LEAGUES = {"bundesliga": "D1", "2bundesliga": "D2"}
+LEAGUES = {
+    "bundesliga": "D1", "2bundesliga": "D2",
+    "epl": "E0", "championship": "E1", "laliga": "SP1", "seriea": "I1",
+    "ligue1": "F1", "eredivisie": "N1", "primeira": "P1", "belgium": "B1",
+    "turkey": "T1", "scotland": "SC0", "greece": "G1",
+}
 WEIGHTS = (0.0, 0.1, 0.25, 0.5)
 MIN_BETS = 200
 OUT = Path("data/validation.json")
