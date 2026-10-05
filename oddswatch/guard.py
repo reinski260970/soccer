@@ -125,23 +125,49 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
     days: dict[str, list] = {}
     odds_cache: dict[int, dict] = {}
     msgs: list[tuple[str, list[str]]] = []
+    api_requests = api_success = fixture_count = odds_requests = odds_events = market_quotes = 0
+
+    # Bei einem leeren Watch-/Play-Set muss der Strict-Schnellscan trotzdem
+    # beweisen, dass API-Football erreichbar ist. Sonst wäre "0 Tipps" kein API-Test.
+    if strict and not targets:
+        probe_day = f"{now.astimezone(timezone.utc):%Y-%m-%d}"
+        api_requests += 1
+        probe_fixtures, err = apifootball.fixtures_on(probe_day)
+        if err:
+            log.append(f"  API-Football Probe {probe_day}: FEHLER – {err}")
+            failures.append("API-Football-Abruf fehlgeschlagen")
+        else:
+            api_success += 1
+            fixture_count += len(probe_fixtures)
+            log.append(f"  API-Football Probe {probe_day}: OK – {len(probe_fixtures)} Fixture(s)")
     for t in targets:
         ko = datetime.fromisoformat(t.kickoff).astimezone(timezone.utc)
         day = f"{ko:%Y-%m-%d}"
         if day not in days:
+            api_requests += 1
             days[day], err = apifootball.fixtures_on(day)
             if err:
                 log.append(f"  Hinweis: {err}")
                 failures.append("API-Football-Abruf fehlgeschlagen")
+            else:
+                api_success += 1
+                fixture_count += len(days[day])
         fx = apifootball.find_fixture(days[day], t.home, t.away, ko)
         if not fx:
             log.append(f"  {t.event}: bei API-Football nicht eindeutig gefunden")
             continue
         if fx.id not in odds_cache:
+            api_requests += 1
+            odds_requests += 1
             odds_cache[fx.id], err = apifootball.odds(fx.id)
             if err:
                 log.append(f"  Hinweis: {err}")
                 failures.append("API-Football-Abruf fehlgeschlagen")
+            else:
+                api_success += 1
+                if odds_cache[fx.id]:
+                    odds_events += 1
+                    market_quotes += sum(len(markets) for markets in odds_cache[fx.id].values())
         a = assess(t, odds_cache[fx.id])
         if not a:
             log.append(f"  {t.event} – {t.selection}: noch keine Pinnacle-Quote")
@@ -153,6 +179,11 @@ def run(j: Journal | None = None, send: bool = False, now: datetime | None = Non
         for kind in ("play", "against"):
             if a["playable" if kind == "play" else "against"]:
                 msgs.append((_key(kind, t, a), alert_text(t, a, kind)))
+    log.append(
+        f"  API-Football Diagnose: {api_success}/{api_requests} Request(s) OK | "
+        f"{fixture_count} Fixture(s) geladen | {odds_events}/{odds_requests} Odds-Event(s) mit Daten | "
+        f"{market_quotes} Marktquote(n)"
+    )
     try:
         seen = set(json.loads(STATE.read_text(encoding="utf-8")))
     except (OSError, ValueError):
