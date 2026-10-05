@@ -148,3 +148,166 @@ def run_profile():
     except Exception as exc:
         print("::error::Fußball-Mongo-Profil fehlgeschlagen (" + type(exc).__name__ + ")")
         return 2
+
+
+def audit_for_m13(client, db_name=None):
+    """Read-only Datenqualitätsaudit für M13; gibt nur Aggregationen aus."""
+    from datetime import datetime, timezone
+
+    if db_name:
+        db = client[db_name]
+    else:
+        from pymongo.errors import ConfigurationError
+        try:
+            db = client.get_default_database()
+        except ConfigurationError:
+            db = None
+        if db is None:
+            db = client[choose_database(client.list_database_names())]
+
+    col = db["mains"]
+    now = datetime.now(timezone.utc)
+    completed = {
+        "FTHG": {"$exists": True, "$ne": None},
+        "FTAG": {"$exists": True, "$ne": None},
+    }
+
+    total = col.count_documents({})
+    completed_n = col.count_documents(completed)
+    future_all = col.count_documents({"Date": {"$gt": now}})
+    future_completed = col.count_documents({**completed, "Date": {"$gt": now}})
+    missing_teams = col.count_documents({
+        "$or": [
+            {"HomeTeam": {"$exists": False}}, {"HomeTeam": None}, {"HomeTeam": ""},
+            {"AwayTeam": {"$exists": False}}, {"AwayTeam": None}, {"AwayTeam": ""},
+        ]
+    })
+    invalid_goals = col.count_documents({
+        "$or": [{"FTHG": {"$lt": 0}}, {"FTAG": {"$lt": 0}}]
+    })
+
+    score_result_mismatch = col.count_documents({
+        **completed,
+        "FTR": {"$exists": True, "$ne": None},
+        "$expr": {"$or": [
+            {"$and": [{"$gt": ["$FTHG", "$FTAG"]}, {"$ne": ["$FTR", "H"]}]},
+            {"$and": [{"$eq": ["$FTHG", "$FTAG"]}, {"$ne": ["$FTR", "D"]}]},
+            {"$and": [{"$lt": ["$FTHG", "$FTAG"]}, {"$ne": ["$FTR", "A"]}]},
+        ]}
+    })
+
+    bad_shots = col.count_documents({
+        "$or": [
+            {"$expr": {"$gt": ["$HST", "$HS"]}},
+            {"$expr": {"$gt": ["$AST", "$AS"]}},
+            {"HS": {"$lt": 0}}, {"AS": {"$lt": 0}},
+            {"HST": {"$lt": 0}}, {"AST": {"$lt": 0}},
+        ]
+    })
+
+    dup = list(col.aggregate([
+        {"$match": {**completed, "Date": {"$type": "date"},
+                    "Div": {"$exists": True, "$ne": None},
+                    "HomeTeam": {"$exists": True, "$ne": None},
+                    "AwayTeam": {"$exists": True, "$ne": None}}},
+        {"$group": {
+            "_id": {"Date": "$Date", "Div": "$Div", "H": "$HomeTeam", "A": "$AwayTeam"},
+            "n": {"$sum": 1},
+        }},
+        {"$match": {"n": {"$gt": 1}}},
+        {"$group": {
+            "_id": None,
+            "duplicate_groups": {"$sum": 1},
+            "excess_rows": {"$sum": {"$subtract": ["$n", 1]}},
+            "max_copies": {"$max": "$n"},
+        }},
+    ], allowDiskUse=True))
+    dup_stats = dup[0] if dup else {
+        "duplicate_groups": 0, "excess_rows": 0, "max_copies": 0
+    }
+    dup_stats.pop("_id", None)
+
+    pinnacle_both = col.count_documents({
+        **completed,
+        "PSH": {"$gt": 1}, "PSD": {"$gt": 1}, "PSA": {"$gt": 1},
+        "PSCH": {"$gt": 1}, "PSCD": {"$gt": 1}, "PSCA": {"$gt": 1},
+    })
+    b365_both = col.count_documents({
+        **completed,
+        "B365H": {"$gt": 1}, "B365D": {"$gt": 1}, "B365A": {"$gt": 1},
+        "B365CH": {"$gt": 1}, "B365CD": {"$gt": 1}, "B365CA": {"$gt": 1},
+    })
+    shot_complete = col.count_documents({
+        **completed,
+        "HS": {"$exists": True, "$ne": None},
+        "AS": {"$exists": True, "$ne": None},
+        "HST": {"$exists": True, "$ne": None},
+        "AST": {"$exists": True, "$ne": None},
+    })
+
+    future_by_div = list(col.aggregate([
+        {"$match": {**completed, "Date": {"$gt": now},
+                    "Div": {"$exists": True, "$ne": None}}},
+        {"$group": {"_id": "$Div", "n": {"$sum": 1},
+                    "min_date": {"$min": "$Date"}, "max_date": {"$max": "$Date"}}},
+        {"$sort": {"n": -1}},
+        {"$limit": 30},
+    ]))
+
+    recent_by_div = list(col.aggregate([
+        {"$match": {**completed,
+                    "Date": {"$gte": datetime(2022, 7, 1, tzinfo=timezone.utc)},
+                    "Div": {"$exists": True, "$ne": None}}},
+        {"$group": {"_id": "$Div", "n": {"$sum": 1}}},
+        {"$sort": {"n": -1}},
+        {"$limit": 40},
+    ]))
+
+    def pct(n):
+        return round(100.0 * n / completed_n, 2) if completed_n else 0.0
+
+    return {
+        "database": db.name,
+        "collection": "mains",
+        "audit_at": now.isoformat(),
+        "documents": total,
+        "completed_matches": completed_n,
+        "future_rows_all": future_all,
+        "future_rows_with_results": future_completed,
+        "missing_team_rows": missing_teams,
+        "invalid_goal_rows": invalid_goals,
+        "score_result_mismatches": score_result_mismatch,
+        "invalid_shot_rows": bad_shots,
+        "duplicates_completed": dup_stats,
+        "pinnacle_open_and_close": {"count": pinnacle_both, "pct_of_completed": pct(pinnacle_both)},
+        "bet365_open_and_close": {"count": b365_both, "pct_of_completed": pct(b365_both)},
+        "complete_shot_stats": {"count": shot_complete, "pct_of_completed": pct(shot_complete)},
+        "future_results_by_division": [
+            {"div": x["_id"], "n": x["n"],
+             "min_date": x["min_date"].isoformat(),
+             "max_date": x["max_date"].isoformat()}
+            for x in future_by_div
+        ],
+        "recent_completed_by_division": [
+            {"div": x["_id"], "n": x["n"]} for x in recent_by_div
+        ],
+    }
+
+
+def run_audit():
+    uri = (os.environ.get("MONGO_SOCCER") or os.environ.get("MONGO") or "").strip()
+    if not uri:
+        print("::error::MONGO_SOCCER fehlt")
+        return 2
+    try:
+        from pymongo import MongoClient, timeout
+        with timeout(180):
+            with MongoClient(uri, serverSelectionTimeoutMS=15000,
+                             connectTimeoutMS=10000, socketTimeoutMS=30000,
+                             appname="oddswatch-m13-audit") as client:
+                result = audit_for_m13(client, os.environ.get("MONGO_DB") or None)
+        print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        return 0
+    except Exception as exc:
+        print("::error::M13-Datenaudit fehlgeschlagen (" + type(exc).__name__ + ")")
+        return 2
