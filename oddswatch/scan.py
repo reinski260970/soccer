@@ -122,18 +122,24 @@ def _m8_params(league: str) -> M8Params | None:
 
 
 def soccer_freeze(cands: list[Candidate], soccer_leagues: set[str], val: dict) -> int:
-    """Fußball-Kandidaten ohne validierten Backtest werden nicht freigegeben
-    (Flag -> Watchlist). Die Sperre endet je Liga/Marktart automatisch, sobald
-    data/validation.json sie als validiert führt. Gibt die Anzahl gesperrter zurück."""
+    """Fußball nur marktartspezifisch freigeben.
+
+    1X2 kann durch M8 separat validiert werden. Totals/AH bleiben an der
+    bisherigen Validierungsdatei hängen, bis dafür eigene OOS-Tests existieren.
+    """
     n = 0
+    m8 = _m8_validation()
     for c in cands:
         if c.league not in soccer_leagues:
             continue
-        mtypes = ("1x2",) if c.market in ("home", "draw", "away") else ("ou", "ah")
+        is_1x2 = c.market in ("home", "draw", "away")
+        if is_1x2 and (m8.get(c.league) or {}).get("validated"):
+            continue
+        mtypes = ("1x2",) if is_1x2 else ("ou", "ah")
         if any((val.get(f"{c.league}:{m}") or {}).get("validated") for m in mtypes):
             continue
-        c.flags = (c.flags or []) + ["Fußball-Freigaben ausgesetzt: Modell im Backtest nicht besser "
-                                     "als der Markt – nur Watchlist"]
+        c.flags = (c.flags or []) + ["Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis "
+                                     "für diese Liga/Marktart – nur Watchlist"]
         n += 1
     return n
 
@@ -249,6 +255,26 @@ def _soccer_model(leagues: list[str], issues: list[str]) -> tuple[PoissonModel |
     return m, ms
 
 
+def _m8_history(code: str, issues: list[str]) -> list[Match]:
+    ms: list[Match] = []
+    for yr in (2025, 2026):
+        t, err = fetch.get(football_data.csv_url(code, yr), cache_days=0 if yr == 2026 else 30)
+        if t is None:
+            issues.append(f"football-data {code} {yr} (M8): {err}")
+            continue
+        ms += football_data.parse(t, shots_as_xg=True)[0]
+    return ms
+
+
+def _calibrate_1x2(mk: dict[str, float], a: float) -> dict[str, float]:
+    q = [max(mk[k], 1e-9) ** a for k in ("1", "X", "2")]
+    z = sum(q)
+    out = dict(mk)
+    for k, v in zip(("1", "X", "2"), q):
+        out[k] = v / z
+    return out
+
+
 def _aut_model(issues: list[str]) -> tuple[PoissonModel | None, list[Match]]:
     t, err = fetch.get(football_data.AUT_URL)
     if t is None:
@@ -265,6 +291,8 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
     out: list[Fixture] = []
     aut, aut_ms = _aut_model(issues)
     cache: dict[str, tuple[PoissonModel | None, list[Match]]] = {}
+    m8_cache: dict[str, tuple[M8Model, list[Match], float] | None] = {}
+    m8v = _m8_validation()
     for lg, (label, code) in SOCCER_LEAGUES.items():
         games, errs = espn.upcoming(lg, start, days)
         issues += errs
@@ -272,6 +300,23 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
         if not games:
             notes.append(f"{label}: keine Spiele bis {start + timedelta(days=days):%d.%m.}")
             continue
+
+        m8_row = m8v.get(lg) or {}
+        params = _m8_params(lg) if code else None
+        if params and code:
+            if code not in m8_cache:
+                hist = _m8_history(code, issues)
+                try:
+                    mm = M8Model.fit(hist, start, params)
+                    m8_cache[code] = (mm, hist, float(m8_row.get("calib", 1.0)))
+                    notes.append(f"{label}: M8 1X2 OOS-validiert und aktiv")
+                except (ValueError, KeyError) as e:
+                    issues.append(f"{label}: M8 konnte nicht geladen werden ({e})")
+                    m8_cache[code] = None
+            active_m8 = m8_cache.get(code)
+        else:
+            active_m8 = None
+
         if lg == "austria":
             model, ms = aut, aut_ms
         else:
@@ -281,24 +326,34 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
         if model is None:
             issues.append(f"{label}: kein Modell (Daten fehlen)")
             continue
-        teams = list(model.attack)
+
+        teams = list(active_m8[0].poisson.attack) if active_m8 else list(model.attack)
         for g in games:
             h = matching.find(g.home.name, teams) or matching.find(g.home.short, teams)
             a = matching.find(g.away.name, teams) or matching.find(g.away.short, teams)
             if not h or not a:
                 issues.append(f"{label}: Team nicht zugeordnet ({g.title})")
                 continue
-            mk = model.markets(h, a, neutral=g.neutral)
             kd = g.kickoff.date()
-            ctx = [f"Form {h} {_form(ms, h, kd)}, {a} {_form(ms, a, kd)}",
-                   f"Pause {_rest_days(ms, h, kd)}/{_rest_days(ms, a, kd)} Tage"]
-            ctx += [x for x in (_xg_line(ms, h, kd)[0], _xg_line(ms, a, kd)[0]) if x]
-            xg_note = "Tore+xG 50/50" if lg != "austria" else "nur Tore (keine xG-Quelle für AT)"
+            if active_m8:
+                mm, m8_ms, calib = active_m8
+                mk = _calibrate_1x2(mm.markets(h, a, kickoff=kd, neutral=g.neutral), calib)
+                use_ms = m8_ms
+                model_name = "m8"
+                xg_note = "M8: Poisson/xG + Elo + Form + Rest, OOS-validiert"
+            else:
+                mk = model.markets(h, a, neutral=g.neutral)
+                use_ms = ms
+                model_name = "poisson-baseline"
+                xg_note = "Tore+xG 50/50" if lg != "austria" else "nur Tore (keine xG-Quelle für AT)"
+            ctx = [f"Form {h} {_form(use_ms, h, kd)}, {a} {_form(use_ms, a, kd)}",
+                   f"Pause {_rest_days(use_ms, h, kd)}/{_rest_days(use_ms, a, kd)} Tage"]
+            ctx += [x for x in (_xg_line(use_ms, h, kd)[0], _xg_line(use_ms, a, kd)[0]) if x]
             fx = Fixture(lg, "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
                          f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} ({xg_note}), "
                          f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
                          ref_probs=_devig_ref(g, three_way=True),
-                         estimate=lg == "austria")
+                         estimate=lg == "austria", model=model_name)
             out.append(fx)
     return out
 
