@@ -1,6 +1,6 @@
 from datetime import date
 
-from oddswatch.m13_research import _dedupe_matches, _canonical_kind, _resolve_understat
+from oddswatch.m13_research import _dedupe_matches, _resolve_understat
 from oddswatch.models.poisson import Match
 
 
@@ -15,16 +15,11 @@ def test_m13_dedupes_same_fixture_key():
     assert [(m.home, m.away) for m in out] == [("A", "B"), ("C", "D")]
 
 
-def test_m13_canonical_date_exact():
-    assert _canonical_kind(date(2026, 3, 1), date(2026, 3, 1)) == "exact"
-
-
-def test_m13_canonical_date_day_month_swap():
-    assert _canonical_kind(date(2026, 1, 3), date(2026, 3, 1)) == "swap"
-
-
-def test_m13_rejects_unrelated_date_shift():
-    assert _canonical_kind(date(2024, 4, 25), date(2024, 4, 14)) is None
+def test_m13_resolve_exact_by_team_and_date():
+    u = Match(date(2026, 3, 1), "Arsenal", "Chelsea", 2, 1, 1.5, 0.9)
+    got, kind = _resolve_understat(date(2026, 3, 1), "Arsenal", "Chelsea", 2, 1, [u])
+    assert got is u
+    assert kind == "exact"
 
 
 def test_m13_resolve_swap_by_team_and_date():
