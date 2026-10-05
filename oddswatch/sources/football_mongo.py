@@ -54,9 +54,9 @@ def inspect(client, db_name=None):
 
 
 def run():
-    uri = (os.environ.get("MONGO") or "").strip()
+    uri = (os.environ.get("MONGO_SOCCER") or os.environ.get("MONGO") or "").strip()
     if not uri:
-        print("::error::MONGO fehlt: Fußball-Mongo-Scan nicht ausgeführt")
+        print("::error::MONGO_SOCCER fehlt: Fußball-Mongo-Scan nicht ausgeführt")
         return 2
     try:
         from pymongo import MongoClient, timeout
@@ -71,5 +71,5 @@ def run():
     except Exception as exc:
         # Exception text can contain URI, host names or credentials: never print it.
         print("::error::Fußball-Mongo-Scan fehlgeschlagen (" + type(exc).__name__ +
-              "). MONGO, MONGO_DB, Leserechte und Atlas Network Access prüfen.")
+              "). MONGO_SOCCER, MONGO_DB, Leserechte und Atlas Network Access prüfen.")
         return 2
