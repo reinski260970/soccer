@@ -67,23 +67,3 @@ def stake_units(p: float, odds: float, fraction: float = 0.25,
     units = kelly(p_adj, odds) * fraction * bankroll_units
     units = min(units, cap_units)
     return math.floor(units * 4) / 4
-
-
-# ------------------------------------------------------------------ Kalshi
-def kalshi_fee_per_contract(price: float, rate: float = 0.07) -> float:
-    """Kalshi-Taker-Gebühr in $ je Kontrakt: ceil(rate*C*P*(1-P)) auf Cent,
-    hier für C=1 (Obergrenze; bei großen Mengen etwas günstiger)."""
-    return math.ceil(rate * price * (1 - price) * 100 - 1e-9) / 100
-
-
-def kalshi_decimal_odds(ask_cents: float, include_fee: bool = True,
-                        contracts: int = 1) -> float:
-    """YES-Ask in Cent -> effektive Dezimalquote inkl. Gebühr.
-
-    contracts: Ordergröße; die Gebühr wird je Order auf den Cent aufgerundet,
-    bei größeren Orders sinkt der Rundungsaufschlag je Kontrakt."""
-    p = ask_cents / 100.0
-    fee = 0.0
-    if include_fee:
-        fee = math.ceil(0.07 * contracts * p * (1 - p) * 100 - 1e-9) / 100 / contracts
-    return 1.0 / (p + fee)

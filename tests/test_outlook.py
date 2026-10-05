@@ -9,12 +9,12 @@ NOW = datetime(2026, 9, 30, 19, tzinfo=timezone.utc)
 
 def _fx(league, days, priced=True):
     game = SimpleNamespace(kickoff=NOW + timedelta(days=days))
-    return SimpleNamespace(league=league, game=game, kalshi={"home": 1} if priced else {})
+    return SimpleNamespace(league=league, game=game, offers={"home": 1} if priced else {})
 
 
 def _c(league, ev, event="A – B", market="home", days=2):
     ko = (NOW + timedelta(days=days)).isoformat(timespec="minutes")
-    return Candidate(event, ko, market, "A Sieg", "kalshi", 2.0, 0.5, 2.0, 2.06, 0.0, ev, 0.0,
+    return Candidate(event, ko, market, "A Sieg", "bet365", 2.0, 0.5, 2.0, 2.06, 0.0, ev, 0.0,
                      False, "", "", None, p_ref=0.5, league=league)
 
 
@@ -36,7 +36,7 @@ def test_lines_without_tennis():
     tg = outlook.telegram_lines(rows, tennis=False, notes=outlook.soccer_note(
         ["Fußball: Freigaben ausgesetzt, bis …"]))
     txt = "\n".join(tg)
-    assert "🔭 AUSBLICK NACH SPORTART" in txt and "🏒 NHL: 1 Spiele (1 mit Kalshi-Preis), 0 PLAY" in txt
+    assert "🔭 AUSBLICK NACH SPORTART" in txt and "🏒 NHL: 1 Spiele (1 mit Buchmacherpreis), 0 PLAY" in txt
     assert "⚽ Fußball: keine Spiele in 7 Tagen" in txt and "Freigaben ausgesetzt" in txt
     assert "Eishockey Europa" in "\n".join(outlook.report_lines(rows, tennis=False))
 

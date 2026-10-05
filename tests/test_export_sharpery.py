@@ -7,7 +7,7 @@ from oddswatch.journal import Journal
 def test_row_mapping_matches_sharpery_format():
     r = to_row({"created_at": "2026-09-28T20:31:44+00:00", "kickoff": "2026-09-29T18:45+00:00",
                 "league": "nations", "event": "Luxembourg – Iceland", "market": "home",
-                "selection": "Luxembourg Sieg (90 Min.)", "source": "kalshi", "odds": "3.3990",
+                "selection": "Luxembourg Sieg (90 Min.)", "source": "bet365", "odds": "3.3990",
                 "fair_odds": "3.0999", "min_odds": "3.1929", "ev": "0.0965", "stake_eh": "0.75",
                 "estimate": "False", "result": "win", "closing_fair_odds": "3.2", "clv": "0.0622"})
     assert list(r) == COLUMNS
@@ -22,7 +22,7 @@ def test_row_mapping_matches_sharpery_format():
 def test_open_bet_is_pending_and_files_written(tmp_path):
     j = Journal(tmp_path / "j")
     j.append("valuebets", [{"league": "nhl", "event": "A – B", "kickoff": "2026-09-29T21:00+00:00",
-                            "market": "home", "selection": "A Sieg", "source": "kalshi",
+                            "market": "home", "selection": "A Sieg", "source": "bet365",
                             "odds": 1.83, "ev": 0.04, "stake_eh": 0.5, "estimate": True}])
     xlsx, csvp, n = export(str(tmp_path / "j"), str(tmp_path / "out" / "sharpery"))
     assert n == 1 and xlsx.exists()

@@ -87,14 +87,13 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
     lines += outlook or []
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
-                  "| Liga | Spiel | Anstoß (Wien) | Modell H/X/A | Referenz | Kalshi Ask | Kennzahlen |",
+                  "| Liga | Spiel | Anstoß (Wien) | Modell H/X/A | Referenz | Buchmacherquote | Kennzahlen |",
                   "|---|---|---|---|---|---|---|"]
         for fx in sorted(fixtures, key=lambda f: (f.league, f.game.kickoff)):
             ks = list(fx.probs)
             mod = " / ".join(_pct(fx.probs[k]) for k in ks)
             ref = " / ".join(_pct(fx.ref_probs[k]) for k in ks) if fx.ref_probs else "–"
-            ka = " / ".join(f"{fx.kalshi[k].yes_ask * 100:.0f}¢" if k in fx.kalshi else "–"
-                            for k in ks) if fx.kalshi else "–"
+            ka = " / ".join(f"{max(o.odds for o in fx.offers[k]):.2f}" if fx.offers.get(k) else "–" for k in ks)
             lines.append(f"| {fx.league} | {fx.game.title} | {fx.game.kickoff.astimezone(_TZ):%d.%m. %H:%M} | "
                          f"{mod} | {ref} | {ka} | {fx.detail} |")
     if data_issues:

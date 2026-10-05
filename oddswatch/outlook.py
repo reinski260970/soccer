@@ -49,7 +49,7 @@ def build(fixtures: list, candidates: list[Candidate], picks: list[Candidate],
         near = sorted(ref or cs, key=lambda c: -c.ev)[:top]
         later = sorted(f.game.kickoff for f in fixtures if f.league in lgs and f.game.kickoff > until)
         out.append({"icon": icon, "name": name, "games": len(fx),
-                    "priced": sum(bool(f.kalshi) for f in fx),
+                    "priced": sum(bool(f.offers) for f in fx),
                     "leagues": sorted({_league(f.league) for f in fx}),
                     "picks": [c for c in picks if c.league in lgs], "near": near,
                     "model_only": bool(near) and not ref,
@@ -96,7 +96,7 @@ def telegram_lines(rows: list[dict], days: int = 7, tennis: bool = True,
         if not r["games"]:
             out.append(head + _none(r, days))
             continue
-        out.append(head + f"{r['games']} Spiele ({r['priced']} mit Kalshi-Preis), "
+        out.append(head + f"{r['games']} Spiele ({r['priced']} mit Buchmacherpreis), "
                    f"{len(r['picks'])} PLAY")
         out += [f"   • {_near(c, r['model_only'])}" for c in r["near"]]
     if tennis:
@@ -113,7 +113,7 @@ def report_lines(rows: list[dict], days: int = 7, tennis: bool = True,
             out.append(f"- {r['icon']} **{r['name']}**: {_none(r, days)}")
             continue
         out.append(f"- {r['icon']} **{r['name']}** ({', '.join(r['leagues'])}): {r['games']} Spiele, "
-                   f"{r['priced']} mit Kalshi-Preis, {len(r['picks'])} PLAY")
+                   f"{r['priced']} mit Buchmacherpreis, {len(r['picks'])} PLAY")
         out += [f"  - am nächsten an spielbar: {_near(c, r['model_only'])}" for c in r["near"]]
     if tennis:
         out += _tennis()[1]
@@ -128,6 +128,7 @@ def soccer_note(notes: list[str], issues: list[str] | None = None) -> list[str]:
         out.append("Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist")
     out += [n for n in notes if n.startswith("NBA:") and "Saisonstart" in n]
     issues = issues or []
+    out += [i for i in issues if "Abdeckung unvollständig" in i]
     if any("eloratings" in i for i in issues):
         out.append("Nations League/Länderspiele nicht bewertet – Elo-Quelle (eloratings.net) nicht erreichbar")
     if any("ClubElo" in i for i in issues):

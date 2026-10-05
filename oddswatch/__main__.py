@@ -4,20 +4,16 @@
   python -m oddswatch daily [--no-scan] [--send] [--force]   # Auswertung, Profit, Ausblick; sendet nur bei Neuigkeiten
   python -m oddswatch news [--send] [--digest]   # News-Agent: Warnungen bzw. Übersicht
   python -m oddswatch settle            # Valuebets/gespielte Wetten abrechnen + CLV
-  python -m oddswatch closing           # Kalshi-Preise offener Tipps sichern (Closing Line)
-  python -m oddswatch verify            # offene Tipps gegen den Live-Preis prüfen, mit Prüf-Links
   python -m oddswatch tune              # Fußball-Modell: Tuning auf Saison N, Test auf N+1
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
-  python -m oddswatch quick [--send]    # Schnellscan Kalshi vs. DraftKings (15-Min-Takt), Closing, Abrechnung
+  python -m oddswatch quick [--send]    # Fußball-Quotenwächter (API-Football)
   python -m oddswatch guard [--send]    # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair (API-Football)
   python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
-  python -m oddswatch place --ref <Kalshi-Ticker|Valuebet> --odds 2.1 --stake 1 --bookmaker kalshi
+  python -m oddswatch place --ref <Valuebet-Referenz> --odds 2.1 --stake 1 --bookmaker bet365
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
   python -m oddswatch telegram-chatid   # Chat-ID(s) aus getUpdates anzeigen
-  python -m oddswatch kalshi-check      # Key prüfen (Kontostand, nur lesend)
-  python -m oddswatch import-fills [--eh-usd 10]   # Kalshi-Trades -> placed.csv
 """
 
 from __future__ import annotations
@@ -33,7 +29,6 @@ from .journal import Journal
 
 def _watchlist(res) -> list:
     picked = {(c.event, c.market) for c in res.picks}
-    # Ohne unabhängige Referenz (DraftKings) ist "fair" nur der Kalshi-Mittelkurs – kein Hinweis
     return sorted([c for c in res.candidates if (c.event, c.market) not in picked
                    and c.ev >= 0.0 and c.edge > 0 and c.p_ref is not None],
                   key=lambda c: -c.ev)[:5]
@@ -148,13 +143,6 @@ def _settle(a) -> int:
     return 0
 
 
-def _closing(a) -> int:
-    from . import settle
-    for line in settle.snapshot_open(Journal()):
-        print(line)
-    return 0
-
-
 def _research(a) -> int:
     from . import research
     for line in research.run():
@@ -162,18 +150,31 @@ def _research(a) -> int:
     return 0
 
 
+def _football_mongo(a) -> int:
+    from .sources.football_mongo import run
+    return run()
+
+
 def _quick(a) -> int:
     from . import quick
-    for line in quick.run(send=a.send, days=a.days):
-        print(line)
-    return 0
+    try:
+        for line in quick.run(send=a.send, days=a.days):
+            print(line)
+        return 0
+    except RuntimeError as exc:
+        print(f"::error::{exc}")
+        return 2
 
 
 def _guard(a) -> int:
     from . import guard
-    for line in guard.run(send=a.send):
-        print(line)
-    return 0
+    try:
+        for line in guard.run(send=a.send, strict=True):
+            print(line)
+        return 0
+    except RuntimeError as exc:
+        print(f"::error::{exc}")
+        return 2
 
 
 def _tennis(a) -> int:
@@ -193,13 +194,6 @@ def _tune(a) -> int:
 def _backtest(a) -> int:
     from . import backtest
     for line in backtest.run():
-        print(line)
-    return 0
-
-
-def _verify(a) -> int:
-    from . import verify
-    for line in verify.verify(Journal()):
         print(line)
     return 0
 
@@ -228,28 +222,6 @@ def _summary(a) -> int:
     for name in ("valuebets", "placed"):
         print(name, j.summary(name))
     return 0
-
-
-def _kalshi_check(a) -> int:
-    from .sources.kalshi_auth import Client
-    try:
-        c = Client()
-        print(f"Kalshi-Key ok – Kontostand {c.balance_usd():.2f} $")
-        return 0
-    except Exception as e:  # noqa: BLE001 – Fehlertext ist die Auskunft
-        print(f"Kalshi-Key NICHT nutzbar: {e}")
-        return 2
-
-
-def _import_fills(a) -> int:
-    from .portfolio import import_fills
-    try:
-        for line in import_fills(Journal(), eh_usd=a.eh_usd):
-            print(line)
-        return 0
-    except Exception as e:  # noqa: BLE001
-        print(f"Import fehlgeschlagen: {e}")
-        return 2
 
 
 def _chatid(a) -> int:
@@ -286,11 +258,10 @@ def main(argv: list[str] | None = None) -> int:
     nw.add_argument("--digest", action="store_true", help="Übersicht aller Meldungen (72 h), auch bereits gemeldete")
     nw.set_defaults(fn=_news)
     sub.add_parser("settle").set_defaults(fn=_settle)
-    sub.add_parser("closing").set_defaults(fn=_closing)
-    sub.add_parser("verify").set_defaults(fn=_verify)
     sub.add_parser("backtest").set_defaults(fn=_backtest)
     sub.add_parser("tune").set_defaults(fn=_tune)
     sub.add_parser("research").set_defaults(fn=_research)
+    sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
@@ -306,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)
     pl.add_argument("--stake", type=float, required=True)
-    pl.add_argument("--bookmaker", default="kalshi")
+    pl.add_argument("--bookmaker", required=True)
     pl.add_argument("--event")
     pl.add_argument("--market")
     pl.add_argument("--selection")
@@ -316,10 +287,6 @@ def main(argv: list[str] | None = None) -> int:
     se.set_defaults(fn=_send)
     sub.add_parser("summary").set_defaults(fn=_summary)
     sub.add_parser("telegram-chatid").set_defaults(fn=_chatid)
-    sub.add_parser("kalshi-check").set_defaults(fn=_kalshi_check)
-    im = sub.add_parser("import-fills")
-    im.add_argument("--eh-usd", type=float, default=None, help="Dollar je Einheit (Default 10 bzw. ODDSWATCH_EH_USD)")
-    im.set_defaults(fn=_import_fills)
     a = p.parse_args(argv)
     return a.fn(a)
 

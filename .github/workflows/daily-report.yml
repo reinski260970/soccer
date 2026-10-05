@@ -45,6 +45,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIKEY: ${{ secrets.APIKEY }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: python -m oddswatch daily --send --force
       - name: Journal und Bericht sichern

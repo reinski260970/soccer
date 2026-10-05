@@ -84,7 +84,8 @@ def to_row(r: dict) -> dict:
 
 
 def export(journal_root: str = "data/journal", out: str = "exports/sharpery") -> tuple[Path, Path, int]:
-    rows = [to_row(r) for r in Journal(journal_root).read("valuebets")]
+    from .active import eligible
+    rows = [to_row(r) for r in Journal(journal_root).read("valuebets") if eligible(r)]
     base = Path(out)
     base.parent.mkdir(parents=True, exist_ok=True)
     csv_path, xlsx_path = base.with_suffix(".csv"), base.with_suffix(".xlsx")

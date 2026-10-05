@@ -69,7 +69,7 @@ class Journal:
     def settle(self, name: str, event: str, market: str, won: bool | None,
                closing_fair_odds: float | None = None, ref: str | None = None) -> int:
         """won=None -> Push/Void (Einsatz zurück). ref grenzt auf einen
-        Kalshi-Ticker ein (mehrere Outcomes eines Events). Gibt Anzahl Treffer zurück."""
+        Anbieter-Referenz ein (mehrere Outcomes eines Events). Gibt Anzahl Treffer zurück."""
         rows = self.read(name)
         odds_key = "odds" if name == "valuebets" else "odds_taken"
         n = 0
