@@ -16,7 +16,7 @@ def test_row_mapping_matches_sharpery_format():
     assert r["Event"] == "Luxembourg vs Iceland"
     assert (r["Sport"], r["Market"], r["Period"]) == ("Soccer", "1X2", "Regular Time")
     assert r["Bet Odds"] == 3.4 and r["EV %"] == 9.65 and r["CLV %"] == 6.22
-    assert r["Result"] == "won" and r["Stake"] == 0.75 and r["Side"] == "home"
+    assert r["Result"] == "won" and r["Stake"] == 7.5 and r["Side"] == "home"
 
 
 def test_open_bet_is_pending_and_files_written(tmp_path):
@@ -28,4 +28,5 @@ def test_open_bet_is_pending_and_files_written(tmp_path):
     assert n == 1 and xlsx.exists()
     row = next(csv.DictReader(csvp.open(encoding="utf-8")))
     assert row["Result"] == "pending" and row["Sport"] == "Ice Hockey" and row["Market"] == "Moneyline"
+    assert float(row["Stake"]) == 5.0
     assert "Schaetzung" in row["Tags"]
