@@ -182,6 +182,11 @@ def _football_mongo(a) -> int:
     return run()
 
 
+def _football_mongo_profile(a) -> int:
+    from .sources.football_mongo import run_profile
+    return run_profile()
+
+
 def _quick(a) -> int:
     from . import quick
     try:
@@ -298,6 +303,7 @@ def main(argv: list[str] | None = None) -> int:
     m10.add_argument("--leagues", default="", help="kommagetrennte Ligakürzel")
     m10.set_defaults(fn=_m10_research)
     sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
+    sub.add_parser("football-mongo-profile").set_defaults(fn=_football_mongo_profile)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
