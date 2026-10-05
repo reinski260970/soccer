@@ -65,3 +65,23 @@ def test_run_without_key(monkeypatch, tmp_path):
         monkeypatch.delenv(k, raising=False)
     assert "nicht gesetzt" in guard.run(send=False)[0]
     assert "nicht gesetzt" in (tmp_path / "status.txt").read_text(encoding="utf-8")
+
+
+def test_strict_empty_targets_probes_api(monkeypatch, tmp_path):
+    monkeypatch.setattr(guard, "STATUS", tmp_path / "status.txt")
+    monkeypatch.setattr(guard, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(guard, "_targets", lambda j, now: [])
+    monkeypatch.setattr(apifootball, "api_key", lambda: "test-key")
+    fixtures = [
+        apifootball.ApiFixture(10, datetime(2026, 10, 5, 12, tzinfo=timezone.utc),
+                               "Alpha", "Beta", "Test League"),
+        apifootball.ApiFixture(11, datetime(2026, 10, 5, 18, tzinfo=timezone.utc),
+                               "Gamma", "Delta", "Test League"),
+    ]
+    monkeypatch.setattr(apifootball, "fixtures_on", lambda day: (fixtures, None))
+    lines = guard.run(send=False, strict=True,
+                      now=datetime(2026, 10, 5, 6, 30, tzinfo=timezone.utc))
+    txt = "\n".join(lines)
+    assert "API-Football Probe 2026-10-05: OK – 2 Fixture(s)" in txt
+    assert "API-Football Diagnose: 1/1 Request(s) OK" in txt
+    assert "2 Fixture(s) geladen" in txt
