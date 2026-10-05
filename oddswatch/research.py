@@ -149,6 +149,60 @@ def best_w(rows: list[tuple]) -> float:
     return min(WEIGHTS, key=lambda w: metrics(rows, w)["dLL"])
 
 
+EDGE_THRESHOLDS = (0.03, 0.05, 0.075, 0.10, 0.125, 0.15)
+ODDS_CAPS = (2.0, 2.5, 3.0, 4.0, 6.0, 10.0)
+SIDES = ("all", "home", "draw", "away")
+
+
+def strategy_metrics(rows: list[tuple], w: float, min_edge: float, max_odds: float,
+                     side: str = "all") -> dict:
+    """Selektive Entry-Regel. Auswahlparameter werden ausschließlich im Tuning
+    bestimmt; Holdout bleibt unangetastet."""
+    bets = wins = 0
+    pnl = 0.0
+    clv = []
+    side_i = {"home": 0, "draw": 1, "away": 2}.get(side)
+    for _, pm, po, pc, y, odds in rows:
+        for k in range(3):
+            if side_i is not None and k != side_i:
+                continue
+            p = w * pm[k] + (1 - w) * po[k]
+            edge = p * odds[k] - 1
+            if edge < min_edge or odds[k] > max_odds:
+                continue
+            bets += 1
+            if y[k]:
+                wins += 1
+                pnl += odds[k] - 1
+            else:
+                pnl -= 1
+            clv.append(odds[k] * pc[k] - 1)
+    return {
+        "bets": bets,
+        "wins": wins,
+        "roi": pnl / bets if bets else 0.0,
+        "clv": sum(clv) / len(clv) if clv else 0.0,
+    }
+
+
+def best_strategy(rows: list[tuple], w: float) -> tuple[tuple[float, float, str] | None, dict]:
+    """Tuning-only Auswahl. Kandidaten brauchen genug Volumen und positiven CLV;
+    Score priorisiert CLV, ROI dient nur als sekundärer Tie-Breaker."""
+    best_cfg = None
+    best = {"bets": 0, "roi": 0.0, "clv": 0.0}
+    best_score = -1e9
+    for e in EDGE_THRESHOLDS:
+        for cap in ODDS_CAPS:
+            for side in SIDES:
+                m = strategy_metrics(rows, w, e, cap, side)
+                if m["bets"] < 60 or m["clv"] <= 0:
+                    continue
+                score = m["clv"] + 0.15 * m["roi"]
+                if score > best_score:
+                    best_score, best_cfg, best = score, (e, cap, side), m
+    return best_cfg, best
+
+
 def run(today: date | None = None, variants: list[Variant] | None = None,
         leagues: list[str] | None = None) -> list[str]:
     today = today or date.today()
@@ -176,12 +230,21 @@ def run(today: date | None = None, variants: list[Variant] | None = None,
                 continue
             lw = best_w(ltr)
             lm = metrics(lho, lw)
-            if lw > 0 or lm["clv"] > 0 or lm["roi"] > 0:
-                gate = (lw > 0 and lm["bets"] >= 30 and lm["clv"] > 0 and lm["roi"] > 0
-                        and lm["dLL"] < 0)
+            cfg, sm_t = best_strategy(ltr, lw)
+            if cfg:
+                e, cap, side = cfg
+                sm_h = strategy_metrics(lho, lw, e, cap, side)
+                gate = (lw > 0 and sm_h["bets"] >= 30 and sm_h["clv"] > 0 and sm_h["roi"] > 0)
+                log.append(
+                    f"  {lg}: w={lw} | Entry EV>={e*100:.1f}%, Odds<={cap:.1f}, {side} | "
+                    f"Tune {sm_t['bets']} Bets CLV {sm_t['clv']*100:+.2f}% ROI {sm_t['roi']*100:+.2f}% | "
+                    f"Holdout {sm_h['bets']} Bets CLV {sm_h['clv']*100:+.2f}% ROI {sm_h['roi']*100:+.2f}% "
+                    + ("→ KANDIDAT" if gate else "→ nein")
+                )
+            elif lw > 0 or lm["clv"] > 0 or lm["roi"] > 0:
                 log.append(
                     f"  {lg}: w={lw} Holdout n={lm['n']} dLL {lm['dLL'] * 1000:+.2f}‰ "
                     f"Tipps {lm['bets']} CLV {lm['clv'] * 100:+.2f} % ROI {lm['roi'] * 100:+.2f} % "
-                    + ("→ KANDIDAT" if gate else "→ nein")
+                    f"→ keine robuste Entry-Zone"
                 )
     return log
