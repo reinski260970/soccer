@@ -216,6 +216,11 @@ def _football_mongo_audit(a) -> int:
     return run_audit()
 
 
+def _football_extra_profile(a) -> int:
+    from .sources.football_mongo import run_extra_profile
+    return run_extra_profile()
+
+
 
 def _quick(a) -> int:
     from . import quick
@@ -344,6 +349,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
     sub.add_parser("football-mongo-profile").set_defaults(fn=_football_mongo_profile)
     sub.add_parser("football-mongo-audit").set_defaults(fn=_football_mongo_audit)
+    sub.add_parser("football-extra-profile").set_defaults(fn=_football_extra_profile)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
