@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
       - name: M8 Basistests
-        run: pytest -q tests/test_m8.py
+        run: python -m pytest -q tests/test_m8.py
       - name: M8 Europa OOS
         run: python -m oddswatch m8-research
       - name: M8 Validierung sichern
