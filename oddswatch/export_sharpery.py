@@ -53,6 +53,23 @@ def _f(s: str) -> float | None:
         return None
 
 
+def _is_sharpery_play(r: dict) -> bool:
+    """Nur echte PLAY-/Valuebet-Zeilen, keine zurückgezogenen oder Market-only Scans."""
+    from .active import eligible
+    if not eligible(r):
+        return False
+    if (r.get("result") or "").lower() == "withdrawn":
+        return False
+    reason = (r.get("reason") or "").lower()
+    blocked = (
+        "modell nicht validiert",
+        "reiner preisvergleich",
+        "schnellscan (preisvergleich ohne modell)",
+        "markt (draftkings)",
+    )
+    return not any(x in reason for x in blocked)
+
+
 def to_row(r: dict) -> dict:
     lg = r.get("league", "")
     soccer = lg not in SPORT
@@ -89,8 +106,7 @@ def to_row(r: dict) -> dict:
 
 
 def export(journal_root: str = "data/journal", out: str = "exports/sharpery") -> tuple[Path, Path, int]:
-    from .active import eligible
-    rows = [to_row(r) for r in Journal(journal_root).read("valuebets") if eligible(r)]
+    rows = [to_row(r) for r in Journal(journal_root).read("valuebets") if _is_sharpery_play(r)]
     base = Path(out)
     base.parent.mkdir(parents=True, exist_ok=True)
     csv_path, xlsx_path = base.with_suffix(".csv"), base.with_suffix(".xlsx")
