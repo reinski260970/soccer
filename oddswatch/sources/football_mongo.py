@@ -377,3 +377,65 @@ def run_audit():
     except Exception as exc:
         print("::error::M13-Datenaudit fehlgeschlagen (" + type(exc).__name__ + ")")
         return 2
+
+
+def extra_leagues_profile(client, db_name=None):
+    """Read-only Profil der extra_leagues für M15 Europa."""
+    if db_name:
+        db = client[db_name]
+    else:
+        from pymongo.errors import ConfigurationError
+        try:
+            db = client.get_default_database()
+        except ConfigurationError:
+            db = None
+        if db is None:
+            db = client[choose_database(client.list_database_names())]
+    col = db["extra_leagues"]
+    targets = ["Austria", "Switzerland", "Norway", "Sweden", "Denmark"]
+    out = {"database": db.name, "collection": "extra_leagues", "targets": {}}
+    for country in targets:
+        q = {"Country": country}
+        total = col.count_documents(q)
+        leagues = list(col.aggregate([
+            {"$match": q},
+            {"$group": {"_id": "$League", "n": {"$sum": 1},
+                        "min_date": {"$min": "$Date"}, "max_date": {"$max": "$Date"}}},
+            {"$sort": {"n": -1}},
+            {"$limit": 20},
+        ]))
+        fields = {}
+        for fld in ("Date","Season","Home","Away","HG","AG","Res",
+                    "AvgH","AvgD","AvgA","MaxH","MaxD","MaxA"):
+            n = col.count_documents({**q, fld: {"$exists": True, "$ne": None}})
+            fields[fld] = {"count": n, "pct": round(100*n/total, 1) if total else 0.0}
+        out["targets"][country] = {
+            "documents": total,
+            "leagues": [
+                {"league": x["_id"], "n": x["n"],
+                 "min_date": x["min_date"].isoformat() if x.get("min_date") else None,
+                 "max_date": x["max_date"].isoformat() if x.get("max_date") else None}
+                for x in leagues
+            ],
+            "coverage": fields,
+        }
+    return out
+
+
+def run_extra_profile():
+    uri = (os.environ.get("MONGO_SOCCER") or os.environ.get("MONGO") or "").strip()
+    if not uri:
+        print("::error::MONGO_SOCCER fehlt")
+        return 2
+    try:
+        from pymongo import MongoClient, timeout
+        with timeout(120):
+            with MongoClient(uri, serverSelectionTimeoutMS=15000,
+                             connectTimeoutMS=10000, socketTimeoutMS=20000,
+                             appname="oddswatch-extra-profile") as client:
+                result = extra_leagues_profile(client, os.environ.get("MONGO_DB") or None)
+        print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        return 0
+    except Exception as exc:
+        print("::error::extra_leagues-Profil fehlgeschlagen (" + type(exc).__name__ + ")")
+        return 2
