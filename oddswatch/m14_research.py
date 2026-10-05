@@ -385,10 +385,8 @@ def choose_entry(rows: list[tuple], calib: float, tune_years: set[int]):
                     continue
                 if any(v["bets"] < 25 or v["clv"] <= 0 for v in yearly.values()):
                     continue
-                if total["roi"] <= 0:
-                    continue
                 worst = min(v["clv"] for v in yearly.values())
-                score = worst * math.sqrt(total["bets"]) + 0.05 * total["roi"]
+                score = worst * math.sqrt(total["bets"])
                 if score > best_score:
                     best_score, best_cfg, best = score, cfg, {
                         "total": total, "per_year": yearly
@@ -408,7 +406,8 @@ def run(today: date | None = None, out: Path = OUT,
     proxy = train_proxy()
     result = {
         "_stand": today.isoformat(),
-        "_method": "M14 learned Understat-calibrated shot/corner proxy; no market features",
+        "_method": "M14 CLV-first learned Understat-calibrated shot/corner proxy; no market features",
+        "_validation_target": "positive closing line value; ROI/logloss diagnostic only",
         "_proxy": proxy,
         "_tune": sorted(tune),
         "_holdout": sorted(hold),
@@ -463,11 +462,11 @@ def run(today: date | None = None, out: Path = OUT,
         cfg, tune_stats = choose_entry(best["train"], best["calib"], tune)
         hs = model_score(best["hold"], best["calib"])
         he = strategy(best["hold"], best["calib"], **cfg) if cfg else {
-            "bets": 0, "clv": 0.0, "roi": 0.0
+            "bets": 0, "clv": 0.0, "median_clv": 0.0,
+            "positive_clv_rate": 0.0, "roi": 0.0
         }
         validated = bool(
-            cfg and hs["gain"] > 0 and he["bets"] >= 40
-            and he["clv"] > 0 and he["roi"] > 0
+            cfg and he["bets"] >= 40 and he["clv"] > 0
         )
         result[league] = {
             "validated": validated,
@@ -487,7 +486,7 @@ def run(today: date | None = None, out: Path = OUT,
             f"Holdout dLL {hs['gain']:+.4f} | "
             f"{he['bets']} Bets CLV {he['clv']*100:+.2f}% "
             f"ROI {he['roi']*100:+.2f}% -> "
-            + ("VALIDIERT" if validated else "nicht validiert")
+            + ("CLV-VALIDIERT" if validated else "nicht CLV-validiert")
         )
 
     out.parent.mkdir(parents=True, exist_ok=True)
