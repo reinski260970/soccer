@@ -71,25 +71,44 @@ def _swapped_date(d: date) -> date | None:
         return None
 
 
-def _unique_understat(home: str, away: str, us_matches):
-    hits = [u for u in us_matches
-            if matching.same(home, u.home) and matching.same(away, u.away)]
-    return hits[0] if len(hits) == 1 else None
+def _team_match(home: str, away: str, u) -> bool:
+    return matching.same(home, u.home) and matching.same(away, u.away)
 
 
-def _canonical_kind(d: date, udate: date) -> str | None:
-    """Nur sichere Datumsnormalisierung.
+def _resolve_understat(d: date, home: str, away: str, hg: int | float,
+                       ag: int | float, us_matches):
+    """Resolve only with reproducible, leakage-safe rules."""
+    # 1) Normal case: same actual date (timezone tolerance ±1 day).
+    exact = [u for u in us_matches
+             if abs((u.date - d).days) <= 1 and _team_match(home, away, u)]
+    if len(exact) == 1:
+        return exact[0], "exact"
 
-    exact: gleiche/benachbarte Kalendertage.
-    swap: DD/MM<->MM/DD ergibt das Understat-Datum.
-    Größere Verschiebungen werden absichtlich NICHT geraten.
-    """
-    if abs((udate - d).days) <= 1:
-        return "exact"
+    # 2) Confirmed import pattern: DD/MM and MM/DD swapped.
     sw = _swapped_date(d)
-    if sw is not None and abs((udate - sw).days) <= 1:
-        return "swap"
-    return None
+    if sw is not None:
+        swapped = [u for u in us_matches
+                   if abs((u.date - sw).days) <= 1 and _team_match(home, away, u)]
+        if len(swapped) == 1:
+            return swapped[0], "swap"
+
+    # 3) Last-resort reconciliation: same home/away AND same final score.
+    # Short positive lags are excluded because they can be suspended/completed
+    # matches (e.g. a game resumed days later), which could otherwise leak.
+    score_hits = [
+        u for u in us_matches
+        if _team_match(home, away, u)
+        and int(u.home_goals) == int(hg)
+        and int(u.away_goals) == int(ag)
+    ]
+    if len(score_hits) == 1:
+        u = score_hits[0]
+        lag = (d - u.date).days
+        if 2 <= lag <= 14:
+            return None, "suspended_or_shifted"
+        return u, "team_score"
+
+    return None, "unmatched"
 
 
 def load_real_xg(code: str, start_year: int = 2017, end_year: int = 2025):
@@ -125,42 +144,46 @@ def load_real_xg(code: str, start_year: int = 2017, end_year: int = 2025):
             continue
 
         um, err = understat.season_matches(code, y, cache_days=30 if y < end_year else 1)
-        exact = swapped = excluded = unmatched = 0
+        exact = swapped = team_score = suspended = unmatched = 0
 
         for m in fm:
-            u = _unique_understat(m.home, m.away, um)
+            u, kind = _resolve_understat(
+                m.date, m.home, m.away, m.home_goals, m.away_goals, um
+            )
             if u is None:
-                unmatched += 1
-                continue
-            kind = _canonical_kind(m.date, u.date)
-            if kind is None:
-                excluded += 1
+                if kind == "suspended_or_shifted":
+                    suspended += 1
+                else:
+                    unmatched += 1
                 continue
             if kind == "exact":
                 exact += 1
-            else:
+            elif kind == "swap":
                 swapped += 1
+            else:
+                team_score += 1
             merged_all.append(Match(
                 u.date, m.home, m.away, m.home_goals, m.away_goals,
                 u.home_xg, u.away_xg,
             ))
 
         for season, d, h, a, hg, ag, op, cl in rr:
-            u = _unique_understat(h, a, um)
-            if u is None or _canonical_kind(d, u.date) is None:
+            u, kind = _resolve_understat(d, h, a, hg, ag, um)
+            if u is None:
                 continue
             # Odds/Resultat bleiben aus Mongo, nur das Datum wird kanonisiert.
             canonical_rows.append((season, u.date, h, a, hg, ag, op, cl))
 
-        matched = exact + swapped
+        matched = exact + swapped + team_score
         coverage[str(y)] = {
             "total": len(fm),
             "matched": matched,
             "coverage": matched / len(fm) if fm else 0.0,
             "exact_dates": exact,
             "day_month_fixed": swapped,
-            "excluded_date_mismatch": excluded,
-            "unmatched_team_pair": unmatched,
+            "team_score_fixed": team_score,
+            "excluded_suspended_or_short_shift": suspended,
+            "unmatched": unmatched,
             "understat_error": err,
         }
 
