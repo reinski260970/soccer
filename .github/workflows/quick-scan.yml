@@ -8,7 +8,7 @@ on:
     - cron: "*/15 * * * *"
   workflow_dispatch:
 concurrency:
-  group: quick-scan
+  group: full-market-scan-now
   cancel-in-progress: false
 permissions:
   contents: write
