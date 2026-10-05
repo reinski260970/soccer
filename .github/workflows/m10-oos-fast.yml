@@ -1,0 +1,31 @@
+name: m10-oos-fast
+on:
+  push:
+    branches:
+      - m10-oos-fast
+  workflow_dispatch:
+concurrency:
+  group: m10-oos-fast
+  cancel-in-progress: true
+jobs:
+  m10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        leagues:
+          - "bundesliga,2bundesliga,epl,championship"
+          - "laliga,seriea,ligue1"
+          - "eredivisie,primeira,belgium"
+          - "turkey,scotland,greece"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: M9/M10 Basistests
+        run: python -m pytest -q tests/test_m9.py tests/test_m10.py
+      - name: M10 OOS Ligagruppe
+        run: python -m oddswatch m10-research --leagues "${{ matrix.leagues }}"
