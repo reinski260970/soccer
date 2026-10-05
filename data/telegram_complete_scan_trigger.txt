@@ -1,0 +1,1 @@
+trigger telegram complete scan 2026-10-05
