@@ -17,7 +17,16 @@ jobs:
       - name: Probe Understat xG
         run: |
           python - <<'PY'
+          from oddswatch import fetch
           from oddswatch.sources import understat
+          url = "https://understat.com/getLeagueData/EPL/2025"
+          raw, err = fetch.get(url, cache_days=0, headers={
+              "Referer":"https://understat.com/league/EPL/2025",
+              "X-Requested-With":"XMLHttpRequest",
+          })
+          print("RAW_ERR=", err)
+          print("RAW_PREFIX=", repr((raw or "")[:1500]))
+          print("RAW_LEN=", len(raw or ""))
           for code in ("E0","D1","SP1","I1","F1"):
               rows, err = understat.season_matches(code, 2025, cache_days=0)
               print(code, "n=", len(rows), "err=", err)
