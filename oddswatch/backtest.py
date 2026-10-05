@@ -9,7 +9,8 @@ neu gefittet und je Spiel mit dem Markt verglichen:
     CLV gegen die Pinnacle-Closing-Line sowie ROI
 
 Validiert ist eine Liga/Marktart nur, wenn das LogLoss-beste w > 0 ist,
-mindestens MIN_BETS Tipps entstehen und der mittlere CLV positiv ist.
+mindestens MIN_BETS Tipps entstehen, der mittlere CLV positiv ist und auch
+der Holdout-ROI positiv bleibt.
 Ergebnis: data/validation.json (liest scan.model_weight).
 """
 
@@ -129,7 +130,7 @@ def evaluate(samples: list) -> dict:
     return {"n_games": len(samples), "logloss": {str(k): round(v, 5) for k, v in ll.items()},
             "best_w": best, "w": best if best > 0 else 0.0, "w_rule": w_eval, "n": n,
             "clv": round(avg_clv, 4), "roi": round(pnl / n, 4) if n else 0.0,
-            "validated": best > 0 and n >= MIN_BETS and avg_clv > 0}
+            "validated": best > 0 and n >= MIN_BETS and avg_clv > 0 and (pnl / n if n else 0.0) > 0}
 
 
 def run(today: date | None = None, out: Path = OUT) -> list[str]:
