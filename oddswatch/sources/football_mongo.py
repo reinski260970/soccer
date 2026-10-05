@@ -18,6 +18,9 @@ def choose_database(names):
     return candidates[0]
 
 
+SOCCER_COLLECTIONS = ("mains", "extra_leagues")
+
+
 def inspect(client, db_name=None):
     if db_name:
         db = client[db_name]
@@ -30,16 +33,20 @@ def inspect(client, db_name=None):
         if db is None:
             db = client[choose_database(client.list_database_names())]
     if db.name.lower() in ("admin", "local", "config") or "tennis" in db.name.lower():
-        raise ValueError("MONGO must select a football database, not tennis/system")
-    collections = sorted(db.list_collection_names())
-    if not collections:
-        raise ValueError("Football database has no accessible collections")
-    if len(collections) > 100:
-        raise ValueError("More than 100 collections: narrow the database scope")
-    result = {"database": db.name, "mode": "schema_only", "collections": []}
-    for name in collections:
-        if name.startswith("system."):
-            continue
+        raise ValueError("MONGO_SOCCER must select a football database, not tennis/system")
+
+    available = set(db.list_collection_names())
+    missing = [name for name in SOCCER_COLLECTIONS if name not in available]
+    if missing:
+        raise ValueError("Required soccer collections missing: " + ", ".join(missing))
+
+    result = {
+        "database": db.name,
+        "mode": "schema_only",
+        "collections": [],
+        "scope": list(SOCCER_COLLECTIONS),
+    }
+    for name in SOCCER_COLLECTIONS:
         collection = db[name]
         # Bounded recent-insertion sample; _id order is NOT fixture date order.
         docs = list(collection.find({}).sort("_id", -1).limit(10).max_time_ms(5000))
@@ -66,7 +73,7 @@ def run():
                              appname="oddswatch-football-readonly") as client:
                 result = inspect(client, os.environ.get("MONGO_DB") or None)
         print(json.dumps(result, ensure_ascii=False, indent=2))
-        print("Fußball-Mongo: Verbindung und Schema gelesen; noch keine Valuebet-Freigabe.")
+        print("Fußball-Mongo: mains + extra_leagues gelesen; noch keine Valuebet-Freigabe.")
         return 0
     except Exception as exc:
         # Exception text can contain URI, host names or credentials: never print it.
