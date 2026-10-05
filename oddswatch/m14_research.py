@@ -19,12 +19,12 @@ from dataclasses import asdict
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import matching, pricing
+from . import fetch, matching, pricing
 from .m12_research import _num, _odds, _season_start
 from .m13_research import _resolve_understat
 from .models.m9 import M9Model, M9Params
 from .models.poisson import Match
-from .sources import understat
+from .sources import football_data as fd, understat
 
 TOP5 = ("D1", "E0", "SP1", "I1", "F1")
 LEAGUES = {
@@ -197,20 +197,39 @@ def train_proxy() -> dict:
     return p
 
 
+def _canonical_fd_by_season(code: str, start_year: int, end_year: int):
+    out = {}
+    errors = {}
+    for y in range(start_year, end_year + 1):
+        text, err = fetch.get(
+            fd.csv_url(code, y),
+            cache_days=30 if y < end_year else 1,
+        )
+        if not text:
+            out[y] = []
+            errors[y] = err or "football-data fehlt"
+            continue
+        out[y] = fd.parse(text)[0]
+    return out, errors
+
+
 def load_league(code: str, proxy: dict, start_year: int = 2017,
                 end_year: int = 2025) -> tuple[list[Match], list[tuple], dict]:
+    """Mongo-Historie, aber Datum gegen football-data kanonisiert."""
     from pymongo import MongoClient, timeout
 
     uri = (os.environ.get("MONGO_SOCCER") or "").strip()
     if not uri:
         raise RuntimeError("MONGO_SOCCER fehlt")
 
+    fd_by_season, fd_errors = _canonical_fd_by_season(code, start_year, end_year)
     start = datetime(start_year, 7, 1, tzinfo=timezone.utc)
     end = datetime(end_year + 1, 7, 1, tzinfo=timezone.utc)
     matches = []
     rows = []
     seen = set()
     shots_ok = 0
+    canonical_exact = canonical_swap = canonical_score = excluded = 0
 
     with timeout(120):
         with MongoClient(uri, serverSelectionTimeoutMS=15000,
@@ -230,7 +249,22 @@ def load_league(code: str, proxy: dict, start_year: int = 2017,
                 hg, ag = _num(doc.get("FTHG")), _num(doc.get("FTAG"))
                 if not isinstance(dt, datetime) or not h or not a or hg is None or ag is None:
                     continue
-                d = dt.date()
+
+                raw_d = dt.date()
+                season = _season_start(raw_d)
+                candidates = fd_by_season.get(season, [])
+                u, kind = _resolve_understat(raw_d, h, a, hg, ag, candidates)
+                if u is None:
+                    excluded += 1
+                    continue
+                d = u.date
+                if kind == "exact":
+                    canonical_exact += 1
+                elif kind == "swap":
+                    canonical_swap += 1
+                else:
+                    canonical_score += 1
+
                 key = (d, h, a)
                 if key in seen:
                     continue
@@ -247,11 +281,20 @@ def load_league(code: str, proxy: dict, start_year: int = 2017,
                 if op and cl:
                     rows.append((_season_start(d), d, h, a, int(hg), int(ag), op, cl))
 
+    matches.sort(key=lambda m: m.date)
+    rows.sort(key=lambda r: r[1])
     return matches, rows, {
         "matches": len(matches),
         "proxy_matches": shots_ok,
         "proxy_coverage": shots_ok / len(matches) if matches else 0.0,
         "odds_rows": len(rows),
+        "canonical_exact": canonical_exact,
+        "canonical_day_month_fixed": canonical_swap,
+        "canonical_team_score_fixed": canonical_score,
+        "excluded_unreconciled": excluded,
+        "football_data_errors": {
+            str(y): e for y, e in fd_errors.items() if e
+        },
     }
 
 
