@@ -12,6 +12,7 @@ from . import matching, pricing, report
 from .journal import Journal
 from .models import fatigue
 from .models.elo import EloGoals
+from .models.m8 import M8Model, M8Params
 from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
@@ -20,6 +21,7 @@ from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, n
 from . import fetch, venues
 
 VALIDATION = Path("data/validation.json")
+M8_VALIDATION = Path("data/m8_validation.json")
 UEFA_CLUB = {"ucl": "Champions League", "uel": "Europa League", "uecl": "Conference League"}
 CLUB_HOME_ELO = 65.0      # Annahme, nicht kalibriert
 CLUB_GOALS = 1.35         # Tore je Team bei gleicher Stärke (Annahme, Vereinsfußball)
@@ -99,6 +101,24 @@ def _validation() -> dict:
         return json.loads(VALIDATION.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
+
+
+
+def _m8_validation() -> dict:
+    try:
+        return json.loads(M8_VALIDATION.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _m8_params(league: str) -> M8Params | None:
+    row = _m8_validation().get(league) or {}
+    if not row.get("validated"):
+        return None
+    try:
+        return M8Params(**row["params"])
+    except (KeyError, TypeError, ValueError):
+        return None
 
 
 def soccer_freeze(cands: list[Candidate], soccer_leagues: set[str], val: dict) -> int:
