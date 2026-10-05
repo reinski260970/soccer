@@ -1,0 +1,27 @@
+name: understat-probe-v2
+on:
+  push:
+    branches:
+      - understat-probe-v2
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Probe Understat xG
+        run: |
+          python - <<'PY'
+          from oddswatch.sources import understat
+          for code in ("E0","D1","SP1","I1","F1"):
+              rows, err = understat.season_matches(code, 2025, cache_days=0)
+              print(code, "n=", len(rows), "err=", err)
+              if rows:
+                  r = rows[-1]
+                  print(" sample:", r.date, r.home, r.away, r.home_goals, r.away_goals, r.home_xg, r.away_xg)
+          PY
