@@ -89,7 +89,11 @@ def load_mongo(code: str, start_year: int, end_year: int) -> tuple[list[Match], 
     with timeout(120):
         with MongoClient(uri, serverSelectionTimeoutMS=15000, connectTimeoutMS=10000,
                          socketTimeoutMS=20000, appname="oddswatch-m12-readonly") as client:
-            db = client.get_default_database()
+            from pymongo.errors import ConfigurationError
+            try:
+                db = client.get_default_database()
+            except ConfigurationError:
+                db = None
             if db is None:
                 db = client["euro_football"]
             cur = db["mains"].find(
