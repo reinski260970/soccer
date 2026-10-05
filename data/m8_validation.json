@@ -1,0 +1,352 @@
+{
+ "_stand": "2026-10-05",
+ "_method": "M8 pure model, no market blend",
+ "bundesliga": {
+  "validated": false,
+  "variant": 4,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.5,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.25,
+   "form_scale": 0.1,
+   "rest_scale": 0.015,
+   "form_games": 6
+  },
+  "calib": 0.8,
+  "train_score": {
+   "n": 608,
+   "logloss": 0.9947831277314947,
+   "market": 0.9701918234822708,
+   "gain": -0.024591304249223844
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 148,
+   "logloss": 0.9466443134388348,
+   "market": 0.9167345046173486,
+   "gain": -0.029909808821486195
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "2bundesliga": {
+  "validated": false,
+  "reason": "zu wenig Daten"
+ },
+ "epl": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.0,
+  "train_score": {
+   "n": 756,
+   "logloss": 0.9566775814311264,
+   "market": 0.9413632354590691,
+   "gain": -0.015314345972057275
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 209,
+   "logloss": 0.9938723683659982,
+   "market": 0.9870157148197707,
+   "gain": -0.0068566535462275535
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "championship": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.0,
+  "train_score": {
+   "n": 1096,
+   "logloss": 1.025602139414398,
+   "market": 1.0210771307752171,
+   "gain": -0.004525008639180816
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 258,
+   "logloss": 1.0764588519246159,
+   "market": 1.0580162100978479,
+   "gain": -0.018442641826768025
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "laliga": {
+  "validated": false,
+  "variant": 5,
+  "params": {
+   "half_life_days": 365,
+   "xg_weight": 0.5,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.1,
+  "train_score": {
+   "n": 756,
+   "logloss": 0.9636609590783594,
+   "market": 0.9491554175557881,
+   "gain": -0.01450554152257122
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 186,
+   "logloss": 0.9573469411825172,
+   "market": 0.9460432145319263,
+   "gain": -0.011303726650590873
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "seriea": {
+  "validated": false,
+  "variant": 2,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.5,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.25,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.0,
+  "train_score": {
+   "n": 754,
+   "logloss": 0.9805113247195512,
+   "market": 0.9595124132876868,
+   "gain": -0.020998911431864387
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 197,
+   "logloss": 1.0091566776906142,
+   "market": 0.9871713993269082,
+   "gain": -0.021985278363706007
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "ligue1": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.0,
+  "train_score": {
+   "n": 609,
+   "logloss": 1.002386911583652,
+   "market": 0.9876613604216794,
+   "gain": -0.014725551161972494
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 152,
+   "logloss": 0.972070580905248,
+   "market": 0.9514121443060183,
+   "gain": -0.020658436599229724
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "eredivisie": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 0.9,
+  "train_score": {
+   "n": 607,
+   "logloss": 0.9396920083380079,
+   "market": 0.9246594987161789,
+   "gain": -0.015032509621829004
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 141,
+   "logloss": 0.9519985547529468,
+   "market": 0.9402987004476504,
+   "gain": -0.011699854305296409
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "primeira": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.1,
+  "train_score": {
+   "n": 608,
+   "logloss": 0.9274193219770311,
+   "market": 0.9183762374840576,
+   "gain": -0.00904308449297353
+  },
+  "entry": {
+   "min_edge": 0.075,
+   "max_odds": 3.0,
+   "side": "away"
+  },
+  "tune_entry": {
+   "bets": 69,
+   "roi": 0.033478260869565214,
+   "clv": 0.005166111212486529
+  },
+  "holdout_score": {
+   "n": 151,
+   "logloss": 0.9111104366675917,
+   "market": 0.9012621402234344,
+   "gain": -0.0098482964441573
+  },
+  "holdout_entry": {
+   "bets": 17,
+   "roi": 0.03352941176470585,
+   "clv": -0.054934059344567424
+  }
+ },
+ "belgium": {
+  "validated": false,
+  "reason": "zu wenig Daten"
+ },
+ "turkey": {
+  "validated": false,
+  "variant": 3,
+  "params": {
+   "half_life_days": 180.0,
+   "xg_weight": 0.75,
+   "shrink": 5.0,
+   "rho": -0.05,
+   "elo_k": 20.0,
+   "elo_home": 45.0,
+   "elo_scale": 0.2,
+   "form_scale": 0.06,
+   "rest_scale": 0.01,
+   "form_games": 6
+  },
+  "calib": 1.0,
+  "train_score": {
+   "n": 713,
+   "logloss": 0.9626884111478654,
+   "market": 0.9304978455829359,
+   "gain": -0.032190565564929496
+  },
+  "entry": null,
+  "tune_entry": null,
+  "holdout_score": {
+   "n": 130,
+   "logloss": 0.9887329723958671,
+   "market": 0.9662600815627146,
+   "gain": -0.022472890833152515
+  },
+  "holdout_entry": {
+   "bets": 0,
+   "clv": 0.0,
+   "roi": 0.0
+  }
+ },
+ "scotland": {
+  "validated": false,
+  "reason": "zu wenig Daten"
+ },
+ "greece": {
+  "validated": false,
+  "reason": "zu wenig Daten"
+ }
+}
