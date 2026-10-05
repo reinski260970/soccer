@@ -193,6 +193,14 @@ def _m13_research(a) -> int:
     return 0
 
 
+def _m14_research(a) -> int:
+    from . import m14_research
+    leagues = a.leagues.split(",") if getattr(a, "leagues", "") else None
+    for line in m14_research.run(leagues=leagues):
+        print(line)
+    return 0
+
+
 def _football_mongo(a) -> int:
     from .sources.football_mongo import run
     return run()
@@ -330,6 +338,9 @@ def main(argv: list[str] | None = None) -> int:
     m13 = sub.add_parser("m13-research")
     m13.add_argument("--leagues", default="", help="kommagetrennte Ligakürzel")
     m13.set_defaults(fn=_m13_research)
+    m14 = sub.add_parser("m14-research")
+    m14.add_argument("--leagues", default="", help="kommagetrennte Ligakürzel")
+    m14.set_defaults(fn=_m14_research)
     sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
     sub.add_parser("football-mongo-profile").set_defaults(fn=_football_mongo_profile)
     sub.add_parser("football-mongo-audit").set_defaults(fn=_football_mongo_audit)
