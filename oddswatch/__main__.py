@@ -7,6 +7,7 @@
   python -m oddswatch tune              # Fußball-Modell: Tuning auf Saison N, Test auf N+1
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
+  python -m oddswatch m8-research       # M8 Hybridmodell, reiner OOS-Test ohne Markt-Blend
   python -m oddswatch quick [--send]    # Fußball-Quotenwächter (API-Football)
   python -m oddswatch guard [--send]    # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair (API-Football)
   python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
@@ -150,6 +151,13 @@ def _research(a) -> int:
     return 0
 
 
+def _m8_research(a) -> int:
+    from . import m8_research
+    for line in m8_research.run():
+        print(line)
+    return 0
+
+
 def _football_mongo(a) -> int:
     from .sources.football_mongo import run
     return run()
@@ -261,6 +269,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("backtest").set_defaults(fn=_backtest)
     sub.add_parser("tune").set_defaults(fn=_tune)
     sub.add_parser("research").set_defaults(fn=_research)
+    sub.add_parser("m8-research").set_defaults(fn=_m8_research)
     sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
