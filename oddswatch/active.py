@@ -1,5 +1,5 @@
 """Provider eligibility for new alerts; historical journal rows remain intact."""
-SUPPORTED = {"bet365", "betfair", "orbit", "pinnacle"}
+SUPPORTED = {"bet365", "betfair", "orbit", "pinnacle", "kalshi"}
 
 
 def eligible(row):
