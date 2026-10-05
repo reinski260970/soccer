@@ -54,6 +54,19 @@ def _head(c: Candidate) -> str:
     return " · ".join(x for x in (_league(c.league) if c.league else "", _kick(c.kickoff)) if x)
 
 
+def _soccer_unvalidated(c: Candidate) -> bool:
+    return any("Fußball-Freigaben ausgesetzt" in x or "Modell nicht validiert" in x
+               for x in (c.flags or []))
+
+
+def _model_fair(c: Candidate) -> str:
+    return _q(1 / c.p_model) if c.p_model and c.p_model > 0 else "–"
+
+
+def _ref_fair(c: Candidate) -> str:
+    return _q(1 / c.p_ref) if c.p_ref and c.p_ref > 0 else "–"
+
+
 def _pick_lines(i: int, c: Candidate) -> list[str]:
     tag = " (Schätzung)" if c.estimate else ""
     liq = f", Ask-Tiefe ≈ {c.liquidity:,.0f} $".replace(",", ".") if c.liquidity else ""
@@ -82,8 +95,13 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
         lines += ["", "## WATCH (nicht freigegeben)"]
         for c in watch:
             why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
-            lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
-                         f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
+            if _soccer_unvalidated(c):
+                lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | "
+                             f"Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)} | "
+                             f"KEINE EV-FREIGABE. Grund: {why}")
+            else:
+                lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
+                             f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
     lines += outlook or []
     if fixtures:
         lines += ["", "## Faire Preise (Modell → Entscheidung)", "",
@@ -119,8 +137,15 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
         out += ["", "👀 WATCH (nicht freigegeben)"]
         for c in watch[:5]:
             why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
-            out += ["", f"• {_head(c)}", f"🆚 {c.event}",
-                    f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
-                    f"   Grund: {why}"]
+            if _soccer_unvalidated(c):
+                out += ["", f"• {_head(c)}", f"🆚 {c.event}",
+                        f"➡️ {c.selection} @ {_q(c.odds)}",
+                        f"   Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)}",
+                        "   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert",
+                        f"   Grund: {why}"]
+            else:
+                out += ["", f"• {_head(c)}", f"🆚 {c.event}",
+                        f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
+                        f"   Grund: {why}"]
     out += outlook or []
     return "\n".join(out)
