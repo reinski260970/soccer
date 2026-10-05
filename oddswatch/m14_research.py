@@ -433,33 +433,46 @@ def run(today: date | None = None, out: Path = OUT,
             )
             continue
 
+        # CLV-first: Variante, Kalibrierung UND Entry-Regel werden gemeinsam
+        # nur auf den beiden Tune-Saisons gewählt. LogLoss ist rein diagnostisch.
         best = None
+        had_samples = False
         for vi, params in enumerate(VARIANTS):
             s = samples(ms, rows, tune | hold, params)
             tr = [x for x in s if x[0] in tune]
             ho = [x for x in s if x[0] in hold]
             if len(tr) < 300 or len(ho) < 120:
                 continue
+            had_samples = True
             for a in CALIB:
-                sc = model_score(tr, a)
-                if best is None or sc["logloss"] < best["train_score"]["logloss"]:
+                cfg, tune_stats = choose_entry(tr, a, tune)
+                if not cfg or not tune_stats:
+                    continue
+                worst_clv = min(v["clv"] for v in tune_stats["per_year"].values())
+                total_bets = tune_stats["total"]["bets"]
+                clv_score = worst_clv * math.sqrt(total_bets)
+                if best is None or clv_score > best["clv_score"]:
                     best = {
                         "variant": vi, "params": asdict(params), "calib": a,
-                        "train_score": sc, "train": tr, "hold": ho,
+                        "train_score": model_score(tr, a),
+                        "train": tr, "hold": ho,
+                        "gate": cfg, "tune": tune_stats,
+                        "clv_score": clv_score,
                     }
 
         if best is None:
+            reason = "kein robuster positiver Tune-CLV" if had_samples else "zu wenig OOS-Daten"
             result[league] = {
-                "validated": False, "reason": "zu wenig OOS-Daten",
+                "validated": False, "reason": reason,
                 "coverage": cov,
             }
             log.append(
-                f"{league}: zu wenig OOS-Daten | {cov['matches']} Spiele/"
+                f"{league}: {reason} | {cov['matches']} Spiele/"
                 f"{cov['odds_rows']} Odds | Proxy {cov['proxy_coverage']*100:.1f}%"
             )
             continue
 
-        cfg, tune_stats = choose_entry(best["train"], best["calib"], tune)
+        cfg, tune_stats = best["gate"], best["tune"]
         hs = model_score(best["hold"], best["calib"])
         he = strategy(best["hold"], best["calib"], **cfg) if cfg else {
             "bets": 0, "clv": 0.0, "median_clv": 0.0,
