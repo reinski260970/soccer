@@ -8,6 +8,7 @@
   python -m oddswatch backtest          # Modell gegen Markt (Walk-forward, CLV) -> data/validation.json
   python -m oddswatch research          # Modellvarianten gegen den Markt (Tuning/Holdout)
   python -m oddswatch m8-research       # M8 Hybridmodell, reiner OOS-Test ohne Markt-Blend
+  python -m oddswatch m9-research       # M9 Dual-Poisson, reiner OOS-Test ohne Markt-Blend
   python -m oddswatch quick [--send]    # Fußball-Quotenwächter (API-Football)
   python -m oddswatch guard [--send]    # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair (API-Football)
   python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
@@ -159,6 +160,14 @@ def _m8_research(a) -> int:
     return 0
 
 
+def _m9_research(a) -> int:
+    from . import m9_research
+    leagues = a.leagues.split(",") if getattr(a, "leagues", "") else None
+    for line in m9_research.run(leagues=leagues):
+        print(line)
+    return 0
+
+
 def _football_mongo(a) -> int:
     from .sources.football_mongo import run
     return run()
@@ -273,6 +282,9 @@ def main(argv: list[str] | None = None) -> int:
     m8 = sub.add_parser("m8-research")
     m8.add_argument("--leagues", default="", help="kommagetrennte Ligakürzel")
     m8.set_defaults(fn=_m8_research)
+    m9 = sub.add_parser("m9-research")
+    m9.add_argument("--leagues", default="", help="kommagetrennte Ligakürzel")
+    m9.set_defaults(fn=_m9_research)
     sub.add_parser("football-mongo").set_defaults(fn=_football_mongo)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
