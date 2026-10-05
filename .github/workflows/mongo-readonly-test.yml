@@ -1,0 +1,23 @@
+name: mongo-readonly-test
+on:
+  push:
+    branches:
+      - mongo-readonly-test
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mongo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Soccer Mongo Read-only Check
+        env:
+          MONGO: ${{ secrets.MONGO }}
+          MONGO_DB: ${{ secrets.MONGO_DB }}
+        run: python -m oddswatch football-mongo
