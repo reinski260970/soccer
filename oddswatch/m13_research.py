@@ -208,6 +208,11 @@ def run(today: date | None = None, out: Path = OUT, leagues: list[str] | None = 
                 "coverage": coverage,
             }
             log.append(f"{league}: xG-Abdeckung {min_cov*100:.1f}% -> nicht getestet")
+            for yy in ("2023", "2024", "2025"):
+                st = coverage.get(yy, {})
+                misses = st.get("misses", []) if isinstance(st, dict) else []
+                if misses:
+                    log.append(f"{league} {yy} misses: " + " | ".join(misses[:25]))
             continue
 
         best = None
