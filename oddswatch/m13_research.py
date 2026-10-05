@@ -80,6 +80,33 @@ def load_real_xg(code: str, start_year: int = 2017, end_year: int = 2025):
         um, err = understat.season_matches(code, y, cache_days=30 if y < end_year else 1)
         merged, st = xg_merge.merge_xg(fm, um)
         st["understat_error"] = err
+        # Diagnose für Mongo-Importe mit möglicher DD/MM <-> MM/DD-Verwechslung.
+        unmatched = [m for m in fm if not any(
+            mm.date == m.date and mm.home == m.home and mm.away == m.away
+            and mm.home_xg is not None and mm.away_xg is not None
+            for mm in merged
+        )]
+        swap_hits = 0
+        team_only_hits = 0
+        from datetime import date as _date
+        for m in unmatched:
+            team_hits = [u for u in um
+                         if xg_merge.matching.same(m.home, u.home)
+                         and xg_merge.matching.same(m.away, u.away)]
+            if len(team_hits) == 1:
+                team_only_hits += 1
+                u = team_hits[0]
+                try:
+                    swapped = _date(m.date.year, m.date.day, m.date.month)
+                except ValueError:
+                    swapped = None
+                if swapped and abs((u.date - swapped).days) <= 1:
+                    swap_hits += 1
+        st["swap_diagnostic"] = {
+            "unmatched": len(unmatched),
+            "unique_team_match_any_date": team_only_hits,
+            "day_month_swap_hits": swap_hits,
+        }
         coverage[str(y)] = st
         merged_all.extend(merged)
 
@@ -211,6 +238,9 @@ def run(today: date | None = None, out: Path = OUT, leagues: list[str] | None = 
             for yy in ("2023", "2024", "2025"):
                 st = coverage.get(yy, {})
                 misses = st.get("misses", []) if isinstance(st, dict) else []
+                diag = st.get("swap_diagnostic", {}) if isinstance(st, dict) else {}
+                if diag:
+                    log.append(f"{league} {yy} swapdiag: {diag}")
                 if misses:
                     log.append(f"{league} {yy} misses: " + " | ".join(misses[:25]))
             continue
