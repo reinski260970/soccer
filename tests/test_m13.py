@@ -1,6 +1,6 @@
 from datetime import date
 
-from oddswatch.m13_research import _dedupe_matches, _canonical_kind
+from oddswatch.m13_research import _dedupe_matches, _canonical_kind, _resolve_understat
 from oddswatch.models.poisson import Match
 
 
@@ -25,3 +25,17 @@ def test_m13_canonical_date_day_month_swap():
 
 def test_m13_rejects_unrelated_date_shift():
     assert _canonical_kind(date(2024, 4, 25), date(2024, 4, 14)) is None
+
+
+def test_m13_resolve_swap_by_team_and_date():
+    u = Match(date(2026, 3, 1), "Arsenal", "Chelsea", 2, 1, 1.5, 0.9)
+    got, kind = _resolve_understat(date(2026, 1, 3), "Arsenal", "Chelsea", 2, 1, [u])
+    assert got is u
+    assert kind == "swap"
+
+
+def test_m13_excludes_short_positive_lag_without_swap():
+    u = Match(date(2024, 4, 14), "Udinese", "Roma", 1, 2, 0.8, 1.3)
+    got, kind = _resolve_understat(date(2024, 4, 25), "Udinese", "Roma", 1, 2, [u])
+    assert got is None
+    assert kind == "suspended_or_shifted"
