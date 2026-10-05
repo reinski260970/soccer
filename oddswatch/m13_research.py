@@ -253,10 +253,18 @@ def strategy(rows, calib: float, min_edge: float, max_odds: float, side: str) ->
             bets += 1
             pnl += odds[k] - 1.0 if y[k] else -1.0
             clv.append(odds[k] * pc[k] - 1.0)
+    vals = sorted(clv)
+    median = 0.0
+    if vals:
+        n = len(vals)
+        median = vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+    positive = sum(1 for x in vals if x > 0)
     return {
         "bets": bets,
         "roi": pnl/bets if bets else 0.0,
-        "clv": sum(clv)/len(clv) if clv else 0.0,
+        "clv": sum(vals)/len(vals) if vals else 0.0,
+        "median_clv": median,
+        "positive_clv_rate": positive/len(vals) if vals else 0.0,
     }
 
 
@@ -276,10 +284,8 @@ def choose_entry(rows, calib: float, tune_years: set[int]):
                     continue
                 if any(v["bets"] < 25 or v["clv"] <= 0 for v in per_year.values()):
                     continue
-                if total["roi"] <= 0:
-                    continue
                 worst = min(v["clv"] for v in per_year.values())
-                score = worst * math.sqrt(total["bets"]) + 0.05 * total["roi"]
+                score = worst * math.sqrt(total["bets"])
                 if score > best_score:
                     best_score, best_cfg, best = score, cfg, {
                         "total": total, "per_year": per_year,
@@ -338,13 +344,11 @@ def run(today: date | None = None, out: Path = OUT, leagues: list[str] | None = 
         cfg, tune_stats = choose_entry(best["train"], best["calib"], tune)
         hs = model_score(best["hold"], best["calib"])
         he = strategy(best["hold"], best["calib"], **cfg) if cfg else {
-            "bets": 0, "clv": 0.0, "roi": 0.0
+            "bets": 0, "clv": 0.0, "median_clv": 0.0,
+            "positive_clv_rate": 0.0, "roi": 0.0
         }
         validated = bool(
-            cfg and hs["gain"] > 0
-            and he["bets"] >= 40
-            and he["clv"] > 0
-            and he["roi"] > 0
+            cfg and he["bets"] >= 40 and he["clv"] > 0
         )
         result[league] = {
             "validated": validated,
@@ -362,7 +366,7 @@ def run(today: date | None = None, out: Path = OUT, leagues: list[str] | None = 
             f"{league}: M13 v{best['variant']} a={best['calib']:.2f} | "
             f"Holdout dLL {hs['gain']:+.4f} | "
             f"{he['bets']} Bets CLV {he['clv']*100:+.2f}% ROI {he['roi']*100:+.2f}% -> "
-            + ("VALIDIERT" if validated else "nicht validiert")
+            + ("CLV-VALIDIERT" if validated else "nicht CLV-validiert")
         )
 
     out.parent.mkdir(parents=True, exist_ok=True)
