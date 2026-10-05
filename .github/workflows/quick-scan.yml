@@ -1,11 +1,12 @@
 # Fußball-Quotenwächter über API-Football; Mongo separat und nur lesend.
 name: quick-scan
 on:
-  schedule:
-    - cron: "*/15 * * * *"
+  push:
+    branches:
+      - europe-model-validation
   workflow_dispatch:
 concurrency:
-  group: quick-scan
+  group: europe-model-validation
   cancel-in-progress: false
 permissions:
   contents: write
@@ -19,19 +20,14 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Schnellscan
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          APIKEY: ${{ secrets.APIKEY }}
-        run: python -m oddswatch quick --full --send
-      - name: Journal sichern
-        if: always()
+      - name: Europa-Fußball Backtest
+        run: python -m oddswatch backtest
+      - name: Validierung sichern
         run: |
           git config user.name "oddswatch-bot"
           git config user.email "oddswatch-bot@users.noreply.github.com"
-          git add data/journal
-          git diff --cached --quiet || git commit -m "Schnellscan $(date -u +%Y-%m-%dT%H:%MZ)"
+          git add data/validation.json
+          git diff --cached --quiet || git commit -m "Europa-Fußball Validierung $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase --autostash && git push
 
   football-mongo:
