@@ -150,7 +150,7 @@ def choose_entry(rows: list[tuple], calib: float) -> tuple[dict | None, dict | N
     return best_cfg, best_m
 
 
-def run(today: date | None = None, out: Path = OUT) -> list[str]:
+def run(today: date | None = None, out: Path = OUT, leagues: list[str] | None = None) -> list[str]:
     today = today or date.today()
     cur = today.year if today.month >= 7 else today.year - 1
     years = [cur - 4, cur - 3, cur - 2, cur - 1]
@@ -158,7 +158,8 @@ def run(today: date | None = None, out: Path = OUT) -> list[str]:
     result: dict = {"_stand": today.isoformat(), "_method": "M8 pure model, no market blend"}
     log = [f"M8: Tuning {sorted(tune)}, Holdout {sorted(hold)}; kein Markt-Blend"]
 
-    for league, code in LEAGUES.items():
+    selected = LEAGUES if not leagues else {k: LEAGUES[k] for k in leagues if k in LEAGUES}
+    for league, code in selected.items():
         ms, rows = _load(code, years)
         best = None
         for vi, params in enumerate(VARIANTS):
