@@ -33,21 +33,3 @@ jobs:
           git add data/journal
           git diff --cached --quiet || git commit -m "Schnellscan $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase --autostash && git push
-
-  football-mongo:
-    name: Fußball Mongo (lesend)
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install -r requirements.txt
-      - name: Fußball-Verbindung und Schema prüfen
-        env:
-          MONGO: ${{ secrets.MONGO }}
-          MONGO_DB: ${{ vars.MONGO_DB }}
-        run: python -m oddswatch football-mongo
