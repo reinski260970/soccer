@@ -158,7 +158,7 @@ def _football_mongo(a) -> int:
 def _quick(a) -> int:
     from . import quick
     try:
-        for line in quick.run(send=a.send, days=a.days):
+        for line in quick.run(send=a.send, days=a.days, full=a.full):
             print(line)
         return 0
     except RuntimeError as exc:
@@ -265,6 +265,8 @@ def main(argv: list[str] | None = None) -> int:
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
+    qk.add_argument("--full", action="store_true",
+                    help="alle heutigen API-Football-Fixtures gegen Pinnacle/Bet365/Betfair scannen")
     qk.set_defaults(fn=_quick)
     gd = sub.add_parser("guard")
     gd.add_argument("--send", action="store_true")
