@@ -25,6 +25,7 @@ class M8Params:
     form_scale: float = 0.08
     rest_scale: float = 0.012
     form_games: int = 6
+    poisson_iterations: int = 80
 
 
 @dataclass
@@ -47,6 +48,7 @@ class M8Model:
             xg_weight=p.xg_weight,
             shrink=p.shrink,
             rho=p.rho,
+            iterations=p.poisson_iterations,
         )
         ratings = _elo(hist, p)
         return cls(poisson=poisson, matches=hist, ratings=ratings, params=p, as_of=as_of)
