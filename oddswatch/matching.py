@@ -21,6 +21,11 @@ _ALIASES = {
     "a lustenau": "lustenau", "austria lustenau": "lustenau",
     "josko ried": "ried", "swarovski tirol": "tirol", "wsg tirol": "tirol",
     "fc cologne": "koln",
+    "man city": "manchester city", "man united": "manchester united",
+    "wolves": "wolverhampton wanderers", "nottm forest": "nottingham forest",
+    "ath bilbao": "athletic", "ath madrid": "atletico madrid",
+    "espanol": "espanyol", "sociedad": "real sociedad",
+    "st etienne": "saint etienne", "saintetienne": "saint etienne",
     "bosniaherzegovina": "bosnia and herzegovina", "turkiye": "turkey",
 }
 
