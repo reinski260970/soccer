@@ -1,0 +1,70 @@
+📊 CEO MATCHDAY REPORT · 06.10.2026 17:50 MESZ
+
+📰 CEO NEWS
+1 neu · HIGH 1 · MEDIUM 0
+• Green Bay Packers – Chicago Bears · Ausfall · Chicago Bears · UNVERIFIED · HIGH · FAIR RECALC: NEIN
+
+⛔ NO PLAY: kein belegter Vorteil.
+
+👀 WATCH (nicht freigegeben)
+
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 Werder Bremen – SC Paderborn 07
+➡️ SC Paderborn 07 Sieg (90 Min.) @ 5,50
+   Modell fair 3,24 | Pinnacle fair 4,16
+   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert
+   Grund: Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis für diese Liga/Marktart – nur Watchlist
+
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 1. FC Union Berlin – Borussia Dortmund
+➡️ 1. FC Union Berlin Sieg (90 Min.) @ 6,00
+   Modell fair 6,09 | Pinnacle fair 4,84
+   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert
+   Grund: Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis für diese Liga/Marktart – nur Watchlist
+
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) @ 6,25
+   Modell fair 3,14 | Pinnacle fair 5,28
+   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert
+   Grund: Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis für diese Liga/Marktart – nur Watchlist
+
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) @ 4,50
+   Modell fair 3,94 | Pinnacle fair 3,82
+   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert
+   Grund: Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis für diese Liga/Marktart – nur Watchlist
+
+• Serie A · Sa 10.10. 18:00 MESZ
+🆚 Internazionale – Parma
+➡️ Parma Sieg (90 Min.) @ 23,00
+   Modell fair 12,13 | Pinnacle fair 19,74
+   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert
+   Grund: Fußball-Freigaben ausgesetzt: kein positiver OOS-Nachweis für diese Liga/Marktart – nur Watchlist
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 62 Spiele (58 mit Buchmacherpreis), 0 PLAY
+   • Internazionale – Parma · Sa 10.10. 18:00 MESZ: Parma Sieg (90 Min.) @ 23,00, spielbar ab 20,33 (EV 16,5 %)
+   • FC Augsburg – Bayern Munich · Sa 10.10. 15:30 MESZ: FC Augsburg Sieg (90 Min.) @ 12,00, spielbar ab 11,48 (EV 7,6 %)
+🏒 Eishockey Europa: 45 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏒 NHL: 46 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 13.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
+
+📈 CLV / PERFORMANCE
+Modell-Freigaben: ROI -100.0% · Ø CLV -6.9% (n=8) · 8 abgerechnet
+Gespielt: ROI -100.0% · Ø CLV -3.6% (n=2) · 2 abgerechnet
+CLV ist Freigabemaßstab; kurzfristiger ROI überstimmt schwachen CLV nicht.
+
+⚠️ DATENLAGE: 60 offene Hinweise
+• La Liga: Team nicht zugeordnet (Real Sociedad – Deportivo)
+• La Liga: Team nicht zugeordnet (Deportivo – Levante)
+• Ligue 1: Team nicht zugeordnet (Lorient – Paris FC)
+
+CEO: kein freigegebener Tipp, 0 EH.
