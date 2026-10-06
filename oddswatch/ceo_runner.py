@@ -9,7 +9,8 @@ und kennzeichnet WATCH ausdrücklich als nicht freigegeben.
 from __future__ import annotations
 
 import argparse
-from datetime import date
+import json
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from . import news, outlook, report, scan, settle, telegram
@@ -79,6 +80,157 @@ def _clv_lines(j: Journal) -> list[str]:
     ]
 
 
+def _sport_name(fx) -> str:
+    if fx.league == "nhl":
+        return "NHL"
+    if fx.league == "nfl":
+        return "NFL"
+    if fx.league == "nba":
+        return "NBA"
+    if fx.sport == "hockey":
+        return "Eishockey Europa"
+    return "Fußball"
+
+
+def _today_lines(res, hours: int = 36) -> list[str]:
+    now = datetime.now(timezone.utc)
+    until = now + timedelta(hours=hours)
+    fx = sorted(
+        [f for f in res.fixtures if now < f.game.kickoff <= until],
+        key=lambda f: f.game.kickoff,
+    )
+    out = [f"🗓 TODAY / NEXT {hours}H"]
+    if not fx:
+        return out + ["Keine bewerteten Spiele im Zeitfenster."]
+    groups: dict[str, list] = {}
+    for f in fx:
+        groups.setdefault(_sport_name(f), []).append(f)
+    order = ("Fußball", "Eishockey Europa", "NHL", "NFL", "NBA")
+    for name in order:
+        rows = groups.get(name) or []
+        if not rows:
+            continue
+        out.append(f"{name}: {len(rows)} Spiele")
+        for f in rows[:4]:
+            ref = " · Marktref vorhanden" if f.ref_probs else ""
+            price = " · ausführbarer Preis" if f.offers else ""
+            out.append(
+                f"• {report._league(f.league)} · {report._kick(f.game.kickoff.isoformat())} · "
+                f"{f.game.title}{ref}{price}"
+            )
+        if len(rows) > 4:
+            out.append(f"  + {len(rows) - 4} weitere")
+    return out
+
+
+def _market_diag_lines(res) -> list[str]:
+    """Modell gegen vorhandene No-Vig-Marktreferenz, auch wenn kein ausführbarer
+    Orbit/bet365-Preis vorhanden ist. Nie als PLAY kennzeichnen."""
+    rows = []
+    for f in res.fixtures:
+        if f.offers or not f.ref_probs or f.sport == "soccer":
+            continue
+        best = None
+        for side, pm in f.probs.items():
+            pr = f.ref_probs.get(side)
+            if not pr or pm <= 0 or pr <= 0:
+                continue
+            d = pm - pr
+            if best is None or d > best[0]:
+                best = (d, side, pm, pr)
+        if best is not None:
+            rows.append((best[0], f, *best[1:]))
+    rows.sort(key=lambda x: -x[0])
+    out = ["📐 MODELL ↔ MARKTREFERENZ (kein PLAY ohne ausführbaren Preis)"]
+    if not rows:
+        return out + ["Keine verwertbare unabhängige Marktreferenz."]
+    used: dict[str, int] = {}
+    shown = 0
+    for d, f, side, pm, pr in rows:
+        name = _sport_name(f)
+        if used.get(name, 0) >= 2:
+            continue
+        used[name] = used.get(name, 0) + 1
+        shown += 1
+        selection = f.game.home.name if side == "home" else f.game.away.name
+        out += [
+            f"• {name} · {f.game.title} · {selection}",
+            f"  Modell {pm * 100:.1f}% (fair {1/pm:.2f}) · Markt-No-Vig {pr * 100:.1f}% "
+            f"(fair {1/pr:.2f}) · Δ {d * 100:+.1f} pp",
+            f"  {f.detail}",
+        ]
+        if shown >= 6:
+            break
+    return out
+
+
+def _euro_hockey_fair_lines(res) -> list[str]:
+    now = datetime.now(timezone.utc)
+    rows = sorted(
+        [f for f in res.fixtures if f.sport == "hockey" and f.game.kickoff > now],
+        key=lambda f: f.game.kickoff,
+    )
+    out = ["🏒 EURO-HOCKEY FAIR SNAPSHOT"]
+    if not rows:
+        return out + ["Keine modellierten europäischen Hockeyspiele."]
+    for f in rows[:6]:
+        ph, pa = f.probs.get("home"), f.probs.get("away")
+        if not ph or not pa:
+            continue
+        out += [
+            f"• {report._league(f.league)} · {report._kick(f.game.kickoff.isoformat())} · {f.game.title}",
+            f"  Fair ML {f.game.home.name} {1/ph:.2f} / {f.game.away.name} {1/pa:.2f} · {f.detail}",
+            "  Status: FAIR ONLY – noch kein verifizierter ausführbarer Preis",
+        ]
+    return out
+
+
+def _hockey_data_lines() -> list[str]:
+    p = Path("data/hockey/data_audit.json")
+    out = ["🧱 HOCKEY-DATENABDECKUNG"]
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return out + ["Noch kein persistierter Hockey-Datenaudit."]
+    labels = {"nhl": "NHL", "del": "DEL", "icehl": "ICEHL",
+              "liiga": "Liiga", "extraliga": "Extraliga"}
+    for lg in ("nhl", "del", "icehl", "liiga", "extraliga"):
+        r = (data.get("leagues") or {}).get(lg) or {}
+        out.append(
+            f"• {labels[lg]}: {r.get('history_games', 0)} History-Spiele · "
+            f"{r.get('substantial_seasons', 0)} volle Saisonen · "
+            f"{r.get('market_closing_rows', 0)} Closing-Zeilen"
+        )
+    out.append("Training und CLV-Marktdaten werden getrennt bewertet; Closing-Abdeckung ist derzeit der Engpass.")
+    return out
+
+
+def _broad_news_lines(issues: list[str]) -> list[str]:
+    """Breiter Sports-Intelligence-Scan zusätzlich zu PLAY/WATCH-spezifischen
+    Alerts. Ein einzelner Feed-Treffer ist nur HEADLINE und löst keinen Recalc aus."""
+    now = datetime.now(timezone.utc)
+    items = news.collect(set(news.SOURCES), issues)
+    rows = []
+    for item in items:
+        cls = news.classify(item.title, item.text)
+        if not cls:
+            continue
+        if item.published and item.published < now - timedelta(hours=24):
+            continue
+        rows.append((cls[1], item.published or now, cls[0], item))
+    rows.sort(key=lambda x: (not x[0], -x[1].timestamp()))
+    out = ["🌐 SPORTS-INTELLIGENCE HEADLINES (24h)"]
+    if not rows:
+        return out + ["Keine neuen materiellen Headlines aus den angebundenen Feeds."]
+    for severe, _, category, item in rows[:6]:
+        out.append(
+            f"• {'HIGH' if severe else 'MEDIUM'} · {report._league(item.league)} · "
+            f"{category} · {item.title} ({item.source}) · SOURCE_ONLY"
+        )
+    out.append("SOURCE_ONLY verändert Fair Odds nicht; Recalc erst nach Bestätigung/Team-Zuordnung.")
+    return out
+
+
 def build_report(
     sports: tuple[str, ...] = ("soccer", "nfl", "nhl", "nba", "hockey_eu"),
 ) -> tuple[str, list, Journal]:
@@ -99,6 +251,8 @@ def build_report(
     # Der News-Agent bekommt immer die Targets dieses frischen CEO-Scans.
     news.save_targets(res.fixtures, res.picks, watch)
     alerts, news_issues, article_count = news.run(j)
+    broad_news_issues: list[str] = []
+    broad_news = _broad_news_lines(broad_news_issues)
 
     rows = outlook.build(res.fixtures, res.candidates, res.picks)
     note = outlook.soccer_note(res.notes, res.issues)
@@ -116,15 +270,23 @@ def build_report(
 
     lines = [f"📊 CEO MATCHDAY REPORT · {res.stand}", ""]
     lines += _news_lines(alerts, article_count)
+    lines += [""] + broad_news
+    lines += [""] + _today_lines(res)
     lines += [""] + core
+    lines += [""] + _market_diag_lines(res)
+    lines += [""] + _euro_hockey_fair_lines(res)
+    lines += [""] + _hockey_data_lines()
     lines += [""] + _clv_lines(j)
 
-    issues = list(res.issues) + list(news_issues)
+    issues = list(res.issues) + list(news_issues) + broad_news_issues
     if settlement_issue:
         issues.append(settlement_issue)
     if issues:
-        lines += ["", f"⚠️ DATENLAGE: {len(issues)} offene Hinweise"]
-        lines += [f"• {x}" for x in issues[:3]]
+        uniq = list(dict.fromkeys(issues))
+        lines += ["", f"⚠️ DATENLAGE: {len(uniq)} offene Hinweise"]
+        lines += [f"• {x}" for x in uniq[:8]]
+        if len(uniq) > 8:
+            lines.append(f"• + {len(uniq) - 8} weitere Hinweise im Run-Log")
 
     if not res.picks:
         lines += ["", "CEO: kein freigegebener Tipp, 0 EH."]
