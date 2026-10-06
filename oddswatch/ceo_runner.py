@@ -130,6 +130,10 @@ def _market_diag_lines(res) -> list[str]:
     for f in res.fixtures:
         if f.offers or not f.ref_probs or f.sport == "soccer":
             continue
+        # Kein "Value-Signal" ausgeben, solange das Modell einen materiellen
+        # Kader-/QB-Vorbehalt trägt. Erst Fair neu rechnen, dann Marktvergleich.
+        if any(f.flags.get(side) for side in f.flags):
+            continue
         best = None
         for side, pm in f.probs.items():
             pr = f.ref_probs.get(side)
