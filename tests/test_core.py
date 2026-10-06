@@ -390,6 +390,19 @@ def test_hockeyarchives_parse():
 
 
 
+def test_hockeyarchives_top_division_only():
+    from oddswatch.sources.hockeyarchives import parse_league_page
+    html = (
+        "DEL : Ergebnisse DEL 2 : Ergebnisse "
+        "<h2>DEL</h2> vendredi 18 septembre 2026 "
+        "Munich - Mannheim 4-3 (1-0,2-1,1-2) "
+        "<h2>DEL 2</h2> samedi 19 septembre 2026 "
+        "Kassel - Ravensburg 5-1 (2-0,2-1,1-0)"
+    )
+    rs = parse_league_page(html, 2026, "del")
+    assert [(r.home, r.away) for r in rs] == [("Munich", "Mannheim")]
+
+
 def test_icehl_feed_parse():
     from oddswatch.sources.hockeyarchives import parse_icehl
     per = lambda h, g: {"score_home": h, "score_guest": g}
