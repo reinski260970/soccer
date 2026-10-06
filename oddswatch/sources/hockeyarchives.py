@@ -118,7 +118,12 @@ def _section(t: str, league: str) -> str:
     starts, ends = spec
     pos = []
     for marker in starts:
-        pos.extend(m.start() for m in re.finditer(rf"(?<![\w-]){re.escape(marker)}(?![\w-])", t, re.I))
+        # "DEL" darf nicht auf die Navigations-/Überschrift "DEL 2" matchen.
+        # Sonst beginnt der Ausschnitt an der falschen Stelle und DEL2-Spiele
+        # kontaminieren die Top-Liga-Historie.
+        tail = r"(?!\s*2\b)" if marker.upper() == "DEL" else ""
+        rx = rf"(?<![\w-]){re.escape(marker)}{tail}(?![\w-])"
+        pos.extend(m.start() for m in re.finditer(rx, t, re.I))
     pos = sorted(set(pos))
     if not pos:
         return t
