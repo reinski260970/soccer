@@ -36,11 +36,32 @@ def attach_prices(fixtures, issues):
         obs = datetime.now(timezone.utc).isoformat()
         for side in keys:
             offers = []
-            for book in ("Bet365", "Betfair"):
-                odds = data.get(book, {}).get(side)
-                if odds and odds > 1:
-                    label = "Unentschieden (90 Min.)" if side == "draw" else f"{g.home.name if side == 'home' else g.away.name} Sieg (90 Min.)"
-                    offers.append(Offer(g.title, g.kickoff.isoformat(), side, label, odds,
-                                        book.lower(), obs, ref=f"apifootball:{match.id}:{side}", league=fx.league))
+            raw_exec = {
+                book: data.get(book, {}).get(side)
+                for book in ("Bet365", "Betfair")
+                if data.get(book, {}).get(side) and data.get(book, {}).get(side) > 1
+            }
+            fair_ref = (1.0 / fx.ref_probs[side]) if fx.ref_probs.get(side) else None
+            for book, odds in raw_exec.items():
+                # API-Football kann bei weit im Voraus liegenden Spielen alte
+                # Buchmacher-Snapshots liefern. Ein Preis, der extrem weit über
+                # der unabhängigen Pinnacle-No-Vig-Referenz liegt, darf deshalb
+                # nur als ausführbar gelten, wenn ein zweiter Ausführungsmarkt
+                # ihn grob bestätigt.
+                extreme = bool(fair_ref and odds / fair_ref - 1.0 > 0.20)
+                peer_confirmed = any(
+                    other != book and other_odds >= odds * 0.90
+                    for other, other_odds in raw_exec.items()
+                )
+                if extreme and not peer_confirmed:
+                    issues.append(
+                        f"API-Football: Preis-Outlier verworfen ({g.title}, {side}, "
+                        f"{book} {odds:.2f} vs Pinnacle fair {fair_ref:.2f}); "
+                        "zweiter Ausführungsmarkt bestätigt nicht"
+                    )
+                    continue
+                label = "Unentschieden (90 Min.)" if side == "draw" else f"{g.home.name if side == 'home' else g.away.name} Sieg (90 Min.)"
+                offers.append(Offer(g.title, g.kickoff.isoformat(), side, label, odds,
+                                    book.lower(), obs, ref=f"apifootball:{match.id}:{side}", league=fx.league))
             if offers:
                 fx.offers[side] = offers
