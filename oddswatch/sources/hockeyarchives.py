@@ -43,7 +43,7 @@ _DATE = re.compile(r"(\d{1,2})(?:er)? (" + "|".join(_MONTHS) + r") (\d{4})|(\d{2
 # sonst auch DEL2/Mestis/Alps/I. liga/Allsvenskan usw.; diese dürfen nicht in das
 # Top-Liga-Modell einfließen.
 _TOP_SECTIONS = {
-    "del": (("DEL",), ("DEL 2",)),
+    "del": (("DEL",), ("DEL 2", "DEL2")),
     "extraliga": (("Extraliga",), ("I. liga", "1. liga")),
     "liiga": (("Liiga",), ("Mestis",)),
     "icehl": (("ICE-HL", "ICE HL"), ("Alps Hockey League",)),
@@ -133,7 +133,11 @@ def _section(t: str, league: str) -> str:
         m = re.search(rf"(?<![\w-]){re.escape(marker)}(?![\w-])", t[start + 1:], re.I)
         if m:
             end = min(end, start + 1 + m.start())
-    return t[start:end]
+    section = t[start:end]
+    # Überschrift/Navigation darf nicht von _GAME als Teil des ersten Teamnamens
+    # verschluckt werden. Top-Liga-Spielpläne beginnen mit einem Spieltagsdatum.
+    d = _DATE.search(section)
+    return section[d.start():] if d else section
 
 
 def parse_page(raw: bytes | str, season_start: int) -> list[HockeyResult]:
