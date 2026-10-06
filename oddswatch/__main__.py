@@ -13,6 +13,7 @@
   python -m oddswatch quick [--send]    # Fußball-Quotenwächter (API-Football)
   python -m oddswatch guard [--send]    # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair (API-Football)
   python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
+  python -m oddswatch hockey-data [--seasons 5]    # Hockey-Historie backfillen + Datenabdeckung auditieren
   python -m oddswatch place --ref <Valuebet-Referenz> --odds 2.1 --stake 1 --bookmaker bet365
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
   python -m oddswatch summary
@@ -251,6 +252,13 @@ def _tennis(a) -> int:
     return 0
 
 
+def _hockey_data(a) -> int:
+    from . import hockey_data
+    for line in hockey_data.run(seasons=a.seasons):
+        print(line)
+    return 0
+
+
 def _tune(a) -> int:
     from . import tune
     for line in tune.run():
@@ -363,6 +371,9 @@ def main(argv: list[str] | None = None) -> int:
     tn.add_argument("--send", action="store_true")
     tn.add_argument("--all", action="store_true", help="alle offenen Tipps senden, nicht nur neue")
     tn.set_defaults(fn=_tennis)
+    hd = sub.add_parser("hockey-data")
+    hd.add_argument("--seasons", type=int, default=5)
+    hd.set_defaults(fn=_hockey_data)
     pl = sub.add_parser("place")
     pl.add_argument("--ref", required=True)
     pl.add_argument("--odds", type=float, required=True)
