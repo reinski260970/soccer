@@ -1,0 +1,110 @@
+date,league,home_team,away_team,home_score,away_score,finish_status,reg_result,close_home,close_draw,close_away,source_url
+2026-09-27,DEL,ERC Ingolstadt,Adler Mannheim,3,2,OT,DRAW,2.38,4.35,2.4,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-22,DEL,Iserlohn Roosters,Augsburger Panther,2,3,PEN,DRAW,2.4,4.33,2.38,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-22,DEL,Nurnberg Ice Tigers,Adler Mannheim,5,3,FIN,HOME,3.12,4.37,1.93,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Kolner,Frankfurt Lowen,4,3,OT,DRAW,1.46,5.5,5.07,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Augsburger Panther,Schwenninger,7,3,FIN,HOME,2.35,4.15,2.47,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Grizzly Wolfsburg,Munchen,4,3,OT,DRAW,2.53,4.32,2.27,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Straubing Tigers,Krefeld Pinguine,3,6,FIN,AWAY,1.45,5.33,5.22,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Adler Mannheim,Eisbaren Berlin,4,3,FIN,HOME,2.23,4.37,2.55,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,ERC Ingolstadt,Nurnberg Ice Tigers,2,6,FIN,AWAY,1.52,5.22,4.55,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-20,DEL,Bremerhaven,Iserlohn Roosters,2,1,FIN,HOME,1.65,4.8,3.95,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Munchen,Adler Mannheim,4,3,PEN,DRAW,2.23,4.2,2.62,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Nurnberg Ice Tigers,Augsburger Panther,4,1,FIN,HOME,2.08,4.33,2.83,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Iserlohn Roosters,ERC Ingolstadt,3,4,FIN,AWAY,3.27,4.55,1.85,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Schwenninger,Frankfurt Lowen,0,5,FIN,AWAY,1.76,4.52,3.58,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Kolner,Grizzly Wolfsburg,4,8,FIN,AWAY,1.58,4.98,4.34,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-18,DEL,Krefeld Pinguine,Bremerhaven,1,3,FIN,AWAY,2.97,4.4,1.99,https://www.oddsportal.com/hockey/germany/del/results/
+2026-09-17,DEL,Eisbaren Berlin,Straubing Tigers,4,2,FIN,HOME,1.76,4.55,3.55,https://www.oddsportal.com/hockey/germany/del/results/
+2026-10-04,ICEHL,Black Wings Linz,Klagenfurt,6,1,FIN,HOME,2.87,4.37,2.0,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-04,ICEHL,Villach,Vienna,3,4,OT,DRAW,2.08,4.24,2.82,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-04,ICEHL,Valpusteria,Fehervar AV19,3,2,OT,DRAW,1.63,4.7,3.97,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-04,ICEHL,Bolzano,Ferencvaros,4,3,PEN,DRAW,1.42,5.5,5.42,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-04,ICEHL,HK Olimpija,Vorarlberg,8,0,FIN,HOME,1.34,5.83,6.17,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-04,ICEHL,Salzburg,Milano,5,2,FIN,HOME,1.81,4.55,3.35,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-03,ICEHL,Graz,Innsbruck,3,0,FIN,HOME,1.45,5.33,5.08,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Bolzano,Klagenfurt,4,0,FIN,HOME,2.17,4.24,2.67,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Valpusteria,HK Olimpija,4,2,FIN,HOME,2.02,4.31,2.88,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Vorarlberg,Salzburg,1,4,FIN,AWAY,4.21,4.77,1.59,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Black Wings Linz,Graz,3,2,PEN,DRAW,2.5,4.13,2.32,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Fehervar AV19,Ferencvaros,2,5,FIN,AWAY,2.02,4.27,2.9,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Vienna,Innsbruck,4,0,FIN,HOME,1.61,4.73,4.18,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-10-02,ICEHL,Villach,Milano,7,2,FIN,HOME,2.73,4.4,2.09,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Salzburg,Bolzano,1,4,FIN,AWAY,2.28,4.17,2.55,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Fehervar AV19,Villach,1,0,FIN,HOME,2.34,4.17,2.47,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Innsbruck,Vorarlberg,5,4,FIN,HOME,2.03,4.38,2.85,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Klagenfurt,Milano,2,4,FIN,AWAY,1.71,4.63,3.53,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Ferencvaros,Black Wings Linz,3,5,FIN,AWAY,2.7,4.2,2.15,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-30,ICEHL,Graz,Valpusteria,1,4,FIN,AWAY,1.97,4.33,2.98,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,HK Olimpija,Villach,6,2,FIN,HOME,1.69,4.73,3.72,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,Innsbruck,Bolzano,3,4,FIN,AWAY,4.27,5.0,1.56,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,Klagenfurt,Graz,6,2,FIN,HOME,1.41,5.42,5.5,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,Valpusteria,Black Wings Linz,5,4,FIN,HOME,1.8,4.43,3.42,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,Vorarlberg,Fehervar AV19,2,3,FIN,AWAY,2.55,4.33,2.21,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-27,ICEHL,Ferencvaros,Salzburg,3,6,FIN,AWAY,3.15,4.45,1.84,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-26,ICEHL,Vienna,Milano,2,6,FIN,AWAY,2.4,4.3,2.3,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-26,ICEHL,Innsbruck,Fehervar AV19,2,0,FIN,HOME,3.0,4.43,1.95,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,ICEHL,Black Wings Linz,Vorarlberg,5,3,FIN,HOME,1.6,4.77,4.17,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,ICEHL,HK Olimpija,Klagenfurt,3,7,FIN,AWAY,2.27,4.27,2.52,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,ICEHL,Salzburg,Villach,2,4,FIN,AWAY,1.62,4.78,4.03,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,ICEHL,Ferencvaros,Milano,3,0,FIN,HOME,2.98,4.58,1.91,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,ICEHL,Graz,Vienna,3,2,OT,DRAW,1.71,4.58,3.7,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Black Wings Linz,HK Olimpija,4,3,FIN,HOME,2.62,4.27,2.2,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Klagenfurt,Villach,6,1,FIN,HOME,1.48,5.17,4.93,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Vorarlberg,Milano,4,5,FIN,AWAY,3.18,4.55,1.83,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Vienna,Fehervar AV19,3,2,PEN,DRAW,1.59,4.78,4.24,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Salzburg,Innsbruck,2,3,PEN,DRAW,1.3,6.08,7.08,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-23,ICEHL,Graz,Bolzano,4,3,OT,DRAW,2.05,4.28,2.83,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-20,ICEHL,Bolzano,Salzburg,6,3,FIN,HOME,1.99,4.24,3.02,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-20,ICEHL,Klagenfurt,Valpusteria,3,2,FIN,HOME,1.73,4.6,3.62,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-20,ICEHL,Black Wings Linz,Milano,0,4,FIN,AWAY,2.03,4.35,2.78,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-19,ICEHL,Vorarlberg,Graz,1,3,FIN,AWAY,4.53,5.13,1.52,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-19,ICEHL,Innsbruck,Vienna,4,5,FIN,AWAY,2.93,4.43,1.97,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-19,ICEHL,Fehervar AV19,HK Olimpija,2,6,FIN,AWAY,3.07,4.37,1.94,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-18,ICEHL,Bolzano,Vienna,3,2,FIN,HOME,1.55,4.87,4.43,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-18,ICEHL,Valpusteria,Graz,4,2,FIN,HOME,2.52,4.13,2.31,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-18,ICEHL,Vorarlberg,Villach,1,2,FIN,AWAY,2.88,4.37,2.01,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-18,ICEHL,Innsbruck,Milano,1,3,FIN,AWAY,2.63,4.55,2.05,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-18,ICEHL,Salzburg,Klagenfurt,1,7,FIN,AWAY,2.08,4.22,2.8,https://www.oddsportal.com/hockey/austria/ice-hockey-league/results/
+2026-09-25,CZE_EXTRALIGA,Karlovy Vary,Ceske Budejovice,5,1,FIN,HOME,1.86,4.2,3.45,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-25,CZE_EXTRALIGA,Kladno,Plzen,3,4,OT,DRAW,2.58,3.87,2.38,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-25,CZE_EXTRALIGA,Olomouc,Kometa Brno,2,4,FIN,AWAY,2.27,3.97,2.68,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-25,CZE_EXTRALIGA,Litvinov,Sparta Prague,1,4,FIN,AWAY,3.43,4.23,1.87,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-25,CZE_EXTRALIGA,Mlada Boleslav,Pardubice,1,4,FIN,AWAY,3.63,4.23,1.8,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-25,CZE_EXTRALIGA,Trinec,Vitkovice,8,2,FIN,HOME,1.62,4.65,4.28,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-24,CZE_EXTRALIGA,Mountfield HK,Liberec,5,2,FIN,HOME,2.27,3.97,2.68,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-22,CZE_EXTRALIGA,Sparta Prague,Mlada Boleslav,3,5,FIN,AWAY,1.47,4.83,5.58,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-22,CZE_EXTRALIGA,Pardubice,Liberec,4,5,FIN,AWAY,1.65,4.48,4.3,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Ceske Budejovice,Olomouc,3,2,FIN,HOME,1.89,4.23,3.35,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Pardubice,Karlovy Vary,5,2,FIN,HOME,1.56,4.83,4.62,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Liberec,Kladno,1,3,FIN,AWAY,1.85,4.23,3.45,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Kometa Brno,Mountfield HK,3,1,FIN,HOME,2.12,4.1,2.88,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Litvinov,Pardubice,1,3,FIN,AWAY,3.85,4.5,1.7,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-20,CZE_EXTRALIGA,Vitkovice,Litvinov,2,3,FIN,AWAY,2.05,4.23,3.02,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-19,CZE_EXTRALIGA,Trinec,Plzen,3,2,FIN,HOME,1.85,4.18,3.5,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Mountfield HK,Ceske Budejovice,0,2,FIN,AWAY,1.84,4.28,3.47,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Kladno,Sparta Prague,3,2,PEN,DRAW,3.05,4.27,1.97,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Olomouc,Plzen,3,2,OT,DRAW,2.75,3.8,2.29,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Mlada Boleslav,Karlovy Vary,1,4,FIN,AWAY,2.35,4.0,2.5,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Litvinov,Pardubice,1,3,FIN,AWAY,3.85,4.5,1.7,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-18,CZE_EXTRALIGA,Trinec,Kometa Brno,6,5,FIN,HOME,1.65,4.58,4.05,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Pardubice,Mountfield HK,3,5,FIN,AWAY,1.58,4.75,4.4,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Olomouc,Sparta Prague,2,5,FIN,AWAY,3.85,4.63,1.69,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Ceske Budejovice,Mlada Boleslav,2,3,OT,DRAW,1.95,4.1,3.2,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Vitkovice,Kladno,3,4,FIN,AWAY,2.3,3.95,2.6,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Litvinov,Kometa Brno,2,1,FIN,HOME,2.43,4.15,2.4,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-16,CZE_EXTRALIGA,Plzen,Liberec,2,1,PEN,DRAW,2.01,3.85,3.15,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-09-15,CZE_EXTRALIGA,Karlovy Vary,Trinec,0,2,FIN,AWAY,2.55,3.95,2.35,https://www.oddsportal.com/hockey/czech-republic/extraliga/results/
+2026-10-03,LIIGA,Lukko,Assat,2,5,FIN,AWAY,1.92,3.95,3.16,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-10-03,LIIGA,Hameenlinna,Karpat,2,1,OT,DRAW,2.77,3.81,2.15,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-10-03,LIIGA,Sport,IFK Helsinki,2,3,OT,DRAW,2.34,3.91,2.47,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-10-03,LIIGA,Ilves,Kiekko-Espoo,6,4,FIN,HOME,1.78,3.98,3.56,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,IFK Helsinki,Jukurit,4,7,FIN,AWAY,1.58,4.67,4.58,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,Karpat,Ilves,3,4,OT,DRAW,2.35,4.12,2.52,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,KooKoo,JYP,3,5,FIN,AWAY,2.45,4.3,2.35,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,KalPa,Hameenlinna,7,0,FIN,HOME,2.17,4.08,2.87,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,SaiPa,Kiekko-Espoo,2,1,OT,DRAW,2.13,4.18,2.8,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-15,LIIGA,Pelicans,Tappara,2,3,FIN,AWAY,2.55,3.97,2.38,https://www.oddsportal.com/hockey/finland/liiga/results/
+2026-09-26,NHL,Minnesota Wild,Dallas Stars,1,2,FIN,AWAY,2.1,4.3,2.7,https://newsletter.oddsportal.com/hockey/usa/nhl/
+2026-09-26,NHL,Colorado Avalanche,Winnipeg Jets,5,2,FIN,HOME,1.79,4.48,3.4,https://newsletter.oddsportal.com/hockey/usa/nhl/
+2026-10-06,NHL,Dallas Stars,San Jose Sharks,5,0,FIN,HOME,1.83,4.28,3.42,https://www.oddsportal.com/hockey/usa/nhl/
