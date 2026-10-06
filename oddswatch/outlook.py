@@ -50,6 +50,7 @@ def build(fixtures: list, candidates: list[Candidate], picks: list[Candidate],
         later = sorted(f.game.kickoff for f in fixtures if f.league in lgs and f.game.kickoff > until)
         out.append({"icon": icon, "name": name, "games": len(fx),
                     "priced": sum(bool(f.offers) for f in fx),
+                    "referenced": sum(bool(f.ref_probs) for f in fx),
                     "leagues": sorted({_league(f.league) for f in fx}),
                     "picks": [c for c in picks if c.league in lgs], "near": near,
                     "model_only": bool(near) and not ref,
@@ -96,8 +97,8 @@ def telegram_lines(rows: list[dict], days: int = 7, tennis: bool = True,
         if not r["games"]:
             out.append(head + _none(r, days))
             continue
-        out.append(head + f"{r['games']} Spiele ({r['priced']} mit Buchmacherpreis), "
-                   f"{len(r['picks'])} PLAY")
+        out.append(head + f"{r['games']} Spiele | ausführbare Preise {r['priced']} | "
+                   f"Marktreferenz {r['referenced']} | {len(r['picks'])} PLAY")
         out += [f"   • {_near(c, r['model_only'])}" for c in r["near"]]
     if tennis:
         out += _tennis()[0]
@@ -113,7 +114,8 @@ def report_lines(rows: list[dict], days: int = 7, tennis: bool = True,
             out.append(f"- {r['icon']} **{r['name']}**: {_none(r, days)}")
             continue
         out.append(f"- {r['icon']} **{r['name']}** ({', '.join(r['leagues'])}): {r['games']} Spiele, "
-                   f"{r['priced']} mit Buchmacherpreis, {len(r['picks'])} PLAY")
+                   f"{r['priced']} ausführbare Preise, {r['referenced']} Marktreferenzen, "
+                   f"{len(r['picks'])} PLAY")
         out += [f"  - am nächsten an spielbar: {_near(c, r['model_only'])}" for c in r["near"]]
     if tennis:
         out += _tennis()[1]
