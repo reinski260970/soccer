@@ -1,0 +1,69 @@
+🗞 Tagesbericht Di 06.10. 15:21 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 2 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -3.00 EH (-30.00 $) | Einsatz 3 EH | ROI -100,0 %
+   Bilanz 0-8 (8 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 8 Wetten, 7 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ UEFA Nations League · Di 06.10. 16:00 MESZ
+🆚 Kazakhstan – Faroe Islands
+➡️ Über 2.5 Tore @ 2,52 | 0,25 EH
+✅ NFL · So 11.10. 19:00 MESZ
+🆚 New England Patriots – Las Vegas Raiders
+➡️ New England Patriots Sieg (inkl. OT) @ 1,65 | 1,5 EH
+✅ NFL · So 11.10. 19:00 MESZ
+🆚 Green Bay Packers – Chicago Bears
+➡️ Green Bay Packers Sieg (inkl. OT) @ 1,90 | 1 EH
+✅ NFL · So 11.10. 19:00 MESZ
+🆚 Washington Commanders – New York Giants
+➡️ New York Giants Sieg (inkl. OT) @ 2,59 | 1,25 EH
+✅ NFL · So 11.10. 19:00 MESZ
+🆚 Miami Dolphins – Cincinnati Bengals
+➡️ Miami Dolphins Sieg (inkl. OT) @ 4,31 | 0,25 EH
+✅ NFL · So 11.10. 22:05 MESZ
+🆚 Los Angeles Chargers – Denver Broncos
+➡️ Los Angeles Chargers Sieg (inkl. OT) @ 2,34 | 0,5 EH
+✅ NFL · So 11.10. 22:25 MESZ
+🆚 Seattle Seahawks – San Francisco 49ers
+➡️ Seattle Seahawks Sieg (inkl. OT) @ 1,73 | 1,5 EH
+
+👀 Watchlist
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 Werder Bremen – SC Paderborn 07
+➡️ SC Paderborn 07 Sieg (90 Min.) spielbar ab 4,29 (jetzt 5,50)
+• Bundesliga · Sa 17.10. 15:30 MESZ
+🆚 1. FC Union Berlin – Borussia Dortmund
+➡️ 1. FC Union Berlin Sieg (90 Min.) spielbar ab 4,99 (jetzt 6,00)
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,25)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,50)
+• Serie A · Sa 10.10. 18:00 MESZ
+🆚 Internazionale – Parma
+➡️ Parma Sieg (90 Min.) spielbar ab 20,33 (jetzt 23,00)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 63 Spiele (59 mit Buchmacherpreis), 0 PLAY
+   • Internazionale – Parma · Sa 10.10. 18:00 MESZ: Parma Sieg (90 Min.) @ 23,00, spielbar ab 20,33 (EV 16,5 %)
+   • FC Augsburg – Bayern Munich · Sa 10.10. 15:30 MESZ: FC Augsburg Sieg (90 Min.) @ 12,00, spielbar ab 11,48 (EV 7,6 %)
+🏒 Eishockey Europa: 45 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏒 NHL: 46 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele (0 mit Buchmacherpreis), 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 13.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
