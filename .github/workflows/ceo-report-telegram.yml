@@ -4,6 +4,9 @@
 name: ceo-report-telegram
 
 on:
+  push:
+    paths:
+      - ".github/ceo-run-now-20261006-1812"
   schedule:
     # Europe/Vienna: 08/12/19 Uhr. Je zwei UTC-Zeiten decken CEST/CET ab;
     # der Gate-Schritt lässt pro lokaler Slot nur genau einen Lauf durch.
@@ -33,7 +36,7 @@ jobs:
           day="$(TZ=Europe/Vienna date +%Y-%m-%d)"
           echo "Wien: $now"
 
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event_name }}" = "push" ]; then
             slot="manual-$(TZ=Europe/Vienna date +%H%M)"
             echo "run=yes" >> "$GITHUB_OUTPUT"
             echo "slot=$slot" >> "$GITHUB_OUTPUT"
