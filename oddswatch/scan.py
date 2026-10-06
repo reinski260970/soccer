@@ -756,7 +756,8 @@ def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
     cur, up, err2 = hockeyarchives.icehl(season_start)
     if err or err2:
         issues.append(f"ICEHL-Feed: {err or err2}")
-    ms = [Match(r.date, r.home, r.away, r.reg_home, r.reg_away) for r in prev + cur]
+    ms = [Match(r.date, hockeyarchives.canonical_icehl(r.home), hockeyarchives.canonical_icehl(r.away),
+                r.reg_home, r.reg_away) for r in prev + cur]
     if len(ms) < 150:
         issues.append(f"ICEHL: nur {len(ms)} Spiele geladen – kein Modell")
         return []
@@ -766,18 +767,20 @@ def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
     out = []
     for u in sorted(up, key=lambda x: x["start"]):
         ko = u["start"].astimezone(timezone.utc)
-        if not (now < ko <= until) or u["home"] not in model.attack or u["away"] not in model.attack:
+        h = hockeyarchives.canonical_icehl(u["home"])
+        a = hockeyarchives.canonical_icehl(u["away"])
+        if not (now < ko <= until) or h not in model.attack or a not in model.attack:
             continue
-        mk = model.markets(u["home"], u["away"])
+        mk = model.markets(h, a)
         ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
-        g = espn.EspnGame(f"icehl-{ko:%Y%m%d%H%M}-{u['home']}", "icehl", ko, espn.Team(u["home"]),
+        g = espn.EspnGame(f"icehl-{ko:%Y%m%d%H%M}-{h}", "icehl", ko, espn.Team(u["home"]),
                           espn.Team(u["away"]), "STATUS_SCHEDULED")
         kd = ko.date()
         out.append(Fixture("icehl", "hockey", g, {"home": ph, "away": pa},
                            f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}, 60-Min-Remis "
                            f"{mk['X'] * 100:.0f} % (OT-Aufteilung geschätzt)",
-                           [f"Form {u['home']} {_form(ms, u['home'], kd)}, "
-                            f"{u['away']} {_form(ms, u['away'], kd)} (60 Min.)"],
+                           [f"Form {u['home']} {_form(ms, h, kd)}, "
+                            f"{u['away']} {_form(ms, a, kd)} (60 Min.)"],
                            estimate=True, model="poisson-hockey-eu"))
     return out
 
