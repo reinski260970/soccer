@@ -1,0 +1,37 @@
+# Nightly refresh of clean hockey history and data-coverage audit.
+name: hockey-data-audit
+
+on:
+  schedule:
+    - cron: "25 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: hockey-data-audit
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Backfill and audit hockey data
+        run: python -m oddswatch hockey-data --seasons 5
+      - name: Run hockey parser tests
+        run: python -m pytest tests/test_core.py -q -k "hockeyarchives or icehl"
+      - name: Persist hockey data audit
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add data/hockey
+          git diff --cached --quiet || git commit -m "Hockey data audit $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase --autostash
+          git push
