@@ -33,11 +33,19 @@ jobs:
         run: python -m oddswatch hockey-data --seasons 5
       - name: Run hockey parser tests
         run: python -m pytest tests/test_core.py -q -k "hockeyarchives or icehl"
+      - name: Compile CEO Telegram runner
+        run: python -m py_compile oddswatch/ceo_runner.py
       - name: Persist hockey data audit
         run: |
           git config user.name "oddswatch-bot"
           git config user.email "oddswatch-bot@users.noreply.github.com"
+          mkdir -p /tmp/hockey-audit
+          cp data/hockey/history.csv /tmp/hockey-audit/history.csv
+          cp data/hockey/data_audit.json /tmp/hockey-audit/data_audit.json
+          git restore data/hockey/history.csv data/hockey/data_audit.json 2>/dev/null || true
+          git pull --rebase --autostash
+          cp /tmp/hockey-audit/history.csv data/hockey/history.csv
+          cp /tmp/hockey-audit/data_audit.json data/hockey/data_audit.json
           git add data/hockey
           git diff --cached --quiet || git commit -m "Hockey data audit $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase --autostash
           git push
