@@ -1,0 +1,88 @@
+# CEO Matchday Report direkt zu Telegram, ohne Make.
+# Bestehende Secrets werden wiederverwendet:
+# TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, APIKEY, optional MONGODB_URI.
+name: ceo-report-telegram
+
+on:
+  schedule:
+    # Europe/Vienna: 08/12/19 Uhr. Je zwei UTC-Zeiten decken CEST/CET ab;
+    # der Gate-Schritt lässt pro lokaler Slot nur genau einen Lauf durch.
+    - cron: "7 6,7,10,11,17,18 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: quick-scan
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  ceo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: CEO-Zeitfenster prüfen
+        id: gate
+        shell: bash
+        run: |
+          now="$(TZ=Europe/Vienna date '+%Y-%m-%d %H:%M %Z')"
+          h="$(TZ=Europe/Vienna date +%-H)"
+          day="$(TZ=Europe/Vienna date +%Y-%m-%d)"
+          echo "Wien: $now"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            slot="manual-$(TZ=Europe/Vienna date +%H%M)"
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+            echo "slot=$slot" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          case "$h" in
+            8|9) slot="08" ;;
+            12|13) slot="12" ;;
+            19|20) slot="19" ;;
+            *)
+              echo "Außerhalb CEO-Zeitfenster"
+              echo "run=no" >> "$GITHUB_OUTPUT"
+              exit 0
+              ;;
+          esac
+
+          f="reports/${day}-ceo-${slot}.txt"
+          if [ -f "$f" ]; then
+            echo "CEO-Slot $slot heute bereits gesendet: $f"
+            echo "run=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+            echo "slot=$slot" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.gate.outputs.run == 'yes'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - if: steps.gate.outputs.run == 'yes'
+        run: pip install -r requirements.txt
+
+      - name: CEO-Report erzeugen und Telegram senden
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIKEY: ${{ secrets.APIKEY }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: python -m oddswatch.ceo_runner --send --slot "${{ steps.gate.outputs.slot }}"
+
+      - name: Journal und CEO-Bericht sichern
+        if: steps.gate.outputs.run == 'yes'
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add data/journal reports
+          git diff --cached --quiet || git commit -m "CEO Telegram $(TZ=Europe/Vienna date '+%d.%m.%Y %H:%M')"
+          git pull --rebase --autostash
+          git push
