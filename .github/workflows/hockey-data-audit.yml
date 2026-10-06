@@ -2,6 +2,12 @@
 name: hockey-data-audit
 
 on:
+  push:
+    paths:
+      - "oddswatch/hockey_data.py"
+      - "oddswatch/sources/hockeyarchives.py"
+      - "data/hockey/market/**"
+      - ".github/workflows/hockey-data-audit.yml"
   schedule:
     - cron: "25 3 * * *"
   workflow_dispatch:
