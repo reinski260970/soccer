@@ -58,16 +58,16 @@
       "market_data_ready": false
     },
     "liiga": {
-      "history_games": 2022,
+      "history_games": 2020,
       "seasons": {
         "2022/23": 464,
         "2023/24": 466,
         "2024/25": 507,
-        "2025/26": 502,
+        "2025/26": 500,
         "2026/27": 83
       },
       "substantial_seasons": 4,
-      "teams": 457,
+      "teams": 34,
       "date_from": "2022-09-13",
       "date_to": "2026-10-03",
       "training_data_ready": true,
