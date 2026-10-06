@@ -39,6 +39,39 @@ _NAME = r"[A-ZÀ-ÝŠŽČŘ][\w .'’\-]+?"
 _GAME = re.compile(rf"({_NAME}) - ({_NAME}) (\d+)-(\d+)( a\.p\.| t\.a\.b\.)? \(([\d,\- ]+)\)")
 _DATE = re.compile(r"(\d{1,2})(?:er)? (" + "|".join(_MONTHS) + r") (\d{4})|(\d{2})/(\d{2})/(\d{4})")
 
+_WEEKDAY_DATE_PREFIX = re.compile(
+    r"^(?:(?:lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)\s+)?"
+    r"\d{1,2}(?:er)?\s+(?:" + "|".join(_MONTHS) + r")\s+\d{4}\s+",
+    re.I,
+)
+
+ICEHL_CANON = {
+    "EC Red Bull Salzburg": "Salzbourg",
+    "EC-KAC": "Klagenfurt",
+    "Moser Medical Graz99ers": "Graz",
+    "HC TIWAG Innsbruck - Die Haie": "Innsbruck",
+    "Hydro Fehervar AV 19": "Fehérvár",
+    "Fehérvár AV19": "Fehérvár",
+    "Steinbach Black Wings Linz": "Linz",
+    "Pioneers Vorarlberg": "Feldkirch",
+    "HCB Südtirol Alperia": "Bolzano",
+    "EC iDM Wärmepumpen VSV": "Villach",
+    "FTC-Telekom": "Ferencváros",
+    "HC Falkensteiner Pustertal": "Pustertal",
+    "Olimpija Ljubljana": "Ljubljana",
+    "Olimpija": "Ljubljana",
+    "Vienna Capitals": "Vienne",
+}
+
+def canonical_icehl(name: str) -> str:
+    return ICEHL_CANON.get(name.strip(), name.strip())
+
+
+def _clean_team(name: str) -> str:
+    # Auf hockeyarchives steht vor dem ersten Spiel einer Zeile oft noch
+    # "Mercredi 14 septembre 2022". Das darf nicht zum Teamnamen werden.
+    return _WEEKDAY_DATE_PREFIX.sub("", name.strip()).strip()
+
 # Begrenzung auf die jeweilige höchste Liga der Länderseite. Die Seiten enthalten
 # sonst auch DEL2/Mestis/Alps/I. liga/Allsvenskan usw.; diese dürfen nicht in das
 # Top-Liga-Modell einfließen.
@@ -104,7 +137,7 @@ def _parse_text(t: str, season_start: int) -> list[HockeyResult]:
         except ValueError:
             continue
         ext = {" a.p.": "OT", " t.a.b.": "SO"}.get(m.group(5) or "", "")
-        out.append(HockeyResult(cur, m.group(1).strip(), m.group(2).strip(), rh, ra, ext))
+        out.append(HockeyResult(cur, _clean_team(m.group(1)), _clean_team(m.group(2)), rh, ra, ext))
     return out
 
 
