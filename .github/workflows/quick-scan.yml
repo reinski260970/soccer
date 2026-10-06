@@ -22,9 +22,19 @@ jobs:
         env:
           MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
         run: python -m oddswatch.m17_1_research
+      - name: M17.1 Sharpery individual tips
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+        run: python -m oddswatch.m17_1_sharpery
       - name: Upload M17.1 result
         uses: actions/upload-artifact@v4
         with:
           name: m17-1-validation
           path: data/m17_1_validation.json
+          if-no-files-found: error
+      - name: Upload M17.1 Sharpery tips
+        uses: actions/upload-artifact@v4
+        with:
+          name: m17-1-sharpery-tips
+          path: exports/m17_1_sharpery_research.csv
           if-no-files-found: error
