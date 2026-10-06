@@ -39,6 +39,17 @@ _NAME = r"[A-ZÀ-ÝŠŽČŘ][\w .'’\-]+?"
 _GAME = re.compile(rf"({_NAME}) - ({_NAME}) (\d+)-(\d+)( a\.p\.| t\.a\.b\.)? \(([\d,\- ]+)\)")
 _DATE = re.compile(r"(\d{1,2})(?:er)? (" + "|".join(_MONTHS) + r") (\d{4})|(\d{2})/(\d{2})/(\d{4})")
 
+# Begrenzung auf die jeweilige höchste Liga der Länderseite. Die Seiten enthalten
+# sonst auch DEL2/Mestis/Alps/I. liga/Allsvenskan usw.; diese dürfen nicht in das
+# Top-Liga-Modell einfließen.
+_TOP_SECTIONS = {
+    "del": (("DEL",), ("DEL 2",)),
+    "extraliga": (("Extraliga",), ("I. liga", "1. liga")),
+    "liiga": (("Liiga",), ("Mestis",)),
+    "icehl": (("ICE-HL", "ICE HL"), ("Alps Hockey League",)),
+    "shl": (("SHL",), ("Allsvenskan", "HockeyAllsvenskan")),
+}
+
 
 @dataclass
 class HockeyResult:
@@ -72,10 +83,7 @@ def _text(raw: bytes) -> str:
     return re.sub(r"\s+", " ", t)
 
 
-def parse_page(raw: bytes | str, season_start: int) -> list[HockeyResult]:
-    """Alle Spiele einer Länderseite in Textreihenfolge; Datum = letzte
-    Datumsangabe davor (fehlt sie, 1.9. des Startjahres)."""
-    t = _text(raw.encode("utf-8") if isinstance(raw, str) else raw)
+def _parse_text(t: str, season_start: int) -> list[HockeyResult]:
     events = sorted([(m.start(), "d", m) for m in _DATE.finditer(t)]
                     + [(m.start(), "g", m) for m in _GAME.finditer(t)], key=lambda x: x[0])
     cur, out = date(season_start, 9, 1), []
@@ -100,13 +108,49 @@ def parse_page(raw: bytes | str, season_start: int) -> list[HockeyResult]:
     return out
 
 
+def _section(t: str, league: str) -> str:
+    """Schneidet auf den Top-Liga-Abschnitt zu. Die Navigation am Seitenanfang
+    enthält dieselben Ligawörter; deshalb wird beim Start die zweite passende
+    Überschrift verwendet und danach die erste Unterliga-Überschrift."""
+    spec = _TOP_SECTIONS.get(league)
+    if not spec:
+        return t
+    starts, ends = spec
+    pos = []
+    for marker in starts:
+        pos.extend(m.start() for m in re.finditer(rf"(?<![\w-]){re.escape(marker)}(?![\w-])", t, re.I))
+    pos = sorted(set(pos))
+    if not pos:
+        return t
+    start = pos[1] if len(pos) > 1 else pos[0]
+    end = len(t)
+    for marker in ends:
+        m = re.search(rf"(?<![\w-]){re.escape(marker)}(?![\w-])", t[start + 1:], re.I)
+        if m:
+            end = min(end, start + 1 + m.start())
+    return t[start:end]
+
+
+def parse_page(raw: bytes | str, season_start: int) -> list[HockeyResult]:
+    """Kompatibler Parser für Tests/Einzelseiten; liest den übergebenen Text bis
+    zum Amicaux-Abschnitt, ohne Ligabegrenzung."""
+    t = _text(raw.encode("utf-8") if isinstance(raw, str) else raw)
+    return _parse_text(t, season_start)
+
+
+def parse_league_page(raw: bytes | str, season_start: int, league: str) -> list[HockeyResult]:
+    """Nur die höchste Liga der Länderseite (DEL, ICEHL, Liiga, SHL, Extraliga)."""
+    t = _text(raw.encode("utf-8") if isinstance(raw, str) else raw)
+    return _parse_text(_section(t, league), season_start)
+
+
 def season_results(league: str, season_start: int, cache_days: float
                    ) -> tuple[list[HockeyResult], str | None]:
     raw, err = fetch.get(page_url(league, season_start + 1), timeout=45,
                          cache_days=cache_days, user_agent=UA)
     if raw is None:
         return [], err
-    return parse_page(raw, season_start), None
+    return parse_league_page(raw, season_start, league), None
 
 
 def parse_liiga(data: list) -> tuple[list[HockeyResult], list[dict]]:
