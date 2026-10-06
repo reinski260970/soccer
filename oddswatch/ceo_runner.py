@@ -9,7 +9,6 @@ und kennzeichnet WATCH ausdrücklich als nicht freigegeben.
 from __future__ import annotations
 
 import argparse
-import json
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -184,28 +183,8 @@ def _euro_hockey_fair_lines(res) -> list[str]:
         out += [
             f"• {report._league(f.league)} · {report._kick(f.game.kickoff.isoformat())} · {f.game.title}",
             f"  Fair ML {f.game.home.name} {1/ph:.2f} / {f.game.away.name} {1/pa:.2f} · {f.detail}",
-            "  Status: FAIR ONLY – noch kein verifizierter ausführbarer Preis",
         ]
-    return out
-
-
-def _hockey_data_lines() -> list[str]:
-    p = Path("data/hockey/data_audit.json")
-    out = ["🧱 HOCKEY-DATENABDECKUNG"]
-    try:
-        data = json.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return out + ["Noch kein persistierter Hockey-Datenaudit."]
-    labels = {"nhl": "NHL", "del": "DEL", "icehl": "ICEHL",
-              "liiga": "Liiga", "extraliga": "Extraliga"}
-    for lg in ("nhl", "del", "icehl", "liiga", "extraliga"):
-        r = (data.get("leagues") or {}).get(lg) or {}
-        out.append(
-            f"• {labels[lg]}: {r.get('history_games', 0)} History-Spiele · "
-            f"{r.get('substantial_seasons', 0)} volle Saisonen · "
-            f"{r.get('market_closing_rows', 0)} Closing-Zeilen"
-        )
-    out.append("Training und CLV-Marktdaten werden getrennt bewertet; Closing-Abdeckung ist derzeit der Engpass.")
+    out.append("Ohne verifizierten Marktpreis kein Tipp.")
     return out
 
 
@@ -279,18 +258,14 @@ def build_report(
     lines += [""] + core
     lines += [""] + _market_diag_lines(res)
     lines += [""] + _euro_hockey_fair_lines(res)
-    lines += [""] + _hockey_data_lines()
     lines += [""] + _clv_lines(j)
 
-    issues = list(res.issues) + list(news_issues) + broad_news_issues
-    if settlement_issue:
-        issues.append(settlement_issue)
-    if issues:
-        uniq = list(dict.fromkeys(issues))
-        lines += ["", f"⚠️ DATENLAGE: {len(uniq)} offene Hinweise"]
-        lines += [f"• {x}" for x in uniq[:8]]
-        if len(uniq) > 8:
-            lines.append(f"• + {len(uniq) - 8} weitere Hinweise im Run-Log")
+    # Technische Quellen-, Mapping- und Parserfehler bleiben intern und werden
+    # nicht im CEO-/Telegram-Bericht ausgespielt.
+    _internal_issues = list(dict.fromkeys(
+        list(res.issues) + list(news_issues) + broad_news_issues
+        + ([settlement_issue] if settlement_issue else [])
+    ))
 
     if not res.picks:
         lines += ["", "CEO: kein freigegebener Tipp, 0 EH."]
