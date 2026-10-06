@@ -94,6 +94,9 @@ def _eu_history(league: str, first: int, current: int, issues: list[str]) -> lis
             if err:
                 issues.append(f"icehl-api {season}: {err}")
             else:
+                for r in done:
+                    r.home = hockeyarchives.canonical_icehl(r.home)
+                    r.away = hockeyarchives.canonical_icehl(r.away)
                 rows += [_row(league, season, r, "icehl-api") for r in done]
                 continue
 
