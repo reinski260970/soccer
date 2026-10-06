@@ -1,0 +1,38 @@
+name: reviewed-news-telegram
+on:
+  push:
+    paths:
+      - 'reports/telegram_outbox/*.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: reviewed-news-telegram
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reviewed news to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m oddswatch.telegram_outbox
+      - name: Save confirmed receipts
+        if: always()
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          mkdir -p data/journal/telegram_outbox
+          git add data/journal/telegram_outbox
+          git diff --cached --quiet || git commit -m "Record confirmed Telegram news delivery"
+          git pull --rebase --autostash
+          git push
