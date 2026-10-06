@@ -1,1 +1,1 @@
-run M17.1 real-shot strict walk-forward research + individual Sharpery tips export
+run M17.1 Sharpery-only individual tips export
