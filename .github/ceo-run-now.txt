@@ -1,1 +1,1 @@
-trigger 2026-10-07 06:16 Europe/Vienna
+trigger 2026-10-07 weekend outlook
