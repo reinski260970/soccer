@@ -73,6 +73,16 @@ def _attach_soccer(fixtures, issues):
                 fx.offers[side] = offers
 
 
+def _drop_reference_only_offers(fixtures):
+    """Public market quotes may enrich ref_probs/context, but SQL/PLAY only sees
+    prices that this installation explicitly marks executable."""
+    for fx in fixtures:
+        for side in list(fx.offers):
+            fx.offers[side] = [o for o in fx.offers[side] if getattr(o, "executable", True)]
+            if not fx.offers[side]:
+                del fx.offers[side]
+
+
 def attach_prices(fixtures, issues):
     _attach_soccer(fixtures, issues)
 
@@ -89,3 +99,5 @@ def attach_prices(fixtures, issues):
             source.attach(fixtures, issues)
         except Exception as exc:
             issues.append(f"{name}: {type(exc).__name__}: {exc}")
+
+    _drop_reference_only_offers(fixtures)
