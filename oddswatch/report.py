@@ -73,6 +73,12 @@ def _ref_fair(c: Candidate) -> str:
     return _q(1 / c.p_ref) if c.p_ref and c.p_ref > 0 else "–"
 
 
+def _model_ref_gap(c: Candidate) -> str:
+    if not c.p_model or not c.p_ref:
+        return "–"
+    return f"{(c.p_model - c.p_ref) * 100:+.1f} pp".replace(".", ",")
+
+
 def _pick_lines(i: int, c: Candidate) -> list[str]:
     tag = " (Schätzung)" if c.estimate else ""
     liq = f", Ask-Tiefe ≈ {c.liquidity:,.0f} $".replace(",", ".") if c.liquidity else ""
@@ -102,9 +108,9 @@ def ceo_report(stand: str, picks: list[Candidate], scanned: int,
         for c in watch:
             why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
             if _soccer_unvalidated(c):
-                lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | "
+                lines.append(f"- 🔬 MODEL-WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | "
                              f"Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)} | "
-                             f"KEINE EV-FREIGABE. Grund: {why}")
+                             f"Modell↔Markt {_model_ref_gap(c)}")
             else:
                 lines.append(f"- 👀 WATCH {c.event} ({_head(c)}): {c.selection} @ {_q(c.odds)} | fair {_q(c.fair_odds)} "
                              f"| spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}. Grund: {why}")
@@ -144,14 +150,15 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
         for c in watch[:5]:
             why = "; ".join(c.flags or []) or "Quote unter spielbar ab"
             if _soccer_unvalidated(c):
-                out += ["", f"• {_head(c)}", f"🆚 {c.event}",
+                out += ["", f"🔬 MODEL-WATCH · {_head(c)}", f"🆚 {c.event}",
                         f"➡️ {c.selection} @ {_q(c.odds)}",
-                        f"   Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)}",
-                        "   ⛔ KEINE EV-FREIGABE – Modell nicht OOS-validiert",
-                        f"   Grund: {why}"]
+                        f"   Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)} | "
+                        f"Δ {_model_ref_gap(c)}"]
             else:
                 out += ["", f"• {_head(c)}", f"🆚 {c.event}",
                         f"➡️ {c.selection} @ {_q(c.odds)} | spielbar ab {_q(c.min_odds)} | EV {_pct(c.ev)}",
                         f"   Grund: {why}"]
+    if watch and any(_soccer_unvalidated(c) for c in watch):
+        out += ["", "⚽ Fußball-Modellstatus: Research-Gate offen. MODEL-WATCH = Diagnosesignal, keine Einsatzfreigabe."]
     out += outlook or []
     return "\n".join(out)
