@@ -21,6 +21,7 @@ BASE = "https://www.matchpulsestats.com/en/league"
 LEAGUE_IDS = {
     "D1": 78,
     "D2": 79,
+    "E1": 40,
     "AUT": 218,
     "N1": 88,
     "P1": 94,
