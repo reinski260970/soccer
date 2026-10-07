@@ -79,7 +79,6 @@ jobs:
           APIKEY: ${{ secrets.APIKEY }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
-          FOOTYSTATS_API_KEY: ${{ secrets.FOOTYSTATS_API_KEY }}
         run: python -m oddswatch.ceo_runner --send --slot "${{ steps.gate.outputs.slot }}"
 
       - name: Sharpery PLAY-Export erzeugen
