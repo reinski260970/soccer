@@ -1,1 +1,1 @@
-trigger M17.3 final after horizon-state fix
+trigger M17.4 binary Serie A away research
