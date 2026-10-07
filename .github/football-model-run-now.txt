@@ -1,1 +1,1 @@
-trigger M17.7 focused Portugal Greece xG luck priors
+trigger M17.8 probability shrinkage strict walk-forward
