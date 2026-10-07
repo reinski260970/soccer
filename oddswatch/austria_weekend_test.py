@@ -230,7 +230,7 @@ def build(today: date | None = None) -> str:
             continue
         try:
             sf = structural_fair(
-                h, a, g.kickoff.date(), matches, snapshots, venue_rows
+                h, a, g.kickoff.date(), matches, snapshots, venue_rows, oddalerts
             )
         except KeyError as exc:
             issues.append(str(exc))
@@ -305,7 +305,14 @@ def build(today: date | None = None) -> str:
             f"⚽ {report._kick(fx.game.kickoff.isoformat())} · {fx.game.title}",
             f"FAIR 1/X/2: {1/fx.probs['home']:.2f} / {1/fx.probs['draw']:.2f} / {1/fx.probs['away']:.2f}",
             f"xG STRUCTURAL: {sf.home_xg:.2f}:{sf.away_xg:.2f} "
-            f"(fast {sf.home_fast:.2f}:{sf.away_fast:.2f}; slow {sf.home_slow:.2f}:{sf.away_slow:.2f})",
+            f"(fast-cons {sf.home_fast:.2f}:{sf.away_fast:.2f}; slow {sf.home_slow:.2f}:{sf.away_slow:.2f})",
+            (
+                f"xG SOURCES: MP {sf.home_fast_primary:.2f}:{sf.away_fast_primary:.2f} | "
+                f"OA {sf.home_fast_alt:.2f}:{sf.away_fast_alt:.2f} | "
+                f"disagreement {sf.xg_source_disagreement:.3f}"
+                if sf.home_fast_alt is not None and sf.away_fast_alt is not None
+                else "xG SOURCES: nur Primärquelle"
+            ),
             (
                 f"SoccerSTATS Venue: {sf.home_venue:.2f}:{sf.away_venue:.2f} "
                 f"| PPG H/A {sf.home_ppg:.2f}/{sf.away_ppg:.2f}"
