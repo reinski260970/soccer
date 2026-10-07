@@ -117,7 +117,7 @@ def collect(fixtures) -> tuple[list[dict], dict[tuple[str, str], dict]]:
                 "clv_to_sharp": clv_to_sharp,
                 "probs": probs,
                 "odds": odds,
-            })
+            }
     return records, meta
 
 
