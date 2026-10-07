@@ -1,0 +1,437 @@
+{
+ "_method": "M17.1 rolling classifier + real HS/HST; strict walk-forward; no market features",
+ "_splits": {
+  "hyper_fold_A": "train<=2021 validate=2022",
+  "hyper_fold_B": "train<=2022 validate=2023",
+  "entry_gate": "fit<=2023 evaluate CLV on 2024",
+  "diagnostic_only": "refit<=2024 evaluate 2025"
+ },
+ "_note": "2025 is diagnostic only, not fresh live validation",
+ "bundesliga": {
+  "validated": false,
+  "samples": 2160,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0358645739577061,
+   "fold_logloss": [
+    1.0511135758677619,
+    1.0206155720476504
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.02,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 2,
+    "clv": 0.14307623312718065,
+    "median_clv": 0.14307623312718065,
+    "positive_clv_rate": 1.0,
+    "roi": 0.21500000000000008
+   },
+   "fails": [
+    "bets<40"
+   ],
+   "near_score": 305.95416582468897
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 0.9976652395198253,
+   "opening": 0.924115737500514,
+   "gain": -0.07354950201931132
+  }
+ },
+ "epl": {
+  "validated": false,
+  "samples": 3000,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0093556816621447,
+   "fold_logloss": [
+    1.016079132429562,
+    1.0026322308947277
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.075,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 1,
+    "clv": 0.003141569985021242,
+    "median_clv": 0.003141569985021242,
+    "positive_clv_rate": 1.0,
+    "roi": -1.0
+   },
+   "fails": [
+    "bets<40"
+   ],
+   "near_score": 302.56283139970037
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0398740210123756,
+   "opening": 0.9835405139198247,
+   "gain": -0.056333507092550916
+  }
+ },
+ "laliga": {
+  "validated": false,
+  "samples": 2971,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0259389733289601,
+   "fold_logloss": [
+    1.0382500038204139,
+    1.0136279428375061
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.03,
+   "cap": 3.0,
+   "side": "all",
+   "stats": {
+    "bets": 44,
+    "clv": -0.0266671861734038,
+    "median_clv": -0.023392398427923844,
+    "positive_clv_rate": 0.36363636363636365,
+    "roi": 0.24090909090909093
+   },
+   "fails": [
+    "mean_clv<=0",
+    "median_clv<=0",
+    "positive_clv_rate<52%"
+   ],
+   "near_score": 97.3153568188679
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 0.9984263085605671,
+   "opening": 0.9528376053295331,
+   "gain": -0.04558870323103403
+  }
+ },
+ "seriea": {
+  "validated": false,
+  "samples": 2929,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.028227479200221,
+   "fold_logloss": [
+    1.0298001662682186,
+    1.0266547921322238
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.075,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 5,
+    "clv": 0.048801081779225264,
+    "median_clv": 0.020358905347440892,
+    "positive_clv_rate": 0.6,
+    "roi": 0.38199999999999995
+   },
+   "fails": [
+    "bets<40"
+   ],
+   "near_score": 301.7948144158131
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0472929221183773,
+   "opening": 0.9890978101391641,
+   "gain": -0.05819511197921323
+  }
+ },
+ "ligue1": {
+  "validated": false,
+  "samples": 2815,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0421231762654437,
+   "fold_logloss": [
+    1.0270552407542515,
+    1.0571911117766357
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.02,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 2,
+    "clv": 0.007457329024344039,
+    "median_clv": 0.007457329024344039,
+    "positive_clv_rate": 1.0,
+    "roi": 1.4100000000000001
+   },
+   "fails": [
+    "bets<40"
+   ],
+   "near_score": 302.6800358486965
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0227669832659658,
+   "opening": 0.9530811230007027,
+   "gain": -0.06968586026526313
+  }
+ },
+ "_proxy": {
+  "n": 13599,
+  "rmse": 0.608732901987283,
+  "beta": [
+   0.009241928398448784,
+   0.2234007989434047,
+   0.06159490791307894,
+   0.0,
+   0.032443337103038476
+  ]
+ },
+ "2bundesliga": {
+  "validated": false,
+  "reason": "too little gate/diagnostic data",
+  "counts": {
+   "gate": 294,
+   "diag": 88
+  }
+ },
+ "championship": {
+  "validated": false,
+  "samples": 4344,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0710772353611149,
+   "fold_logloss": [
+    1.077381909502492,
+    1.0647725612197378
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.03,
+   "cap": 3.0,
+   "side": "home",
+   "stats": {
+    "bets": 41,
+    "clv": -0.051022646051661916,
+    "median_clv": -0.054997687996674705,
+    "positive_clv_rate": 0.24390243902439024,
+    "roi": -0.07707317073170741
+   },
+   "fails": [
+    "mean_clv<=0",
+    "median_clv<=0",
+    "positive_clv_rate<52%"
+   ],
+   "near_score": 94.90249189924167
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0715947330354296,
+   "opening": 1.0481255011559094,
+   "gain": -0.023469231879520214
+  }
+ },
+ "eredivisie": {
+  "validated": false,
+  "samples": 2384,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 0.9969108900239388,
+   "fold_logloss": [
+    1.0022161911611756,
+    0.9916055888867021
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.1,
+   "cap": 3.0,
+   "side": "away",
+   "stats": {
+    "bets": 3,
+    "clv": -0.11739645981318991,
+    "median_clv": 0.0072141499918767504,
+    "positive_clv_rate": 0.6666666666666666,
+    "roi": -0.08000000000000007
+   },
+   "fails": [
+    "bets<40",
+    "mean_clv<=0"
+   ],
+   "near_score": 198.87210850300048
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 0.9982400665210759,
+   "opening": 0.9182511887336345,
+   "gain": -0.07998887778744135
+  }
+ },
+ "primeira": {
+  "validated": false,
+  "samples": 2380,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 0.9860603830290429,
+   "fold_logloss": [
+    0.9824291865338317,
+    0.9896915795242539
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.02,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 3,
+    "clv": 0.01014562879134003,
+    "median_clv": -0.03151785574143029,
+    "positive_clv_rate": 0.3333333333333333,
+    "roi": -0.18000000000000002
+   },
+   "fails": [
+    "bets<40",
+    "median_clv<=0",
+    "positive_clv_rate<52%"
+   ],
+   "near_score": 99.02721555466572
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0138284213900381,
+   "opening": 0.904344789732418,
+   "gain": -0.1094836316576201
+  }
+ },
+ "belgium": {
+  "validated": false,
+  "reason": "too little gate/diagnostic data",
+  "counts": {
+   "gate": 161,
+   "diag": 64
+  }
+ },
+ "turkey": {
+  "validated": false,
+  "samples": 2624,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.0271717283182833,
+   "fold_logloss": [
+    1.0352168019293426,
+    1.019126654707224
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.1,
+   "cap": 4.0,
+   "side": "draw",
+   "stats": {
+    "bets": 46,
+    "clv": -0.04567661009480675,
+    "median_clv": -0.030664735601787174,
+    "positive_clv_rate": 0.2826086956521739,
+    "roi": 0.043043478260869544
+   },
+   "fails": [
+    "mean_clv<=0",
+    "median_clv<=0",
+    "positive_clv_rate<52%"
+   ],
+   "near_score": 95.50845770050769
+  },
+  "diagnostic_2025": {
+   "bets": 0,
+   "clv": 0.0,
+   "median_clv": 0.0,
+   "positive_clv_rate": 0.0,
+   "roi": 0.0
+  },
+  "diagnostic_logloss": {
+   "model": 1.0495294081328577,
+   "opening": 0.9684605770764738,
+   "gain": -0.08106883105638385
+  }
+ },
+ "scotland": {
+  "validated": false,
+  "reason": "too little strict walk-forward data",
+  "samples": 370
+ },
+ "greece": {
+  "validated": false,
+  "reason": "too little gate/diagnostic data",
+  "counts": {
+   "gate": 128,
+   "diag": 35
+  }
+ }
+}
