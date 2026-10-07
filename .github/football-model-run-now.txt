@@ -1,1 +1,1 @@
-trigger M17.7 focused Portugal Greece xG luck priors
+trigger M17.10 previous-season-prior strict walk-forward

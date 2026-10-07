@@ -1,0 +1,350 @@
+{
+ "_method": "M17.10 Portugal-only M17.7 base + adaptive previous-season H/D/A prior shrinkage; no market features",
+ "_focus": {
+  "primeira": "P1"
+ },
+ "_probability_control": "temperature + shrink toward immediately previous season outcome rates; weight selected only on 2020/2021 OOS logloss",
+ "_splits": {
+  "hyper_A": "train<=2019 validate=2020 outcome logloss",
+  "hyper_B": "train<=2020 validate=2021 outcome logloss",
+  "entry_tune": "rolling OOS 2022 + 2023 CLV",
+  "strict_holdout": "rolling OOS 2024",
+  "diagnostic_only": "rolling OOS 2025"
+ },
+ "_release_rule": "unchanged: robust 2022+2023 CLV gate AND 2024 >=15 bets, mean/median CLV>0, positive CLV rate>=52%, AND model 2024 logloss < Pinnacle opening",
+ "mongo_profile": {
+  "mains": {
+   "2bundesliga": {
+    "code": "D2",
+    "rows": 2743,
+    "results": 2743,
+    "shots_corners": 2743,
+    "pinnacle_open_close": 2531,
+    "complete_rows": 2531,
+    "complete_pct": 0.9227123587313161,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "championship": {
+    "code": "E1",
+    "rows": 4958,
+    "results": 4958,
+    "shots_corners": 4957,
+    "pinnacle_open_close": 4671,
+    "complete_rows": 4670,
+    "complete_pct": 0.9419120613150463,
+    "date_min": "2017-08-04T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "eredivisie": {
+    "code": "N1",
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 2668,
+    "pinnacle_open_close": 2496,
+    "complete_rows": 2496,
+    "complete_pct": 0.9355322338830585,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "primeira": {
+    "code": "P1",
+    "rows": 2740,
+    "results": 2740,
+    "shots_corners": 2740,
+    "pinnacle_open_close": 2583,
+    "complete_rows": 2583,
+    "complete_pct": 0.9427007299270073,
+    "date_min": "2017-08-06T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "belgium": {
+    "code": "B1",
+    "rows": 2556,
+    "results": 2556,
+    "shots_corners": 2550,
+    "pinnacle_open_close": 2342,
+    "complete_rows": 2336,
+    "complete_pct": 0.9139280125195618,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "turkey": {
+    "code": "T1",
+    "rows": 3072,
+    "results": 3072,
+    "shots_corners": 3041,
+    "pinnacle_open_close": 2866,
+    "complete_rows": 2864,
+    "complete_pct": 0.9322916666666666,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "scotland": {
+    "code": "SC0",
+    "rows": 2009,
+    "results": 2009,
+    "shots_corners": 2009,
+    "pinnacle_open_close": 1815,
+    "complete_rows": 1815,
+    "complete_pct": 0.9034345445495271,
+    "date_min": "2017-08-05T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "greece": {
+    "code": "G1",
+    "rows": 2140,
+    "results": 2139,
+    "shots_corners": 2136,
+    "pinnacle_open_close": 1838,
+    "complete_rows": 1834,
+    "complete_pct": 0.8570093457943925,
+    "date_min": "2017-08-19T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   }
+  },
+  "extra_leagues": {
+   "Austria": {
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 108
+   },
+   "Switzerland": {
+    "rows": 2714,
+    "results": 2714,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 118
+   },
+   "Norway": {
+    "rows": 3535,
+    "results": 3535,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 153
+   },
+   "Sweden": {
+    "rows": 3537,
+    "results": 3537,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 160
+   },
+   "Denmark": {
+    "rows": 2991,
+    "results": 2991,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 114
+   }
+  }
+ },
+ "leagues": {
+  "primeira": {
+   "samples": 2380,
+   "coverage": {
+    "matches": 2681,
+    "proxy_matches": 2681,
+    "proxy_coverage": 1.0,
+    "odds_rows": 2536,
+    "canonical_exact": 2663,
+    "canonical_day_month_fixed": 21,
+    "canonical_team_score_fixed": 5,
+    "excluded_unreconciled": 51,
+    "football_data_errors": {}
+   },
+   "previous_season_prior_coverage": {
+    "rows": 2380,
+    "both_prior": 1571,
+    "home_only": 266,
+    "away_only": 271,
+    "neither": 272,
+    "both_prior_pct": 0.6600840336134454,
+    "at_least_one_pct": 0.8857142857142857
+   },
+   "previous_season_xg_prior_coverage": {
+    "rows": 2380,
+    "both_prior": 1571,
+    "home_only": 266,
+    "away_only": 271,
+    "neither": 272,
+    "both_prior_pct": 0.6600840336134454,
+    "at_least_one_pct": 0.8857142857142857
+   },
+   "hyper": {
+    "l2": 1.0,
+    "calib": 1.1,
+    "recent_shrink": 0.0,
+    "cv_logloss": 0.9674343242609384,
+    "fold_logloss": [
+     1.0074246818398038,
+     0.9274439666820731
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": {
+    "edge": 0.03,
+    "cap": 2.5,
+    "side": "away",
+    "stats": {
+     "bets": 77,
+     "clv": 0.01128261149035559,
+     "median_clv": 0.009555727324761287,
+     "positive_clv_rate": 0.5974025974025974,
+     "roi": 0.07363636363636364
+    },
+    "per_year": {
+     "2022": {
+      "bets": 43,
+      "clv": 0.01377165820446509,
+      "median_clv": 0.014745129409077684,
+      "positive_clv_rate": 0.6744186046511628,
+      "roi": -0.041627906976744185
+     },
+     "2023": {
+      "bets": 34,
+      "clv": 0.008134699469570033,
+      "median_clv": 0.00037596423966046455,
+      "positive_clv_rate": 0.5,
+      "roi": 0.21941176470588233
+     }
+    },
+    "fails": [],
+    "near_score": 603.0496735277667,
+    "score": 0.09900451402465145
+   },
+   "near_miss_gate": {
+    "edge": 0.03,
+    "cap": 2.5,
+    "side": "away",
+    "stats": {
+     "bets": 77,
+     "clv": 0.01128261149035559,
+     "median_clv": 0.009555727324761287,
+     "positive_clv_rate": 0.5974025974025974,
+     "roi": 0.07363636363636364
+    },
+    "per_year": {
+     "2022": {
+      "bets": 43,
+      "clv": 0.01377165820446509,
+      "median_clv": 0.014745129409077684,
+      "positive_clv_rate": 0.6744186046511628,
+      "roi": -0.041627906976744185
+     },
+     "2023": {
+      "bets": 34,
+      "clv": 0.008134699469570033,
+      "median_clv": 0.00037596423966046455,
+      "positive_clv_rate": 0.5,
+      "roi": 0.21941176470588233
+     }
+    },
+    "fails": [],
+    "near_score": 603.0496735277667,
+    "score": 0.09900451402465145
+   },
+   "strict_holdout_2024": {
+    "bets": 38,
+    "clv": -0.011551223149441313,
+    "median_clv": -0.007385063680110937,
+    "positive_clv_rate": 0.39473684210526316,
+    "roi": 0.2252631578947368
+   },
+   "strict_holdout_logloss": {
+    "model": 0.951101164812373,
+    "opening": 0.9319503666789808,
+    "gain": -0.019150798133392155
+   },
+   "diagnostic_only_2025": {
+    "bets": 13,
+    "clv": -0.049960436777848324,
+    "median_clv": -0.03105685564415328,
+    "positive_clv_rate": 0.23076923076923078,
+    "roi": 0.20307692307692304
+   },
+   "probability_diagnostics": {
+    "2022": {
+     "n": 300,
+     "avg_pred": [
+      0.36855552577497935,
+      0.2837494940505047,
+      0.3476949801745158
+     ],
+     "actual_rate": [
+      0.49666666666666665,
+      0.17666666666666667,
+      0.32666666666666666
+     ],
+     "gap_pred_minus_actual": [
+      -0.1281111408916873,
+      0.10708282738383804,
+      0.021028313507849117
+     ],
+     "logloss": 0.9300684944929287
+    },
+    "2023": {
+     "n": 300,
+     "avg_pred": [
+      0.4428878841827903,
+      0.2441113437995491,
+      0.31300077201766024
+     ],
+     "actual_rate": [
+      0.43666666666666665,
+      0.24333333333333335,
+      0.32
+     ],
+     "gap_pred_minus_actual": [
+      0.006221217516123645,
+      0.0007780104662157561,
+      -0.006999227982339762
+     ],
+     "logloss": 0.9332820418461522
+    },
+    "2024": {
+     "n": 300,
+     "avg_pred": [
+      0.3988775437925826,
+      0.2510849640629173,
+      0.3500374921445003
+     ],
+     "actual_rate": [
+      0.42333333333333334,
+      0.26,
+      0.31666666666666665
+     ],
+     "gap_pred_minus_actual": [
+      -0.024455789540750728,
+      -0.008915035937082705,
+      0.033370825477833654
+     ],
+     "logloss": 0.951101164812373
+    },
+    "2025": {
+     "n": 147,
+     "avg_pred": [
+      0.40992444383541343,
+      0.2609086452559845,
+      0.3291669109086019
+     ],
+     "actual_rate": [
+      0.3741496598639456,
+      0.2789115646258503,
+      0.3469387755102041
+     ],
+     "gap_pred_minus_actual": [
+      0.03577478397146783,
+      -0.01800291936986581,
+      -0.017771864601602183
+     ],
+     "logloss": 0.9346800670132275
+    }
+   }
+  }
+ }
+}

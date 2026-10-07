@@ -1,0 +1,390 @@
+{
+ "_method": "M17.8 M17.7 priors + training-only empirical probability shrinkage; shrink selected solely by early outcome logloss; no market features",
+ "_focus": {
+  "primeira": "P1",
+  "greece": "G1"
+ },
+ "_proxy": {
+  "n": 13599,
+  "rmse": 0.608732901987283,
+  "beta": [
+   0.009241928398448784,
+   0.2234007989434047,
+   0.06159490791307894,
+   0.0,
+   0.032443337103038476
+  ],
+  "features": [
+   "intercept",
+   "shots_on_target",
+   "shots_off_target",
+   "corners",
+   "home"
+  ]
+ },
+ "_probability_control": "convex shrinkage toward training-only H/D/A base rates; weight tuned on 2020/2021 OOS logloss only",
+ "_splits": {
+  "hyper_A": "train<=2019 validate=2020 outcome logloss",
+  "hyper_B": "train<=2020 validate=2021 outcome logloss",
+  "entry_tune": "rolling OOS 2022 + 2023 CLV",
+  "strict_holdout": "rolling OOS 2024",
+  "diagnostic_only": "rolling OOS 2025"
+ },
+ "_release_rule": "robust 2022+2023 CLV gate AND 2024 >=15 bets, mean/median CLV>0, positive CLV rate>=52%, AND model 2024 logloss < Pinnacle opening",
+ "mongo_profile": {
+  "mains": {
+   "2bundesliga": {
+    "code": "D2",
+    "rows": 2743,
+    "results": 2743,
+    "shots_corners": 2743,
+    "pinnacle_open_close": 2531,
+    "complete_rows": 2531,
+    "complete_pct": 0.9227123587313161,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "championship": {
+    "code": "E1",
+    "rows": 4958,
+    "results": 4958,
+    "shots_corners": 4957,
+    "pinnacle_open_close": 4671,
+    "complete_rows": 4670,
+    "complete_pct": 0.9419120613150463,
+    "date_min": "2017-08-04T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "eredivisie": {
+    "code": "N1",
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 2668,
+    "pinnacle_open_close": 2496,
+    "complete_rows": 2496,
+    "complete_pct": 0.9355322338830585,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "primeira": {
+    "code": "P1",
+    "rows": 2740,
+    "results": 2740,
+    "shots_corners": 2740,
+    "pinnacle_open_close": 2583,
+    "complete_rows": 2583,
+    "complete_pct": 0.9427007299270073,
+    "date_min": "2017-08-06T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "belgium": {
+    "code": "B1",
+    "rows": 2556,
+    "results": 2556,
+    "shots_corners": 2550,
+    "pinnacle_open_close": 2342,
+    "complete_rows": 2336,
+    "complete_pct": 0.9139280125195618,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "turkey": {
+    "code": "T1",
+    "rows": 3072,
+    "results": 3072,
+    "shots_corners": 3041,
+    "pinnacle_open_close": 2866,
+    "complete_rows": 2864,
+    "complete_pct": 0.9322916666666666,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "scotland": {
+    "code": "SC0",
+    "rows": 2009,
+    "results": 2009,
+    "shots_corners": 2009,
+    "pinnacle_open_close": 1815,
+    "complete_rows": 1815,
+    "complete_pct": 0.9034345445495271,
+    "date_min": "2017-08-05T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "greece": {
+    "code": "G1",
+    "rows": 2140,
+    "results": 2139,
+    "shots_corners": 2136,
+    "pinnacle_open_close": 1838,
+    "complete_rows": 1834,
+    "complete_pct": 0.8570093457943925,
+    "date_min": "2017-08-19T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   }
+  },
+  "extra_leagues": {
+   "Austria": {
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 108
+   },
+   "Switzerland": {
+    "rows": 2714,
+    "results": 2714,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 118
+   },
+   "Norway": {
+    "rows": 3535,
+    "results": 3535,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 153
+   },
+   "Sweden": {
+    "rows": 3537,
+    "results": 3537,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 160
+   },
+   "Denmark": {
+    "rows": 2991,
+    "results": 2991,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 114
+   }
+  }
+ },
+ "leagues": {
+  "primeira": {
+   "samples": 2380,
+   "coverage": {
+    "matches": 2681,
+    "proxy_matches": 2681,
+    "proxy_coverage": 1.0,
+    "odds_rows": 2536,
+    "canonical_exact": 2663,
+    "canonical_day_month_fixed": 21,
+    "canonical_team_score_fixed": 5,
+    "excluded_unreconciled": 51,
+    "football_data_errors": {}
+   },
+   "previous_season_prior_coverage": {
+    "rows": 2380,
+    "both_prior": 1571,
+    "home_only": 266,
+    "away_only": 271,
+    "neither": 272,
+    "both_prior_pct": 0.6600840336134454,
+    "at_least_one_pct": 0.8857142857142857
+   },
+   "previous_season_xg_prior_coverage": {
+    "rows": 2380,
+    "both_prior": 1571,
+    "home_only": 266,
+    "away_only": 271,
+    "neither": 272,
+    "both_prior_pct": 0.6600840336134454,
+    "at_least_one_pct": 0.8857142857142857
+   },
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "shrink": 0.05,
+    "cv_logloss": 0.9673839402086021,
+    "fold_logloss": [
+     1.003961393136746,
+     0.9308064872804582
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": {
+    "edge": 0.02,
+    "cap": 2.5,
+    "side": "away",
+    "stats": {
+     "bets": 69,
+     "clv": 0.009941324665491734,
+     "median_clv": 0.005870606752363727,
+     "positive_clv_rate": 0.5797101449275363,
+     "roi": 0.08173913043478262
+    },
+    "per_year": {
+     "2022": {
+      "bets": 41,
+      "clv": 0.012210355123273054,
+      "median_clv": 0.014602051082885481,
+      "positive_clv_rate": 0.6585365853658537,
+      "roi": -0.05682926829268293
+     },
+     "2023": {
+      "bets": 28,
+      "clv": 0.00661881578088337,
+      "median_clv": -0.005519015269270955,
+      "positive_clv_rate": 0.4642857142857143,
+      "roi": 0.28464285714285714
+     }
+    },
+    "fails": [],
+    "near_score": 602.5073844107068,
+    "score": 0.08257884469538969
+   },
+   "near_miss_gate": {
+    "edge": 0.05,
+    "cap": 2.0,
+    "side": "away",
+    "stats": {
+     "bets": 49,
+     "clv": 0.011570932052134287,
+     "median_clv": 0.014602051082885481,
+     "positive_clv_rate": 0.6326530612244898,
+     "roi": 0.07061224489795918
+    },
+    "per_year": {
+     "2022": {
+      "bets": 30,
+      "clv": 0.01678168025216468,
+      "median_clv": 0.01635022382499607,
+      "positive_clv_rate": 0.7,
+      "roi": -0.018666666666666654
+     },
+     "2023": {
+      "bets": 19,
+      "clv": 0.0033434348941915617,
+      "median_clv": 0.005154451713001995,
+      "positive_clv_rate": 0.5263157894736842,
+      "roi": 0.21157894736842103
+     }
+    },
+    "fails": [],
+    "near_score": 603.0924816103726,
+    "score": 0.08099652436494001
+   },
+   "strict_holdout_2024": {
+    "bets": 35,
+    "clv": -0.012413488292966152,
+    "median_clv": -0.007556143832985085,
+    "positive_clv_rate": 0.4,
+    "roi": 0.24828571428571428
+   },
+   "strict_holdout_logloss": {
+    "model": 0.9491590459872425,
+    "opening": 0.9319503666789808,
+    "gain": -0.017208679308261754
+   },
+   "diagnostic_only_2025": {
+    "bets": 10,
+    "clv": -0.04337551832171417,
+    "median_clv": -0.034225961624513024,
+    "positive_clv_rate": 0.1,
+    "roi": 0.24500000000000002
+   }
+  },
+  "greece": {
+   "samples": 1109,
+   "coverage": {
+    "matches": 2098,
+    "proxy_matches": 2095,
+    "proxy_coverage": 0.9985700667302193,
+    "odds_rows": 1814,
+    "canonical_exact": 2083,
+    "canonical_day_month_fixed": 19,
+    "canonical_team_score_fixed": 5,
+    "excluded_unreconciled": 32,
+    "football_data_errors": {}
+   },
+   "previous_season_prior_coverage": {
+    "rows": 1109,
+    "both_prior": 780,
+    "home_only": 89,
+    "away_only": 96,
+    "neither": 144,
+    "both_prior_pct": 0.7033363390441839,
+    "at_least_one_pct": 0.8701532912533815
+   },
+   "previous_season_xg_prior_coverage": {
+    "rows": 1109,
+    "both_prior": 780,
+    "home_only": 89,
+    "away_only": 96,
+    "neither": 144,
+    "both_prior_pct": 0.7033363390441839,
+    "at_least_one_pct": 0.8701532912533815
+   },
+   "hyper": {
+    "l2": 1.0,
+    "calib": 0.9,
+    "shrink": 0.0,
+    "cv_logloss": 0.9413642416156727,
+    "fold_logloss": [
+     0.9534104038272986,
+     0.9293180794040468
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.075,
+    "cap": 2.5,
+    "side": "away",
+    "stats": {
+     "bets": 10,
+     "clv": 0.0005860397795965699,
+     "median_clv": 0.013068032791883066,
+     "positive_clv_rate": 0.7,
+     "roi": -0.421
+    },
+    "per_year": {
+     "2022": {
+      "bets": 9,
+      "clv": 0.0002335050730918948,
+      "median_clv": 0.01313626911776078,
+      "positive_clv_rate": 0.6666666666666666,
+      "roi": -0.3566666666666667
+     },
+     "2023": {
+      "bets": 1,
+      "clv": 0.0037588521381386464,
+      "median_clv": 0.0037588521381386464,
+      "positive_clv_rate": 1.0,
+      "roi": -1.0
+     }
+    },
+    "fails": [
+     "tune_bets<40",
+     "2022_bets<10",
+     "2023_bets<10"
+    ],
+    "near_score": 302.1677447379786
+   },
+   "strict_holdout_2024": {
+    "bets": 6,
+    "clv": -0.012067891825223312,
+    "median_clv": -0.009027019898667221,
+    "positive_clv_rate": 0.5,
+    "roi": -0.12333333333333336
+   },
+   "strict_holdout_logloss": {
+    "model": 0.9403829413793469,
+    "opening": 0.8979533490100731,
+    "gain": -0.042429592369273794
+   },
+   "diagnostic_only_2025": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   }
+  }
+ }
+}
