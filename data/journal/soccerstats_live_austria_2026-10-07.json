@@ -1,0 +1,139 @@
+{
+  "as_of": "2026-10-07",
+  "league": "AUT",
+  "source": "soccerstats.com/homeaway.asp?league=austria",
+  "teams": [
+    {
+      "team": "Rapid Wien",
+      "home_gp": 4,
+      "home_gf_pg": 3.75,
+      "home_ga_pg": 0.25,
+      "home_ppg": 3,
+      "away_gp": 3,
+      "away_gf_pg": 2,
+      "away_ga_pg": 2,
+      "away_ppg": 2
+    },
+    {
+      "team": "Salzburg",
+      "home_gp": 4,
+      "home_gf_pg": 3.25,
+      "home_ga_pg": 0.5,
+      "home_ppg": 3,
+      "away_gp": 3,
+      "away_gf_pg": 1.6666666666666667,
+      "away_ga_pg": 0.6666666666666666,
+      "away_ppg": 1.67
+    },
+    {
+      "team": "LASK Linz",
+      "home_gp": 3,
+      "home_gf_pg": 3.3333333333333335,
+      "home_ga_pg": 0.3333333333333333,
+      "home_ppg": 3,
+      "away_gp": 4,
+      "away_gf_pg": 2.25,
+      "away_ga_pg": 1.5,
+      "away_ppg": 1.75
+    },
+    {
+      "team": "Ried",
+      "home_gp": 4,
+      "home_gf_pg": 1.75,
+      "home_ga_pg": 1,
+      "home_ppg": 1.75,
+      "away_gp": 3,
+      "away_gf_pg": 1.3333333333333333,
+      "away_ga_pg": 2.6666666666666665,
+      "away_ppg": 0.33
+    },
+    {
+      "team": "Sturm Graz",
+      "home_gp": 3,
+      "home_gf_pg": 1.3333333333333333,
+      "home_ga_pg": 0.6666666666666666,
+      "home_ppg": 2.33,
+      "away_gp": 4,
+      "away_gf_pg": 1,
+      "away_ga_pg": 1.75,
+      "away_ppg": 1
+    },
+    {
+      "team": "A. Lustenau",
+      "home_gp": 4,
+      "home_gf_pg": 1.25,
+      "home_ga_pg": 1.5,
+      "home_ppg": 1.75,
+      "away_gp": 3,
+      "away_gf_pg": 1,
+      "away_ga_pg": 1.6666666666666667,
+      "away_ppg": 0.33
+    },
+    {
+      "team": "Grazer AK",
+      "home_gp": 3,
+      "home_gf_pg": 1.3333333333333333,
+      "home_ga_pg": 1,
+      "home_ppg": 1.67,
+      "away_gp": 4,
+      "away_gf_pg": 0.5,
+      "away_ga_pg": 3.25,
+      "away_ppg": 0.75
+    },
+    {
+      "team": "Wolfsberger AC",
+      "home_gp": 4,
+      "home_gf_pg": 1.25,
+      "home_ga_pg": 1.75,
+      "home_ppg": 1,
+      "away_gp": 3,
+      "away_gf_pg": 0.6666666666666666,
+      "away_ga_pg": 2,
+      "away_ppg": 0.33
+    },
+    {
+      "team": "Hartberg",
+      "home_gp": 4,
+      "home_gf_pg": 1.5,
+      "home_ga_pg": 2.25,
+      "home_ppg": 1,
+      "away_gp": 3,
+      "away_gf_pg": 1.3333333333333333,
+      "away_ga_pg": 1.3333333333333333,
+      "away_ppg": 1.33
+    },
+    {
+      "team": "Altach",
+      "home_gp": 3,
+      "home_gf_pg": 1.6666666666666667,
+      "home_ga_pg": 1.6666666666666667,
+      "home_ppg": 1,
+      "away_gp": 4,
+      "away_gf_pg": 0,
+      "away_ga_pg": 1.75,
+      "away_ppg": 0
+    },
+    {
+      "team": "Austria Wien",
+      "home_gp": 3,
+      "home_gf_pg": 0.6666666666666666,
+      "home_ga_pg": 1.3333333333333333,
+      "home_ppg": 1,
+      "away_gp": 4,
+      "away_gf_pg": 1.25,
+      "away_ga_pg": 2.25,
+      "away_ppg": 1
+    },
+    {
+      "team": "Tirol",
+      "home_gp": 3,
+      "home_gf_pg": 1,
+      "home_ga_pg": 2,
+      "home_ppg": 0.67,
+      "away_gp": 4,
+      "away_gf_pg": 1.5,
+      "away_ga_pg": 1.5,
+      "away_ppg": 1.5
+    }
+  ]
+}
