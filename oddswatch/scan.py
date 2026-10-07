@@ -926,12 +926,9 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
     if "hockey_eu" in sports:
         fixtures += scan_hockey_eu(start, days, issues, notes)
     from .bookmaker import attach_prices
-    from .sources import polymarket
     attach_prices(fixtures, issues)
-    poly_n = polymarket.attach(fixtures, issues)
     notes.append("Fußball: Bet365/Betfair Sportsbook über API-Football. Orbit noch nicht angebunden.")
-    notes.append(f"Polymarket: {poly_n} NFL/NHL/NBA-Moneyline-Märkte zugeordnet; "
-                 "CLOB-Best-Ask nur bei sauberem Spread/Tiefe als Angebot.")
+    notes.append("Polymarket: deaktiviert – keine Referenz und keine Preisquelle.")
     val = _validation()
     cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
     soccer = {fx.league for fx in fixtures if fx.sport == "soccer"}
@@ -942,6 +939,11 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
     stand = report.stand(now)
     if journal is not None:
         _log(journal, fixtures, picks)
+        try:
+            from . import sql_store
+            sql_store.sync_scan(fixtures, picks)
+        except Exception as exc:  # SQL darf Scan/Telegram nicht blockieren.
+            issues.append(f"SQL-Tracking: {type(exc).__name__}: {exc}")
     return ScanResult(stand, fixtures, cands, picks, issues, notes)
 
 
