@@ -335,9 +335,10 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
         ext_xg_err = None
         if xg_code:
             try:
-                ext_xg, ext_xg_err = xg_external.snapshot(
-                    xg_code, datetime.now(timezone.utc)
-                )
+                xg_now = datetime.now(timezone.utc)
+                ext_xg, ext_xg_err = xg_external.snapshot(xg_code, xg_now)
+                if ext_xg:
+                    xg_external.persist_snapshot(xg_code, ext_xg, xg_now)
             except Exception as e:
                 ext_xg_err = f"{type(e).__name__}: {e}"
         if ext_xg_err:
