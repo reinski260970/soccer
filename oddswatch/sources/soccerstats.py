@@ -21,6 +21,7 @@ import re
 from .. import fetch
 
 BASE = "https://www.soccerstats.com/latest.asp?league="
+BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
 
 LEAGUES = {
     "D1": "germany",
@@ -110,7 +111,12 @@ def league_context(code: str, season_start: int | None = None,
     html, err = fetch.get(
         u,
         cache_days=cache_days if season_start is None else 30,
-        headers={"Accept-Language": "en-US,en;q=0.9"},
+        user_agent=BROWSER_UA,
+        headers={
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.soccerstats.com/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
     )
     if html is None:
         return None, err or f"SoccerSTATS {code}: Abruf fehlgeschlagen"
@@ -253,7 +259,12 @@ def team_homeaway(code: str, season_start: int | None = None,
     html, err = fetch.get(
         u,
         cache_days=cache_days,
-        headers={"Accept-Language": "en-US,en;q=0.9"},
+        user_agent=BROWSER_UA,
+        headers={
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.soccerstats.com/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
     )
     if html is None:
         return [], err or f"SoccerSTATS {code}: Home/Away-Abruf fehlgeschlagen"
