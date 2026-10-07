@@ -1,1 +1,1 @@
-trigger M17.6 after reader fallback
+trigger final M17.6 mongo-derived priors
