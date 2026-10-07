@@ -273,8 +273,13 @@ def build_structural_dataset(
         # IMPORTANT: feature row is built BEFORE any current-match update.
         if hs.n >= 6 and as_.n >= 6 and (d, h, a) in odds and shot is not None:
             s, hg, ag, op, cl = odds[(d, h, a)]
+            expected = _expected_xg(
+                league["home_xg"], league["away_xg"], hr, ar
+            )
             x = _features(hs, as_, league, d)
-            x += _structural_features(league["home_xg"], league["away_xg"], hr, ar)
+            x += _structural_features(
+                league["home_xg"], league["away_xg"], hr, ar
+            )
             out.append({
                 "season": s,
                 "date": d,
@@ -284,6 +289,18 @@ def build_structural_dataset(
                 "y": 0 if hg > ag else (1 if hg == ag else 2),
                 "op": op,
                 "cl": cl,
+                # Gate-only pre-match uncertainty metadata. These fields are
+                # never model inputs and are available before kickoff.
+                "structural_uncertainty": (
+                    abs(expected["home_fast"] - expected["home_slow"])
+                    + abs(expected["away_fast"] - expected["away_slow"])
+                ),
+                "home_structural_uncertainty": abs(
+                    expected["home_fast"] - expected["home_slow"]
+                ),
+                "away_structural_uncertainty": abs(
+                    expected["away_fast"] - expected["away_slow"]
+                ),
             })
 
         hg, ag = float(m.home_goals), float(m.away_goals)
