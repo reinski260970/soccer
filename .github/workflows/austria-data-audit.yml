@@ -19,7 +19,20 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Austria Mongo coverage
-        env:
-          MONGO_SOCCER: ${{ secrets.MONGODB_URI }}
-        run: python -m oddswatch football-extra-profile
+      - name: Austria public history coverage
+        run: |
+          python - <<'PY'
+          from collections import Counter
+          from oddswatch import fetch
+          from oddswatch.sources import football_data
+          t, err = fetch.get(football_data.AUT_URL, cache_days=0)
+          if t is None:
+              raise SystemExit(err)
+          ms, odds = football_data.parse_new_league(t)
+          seasons = Counter((m.date.year if m.date.month >= 7 else m.date.year-1) for m in ms)
+          print("AUT matches", len(ms))
+          print("AUT seasons", dict(sorted(seasons.items())))
+          print("first", min((m.date for m in ms), default=None), "last", max((m.date for m in ms), default=None))
+          print("xg_rows", sum(m.home_xg is not None and m.away_xg is not None for m in ms))
+          print("closing_odds_rows", sum(o.b365_closing is not None for o in odds))
+          PY
