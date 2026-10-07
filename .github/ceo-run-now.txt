@@ -1,1 +1,1 @@
-manual production run after always-odds comparison rule
+trigger 2026-10-07 09:55 Europe/Vienna rescan
