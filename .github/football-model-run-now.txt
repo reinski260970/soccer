@@ -1,1 +1,1 @@
-trigger M17.10 previous-season-prior strict walk-forward
+trigger M17.11 structural-strength strict walk-forward
