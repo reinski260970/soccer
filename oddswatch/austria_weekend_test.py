@@ -140,8 +140,8 @@ def build(today: date | None = None) -> str:
     fixtures: list[Fixture] = []
     diagnostics = {}
     for g in games:
-        h = matching.find(g.home.name, teams) or matching.find(g.home.short, teams)
-        a = matching.find(g.away.name, teams) or matching.find(g.away.short, teams)
+        h = _resolve_aut_team(g.home.name, g.home.short, teams)
+        a = _resolve_aut_team(g.away.name, g.away.short, teams)
         if not h or not a:
             issues.append(f"Team nicht zugeordnet: {g.title}")
             continue
