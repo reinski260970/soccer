@@ -173,6 +173,7 @@ def update_many(records: list[dict], *, now: datetime | None = None,
         rows.append(current)
         if signal:
             signal.update({
+                "key": key,
                 "event": current["event"], "kickoff": current["kickoff"],
                 "league": current["league"], "market": current["market"],
                 "selection": current["selection"], "probs": current["probs"],
