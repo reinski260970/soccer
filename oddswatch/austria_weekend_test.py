@@ -128,6 +128,19 @@ def build(today: date | None = None) -> str:
     venue_rows, verr = soccerstats.team_homeaway("AUT", cache_days=0.10)
     if verr:
         issues.append(f"SoccerSTATS Venue: {verr}")
+    if not venue_rows:
+        try:
+            target = soccerstats.homeaway_url("AUT")
+            raw, rerr = soccerstats._reader_text(target, cache_days=0.0) if target else (None, "no url")
+            if raw:
+                probe = [ln for ln in raw.splitlines() if "Home table" in ln or "Away table" in ln or ("|" in ln and any(x in ln for x in ("Salzburg","Tirol","Ried","Rapid")))]
+                print("SOCCERSTATS_PROBE_START")
+                print("\n".join(probe[:40]))
+                print("SOCCERSTATS_PROBE_END")
+            elif rerr:
+                print(f"SOCCERSTATS_PROBE_ERROR {rerr}")
+        except Exception as exc:
+            print(f"SOCCERSTATS_PROBE_ERROR {type(exc).__name__}: {exc}")
 
     games, errs = espn.upcoming("austria", friday, 2)
     issues += errs
