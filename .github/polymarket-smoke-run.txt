@@ -1,1 +1,1 @@
-trigger 2026-10-07 Polymarket smoke
+trigger 2026-10-07 Polymarket smoke rerun 2
