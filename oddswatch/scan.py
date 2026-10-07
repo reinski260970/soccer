@@ -19,6 +19,7 @@ from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
 from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, soccerstats, xg_external
 from . import fetch, venues
+from . import soccer_steam
 
 VALIDATION = Path("data/validation.json")
 M8_VALIDATION = Path("data/m8_validation.json")
@@ -94,6 +95,7 @@ class ScanResult:
     picks: list[Candidate]
     issues: list[str]
     notes: list[str]
+    steam_state: dict = field(default_factory=dict)
 
 
 # ---------------------------------------------------------------- helpers
@@ -984,10 +986,20 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_hockey_eu(start, days, issues, notes)
     from .bookmaker import attach_prices
     attach_prices(fixtures, issues)
+
+    # Timing/CLV layer only: fair probabilities remain untouched.
+    # Repeated Pinnacle/Bet365/Betfair snapshots feed the pre-steam detector.
+    try:
+        steam_state = soccer_steam.assess(fixtures, now=now)
+    except Exception as exc:
+        steam_state = {}
+        issues.append(f"Soccer-Steam: {type(exc).__name__}: {exc}")
+
     notes.append("Preisregel: Modell-Fair immer gegen aktuelle Marktquote prüfen; ohne Marktpreis NO_PRICE und keine Freigabe.")
     notes.append("Quellen: API-Football, API-Hockey, Pinnacle/Bet365/Betfair sowie Polymarket/Kalshi als zusätzliche Marktquellen.")
     val = _validation()
     cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
+    soccer_steam.annotate_candidates(cands, steam_state)
     soccer = {fx.league for fx in fixtures if fx.sport == "soccer"}
     if soccer_freeze(cands, soccer, val):
         notes.append("Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert "
@@ -1001,7 +1013,7 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
             sql_store.sync_scan(fixtures, picks)
         except Exception as exc:  # SQL darf Scan/Telegram nicht blockieren.
             issues.append(f"SQL-Tracking: {type(exc).__name__}: {exc}")
-    return ScanResult(stand, fixtures, cands, picks, issues, notes)
+    return ScanResult(stand, fixtures, cands, picks, issues, notes, steam_state)
 
 
 def _log(j: Journal, fixtures: list[Fixture], picks: list[Candidate]) -> None:
