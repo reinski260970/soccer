@@ -1,1 +1,1 @@
-trigger M17.10 previous-season-prior strict walk-forward
+trigger M17.14 structural-Poisson-feature strict walk-forward
