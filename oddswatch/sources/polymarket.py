@@ -115,6 +115,40 @@ def _moneyline(event: dict) -> PolyQuote | None:
     return None
 
 
+def event_by_slug(slug: str) -> tuple[dict | None, str | None]:
+    data, err = fetch.get_json(f"{GAMMA}/events/slug/{slug}", timeout=20, retries=1)
+    if data is None:
+        return None, err
+    if isinstance(data, list):
+        return (data[0] if data else None), None
+    if isinstance(data, dict):
+        if "event" in data and isinstance(data["event"], dict):
+            return data["event"], None
+        return data, None
+    return None, "Polymarket Gamma: ungültige Event-Antwort"
+
+
+def _game_slug(league: str, game) -> str | None:
+    if league != "nfl":
+        return None
+    a = (game.away.abbr or "").strip().lower()
+    h = (game.home.abbr or "").strip().lower()
+    if not a or not h:
+        return None
+    d = game.kickoff.astimezone(timezone.utc).date().isoformat()
+    return f"nfl-{a}-{h}-{d}"
+
+
+def direct_quote(league: str, game) -> tuple[PolyQuote | None, str | None]:
+    slug = _game_slug(league, game)
+    if not slug:
+        return None, None
+    e, err = event_by_slug(slug)
+    if e is None:
+        return None, err
+    return _moneyline(e), None
+
+
 def discover(tag: str) -> tuple[list[PolyQuote], str | None]:
     es, err = events(tag)
     if err:
@@ -189,6 +223,15 @@ def attach(fixtures, issues: list[str]) -> int:
             continue
         for fx in rows:
             hit = find(qs, fx.game)
+            if not hit and league == "nfl":
+                dq, derr = direct_quote(league, fx.game)
+                if derr:
+                    issues.append(f"Polymarket NFL {fx.game.title}: {derr}")
+                if dq:
+                    h = _team_side(dq, fx.game.home.aliases())
+                    a = _team_side(dq, fx.game.away.aliases())
+                    if h is not None and a is not None and h != a:
+                        hit = (dq, h, a)
             if not hit:
                 continue
             q, hi, ai = hit
