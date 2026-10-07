@@ -1,1 +1,1 @@
-trigger M17.3 pooled Serie A research
+trigger M17.3 final after horizon-state fix
