@@ -8,6 +8,8 @@ exist. No official PLAY or Sharpery row is created.
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta, timezone
+import json
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from . import bookmaker, matching, report, soccer_steam, sql_store, telegram
@@ -54,6 +56,73 @@ def _resolve_aut_team(name: str, short: str | None, teams: list[str]) -> str | N
         if hit:
             return hit
     return None
+
+
+def _load_soccerstats_snapshot(day: date):
+    p = Path(f"data/journal/soccerstats_live_austria_{day.isoformat()}.json")
+    if not p.exists():
+        return []
+    try:
+        raw = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    if raw.get("as_of") != day.isoformat():
+        return []
+    out = []
+    for r in raw.get("teams", []):
+        try:
+            out.append(soccerstats.TeamVenuePrior(
+                team=r["team"],
+                home_gp=int(r["home_gp"]),
+                home_gf_pg=float(r["home_gf_pg"]),
+                home_ga_pg=float(r["home_ga_pg"]),
+                home_ppg=float(r["home_ppg"]),
+                away_gp=int(r["away_gp"]),
+                away_gf_pg=float(r["away_gf_pg"]),
+                away_ga_pg=float(r["away_ga_pg"]),
+                away_ppg=float(r["away_ppg"]),
+                source="soccerstats/web-verified-24h",
+            ))
+        except (KeyError, TypeError, ValueError):
+            continue
+    return out
+
+
+def _load_oddalerts_snapshot(day: date):
+    p = Path(f"data/journal/oddalerts_live_austria_{day.isoformat()}.json")
+    if not p.exists():
+        return {}
+    try:
+        raw = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    if raw.get("as_of") != day.isoformat():
+        return {}
+    return {
+        r["team"]: (float(r["xg"]), float(r["xga"]))
+        for r in raw.get("teams", [])
+        if r.get("team") and r.get("xg") is not None and r.get("xga") is not None
+    }
+
+
+def _oddalerts_match(team: str, rows: dict[str, tuple[float, float]]):
+    aliases = {
+        "Red Bull Salzburg": "Salzburg",
+        "RB Salzburg": "Salzburg",
+        "Rapid Vienna": "SK Rapid",
+        "Rapid Wien": "SK Rapid",
+        "LASK Linz": "LASK",
+        "Tirol": "WSG Tirol",
+        "WSG Wattens": "WSG Tirol",
+        "Austria Vienna": "Austria Wien",
+        "A. Lustenau": "Austria Lustenau",
+        "Altach": "Rheindorf Altach",
+        "SCR Altach": "Rheindorf Altach",
+    }
+    if team in rows:
+        return rows[team]
+    target = aliases.get(team)
+    return rows.get(target) if target else None
 
 
 def _best_exec(fx: Fixture, side: str):
@@ -126,21 +195,22 @@ def build(today: date | None = None) -> str:
     xg_external.persist_snapshot("AUT", snapshots, now)
 
     venue_rows, verr = soccerstats.team_homeaway("AUT", cache_days=0.10)
-    if verr:
-        issues.append(f"SoccerSTATS Venue: {verr}")
+    venue_source = "live"
     if not venue_rows:
-        try:
-            target = soccerstats.homeaway_url("AUT")
-            raw, rerr = soccerstats._reader_text(target, cache_days=0.0) if target else (None, "no url")
-            if raw:
-                probe = [ln for ln in raw.splitlines() if "Home table" in ln or "Away table" in ln or ("|" in ln and any(x in ln for x in ("Salzburg","Tirol","Ried","Rapid")))]
-                print("SOCCERSTATS_PROBE_START")
-                print("\n".join(probe[:40]))
-                print("SOCCERSTATS_PROBE_END")
-            elif rerr:
-                print(f"SOCCERSTATS_PROBE_ERROR {rerr}")
-        except Exception as exc:
-            print(f"SOCCERSTATS_PROBE_ERROR {type(exc).__name__}: {exc}")
+        venue_rows = _load_soccerstats_snapshot(now.astimezone(TZ).date())
+        venue_source = "web-verified-24h" if venue_rows else "missing"
+    if verr and not venue_rows:
+        issues.append(f"SoccerSTATS Venue: {verr}")
+
+    oddalerts = _load_oddalerts_snapshot(now.astimezone(TZ).date())
+    cross_checked = 0
+    cross_diffs = []
+    for snap in snapshots:
+        oa = _oddalerts_match(snap.team, oddalerts)
+        if not oa:
+            continue
+        cross_checked += 1
+        cross_diffs += [abs(float(snap.xg) - oa[0]), abs(float(snap.xga) - oa[1])]
 
     games, errs = espn.upcoming("austria", friday, 2)
     issues += errs
@@ -219,7 +289,12 @@ def build(today: date | None = None) -> str:
         "Kein Portugal-Classifier-Transfer, kein offizieller PLAY.",
         "",
         f"xG-Quelle: {snapshots[0].source} · {len(snapshots)} Teams",
-        f"SoccerSTATS Home/Away: {len(venue_rows)} Teams",
+        (
+            f"OddAlerts xG-Crosscheck: {cross_checked}/{len(snapshots)} Teams · "
+            f"max Δ {max(cross_diffs):.3f} xG/90"
+            if cross_diffs else "OddAlerts xG-Crosscheck: nicht verfügbar"
+        ),
+        f"SoccerSTATS Home/Away: {len(venue_rows)} Teams · {venue_source}",
         f"Spiele modelliert: {len(fixtures)}/6",
     ]
 
