@@ -1,17 +1,29 @@
 from datetime import datetime, timezone
 from types import SimpleNamespace
-from pathlib import Path
 import pytest
-from oddswatch import bookmaker, guard, daily, news, settle
+from oddswatch import active, bookmaker, guard, daily, news, settle
 from oddswatch.journal import Journal
 from oddswatch.scan import Fixture, evaluate_fixture
+from oddswatch.sources import kalshi, polymarket
 from oddswatch.sources.espn import EspnGame, Team
 
 
-def test_provider_modules_and_runtime_references_removed():
-    root = Path(__file__).parents[1] / 'oddswatch'
-    assert not list(root.rglob('*kalshi*py'))
-    assert all('kalshi' not in p.read_text().lower() for p in root.rglob('*.py'))
+def test_prediction_markets_are_reference_only_by_default(monkeypatch):
+    monkeypatch.delenv('KALSHI_EXECUTABLE', raising=False)
+    monkeypatch.delenv('POLYMARKET_EXECUTABLE', raising=False)
+    assert kalshi is not None and polymarket is not None
+    assert not active.eligible({'source': 'kalshi', 'ref': 'kalshi:KXTEST:yes'})
+    assert not active.eligible({'source': 'polymarket', 'ref': 'polymarket:test:1'})
+
+
+def test_prediction_market_alerts_require_switch_and_current_ref(monkeypatch):
+    monkeypatch.setenv('KALSHI_EXECUTABLE', '1')
+    monkeypatch.setenv('POLYMARKET_EXECUTABLE', 'true')
+    assert active.eligible({'source': 'kalshi', 'ref': 'kalshi:KXTEST:yes'})
+    assert active.eligible({'source': 'polymarket', 'ref': 'polymarket:test:1'})
+    # Legacy rows without a current provider reference must never be resurrected.
+    assert not active.eligible({'source': 'kalshi'})
+    assert not active.eligible({'source': 'polymarket'})
 
 
 def test_bookmaker_prices_are_separate_from_reference(monkeypatch):
@@ -31,7 +43,8 @@ def test_bookmaker_prices_are_separate_from_reference(monkeypatch):
     assert len(evaluate_fixture(fx, {})) == 2
 
 
-def test_removed_provider_not_republished_and_journal_unchanged(tmp_path):
+def test_legacy_prediction_market_row_not_republished_and_journal_unchanged(monkeypatch, tmp_path):
+    monkeypatch.delenv('KALSHI_EXECUTABLE', raising=False)
     j = Journal(tmp_path / 'journal')
     row = {'event': 'Old A – Old B', 'market': 'home', 'selection': 'Old A', 'source': 'kalshi', 'league': 'nations', 'kickoff': '2026-10-06T12:00:00+00:00', 'odds': 2, 'stake_eh': 1, 'fair_odds': 1.8, 'min_odds': 1.9}
     j.append('valuebets', [row])

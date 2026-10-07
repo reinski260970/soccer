@@ -1,11 +1,19 @@
-"""Attach football sportsbook offers; no exchange or binary-market fallback."""
+"""Attach market prices after model fair odds have been computed.
+
+Sources:
+- Football: API-Football sportsbook odds (Pinnacle ref, Bet365/Betfair offers)
+- Hockey: API-Hockey sportsbook odds, including European leagues where covered
+- NFL/NHL/NBA: public Polymarket and Kalshi prices as extra references; they are
+  PLAY-eligible only when their explicit *_EXECUTABLE switch is enabled.
+"""
 from datetime import datetime, timezone
+
 from . import pricing
 from .selection import Offer
-from .sources import apifootball
+from .sources import apifootball, apihockey, kalshi, polymarket
 
 
-def attach_prices(fixtures, issues):
+def _attach_soccer(fixtures, issues):
     soccer = [f for f in fixtures if f.sport == "soccer"]
     if not soccer:
         return
@@ -20,7 +28,7 @@ def attach_prices(fixtures, issues):
             days[day], err = apifootball.fixtures_on(day)
             if err:
                 issues.append(err)
-        match = apifootball.find_fixture(days[day], g.home.aliases(), g.away.aliases(), g.kickoff)
+        match = apifootball.find_fixture(days.get(day, []), g.home.aliases(), g.away.aliases(), g.kickoff)
         if match is None:
             issues.append(f"API-Football: {g.title} nicht eindeutig zugeordnet")
             continue
@@ -28,7 +36,7 @@ def attach_prices(fixtures, issues):
             books[match.id], err = apifootball.odds(match.id)
             if err:
                 issues.append(err)
-        data = books[match.id]
+        data = books.get(match.id, {})
         keys = ("home", "draw", "away")
         pinnacle = data.get("Pinnacle", {})
         if all(k in pinnacle for k in keys):
@@ -43,11 +51,6 @@ def attach_prices(fixtures, issues):
             }
             fair_ref = (1.0 / fx.ref_probs[side]) if fx.ref_probs.get(side) else None
             for book, odds in raw_exec.items():
-                # API-Football kann bei weit im Voraus liegenden Spielen alte
-                # Buchmacher-Snapshots liefern. Ein Preis, der extrem weit über
-                # der unabhängigen Pinnacle-No-Vig-Referenz liegt, darf deshalb
-                # nur als ausführbar gelten, wenn ein zweiter Ausführungsmarkt
-                # ihn grob bestätigt.
                 extreme = bool(fair_ref and odds / fair_ref - 1.0 > 0.20)
                 peer_confirmed = any(
                     other != book and other_odds >= odds * 0.90
@@ -60,8 +63,41 @@ def attach_prices(fixtures, issues):
                         "zweiter Ausführungsmarkt bestätigt nicht"
                     )
                     continue
-                label = "Unentschieden (90 Min.)" if side == "draw" else f"{g.home.name if side == 'home' else g.away.name} Sieg (90 Min.)"
-                offers.append(Offer(g.title, g.kickoff.isoformat(), side, label, odds,
-                                    book.lower(), obs, ref=f"apifootball:{match.id}:{side}", league=fx.league))
+                label = ("Unentschieden (90 Min.)" if side == "draw" else
+                         f"{g.home.name if side == 'home' else g.away.name} Sieg (90 Min.)")
+                offers.append(Offer(
+                    g.title, g.kickoff.isoformat(), side, label, odds, book.lower(), obs,
+                    ref=f"apifootball:{match.id}:{side}", league=fx.league, executable=True,
+                ))
             if offers:
                 fx.offers[side] = offers
+
+
+def _drop_reference_only_offers(fixtures):
+    """Public market quotes may enrich ref_probs/context, but SQL/PLAY only sees
+    prices that this installation explicitly marks executable."""
+    for fx in fixtures:
+        for side in list(fx.offers):
+            fx.offers[side] = [o for o in fx.offers[side] if getattr(o, "executable", True)]
+            if not fx.offers[side]:
+                del fx.offers[side]
+
+
+def attach_prices(fixtures, issues):
+    _attach_soccer(fixtures, issues)
+
+    # API-Hockey is the primary fix for the missing Liiga/SHL/ICEHL/NHL prices.
+    try:
+        apihockey.attach(fixtures, issues)
+    except Exception as exc:
+        issues.append(f"API-Hockey: {type(exc).__name__}: {exc}")
+
+    # Prediction markets are additional public price/reference sources. Their
+    # adapters decide whether the installation may treat a quote as executable.
+    for name, source in (("Polymarket", polymarket), ("Kalshi", kalshi)):
+        try:
+            source.attach(fixtures, issues)
+        except Exception as exc:
+            issues.append(f"{name}: {type(exc).__name__}: {exc}")
+
+    _drop_reference_only_offers(fixtures)

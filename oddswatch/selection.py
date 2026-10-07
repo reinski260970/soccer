@@ -9,7 +9,7 @@ from . import pricing
 
 @dataclass
 class Offer:
-    """Ein verifizierter Preis. source: 'bet365' | 'orbit'."""
+    """Marktpreis. ``executable=False`` bedeutet reine Referenz/Watchlist."""
     event: str
     kickoff: str
     market: str       # z. B. "1", "X", "2", "O2.5"
@@ -20,6 +20,7 @@ class Offer:
     liquidity: float | None = None
     ref: str = ""     # z. B. Anbieter-Referenz, für Abrechnung/CLV
     league: str = ""
+    executable: bool = True
 
 
 @dataclass
@@ -58,6 +59,9 @@ def evaluate(offer: Offer, p_model: float, *, min_ev: float = 0.03,
     ist die Entscheidungsgrundlage für fair/Edge/EV/Einsatz."""
     unc = uncertainty if uncertainty is not None else (0.5 if estimate else 0.25)
     p = p_final if p_final is not None else p_model
+    release_flags = list(flags or [])
+    if not offer.executable:
+        release_flags.append("Preisquelle nur Referenz – nicht als PLAY freigegeben")
     return Candidate(
         event=offer.event, kickoff=offer.kickoff, market=offer.market,
         selection=offer.selection, source=offer.source, odds=offer.odds,
@@ -67,7 +71,7 @@ def evaluate(offer: Offer, p_model: float, *, min_ev: float = 0.03,
         stake_eh=pricing.stake_units(p, offer.odds, uncertainty=unc),
         estimate=estimate, reason=reason, observed_at=offer.observed_at,
         liquidity=offer.liquidity, p_ref=p_ref, p_final=p, ref=offer.ref,
-        league=offer.league, flags=flags or [],
+        league=offer.league, flags=release_flags,
     )
 
 
@@ -75,8 +79,8 @@ def pick(cands: list[Candidate], max_n: int | None = None, min_stake: float = 0.
          ) -> list[Candidate]:
     """PLAY, sobald die Marktquote die spielbare Mindestquote erreicht
     (odds >= min_odds, d. h. EV >= 3 %) und kein Informationsvorbehalt
-    (News, Modell-Markt-Divergenz) vorliegt. Pro Event höchstens ein Tipp
-    (korrelierte Märkte), bester EV zuerst. Einsatz mindestens min_stake.
+    (News, Modell-Markt-Divergenz, Referenz-only) vorliegt. Pro Event höchstens
+    ein Tipp (korrelierte Märkte), bester EV zuerst. Einsatz mindestens min_stake.
     Liquidität ist kein Ausschlusskriterium, wird aber ausgewiesen."""
     ok = [c for c in cands if c.odds >= c.min_odds and not c.flags]
     ok.sort(key=lambda c: (c.estimate, -c.ev))
