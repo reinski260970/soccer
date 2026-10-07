@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+import math
 from types import SimpleNamespace
 
 from sqlalchemy import select
@@ -97,3 +98,75 @@ def test_settlement_updates_play_and_clv(monkeypatch, tmp_path):
     assert p["pnl_eh"] == 0.55
     assert p["closing_fair_odds"] is not None
     assert p["clv"] is not None
+
+
+
+def test_shadow_settlement_updates_predictions_without_play(monkeypatch, tmp_path):
+    monkeypatch.setenv("SPORTS_DATABASE_URL", f"sqlite:///{tmp_path / 'sports.db'}")
+    kickoff = datetime.now(timezone.utc) - timedelta(hours=3)
+    game = EspnGame(
+        "shadow1", "primeira", kickoff,
+        Team("Home"), Team("Away"), "STATUS_SCHEDULED",
+    )
+    fx = Fixture(
+        "primeira", "soccer", game,
+        {"home": 0.50, "draw": 0.25, "away": 0.25},
+        "shadow test",
+        ref_probs={"home": 0.48, "draw": 0.27, "away": 0.25},
+        model="shadow-test",
+    )
+    assert sql_store.sync_scan([fx], []) == 0
+
+    final = EspnGame(
+        "shadow1", "primeira", kickoff,
+        Team("Home"), Team("Away"), "STATUS_FINAL",
+        home_score=2, away_score=1,
+    )
+    from oddswatch.sources import espn
+    monkeypatch.setattr(espn, "scoreboard_day", lambda league, day: ([final], None))
+
+    out = sql_store.settle_shadow_predictions()
+    assert out["settled_events"] == 1
+    with sql_store.engine().connect() as conn:
+        preds = list(conn.execute(select(sql_store.predictions)).mappings())
+        g = conn.execute(select(sql_store.games)).mappings().first()
+
+    by_market = {r["market"]: r["outcome"] for r in preds}
+    assert by_market == {"home": 1.0, "draw": 0.0, "away": 0.0}
+    assert g["status"] == "final"
+    assert g["home_score"] == 2.0
+    assert g["away_score"] == 1.0
+
+
+def test_shadow_summary_uses_latest_pre_kickoff_snapshot(monkeypatch, tmp_path):
+    monkeypatch.setenv("SPORTS_DATABASE_URL", f"sqlite:///{tmp_path / 'sports.db'}")
+    sql_store.init_db()
+    kickoff = datetime(2026, 10, 7, 20, tzinfo=timezone.utc)
+    early = kickoff - timedelta(hours=8)
+    late = kickoff - timedelta(hours=2)
+    now = datetime.now(timezone.utc)
+
+    with sql_store.engine().begin() as conn:
+        conn.execute(sql_store.games.insert().values(
+            event_id="shadow2", sport="soccer", league="primeira",
+            event="Home vs Away", kickoff=kickoff, home="Home", away="Away",
+            status="final", home_score=2.0, away_score=0.0, updated_at=now,
+        ))
+        for created, probs, refs in (
+            (early, [0.30, 0.30, 0.40], [0.55, 0.25, 0.20]),
+            (late, [0.70, 0.20, 0.10], [0.60, 0.25, 0.15]),
+        ):
+            for market, p, pr in zip(("home", "draw", "away"), probs, refs):
+                conn.execute(sql_store.predictions.insert().values(
+                    created_at=created, event_id="shadow2", sport="soccer",
+                    league="primeira", market=market, selection=market,
+                    p_model=p, p_ref=pr, p_final=p, fair_odds=1.0/p,
+                    estimate=False, model="shadow-test", inputs="test",
+                ))
+
+    rows = sql_store.shadow_summary("soccer")
+    row = next(r for r in rows if r["league"] == "primeira" and r["model"] == "shadow-test")
+    assert row["events"] == 1
+    assert abs(row["model_logloss"] - (-math.log(0.70))) < 1e-12
+    assert abs(row["market_logloss"] - (-math.log(0.60))) < 1e-12
+    assert row["model_beats_market"] is True
