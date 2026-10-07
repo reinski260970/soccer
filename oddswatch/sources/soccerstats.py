@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from html import unescape
+from html.parser import HTMLParser
 import re
 
 from .. import fetch
