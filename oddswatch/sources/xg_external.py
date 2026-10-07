@@ -23,10 +23,10 @@ from pathlib import Path
 from . import matchpulse, understat
 
 
-@dataclass
 SNAPSHOTS = Path("data/journal/xg_external_snapshots.json")
 
 
+@dataclass
 class XGSnapshot:
     team: str
     xg: float
