@@ -44,3 +44,29 @@ def test_presteam_drifting(tmp_path):
     })], now=t0 + timedelta(minutes=15), path=p)
     assert len(sig) == 1
     assert sig[0]["direction"] == "DRIFTING"
+
+
+def test_presteam_generic_lead_source(tmp_path):
+    p = tmp_path / "steam.json"
+    t0 = datetime(2026, 10, 7, 8, 0, tzinfo=timezone.utc)
+    base = {
+        "key": "us:nhl:1:away",
+        "event": "A – B",
+        "kickoff": "2026-10-08T01:30:00+00:00",
+        "league": "nhl",
+        "market": "away",
+        "selection": "B ML",
+        "lead_source": "Polymarket",
+        "slow_sources": ["ESPN/DK"],
+        "odds": {"Polymarket": 2.0, "ESPN/DK": 2.1},
+    }
+    r1 = dict(base)
+    r1["probs"] = {"Polymarket": 0.50, "ESPN/DK": 0.48}
+    assert steam.update_many([r1], now=t0, path=p) == []
+
+    r2 = dict(base)
+    r2["probs"] = {"Polymarket": 0.525, "ESPN/DK": 0.484}
+    sig = steam.update_many([r2], now=t0 + timedelta(minutes=15), path=p)
+    assert len(sig) == 1
+    assert sig[0]["direction"] == "SHORTENING"
+    assert sig[0]["lead_source"] == "Polymarket"
