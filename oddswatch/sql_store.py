@@ -200,12 +200,14 @@ def sync_scan(fixtures, picks) -> int:
                     p_final=float(p), fair_odds=1.0 / float(p), estimate=bool(fx.estimate),
                     model=fx.model or fx.sport, inputs=fx.detail,
                 ))
-            for side, offers in fx.offers.items():
+            quote_map = getattr(fx, "market_quotes", None) or fx.offers
+            for side, offers in quote_map.items():
                 for o in offers:
                     conn.execute(odds.insert().values(
                         event_id=str(g.id), observed_at=_dt(o.observed_at), market=side,
                         selection=o.selection, source=o.source, odds=float(o.odds),
-                        liquidity=o.liquidity, ref=o.ref, executable=True,
+                        liquidity=o.liquidity, ref=o.ref,
+                        executable=bool(getattr(o, "executable", True)),
                     ))
 
         for p in picks:

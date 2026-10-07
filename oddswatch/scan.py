@@ -81,7 +81,8 @@ class Fixture:
     ref_probs: dict[str, float] = field(default_factory=dict)
     flags: dict[str, list[str]] = field(default_factory=dict)  # Seite -> Vorbehalte
     estimate: bool = False
-    offers: dict[str, list[Offer]] = field(default_factory=dict)
+    offers: dict[str, list[Offer]] = field(default_factory=dict)  # nur ausführbare Preise
+    market_quotes: dict[str, list[Offer]] = field(default_factory=dict)  # alle Preisquellen, inkl. Referenz
     model: str = ""                          # Modellkennung fürs Journal (Standard: sport)
 
 
@@ -742,7 +743,7 @@ def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) 
             game = espn.EspnGame(f"{lg}:{g['start'].isoformat()}:{h}:{a}", lg, g["start"],
                                  espn.Team(g["home"]), espn.Team(g["away"]), "STATUS_SCHEDULED")
             out.append(Fixture(lg, "hockey", game, {"home": ph, "away": pa},
-                               f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}; kein Buchmacherpreis",
+                               f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}",
                                estimate=True, model="poisson-hockey-eu"))
     return out
 
@@ -763,7 +764,7 @@ def _scan_icehl(start: date, until: datetime, now: datetime, issues: list[str],
         return []
     model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
     notes.append(f"ICE Hockey League: Poisson aus {len(ms)} Spielen (ICEHL-Feed), davon "
-                 f"{len(cur)} aktuelle Saison – nur faire Quoten, kein verifizierter Buchmacherpreis")
+                 f"{len(cur)} aktuelle Saison – Marktpreis wird separat über Preisquellen geprüft")
     out = []
     for u in sorted(up, key=lambda x: x["start"]):
         ko = u["start"].astimezone(timezone.utc)
@@ -927,8 +928,8 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
         fixtures += scan_hockey_eu(start, days, issues, notes)
     from .bookmaker import attach_prices
     attach_prices(fixtures, issues)
-    notes.append("Fußball: Bet365/Betfair Sportsbook über API-Football. Orbit noch nicht angebunden.")
-    notes.append("Polymarket: deaktiviert – keine Referenz und keine Preisquelle.")
+    notes.append("Preisregel: Modell-Fair immer gegen aktuelle Marktquote prüfen; ohne Marktpreis NO_PRICE und keine Freigabe.")
+    notes.append("Quellen: API-Football, API-Hockey, Pinnacle/Bet365/Betfair sowie Polymarket/Kalshi als zusätzliche Marktquellen.")
     val = _validation()
     cands = [c for fx in fixtures for c in evaluate_fixture(fx, val)]
     soccer = {fx.league for fx in fixtures if fx.sport == "soccer"}
