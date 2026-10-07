@@ -153,17 +153,17 @@ def build_dataset(matches, odds_rows, shot_map, league_name: str) -> list[dict]:
 
         hg, ag = float(m.home_goals), float(m.away_goals)
         hx, ax = _xg(m, True), _xg(m, False)
-        if shot is not None:
-            hshots, ashots, hsot, asot = shot
-        else:
-            # Preserve prior shot state; do not fabricate shot observations.
-            hshots, ashots = fh.shots_f, fa.shots_f
-            hsot, asot = fh.sot_f, fa.sot_f
-
         for alpha, hs1, as1 in (
             (FAST_ALPHA, fh, fa),
             (SLOW_ALPHA, sh, sa),
         ):
+            if shot is not None:
+                hshots, ashots, hsot, asot = shot
+            else:
+                # Preserve each horizon's own shot state; do not fabricate
+                # observations or leak the fast state into the slow horizon.
+                hshots, ashots = hs1.shots_f, as1.shots_f
+                hsot, asot = hs1.sot_f, as1.sot_f
             _update(hs1, hg, ag, hx, ax, hshots, ashots, hsot, asot,
                     _points(hg, ag), d, True, alpha)
             _update(as1, ag, hg, ax, hx, ashots, hshots, asot, hsot,
