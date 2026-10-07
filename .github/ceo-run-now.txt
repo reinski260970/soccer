@@ -1,1 +1,1 @@
-manual production run after PR #5 market price sources
+manual production run after always-odds comparison rule
