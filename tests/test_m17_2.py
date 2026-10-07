@@ -15,11 +15,11 @@ def test_m17_2_robust_away_gate_can_validate_tune():
     rows23 = []
     for i in range(20):
         # Away model EV >2%; opening 2.0, closing 1.90 => positive CLV.
-        r = _row([0.25, 0.25, 0.50], [4.0, 4.0, 2.0], [4.0, 4.0, 1.90])
+        r = _row([0.20, 0.25, 0.55], [4.0, 4.0, 2.0], [4.0, 4.0, 1.90])
         (rows22 if i < 10 else rows23).append(r)
     # Need >=30 total and >=8 each year.
     for i in range(20):
-        r = _row([0.24, 0.24, 0.52], [4.0, 4.0, 2.0], [4.0, 4.0, 1.88])
+        r = _row([0.19, 0.25, 0.56], [4.0, 4.0, 2.0], [4.0, 4.0, 1.88])
         (rows22 if i < 10 else rows23).append(r)
 
     gate, near = _choose_gate({2022: rows22, 2023: rows23})
