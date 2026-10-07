@@ -234,6 +234,13 @@ def _quick(a) -> int:
         return 2
 
 
+def _market_steam(a) -> int:
+    from . import market_steam
+    for line in market_steam.run(send=a.send):
+        print(line)
+    return 0
+
+
 def _guard(a) -> int:
     from . import guard
     try:
@@ -358,6 +365,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("football-mongo-profile").set_defaults(fn=_football_mongo_profile)
     sub.add_parser("football-mongo-audit").set_defaults(fn=_football_mongo_audit)
     sub.add_parser("football-extra-profile").set_defaults(fn=_football_extra_profile)
+    ms = sub.add_parser("market-steam")
+    ms.add_argument("--send", action="store_true")
+    ms.set_defaults(fn=_market_steam)
     qk = sub.add_parser("quick")
     qk.add_argument("--send", action="store_true")
     qk.add_argument("--days", type=int, default=7)
