@@ -73,3 +73,36 @@ def test_soccerstats_parse_homeaway_team_tables():
     assert abs(b.home_ppg - 2.59) < 1e-12
     assert abs(b.away_ppg - 2.29) < 1e-12
     assert abs(b.home_gf_pg - 52 / 17) < 1e-12
+
+
+def test_soccerstats_parse_reader_markdown():
+    text = """
+## Home table
+
+| # | Team | GP | W | D | L | GF | GA | GD | Pts | PPG |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Team A | 17 | 10 | 4 | 3 | 34 | 18 | 16 | 34 | 2.00 |
+| 2 | Team B | 17 | 9 | 5 | 3 | 30 | 20 | 10 | 32 | 1.88 |
+| 3 | Team C | 17 | 8 | 5 | 4 | 29 | 22 | 7 | 29 | 1.71 |
+| 4 | Team D | 17 | 8 | 4 | 5 | 27 | 23 | 4 | 28 | 1.65 |
+| 5 | Team E | 17 | 7 | 5 | 5 | 26 | 24 | 2 | 26 | 1.53 |
+| 6 | Team F | 17 | 6 | 6 | 5 | 24 | 23 | 1 | 24 | 1.41 |
+
+## Away table
+
+| # | Team | GP | W | D | L | GF | GA | GD | Pts | PPG |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Team A | 17 | 9 | 4 | 4 | 31 | 20 | 11 | 31 | 1.82 |
+| 2 | Team B | 17 | 8 | 4 | 5 | 28 | 23 | 5 | 28 | 1.65 |
+| 3 | Team C | 17 | 7 | 5 | 5 | 25 | 22 | 3 | 26 | 1.53 |
+| 4 | Team D | 17 | 6 | 5 | 6 | 23 | 24 | -1 | 23 | 1.35 |
+| 5 | Team E | 17 | 5 | 5 | 7 | 21 | 26 | -5 | 20 | 1.18 |
+| 6 | Team F | 17 | 4 | 6 | 7 | 20 | 27 | -7 | 18 | 1.06 |
+
+## Goals
+"""
+    rows = soccerstats.parse_homeaway_markdown(text)
+    assert len(rows) == 6
+    a = next(x for x in rows if x.team == "Team A")
+    assert abs(a.home_ppg - 2.00) < 1e-12
+    assert abs(a.away_ppg - 1.82) < 1e-12
