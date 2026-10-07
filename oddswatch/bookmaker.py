@@ -44,6 +44,15 @@ def _attach_soccer(fixtures, issues):
         obs = datetime.now(timezone.utc).isoformat()
         for side in keys:
             offers = []
+            pin_odd = data.get("Pinnacle", {}).get(side)
+            if pin_odd and pin_odd > 1:
+                label = ("Unentschieden (90 Min.)" if side == "draw" else
+                         f"{g.home.name if side == 'home' else g.away.name} Sieg (90 Min.)")
+                offers.append(Offer(
+                    g.title, g.kickoff.isoformat(), side, label, pin_odd, "pinnacle", obs,
+                    ref=f"apifootball:{match.id}:{side}:pinnacle", league=fx.league,
+                    executable=False,
+                ))
             raw_exec = {
                 book: data.get(book, {}).get(side)
                 for book in ("Bet365", "Betfair")
@@ -73,12 +82,15 @@ def _attach_soccer(fixtures, issues):
                 fx.offers[side] = offers
 
 
-def _drop_reference_only_offers(fixtures):
-    """Public market quotes may enrich ref_probs/context, but SQL/PLAY only sees
-    prices that this installation explicitly marks executable."""
+def _capture_and_filter_market_quotes(fixtures):
+    """Keep every observed market quote for comparison, but expose only executable
+    quotes to candidate/PLAY selection."""
     for fx in fixtures:
-        for side in list(fx.offers):
-            fx.offers[side] = [o for o in fx.offers[side] if getattr(o, "executable", True)]
+        fx.market_quotes = {}
+        for side, offers in list(fx.offers.items()):
+            if offers:
+                fx.market_quotes[side] = list(offers)
+            fx.offers[side] = [o for o in offers if getattr(o, "executable", True)]
             if not fx.offers[side]:
                 del fx.offers[side]
 
@@ -100,4 +112,4 @@ def attach_prices(fixtures, issues):
         except Exception as exc:
             issues.append(f"{name}: {type(exc).__name__}: {exc}")
 
-    _drop_reference_only_offers(fixtures)
+    _capture_and_filter_market_quotes(fixtures)
