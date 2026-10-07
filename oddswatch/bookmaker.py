@@ -82,6 +82,28 @@ def _attach_soccer(fixtures, issues):
                 fx.offers[side] = offers
 
 
+def _attach_espn_reference(fixtures):
+    """Persist raw ESPN/DraftKings-style scoreboard moneylines as reference-only
+    quotes. They may be compared with model fair odds but can never create PLAY."""
+    obs = datetime.now(timezone.utc).isoformat()
+    for fx in fixtures:
+        r = getattr(fx.game, "ref_line", None) or {}
+        for side, key in (("home", "ml_home"), ("draw", "ml_draw"), ("away", "ml_away")):
+            odd = r.get(key)
+            if not odd or odd <= 1 or side not in fx.probs:
+                continue
+            if side == "draw":
+                label = "Unentschieden"
+            else:
+                team = fx.game.home.name if side == "home" else fx.game.away.name
+                label = f"{team} ML"
+            fx.offers.setdefault(side, []).append(Offer(
+                event=fx.game.title, kickoff=fx.game.kickoff.isoformat(), market=side,
+                selection=label, odds=float(odd), source="espn_ref", observed_at=obs,
+                ref=f"espn:{fx.game.id}:{side}", league=fx.league, executable=False,
+            ))
+
+
 def _capture_and_filter_market_quotes(fixtures):
     """Keep every observed market quote for comparison, but expose only executable
     quotes to candidate/PLAY selection."""
@@ -96,6 +118,7 @@ def _capture_and_filter_market_quotes(fixtures):
 
 
 def attach_prices(fixtures, issues):
+    _attach_espn_reference(fixtures)
     _attach_soccer(fixtures, issues)
 
     # API-Hockey is the primary fix for the missing Liiga/SHL/ICEHL/NHL prices.
