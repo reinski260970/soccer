@@ -1,1 +1,1 @@
-manual production run requested after PR #4 merge
+manual production run after PR #5 market price sources
