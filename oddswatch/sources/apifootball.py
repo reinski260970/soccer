@@ -64,8 +64,43 @@ def fixtures_on(day: str) -> tuple[list[ApiFixture], str | None]:
     return out, None
 
 
+_CANONICAL = {
+    "wsgtirol": "wsgtirol",
+    "wsgswarovskitirol": "wsgtirol",
+    "wsgwattens": "wsgtirol",
+    "tirol": "wsgtirol",
+    "ried": "ried",
+    "svried": "ried",
+    "svjoskoried": "ried",
+    "rheindorfaltach": "altach",
+    "scraltach": "altach",
+    "altach": "altach",
+    "wolfsberger": "wolfsbergerac",
+    "wolfsbergerac": "wolfsbergerac",
+    "wac": "wolfsbergerac",
+    "austriawien": "austriawien",
+    "austriavienna": "austriawien",
+    "rapidwien": "rapidwien",
+    "rapidvienna": "rapidwien",
+    "rbsalzburg": "salzburg",
+    "redbullsalzburg": "salzburg",
+    "salzburg": "salzburg",
+}
+
+
+def _canonical(name: str) -> str:
+    n = matching.norm(name).replace(" ", "")
+    return _CANONICAL.get(n, n)
+
+
 def _hit(name: str, aliases: list[str]) -> bool:
-    return any(matching.norm(name) == matching.norm(a) or matching.same(name, a) for a in aliases if a)
+    cn = _canonical(name)
+    return any(
+        cn == _canonical(a)
+        or matching.norm(name) == matching.norm(a)
+        or matching.same(name, a)
+        for a in aliases if a
+    )
 
 
 def find_fixture(fixtures: list[ApiFixture], home: list[str], away: list[str],
