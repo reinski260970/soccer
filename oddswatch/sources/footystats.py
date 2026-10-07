@@ -36,6 +36,15 @@ LEAGUES = {
     "SC0": ("Scotland", ("Premiership", "Scottish Premiership")),
     "G1": ("Greece", ("Super League", "Super League Greece")),
     "AUT": ("Austria", ("Bundesliga", "Austrian Bundesliga")),
+    "D3": ("Germany", ("3. Liga", "3 Liga")),
+    "SUI": ("Switzerland", ("Super League", "Swiss Super League")),
+    "SWE": ("Sweden", ("Allsvenskan",)),
+    "NOR": ("Norway", ("Eliteserien",)),
+    "DEN": ("Denmark", ("Superliga", "Danish Superliga")),
+    "POL": ("Poland", ("Ekstraklasa",)),
+    "UCL": ("Europe", ("UEFA Champions League", "Champions League")),
+    "UEL": ("Europe", ("UEFA Europa League", "Europa League")),
+    "UECL": ("Europe", ("UEFA Europa Conference League", "Conference League")),
 }
 
 
