@@ -32,6 +32,13 @@ jobs:
               hits = []
               for g in scheduled:
                   hit = polymarket.find(qs, g)
+                  if not hit and league == "nfl":
+                      q, derr = polymarket.direct_quote(league, g)
+                      if q:
+                          hi = polymarket._team_side(q, g.home.aliases())
+                          ai = polymarket._team_side(q, g.away.aliases())
+                          if hi is not None and ai is not None and hi != ai:
+                              hit = (q, hi, ai)
                   if hit:
                       q, hi, ai = hit
                       hits.append((g.title, q.outcomes[hi], q.outcomes[ai], q.mids[hi], q.mids[ai]))
