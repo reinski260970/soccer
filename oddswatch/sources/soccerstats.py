@@ -319,25 +319,72 @@ def _markdown_table(section: str) -> list[list[str]]:
     return rows
 
 
+def _clean_md_team(value: str) -> str:
+    s = value.strip()
+    # Jina markdown commonly emits [Team](url); keep only visible label.
+    m = re.fullmatch(r"\[([^\]]+)\]\([^\)]+\)", s)
+    if m:
+        s = m.group(1)
+    s = re.sub(r"^[0-9]+\s+", "", s).strip()
+    return s
+
+
+def _parse_venue_markdown_section(section: str) -> dict[str, dict]:
+    out = {}
+    for raw in section.splitlines():
+        line = raw.strip()
+        if "|" not in line:
+            continue
+        vals = [x.strip() for x in line.strip("|").split("|")]
+        if len(vals) < 10:
+            continue
+        if any("GP" == x for x in vals):
+            continue
+
+        # Typical row: rank | team | GP | W | D | L | GF | GA | GD | Pts | PPG
+        start = 0
+        try:
+            int(float(vals[0]))
+            start = 1
+        except (ValueError, TypeError):
+            pass
+        if len(vals) - start < 10:
+            continue
+
+        team = _clean_md_team(vals[start])
+        nums = vals[start + 1:start + 10]
+        try:
+            gp = int(float(nums[0]))
+            gf = float(nums[4])
+            ga = float(nums[5])
+            ppg = float(nums[8])
+        except (ValueError, TypeError, IndexError):
+            continue
+        if not team or gp <= 0 or gf < 0 or ga < 0 or not (0 <= ppg <= 3.01):
+            continue
+        out[team] = {
+            "gp": gp,
+            "gf_pg": gf / gp,
+            "ga_pg": ga / gp,
+            "ppg": ppg,
+        }
+    return out
+
+
 def parse_homeaway_markdown(text: str) -> list[TeamVenuePrior]:
-    low = text.lower()
-    hi = low.find("## home table")
-    ai = low.find("## away table")
-    if hi < 0 or ai < 0 or ai <= hi:
-        # Reader occasionally emits single-# headings.
-        hi = low.find("home table")
-        ai = low.find("away table")
-    if hi < 0 or ai < 0 or ai <= hi:
+    # Tolerate "## Home table", "# Home table", and surrounding prose.
+    mh = re.search(r"(?im)^#{1,4}\s*Home table\s*$", text)
+    ma = re.search(r"(?im)^#{1,4}\s*Away table\s*$", text)
+    if not mh or not ma or ma.start() <= mh.end():
         return []
 
-    home_sec = text[hi:ai]
-    tail = text[ai:]
-    # Stop Away at the next H2-ish section when available.
-    m = re.search(r"\n##\s+", tail[8:], re.I)
-    away_sec = tail[:8 + m.start()] if m else tail
+    home_sec = text[mh.end():ma.start()]
+    tail = text[ma.end():]
+    mn = re.search(r"(?im)^#{1,4}\s+[^\n]+$", tail)
+    away_sec = tail[:mn.start()] if mn else tail
 
-    home = _venue_rows(_markdown_table(home_sec))
-    away = _venue_rows(_markdown_table(away_sec))
+    home = _parse_venue_markdown_section(home_sec)
+    away = _parse_venue_markdown_section(away_sec)
     teams = sorted(set(home) & set(away))
     return [
         TeamVenuePrior(
