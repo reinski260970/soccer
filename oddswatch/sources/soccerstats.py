@@ -17,10 +17,14 @@ from dataclasses import dataclass
 from html import unescape
 from html.parser import HTMLParser
 import re
+import json
+from pathlib import Path
 
 from .. import fetch
 
 BASE = "https://www.soccerstats.com/latest.asp?league="
+READER_BASE = "https://r.jina.ai/"
+HIST_CACHE = Path("data/journal/soccerstats_priors.json")
 BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
 
 LEAGUES = {
@@ -119,7 +123,9 @@ def league_context(code: str, season_start: int | None = None,
         },
     )
     if html is None:
-        return None, err or f"SoccerSTATS {code}: Abruf fehlgeschlagen"
+        html, rerr = _reader_text(u, cache_days=cache_days if season_start is None else 30)
+        if html is None:
+            return None, rerr or err or f"SoccerSTATS {code}: Abruf fehlgeschlagen"
     ctx = parse_summary(html)
     if ctx.matches_played is None and ctx.goals_per_match is None:
         return None, f"SoccerSTATS {code}: keine Liga-Zusammenfassung geparst"
@@ -253,9 +259,15 @@ def homeaway_url(code: str, season_start: int | None = None) -> str | None:
 
 def team_homeaway(code: str, season_start: int | None = None,
                   cache_days: float = 30.0) -> tuple[list[TeamVenuePrior], str | None]:
+    if season_start is not None:
+        cached = _prior_cache_get(code, season_start)
+        if cached:
+            return cached, None
+
     u = homeaway_url(code, season_start)
     if not u:
         return [], f"SoccerSTATS: Liga {code} nicht gemappt"
+
     html, err = fetch.get(
         u,
         cache_days=cache_days,
@@ -266,9 +278,124 @@ def team_homeaway(code: str, season_start: int | None = None,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         },
     )
-    if html is None:
-        return [], err or f"SoccerSTATS {code}: Home/Away-Abruf fehlgeschlagen"
-    rows = parse_homeaway_html(html)
+    rows = parse_homeaway_html(html) if html else []
+
     if not rows:
-        return [], f"SoccerSTATS {code}: Home/Away-Tabelle nicht geparst"
+        text, rerr = _reader_text(u, cache_days=cache_days)
+        if text:
+            rows = parse_homeaway_markdown(text)
+        if not rows:
+            return [], rerr or err or f"SoccerSTATS {code}: Home/Away-Tabelle nicht geparst"
+
+    if season_start is not None:
+        _prior_cache_put(code, season_start, rows)
     return rows, None
+
+def _reader_text(target_url: str, cache_days: float = 30.0) -> tuple[str | None, str | None]:
+    """Browser-rendered public fallback when SoccerSTATS rejects server IPs."""
+    return fetch.get(
+        READER_BASE + target_url,
+        cache_days=cache_days,
+        retries=1,
+        user_agent=BROWSER_UA,
+        headers={
+            "Accept": "text/plain,text/markdown,*/*",
+            "X-Engine": "browser",
+        },
+    )
+
+
+def _markdown_table(section: str) -> list[list[str]]:
+    rows = []
+    for line in section.splitlines():
+        line = line.strip()
+        if "|" not in line:
+            continue
+        vals = [x.strip() for x in line.strip("|").split("|")]
+        # Skip markdown separator rows.
+        if vals and all(re.fullmatch(r":?-{2,}:?", x or "-") for x in vals):
+            continue
+        rows.append(vals)
+    return rows
+
+
+def parse_homeaway_markdown(text: str) -> list[TeamVenuePrior]:
+    low = text.lower()
+    hi = low.find("## home table")
+    ai = low.find("## away table")
+    if hi < 0 or ai < 0 or ai <= hi:
+        # Reader occasionally emits single-# headings.
+        hi = low.find("home table")
+        ai = low.find("away table")
+    if hi < 0 or ai < 0 or ai <= hi:
+        return []
+
+    home_sec = text[hi:ai]
+    tail = text[ai:]
+    # Stop Away at the next H2-ish section when available.
+    m = re.search(r"\n##\s+", tail[8:], re.I)
+    away_sec = tail[:8 + m.start()] if m else tail
+
+    home = _venue_rows(_markdown_table(home_sec))
+    away = _venue_rows(_markdown_table(away_sec))
+    teams = sorted(set(home) & set(away))
+    return [
+        TeamVenuePrior(
+            team=t,
+            home_gp=home[t]["gp"],
+            home_gf_pg=home[t]["gf_pg"],
+            home_ga_pg=home[t]["ga_pg"],
+            home_ppg=home[t]["ppg"],
+            away_gp=away[t]["gp"],
+            away_gf_pg=away[t]["gf_pg"],
+            away_ga_pg=away[t]["ga_pg"],
+            away_ppg=away[t]["ppg"],
+            source="soccerstats/jina",
+        )
+        for t in teams
+    ]
+
+
+def _prior_cache_load() -> dict:
+    try:
+        data = json.loads(HIST_CACHE.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def _prior_cache_get(code: str, season_start: int):
+    data = _prior_cache_load()
+    raw = data.get(f"{code}:{season_start}")
+    if not isinstance(raw, list):
+        return []
+    out = []
+    for r in raw:
+        try:
+            out.append(TeamVenuePrior(**r))
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def _prior_cache_put(code: str, season_start: int, rows: list[TeamVenuePrior]) -> None:
+    if not rows:
+        return
+    data = _prior_cache_load()
+    data[f"{code}:{season_start}"] = [
+        {
+            "team": r.team,
+            "home_gp": r.home_gp,
+            "home_gf_pg": r.home_gf_pg,
+            "home_ga_pg": r.home_ga_pg,
+            "home_ppg": r.home_ppg,
+            "away_gp": r.away_gp,
+            "away_gf_pg": r.away_gf_pg,
+            "away_ga_pg": r.away_ga_pg,
+            "away_ppg": r.away_ppg,
+            "source": r.source,
+        }
+        for r in rows
+    ]
+    HIST_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    HIST_CACHE.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
