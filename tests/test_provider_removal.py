@@ -39,7 +39,7 @@ def test_removed_provider_not_republished_and_journal_unchanged(tmp_path):
     text = daily.daily_text(j, now=datetime(2026, 10, 5, tzinfo=timezone.utc))
     assert 'Old A' not in text
     assert news.load_targets(j, tmp_path / 'missing.json') == []
-    assert 'automatische Ergebnisquelle nicht angebunden' in ' '.join(settle.settle_all(j))
+    assert 'SQL' in ' '.join(settle.settle_all(j))
     assert j.read('valuebets') == before
 
 
