@@ -2,9 +2,12 @@
 
 Provider order:
 1. Understat for supported Top-5 leagues.
-2. FootyStats for broad league coverage.
+2. MatchPulse public xG tables for broad league coverage.
 3. Caller may fall back to the local shots/SoT proxy, but this module never
    fabricates xG values.
+
+MatchPulse values are current-season aggregates and are therefore used only for
+live/pre-match context, never retroactively in historical backtests.
 
 Returned snapshots are strictly pre-match when as_of is supplied.
 """
@@ -15,7 +18,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
-from . import footystats, understat
+from . import matchpulse, understat
 
 
 @dataclass
@@ -87,23 +90,21 @@ def snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], str | None]:
     if us:
         return us, None
 
-    year = _season_year(as_of)
-    fs, ferr = footystats.team_xg(code, year, as_of=as_of)
-    if fs:
+    mp, merr = matchpulse.team_xg(code)
+    if mp:
         return [
             XGSnapshot(
                 team=r.team,
-                xg=float(r.xg),
-                xga=float(r.xga),
-                xg_home=r.xg_home,
-                xga_home=r.xga_home,
-                xg_away=r.xg_away,
-                xga_away=r.xga_away,
-                matches=0,
-                source="footystats",
+                xg=float(r.xgf_per_game),
+                xga=float(r.xga_per_game),
+                xg_home=None,
+                xga_home=None,
+                xg_away=None,
+                xga_away=None,
+                matches=r.matches,
+                source="matchpulse",
             )
-            for r in fs
-            if r.xg is not None and r.xga is not None
+            for r in mp
         ], None
 
-    return [], ferr or uerr or f"xG: keine Quelle für {code}"
+    return [], merr or uerr or f"xG: keine Quelle für {code}"
