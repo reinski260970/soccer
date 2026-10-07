@@ -260,6 +260,8 @@ def build(today: date | None = None) -> str:
 
     if issues:
         lines += ["", f"Interne Datenhinweise: {len(issues)}"]
+        for issue in issues[:8]:
+            lines.append(f"• {issue}")
 
     lines += [
         "",
