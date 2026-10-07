@@ -1,0 +1,165 @@
+{
+ "_method": "M17.2 focused away-side nonlinear rolling classifier; no market features",
+ "_focus": {
+  "side": "away",
+  "max_odds": 2.5,
+  "leagues": [
+   "bundesliga",
+   "seriea"
+  ]
+ },
+ "_splits": {
+  "hyper_A": "train<=2019 validate=2020 outcome logloss",
+  "hyper_B": "train<=2020 validate=2021 outcome logloss",
+  "entry_tune": "rolling OOS 2022 + 2023 CLV",
+  "strict_holdout": "fit<=2023 evaluate 2024",
+  "diagnostic_only": "fit<=2024 evaluate 2025"
+ },
+ "_release_rule": "gate robust on 2022+2023 AND 2024 holdout >=12 bets, mean CLV>0, median CLV>=0, positive CLV rate>=52%",
+ "bundesliga": {
+  "validated": false,
+  "strategy_validated": false,
+  "model_beats_opening_logloss": false,
+  "samples": 2160,
+  "hyper": {
+   "l2": 1.0,
+   "calib": 1.1,
+   "cv_logloss": 1.045764044282344,
+   "fold_logloss": [
+    1.0439182233782076,
+    1.0476098651864802
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.075,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 4,
+    "clv": -0.06284638695450626,
+    "median_clv": -0.05835183157731094,
+    "positive_clv_rate": 0.0,
+    "roi": 0.16500000000000004
+   },
+   "per_year": {
+    "2022": {
+     "bets": 1,
+     "clv": -0.08280749472072912,
+     "median_clv": -0.08280749472072912,
+     "positive_clv_rate": 0.0,
+     "roi": -1.0
+    },
+    "2023": {
+     "bets": 3,
+     "clv": -0.0561926843657653,
+     "median_clv": -0.05281906184285301,
+     "positive_clv_rate": 0.0,
+     "roi": 0.5533333333333333
+    }
+   },
+   "fails": [
+    "tune_bets<30",
+    "tune_mean_clv<=0",
+    "tune_median_clv<=0",
+    "tune_positive_clv_rate<52%",
+    "2022_bets<8",
+    "2022_clv<=0",
+    "2023_bets<8",
+    "2023_clv<=0"
+   ],
+   "near_score": -8.09737379395336
+  },
+  "strict_holdout_2024": {
+   "bets": 5,
+   "clv": -0.007756846477645252,
+   "median_clv": 0.010356727079215089,
+   "positive_clv_rate": 0.6,
+   "roi": -1.0
+  },
+  "strict_holdout_logloss": {
+   "model": 1.050867002447329,
+   "opening": 0.9822496581855044,
+   "gain": -0.06861734426182464
+  },
+  "diagnostic_only_2025": {
+   "bets": 3,
+   "clv": -0.05775286837374338,
+   "median_clv": -0.03888028045219416,
+   "positive_clv_rate": 0.3333333333333333,
+   "roi": 0.4633333333333332
+  }
+ },
+ "seriea": {
+  "validated": false,
+  "strategy_validated": false,
+  "model_beats_opening_logloss": false,
+  "samples": 2929,
+  "hyper": {
+   "l2": 0.05,
+   "calib": 1.1,
+   "cv_logloss": 1.030316195292248,
+   "fold_logloss": [
+    1.0125884616649865,
+    1.0480439289195094
+   ]
+  },
+  "gate": null,
+  "near_miss_gate": {
+   "edge": 0.05,
+   "cap": 2.5,
+   "side": "away",
+   "stats": {
+    "bets": 6,
+    "clv": 0.005866920562356696,
+    "median_clv": -0.0035255372169310517,
+    "positive_clv_rate": 0.5,
+    "roi": 0.6016666666666667
+   },
+   "per_year": {
+    "2022": {
+     "bets": 5,
+     "clv": 0.009779586945114249,
+     "median_clv": 0.006645336917568967,
+     "positive_clv_rate": 0.6,
+     "roi": 0.44800000000000006
+    },
+    "2023": {
+     "bets": 1,
+     "clv": -0.01369641135143107,
+     "median_clv": -0.01369641135143107,
+     "positive_clv_rate": 0.0,
+     "roi": 1.37
+    }
+   },
+   "fails": [
+    "tune_bets<30",
+    "tune_median_clv<=0",
+    "tune_positive_clv_rate<52%",
+    "2022_bets<8",
+    "2023_bets<8",
+    "2023_clv<=0"
+   ],
+   "near_score": 0.25216386261501833
+  },
+  "strict_holdout_2024": {
+   "bets": 6,
+   "clv": 0.03995132436450999,
+   "median_clv": 0.01011355978836792,
+   "positive_clv_rate": 0.5,
+   "roi": 0.15166666666666662
+  },
+  "strict_holdout_logloss": {
+   "model": 1.0285140333819838,
+   "opening": 0.9474818290745344,
+   "gain": -0.0810322043074494
+  },
+  "diagnostic_only_2025": {
+   "bets": 2,
+   "clv": 0.002279595200263107,
+   "median_clv": 0.002279595200263107,
+   "positive_clv_rate": 0.5,
+   "roi": 0.25
+  }
+ }
+}
