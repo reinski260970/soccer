@@ -1,0 +1,593 @@
+{
+ "_method": "M17.4 pooled/local binary Serie-A away-win classifier + Elo + dual-timescale features; no market features",
+ "_target": "Serie A away moneyline/1X2 away side",
+ "_splits": {
+  "hyper_A": "train<=2019 validate SerieA 2020 binary logloss",
+  "hyper_B": "train<=2020 validate SerieA 2021 binary logloss",
+  "entry_tune": "rolling OOS SerieA 2022 + 2023 CLV",
+  "strict_holdout": "rolling OOS SerieA 2024",
+  "diagnostic_only": "rolling OOS SerieA 2025"
+ },
+ "_release_rule": "robust tune gate + strict 2024 >=15 bets, mean/median CLV>0, positive CLV rate>=52%",
+ "coverage": {
+  "bundesliga": {
+   "2017": {
+    "total": 306,
+    "matched": 272,
+    "coverage": 0.8888888888888888,
+    "exact_dates": 272,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 34,
+    "understat_error": null
+   },
+   "2018": {
+    "total": 306,
+    "matched": 210,
+    "coverage": 0.6862745098039216,
+    "exact_dates": 210,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 96,
+    "understat_error": null
+   },
+   "2019": {
+    "total": 306,
+    "matched": 240,
+    "coverage": 0.7843137254901961,
+    "exact_dates": 240,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 66,
+    "understat_error": null
+   },
+   "2020": {
+    "total": 306,
+    "matched": 272,
+    "coverage": 0.8888888888888888,
+    "exact_dates": 272,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 34,
+    "understat_error": null
+   },
+   "2021": {
+    "total": 306,
+    "matched": 240,
+    "coverage": 0.7843137254901961,
+    "exact_dates": 240,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 66,
+    "understat_error": null
+   },
+   "2022": {
+    "total": 306,
+    "matched": 272,
+    "coverage": 0.8888888888888888,
+    "exact_dates": 272,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 34,
+    "understat_error": null
+   },
+   "2023": {
+    "total": 306,
+    "matched": 306,
+    "coverage": 1.0,
+    "exact_dates": 306,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2024": {
+    "total": 306,
+    "matched": 306,
+    "coverage": 1.0,
+    "exact_dates": 306,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2025": {
+    "total": 294,
+    "matched": 285,
+    "coverage": 0.9693877551020408,
+    "exact_dates": 264,
+    "day_month_fixed": 20,
+    "team_score_fixed": 1,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 9,
+    "understat_error": null
+   }
+  },
+  "epl": {
+   "2017": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2018": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2019": {
+    "total": 314,
+    "matched": 314,
+    "coverage": 1.0,
+    "exact_dates": 314,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2020": {
+    "total": 446,
+    "matched": 385,
+    "coverage": 0.8632286995515696,
+    "exact_dates": 380,
+    "day_month_fixed": 1,
+    "team_score_fixed": 4,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 61,
+    "understat_error": null
+   },
+   "2021": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2022": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2023": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2024": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2025": {
+    "total": 371,
+    "matched": 362,
+    "coverage": 0.9757412398921833,
+    "exact_dates": 341,
+    "day_month_fixed": 20,
+    "team_score_fixed": 1,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 9,
+    "understat_error": null
+   }
+  },
+  "laliga": {
+   "2017": {
+    "total": 380,
+    "matched": 342,
+    "coverage": 0.9,
+    "exact_dates": 342,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 38,
+    "understat_error": null
+   },
+   "2018": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2019": {
+    "total": 323,
+    "matched": 323,
+    "coverage": 1.0,
+    "exact_dates": 323,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2020": {
+    "total": 437,
+    "matched": 386,
+    "coverage": 0.8832951945080092,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 6,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 51,
+    "understat_error": null
+   },
+   "2021": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2022": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2023": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2024": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2025": {
+    "total": 362,
+    "matched": 353,
+    "coverage": 0.9751381215469613,
+    "exact_dates": 329,
+    "day_month_fixed": 24,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 9,
+    "understat_error": null
+   }
+  },
+  "seriea": {
+   "2017": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2018": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2019": {
+    "total": 282,
+    "matched": 282,
+    "coverage": 1.0,
+    "exact_dates": 282,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2020": {
+    "total": 478,
+    "matched": 387,
+    "coverage": 0.8096234309623431,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 7,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 91,
+    "understat_error": null
+   },
+   "2021": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2022": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2023": {
+    "total": 380,
+    "matched": 379,
+    "coverage": 0.9973684210526316,
+    "exact_dates": 379,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 1,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2024": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2025": {
+    "total": 361,
+    "matched": 353,
+    "coverage": 0.9778393351800554,
+    "exact_dates": 328,
+    "day_month_fixed": 25,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 8,
+    "understat_error": null
+   }
+  },
+  "ligue1": {
+   "2017": {
+    "total": 380,
+    "matched": 379,
+    "coverage": 0.9973684210526316,
+    "exact_dates": 379,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 1,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2018": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2019": {
+    "total": 279,
+    "matched": 279,
+    "coverage": 1.0,
+    "exact_dates": 279,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2020": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2021": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 380,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2022": {
+    "total": 380,
+    "matched": 380,
+    "coverage": 1.0,
+    "exact_dates": 379,
+    "day_month_fixed": 0,
+    "team_score_fixed": 1,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2023": {
+    "total": 306,
+    "matched": 306,
+    "coverage": 1.0,
+    "exact_dates": 306,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2024": {
+    "total": 306,
+    "matched": 306,
+    "coverage": 1.0,
+    "exact_dates": 306,
+    "day_month_fixed": 0,
+    "team_score_fixed": 0,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 0,
+    "understat_error": null
+   },
+   "2025": {
+    "total": 297,
+    "matched": 289,
+    "coverage": 0.9730639730639731,
+    "exact_dates": 264,
+    "day_month_fixed": 23,
+    "team_score_fixed": 2,
+    "excluded_suspended_or_short_shift": 0,
+    "unmatched": 8,
+    "understat_error": null
+   }
+  }
+ },
+ "samples": {
+  "bundesliga": 2160,
+  "epl": 3000,
+  "laliga": 2971,
+  "seriea": 2929,
+  "ligue1": 2815
+ },
+ "hyper": {
+  "l2": 1.0,
+  "calib": 1.15,
+  "local_weight": 0.0,
+  "cv_logloss": 0.5898823442077181,
+  "fold_logloss": [
+   0.584484193977183,
+   0.5952804944382531
+  ]
+ },
+ "validated": false,
+ "gate": null,
+ "near_miss_gate": {
+  "edge": 0.02,
+  "cap": 2.5,
+  "side": "away",
+  "stats": {
+   "bets": 172,
+   "clv": -0.02647221265429647,
+   "median_clv": -0.018719608710245916,
+   "positive_clv_rate": 0.29651162790697677,
+   "roi": 0.03040697674418605
+  },
+  "per_year": {
+   "2022": {
+    "bets": 86,
+    "clv": -0.022742032912486453,
+    "median_clv": -0.016852252756755837,
+    "positive_clv_rate": 0.3023255813953488,
+    "roi": -0.017093023255813956
+   },
+   "2023": {
+    "bets": 86,
+    "clv": -0.0302023923961064,
+    "median_clv": -0.019089066510085073,
+    "positive_clv_rate": 0.29069767441860467,
+    "roi": 0.07790697674418608
+   }
+  },
+  "fails": [
+   "tune_mean_clv<=0",
+   "tune_median_clv<=0",
+   "tune_positive_clv_rate<52%",
+   "2022_clv<=0",
+   "2023_clv<=0"
+  ],
+  "near_score": 90.83432390865535
+ },
+ "strict_holdout_2024": {
+  "bets": 94,
+  "clv": -0.02233126767288673,
+  "median_clv": -0.010290590081098505,
+  "positive_clv_rate": 0.43617021276595747,
+  "roi": 0.02468085106382976
+ },
+ "strict_holdout_logloss": {
+  "model": 0.558919780193943,
+  "opening": 0.5168508957591355,
+  "gain": -0.042068884434807496
+ },
+ "diagnostic_only_2025": {
+  "bets": 41,
+  "clv": -0.0014062070395247487,
+  "median_clv": -0.0035007773172668344,
+  "positive_clv_rate": 0.43902439024390244,
+  "roi": 0.18658536585365854
+ }
+}
