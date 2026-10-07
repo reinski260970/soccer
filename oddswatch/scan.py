@@ -340,7 +340,7 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
                 )
             except Exception as e:
                 ext_xg_err = f"{type(e).__name__}: {e}"
-        if ext_xg_err and "FOOTYSTATS_API_KEY fehlt" not in ext_xg_err:
+        if ext_xg_err:
             notes.append(f"{label}: externes xG nicht verfügbar ({ext_xg_err})")
 
         teams = list(active_m8[0].poisson.attack) if active_m8 else list(model.attack)
