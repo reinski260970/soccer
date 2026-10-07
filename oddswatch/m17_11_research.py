@@ -212,7 +212,28 @@ def _update_strengths(
         st.n += 1
 
 
-def build_structural_dataset(matches, odds_rows, shot_map) -> list[dict]:
+def _apply_season_carry(
+    strengths,
+    fast_carry: float,
+    slow_carry: float,
+) -> None:
+    """Offseason shrinkage applied before any new-season feature row."""
+    fc = _clip(fast_carry, 0.0, 1.0)
+    sc = _clip(slow_carry, 0.0, 1.0)
+    for st in strengths.values():
+        st.attack_fast *= fc
+        st.defense_fast *= fc
+        st.attack_slow *= sc
+        st.defense_slow *= sc
+
+
+def build_structural_dataset(
+    matches,
+    odds_rows,
+    shot_map,
+    season_fast_carry: float = 1.0,
+    season_slow_carry: float = 1.0,
+) -> list[dict]:
     """Existing rolling features + structural ratings, all strictly pre-match."""
     odds = {
         (d, h, a): (season, hg, ag, op, cl)
@@ -233,10 +254,18 @@ def build_structural_dataset(matches, odds_rows, shot_map) -> list[dict]:
         "away_xg": 1.20,
     }
     out = []
+    previous_season = None
 
     for m in sorted(matches, key=lambda z: z.date):
         d, h, a = m.date, m.home, m.away
         season = _season_start(d)
+        if previous_season is not None and season != previous_season:
+            _apply_season_carry(
+                strengths,
+                season_fast_carry,
+                season_slow_carry,
+            )
+        previous_season = season
         shot = shot_map.get((season, h, a))
         hs, as_ = states[h], states[a]
         hr, ar = strengths[h], strengths[a]
