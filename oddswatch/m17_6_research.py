@@ -1,29 +1,34 @@
-"""M17.6: M17.5 + leakage-safe SoccerSTATS previous-season team priors.
+"""M17.6: M17.5 + leakage-safe previous-season team priors.
 
-Core history remains Mongo:
-- results, HS/AS, HST/AST, HC/AC
+Historical source is Mongo only. We compute the same kind of context commonly
+shown on SoccerSTATS (home/away PPG, GF/game, GA/game) from the completed
+PREVIOUS season, so research is not dependent on scraping and cannot leak
+future season information.
+
+SoccerSTATS remains a live/cross-check source in the scanner, not a historical
+backtest dependency.
+
+Core history:
+- results, HS/AS, HST/AST, HC/AC from Mongo
 - learned chance/xG proxy trained against real Understat xG
-- Pinnacle opening/closing only for validation, never as model features
+- Pinnacle opening/closing only for validation, never model features
 
-New in M17.6:
-For a match in season Y, only SoccerSTATS HOME/AWAY aggregates from the fully
-completed previous season Y-1 are allowed as priors:
-- home team's prior home PPG, GF/game, GA/game
-- away team's prior away PPG, GF/game, GA/game
+For a match in season Y, only completed season Y-1 priors are allowed:
+- home team's prior HOME PPG, GF/game, GA/game
+- away team's prior AWAY PPG, GF/game, GA/game
 - relative venue-strength transforms
-- explicit missing/promoted flags
-
-No current-season final SoccerSTATS table is backfilled into earlier matches.
-This keeps the strict 2024 holdout genuinely chronological.
+- explicit promoted/missing flags
 """
 
 from __future__ import annotations
 
 import json
 import os
+from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 
-from . import matching
+from .m12_research import _season_start
 from .m14_research import LEAGUES, load_league, train_proxy
 from .m17_1_research import build_dataset, load_real_shots, _logloss, _entry_stats
 from .m17_5_research import (
@@ -35,9 +40,72 @@ from .m17_5_research import (
     _market_logloss,
     mongo_coverage,
 )
-from .sources import soccerstats
 
 OUT = Path("data/m17_6_validation.json")
+
+
+@dataclass
+class VenuePrior:
+    team: str
+    home_gp: int
+    home_gf_pg: float
+    home_ga_pg: float
+    home_ppg: float
+    away_gp: int
+    away_gf_pg: float
+    away_ga_pg: float
+    away_ppg: float
+    source: str = "mongo_previous_season"
+
+
+def _pts(gf: float, ga: float) -> int:
+    return 3 if gf > ga else (1 if gf == ga else 0)
+
+
+def build_previous_season_priors(matches) -> dict[int, list[VenuePrior]]:
+    """Target season Y -> team venue priors from completed season Y-1."""
+    raw = defaultdict(lambda: defaultdict(lambda: {
+        "hgp": 0, "hgf": 0.0, "hga": 0.0, "hpts": 0.0,
+        "agp": 0, "agf": 0.0, "aga": 0.0, "apts": 0.0,
+    }))
+
+    for m in matches:
+        s = _season_start(m.date)
+        h = raw[s][m.home]
+        a = raw[s][m.away]
+        hg, ag = float(m.home_goals), float(m.away_goals)
+
+        h["hgp"] += 1
+        h["hgf"] += hg
+        h["hga"] += ag
+        h["hpts"] += _pts(hg, ag)
+
+        a["agp"] += 1
+        a["agf"] += ag
+        a["aga"] += hg
+        a["apts"] += _pts(ag, hg)
+
+    out = {}
+    seasons = sorted(raw)
+    for target in range(min(seasons) + 1 if seasons else START_YEAR, END_YEAR + 1):
+        prev = raw.get(target - 1, {})
+        rows = []
+        for team, s in prev.items():
+            if s["hgp"] <= 0 or s["agp"] <= 0:
+                continue
+            rows.append(VenuePrior(
+                team=team,
+                home_gp=s["hgp"],
+                home_gf_pg=s["hgf"] / s["hgp"],
+                home_ga_pg=s["hga"] / s["hgp"],
+                home_ppg=s["hpts"] / s["hgp"],
+                away_gp=s["agp"],
+                away_gf_pg=s["agf"] / s["agp"],
+                away_ga_pg=s["aga"] / s["agp"],
+                away_ppg=s["apts"] / s["agp"],
+            ))
+        out[target] = rows
+    return out
 
 
 def _defaults(rows):
@@ -46,9 +114,11 @@ def _defaults(rows):
             "home_ppg": 1.5, "home_gf_pg": 1.4, "home_ga_pg": 1.2,
             "away_ppg": 1.1, "away_gf_pg": 1.1, "away_ga_pg": 1.4,
         }
+
     def avg(attr):
         vals = [float(getattr(r, attr)) for r in rows]
         return sum(vals) / len(vals)
+
     return {
         "home_ppg": avg("home_ppg"),
         "home_gf_pg": avg("home_gf_pg"),
@@ -59,43 +129,19 @@ def _defaults(rows):
     }
 
 
-def load_prior_seasons(code: str, seasons: list[int]):
-    """Load prior season Y-1 for every target season Y."""
-    priors = {}
-    errors = {}
-    for season in sorted(set(seasons)):
-        prev = season - 1
-        rows, err = soccerstats.team_homeaway(code, prev, cache_days=30.0)
-        priors[season] = rows
-        if err:
-            errors[str(season)] = err
-    return priors, errors
-
-
-def _find_prior(team: str, rows):
-    if not rows:
-        return None
-    names = [r.team for r in rows]
-    hit = matching.find(team, names)
-    if hit is None:
-        hit = matching.find_strict(team, names)
-    if hit is None:
-        return None
-    return next((r for r in rows if r.team == hit), None)
-
-
-def augment_with_priors(data: list[dict], priors: dict[int, list]) -> tuple[list[dict], dict]:
+def augment_with_priors(data: list[dict], priors: dict[int, list[VenuePrior]]):
     out = []
     both = home_only = away_only = neither = 0
-
     defaults = {season: _defaults(rows) for season, rows in priors.items()}
 
     for r in data:
         season = int(r["season"])
         rows = priors.get(season, [])
+        by_team = {x.team: x for x in rows}
         d = defaults.get(season) or _defaults([])
-        hp = _find_prior(r["home"], rows)
-        ap = _find_prior(r["away"], rows)
+
+        hp = by_team.get(r["home"])
+        ap = by_team.get(r["away"])
 
         if hp and ap:
             both += 1
@@ -141,20 +187,16 @@ def augment_with_priors(data: list[dict], priors: dict[int, list]) -> tuple[list
     }
 
 
-def _league_run(matches, odds_rows, shots, cov, code):
+def _league_run(matches, odds_rows, shots, cov):
     base = build_dataset(matches, odds_rows, shots)
-    seasons = sorted({int(r["season"]) for r in base})
-    priors, prior_errors = load_prior_seasons(code, seasons)
+    priors = build_previous_season_priors(matches)
     data, prior_cov = augment_with_priors(base, priors)
 
     result = {
         "samples": len(data),
         "coverage": cov,
-        "soccerstats_prior_coverage": prior_cov,
-        "soccerstats_prior_errors": prior_errors,
-        "loaded_prior_seasons": sorted(
-            int(s) for s, rows in priors.items() if rows
-        ),
+        "previous_season_prior_coverage": prior_cov,
+        "prior_source": "Mongo completed Y-1 season; SoccerSTATS-style home/away context",
     }
 
     if cov.get("proxy_coverage", 0.0) < 0.70:
@@ -191,11 +233,8 @@ def _league_run(matches, odds_rows, shots, cov, code):
     use_gate = gate or near
 
     empty = {
-        "bets": 0,
-        "clv": 0.0,
-        "median_clv": 0.0,
-        "positive_clv_rate": 0.0,
-        "roi": 0.0,
+        "bets": 0, "clv": 0.0, "median_clv": 0.0,
+        "positive_clv_rate": 0.0, "roi": 0.0,
     }
     hold = (
         _entry_stats(hold_eval, use_gate["edge"], use_gate["cap"], use_gate["side"])
@@ -249,8 +288,8 @@ def run(out: Path = OUT):
 
     result = {
         "_method": (
-            "M17.6 M17.5 Mongo/xG-proxy + SoccerSTATS previous-season "
-            "home-away team priors; no market features"
+            "M17.6 M17.5 Mongo/xG-proxy + leakage-safe Mongo-derived "
+            "previous-season SoccerSTATS-style home-away priors; no market features"
         ),
         "_proxy": {
             "n": proxy["n"],
@@ -259,9 +298,12 @@ def run(out: Path = OUT):
             "features": proxy["features"],
             "train_seasons": proxy["train_seasons"],
         },
-        "_soccerstats_rule": (
-            "season Y uses only completed season Y-1 team home/away aggregates; "
-            "missing/promoted teams use league means + explicit missing flags"
+        "_prior_rule": (
+            "season Y uses only completed Mongo season Y-1 home/away aggregates; "
+            "promoted/missing teams use league means + explicit missing flags"
+        ),
+        "_soccerstats_role": (
+            "live/cross-check only; historical research does not depend on scraping"
         ),
         "_splits": {
             "hyper_A": "train<=2019 validate=2020 outcome logloss",
@@ -288,7 +330,7 @@ def run(out: Path = OUT):
             shots = load_real_shots(
                 code, start_year=START_YEAR, end_year=END_YEAR
             )
-            r = _league_run(matches, rows, shots, cov, code)
+            r = _league_run(matches, rows, shots, cov)
         except Exception as exc:
             r = {
                 "validated": False,
@@ -300,10 +342,10 @@ def run(out: Path = OUT):
         ts = gate.get("stats") or {}
         hs = r.get("strict_holdout_2024") or {}
         ll = r.get("strict_holdout_logloss") or {}
-        pc = r.get("soccerstats_prior_coverage") or {}
+        pc = r.get("previous_season_prior_coverage") or {}
         log.append(
             f"{league}: samples={r.get('samples',0)} "
-            f"SSboth={pc.get('both_prior_pct',0)*100:.1f}% | "
+            f"prior-both={pc.get('both_prior_pct',0)*100:.1f}% | "
             f"gate={'OK' if r.get('gate') else 'NONE'} "
             f"{gate.get('side','-')} edge={gate.get('edge')} cap={gate.get('cap')} "
             f"tune n={ts.get('bets',0)} CLV={ts.get('clv',0)*100:+.2f}% | "
