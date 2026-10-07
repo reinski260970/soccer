@@ -76,15 +76,17 @@ def assess(rows: list[dict], current: dict, now: datetime) -> dict | None:
 
     cur_probs = current.get("probs") or {}
     old_probs = prev.get("probs") or {}
-    if "Pinnacle" not in cur_probs or "Pinnacle" not in old_probs:
+    lead = current.get("lead_source") or "Pinnacle"
+    slow_cfg = current.get("slow_sources") or ["Bet365", "Betfair"]
+    if lead not in cur_probs or lead not in old_probs:
         return None
 
-    lead_move = float(cur_probs["Pinnacle"]) - float(old_probs["Pinnacle"])
+    lead_move = float(cur_probs[lead]) - float(old_probs[lead])
     if abs(lead_move) < MIN_LEAD_MOVE:
         return None
 
     slow_names = [
-        b for b in ("Bet365", "Betfair")
+        b for b in slow_cfg
         if b in cur_probs and b in old_probs
     ]
     if not slow_names:
@@ -97,14 +99,14 @@ def assess(rows: list[dict], current: dict, now: datetime) -> dict | None:
         return None
 
     lag = lead_move - slow_move
-    current_gap = float(cur_probs["Pinnacle"]) - slow_now
+    current_gap = float(cur_probs[lead]) - slow_now
     direction = "SHORTENING" if lead_move > 0 else "DRIFTING"
 
     score = 0
     reasons = []
     if abs(lead_move) >= MIN_LEAD_MOVE:
         score += 1
-        reasons.append(f"Pinnacle {lead_move * 100:+.1f}pp")
+        reasons.append(f"{lead} {lead_move * 100:+.1f}pp")
     if _same_sign(lead_move, lag) and abs(lag) >= MIN_LAG_GAP:
         score += 1
         reasons.append(f"Lead-vs-Slow {lag * 100:+.1f}pp")
@@ -116,7 +118,7 @@ def assess(rows: list[dict], current: dict, now: datetime) -> dict | None:
     valid = []
     for r in rows[-4:]:
         ts = _parse_ts(r.get("ts", ""))
-        p = (r.get("probs") or {}).get("Pinnacle")
+        p = (r.get("probs") or {}).get(lead)
         if ts and p is not None:
             valid.append((ts, float(p)))
     valid.sort()
@@ -131,6 +133,7 @@ def assess(rows: list[dict], current: dict, now: datetime) -> dict | None:
     return {
         "direction": direction,
         "score": score,
+        "lead_source": lead,
         "lead_move": lead_move,
         "slow_move": slow_move,
         "lag": lag,
@@ -157,6 +160,8 @@ def update_many(records: list[dict], *, now: datetime | None = None,
             "league": rec["league"],
             "market": rec["market"],
             "selection": rec["selection"],
+            "lead_source": rec.get("lead_source") or "Pinnacle",
+            "slow_sources": list(rec.get("slow_sources") or ["Bet365", "Betfair"]),
             "probs": {k: float(v) for k, v in (rec.get("probs") or {}).items() if v is not None},
             "odds": {k: float(v) for k, v in (rec.get("odds") or {}).items() if v is not None},
         }
