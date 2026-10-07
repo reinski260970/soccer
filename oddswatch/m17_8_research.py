@@ -159,6 +159,34 @@ def _attach(rows: list[dict], probs: list[list[float]]) -> list[dict]:
     return out
 
 
+def _prob_diagnostics(rows: list[dict]) -> dict:
+    """Aggregate outcome calibration only; never used for hyper/gate selection."""
+    if not rows:
+        return {
+            "n": 0,
+            "avg_pred": [0.0, 0.0, 0.0],
+            "actual_rate": [0.0, 0.0, 0.0],
+            "gap_pred_minus_actual": [0.0, 0.0, 0.0],
+            "logloss": 0.0,
+        }
+    n = len(rows)
+    avg = [
+        sum(float(r["p"][k]) for r in rows) / n
+        for k in range(3)
+    ]
+    actual = [
+        sum(1 for r in rows if int(r["y"]) == k) / n
+        for k in range(3)
+    ]
+    return {
+        "n": n,
+        "avg_pred": avg,
+        "actual_rate": actual,
+        "gap_pred_minus_actual": [avg[k] - actual[k] for k in range(3)],
+        "logloss": _logloss([r["p"] for r in rows], [r["y"] for r in rows]),
+    }
+
+
 def _rolling_eval(data: list[dict], year: int, hyper: dict) -> list[dict]:
     train = [r for r in data if r["season"] <= year - 1]
     test = [r for r in data if r["season"] == year]
@@ -286,6 +314,12 @@ def _league_run(matches, odds_rows, shots, cov, hyper_fn=None, eval_fn=None):
             "gain": hold_market_ll - hold_model_ll,
         },
         "diagnostic_only_2025": diag,
+        "probability_diagnostics": {
+            "2022": _prob_diagnostics(tune[2022]),
+            "2023": _prob_diagnostics(tune[2023]),
+            "2024": _prob_diagnostics(hold_eval),
+            "2025": _prob_diagnostics(diag_eval),
+        },
     })
     return result
 
