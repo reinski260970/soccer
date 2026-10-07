@@ -1,1 +1,1 @@
-trigger 2026-10-07 weekend outlook
+manual production run requested after PR #4 merge
