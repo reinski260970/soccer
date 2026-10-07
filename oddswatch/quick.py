@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from . import guard, pricing
+from . import guard, pricing, report, steam, telegram
 from .sources import apifootball
 
 MIN_EV = 0.03
@@ -40,7 +40,8 @@ def _selection(fx: apifootball.ApiFixture, market: str) -> str:
     return market
 
 
-def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 25) -> list[str]:
+def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 25,
+                     send: bool = False) -> list[str]:
     """Alle API-Football-Spiele eines Tages gegen Pinnacle fair scannen.
 
     Pinnacle wird je Marktgruppe de-vigged. Bet365/Betfair sind die spielbaren
@@ -52,6 +53,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
         raise RuntimeError(err)
 
     rows: list[dict] = []
+    steam_records: list[dict] = []
     api_ok = 1
     api_total = 1
     odds_with_data = 0
@@ -71,7 +73,35 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
         for grp in _groups(pinnacle):
             probs = pricing.devig([pinnacle[k] for k in grp])
             fair = dict(zip(grp, probs))
+
+            book_probs: dict[str, dict[str, float]] = {"Pinnacle": fair}
+            for book in PLAYABLE:
+                bm = books.get(book, {})
+                if all(k in bm and bm[k] > 1 for k in grp):
+                    book_probs[book] = dict(zip(grp, pricing.devig([bm[k] for k in grp])))
+
             for market in grp:
+                odds_by_book = {
+                    book: books.get(book, {}).get(market)
+                    for book in ("Pinnacle",) + PLAYABLE
+                    if books.get(book, {}).get(market)
+                }
+                probs_by_book = {
+                    book: pp[market]
+                    for book, pp in book_probs.items()
+                    if market in pp
+                }
+                steam_records.append({
+                    "key": f"{fx.id}|{market}",
+                    "event": f"{fx.home} – {fx.away}",
+                    "kickoff": fx.kickoff.isoformat(),
+                    "league": fx.league,
+                    "market": market,
+                    "selection": _selection(fx, market),
+                    "probs": probs_by_book,
+                    "odds": odds_by_book,
+                })
+
                 best = None
                 for book in PLAYABLE:
                     o = books.get(book, {}).get(market)
@@ -109,6 +139,44 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
         )
     if len(rows) > top:
         log.append(f"... {len(rows) - top} weitere Treffer")
+    signals = steam.update_many(steam_records)
+    if signals:
+        signals.sort(key=lambda s: (-s["score"], -abs(s["lead_move"])))
+        log += ["", f"⚡ PRE-STEAM: {len(signals)} Frühindikator(en)"]
+        for s in signals[:12]:
+            odds = s.get("odds") or {}
+            slow = " | ".join(
+                f"{b} {odds[b]:.2f}" for b in ("Bet365", "Betfair") if b in odds
+            ) or "Slow-Book ohne Quote"
+            log.append(
+                f"{s['direction']} {s['event']} | {s['selection']} | "
+                f"Pinnacle Δ {s['lead_move']*100:+.1f}pp in {s['minutes']}m | "
+                f"Lead-vs-Slow {s['lag']*100:+.1f}pp | {slow}"
+            )
+        if send:
+            lines = [
+                f"⚡ PRE-STEAM {report.stand()}",
+                "Frühindikator: Pinnacle bewegt sich vor Bet365/Betfair. Kein automatisches PLAY.",
+            ]
+            for s in signals[:8]:
+                odds = s.get("odds") or {}
+                slow = " | ".join(
+                    f"{b} {odds[b]:.2f}" for b in ("Bet365", "Betfair") if b in odds
+                ) or "keine Slow-Book-Quote"
+                arrow = "📉 Quote dürfte kürzer werden" if s["direction"] == "SHORTENING" else "📈 Quote dürfte länger werden"
+                lines += [
+                    "",
+                    f"{arrow} · {report._league(s['league'])}",
+                    f"🆚 {s['event']}",
+                    f"➡️ {s['selection']}",
+                    f"   Pinnacle {s['lead_move']*100:+.1f}pp / {s['minutes']}m · "
+                    f"Lead-vs-Slow {s['lag']*100:+.1f}pp",
+                    f"   {slow}",
+                ]
+            tr = telegram.send("\n".join(lines))
+            log.append("PRE-STEAM Telegram: " + (
+                f"gesendet {tr['message_ids']}" if tr["sent"] else f"NICHT gesendet – {tr['error']}"
+            ))
     if errors:
         log.append(f"API-Hinweise: {len(errors)} Odds-Abruf(e) fehlgeschlagen")
     return log
@@ -116,5 +184,5 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
 
 def run(j=None, send=False, days=7, now=None, full=False):
     if full:
-        return full_market_scan()
+        return full_market_scan(send=send)
     return guard.run(j, send=send, now=now, strict=True)
