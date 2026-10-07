@@ -1,0 +1,31 @@
+name: shadow-settle
+
+on:
+  push:
+    paths:
+      - ".github/shadow-run-now.txt"
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: shadow-settle
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Settle forward shadow and PLAY tracking
+        env:
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch settle
