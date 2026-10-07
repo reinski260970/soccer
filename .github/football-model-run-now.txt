@@ -1,1 +1,1 @@
-trigger M17.11 structural-strength strict walk-forward
+trigger M17.12 offseason-carry strict walk-forward
