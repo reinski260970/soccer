@@ -218,6 +218,76 @@ def _venue_rows(table):
     return out
 
 
+def parse_homeaway_text(html: str) -> list[TeamVenuePrior]:
+    """Fallback parser for the visible SoccerSTATS Home/Away table text.
+
+    GitHub-hosted runners can receive the normal HTML page while the Jina
+    reader fallback is blocked with HTTP 403. This parser strips HTML and
+    extracts the visible table rows directly.
+    """
+    t = _text(html)
+    low = t.lower()
+    hi = low.find("home table")
+    ai = low.find("away table")
+    if hi < 0 or ai < 0 or ai <= hi:
+        return []
+
+    home_sec = t[hi:ai]
+    tail = t[ai:]
+    stops = [
+        tail.lower().find("relative home / away performance"),
+        tail.lower().find("points & goal distribution"),
+        tail.lower().find("tables overview"),
+    ]
+    stops = [x for x in stops if x > 0]
+    away_sec = tail[:min(stops)] if stops else tail
+
+    row_re = re.compile(
+        r"(?:^|\s)(\d{1,2})\s+"
+        r"([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ0-9 .&'\-]{1,40}?)\s+"
+        r"(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+"
+        r"(\d+)\s+(\d+)\s+([+\-]?\d+)\s+(\d+)\s+"
+        r"(\d+(?:\.\d+)?)"
+    )
+
+    def parse(section: str):
+        out = {}
+        for m in row_re.finditer(section):
+            team = " ".join(m.group(2).split())
+            gp = int(m.group(3))
+            gf = float(m.group(7))
+            ga = float(m.group(8))
+            ppg = float(m.group(11))
+            if gp <= 0 or not (0 <= ppg <= 3.01):
+                continue
+            out[team] = {
+                "gp": gp,
+                "gf_pg": gf / gp,
+                "ga_pg": ga / gp,
+                "ppg": ppg,
+            }
+        return out
+
+    home = parse(home_sec)
+    away = parse(away_sec)
+    teams = sorted(set(home) & set(away))
+    return [
+        TeamVenuePrior(
+            team=t,
+            home_gp=home[t]["gp"],
+            home_gf_pg=home[t]["gf_pg"],
+            home_ga_pg=home[t]["ga_pg"],
+            home_ppg=home[t]["ppg"],
+            away_gp=away[t]["gp"],
+            away_gf_pg=away[t]["gf_pg"],
+            away_ga_pg=away[t]["ga_pg"],
+            away_ppg=away[t]["ppg"],
+            source="soccerstats/html-text",
+        )
+        for t in teams
+    ]
+
+
 def parse_homeaway_html(html: str) -> list[TeamVenuePrior]:
     p = _Tables()
     p.feed(html)
@@ -279,6 +349,8 @@ def team_homeaway(code: str, season_start: int | None = None,
         },
     )
     rows = parse_homeaway_html(html) if html else []
+    if not rows and html:
+        rows = parse_homeaway_text(html)
 
     if not rows:
         text, rerr = _reader_text(u, cache_days=cache_days)
@@ -319,25 +391,72 @@ def _markdown_table(section: str) -> list[list[str]]:
     return rows
 
 
+def _clean_md_team(value: str) -> str:
+    s = value.strip()
+    # Jina markdown commonly emits [Team](url); keep only visible label.
+    m = re.fullmatch(r"\[([^\]]+)\]\([^\)]+\)", s)
+    if m:
+        s = m.group(1)
+    s = re.sub(r"^[0-9]+\s+", "", s).strip()
+    return s
+
+
+def _parse_venue_markdown_section(section: str) -> dict[str, dict]:
+    out = {}
+    for raw in section.splitlines():
+        line = raw.strip()
+        if "|" not in line:
+            continue
+        vals = [x.strip() for x in line.strip("|").split("|")]
+        if len(vals) < 10:
+            continue
+        if any("GP" == x for x in vals):
+            continue
+
+        # Typical row: rank | team | GP | W | D | L | GF | GA | GD | Pts | PPG
+        start = 0
+        try:
+            int(float(vals[0]))
+            start = 1
+        except (ValueError, TypeError):
+            pass
+        if len(vals) - start < 10:
+            continue
+
+        team = _clean_md_team(vals[start])
+        nums = vals[start + 1:start + 10]
+        try:
+            gp = int(float(nums[0]))
+            gf = float(nums[4])
+            ga = float(nums[5])
+            ppg = float(nums[8])
+        except (ValueError, TypeError, IndexError):
+            continue
+        if not team or gp <= 0 or gf < 0 or ga < 0 or not (0 <= ppg <= 3.01):
+            continue
+        out[team] = {
+            "gp": gp,
+            "gf_pg": gf / gp,
+            "ga_pg": ga / gp,
+            "ppg": ppg,
+        }
+    return out
+
+
 def parse_homeaway_markdown(text: str) -> list[TeamVenuePrior]:
-    low = text.lower()
-    hi = low.find("## home table")
-    ai = low.find("## away table")
-    if hi < 0 or ai < 0 or ai <= hi:
-        # Reader occasionally emits single-# headings.
-        hi = low.find("home table")
-        ai = low.find("away table")
-    if hi < 0 or ai < 0 or ai <= hi:
+    # Tolerate "## Home table", "# Home table", and surrounding prose.
+    mh = re.search(r"(?im)^#{1,4}\s*Home table\s*$", text)
+    ma = re.search(r"(?im)^#{1,4}\s*Away table\s*$", text)
+    if not mh or not ma or ma.start() <= mh.end():
         return []
 
-    home_sec = text[hi:ai]
-    tail = text[ai:]
-    # Stop Away at the next H2-ish section when available.
-    m = re.search(r"\n##\s+", tail[8:], re.I)
-    away_sec = tail[:8 + m.start()] if m else tail
+    home_sec = text[mh.end():ma.start()]
+    tail = text[ma.end():]
+    mn = re.search(r"(?im)^#{1,4}\s+[^\n]+$", tail)
+    away_sec = tail[:mn.start()] if mn else tail
 
-    home = _venue_rows(_markdown_table(home_sec))
-    away = _venue_rows(_markdown_table(away_sec))
+    home = _parse_venue_markdown_section(home_sec)
+    away = _parse_venue_markdown_section(away_sec)
     teams = sorted(set(home) & set(away))
     return [
         TeamVenuePrior(

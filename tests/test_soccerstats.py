@@ -106,3 +106,24 @@ def test_soccerstats_parse_reader_markdown():
     a = next(x for x in rows if x.team == "Team A")
     assert abs(a.home_ppg - 2.00) < 1e-12
     assert abs(a.away_ppg - 1.82) < 1e-12
+
+
+def test_soccerstats_parse_homeaway_visible_text_fallback():
+    html = """
+    <html><body>
+    <h2>Home table</h2>
+    1 Rapid Wien 4 4 0 0 15 1 +14 12 3.00
+    2 Salzburg 4 4 0 0 13 2 +11 12 3.00
+    <h2>Away table</h2>
+    1 Rapid Wien 3 2 0 1 6 6 0 6 2.00
+    2 Salzburg 3 1 2 0 5 2 +3 5 1.67
+    <h2>Relative Home / Away Performance</h2>
+    </body></html>
+    """
+    rows = soccerstats.parse_homeaway_text(html)
+    assert len(rows) == 2
+    r = next(x for x in rows if x.team == "Rapid Wien")
+    assert r.home_gp == 4
+    assert r.away_gp == 3
+    assert abs(r.home_gf_pg - 3.75) < 1e-12
+    assert abs(r.away_ppg - 2.0) < 1e-12

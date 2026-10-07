@@ -1,0 +1,79 @@
+{
+  "as_of": "2026-10-07",
+  "league": "AUT",
+  "source": "oddalerts.com/xg/admiral-bundesliga",
+  "teams": [
+    {
+      "team": "Salzburg",
+      "matches": 7,
+      "xg": 2.3642857142857143,
+      "xga": 1.0757142857142858
+    },
+    {
+      "team": "SK Rapid",
+      "matches": 7,
+      "xg": 2.144285714285714,
+      "xga": 1.0457142857142858
+    },
+    {
+      "team": "LASK",
+      "matches": 7,
+      "xg": 2.144285714285714,
+      "xga": 0.6814285714285714
+    },
+    {
+      "team": "Ried",
+      "matches": 7,
+      "xg": 1.8028571428571427,
+      "xga": 1.5657142857142858
+    },
+    {
+      "team": "WSG Tirol",
+      "matches": 7,
+      "xg": 1.747142857142857,
+      "xga": 1.5485714285714285
+    },
+    {
+      "team": "Sturm Graz",
+      "matches": 7,
+      "xg": 1.5014285714285713,
+      "xga": 1.487142857142857
+    },
+    {
+      "team": "Austria Lustenau",
+      "matches": 7,
+      "xg": 1.2385714285714287,
+      "xga": 1.7485714285714287
+    },
+    {
+      "team": "Rheindorf Altach",
+      "matches": 7,
+      "xg": 1.2042857142857142,
+      "xga": 1.2785714285714285
+    },
+    {
+      "team": "Wolfsberger AC",
+      "matches": 7,
+      "xg": 1.0471428571428572,
+      "xga": 2.212857142857143
+    },
+    {
+      "team": "Grazer AK",
+      "matches": 7,
+      "xg": 0.9785714285714285,
+      "xga": 1.7285714285714284
+    },
+    {
+      "team": "Hartberg",
+      "matches": 7,
+      "xg": 0.8328571428571429,
+      "xga": 1.9114285714285715
+    },
+    {
+      "team": "Austria Wien",
+      "matches": 7,
+      "xg": 0.7871428571428571,
+      "xga": 1.5085714285714287
+    }
+  ]
+}
