@@ -1,0 +1,25 @@
+name: austria-data-audit
+
+on:
+  push:
+    paths:
+      - ".github/austria-data-audit-now.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Austria Mongo coverage
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGODB_URI }}
+        run: python -m oddswatch football-extra-profile
