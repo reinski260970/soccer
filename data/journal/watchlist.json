@@ -2,54 +2,6 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "bundesliga",
-  "event": "Werder Bremen – SC Paderborn 07",
-  "kickoff": "2026-10-17T13:30:00+00:00",
-  "market": "away",
-  "selection": "SC Paderborn 07 Sieg (90 Min.)",
-  "odds": 5.5,
-  "fair": 4.163624972937861,
-  "min_odds": 4.288533722125997,
-  "home": [
-   "Werder Bremen",
-   "Werder Bremen",
-   "Bremen",
-   "SVW"
-  ],
-  "away": [
-   "SC Paderborn 07",
-   "SC Paderborn 07",
-   "Paderborn",
-   "SCP"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "bundesliga",
-  "event": "1. FC Union Berlin – Borussia Dortmund",
-  "kickoff": "2026-10-17T13:30:00+00:00",
-  "market": "home",
-  "selection": "1. FC Union Berlin Sieg (90 Min.)",
-  "odds": 6.0,
-  "fair": 4.8418740820178465,
-  "min_odds": 4.987130304478382,
-  "home": [
-   "1. FC Union Berlin",
-   "1. FC Union Berlin",
-   "Union Berlin",
-   "FCU"
-  ],
-  "away": [
-   "Borussia Dortmund",
-   "Borussia Dortmund",
-   "Dortmund",
-   "DOR"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "epl",
   "event": "Fulham – Hull City",
   "kickoff": "2026-10-17T14:00:00+00:00",
@@ -117,6 +69,54 @@
    "Parma",
    "Parma",
    "PAR"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "epl",
+  "event": "AFC Bournemouth – Sunderland",
+  "kickoff": "2026-10-18T13:00:00+00:00",
+  "market": "away",
+  "selection": "Sunderland Sieg (90 Min.)",
+  "odds": 4.4,
+  "fair": 3.8196772472203038,
+  "min_odds": 3.934267564636913,
+  "home": [
+   "AFC Bournemouth",
+   "AFC Bournemouth",
+   "Bournemouth",
+   "BOU"
+  ],
+  "away": [
+   "Sunderland",
+   "Sunderland",
+   "Sunderland",
+   "SUN"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "epl",
+  "event": "Fulham – Hull City",
+  "kickoff": "2026-10-17T14:00:00+00:00",
+  "market": "away",
+  "selection": "Hull City Sieg (90 Min.)",
+  "odds": 6.0,
+  "fair": 5.281430272123354,
+  "min_odds": 5.439873180287055,
+  "home": [
+   "Fulham",
+   "Fulham",
+   "Fulham",
+   "FUL"
+  ],
+  "away": [
+   "Hull City",
+   "Hull City",
+   "Hull",
+   "HUL"
   ]
  }
 ]
