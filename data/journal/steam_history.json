@@ -89945,6 +89945,26 @@
     "Pinnacle": 5.67,
     "Bet365": 6.0
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "Grazer AK – RB Salzburg",
+   "kickoff": "2026-10-10T15:00:00+00:00",
+   "league": "austria",
+   "market": "home",
+   "selection": "Grazer AK",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.15766693238066634,
+    "Bet365": 0.1409156178202626
+   },
+   "odds": {
+    "Pinnacle": 5.67,
+    "Bet365": 6.0
+   }
   }
  ],
  "soccer:austria:401881776:draw": [
@@ -89990,6 +90010,26 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "Grazer AK – RB Salzburg",
+   "kickoff": "2026-10-10T15:00:00+00:00",
+   "league": "austria",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.1882587745890172,
+    "Bet365": 0.19301937636857516
+   },
+   "odds": {
+    "Pinnacle": 4.8,
+    "Bet365": 4.5
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "Grazer AK – RB Salzburg",
    "kickoff": "2026-10-10T15:00:00+00:00",
    "league": "austria",
@@ -90069,6 +90109,26 @@
     "Pinnacle": 1.49,
     "Bet365": 1.45
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "Grazer AK – RB Salzburg",
+   "kickoff": "2026-10-10T15:00:00+00:00",
+   "league": "austria",
+   "market": "away",
+   "selection": "RB Salzburg",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.6540742930303165,
+    "Bet365": 0.6660650058111625
+   },
+   "odds": {
+    "Pinnacle": 1.49,
+    "Bet365": 1.45
+   }
   }
  ],
  "soccer:austria:401881777:home": [
@@ -90120,6 +90180,29 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "Austria Vienna – SK Sturm Graz",
+   "kickoff": "2026-10-10T17:30:00+00:00",
+   "league": "austria",
+   "market": "home",
+   "selection": "Austria Vienna",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.28272592490543913,
+    "Bet365": 0.29403190525903566,
+    "Betfair": 0.28292830513563305
+   },
+   "odds": {
+    "Pinnacle": 3.34,
+    "Bet365": 3.1,
+    "Betfair": 3.25
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "Austria Vienna – SK Sturm Graz",
    "kickoff": "2026-10-10T17:30:00+00:00",
    "league": "austria",
@@ -90211,6 +90294,29 @@
     "Bet365": 3.5,
     "Betfair": 3.6
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "Austria Vienna – SK Sturm Graz",
+   "kickoff": "2026-10-10T17:30:00+00:00",
+   "league": "austria",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.25986163471123397,
+    "Bet365": 0.25785248148139417,
+    "Betfair": 0.2535683960028142
+   },
+   "odds": {
+    "Pinnacle": 3.62,
+    "Bet365": 3.5,
+    "Betfair": 3.6
+   }
   }
  ],
  "soccer:austria:401881777:away": [
@@ -90262,6 +90368,29 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "Austria Vienna – SK Sturm Graz",
+   "kickoff": "2026-10-10T17:30:00+00:00",
+   "league": "austria",
+   "market": "away",
+   "selection": "SK Sturm Graz",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4574124403833272,
+    "Bet365": 0.44811561325957017,
+    "Betfair": 0.4635032988615528
+   },
+   "odds": {
+    "Pinnacle": 2.11,
+    "Bet365": 2.1,
+    "Betfair": 2.05
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "Austria Vienna – SK Sturm Graz",
    "kickoff": "2026-10-10T17:30:00+00:00",
    "league": "austria",
@@ -90353,6 +90482,29 @@
     "Bet365": 2.05,
     "Betfair": 2.05
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "TSV Hartberg – Austria Lustenau",
+   "kickoff": "2026-10-11T12:30:00+00:00",
+   "league": "austria",
+   "market": "home",
+   "selection": "TSV Hartberg",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4529817455593054,
+    "Bet365": 0.4608985406105599,
+    "Betfair": 0.4635032988615528
+   },
+   "odds": {
+    "Pinnacle": 2.13,
+    "Bet365": 2.05,
+    "Betfair": 2.05
+   }
   }
  ],
  "soccer:austria:401881778:draw": [
@@ -90404,6 +90556,29 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "TSV Hartberg – Austria Lustenau",
+   "kickoff": "2026-10-11T12:30:00+00:00",
+   "league": "austria",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.25695298290779583,
+    "Bet365": 0.25877910111637853,
+    "Betfair": 0.2535683960028142
+   },
+   "odds": {
+    "Pinnacle": 3.66,
+    "Bet365": 3.5,
+    "Betfair": 3.6
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "TSV Hartberg – Austria Lustenau",
    "kickoff": "2026-10-11T12:30:00+00:00",
    "league": "austria",
@@ -90495,6 +90670,29 @@
     "Bet365": 3.25,
     "Betfair": 3.25
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "TSV Hartberg – Austria Lustenau",
+   "kickoff": "2026-10-11T12:30:00+00:00",
+   "league": "austria",
+   "market": "away",
+   "selection": "Austria Lustenau",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2900652715328989,
+    "Bet365": 0.28032235827306173,
+    "Betfair": 0.28292830513563305
+   },
+   "odds": {
+    "Pinnacle": 3.26,
+    "Bet365": 3.25,
+    "Betfair": 3.25
+   }
   }
  ],
  "soccer:austria:401881779:home": [
@@ -90546,6 +90744,29 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "LASK Linz – Rapid Vienna",
+   "kickoff": "2026-10-11T15:00:00+00:00",
+   "league": "austria",
+   "market": "home",
+   "selection": "LASK Linz",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5349524726925652,
+    "Bet365": 0.5264955941876032,
+    "Betfair": 0.546153608259407
+   },
+   "odds": {
+    "Pinnacle": 1.81,
+    "Bet365": 1.8,
+    "Betfair": 1.75
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "LASK Linz – Rapid Vienna",
    "kickoff": "2026-10-11T15:00:00+00:00",
    "league": "austria",
@@ -90637,6 +90858,29 @@
     "Bet365": 3.9,
     "Betfair": 4.1
    }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
+   "event": "LASK Linz – Rapid Vienna",
+   "kickoff": "2026-10-11T15:00:00+00:00",
+   "league": "austria",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.22883713770319628,
+    "Bet365": 0.22641757128600512,
+    "Betfair": 0.217609988933564
+   },
+   "odds": {
+    "Pinnacle": 4.05,
+    "Bet365": 3.9,
+    "Betfair": 4.1
+   }
   }
  ],
  "soccer:austria:401881779:away": [
@@ -90688,6 +90932,29 @@
   },
   {
    "ts": "2026-10-07T18:28:18.680690+00:00",
+   "event": "LASK Linz – Rapid Vienna",
+   "kickoff": "2026-10-11T15:00:00+00:00",
+   "league": "austria",
+   "market": "away",
+   "selection": "Rapid Vienna",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.23621038960423862,
+    "Bet365": 0.2470868345263919,
+    "Betfair": 0.23623640280702937
+   },
+   "odds": {
+    "Pinnacle": 3.93,
+    "Bet365": 3.6,
+    "Betfair": 3.8
+   }
+  },
+  {
+   "ts": "2026-10-07T18:29:26.543218+00:00",
    "event": "LASK Linz – Rapid Vienna",
    "kickoff": "2026-10-11T15:00:00+00:00",
    "league": "austria",
