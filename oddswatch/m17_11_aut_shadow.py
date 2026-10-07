@@ -84,6 +84,20 @@ def _find_snapshot(team: str, snaps: list[XGSnapshot]) -> XGSnapshot | None:
     names = [r.team for r in snaps]
     hit = matching.find(team, names)
     if not hit:
+        aliases = {
+            "WSG Tirol": "WSG Wattens",
+            "WSG Swarovski Tirol": "WSG Wattens",
+            "SV Ried": "Ried",
+            "SV Josko Ried": "Ried",
+            "Red Bull Salzburg": "Red Bull Salzburg",
+            "RB Salzburg": "Red Bull Salzburg",
+            "Wolfsberger": "Wolfsberger AC",
+            "SC Rheindorf Altach": "SCR Altach",
+        }
+        target = aliases.get(team)
+        if target in names:
+            hit = target
+    if not hit:
         return None
     return next((r for r in snaps if r.team == hit), None)
 
