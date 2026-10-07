@@ -1,1 +1,1 @@
-trigger austria price aliases 2026-10-07T18:39:56.265Z
+trigger austria multisource consensus 2026-10-07T18:42:19.295Z
