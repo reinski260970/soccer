@@ -34,3 +34,7 @@ jobs:
           print("Neon connection OK")
           PY
       - run: PYTHONPATH=. pytest -q
+      - name: Austria model data audit
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGODB_URI }}
+        run: python -m oddswatch football-extra-profile
