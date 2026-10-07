@@ -91,6 +91,7 @@ def _find_snapshot(team: str, snaps: list[XGSnapshot]) -> XGSnapshot | None:
     if not hit:
         aliases = {
             "WSG Tirol": "WSG Wattens",
+        "Tirol": "WSG Wattens",
             "WSG Swarovski Tirol": "WSG Wattens",
             "SV Ried": "Ried",
             "SV Josko Ried": "Ried",
