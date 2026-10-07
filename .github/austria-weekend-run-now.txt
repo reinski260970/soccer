@@ -1,1 +1,1 @@
-trigger austria 6of6 parserfix 2026-10-07T18:33:02.574Z
+trigger soccerstats probe 2026-10-07T18:34:20.829Z
