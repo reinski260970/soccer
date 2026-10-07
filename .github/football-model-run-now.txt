@@ -1,1 +1,1 @@
-trigger M17.6 after SoccerSTATS browser-header fix
+trigger M17.6 after reader fallback
