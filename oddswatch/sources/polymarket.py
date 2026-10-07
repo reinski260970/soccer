@@ -22,6 +22,8 @@ from ..selection import Offer
 GAMMA = "https://gamma-api.polymarket.com"
 CLOB = "https://clob.polymarket.com"
 TAGS = {"nfl": "nfl", "nhl": "nhl", "nba": "nba"}
+SERIES = {"nfl": "10187", "nba": "10345"}
+GAME_TAG_ID = "100639"
 
 MIN_TOP_DEPTH_USD = 10.0
 MAX_SPREAD = 0.05
@@ -70,7 +72,12 @@ def _dt(*vals) -> datetime | None:
 
 
 def events(tag: str) -> tuple[list[dict], str | None]:
-    q = urlencode({"tag_slug": tag, "active": "true", "closed": "false", "limit": 500})
+    params = {"active": "true", "closed": "false", "limit": 500}
+    if tag in SERIES:
+        params.update({"series_id": SERIES[tag], "tag_id": GAME_TAG_ID})
+    else:
+        params["tag_slug"] = tag
+    q = urlencode(params)
     data, err = fetch.get_json(f"{GAMMA}/events?{q}", timeout=30, retries=2)
     if data is None:
         return [], err
