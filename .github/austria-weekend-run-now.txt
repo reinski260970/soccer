@@ -1,1 +1,1 @@
-trigger austria soccerstats+xg 2026-10-07T18:30:49.709Z
+trigger austria 6of6 parserfix 2026-10-07T18:33:02.574Z
