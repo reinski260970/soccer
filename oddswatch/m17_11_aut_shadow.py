@@ -24,6 +24,7 @@ from datetime import date
 from . import matching
 from .models.poisson import Match, PoissonModel, markets_from_matrix
 from .sources.xg_external import XGSnapshot
+from .sources.soccerstats import TeamVenuePrior
 
 
 @dataclass
@@ -39,6 +40,10 @@ class AustriaStructuralFair:
     away_xg_matches: int
     home_recent_n: int
     away_recent_n: int
+    home_venue: float | None
+    away_venue: float | None
+    home_ppg: float | None
+    away_ppg: float | None
 
 
 def _clip(v: float, lo: float = 0.20, hi: float = 4.50) -> float:
@@ -102,12 +107,59 @@ def _find_snapshot(team: str, snaps: list[XGSnapshot]) -> XGSnapshot | None:
     return next((r for r in snaps if r.team == hit), None)
 
 
+def _find_venue(team: str, rows: list[TeamVenuePrior]) -> TeamVenuePrior | None:
+    names = [r.team for r in rows]
+    hit = matching.find(team, names)
+    if not hit:
+        aliases = {
+            "WSG Tirol": "WSG Tirol",
+            "WSG Swarovski Tirol": "WSG Tirol",
+            "SV Ried": "Ried",
+            "SV Josko Ried": "Ried",
+            "RB Salzburg": "Salzburg",
+            "Red Bull Salzburg": "Salzburg",
+            "Wolfsberger": "Wolfsberger AC",
+            "SC Rheindorf Altach": "SCR Altach",
+        }
+        target = aliases.get(team)
+        if target in names:
+            hit = target
+    return next((r for r in rows if r.team == hit), None) if hit else None
+
+
+def _venue_expectation(
+    home: str,
+    away: str,
+    rows: list[TeamVenuePrior],
+    base_home: float,
+    base_away: float,
+) -> tuple[float | None, float | None, float | None, float | None]:
+    h = _find_venue(home, rows)
+    a = _find_venue(away, rows)
+    if h is None or a is None:
+        return None, None, None, None
+
+    # Venue-only scoring signal. Geometric mean avoids one noisy GF/GA side
+    # dominating and preserves the scale of the league home/away baseline.
+    home_raw = math.sqrt(max(h.home_gf_pg, 0.10) * max(a.away_ga_pg, 0.10))
+    away_raw = math.sqrt(max(a.away_gf_pg, 0.10) * max(h.home_ga_pg, 0.10))
+
+    # Mild shrink toward league baseline because current-season venue samples
+    # are still small. This is a structural prior, not a market calibration.
+    h_conf = min(h.home_gp, a.away_gp, 8) / 8.0
+    a_conf = min(a.away_gp, h.home_gp, 8) / 8.0
+    home_v = _clip((1.0 - 0.5*h_conf) * base_home + (0.5*h_conf) * home_raw)
+    away_v = _clip((1.0 - 0.5*a_conf) * base_away + (0.5*a_conf) * away_raw)
+    return home_v, away_v, h.home_ppg, a.away_ppg
+
+
 def fair(
     home: str,
     away: str,
     kickoff: date,
     matches: list[Match],
     snapshots: list[XGSnapshot],
+    venue_rows: list[TeamVenuePrior] | None = None,
 ) -> AustriaStructuralFair:
     hs = _find_snapshot(home, snapshots)
     ass = _find_snapshot(away, snapshots)
@@ -139,10 +191,21 @@ def fair(
     home_slow = _clip(base_h_goal * math.exp(h_att_slow - a_def_slow))
     away_slow = _clip(base_a_goal * math.exp(a_att_slow - h_def_slow))
 
-    # No tuned Austria weight exists. Geometric consensus treats fast/slow
-    # symmetrically and prevents one noisy signal from dominating.
-    home_xg = _clip(math.sqrt(home_fast * home_slow))
-    away_xg = _clip(math.sqrt(away_fast * away_slow))
+    home_venue = away_venue = home_ppg = away_ppg = None
+    if venue_rows:
+        home_venue, away_venue, home_ppg, away_ppg = _venue_expectation(
+            home, away, venue_rows, base_h_goal, base_a_goal
+        )
+
+    # No tuned Austria weights exist. Use equal log-space consensus between
+    # independent structural signals. SoccerSTATS venue context is included
+    # only when both teams are matched; otherwise fast/slow remains unchanged.
+    if home_venue is not None and away_venue is not None:
+        home_xg = _clip((home_fast * home_slow * home_venue) ** (1.0 / 3.0))
+        away_xg = _clip((away_fast * away_slow * away_venue) ** (1.0 / 3.0))
+    else:
+        home_xg = _clip(math.sqrt(home_fast * home_slow))
+        away_xg = _clip(math.sqrt(away_fast * away_slow))
 
     converter = PoissonModel(rho=-0.05, max_goals=10)
     matrix = converter.score_matrix(home_xg, away_xg)
@@ -161,4 +224,8 @@ def fair(
         away_xg_matches=int(ass.matches),
         home_recent_n=hn,
         away_recent_n=an,
+        home_venue=home_venue,
+        away_venue=away_venue,
+        home_ppg=home_ppg,
+        away_ppg=away_ppg,
     )
