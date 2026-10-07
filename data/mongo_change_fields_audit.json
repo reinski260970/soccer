@@ -1,0 +1,13 @@
+{
+ "collections": {
+  "extra_leagues": {
+   "candidate_fields": [],
+   "presence_counts": {}
+  },
+  "mains": {
+   "candidate_fields": [],
+   "presence_counts": {}
+  }
+ },
+ "matching_collection_names": []
+}
