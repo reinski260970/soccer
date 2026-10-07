@@ -1,5 +1,29 @@
 [
  {
+  "source": "1xbet",
+  "status": "PLAY",
+  "league": "nhl",
+  "event": "Ottawa Senators – Philadelphia Flyers",
+  "kickoff": "2026-10-08T23:00:00+00:00",
+  "market": "home",
+  "selection": "Ottawa Senators Sieg (inkl. OT)",
+  "odds": 1.82,
+  "fair": 1.7623116088589426,
+  "min_odds": 1.8151809571247108,
+  "home": [
+   "Ottawa Senators",
+   "Ottawa",
+   "Senators",
+   "OTT"
+  ],
+  "away": [
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
+  ]
+ },
+ {
   "source": "bet365",
   "status": "WATCH",
   "league": "epl",
