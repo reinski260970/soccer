@@ -3,6 +3,7 @@ from oddswatch.m17_11_research import (
     _expected_xg,
     _update_strengths,
     _structural_features,
+    _apply_season_carry,
 )
 
 
@@ -62,3 +63,18 @@ def test_m17_11_structural_features_are_pre_match_state_only():
     assert before != after
     assert len(before) == 17
     assert len(after) == 17
+
+
+def test_m17_11_offseason_carry_decays_fast_more_than_slow_when_configured():
+    states = {
+        "A": StrengthState(
+            attack_fast=0.40, defense_fast=-0.20,
+            attack_slow=0.30, defense_slow=-0.10,
+        )
+    }
+    _apply_season_carry(states, fast_carry=0.25, slow_carry=0.75)
+    st = states["A"]
+    assert abs(st.attack_fast - 0.10) < 1e-12
+    assert abs(st.defense_fast + 0.05) < 1e-12
+    assert abs(st.attack_slow - 0.225) < 1e-12
+    assert abs(st.defense_slow + 0.075) < 1e-12
