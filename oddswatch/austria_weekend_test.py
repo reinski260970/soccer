@@ -13,7 +13,7 @@ from zoneinfo import ZoneInfo
 from . import bookmaker, matching, report, soccer_steam, sql_store, telegram
 from .m17_11_aut_shadow import fair as structural_fair
 from .scan import Fixture, _aut_model
-from .sources import espn, xg_external
+from .sources import espn, xg_external, soccerstats
 
 TZ = ZoneInfo("Europe/Vienna")
 MIN_MODEL_EV = 0.03
@@ -101,6 +101,10 @@ def build(today: date | None = None) -> str:
         raise RuntimeError(f"Austria xG fehlt: {xerr or 'keine Daten'}")
     xg_external.persist_snapshot("AUT", snapshots, now)
 
+    venue_rows, verr = soccerstats.team_homeaway("AUT", cache_days=0.10)
+    if verr:
+        issues.append(f"SoccerSTATS Venue: {verr}")
+
     games, errs = espn.upcoming("austria", friday, 2)
     issues += errs
     games = [
@@ -118,7 +122,9 @@ def build(today: date | None = None) -> str:
             issues.append(f"Team nicht zugeordnet: {g.title}")
             continue
         try:
-            sf = structural_fair(h, a, g.kickoff.date(), matches, snapshots)
+            sf = structural_fair(
+                h, a, g.kickoff.date(), matches, snapshots, venue_rows
+            )
         except KeyError as exc:
             issues.append(str(exc))
             continue
@@ -176,6 +182,7 @@ def build(today: date | None = None) -> str:
         "Kein Portugal-Classifier-Transfer, kein offizieller PLAY.",
         "",
         f"xG-Quelle: {snapshots[0].source} · {len(snapshots)} Teams",
+        f"SoccerSTATS Home/Away: {len(venue_rows)} Teams",
         f"Spiele modelliert: {len(fixtures)}/6",
     ]
 
@@ -187,6 +194,12 @@ def build(today: date | None = None) -> str:
             f"FAIR 1/X/2: {1/fx.probs['home']:.2f} / {1/fx.probs['draw']:.2f} / {1/fx.probs['away']:.2f}",
             f"xG STRUCTURAL: {sf.home_xg:.2f}:{sf.away_xg:.2f} "
             f"(fast {sf.home_fast:.2f}:{sf.away_fast:.2f}; slow {sf.home_slow:.2f}:{sf.away_slow:.2f})",
+            (
+                f"SoccerSTATS Venue: {sf.home_venue:.2f}:{sf.away_venue:.2f} "
+                f"| PPG H/A {sf.home_ppg:.2f}/{sf.away_ppg:.2f}"
+                if sf.home_venue is not None and sf.away_venue is not None
+                else "SoccerSTATS Venue: kein sauberes Team-Mapping"
+            ),
             f"MARKT: {_market_line(fx)}",
         ]
 
