@@ -141,34 +141,48 @@ def assess(rows: list[dict], current: dict, now: datetime) -> dict | None:
     }
 
 
+def update_many(records: list[dict], *, now: datetime | None = None,
+                path: Path = STATE) -> list[dict]:
+    now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    data = _load(path)
+    cutoff = now - timedelta(hours=MAX_AGE_HOURS)
+    signals = []
+    for rec in records:
+        key = rec["key"]
+        rows = data.setdefault(key, [])
+        current = {
+            "ts": now.isoformat(),
+            "event": rec["event"],
+            "kickoff": rec["kickoff"],
+            "league": rec["league"],
+            "market": rec["market"],
+            "selection": rec["selection"],
+            "probs": {k: float(v) for k, v in (rec.get("probs") or {}).items() if v is not None},
+            "odds": {k: float(v) for k, v in (rec.get("odds") or {}).items() if v is not None},
+        }
+        signal = assess(rows, current, now)
+        rows[:] = [
+            r for r in rows
+            if (ts := _parse_ts(r.get("ts", ""))) is not None and ts >= cutoff
+        ]
+        rows.append(current)
+        if signal:
+            signal.update({
+                "event": current["event"], "kickoff": current["kickoff"],
+                "league": current["league"], "market": current["market"],
+                "selection": current["selection"], "probs": current["probs"],
+                "odds": current["odds"],
+            })
+            signals.append(signal)
+    _save(data, path)
+    return signals
+
+
 def update(key: str, *, event: str, kickoff: str, league: str, market: str,
            selection: str, probs: dict[str, float], odds: dict[str, float],
            now: datetime | None = None, path: Path = STATE) -> dict | None:
-    now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
-    data = _load(path)
-    rows = data.setdefault(key, [])
-    current = {
-        "ts": now.isoformat(),
-        "event": event,
-        "kickoff": kickoff,
-        "league": league,
-        "market": market,
-        "selection": selection,
-        "probs": {k: float(v) for k, v in probs.items() if v is not None},
-        "odds": {k: float(v) for k, v in odds.items() if v is not None},
-    }
-    signal = assess(rows, current, now)
-    cutoff = now - timedelta(hours=MAX_AGE_HOURS)
-    rows[:] = [
-        r for r in rows
-        if (ts := _parse_ts(r.get("ts", ""))) is not None and ts >= cutoff
-    ]
-    rows.append(current)
-    _save(data, path)
-    if signal:
-        signal.update({
-            "event": event, "kickoff": kickoff, "league": league,
-            "market": market, "selection": selection,
-            "probs": current["probs"], "odds": current["odds"],
-        })
-    return signal
+    signals = update_many([{
+        "key": key, "event": event, "kickoff": kickoff, "league": league,
+        "market": market, "selection": selection, "probs": probs, "odds": odds,
+    }], now=now, path=path)
+    return signals[0] if signals else None
