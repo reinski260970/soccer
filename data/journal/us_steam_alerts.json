@@ -1,1 +1,12 @@
-{}
+{
+ "us:nhl:401891825:home": {
+  "ts": "2026-10-07T19:33:02.779084+00:00",
+  "direction": "SHORTENING",
+  "lead_prob": 0.585
+ },
+ "us:nhl:401891825:away": {
+  "ts": "2026-10-07T19:33:02.779084+00:00",
+  "direction": "DRIFTING",
+  "lead_prob": 0.415
+ }
+}
