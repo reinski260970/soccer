@@ -91,6 +91,25 @@ def _sport_name(fx) -> str:
     return "Fußball"
 
 
+def _best_quote(fx, side: str):
+    quotes = (getattr(fx, "market_quotes", None) or {}).get(side, [])
+    if not quotes:
+        return None
+    # Für Vergleich immer die beste aktuell beobachtete Dezimalquote ausweisen.
+    return max(quotes, key=lambda q: q.odds)
+
+
+def _market_quote_text(fx) -> str:
+    labels = (("home", "1"), ("draw", "X"), ("away", "2"))
+    parts = []
+    for side, label in labels:
+        q = _best_quote(fx, side)
+        if q:
+            kind = "E" if getattr(q, "executable", True) else "R"
+            parts.append(f"{label} {q.odds:.2f} {q.source}[{kind}]")
+    return " | ".join(parts)
+
+
 def _today_lines(res, hours: int = 36) -> list[str]:
     now = datetime.now(timezone.utc)
     until = now + timedelta(hours=hours)
@@ -111,11 +130,13 @@ def _today_lines(res, hours: int = 36) -> list[str]:
             continue
         out.append(f"{name}: {len(rows)} Spiele")
         for f in rows[:4]:
-            ref = " · Marktref vorhanden" if f.ref_probs else ""
-            price = " · ausführbarer Preis" if f.offers else ""
+            market = _market_quote_text(f)
+            suffix = f" · Markt {market}" if market else " · NO_PRICE"
+            if f.offers:
+                suffix += " · ausführbar"
             out.append(
                 f"• {report._league(f.league)} · {report._kick(f.game.kickoff.isoformat())} · "
-                f"{f.game.title}{ref}{price}"
+                f"{f.game.title}{suffix}"
             )
         if len(rows) > 4:
             out.append(f"  + {len(rows) - 4} weitere")
@@ -156,10 +177,13 @@ def _market_diag_lines(res) -> list[str]:
         used[name] = used.get(name, 0) + 1
         shown += 1
         selection = f.game.home.name if side == "home" else f.game.away.name
+        q = _best_quote(f, side)
+        qtxt = (f" · Marktquote {q.odds:.2f} ({q.source}, "
+                f"{'ausführbar' if getattr(q, 'executable', True) else 'Referenz'})") if q else ""
         out += [
             f"• {name} · {f.game.title} · {selection}",
             f"  Modell {pm * 100:.1f}% (fair {1/pm:.2f}) · Markt-No-Vig {pr * 100:.1f}% "
-            f"(fair {1/pr:.2f}) · Δ {d * 100:+.1f} pp",
+            f"(fair {1/pr:.2f}) · Δ {d * 100:+.1f} pp{qtxt}",
             f"  {f.detail}",
         ]
         if shown >= 6:
@@ -169,24 +193,35 @@ def _market_diag_lines(res) -> list[str]:
 
 def _euro_hockey_fair_lines(res) -> list[str]:
     now = datetime.now(timezone.utc)
-    rows = sorted(
-        [f for f in res.fixtures if f.sport == "hockey" and f.game.kickoff > now],
-        key=lambda f: f.game.kickoff,
-    )
-    out = ["🏒 EURO-HOCKEY FAIR SNAPSHOT"]
+    rows = [f for f in res.fixtures if f.sport == "hockey" and f.game.kickoff > now]
+    rows.sort(key=lambda f: (not bool(getattr(f, "market_quotes", None)), f.game.kickoff))
+    out = ["🏒 EURO-HOCKEY · FAIR vs MARKT"]
     if not rows:
         return out + ["Keine modellierten europäischen Hockeyspiele."]
-    for f in rows[:6]:
+    shown = 0
+    no_price = 0
+    for f in rows:
         ph, pa = f.probs.get("home"), f.probs.get("away")
         if not ph or not pa:
             continue
+        market = _market_quote_text(f)
+        if not market:
+            no_price += 1
+            continue
         out += [
             f"• {report._league(f.league)} · {report._kick(f.game.kickoff.isoformat())} · {f.game.title}",
-            f"  Fair ML {f.game.home.name} {1/ph:.2f} / {f.game.away.name} {1/pa:.2f} · {f.detail}",
+            f"  FAIR: {f.game.home.name} {1/ph:.2f} / {f.game.away.name} {1/pa:.2f}",
+            f"  MARKT: {market} · {f.detail}",
         ]
-    out.append("Ohne verifizierten Marktpreis kein Tipp.")
+        shown += 1
+        if shown >= 6:
+            break
+    if not shown:
+        out.append("NO_PRICE: Für die anstehenden europäischen Hockeyspiele wurde noch keine aktuelle Marktquote gefunden.")
+    elif no_price:
+        out.append(f"Zusätzlich {no_price} Spiel(e) ohne aktuellen Marktpreis → keine Vergleichs-/PLAY-Freigabe.")
+    out.append("Regel: Kein Fair-only Tipp. PLAY nur mit aktuellem, als ausführbar markiertem Marktpreis.")
     return out
-
 
 def _broad_news_lines(issues: list[str]) -> list[str]:
     """Breiter Sports-Intelligence-Scan zusätzlich zu PLAY/WATCH-spezifischen
