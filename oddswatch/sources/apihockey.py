@@ -204,23 +204,26 @@ def attach(fixtures, issues: list[str]) -> int:
 
         executable = {k: v for k, v in books.items() if k in EXEC_BOOKS}
         for side in ("home", "away"):
-            vals = {k: v[side] for k, v in executable.items() if side in v}
-            if not vals:
+            all_vals = {k: v[side] for k, v in books.items() if side in v}
+            exec_vals = {k: v[side] for k, v in executable.items() if side in v}
+            if not all_vals:
                 continue
             fair_ref = (1.0 / ref[side]) if ref.get(side) else None
-            for book, odd in vals.items():
-                extreme = bool(fair_ref and odd / fair_ref - 1.0 > 0.20)
-                peer = any(k != book and o >= odd * 0.90 for k, o in vals.items())
-                if extreme and not peer:
-                    issues.append(
-                        f"API-Hockey: Preis-Outlier verworfen ({fx.game.title}, {side}, "
-                        f"{book} {odd:.2f} vs fair {fair_ref:.2f})")
-                    continue
-                team = fx.game.home.name if side == "home" else fx.game.away.name
+            team = fx.game.home.name if side == "home" else fx.game.away.name
+            for book, odd in all_vals.items():
+                is_exec = book in EXEC_BOOKS
+                if is_exec:
+                    extreme = bool(fair_ref and odd / fair_ref - 1.0 > 0.20)
+                    peer = any(k != book and o >= odd * 0.90 for k, o in exec_vals.items())
+                    if extreme and not peer:
+                        issues.append(
+                            f"API-Hockey: Preis-Outlier verworfen ({fx.game.title}, {side}, "
+                            f"{book} {odd:.2f} vs fair {fair_ref:.2f})")
+                        continue
                 fx.offers.setdefault(side, []).append(Offer(
                     event=fx.game.title, kickoff=fx.game.kickoff.isoformat(), market=side,
                     selection=f"{team} Sieg (inkl. OT)", odds=odd, source=book,
                     observed_at=now.isoformat(), ref=f"api-hockey:{g.id}:{side}:{book}",
-                    league=fx.league, executable=True,
+                    league=fx.league, executable=is_exec,
                 ))
     return matched
