@@ -17,11 +17,16 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import json
+from pathlib import Path
 
 from . import matchpulse, understat
 
 
 @dataclass
+SNAPSHOTS = Path("data/journal/xg_external_snapshots.json")
+
+
 class XGSnapshot:
     team: str
     xg: float
@@ -108,3 +113,43 @@ def snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], str | None]:
         ], None
 
     return [], merr or uerr or f"xG: keine Quelle für {code}"
+
+
+def persist_snapshot(code: str, rows: list[XGSnapshot], as_of: datetime,
+                     path: Path = SNAPSHOTS) -> None:
+    """Persist one daily pre-match xG snapshot per league/source.
+
+    This creates our own historical xG series from public current-season pages,
+    avoiding retrospective leakage in future research.
+    """
+    if not rows:
+        return
+    day = as_of.astimezone(timezone.utc).date().isoformat()
+    source = rows[0].source
+    key = f"{day}|{code}|{source}"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            data = {}
+    except (OSError, ValueError):
+        data = {}
+    data[key] = {
+        "as_of": as_of.astimezone(timezone.utc).isoformat(),
+        "league": code,
+        "source": source,
+        "teams": [
+            {
+                "team": r.team,
+                "xg": r.xg,
+                "xga": r.xga,
+                "xg_home": r.xg_home,
+                "xga_home": r.xga_home,
+                "xg_away": r.xg_away,
+                "xga_away": r.xga_away,
+                "matches": r.matches,
+            }
+            for r in rows
+        ],
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
