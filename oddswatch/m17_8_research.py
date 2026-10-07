@@ -176,7 +176,9 @@ def _rolling_eval(data: list[dict], year: int, hyper: dict) -> list[dict]:
     )
 
 
-def _league_run(matches, odds_rows, shots, cov):
+def _league_run(matches, odds_rows, shots, cov, hyper_fn=None, eval_fn=None):
+    hyper_fn = hyper_fn or _early_hyper
+    eval_fn = eval_fn or _rolling_eval
     base = build_dataset(matches, odds_rows, shots)
 
     venue_priors = build_previous_season_priors(matches)
@@ -199,7 +201,7 @@ def _league_run(matches, odds_rows, shots, cov):
         })
         return result
 
-    hyper = _early_hyper(data)
+    hyper = hyper_fn(data)
     result["hyper"] = hyper
     if hyper is None:
         result.update({
@@ -209,8 +211,8 @@ def _league_run(matches, odds_rows, shots, cov):
         return result
 
     tune = {
-        2022: _rolling_eval(data, 2022, hyper),
-        2023: _rolling_eval(data, 2023, hyper),
+        2022: eval_fn(data, 2022, hyper),
+        2023: eval_fn(data, 2023, hyper),
     }
     if any(len(v) < 60 for v in tune.values()):
         result.update({
@@ -221,8 +223,8 @@ def _league_run(matches, odds_rows, shots, cov):
         return result
 
     gate, near = _choose_gate(tune)
-    hold_eval = _rolling_eval(data, 2024, hyper)
-    diag_eval = _rolling_eval(data, 2025, hyper)
+    hold_eval = eval_fn(data, 2024, hyper)
+    diag_eval = eval_fn(data, 2025, hyper)
     use_gate = gate or near
 
     empty = {
