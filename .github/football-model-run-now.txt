@@ -1,1 +1,1 @@
-trigger M17.2 2026-10-07 focused Bundesliga SerieA away
+trigger M17.2 rerun after gate-test fix
