@@ -375,19 +375,38 @@ def _entry_stats(rows, edge, cap, side):
 
 def _choose_gate(rows):
     best = None
+    near = None
     for edge in EDGE_GRID:
         for cap in ODDS_CAP:
             for side in SIDES:
                 s = _entry_stats(rows, edge, cap, side)
+                fails = []
                 if s["bets"] < 40:
-                    continue
-                if s["clv"] <= 0 or s["median_clv"] <= 0 or s["positive_clv_rate"] < 0.52:
+                    fails.append("bets<40")
+                if s["clv"] <= 0:
+                    fails.append("mean_clv<=0")
+                if s["median_clv"] <= 0:
+                    fails.append("median_clv<=0")
+                if s["positive_clv_rate"] < 0.52:
+                    fails.append("positive_clv_rate<52%")
+                # Near-miss priorisiert möglichst viele erfüllte Kriterien und
+                # danach CLV-Stärke bei brauchbarer Stichprobe.
+                passed = 4 - len(fails)
+                near_score = (passed * 100.0
+                              + s["clv"] * math.sqrt(max(s["bets"], 1)) * 10.0
+                              + s["median_clv"] * 10.0
+                              + (s["positive_clv_rate"] - 0.5) * 5.0)
+                cand = {"edge": edge, "cap": cap, "side": side,
+                        "stats": s, "fails": fails, "near_score": near_score}
+                if near is None or near_score > near["near_score"]:
+                    near = cand
+                if fails:
                     continue
                 score = s["clv"] * math.sqrt(s["bets"])
                 if best is None or score > best["score"]:
                     best = {"edge": edge, "cap": cap, "side": side,
                             "stats": s, "score": score}
-    return best
+    return best, near
 
 
 def _run_league(matches, odds_rows, shot_map):
@@ -407,7 +426,7 @@ def _run_league(matches, odds_rows, shot_map):
 
     gp = _fit_predict(gate_train, gate_rows, hyper["l2"], hyper["calib"])
     gate_eval = _attach(gate_rows, gp)
-    gate = _choose_gate(gate_eval)
+    gate, near_miss = _choose_gate(gate_eval)
 
     dp = _fit_predict(diag_train, diag_rows, hyper["l2"], hyper["calib"])
     diag_eval = _attach(diag_rows, dp)
@@ -423,6 +442,7 @@ def _run_league(matches, odds_rows, shot_map):
         "samples": len(data),
         "hyper": hyper,
         "gate": gate,
+        "near_miss_gate": near_miss,
         "diagnostic_2025": diag,
         "diagnostic_logloss": {
             "model": model_ll, "opening": open_ll, "gain": open_ll - model_ll
@@ -449,11 +469,13 @@ def run(out: Path = OUT):
         r = _run_league(ms, rows, shots)
         result[league] = r
         d = r.get("diagnostic_2025", {})
+        nm = r.get("near_miss_gate") or {}
+        ns = nm.get("stats") or {}
         log.append(
-            f"{league}: shots={len(shots)} gate={r.get('gate')} | "
-            f"2025 n={d.get('bets',0)} CLV={d.get('clv',0)*100:+.2f}% "
-            f"med={d.get('median_clv',0)*100:+.2f}% pos={d.get('positive_clv_rate',0)*100:.1f}% "
-            f"ROI={d.get('roi',0)*100:+.2f}%"
+            f"{league}: gate={r.get('gate')} | near edge={nm.get('edge')} cap={nm.get('cap')} "
+            f"side={nm.get('side')} n={ns.get('bets',0)} CLV={ns.get('clv',0)*100:+.2f}% "
+            f"med={ns.get('median_clv',0)*100:+.2f}% pos={ns.get('positive_clv_rate',0)*100:.1f}% "
+            f"fails={','.join(nm.get('fails') or [])}"
         )
 
     proxy = train_proxy()
