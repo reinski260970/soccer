@@ -1,1 +1,1 @@
-trigger M17.16 nested CLV gate strict walk-forward
+trigger M17.17 season-regime strict walk-forward
