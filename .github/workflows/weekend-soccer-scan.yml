@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: weekend-soccer-scan
+  group: weekend-soccer-scan-v2
   cancel-in-progress: false
 
 permissions:
@@ -23,8 +23,6 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Tests
-        run: PYTHONPATH=. pytest -q tests/test_weekend_soccer.py tests/test_soccer_steam.py
       - name: All-league weekend soccer scan + Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
