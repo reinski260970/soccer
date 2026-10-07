@@ -78,7 +78,22 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APIKEY: ${{ secrets.APIKEY }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
         run: python -m oddswatch.ceo_runner --send --slot "${{ steps.gate.outputs.slot }}"
+
+      - name: Sharpery PLAY-Export erzeugen
+        if: steps.gate.outputs.run == 'yes'
+        run: python -m oddswatch.export_sharpery --out exports/sharpery
+
+      - name: Sharpery PLAY-Export bereitstellen
+        if: steps.gate.outputs.run == 'yes'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sharpery-play-export-${{ github.run_id }}
+          path: |
+            exports/sharpery.xlsx
+            exports/sharpery.csv
+          if-no-files-found: error
 
       - name: Journal und CEO-Bericht sichern
         if: steps.gate.outputs.run == 'yes'
