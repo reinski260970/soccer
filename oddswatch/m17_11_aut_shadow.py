@@ -34,6 +34,11 @@ class AustriaStructuralFair:
     away_xg: float
     home_fast: float
     away_fast: float
+    home_fast_primary: float
+    away_fast_primary: float
+    home_fast_alt: float | None
+    away_fast_alt: float | None
+    xg_source_disagreement: float | None
     home_slow: float
     away_slow: float
     home_xg_matches: int
@@ -154,6 +159,29 @@ def _venue_expectation(
     return home_v, away_v, h.home_ppg, a.away_ppg
 
 
+def _find_alt_xg(team: str, rows: dict[str, tuple[float, float]]):
+    aliases = {
+        "Red Bull Salzburg": "Salzburg",
+        "RB Salzburg": "Salzburg",
+        "Rapid Vienna": "SK Rapid",
+        "Rapid Wien": "SK Rapid",
+        "Lask Linz": "LASK",
+        "LASK Linz": "LASK",
+        "Tirol": "WSG Tirol",
+        "WSG Wattens": "WSG Tirol",
+        "WSG Tirol": "WSG Tirol",
+        "Austria Vienna": "Austria Wien",
+        "Austria Wien": "Austria Wien",
+        "A. Lustenau": "Austria Lustenau",
+        "SCR Altach": "Rheindorf Altach",
+        "Altach": "Rheindorf Altach",
+    }
+    if team in rows:
+        return rows[team]
+    target = aliases.get(team)
+    return rows.get(target) if target else None
+
+
 def fair(
     home: str,
     away: str,
@@ -161,6 +189,7 @@ def fair(
     matches: list[Match],
     snapshots: list[XGSnapshot],
     venue_rows: list[TeamVenuePrior] | None = None,
+    alt_xg: dict[str, tuple[float, float]] | None = None,
 ) -> AustriaStructuralFair:
     hs = _find_snapshot(home, snapshots)
     ass = _find_snapshot(away, snapshots)
@@ -177,8 +206,34 @@ def fair(
     h_def_fast = -_safe_log_ratio(hs.xga, league_xga)
     a_att_fast = _safe_log_ratio(ass.xg, league_xg)
     a_def_fast = -_safe_log_ratio(ass.xga, league_xga)
-    home_fast = _clip(base_h_goal * math.exp(h_att_fast - a_def_fast))
-    away_fast = _clip(base_a_goal * math.exp(a_att_fast - h_def_fast))
+    home_fast_primary = _clip(base_h_goal * math.exp(h_att_fast - a_def_fast))
+    away_fast_primary = _clip(base_a_goal * math.exp(a_att_fast - h_def_fast))
+
+    home_fast_alt = away_fast_alt = None
+    xg_source_disagreement = None
+    if alt_xg:
+        ah = _find_alt_xg(home, alt_xg)
+        aa = _find_alt_xg(away, alt_xg)
+        if ah and aa:
+            alt_league_xg = sum(v[0] for v in alt_xg.values()) / len(alt_xg)
+            alt_league_xga = sum(v[1] for v in alt_xg.values()) / len(alt_xg)
+            h_att_alt = _safe_log_ratio(ah[0], alt_league_xg)
+            h_def_alt = -_safe_log_ratio(ah[1], alt_league_xga)
+            a_att_alt = _safe_log_ratio(aa[0], alt_league_xg)
+            a_def_alt = -_safe_log_ratio(aa[1], alt_league_xga)
+            home_fast_alt = _clip(base_h_goal * math.exp(h_att_alt - a_def_alt))
+            away_fast_alt = _clip(base_a_goal * math.exp(a_att_alt - h_def_alt))
+            xg_source_disagreement = (
+                abs(math.log(home_fast_primary / home_fast_alt))
+                + abs(math.log(away_fast_primary / away_fast_alt))
+            )
+
+    if home_fast_alt is not None and away_fast_alt is not None:
+        home_fast = _clip(math.sqrt(home_fast_primary * home_fast_alt))
+        away_fast = _clip(math.sqrt(away_fast_primary * away_fast_alt))
+    else:
+        home_fast = home_fast_primary
+        away_fast = away_fast_primary
 
     # Slow signal from recent results only. This is deliberately separate from
     # current xG and is used as structural consensus, not as a market blend.
@@ -219,6 +274,11 @@ def fair(
         away_xg=away_xg,
         home_fast=home_fast,
         away_fast=away_fast,
+        home_fast_primary=home_fast_primary,
+        away_fast_primary=away_fast_primary,
+        home_fast_alt=home_fast_alt,
+        away_fast_alt=away_fast_alt,
+        xg_source_disagreement=xg_source_disagreement,
         home_slow=home_slow,
         away_slow=away_slow,
         home_xg_matches=int(hs.matches),
