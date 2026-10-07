@@ -1,1 +1,1 @@
-trigger M17.9 diagnostics rerun
+trigger M17.10 previous-season-prior strict walk-forward
