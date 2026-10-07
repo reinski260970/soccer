@@ -11,8 +11,10 @@ PLAY releases so every published valuebet can be settled and evaluated internall
 from __future__ import annotations
 
 import hashlib
+import math
 import os
 import re
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -339,6 +341,194 @@ def _closing_fair(g, market: str) -> float | None:
             ps = pricing.devig([r["ml_over"], r["ml_under"]])
             return 1.0 / (ps[0] if mt.group(1).upper() == "O" else ps[1])
     return None
+
+
+def settle_shadow_predictions() -> dict:
+    """Settle final outcomes for ALL tracked predictions, even with no PLAY.
+
+    This is the forward/shadow evaluation path. It updates game scores and the
+    canonical prediction outcomes but never creates a PLAY and never changes
+    Sharpery exports.
+    """
+    from .sources import espn
+
+    init_db()
+    now = datetime.now(timezone.utc)
+    settled = pending = errors = unsupported = 0
+
+    with engine().begin() as conn:
+        game_rows = list(conn.execute(select(games)).mappings())
+        pred_rows = list(conn.execute(
+            select(predictions).where(predictions.c.outcome.is_(None))
+        ).mappings())
+        event_ids = {str(r["event_id"]) for r in pred_rows}
+
+        for g_row in game_rows:
+            event_id = str(g_row["event_id"])
+            if event_id not in event_ids:
+                continue
+            kickoff = _dt(g_row["kickoff"])
+            if kickoff > now:
+                pending += 1
+                continue
+            league = g_row["league"]
+            if league not in espn.PATHS:
+                unsupported += 1
+                continue
+            try:
+                gs, err = espn.scoreboard_day(league, kickoff.date())
+            except Exception:
+                errors += 1
+                continue
+            if err:
+                errors += 1
+                continue
+            final = next((x for x in gs if str(x.id) == event_id), None)
+            if final is None:
+                final = next((x for x in gs if x.title == g_row["event"]), None)
+            if (
+                final is None
+                or not final.final
+                or final.home_score is None
+                or final.away_score is None
+            ):
+                pending += 1
+                continue
+
+            hs, as_ = float(final.home_score), float(final.away_score)
+            conn.execute(
+                update(games)
+                .where(games.c.id == g_row["id"])
+                .values(
+                    status="final",
+                    home_score=hs,
+                    away_score=as_,
+                    updated_at=now,
+                )
+            )
+            outcomes = {
+                "home": 1.0 if hs > as_ else 0.0,
+                "away": 1.0 if as_ > hs else 0.0,
+                "draw": 1.0 if hs == as_ else 0.0,
+            }
+            for market, outcome in outcomes.items():
+                conn.execute(
+                    update(predictions)
+                    .where(
+                        (predictions.c.event_id == event_id)
+                        & (predictions.c.market == market)
+                    )
+                    .values(outcome=outcome)
+                )
+            settled += 1
+
+    return {
+        "settled_events": settled,
+        "pending": pending,
+        "unsupported": unsupported,
+        "errors": errors,
+    }
+
+
+def _latest_shadow_snapshots(sport: str = "soccer") -> list[dict]:
+    """Latest complete canonical probability vector before kickoff per event/model."""
+    init_db()
+    with engine().connect() as conn:
+        gs = {
+            str(r["event_id"]): r
+            for r in conn.execute(select(games)).mappings()
+            if r["status"] == "final" and r["home_score"] is not None and r["away_score"] is not None
+        }
+        ps = list(conn.execute(
+            select(predictions).where(predictions.c.sport == sport)
+        ).mappings())
+
+    snapshots = defaultdict(dict)
+    for r in ps:
+        event_id = str(r["event_id"])
+        g = gs.get(event_id)
+        if not g:
+            continue
+        created = _dt(r["created_at"])
+        kickoff = _dt(g["kickoff"])
+        if created > kickoff:
+            continue
+        key = (event_id, str(r.get("model") or ""), created.isoformat())
+        snapshots[key][str(r["market"]).lower()] = r
+
+    latest = {}
+    for (event_id, model, created_iso), rows in snapshots.items():
+        required = {"home", "draw", "away"} if sport == "soccer" else {"home", "away"}
+        if not required.issubset(rows):
+            continue
+        key = (event_id, model)
+        created = datetime.fromisoformat(created_iso)
+        old = latest.get(key)
+        if old is None or created > old["created_at"]:
+            latest[key] = {
+                "created_at": created,
+                "rows": rows,
+                "game": gs[event_id],
+            }
+    return list(latest.values())
+
+
+def shadow_summary(sport: str = "soccer") -> list[dict]:
+    """Forward model-vs-market logloss from settled latest pre-kickoff snapshots."""
+    buckets = defaultdict(list)
+
+    for snap in _latest_shadow_snapshots(sport):
+        rows = snap["rows"]
+        g = snap["game"]
+        model = str(next(iter(rows.values())).get("model") or sport)
+        league = str(g["league"])
+
+        if sport == "soccer":
+            order = ("home", "draw", "away")
+            hs, as_ = float(g["home_score"]), float(g["away_score"])
+            y = 0 if hs > as_ else (1 if hs == as_ else 2)
+        else:
+            order = ("home", "away")
+            hs, as_ = float(g["home_score"]), float(g["away_score"])
+            if hs == as_:
+                continue
+            y = 0 if hs > as_ else 1
+
+        p_model = [float(rows[m]["p_model"]) for m in order]
+        z = sum(max(x, 1e-12) for x in p_model)
+        p_model = [max(x, 1e-12) / z for x in p_model]
+        model_ll = -math.log(max(p_model[y], 1e-12))
+
+        refs = [rows[m]["p_ref"] for m in order]
+        market_ll = None
+        if all(v is not None and float(v) > 0 for v in refs):
+            p_ref = [float(v) for v in refs]
+            rz = sum(p_ref)
+            p_ref = [v / rz for v in p_ref]
+            market_ll = -math.log(max(p_ref[y], 1e-12))
+
+        buckets[(league, model)].append((model_ll, market_ll, _dt(g["kickoff"])))
+
+    out = []
+    for (league, model), vals in sorted(buckets.items()):
+        mll = sum(v[0] for v in vals) / len(vals)
+        refs = [v[1] for v in vals if v[1] is not None]
+        rll = (sum(refs) / len(refs)) if refs else None
+        dates = [v[2] for v in vals]
+        out.append({
+            "sport": sport,
+            "league": league,
+            "model": model,
+            "events": len(vals),
+            "model_logloss": mll,
+            "market_logloss": rll,
+            "market_events": len(refs),
+            "gain_vs_market": (rll - mll) if rll is not None else None,
+            "model_beats_market": (mll < rll) if rll is not None else None,
+            "first_kickoff": min(dates).isoformat(),
+            "last_kickoff": max(dates).isoformat(),
+        })
+    return out
 
 
 def settle_pending() -> dict:

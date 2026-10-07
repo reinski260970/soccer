@@ -9,11 +9,17 @@ def settle_all(j: Journal) -> list[str]:
     # settle automatically; unsupported markets remain pending rather than guessed.
     try:
         from . import sql_store
+        shadow = sql_store.settle_shadow_predictions()
         r = sql_store.settle_pending()
         synced = sql_store.sync_settled_to_journal(j)
         s = sql_store.summary()
         roi = "–" if s["roi"] is None else f"{s['roi'] * 100:+.1f}%"
         clv = "–" if s["avg_clv"] is None else f"{s['avg_clv'] * 100:+.1f}%"
+        log.append(
+            f"SQL Shadow: {shadow['settled_events']} Events neu abgerechnet, "
+            f"{shadow['pending']} offen, {shadow['unsupported']} nicht unterstützt, "
+            f"{shadow['errors']} Fehler"
+        )
         log.append(
             f"SQL PLAYs: {r['settled']} neu abgerechnet, "
             f"{r['pending_or_unsupported']} offen/noch nicht unterstützt, {r['errors']} Fehler; "
