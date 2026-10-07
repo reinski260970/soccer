@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, xg_external
 from . import fetch, venues
 
 VALIDATION = Path("data/validation.json")
@@ -328,6 +328,21 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
             issues.append(f"{label}: kein Modell (Daten fehlen)")
             continue
 
+        # Externes echtes xG: Understat (Top-5) oder FootyStats (breite Ligaabdeckung).
+        # Noch kein automatischer Fair-Odds-Eingriff, bis ligaweise OOS validiert.
+        xg_code = "AUT" if lg == "austria" else code
+        ext_xg = []
+        ext_xg_err = None
+        if xg_code:
+            try:
+                ext_xg, ext_xg_err = xg_external.snapshot(
+                    xg_code, datetime.now(timezone.utc)
+                )
+            except Exception as e:
+                ext_xg_err = f"{type(e).__name__}: {e}"
+        if ext_xg_err and "FOOTYSTATS_API_KEY fehlt" not in ext_xg_err:
+            notes.append(f"{label}: externes xG nicht verfügbar ({ext_xg_err})")
+
         teams = list(active_m8[0].poisson.attack) if active_m8 else list(model.attack)
         for g in games:
             h = matching.find(g.home.name, teams) or matching.find(g.home.short, teams)
@@ -350,6 +365,23 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
             ctx = [f"Form {h} {_form(use_ms, h, kd)}, {a} {_form(use_ms, a, kd)}",
                    f"Pause {_rest_days(use_ms, h, kd)}/{_rest_days(use_ms, a, kd)} Tage"]
             ctx += [x for x in (_xg_line(use_ms, h, kd)[0], _xg_line(use_ms, a, kd)[0]) if x]
+
+            if ext_xg:
+                names = [r.team for r in ext_xg]
+                eh = matching.find(g.home.name, names) or matching.find(h, names)
+                ea = matching.find(g.away.name, names) or matching.find(a, names)
+                by_name = {r.team: r for r in ext_xg}
+                if eh and ea:
+                    xh, xa = by_name[eh], by_name[ea]
+                    hs = xh.xg_home if xh.xg_home is not None else xh.xg
+                    hga = xh.xga_home if xh.xga_home is not None else xh.xga
+                    aas = xa.xg_away if xa.xg_away is not None else xa.xg
+                    aga = xa.xga_away if xa.xga_away is not None else xa.xga
+                    src = xh.source if xh.source == xa.source else f"{xh.source}/{xa.source}"
+                    ctx.append(
+                        f"Externes xG ({src}): {h} {hs:.2f}/{hga:.2f} xG/xGA Heim | "
+                        f"{a} {aas:.2f}/{aga:.2f} xG/xGA Auswärts"
+                    )
             fx = Fixture(lg, "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
                          f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} ({xg_note}), "
                          f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
