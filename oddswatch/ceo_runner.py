@@ -211,6 +211,60 @@ def _market_diag_lines(res) -> list[str]:
     return out
 
 
+def _soccer_steam_lines(res) -> list[str]:
+    state = getattr(res, "steam_state", {}) or {}
+    rows = []
+    for c in res.candidates:
+        if c.league in {"nfl", "nhl", "nba", "del", "icehl", "liiga", "shl", "nl", "khl"}:
+            continue
+        if c.ev < 0 or c.edge <= 0:
+            continue
+        s = state.get((c.event, c.market))
+        if not s:
+            continue
+        rows.append((c.ev, c, s))
+    rows.sort(key=lambda x: -x[0])
+
+    out = ["⚡ SOCCER STEAM / CLV-GATE"]
+    if not rows:
+        return out + ["Noch kein verwertbarer Pinnacle/Bet365/Betfair-Snapshot für positive Kandidaten."]
+
+    for _, c, s in rows[:8]:
+        sig = s.get("signal")
+        if sig:
+            if sig.get("direction") == "SHORTENING":
+                steam_txt = (
+                    f"🟢 STEAM+ · Pinnacle {sig.get('lead_move',0)*100:+.1f}pp/"
+                    f"{sig.get('minutes',0)}m · Lead-vs-Slow {sig.get('lag',0)*100:+.1f}pp"
+                )
+            else:
+                steam_txt = (
+                    f"🔴 STEAM− · Pinnacle {sig.get('lead_move',0)*100:+.1f}pp/"
+                    f"{sig.get('minutes',0)}m · Lead-vs-Slow {sig.get('lag',0)*100:+.1f}pp"
+                )
+        else:
+            gap = float(s.get("gap") or 0.0)
+            if gap >= 0.008:
+                steam_txt = f"🟡 SHARP GAP+ {gap*100:+.1f}pp · noch kein bestätigter Steam"
+            elif gap <= -0.008:
+                steam_txt = f"🟠 SHARP GAP− {gap*100:+.1f}pp · noch kein bestätigter Steam"
+            else:
+                steam_txt = "⚪ NEUTRAL · noch kein bestätigter Steam"
+
+        model_fair = (1.0 / c.p_model) if c.p_model else None
+        sharp_fair = s.get("sharp_fair")
+        best_odds = s.get("best_odds")
+        clv = s.get("clv_to_sharp")
+        out += [
+            f"• {report._league(c.league)} · {c.event}",
+            f"  {c.selection} · Modell fair {model_fair:.2f} · Markt {best_odds:.2f} ({s.get('best_source')})",
+            f"  Pinnacle no-vig {sharp_fair:.2f} · CLV-Ziel {clv*100:+.1f}% · EV {c.ev*100:+.1f}%",
+            f"  {steam_txt}",
+        ]
+    out.append("PLAY-Regel: Fair-Edge + positiver CLV-Case; bestätigter STEAM− blockiert die Freigabe.")
+    return out
+
+
 def _euro_hockey_fair_lines(res) -> list[str]:
     now = datetime.now(timezone.utc)
     rows = [f for f in res.fixtures if f.sport == "hockey" and f.game.kickoff > now]
@@ -312,6 +366,7 @@ def build_report(
     lines += [""] + _today_lines(res)
     lines += [""] + core
     lines += [""] + _market_diag_lines(res)
+    lines += [""] + _soccer_steam_lines(res)
     lines += [""] + _euro_hockey_fair_lines(res)
     lines += [""] + _clv_lines(j)
 
