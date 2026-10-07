@@ -36,7 +36,7 @@ def test_lines_without_tennis():
     tg = outlook.telegram_lines(rows, tennis=False, notes=outlook.soccer_note(
         ["Fußball: Freigaben ausgesetzt, bis …"]))
     txt = "\n".join(tg)
-    assert "🔭 AUSBLICK NACH SPORTART" in txt and "🏒 NHL: 1 Spiele (1 mit Buchmacherpreis), 0 PLAY" in txt
+    assert "🔭 AUSBLICK NACH SPORTART" in txt and "🏒 NHL: 1 Spiele | ausführbare Preise 1 | Marktreferenz 0 | 0 PLAY" in txt
     assert "⚽ Fußball: keine Spiele in 7 Tagen" in txt and "Freigaben ausgesetzt" in txt
     assert "Eishockey Europa" in "\n".join(outlook.report_lines(rows, tennis=False))
 

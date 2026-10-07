@@ -31,7 +31,7 @@ def test_schema_discovery_omits_document_values():
         def __iter__(self): return iter([{'password': 'NEVER_PRINT_ME', 'prob': .6}])
     class DB:
         name = 'Soccer'
-        def list_collection_names(self): return ['predictions']
+        def list_collection_names(self): return ['mains', 'extra_leagues']
         def __getitem__(self, n): return self
         def find(self, q): return Cursor()
     class Client:

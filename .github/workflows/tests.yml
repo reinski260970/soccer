@@ -1,0 +1,36 @@
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "feature/**"
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Check Neon connection
+        run: |
+          python - <<'PY'
+          import os
+          import psycopg
+          url = os.environ.get("SPORTS_DATABASE_URL")
+          if not url:
+              raise SystemExit("SPORTS_DATABASE_URL is not set")
+          with psycopg.connect(url) as conn:
+              with conn.cursor() as cur:
+                  cur.execute("SELECT 1")
+                  assert cur.fetchone()[0] == 1
+          print("Neon connection OK")
+          PY
+      - run: PYTHONPATH=. pytest -q

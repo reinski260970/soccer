@@ -152,6 +152,7 @@ def telegram_text(stand: str, picks: list[Candidate], watch: list[Candidate] | N
             if _soccer_unvalidated(c):
                 out += ["", f"🔬 MODEL-WATCH · {_head(c)}", f"🆚 {c.event}",
                         f"➡️ {c.selection} @ {_q(c.odds)}",
+                        "   ⛔ KEINE EV-FREIGABE – Modell nicht validiert",
                         f"   Modell fair {_model_fair(c)} | Pinnacle fair {_ref_fair(c)} | "
                         f"Δ {_model_ref_gap(c)}"]
             else:
