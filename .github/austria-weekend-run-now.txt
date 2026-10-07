@@ -1,1 +1,1 @@
-trigger m17.11 structural austria full6 2026-10-07T18:29:08.661Z
+trigger austria soccerstats+xg 2026-10-07T18:30:49.709Z
