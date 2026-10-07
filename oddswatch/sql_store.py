@@ -313,6 +313,32 @@ def grade_market(market: str, home_score: float, away_score: float) -> bool | No
     return None
 
 
+def _closing_fair(g, market: str) -> float | None:
+    """Closing no-vig decimal odds from ESPN when the final scoreboard exposes them."""
+    from . import pricing
+    r = g.ref_line or {}
+    m = (market or "").strip().replace("_", "").replace(" ", "").lower()
+    if m in {"home", "away", "draw", "1", "2", "x"}:
+        if r.get("ml_draw") and all((r.get(k) or 0) > 1 for k in ("ml_home", "ml_draw", "ml_away")):
+            ps = pricing.devig([r["ml_home"], r["ml_draw"], r["ml_away"]])
+            p = {"home": ps[0], "1": ps[0], "draw": ps[1], "x": ps[1],
+                 "away": ps[2], "2": ps[2]}[m]
+            return 1.0 / p
+        if all((r.get(k) or 0) > 1 for k in ("ml_home", "ml_away")):
+            ps = pricing.devig([r["ml_home"], r["ml_away"]])
+            p = {"home": ps[0], "1": ps[0], "away": ps[1], "2": ps[1]}.get(m)
+            return 1.0 / p if p else None
+    mt = _TOTAL_RE.match((market or "").replace(" ", ""))
+    if mt and r.get("total_line") is not None:
+        line = float(mt.group(2))
+        if abs(float(r["total_line"]) - line) < 1e-9 and all(
+            (r.get(k) or 0) > 1 for k in ("ml_over", "ml_under")
+        ):
+            ps = pricing.devig([r["ml_over"], r["ml_under"]])
+            return 1.0 / (ps[0] if mt.group(1).upper() == "O" else ps[1])
+    return None
+
+
 def settle_pending() -> dict:
     """Settle pending SQL PLAY rows from ESPN final scoreboards.
 
@@ -357,8 +383,11 @@ def settle_pending() -> dict:
             result = "void" if won is None else ("win" if won else "loss")
             stake = float(p["stake_eh"])
             pnl = 0.0 if won is None else (stake * (float(p["odds"]) - 1.0) if won else -stake)
+            closing_fair = _closing_fair(g, p["market"])
+            clv = (float(p["odds"]) / closing_fair - 1.0) if closing_fair else None
             conn.execute(update(plays).where(plays.c.id == p["id"]).values(
                 result=result, pnl_eh=pnl, settled_at=now,
+                closing_fair_odds=closing_fair, clv=clv,
             ))
             conn.execute(update(games).where(games.c.event_id == str(g.id)).values(
                 status="final", home_score=g.home_score, away_score=g.away_score, updated_at=now,
@@ -375,6 +404,27 @@ def settle_pending() -> dict:
                 ).values(outcome=outcome))
             done += 1
     return {"settled": done, "pending_or_unsupported": skipped, "errors": errors}
+
+
+def sync_settled_to_journal(j) -> int:
+    """Push SQL settlements back into the legacy CSV journal used by Telegram/Sharpery."""
+    init_db()
+    with engine().connect() as conn:
+        rows = list(conn.execute(
+            select(plays).where(plays.c.result.in_(("win", "loss", "void")))
+        ).mappings())
+    n = 0
+    for p in rows:
+        won = None if p["result"] == "void" else p["result"] == "win"
+        n += j.settle(
+            "valuebets", p["event"], p["market"], won,
+            closing_fair_odds=p["closing_fair_odds"], ref=p["ref"] or None,
+        )
+        n += j.settle(
+            "placed", p["event"], p["market"], won,
+            closing_fair_odds=p["closing_fair_odds"], ref=p["ref"] or None,
+        )
+    return n
 
 
 def summary() -> dict:
