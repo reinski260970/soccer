@@ -32,6 +32,30 @@ def _next_weekend(today: date | None = None) -> tuple[date, date]:
     return friday, friday + timedelta(days=2)
 
 
+def _resolve_aut_team(name: str, short: str | None, teams: list[str]) -> str | None:
+    candidates = [name, short]
+    alias_map = {
+        "WSG Swarovski Tirol": ["WSG Tirol", "Tirol", "WSG Wattens"],
+        "WSG Tirol": ["Tirol", "WSG Wattens"],
+        "SV Josko Ried": ["SV Ried", "Ried"],
+        "SV Ried": ["Ried"],
+        "RB Salzburg": ["Red Bull Salzburg", "Salzburg"],
+        "Red Bull Salzburg": ["Salzburg"],
+        "Austria Vienna": ["Austria Wien"],
+        "Rapid Vienna": ["Rapid Wien"],
+        "SC Rheindorf Altach": ["SCR Altach", "Altach"],
+        "Wolfsberger": ["Wolfsberger AC"],
+    }
+    candidates += alias_map.get(name, [])
+    for cand in candidates:
+        if not cand:
+            continue
+        hit = matching.find(cand, teams)
+        if hit:
+            return hit
+    return None
+
+
 def _best_exec(fx: Fixture, side: str):
     rows = [
         q for q in (getattr(fx, "market_quotes", None) or {}).get(side, [])
