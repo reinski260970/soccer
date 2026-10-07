@@ -50,7 +50,7 @@ def build(fixtures: list, candidates: list[Candidate], picks: list[Candidate],
         later = sorted(f.game.kickoff for f in fixtures if f.league in lgs and f.game.kickoff > until)
         out.append({"icon": icon, "name": name, "games": len(fx),
                     "priced": sum(bool(f.offers) for f in fx),
-                    "referenced": sum(bool(f.ref_probs) for f in fx),
+                    "referenced": sum(bool(getattr(f, "ref_probs", None)) for f in fx),
                     "leagues": sorted({_league(f.league) for f in fx}),
                     "picks": [c for c in picks if c.league in lgs], "near": near,
                     "model_only": bool(near) and not ref,
