@@ -1,0 +1,923 @@
+{
+ "_method": "M17.6 M17.5 Mongo/xG-proxy + SoccerSTATS previous-season home-away team priors; no market features",
+ "_proxy": {
+  "n": 13599,
+  "rmse": 0.608732901987283,
+  "beta": [
+   0.009241928398448784,
+   0.2234007989434047,
+   0.06159490791307894,
+   0.0,
+   0.032443337103038476
+  ],
+  "features": [
+   "intercept",
+   "shots_on_target",
+   "shots_off_target",
+   "corners",
+   "home"
+  ],
+  "train_seasons": [
+   2019,
+   2020,
+   2021,
+   2022
+  ]
+ },
+ "_soccerstats_rule": "season Y uses only completed season Y-1 team home/away aggregates; missing/promoted teams use league means + explicit missing flags",
+ "_splits": {
+  "hyper_A": "train<=2019 validate=2020 outcome logloss",
+  "hyper_B": "train<=2020 validate=2021 outcome logloss",
+  "entry_tune": "rolling OOS 2022 + 2023 CLV",
+  "strict_holdout": "rolling OOS 2024",
+  "diagnostic_only": "rolling OOS 2025"
+ },
+ "_release_rule": "robust 2022+2023 CLV gate AND 2024 >=15 bets, mean/median CLV>0, positive CLV rate>=52%, AND model 2024 logloss < Pinnacle opening",
+ "mongo_profile": {
+  "mains": {
+   "2bundesliga": {
+    "code": "D2",
+    "rows": 2743,
+    "results": 2743,
+    "shots_corners": 2743,
+    "pinnacle_open_close": 2531,
+    "complete_rows": 2531,
+    "complete_pct": 0.9227123587313161,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "championship": {
+    "code": "E1",
+    "rows": 4958,
+    "results": 4958,
+    "shots_corners": 4957,
+    "pinnacle_open_close": 4671,
+    "complete_rows": 4670,
+    "complete_pct": 0.9419120613150463,
+    "date_min": "2017-08-04T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "eredivisie": {
+    "code": "N1",
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 2668,
+    "pinnacle_open_close": 2496,
+    "complete_rows": 2496,
+    "complete_pct": 0.9355322338830585,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "primeira": {
+    "code": "P1",
+    "rows": 2740,
+    "results": 2740,
+    "shots_corners": 2740,
+    "pinnacle_open_close": 2583,
+    "complete_rows": 2583,
+    "complete_pct": 0.9427007299270073,
+    "date_min": "2017-08-06T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "belgium": {
+    "code": "B1",
+    "rows": 2556,
+    "results": 2556,
+    "shots_corners": 2550,
+    "pinnacle_open_close": 2342,
+    "complete_rows": 2336,
+    "complete_pct": 0.9139280125195618,
+    "date_min": "2017-07-28T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "turkey": {
+    "code": "T1",
+    "rows": 3072,
+    "results": 3072,
+    "shots_corners": 3041,
+    "pinnacle_open_close": 2866,
+    "complete_rows": 2864,
+    "complete_pct": 0.9322916666666666,
+    "date_min": "2017-08-11T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "scotland": {
+    "code": "SC0",
+    "rows": 2009,
+    "results": 2009,
+    "shots_corners": 2009,
+    "pinnacle_open_close": 1815,
+    "complete_rows": 1815,
+    "complete_pct": 0.9034345445495271,
+    "date_min": "2017-08-05T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   },
+   "greece": {
+    "code": "G1",
+    "rows": 2140,
+    "results": 2139,
+    "shots_corners": 2136,
+    "pinnacle_open_close": 1838,
+    "complete_rows": 1834,
+    "complete_pct": 0.8570093457943925,
+    "date_min": "2017-08-19T00:00:00",
+    "date_max": "2026-06-09T00:00:00"
+   }
+  },
+  "extra_leagues": {
+   "Austria": {
+    "rows": 2668,
+    "results": 2668,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 108
+   },
+   "Switzerland": {
+    "rows": 2714,
+    "results": 2714,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 118
+   },
+   "Norway": {
+    "rows": 3535,
+    "results": 3535,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 153
+   },
+   "Sweden": {
+    "rows": 3537,
+    "results": 3537,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 160
+   },
+   "Denmark": {
+    "rows": 2991,
+    "results": 2991,
+    "shots_corners": 0,
+    "pinnacle_open_close": 0,
+    "avg_1x2": 114
+   }
+  }
+ },
+ "leagues": {
+  "2bundesliga": {
+   "samples": 2381,
+   "coverage": {
+    "matches": 2729,
+    "proxy_matches": 2729,
+    "proxy_coverage": 1.0,
+    "odds_rows": 2531,
+    "canonical_exact": 2713,
+    "canonical_day_month_fixed": 20,
+    "canonical_team_score_fixed": 1,
+    "excluded_unreconciled": 9,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 2381,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 2381,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=germany2_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=germany2_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=germany2_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=germany2_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=germany2_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=germany2_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=germany2_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=germany2_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=germany2_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 1.0,
+    "calib": 1.1,
+    "cv_logloss": 1.0870300710097225,
+    "fold_logloss": [
+     1.0884297145004154,
+     1.0856304275190298
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.1,
+    "cap": 3.0,
+    "side": "away",
+    "stats": {
+     "bets": 2,
+     "clv": 0.00021989206756545254,
+     "median_clv": 0.00021989206756545254,
+     "positive_clv_rate": 0.5,
+     "roi": -1.0
+    },
+    "per_year": {
+     "2022": {
+      "bets": 2,
+      "clv": 0.00021989206756545254,
+      "median_clv": 0.00021989206756545254,
+      "positive_clv_rate": 0.5,
+      "roi": -1.0
+     },
+     "2023": {
+      "bets": 0,
+      "clv": 0.0,
+      "median_clv": 0.0,
+      "positive_clv_rate": 0.0,
+      "roi": 0.0
+     }
+    },
+    "fails": [
+     "tune_bets<40",
+     "tune_positive_clv_rate<52%",
+     "2022_bets<10",
+     "2023_bets<10",
+     "2023_clv<=0"
+    ],
+    "near_score": 100.00841840755984
+   },
+   "strict_holdout_2024": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   },
+   "strict_holdout_logloss": {
+    "model": 1.091878159839292,
+    "opening": 1.0593533037575802,
+    "gain": -0.03252485608171174
+   },
+   "diagnostic_only_2025": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   }
+  },
+  "championship": {
+   "samples": 4344,
+   "coverage": {
+    "matches": 4857,
+    "proxy_matches": 4855,
+    "proxy_coverage": 0.9995882231830348,
+    "odds_rows": 4595,
+    "canonical_exact": 4821,
+    "canonical_day_month_fixed": 36,
+    "canonical_team_score_fixed": 3,
+    "excluded_unreconciled": 98,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 4344,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 4344,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=england2_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=england2_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=england2_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=england2_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=england2_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=england2_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=england2_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=england2_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=england2_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "cv_logloss": 1.0720380841661088,
+    "fold_logloss": [
+     1.0726740209654402,
+     1.0714021473667776
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.03,
+    "cap": 3.0,
+    "side": "home",
+    "stats": {
+     "bets": 85,
+     "clv": -0.03502011031467664,
+     "median_clv": -0.04069865627494218,
+     "positive_clv_rate": 0.2823529411764706,
+     "roi": -0.0808235294117647
+    },
+    "per_year": {
+     "2022": {
+      "bets": 40,
+      "clv": -0.03109810414155187,
+      "median_clv": -0.05343938496117423,
+      "positive_clv_rate": 0.3,
+      "roi": -0.22350000000000003
+     },
+     "2023": {
+      "bets": 45,
+      "clv": -0.03850633802412092,
+      "median_clv": -0.0328474445816882,
+      "positive_clv_rate": 0.26666666666666666,
+      "roi": 0.046
+     }
+    },
+    "fails": [
+     "tune_mean_clv<=0",
+     "tune_median_clv<=0",
+     "tune_positive_clv_rate<52%",
+     "2022_clv<=0",
+     "2023_clv<=0"
+    ],
+    "near_score": 90.95915357010604
+   },
+   "strict_holdout_2024": {
+    "bets": 41,
+    "clv": -0.051022646051661916,
+    "median_clv": -0.054997687996674705,
+    "positive_clv_rate": 0.24390243902439024,
+    "roi": -0.07707317073170741
+   },
+   "strict_holdout_logloss": {
+    "model": 1.072176477293263,
+    "opening": 1.030146386131135,
+    "gain": -0.04203009116212786
+   },
+   "diagnostic_only_2025": {
+    "bets": 24,
+    "clv": -0.042497362281030966,
+    "median_clv": -0.03771584307561793,
+    "positive_clv_rate": 0.2916666666666667,
+    "roi": 0.37749999999999995
+   }
+  },
+  "eredivisie": {
+   "samples": 2384,
+   "coverage": {
+    "matches": 2654,
+    "proxy_matches": 2654,
+    "proxy_coverage": 1.0,
+    "odds_rows": 2496,
+    "canonical_exact": 2639,
+    "canonical_day_month_fixed": 21,
+    "canonical_team_score_fixed": 0,
+    "excluded_unreconciled": 8,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 2384,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 2384,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=netherlands_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "cv_logloss": 1.0168183997663367,
+    "fold_logloss": [
+     1.024806031108863,
+     1.0088307684238103
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.075,
+    "cap": 2.5,
+    "side": "away",
+    "stats": {
+     "bets": 2,
+     "clv": 0.06825067739322521,
+     "median_clv": 0.06825067739322521,
+     "positive_clv_rate": 1.0,
+     "roi": 0.19500000000000006
+    },
+    "per_year": {
+     "2022": {
+      "bets": 0,
+      "clv": 0.0,
+      "median_clv": 0.0,
+      "positive_clv_rate": 0.0,
+      "roi": 0.0
+     },
+     "2023": {
+      "bets": 2,
+      "clv": 0.06825067739322521,
+      "median_clv": 0.06825067739322521,
+      "positive_clv_rate": 1.0,
+      "roi": 0.19500000000000006
+     }
+    },
+    "fails": [
+     "tune_bets<40",
+     "2022_bets<10",
+     "2022_clv<=0",
+     "2023_bets<10"
+    ],
+    "near_score": 207.61292744614525
+   },
+   "strict_holdout_2024": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   },
+   "strict_holdout_logloss": {
+    "model": 1.002037537427409,
+    "opening": 0.947482426949071,
+    "gain": -0.054555110478338054
+   },
+   "diagnostic_only_2025": {
+    "bets": 2,
+    "clv": -0.049948247078511365,
+    "median_clv": -0.049948247078511365,
+    "positive_clv_rate": 0.0,
+    "roi": -1.0
+   }
+  },
+  "primeira": {
+   "samples": 2380,
+   "coverage": {
+    "matches": 2681,
+    "proxy_matches": 2681,
+    "proxy_coverage": 1.0,
+    "odds_rows": 2536,
+    "canonical_exact": 2663,
+    "canonical_day_month_fixed": 21,
+    "canonical_team_score_fixed": 5,
+    "excluded_unreconciled": 51,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 2380,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 2380,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=portugal_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=portugal_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=portugal_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=portugal_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=portugal_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=portugal_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=portugal_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=portugal_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=portugal_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "cv_logloss": 1.001251587522756,
+    "fold_logloss": [
+     1.0111710512710657,
+     0.9913321237744461
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.05,
+    "cap": 3.0,
+    "side": "all",
+    "stats": {
+     "bets": 68,
+     "clv": -0.04140203401119046,
+     "median_clv": -0.046918375796871525,
+     "positive_clv_rate": 0.3382352941176471,
+     "roi": -0.3385294117647059
+    },
+    "per_year": {
+     "2022": {
+      "bets": 22,
+      "clv": -0.010633758415068074,
+      "median_clv": -0.004296789972256354,
+      "positive_clv_rate": 0.45454545454545453,
+      "roi": -0.2772727272727273
+     },
+     "2023": {
+      "bets": 46,
+      "clv": -0.05611729625281423,
+      "median_clv": -0.07776977316711359,
+      "positive_clv_rate": 0.2826086956521739,
+      "roi": -0.3678260869565218
+     }
+    },
+    "fails": [
+     "tune_mean_clv<=0",
+     "tune_median_clv<=0",
+     "tune_positive_clv_rate<52%",
+     "2022_clv<=0",
+     "2023_clv<=0"
+    ],
+    "near_score": 91.08497080946562
+   },
+   "strict_holdout_2024": {
+    "bets": 26,
+    "clv": -0.04616824830992473,
+    "median_clv": -0.035270064992088734,
+    "positive_clv_rate": 0.3076923076923077,
+    "roi": -0.3073076923076922
+   },
+   "strict_holdout_logloss": {
+    "model": 1.0053278307554188,
+    "opening": 0.9319503666789808,
+    "gain": -0.07337746407643797
+   },
+   "diagnostic_only_2025": {
+    "bets": 12,
+    "clv": -0.04243195467105589,
+    "median_clv": -0.030741097357297742,
+    "positive_clv_rate": 0.25,
+    "roi": -0.8033333333333333
+   }
+  },
+  "belgium": {
+   "samples": 1922,
+   "coverage": {
+    "matches": 2542,
+    "proxy_matches": 2536,
+    "proxy_coverage": 0.997639653815893,
+    "odds_rows": 2342,
+    "canonical_exact": 2526,
+    "canonical_day_month_fixed": 18,
+    "canonical_team_score_fixed": 1,
+    "excluded_unreconciled": 11,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 1922,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 1922,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=belgium_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=belgium_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=belgium_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=belgium_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=belgium_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=belgium_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=belgium_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=belgium_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=belgium_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 1.0,
+    "calib": 1.1,
+    "cv_logloss": 1.0720456340253088,
+    "fold_logloss": [
+     1.0874666403586644,
+     1.056624627691953
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.02,
+    "cap": 2.5,
+    "side": "home",
+    "stats": {
+     "bets": 1,
+     "clv": 0.006327432076046913,
+     "median_clv": 0.006327432076046913,
+     "positive_clv_rate": 1.0,
+     "roi": -1.0
+    },
+    "per_year": {
+     "2022": {
+      "bets": 0,
+      "clv": 0.0,
+      "median_clv": 0.0,
+      "positive_clv_rate": 0.0,
+      "roi": 0.0
+     },
+     "2023": {
+      "bets": 1,
+      "clv": 0.006327432076046913,
+      "median_clv": 0.006327432076046913,
+      "positive_clv_rate": 1.0,
+      "roi": -1.0
+     }
+    },
+    "fails": [
+     "tune_bets<40",
+     "2022_bets<10",
+     "2022_clv<=0",
+     "2023_bets<10"
+    ],
+    "near_score": 205.1898229622814
+   },
+   "strict_holdout_2024": {
+    "bets": 1,
+    "clv": 0.03898287896304509,
+    "median_clv": 0.03898287896304509,
+    "positive_clv_rate": 1.0,
+    "roi": 1.4100000000000001
+   },
+   "strict_holdout_logloss": {
+    "model": 1.0357870114810428,
+    "opening": 0.9699057723071303,
+    "gain": -0.06588123917391253
+   },
+   "diagnostic_only_2025": {
+    "bets": 3,
+    "clv": -0.011989472128227874,
+    "median_clv": -0.014792659105934525,
+    "positive_clv_rate": 0.3333333333333333,
+    "roi": -1.0
+   }
+  },
+  "turkey": {
+   "samples": 2624,
+   "coverage": {
+    "matches": 3016,
+    "proxy_matches": 2985,
+    "proxy_coverage": 0.9897214854111406,
+    "odds_rows": 2824,
+    "canonical_exact": 3001,
+    "canonical_day_month_fixed": 18,
+    "canonical_team_score_fixed": 8,
+    "excluded_unreconciled": 45,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 2624,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 2624,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=turkey_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=turkey_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=turkey_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=turkey_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=turkey_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=turkey_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=turkey_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=turkey_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=turkey_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "cv_logloss": 1.0616077675310351,
+    "fold_logloss": [
+     1.0759052075635038,
+     1.0473103274985667
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.075,
+    "cap": 3.0,
+    "side": "all",
+    "stats": {
+     "bets": 46,
+     "clv": -0.020468381000787773,
+     "median_clv": -0.019744072109490807,
+     "positive_clv_rate": 0.41304347826086957,
+     "roi": -0.18478260869565216
+    },
+    "per_year": {
+     "2022": {
+      "bets": 25,
+      "clv": 0.00398079090820814,
+      "median_clv": -0.002947296111921127,
+      "positive_clv_rate": 0.48,
+      "roi": -0.22200000000000003
+     },
+     "2023": {
+      "bets": 21,
+      "clv": -0.0495745380353067,
+      "median_clv": -0.04946752972724644,
+      "positive_clv_rate": 0.3333333333333333,
+      "roi": -0.14047619047619045
+     }
+    },
+    "fails": [
+     "tune_mean_clv<=0",
+     "tune_median_clv<=0",
+     "tune_positive_clv_rate<52%",
+     "2023_clv<=0"
+    ],
+    "near_score": 196.15652777816027
+   },
+   "strict_holdout_2024": {
+    "bets": 24,
+    "clv": -0.09570588785543253,
+    "median_clv": -0.09358666816291883,
+    "positive_clv_rate": 0.16666666666666666,
+    "roi": 0.11250000000000004
+   },
+   "strict_holdout_logloss": {
+    "model": 1.0219653480233808,
+    "opening": 0.9159506315546084,
+    "gain": -0.10601471646877236
+   },
+   "diagnostic_only_2025": {
+    "bets": 7,
+    "clv": -0.08878506143478647,
+    "median_clv": -0.07115908962684259,
+    "positive_clv_rate": 0.14285714285714285,
+    "roi": -0.5971428571428571
+   }
+  },
+  "scotland": {
+   "samples": 370,
+   "coverage": {
+    "matches": 1987,
+    "proxy_matches": 1987,
+    "proxy_coverage": 1.0,
+    "odds_rows": 1815,
+    "canonical_exact": 1979,
+    "canonical_day_month_fixed": 13,
+    "canonical_team_score_fixed": 2,
+    "excluded_unreconciled": 15,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 370,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 370,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=scotland_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=scotland_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=scotland_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=scotland_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=scotland_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=scotland_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=scotland_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=scotland_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=scotland_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": null,
+   "validated": false,
+   "reason": "too little strict early walk-forward data"
+  },
+  "greece": {
+   "samples": 1109,
+   "coverage": {
+    "matches": 2098,
+    "proxy_matches": 2095,
+    "proxy_coverage": 0.9985700667302193,
+    "odds_rows": 1814,
+    "canonical_exact": 2083,
+    "canonical_day_month_fixed": 19,
+    "canonical_team_score_fixed": 5,
+    "excluded_unreconciled": 32,
+    "football_data_errors": {}
+   },
+   "soccerstats_prior_coverage": {
+    "rows": 1109,
+    "both_prior": 0,
+    "home_only": 0,
+    "away_only": 0,
+    "neither": 1109,
+    "both_prior_pct": 0.0,
+    "at_least_one_pct": 0.0
+   },
+   "soccerstats_prior_errors": {
+    "2017": "https://www.soccerstats.com/homeaway.asp?league=greece_2017: HTTP 403",
+    "2018": "https://www.soccerstats.com/homeaway.asp?league=greece_2018: HTTP 403",
+    "2019": "https://www.soccerstats.com/homeaway.asp?league=greece_2019: HTTP 403",
+    "2020": "https://www.soccerstats.com/homeaway.asp?league=greece_2020: HTTP 403",
+    "2021": "https://www.soccerstats.com/homeaway.asp?league=greece_2021: HTTP 403",
+    "2022": "https://www.soccerstats.com/homeaway.asp?league=greece_2022: HTTP 403",
+    "2023": "https://www.soccerstats.com/homeaway.asp?league=greece_2023: HTTP 403",
+    "2024": "https://www.soccerstats.com/homeaway.asp?league=greece_2024: HTTP 403",
+    "2025": "https://www.soccerstats.com/homeaway.asp?league=greece_2025: HTTP 403"
+   },
+   "loaded_prior_seasons": [],
+   "hyper": {
+    "l2": 0.05,
+    "calib": 1.1,
+    "cv_logloss": 0.998909720949938,
+    "fold_logloss": [
+     0.9969926607055779,
+     1.0008267811942981
+    ]
+   },
+   "validated": false,
+   "strategy_validated": false,
+   "model_beats_opening_logloss": false,
+   "gate": null,
+   "near_miss_gate": {
+    "edge": 0.075,
+    "cap": 3.0,
+    "side": "away",
+    "stats": {
+     "bets": 2,
+     "clv": 0.06050169654761878,
+     "median_clv": 0.06050169654761878,
+     "positive_clv_rate": 0.5,
+     "roi": 0.30000000000000004
+    },
+    "per_year": {
+     "2022": {
+      "bets": 2,
+      "clv": 0.06050169654761878,
+      "median_clv": 0.06050169654761878,
+      "positive_clv_rate": 0.5,
+      "roi": 0.30000000000000004
+     },
+     "2023": {
+      "bets": 0,
+      "clv": 0.0,
+      "median_clv": 0.0,
+      "positive_clv_rate": 0.0,
+      "roi": 0.0
+     }
+    },
+    "fails": [
+     "tune_bets<40",
+     "tune_positive_clv_rate<52%",
+     "2022_bets<10",
+     "2023_bets<10",
+     "2023_clv<=0"
+    ],
+    "near_score": 102.31626336156066
+   },
+   "strict_holdout_2024": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   },
+   "strict_holdout_logloss": {
+    "model": 0.9956417408325484,
+    "opening": 0.8979533490100731,
+    "gain": -0.09768839182247535
+   },
+   "diagnostic_only_2025": {
+    "bets": 0,
+    "clv": 0.0,
+    "median_clv": 0.0,
+    "positive_clv_rate": 0.0,
+    "roi": 0.0
+   }
+  }
+ }
+}
