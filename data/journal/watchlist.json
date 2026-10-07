@@ -1,29 +1,5 @@
 [
  {
-  "source": "1xbet",
-  "status": "PLAY",
-  "league": "nhl",
-  "event": "Anaheim Ducks – Edmonton Oilers",
-  "kickoff": "2026-10-08T02:00:00+00:00",
-  "market": "home",
-  "selection": "Anaheim Ducks Sieg (inkl. OT)",
-  "odds": 2.29,
-  "fair": 2.1997492681299455,
-  "min_odds": 2.2657417461738443,
-  "home": [
-   "Anaheim Ducks",
-   "Anaheim",
-   "Ducks",
-   "ANA"
-  ],
-  "away": [
-   "Edmonton Oilers",
-   "Edmonton",
-   "Oilers",
-   "EDM"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
   "league": "epl",
