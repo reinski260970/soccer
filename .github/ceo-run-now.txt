@@ -1,1 +1,1 @@
-trigger 2026-10-07 09:55 Europe/Vienna rescan
+manual midday CEO report retry 2026-10-07
