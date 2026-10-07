@@ -1,1 +1,1 @@
-trigger final M17.6 mongo-derived priors
+trigger M17.7 focused Portugal Greece xG luck priors
