@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, xg_external
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, soccerstats, xg_external
 from . import fetch, venues
 
 VALIDATION = Path("data/validation.json")
@@ -333,6 +333,8 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
         xg_code = "AUT" if lg == "austria" else code
         ext_xg = []
         ext_xg_err = None
+        ss_ctx = None
+        ss_err = None
         if xg_code:
             try:
                 xg_now = datetime.now(timezone.utc)
@@ -343,6 +345,12 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
                 ext_xg_err = f"{type(e).__name__}: {e}"
         if ext_xg_err:
             notes.append(f"{label}: externes xG nicht verfügbar ({ext_xg_err})")
+        try:
+            ss_ctx, ss_err = soccerstats.league_context(xg_code)
+        except Exception as e:
+            ss_err = f"{type(e).__name__}: {e}"
+        if ss_err:
+            notes.append(f"{label}: SoccerSTATS-Kontext nicht verfügbar ({ss_err})")
 
         teams = list(active_m8[0].poisson.attack) if active_m8 else list(model.attack)
         for g in games:
@@ -383,6 +391,21 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
                         f"Externes xG ({src}): {h} {hs:.2f}/{hga:.2f} xG/xGA Heim | "
                         f"{a} {aas:.2f}/{aga:.2f} xG/xGA Auswärts"
                     )
+
+            if ss_ctx:
+                bits = []
+                if ss_ctx.goals_per_match is not None:
+                    bits.append(f"{ss_ctx.goals_per_match:.2f} Tore/Spiel")
+                if ss_ctx.over25_pct is not None:
+                    bits.append(f"O2.5 {ss_ctx.over25_pct*100:.0f}%")
+                if ss_ctx.btts_pct is not None:
+                    bits.append(f"BTTS {ss_ctx.btts_pct*100:.0f}%")
+                if ss_ctx.home_win_pct is not None and ss_ctx.away_win_pct is not None:
+                    bits.append(
+                        f"H/A {ss_ctx.home_win_pct*100:.0f}/{ss_ctx.away_win_pct*100:.0f}%"
+                    )
+                if bits:
+                    ctx.append("SoccerSTATS Liga: " + " | ".join(bits))
             fx = Fixture(lg, "soccer", g, {"home": mk["1"], "draw": mk["X"], "away": mk["2"]},
                          f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f} ({xg_note}), "
                          f"O2.5 {mk['O2.5'] * 100:.0f} %", ctx,
