@@ -1,1 +1,1 @@
-trigger M17.6 SoccerSTATS prior research
+trigger M17.6 after SoccerSTATS browser-header fix
