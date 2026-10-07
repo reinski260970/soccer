@@ -71,12 +71,32 @@ def _portfolio_line(rows: list[dict], label: str) -> str:
 
 
 def _clv_lines(j: Journal) -> list[str]:
-    return [
+    out = [
         "📈 CLV / PERFORMANCE",
         _portfolio_line(j.read("valuebets"), "Modell-Freigaben"),
         _portfolio_line(j.read("placed"), "Gespielt"),
         "CLV ist Freigabemaßstab; kurzfristiger ROI überstimmt schwachen CLV nicht.",
     ]
+    try:
+        from . import sql_store
+        shadow = sql_store.shadow_summary("soccer")
+    except Exception:
+        shadow = []
+    if shadow:
+        out.append("🔬 FORWARD-SHADOW FUSSBALL · latest pre-kickoff")
+        for r in sorted(shadow, key=lambda x: (-x["events"], x["league"]))[:6]:
+            market = r.get("market_logloss")
+            if market is None:
+                cmp = "Marktreferenz –"
+            else:
+                gain = r["gain_vs_market"]
+                cmp = f"Markt LL {market:.4f} · Δ {gain:+.4f}"
+            out.append(
+                f"{r['league']} · {r['model']} · n={r['events']} · "
+                f"Modell LL {r['model_logloss']:.4f} · {cmp}"
+            )
+        out.append("Shadow ist Evaluation, kein PLAY-Gate ohne ausreichende Forward-Stichprobe.")
+    return out
 
 
 def _sport_name(fx) -> str:
