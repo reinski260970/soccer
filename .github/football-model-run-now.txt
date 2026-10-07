@@ -1,1 +1,1 @@
-trigger M17.4 binary Serie A away research
+trigger M17.5 Mongo-wide football research
