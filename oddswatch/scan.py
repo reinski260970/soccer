@@ -17,9 +17,10 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, soccerstats, xg_external
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
+from .m17_11_external_shadow import fair as external_structural_fair
 
 VALIDATION = Path("data/validation.json")
 M8_VALIDATION = Path("data/m8_validation.json")
@@ -67,7 +68,17 @@ SOCCER_LEAGUES = {
     "turkey": ("Süper Lig", "T1"),
     "scotland": ("Scottish Premiership", "SC0"),
     "greece": ("Super League Greece", "G1"),
-    "austria": ("Admiral Bundesliga (AT)", None),
+    "austria": ("Admiral Bundesliga (AT)", "AUT"),
+    "switzerland": ("Swiss Super League", "SUI"),
+    "sweden": ("Allsvenskan", "SWE"),
+    "norway": ("Eliteserien", "NOR"),
+    "denmark": ("Danish Superliga", "DEN"),
+    "poland": ("Ekstraklasa", "POL"),
+}
+
+NON_UNDERSTAT_CODES = {
+    "D2", "E1", "N1", "P1", "B1", "T1", "SC0", "G1",
+    "AUT", "SUI", "SWE", "NOR", "DEN", "POL",
 }
 
 
@@ -290,6 +301,107 @@ def _aut_model(issues: list[str]) -> tuple[PoissonModel | None, list[Match]]:
                             shrink=3.0, rho=-0.05), ms
 
 
+def _scan_external_structural_league(
+    lg: str,
+    label: str,
+    code: str,
+    games: list[espn.EspnGame],
+    start: date,
+    issues: list[str],
+    notes: list[str],
+    cache: dict[str, tuple[PoissonModel | None, list[Match]]],
+    aut_ms: list[Match],
+) -> list[Fixture]:
+    """Live SHADOW path for leagues without Understat.
+
+    Fair probabilities are independent from market prices. Every side carries
+    an explicit no-PLAY flag until forward Logloss/CLV validates the league.
+    """
+    now = datetime.now(timezone.utc)
+    snapshots, xerr = xg_external.snapshot(code, now)
+    if not snapshots:
+        notes.append(f"{label}: M17.11 external NO_XG ({xerr})")
+        return []
+    xg_external.persist_snapshot(code, snapshots, now)
+
+    venue, verr = soccerstats.team_homeaway(code, cache_days=0.10)
+    if verr and not venue:
+        notes.append(f"{label}: SoccerSTATS Venue nicht verfügbar ({verr})")
+
+    oa, oaerr = oddalerts.team_xg(code)
+    alt = {r.team: (r.xg_per90, r.xga_per90) for r in oa}
+    if oaerr:
+        notes.append(f"{label}: OddAlerts Crosscheck nicht verfügbar ({oaerr})")
+
+    if code == "AUT":
+        hist = aut_ms
+    elif code in football_data.LEAGUES:
+        if code not in cache:
+            cache[code] = _soccer_model([code], issues)
+        hist = cache[code][1]
+    else:
+        hist = []
+
+    hist_teams = sorted({m.home for m in hist} | {m.away for m in hist}) if hist else []
+
+    out = []
+    for g in games:
+        h = (matching.find(g.home.name, hist_teams) or matching.find(g.home.short, hist_teams)) if hist_teams else None
+        a = (matching.find(g.away.name, hist_teams) or matching.find(g.away.short, hist_teams)) if hist_teams else None
+        h = h or g.home.name
+        a = a or g.away.name
+        try:
+            sf = external_structural_fair(
+                h, a, g.kickoff.date(),
+                snapshots=snapshots,
+                venue_rows=venue,
+                matches=hist,
+                alt_xg=alt,
+            )
+        except KeyError as exc:
+            issues.append(f"{label}: {exc} ({g.title})")
+            continue
+
+        if sf.signals_used < 2:
+            notes.append(
+                f"{label}: {g.title} NO_MODEL – nur {sf.signals_used} belastbares Struktursignal"
+            )
+            continue
+
+        ctx = [
+            f"xG primary {snapshots[0].source}; alt {'oddalerts' if alt else 'none'}",
+            f"Struktursignale {sf.signals_used}; Recent {sf.home_recent_n}/{sf.away_recent_n}",
+        ]
+        if sf.xg_source_disagreement is not None:
+            ctx.append(f"xG-Quellenabweichung {sf.xg_source_disagreement:.3f}")
+        if sf.home_ppg is not None and sf.away_ppg is not None:
+            ctx.append(f"SoccerSTATS PPG H/A {sf.home_ppg:.2f}/{sf.away_ppg:.2f}")
+
+        shadow_flag = "M17.11 external shadow – keine PLAY-Freigabe vor Forward-Logloss/CLV"
+        flags = {side: [shadow_flag] for side in ("home", "draw", "away")}
+        detail = (
+            f"M17.11 external structural xG {sf.home_xg:.2f}:{sf.away_xg:.2f}; "
+            f"fast {sf.home_fast:.2f}:{sf.away_fast:.2f}"
+        )
+        if sf.home_slow is not None and sf.away_slow is not None:
+            detail += f"; slow {sf.home_slow:.2f}:{sf.away_slow:.2f}"
+        if sf.home_venue is not None and sf.away_venue is not None:
+            detail += f"; venue {sf.home_venue:.2f}:{sf.away_venue:.2f}"
+
+        out.append(Fixture(
+            lg, "soccer", g, sf.probs, detail, ctx,
+            ref_probs=_devig_ref(g, three_way=True),
+            flags=flags,
+            estimate=True,
+            model="m17.11-external-shadow",
+        ))
+
+    notes.append(
+        f"{label}: M17.11 external shadow aktiv – {len(out)}/{len(games)} Spiele modelliert"
+    )
+    return out
+
+
 def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
     out: list[Fixture] = []
     aut, aut_ms = _aut_model(issues)
@@ -302,6 +414,12 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
         games = [g for g in games if g.status == "STATUS_SCHEDULED"]
         if not games:
             notes.append(f"{label}: keine Spiele bis {start + timedelta(days=days):%d.%m.}")
+            continue
+
+        if code in NON_UNDERSTAT_CODES:
+            out += _scan_external_structural_league(
+                lg, label, code, games, start, issues, notes, cache, aut_ms
+            )
             continue
 
         m8_row = m8v.get(lg) or {}
