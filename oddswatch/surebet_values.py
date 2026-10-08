@@ -51,6 +51,9 @@ def _same_event(v: surebet.SurebetValue, fx) -> bool:
 def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
     out: list[Audit] = []
     for v in values:
+        if not v.back:
+            out.append(Audit(v, "LAY_REFERENZ", note="Lay-Quote wird nicht als Back-Value bestätigt"))
+            continue
         side = _candidate_side(v)
         if side is None:
             out.append(Audit(v, "NO_MODEL", note="Marktart im aktuellen Fair-Modell nicht unterstützt"))
@@ -157,15 +160,16 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
 
     if audits:
         out += ["", "🧪 UNSER MODELL-AUDIT"]
-        rank = {"BESTÄTIGT": 0, "REDUZIERT": 1, "KONFLIKT": 2, "WIDERLEGT": 3, "NO_MODEL": 4, "NO_MATCH": 5}
+        rank = {"BESTÄTIGT": 0, "REDUZIERT": 1, "KONFLIKT": 2, "WIDERLEGT": 3, "LAY_REFERENZ": 4, "NO_MODEL": 5, "NO_MATCH": 6}
         for a in sorted(audits, key=lambda x: (rank.get(x.status, 9), -(x.our_ev or -99)))[:40]:
             v = a.value
             own = "–" if a.our_ev is None else _pct(a.our_ev)
             fair = _q(a.our_fair)
             ref = _q(a.reference_fair)
+            side = " LAY" if not v.back else ""
             out += [
                 f"• {a.status} · {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
-                f"  {v.event} · {v.selection} @ {_q(v.odds)}",
+                f"  {v.event} · {v.selection} @ {_q(v.odds)} ({v.bookmaker}{side})",
                 f"  Markt: {v.market}",
                 f"  unser Fair {fair} | unser EV {own} | Referenz-Fair {ref}",
                 f"  {a.note}",
