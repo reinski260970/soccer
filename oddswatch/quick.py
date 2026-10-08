@@ -4,12 +4,14 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import os
+from pathlib import Path
 
 from . import guard, pricing, report, steam, telegram
 from .sources import apifootball
 
 MIN_EV = 0.03
 PLAYABLE = ("Bet365", "Betfair")
+SOCCER_MARKET_STEAM_STATE = Path("data/journal/soccer_market_steam_history.json")
 
 
 def _groups(pinnacle: dict[str, float]) -> list[list[str]]:
@@ -182,7 +184,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
             f"gesendet {tr['message_ids']}" if tr["sent"] else f"NICHT gesendet – {tr['error']}"
         ))
 
-    signals = steam.update_many(steam_records)
+    signals = steam.update_many(steam_records, path=SOCCER_MARKET_STEAM_STATE)
     if signals:
         signals.sort(key=lambda s: (-s["score"], -abs(s["lead_move"])))
         log += ["", f"⚡ PRE-STEAM: {len(signals)} Frühindikator(en)"]
