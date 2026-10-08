@@ -46,6 +46,7 @@ class ApiGame:
     home: str
     away: str
     league: str
+    country: str = ""
 
 
 def games_on(day: str) -> tuple[list[ApiGame], str | None]:
@@ -59,6 +60,7 @@ def games_on(day: str) -> tuple[list[ApiGame], str | None]:
                 int(row["id"]), datetime.fromisoformat(str(row["date"]).replace("Z", "+00:00")),
                 str(row["teams"]["home"]["name"]), str(row["teams"]["away"]["name"]),
                 str(row.get("league", {}).get("name") or ""),
+                str((row.get("country") or {}).get("name") or row.get("country") or ""),
             ))
         except (KeyError, TypeError, ValueError):
             continue
