@@ -311,8 +311,6 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
     out: list[Audit] = []
     period_cache: dict = {}
     for v in values:
-        # We challenge Bet365 BACK candidates. Betfair/OrbitX remain market
-        # references and must never inflate the number of "validated values".
         if v.bookmaker != "bet365":
             continue
         if not v.back:
@@ -320,13 +318,21 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
             continue
 
         hits = [fx for fx in fixtures if _same_event(v, fx)]
-        p = None
+        fair = p = our_ev = None
         model_note = ""
         ref = None
 
-        if len(hits) == 1:
+        # Exact hockey 1st-period market uses its own period model even when
+        # the full-game fixture is available.
+        if v.sport == "Hockey" and "1. drittel" in (v.market or "").casefold():
+            p1, model_note = _hockey_period1_probability(v, period_cache)
+            if p1 is not None and p1 > 0:
+                p = p1
+                fair = 1.0 / p
+                our_ev = p * v.odds - 1.0
+        elif len(hits) == 1:
             fx = hits[0]
-            p, model_note = _model_probability(v, fx)
+            fair, p, our_ev, model_note = _model_probability(v, fx)
             side = _candidate_side(v)
             if side is not None:
                 direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
@@ -335,19 +341,20 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
                     model_side = "away" if side == "home" else "home"
                 ref = fx.ref_probs.get(model_side)
         elif v.sport == "Hockey":
-            p, model_note = _hockey_period1_probability(v, period_cache)
-            if p is None:
-                out.append(Audit(v, "NO_MATCH", note=model_note or "kein eindeutiges Modell-Spiel gefunden"))
-                continue
+            p1, model_note = _hockey_period1_probability(v, period_cache)
+            if p1 is not None and p1 > 0:
+                p = p1
+                fair = 1.0 / p
+                our_ev = p * v.odds - 1.0
         else:
             out.append(Audit(v, "NO_MATCH", note="kein eindeutiges Modell-Spiel gefunden"))
             continue
 
-        if p is None or p <= 0:
-            out.append(Audit(v, "NO_MODEL", note=model_note or "keine Modellwahrscheinlichkeit für Auswahl"))
+        if fair is None or p is None or our_ev is None:
+            status = "NO_MATCH" if not hits and "Drittel" not in (v.market or "") else "NO_MODEL"
+            out.append(Audit(v, status, note=model_note or "keine Modellwahrscheinlichkeit für exakten Markt"))
             continue
 
-        our_ev = p * v.odds - 1.0
         api_ev = v.ev
         if our_ev < 0:
             status = "WIDERLEGT"
@@ -364,7 +371,7 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
         out.append(Audit(
             v, status,
             our_probability=p,
-            our_fair=1.0 / p,
+            our_fair=fair,
             our_ev=our_ev,
             reference_probability=ref,
             reference_fair=(1.0 / ref if ref else None),
