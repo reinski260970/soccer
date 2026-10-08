@@ -15,6 +15,11 @@ from ..selection import Offer
 
 BASE = "https://external-api.kalshi.com/trade-api/v2"
 SUPPORTED = {"nfl", "nhl", "nba"}
+HOCKEY_SERIES = {
+    "del": "KXDELGAME",
+    "nl": "KXNLGAME",
+    "khl": "KXKHLGAME",
+}
 MAX_PAGES = 5
 
 
@@ -59,6 +64,71 @@ def events() -> tuple[list[dict], str | None]:
             break
     return out, None
 
+
+
+
+def series_events(series: str, status: str = "open") -> tuple[list[dict], str | None]:
+    """Open Kalshi events for one series. Used as a read-only fixture source."""
+    params = {
+        "series_ticker": series,
+        "status": status,
+        "with_nested_markets": "true",
+        "limit": 200,
+    }
+    data, err = fetch.get_json(f"{BASE}/events?{urlencode(params)}", timeout=25, retries=1)
+    if data is None:
+        return [], err
+    rows = data.get("events") if isinstance(data, dict) else None
+    if not isinstance(rows, list):
+        return [], "Kalshi: ungültige Series-Events-Antwort"
+    return rows, None
+
+
+def hockey_fixtures(league: str, start: datetime, until: datetime) -> tuple[list[dict], str | None]:
+    """Read-only fixture discovery for European hockey.
+
+    Kalshi titles for these series are treated as "away vs home". Market prices
+    are deliberately not used here; this function supplies schedule metadata only.
+    """
+    series = HOCKEY_SERIES.get(league)
+    if not series:
+        return [], f"Kalshi: keine Fixture-Serie für {league}"
+    rows, err = series_events(series)
+    if err:
+        return [], err
+    out = []
+    for event in rows:
+        title = str(event.get("title") or "").strip()
+        if " vs " not in title:
+            continue
+        away, home = [x.strip() for x in title.split(" vs ", 1)]
+        ko = _dt(
+            event.get("strike_date"),
+            event.get("expected_expiration_time"),
+            event.get("latest_expiration_time"),
+            event.get("close_time"),
+        )
+        if ko is None:
+            # Some sports events expose the useful timestamp only on nested markets.
+            for market in event.get("markets") or []:
+                ko = _dt(
+                    market.get("occurrence_datetime"),
+                    market.get("expected_expiration_time"),
+                    market.get("close_time"),
+                )
+                if ko is not None:
+                    break
+        if ko is None or not (start < ko <= until):
+            continue
+        out.append({
+            "event_ticker": str(event.get("event_ticker") or ""),
+            "start": ko,
+            "home": home,
+            "away": away,
+            "source": "kalshi-fixture",
+        })
+    out.sort(key=lambda x: x["start"])
+    return out, None
 
 def _mentions(text: str, aliases: list[str]) -> bool:
     n = matching.norm(text)
