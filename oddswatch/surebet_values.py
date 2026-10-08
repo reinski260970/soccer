@@ -26,15 +26,25 @@ class Audit:
 
 
 def _candidate_side(v: surebet.SurebetValue) -> str | None:
-    m = (v.market or "").lower()
-    if "win1retx" in m or "win2retx" in m or " ah" in m or " eh" in m:
+    """Map only plain win markets to model sides.
+
+    Market descriptions are human-readable, so use both market type and selection.
+    Handicaps, DNB and totals stay NO_MODEL until their own fair models exist.
+    """
+    m = (v.market or "").casefold()
+    s = (v.selection or "").casefold()
+    if any(x in m for x in ("handicap", "draw no bet", "gesamt-", "teamtotal")):
         return None
-    if "win1" in m:
-        return "home"
-    if "win2" in m:
-        return "away"
-    if "draw" in m:
+    if "unentschieden" in s:
         return "draw"
+    if len(v.teams) >= 1 and matching.same(v.selection.replace(" Sieg", "").replace(" (2-Wege)", ""), v.teams[0]):
+        return "home"
+    if len(v.teams) >= 2 and matching.same(v.selection.replace(" Sieg", "").replace(" (2-Wege)", ""), v.teams[1]):
+        return "away"
+    if len(v.teams) >= 1 and v.teams[0].casefold() in s and "sieg" in s:
+        return "home"
+    if len(v.teams) >= 2 and v.teams[1].casefold() in s and "sieg" in s:
+        return "away"
     return None
 
 
@@ -139,66 +149,73 @@ def matched(values: list[surebet.SurebetValue]) -> list[list[surebet.SurebetValu
 
 def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, audits: list[Audit] | None = None) -> str:
     now = datetime.now(_TZ).strftime("%d.%m.%Y %H:%M")
-    out = [f"💰 Bet365 · Betfair · OrbitX Value-Match · {now}"]
+    out = [f"🎯 VALUE-AUDIT · {now}"]
     if error:
         return "\n".join(out + [f"⚠️ {error}"])
     if not values:
-        return "\n".join(out + ["Keine Valuebets für Fußball, Hockey oder Basketball."])
+        return "\n".join(out + ["Keine Value-Signale für Fußball, Hockey oder Basketball."])
 
     names = {"bet365": "Bet365", "betfair": "Betfair", "orbitxch": "OrbitX"}
-    pairs = matched(values)
-    if pairs:
-        out += ["", "🔗 GEMATCHTE MÄRKTE"]
-        for group in pairs[:20]:
-            v = group[0]
-            out += ["", f"{_kick(v.kickoff)} · {v.sport} · {v.tournament or 'Liga unbekannt'}",
-                    f"{v.event}", f"➡️ {v.selection} · {v.market}"]
-            for q in group:
-                side = "" if q.back else " LAY"
-                out.append(f"   {names.get(q.bookmaker, q.bookmaker)}{side}: {_q(q.odds)}"
-                           + (f" | EV {_pct(q.ev)}" if q.ev is not None else ""))
+    audits = audits or []
+    rank = {"BESTÄTIGT": 0, "REDUZIERT": 1, "KONFLIKT": 2, "WIDERLEGT": 3}
+    icons = {"BESTÄTIGT": "✅", "REDUZIERT": "🟡", "KONFLIKT": "⚠️", "WIDERLEGT": "❌"}
 
-    if audits:
-        out += ["", "🧪 UNSER MODELL-AUDIT"]
-        rank = {"BESTÄTIGT": 0, "REDUZIERT": 1, "KONFLIKT": 2, "WIDERLEGT": 3, "LAY_REFERENZ": 4, "NO_MODEL": 5, "NO_MATCH": 6}
-        for a in sorted(audits, key=lambda x: (rank.get(x.status, 9), -(x.our_ev or -99)))[:40]:
+    actionable = [a for a in audits if a.status in rank and a.value.back]
+    actionable.sort(key=lambda a: (rank[a.status], -(a.our_ev if a.our_ev is not None else -99)))
+
+    if actionable:
+        out += ["", "🧪 VON UNSEREM MODELL GEPRÜFT"]
+        for a in actionable[:20]:
             v = a.value
-            own = "–" if a.our_ev is None else _pct(a.our_ev)
+            own = _pct(a.our_ev)
             fair = _q(a.our_fair)
             ref = _q(a.reference_fair)
-            side = " LAY" if not v.back else ""
+            api = _pct(v.ev)
             out += [
-                f"• {a.status} · {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
-                f"  {v.event} · {v.selection} @ {_q(v.odds)} ({v.bookmaker}{side})",
-                f"  Markt: {v.market}",
-                f"  unser Fair {fair} | unser EV {own} | Referenz-Fair {ref}",
-                f"  {a.note}",
+                "",
+                f"{icons[a.status]} {a.status} · {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
+                f"{v.event}",
+                f"➡️ {v.selection} @ {_q(v.odds)} · {names.get(v.bookmaker, v.bookmaker)}",
+                f"Markt: {v.market}",
+                f"Unser Fair: {fair} · Unser EV: {own}",
+                f"SureBet-EV: {api} · Referenz-Fair: {ref}",
             ]
 
-    out += ["", "📡 ALLE SUREBET-VALUE-SIGNALE"]
-    labels = {"Football": "⚽ Fußball", "Hockey": "🏒 Eishockey", "Basketball": "🏀 Basketball"}
-    for sport in ("Football", "Hockey", "Basketball"):
-        rows = [v for v in values if v.sport == sport]
-        if not rows:
-            continue
-        out += ["", labels[sport]]
-        for v in rows[:20]:
-            side = "" if v.back else " LAY"
-            calc = []
-            if v.fair_odds is not None:
-                calc.append(f"SureBet fair {_q(v.fair_odds)}")
-            if v.ev is not None:
-                calc.append(f"EV {_pct(v.ev)}")
-            if v.overvalue is not None:
-                calc.append(f"Overvalue {_pct(v.overvalue)}")
+    lay = [a for a in audits if a.status == "LAY_REFERENZ"]
+    no_model = [a for a in audits if a.status == "NO_MODEL"]
+    no_match = [a for a in audits if a.status == "NO_MATCH"]
+    if lay or no_model or no_match:
+        out += ["", "📋 NOCH NICHT ALS PLAY BEWERTET"]
+        if lay:
+            out.append(f"↔️ {len(lay)} Lay-Signale: nur Markt-Referenz, kein Back-Value.")
+        if no_model:
+            out.append(f"⚪ {len(no_model)} Märkte ohne passenden Fair-Preis im aktuellen Modell.")
+        if no_match:
+            out.append(f"🔎 {len(no_match)} Events noch nicht eindeutig unserem Spiel zugeordnet.")
+
+    # Show genuine Bet365 candidates compactly, because these are the prices the
+    # user ultimately wants to challenge with the independent model.
+    bet365 = [v for v in values if v.bookmaker == "bet365" and v.back]
+    if bet365:
+        out += ["", "🏷️ BET365-KANDIDATEN"]
+        for v in bet365[:20]:
             out += [
                 f"• {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
                 f"  {v.event}",
-                f"  ➡️ {v.selection} @ {_q(v.odds)} ({names.get(v.bookmaker, v.bookmaker)}{side})",
-                f"  Markt: {v.market}",
-                ("  " + " | ".join(calc)) if calc else "  SureBet: Value-Signal",
+                f"  ➡️ {v.selection} @ {_q(v.odds)}",
+                f"  {v.market} · SureBet-EV {_pct(v.ev)}",
             ]
-    out += ["", "ℹ️ Match = gleiches Event + gleiche Markt-/Auswahlstruktur. PLAY-Freigabe durch unser Modell bleibt separat."]
+
+    books = {}
+    for v in values:
+        key = names.get(v.bookmaker, v.bookmaker)
+        books[key] = books.get(key, 0) + 1
+    book_summary = " · ".join(f"{k} {n}" for k, n in sorted(books.items()))
+    out += [
+        "",
+        f"📊 Feed: {len(values)} Signale · {book_summary}",
+        "ℹ️ SureBet entdeckt Kandidaten. PLAY gibt es nur, wenn unser unabhängiges Modell den Markt bestätigt.",
+    ]
     return "\n".join(out)
 
 
@@ -222,7 +239,7 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
     for a in audits:
         counts[a.status] = counts.get(a.status, 0) + 1
     summary = ", ".join(f"{k}={v}" for k, v in sorted(counts.items())) if counts else "kein Modell-Audit"
-    lines = [txt, f"Gefunden: {len(values)} Bet365-Valuebets", f"Audit: {summary}"]
+    lines = [txt, f"Gefunden: {len(values)} Value-Signale", f"Audit: {summary}"]
     if send:
         r = telegram.send(txt)
         lines.append(
