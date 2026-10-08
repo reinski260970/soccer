@@ -1,1 +1,1 @@
-trigger period-aware value audit 2026-10-08T17:28:58.190Z
+verify actionable-only telegram 2026-10-08T17:35:37.090Z
