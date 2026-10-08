@@ -34,6 +34,10 @@ class SurebetValue:
     bookmaker: str = "bet365"
     back: bool = True
     commission: float = 0.0
+    bet_type: str = ""
+    condition: str = ""
+    period: str = ""
+    base: str = ""
 
     @property
     def event(self) -> str:
@@ -201,6 +205,11 @@ def parse(data) -> list[SurebetValue]:
         teams_raw = row.get("teams")
         teams = tuple(str(x) for x in teams_raw) if isinstance(teams_raw, list) else ()
         selection, market = _selection(row)
+        typ = row.get("type") if isinstance(row.get("type"), dict) else {}
+        bet_type = str(typ.get("type") or row.get("bet_type") or "").strip()
+        condition = str(typ.get("condition") or "").strip()
+        period = str(typ.get("period") or typ.get("periode") or "regularTime").strip()
+        base = str(typ.get("base") or "overall").strip()
         probability = _num(row.get("probability"))
         if probability is not None and not (0 < probability < 1):
             probability = None
@@ -223,6 +232,10 @@ def parse(data) -> list[SurebetValue]:
             bookmaker=bookmaker,
             back=bool(typ.get("back", True)) if isinstance((typ := row.get("type")), dict) else True,
             commission=float(row.get("commission") or 0.0),
+            bet_type=bet_type,
+            condition=condition,
+            period=period,
+            base=base,
         ))
     out.sort(key=lambda x: (
         x.kickoff or datetime.max.replace(tzinfo=timezone.utc),
