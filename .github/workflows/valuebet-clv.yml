@@ -1,0 +1,26 @@
+name: valuebet-clv
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/valuebet-clv-run-now.txt"
+  schedule:
+    - cron: "42 * * * *"
+concurrency:
+  group: valuebet-clv
+  cancel-in-progress: true
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Snapshot Bet365 candidates and capture sampled CLV
+        run: python -m oddswatch valuebet-clv
