@@ -92,6 +92,7 @@ class HockeyResult:
     reg_home: int          # Tore nach 60 Minuten
     reg_away: int
     extra: str = ""        # "" | "OT" | "SO"
+    periods: tuple[tuple[int, int], ...] = ()  # erste drei Drittel, falls Quelle sie liefert
 
 
 def page_url(league: str, end_year: int) -> str:
@@ -137,7 +138,11 @@ def _parse_text(t: str, season_start: int) -> list[HockeyResult]:
         except ValueError:
             continue
         ext = {" a.p.": "OT", " t.a.b.": "SO"}.get(m.group(5) or "", "")
-        out.append(HockeyResult(cur, _clean_team(m.group(1)), _clean_team(m.group(2)), rh, ra, ext))
+        try:
+            per = tuple((int(p[0]), int(p[1])) for p in periods[:3])
+        except (TypeError, ValueError):
+            per = ()
+        out.append(HockeyResult(cur, _clean_team(m.group(1)), _clean_team(m.group(2)), rh, ra, ext, per))
     return out
 
 
@@ -209,7 +214,8 @@ def parse_liiga(data: list) -> tuple[list[HockeyResult], list[dict]]:
         ra = sum(p["awayTeamGoals"] for p in reg)
         ft = g.get("finishedType", "")
         ext = "SO" if "WINNING_SHOT" in ft else ("OT" if "EXTENDED" in ft else "")
-        done.append(HockeyResult(start.date(), h, a, rh, ra, ext))
+        per = tuple((int(p["homeTeamGoals"]), int(p["awayTeamGoals"])) for p in reg)
+        done.append(HockeyResult(start.date(), h, a, rh, ra, ext, per))
     return done, upcoming
 
 
@@ -234,7 +240,7 @@ def parse_shl(data: dict) -> tuple[list[HockeyResult], list[dict]]:
         sh, sa = int(hi.get("score") or 0), int(ai.get("score") or 0)
         ext = "SO" if g.get("shootout") else ("OT" if g.get("overtime") else "")
         rh, ra = (min(sh, sa), min(sh, sa)) if ext else (sh, sa)
-        done.append(HockeyResult(start.date(), h, a, rh, ra, ext))
+        done.append(HockeyResult(start.date(), h, a, rh, ra, ext, ()))
     return done, upcoming
 
 
@@ -276,7 +282,10 @@ def parse_icehl(data: dict) -> tuple[list[HockeyResult], list[dict]]:
         ra = sum(int(p.get("score_guest") or 0) for p in per)
         r = m.get("results") or {}
         ext = "SO" if r.get("shooting") else ("OT" if r.get("extra_time") else "")
-        done.append(HockeyResult(start.date(), h, a, rh, ra, ext))
+        period_scores = tuple(
+            (int(p.get("score_home") or 0), int(p.get("score_guest") or 0)) for p in per
+        )
+        done.append(HockeyResult(start.date(), h, a, rh, ra, ext, period_scores))
     return done, upcoming
 
 
