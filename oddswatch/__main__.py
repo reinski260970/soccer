@@ -230,7 +230,12 @@ def _quick(a) -> int:
     try:
         leagues = tuple(x.strip() for x in (getattr(a, 'leagues', '') or '').split(',') if x.strip())
         countries = tuple(x.strip() for x in (getattr(a, 'countries', '') or '').split(',') if x.strip())
-        for line in quick.run(send=a.send, days=a.days, full=a.full, leagues=leagues, countries=countries, start_day=getattr(a, 'start_day', None)):
+        for line in quick.run(
+            send=a.send, days=a.days, full=a.full,
+            leagues=leagues, countries=countries,
+            start_day=getattr(a, 'start_day', None),
+            supported_only=getattr(a, 'supported_only', False),
+        ):
             print(line)
         return 0
     except RuntimeError as exc:
@@ -394,6 +399,8 @@ def main(argv: list[str] | None = None) -> int:
     qk.add_argument("--start-day", default=None, help="Startdatum YYYY-MM-DD für Fullscan")
     qk.add_argument("--leagues", default="", help="kommagetrennte exakte Liganamen")
     qk.add_argument("--countries", default="", help="kommagetrennte Ländernamen")
+    qk.add_argument("--supported-only", action="store_true",
+                    help="nur die im Modell-/Steam-Stack unterstützten Hauptligen")
     qk.set_defaults(fn=_quick)
     gd = sub.add_parser("guard")
     gd.add_argument("--send", action="store_true")
