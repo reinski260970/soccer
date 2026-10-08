@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
+import math
+import re
 from zoneinfo import ZoneInfo
 
 from . import telegram
 from . import matching
-from .sources import surebet
+from .sources import hockeyarchives, surebet
+from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 
 _TZ = ZoneInfo("Europe/Vienna")
 
@@ -56,6 +59,137 @@ def _same_event(v: surebet.SurebetValue, fx) -> bool:
     direct = matching.same(v.teams[0], fx.game.home.name) and matching.same(v.teams[1], fx.game.away.name)
     reverse = matching.same(v.teams[0], fx.game.away.name) and matching.same(v.teams[1], fx.game.home.name)
     return direct or reverse
+
+
+def _expected_goals_from_detail(fx) -> tuple[float, float] | None:
+    m = re.search(r"erw\. Tore\s+([0-9]+(?:\.[0-9]+)?):([0-9]+(?:\.[0-9]+)?)", fx.detail or "")
+    return (float(m.group(1)), float(m.group(2))) if m else None
+
+
+def _poisson_total_probability(lam: float, line: float, over: bool) -> float | None:
+    # Only half-goal lines have binary settlement and can be compared directly
+    # with decimal odds without push handling.
+    if abs((line * 2) - round(line * 2)) > 1e-9 or int(round(line * 2)) % 2 == 0:
+        return None
+    k = math.floor(line)
+    under_or_equal = sum(math.exp(-lam) * lam**i / math.factorial(i) for i in range(k + 1))
+    return 1.0 - under_or_equal if over else under_or_equal
+
+
+def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, str]:
+    """Independent fair probability for the exact SureBet market when supported."""
+    market = (v.market or "").casefold()
+    selection = (v.selection or "").casefold()
+
+    # Plain winner / draw.
+    side = _candidate_side(v)
+    if side is not None:
+        direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
+        model_side = side
+        if not direct and side in {"home", "away"}:
+            model_side = "away" if side == "home" else "home"
+        p = fx.probs.get(model_side)
+        return (p, "1X2/ML") if p is not None else (None, "keine Modellwahrscheinlichkeit")
+
+    # Draw-no-bet can be derived exactly from 1X2 probabilities.
+    if "draw no bet" in market and len(v.teams) >= 2:
+        if "dnb" not in selection:
+            return None, "DNB-Auswahl nicht erkannt"
+        target = "home" if v.teams[0].casefold() in selection else (
+            "away" if v.teams[1].casefold() in selection else None
+        )
+        if target and all(k in fx.probs for k in ("home", "draw", "away")):
+            denom = fx.probs["home"] + fx.probs["away"]
+            if denom > 0:
+                return fx.probs[target] / denom, "DNB aus 1X2-Modell"
+        return None, "DNB nicht sauber ableitbar"
+
+    # Regulation full-game soccer/hockey goal totals from our Poisson expected goals.
+    if "gesamt-tore" in market and "reguläre spielzeit" in market:
+        mm = re.search(r"(über|unter)\s+([0-9]+(?:\.[0-9]+)?)", selection)
+        xg = _expected_goals_from_detail(fx)
+        if not mm or not xg:
+            return None, "Tor-Total nicht sauber ableitbar"
+        p = _poisson_total_probability(xg[0] + xg[1], float(mm.group(2)), mm.group(1) == "über")
+        return (p, "Poisson-Gesamttore") if p is not None else (None, "Push-Linie noch nicht unterstützt")
+
+    return None, "Marktart im aktuellen Fair-Modell nicht unterstützt"
+
+
+_HOCKEY_TOURNAMENTS = {
+    "czechia extraliga": "extraliga",
+    "czech extraliga": "extraliga",
+    "finland liiga": "liiga",
+    "liiga": "liiga",
+    "sweden shl": "shl",
+    "shl": "shl",
+    "ice hockey league": "icehl",
+    "austria ice hockey league": "icehl",
+    "khl": "khl",
+}
+
+
+def _hockey_league(v: surebet.SurebetValue) -> str | None:
+    t = (v.tournament or "").casefold().strip()
+    for label, code in _HOCKEY_TOURNAMENTS.items():
+        if label in t:
+            return code
+    return None
+
+
+def _hockey_period1_probability(v: surebet.SurebetValue, cache: dict) -> tuple[float | None, str]:
+    """Candidate-driven 1st-period total model from historical period scores.
+
+    This is independent of the SureBet probability and is used only when the
+    exact event is not available in the normal scanner.
+    """
+    if v.sport != "Hockey" or len(v.teams) != 2 or v.kickoff is None:
+        return None, "kein Hockey-Periodenmodell"
+    market = (v.market or "").casefold()
+    selection = (v.selection or "").casefold()
+    if "1. drittel" not in market or "gesamt-tore" not in market:
+        return None, "kein unterstützter Periodenmarkt"
+    mm = re.search(r"(über|unter)\s+([0-9]+(?:\.[0-9]+)?)", selection)
+    if not mm:
+        return None, "Drittel-Total nicht erkannt"
+    league = _hockey_league(v)
+    if not league:
+        return None, "Liga noch nicht im Drittelmodell"
+    season = v.kickoff.year if v.kickoff.month >= 7 else v.kickoff.year - 1
+    key = (league, season)
+    if key not in cache:
+        rows = []
+        for sy, age in ((season - 1, 30.0), (season, 0.25)):
+            rs, err = hockeyarchives.season_results(league, sy, age)
+            if err and sy == season:
+                continue
+            rows += rs
+        p1 = [
+            Match(r.date, r.home, r.away, r.periods[0][0], r.periods[0][1])
+            for r in rows if len(r.periods) >= 1
+        ]
+        if len(p1) < 120:
+            cache[key] = (None, p1)
+        else:
+            cache[key] = (
+                PoissonModel.fit(p1, v.kickoff.date(), half_life_days=240,
+                                 xg_weight=0.0, shrink=8.0, rho=0.0, max_goals=7),
+                p1,
+            )
+    model, rows = cache[key]
+    if model is None:
+        return None, f"zu wenig Dritteldaten ({len(rows)})"
+    names = list(model.attack)
+    home = matching.find_strict(v.teams[0], names) or matching.find(v.teams[0], names)
+    away = matching.find_strict(v.teams[1], names) or matching.find(v.teams[1], names)
+    if not home or not away:
+        return None, "Teams im Drittelmodell nicht eindeutig"
+    mk = model.markets(home, away)
+    line = float(mm.group(2))
+    keym = ("O" if mm.group(1) == "über" else "U") + str(line)
+    if keym not in mk:
+        return None, "Drittel-Linie nicht unterstützt"
+    return float(mk[keym]), f"1.-Drittel-Poisson ({len(rows)} Spiele)"
 
 
 def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
