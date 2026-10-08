@@ -1,1 +1,1 @@
-trigger 2026-10-08 European basketball Polymarket Kalshi reference audit
+trigger 2026-10-08 European basketball without API-Basketball
