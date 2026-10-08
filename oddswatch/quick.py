@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+import os
 
 from . import guard, pricing, report, steam, telegram
 from .sources import apifootball
@@ -139,6 +140,35 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
         )
     if len(rows) > top:
         log.append(f"... {len(rows) - top} weitere Treffer")
+
+    # Bei manuellen/push-ausgeloesten Scans immer einen kompakten Telegram-
+    # Bericht senden. Geplante 15-Minuten-Laeufe bleiben still, solange es
+    # kein PRE-STEAM-Signal gibt, damit der Kanal nicht zugespammt wird.
+    event_name = os.environ.get("GITHUB_EVENT_NAME", "")
+    if send and event_name != "schedule":
+        lines = [
+            f"📊 SOCCER MARKET SCAN {report.stand()}",
+            f"{day} · {len(fixtures)} Spiele · {odds_with_data} mit Odds",
+            f"Treffer ab {min_ev * 100:.1f}% Markt-EV: {len(rows)}",
+            "⚠️ WATCH: Pinnacle de-vigged Referenz, kein unabhaengiges Modell/kein PLAY.",
+        ]
+        if rows:
+            for r in rows[:8]:
+                fx = r["fx"]
+                lines += [
+                    "",
+                    f"• {report._league(fx.league)} · {fx.kickoff.astimezone(timezone.utc):%H:%M} UTC",
+                    f"{fx.home} – {fx.away}",
+                    f"{r['selection']} @ {r['odds']:.2f} ({r['book']})",
+                    f"Pinnacle fair {r['fair']:.2f} · Edge {r['edge'] * 100:+.1f}pp · EV {r['ev'] * 100:+.1f}%",
+                ]
+        else:
+            lines += ["", "Keine Markt-Treffer ueber dem Filter."]
+        tr = telegram.send("\n".join(lines))
+        log.append("FULLSCAN Telegram: " + (
+            f"gesendet {tr['message_ids']}" if tr["sent"] else f"NICHT gesendet – {tr['error']}"
+        ))
+
     signals = steam.update_many(steam_records)
     if signals:
         signals.sort(key=lambda s: (-s["score"], -abs(s["lead_move"])))
