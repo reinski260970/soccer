@@ -7,18 +7,18 @@
   },
   "leagues": {
     "nhl": {
-      "history_games": 5300,
+      "history_games": 5303,
       "seasons": {
         "2022/23": 1312,
         "2023/24": 1312,
         "2024/25": 1312,
         "2025/26": 1312,
-        "2026/27": 52
+        "2026/27": 55
       },
       "substantial_seasons": 4,
       "teams": 33,
       "date_from": "2022-10-07",
-      "date_to": "2026-10-06",
+      "date_to": "2026-10-07",
       "training_data_ready": true,
       "market_closing_rows": 3,
       "market_data_ready": false
@@ -58,18 +58,18 @@
       "market_data_ready": false
     },
     "liiga": {
-      "history_games": 2020,
+      "history_games": 2023,
       "seasons": {
         "2022/23": 464,
         "2023/24": 466,
         "2024/25": 507,
         "2025/26": 500,
-        "2026/27": 83
+        "2026/27": 86
       },
       "substantial_seasons": 4,
       "teams": 34,
       "date_from": "2022-09-13",
-      "date_to": "2026-10-03",
+      "date_to": "2026-10-07",
       "training_data_ready": true,
       "market_closing_rows": 10,
       "market_data_ready": false
