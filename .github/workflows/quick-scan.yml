@@ -5,8 +5,6 @@ on:
     paths:
       - ".github/quick-run-now.txt"
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
 concurrency:
   group: quick-scan
   cancel-in-progress: false
@@ -27,7 +25,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APIKEY: ${{ secrets.APIKEY }}
-        run: python -m oddswatch quick --full --send --days 2 --supported-only
+        run: python -m oddswatch quick --full --send
       - name: Journal sichern
         if: always()
         run: |
