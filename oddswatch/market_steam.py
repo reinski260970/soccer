@@ -15,6 +15,7 @@ from .sources import espn, polymarket
 LEAGUES = ("nfl", "nhl", "nba")
 DAYS = 4
 ALERT_STATE = Path("data/journal/us_steam_alerts.json")
+US_STEAM_STATE = Path("data/journal/us_steam_history.json")
 ALERT_COOLDOWN_MIN = 90
 MIN_EXTRA_MOVE = 0.015
 
@@ -171,7 +172,7 @@ def _text(signals: list[dict], now: datetime) -> str:
 def run(*, send: bool = False, now: datetime | None = None) -> list[str]:
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     recs, issues = collect(now)
-    signals = steam.update_many(recs, now=now)
+    signals = steam.update_many(recs, now=now, path=US_STEAM_STATE)
     signals = [s for s in signals if str(s.get("key", "")).startswith("us:")]
     fresh = _new_alerts(signals, now)
     log = [
