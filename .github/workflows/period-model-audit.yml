@@ -1,0 +1,24 @@
+name: period-model-audit
+
+on:
+  push:
+    paths:
+      - ".github/period-model-run-now.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Period model coverage
+        run: python -m oddswatch.period_audit
