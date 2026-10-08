@@ -12,7 +12,8 @@ import argparse
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import news, outlook, report, scan, settle, telegram
+from . import news, outlook, report, scan, settle, telegram, surebet_values
+from .sources import surebet
 from .journal import Journal
 
 
@@ -297,6 +298,54 @@ def _euro_hockey_fair_lines(res) -> list[str]:
     out.append("Regel: Kein Fair-only Tipp. PLAY nur mit aktuellem, als ausführbar markiertem Marktpreis.")
     return out
 
+def _surebet_value_lines() -> list[str]:
+    values, err = surebet.fetch_valuebets(
+        sports=("Football", "Hockey", "Basketball"),
+        books=("bet365", "betfair", "orbitxch"),
+        limit=100,
+    )
+    out = ["💰 VALUE-WATCH · BET365 / BETFAIR / ORBIT"]
+    if err:
+        return out + [f"Quelle nicht verfügbar: {err}"]
+    if not values:
+        return out + ["Keine aktuellen SureBet-Value-Signale in Fußball, Eishockey oder Basketball."]
+
+    names = {"bet365": "Bet365", "betfair": "Betfair", "orbitxch": "Orbit"}
+    groups = surebet_values.matched(values)
+    if groups:
+        out.append(f"{len(groups)} gematchte Markt-Signale")
+        for group in groups[:8]:
+            v = group[0]
+            when = v.kickoff.astimezone(report._TZ).strftime("%d.%m. %H:%M") if v.kickoff else "Zeit unbekannt"
+            out.append(f"• {v.sport} · {when} · {v.event}")
+            out.append(f"  {v.selection} · {v.market}")
+            q = []
+            for x in group:
+                side = "" if x.back else " LAY"
+                ev = f" · EV {x.ev*100:+.1f}%" if x.ev is not None else ""
+                q.append(f"{names.get(x.bookmaker, x.bookmaker)}{side} {x.odds:.2f}{ev}")
+            out.append("  " + " | ".join(q))
+    else:
+        out.append("Keine identische Auswahl auf mindestens zwei der drei Märkte gematcht.")
+
+    top = sorted(
+        values,
+        key=lambda v: (v.ev is not None, v.ev if v.ev is not None else -999),
+        reverse=True,
+    )[:6]
+    if top:
+        out.append("Top Einzel-Signale:")
+        for v in top:
+            when = v.kickoff.astimezone(report._TZ).strftime("%d.%m. %H:%M") if v.kickoff else "Zeit unbekannt"
+            ev = f" · EV {v.ev*100:+.1f}%" if v.ev is not None else ""
+            out.append(
+                f"• {v.sport} · {when} · {v.event} · {v.selection} @ {v.odds:.2f} "
+                f"({names.get(v.bookmaker, v.bookmaker)}){ev}"
+            )
+    out.append("SureBet = Markt-/Value-Signal; PLAY erst nach CEO-Modell-/CLV-Gate.")
+    return out
+
+
 def _broad_news_lines(issues: list[str]) -> list[str]:
     """Breiter Sports-Intelligence-Scan zusätzlich zu PLAY/WATCH-spezifischen
     Alerts. Ein einzelner Feed-Treffer ist nur HEADLINE und löst keinen Recalc aus."""
@@ -367,6 +416,7 @@ def build_report(
     lines += [""] + core
     lines += [""] + _market_diag_lines(res)
     lines += [""] + _soccer_steam_lines(res)
+    lines += [""] + _surebet_value_lines()
     lines += [""] + _euro_hockey_fair_lines(res)
     lines += [""] + _clv_lines(j)
 
