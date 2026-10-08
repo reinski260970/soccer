@@ -458,19 +458,16 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
 
     lay = [a for a in audits if a.status == "LAY_REFERENZ"]
     no_model = [a for a in audits if a.status == "NO_MODEL"]
-    no_match = [a for a in audits if a.status == "NO_MATCH"]
-    if lay or no_model or no_match:
+    if lay or no_model:
         out += ["", "📋 NOCH NICHT ALS PLAY BEWERTET"]
         if lay:
             out.append(f"↔️ {len(lay)} Lay-Signale: nur Markt-Referenz, kein Back-Value.")
         if no_model:
             out.append(f"⚪ {len(no_model)} Märkte ohne passenden Fair-Preis im aktuellen Modell.")
-        if no_match:
-            out.append(f"🔎 {len(no_match)} Events noch nicht eindeutig unserem Spiel zugeordnet.")
 
     # Never present an unverified feed item as "value". Only unresolved Bet365
     # candidates are shown here, explicitly marked as NOT checked.
-    unresolved = [a for a in audits if a.status in {"NO_MODEL", "NO_MATCH"}]
+    unresolved = [a for a in audits if a.status == "NO_MODEL"]
     if unresolved:
         out += ["", "❔ BET365-KANDIDATEN · NOCH NICHT GEPRÜFT"]
         for a in unresolved[:10]:
