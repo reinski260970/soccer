@@ -37,3 +37,21 @@ def test_postgres_internal_evaluation():
             ingest(c,{'events':[{**e,'home_score':80,'observed_at':'2026-01-03T00:00:00Z'}]})
             assert evaluate(c)==1
             assert c.execute('SELECT outcome FROM sports.prediction_evaluations').fetchone()['outcome']==0
+
+
+def test_existing_scanner_predictions_are_evaluated():
+    if not os.getenv('SPORTS_DATABASE_URL'): pytest.skip('requires PostgreSQL 15+')
+    from oddswatch.sql.legacy import evaluate_scanner
+    with connect() as c:
+        migrate(c)
+        with c.transaction(force_rollback=True):
+            c.execute('CREATE TABLE public.games(event_id text,league text,kickoff timestamptz)')
+            c.execute('CREATE TABLE public.predictions(id bigint,event_id text,league text,model text,created_at timestamptz,market text,p_model numeric)')
+            e=dict(event_id='nfl:espn:bridge',league='nfl',source='ESPN',source_event_id='bridge',home_team_id='a',away_team_id='b',home_name='A',away_name='B',kickoff='2026-01-02T12:00:00Z',season=2026,season_type='regular',status='STATUS_FINAL',home_score=20,away_score=10,observed_at='2026-01-02T15:00:00Z')
+            ingest(c,{'events':[e]})
+            c.execute("INSERT INTO public.predictions VALUES(1,'bridge','nfl','existing','2026-01-02T10:00:00Z','home',0.6),(2,'bridge','nfl','existing','2026-01-02T11:00:00Z','home',0.7),(3,'bridge','nfl','existing','2026-01-02T13:00:00Z','home',0.9)")
+            assert evaluate_scanner(c)==2
+            assert evaluate_scanner(c)==0
+            row=c.execute('SELECT * FROM sports.scanner_metrics').fetchone()
+            assert row['evaluated']==1
+            assert float(row['brier_score'])==pytest.approx(.09)

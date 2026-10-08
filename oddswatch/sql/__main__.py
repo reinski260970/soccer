@@ -25,7 +25,7 @@ def main():
         elif args.command=='evaluate': result={'evaluated':evaluate(conn)}
         elif args.command=='clv': result=capture_closing(conn)
         elif args.command=='report':
-            result={name:conn.execute(f'SELECT * FROM sports.{name}').fetchall() for name in ('model_metrics','calibration','performance')}
+            result={name:conn.execute(f'SELECT * FROM sports.{name}').fetchall() for name in ('model_metrics','calibration','performance','scanner_metrics')}
             result['pending']=conn.execute("SELECT e.league,count(*) AS pending,min(e.kickoff) AS oldest FROM sports.predictions p JOIN sports.events e USING(event_id) LEFT JOIN sports.prediction_evaluations v USING(prediction_id) WHERE v.prediction_id IS NULL AND e.kickoff<now() GROUP BY e.league").fetchall()
         else: result={'migration':'OK'}
     print(json.dumps(result,default=str,ensure_ascii=False))

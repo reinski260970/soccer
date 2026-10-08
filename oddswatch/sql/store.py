@@ -19,6 +19,7 @@ def connect():
     dsn = os.environ.get('SPORTS_DATABASE_URL')
     if not dsn:
         raise ValueError('SPORTS_DATABASE_URL is not configured')
+    dsn = dsn.replace('postgresql+psycopg://', 'postgresql://', 1)
     return psycopg.connect(dsn, connect_timeout=15, row_factory=dict_row,
                           options='-c statement_timeout=60000')
 

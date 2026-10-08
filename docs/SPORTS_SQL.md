@@ -7,7 +7,7 @@ Optional isolated `sports` schema, PostgreSQL 15+. Football and tennis Mongo int
 1. Provision PostgreSQL and a database user that owns the `sports` schema. Keep the connection URL in GitHub secret `SPORTS_DATABASE_URL` (use TLS for a remote server).
 2. Install `pip install -r requirements-sql.txt`.
 3. Run `python -m oddswatch.sql migrate`, then `python -m oddswatch.sql sync` and `python -m oddswatch.sql report`.
-4. After merging, set repository variable `SPORTS_SQL_ENABLED=true`. The workflow syncs every two hours; manual dispatch is also supported. CI first tests against an isolated PostgreSQL 16 service. Production is disabled by default.
+4. After merging, the main-branch push starts the initial sync using the existing `SPORTS_DATABASE_URL` secret. The workflow syncs every two hours; manual dispatch is also supported. CI first tests against an isolated PostgreSQL 16 service. Scheduled and manual sync run only on main. A missing database secret fails explicitly.
 
 ## Data and evaluation
 
@@ -28,3 +28,7 @@ WATCH/PLAY signals always carry 0 EH. PLAY requires a matching pre-match market,
 CLV uses the same source/bookmaker/selection/line/period/rules and the latest observed pregame quote within 15 minutes of kickoff. Missing quotes leave signals open. This is sampled raw CLV, not exact closing no-vig. Two-hour sync cannot collect close-to-kickoff odds: a separate odds producer with sufficiently frequent snapshots is required. Postponed/unknown-status events do not close automatically.
 
 Commands: `migrate`, `sync --start YYYY-MM-DD --days 3`, `ingest FILE`, `evaluate`, `clv`, `report`. Network/DB failures produce nonzero exit status; errors redact credentials. Migration checksums prevent silently rewriting applied migrations. Back up the database and use append-only versioned migrations.
+
+## Existing Neon scanner integration
+
+The same Neon database already contains `public.games` and `public.predictions`. The NBA/NFL runner also recovers these games and writes separate internal evaluations to `sports.scanner_evaluations`, without modifying source predictions or inventing training metadata. `scanner_metrics` uses the latest pre-kickoff prediction per event/model/side to avoid counting repeated scans as independent games. Legacy bridge supports full-game HOME/AWAY NBA/NFL predictions; ties are unscored pushes. NBA preseason is excluded. Other sports continue through their existing runner. Both plain PostgreSQL and SQLAlchemy psycopg URLs are accepted.
