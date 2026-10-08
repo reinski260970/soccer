@@ -70,3 +70,26 @@ def test_presteam_generic_lead_source(tmp_path):
     assert len(sig) == 1
     assert sig[0]["direction"] == "SHORTENING"
     assert sig[0]["lead_source"] == "Polymarket"
+
+
+def test_steam_global_gc_removes_stale_keys_and_caps_snapshots(tmp_path):
+    p = tmp_path / "steam.json"
+    t0 = datetime(2026, 10, 7, 0, 0, tzinfo=timezone.utc)
+
+    # Stale key from another event should disappear even if not scanned now.
+    p.write_text(
+        '{"stale":[{"ts":"2026-10-06T00:00:00+00:00","probs":{"Pinnacle":0.5}}]}',
+        encoding="utf-8",
+    )
+
+    for i in range(45):
+        steam.update_many([_rec({
+            "Pinnacle": 0.25 + i * 0.0001,
+            "Bet365": 0.245 + i * 0.00005,
+            "Betfair": 0.246 + i * 0.00005,
+        })], now=t0 + timedelta(minutes=i), path=p)
+
+    import json
+    data = json.loads(p.read_text(encoding="utf-8"))
+    assert "stale" not in data
+    assert len(data["1|away"]) == steam.MAX_SNAPSHOTS_PER_KEY
