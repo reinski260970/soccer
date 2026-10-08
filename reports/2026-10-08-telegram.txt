@@ -1,0 +1,11 @@
+📊 CEO-Update 08.10.2026 06:47 MESZ
+⛔ NO PLAY: kein belegter Vorteil.
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: keine Spiele in 7 Tagen
+🏒 Eishockey Europa: 42 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: keine Spiele in 7 Tagen
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: keine Spiele in 7 Tagen
+🎾 Tennis: keine Daten (MONGODB_URI nicht gesetzt – Tennis (tennis_db) nicht abrufbar)
+ℹ️ Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig
