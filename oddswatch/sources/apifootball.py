@@ -46,6 +46,7 @@ class ApiFixture:
     home: str
     away: str
     league: str
+    country: str = ""
 
 
 def fixtures_on(day: str) -> tuple[list[ApiFixture], str | None]:
@@ -58,7 +59,7 @@ def fixtures_on(day: str) -> tuple[list[ApiFixture], str | None]:
         try:
             out.append(ApiFixture(int(f["fixture"]["id"]), datetime.fromisoformat(f["fixture"]["date"]),
                                   f["teams"]["home"]["name"], f["teams"]["away"]["name"],
-                                  f["league"]["name"]))
+                                  f["league"]["name"], str(f["league"].get("country") or "")))
         except (KeyError, TypeError, ValueError):
             continue
     return out, None
