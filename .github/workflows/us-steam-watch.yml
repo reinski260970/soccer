@@ -1,6 +1,9 @@
 name: us-steam-watch
 
 on:
+  push:
+    paths:
+      - ".github/us-steam-run-now.txt"
   schedule:
     - cron: "10,25,40,55 * * * *"
   workflow_dispatch:
