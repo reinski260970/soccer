@@ -7,6 +7,7 @@ market snapshots can later be evaluated for Logloss, CLV and ROI.
 from __future__ import annotations
 
 import hashlib
+import os
 from datetime import datetime, timezone
 
 from .store import ingest
@@ -172,3 +173,14 @@ def build_bundle(fixtures, observed_at: datetime | None = None) -> dict:
 def persist_scan(conn, fixtures, observed_at: datetime | None = None) -> dict:
     bundle = build_bundle(fixtures, observed_at=observed_at)
     return ingest(conn, bundle)
+
+
+def persist_if_configured(fixtures) -> dict:
+    """Persist hockey rows when SPORTS_DATABASE_URL exists; otherwise no-op."""
+    if not os.getenv("SPORTS_DATABASE_URL", "").strip():
+        return {"configured": False}
+    from .store import connect, migrate
+    with connect() as conn:
+        migrate(conn)
+        result = persist_scan(conn, fixtures)
+    return {"configured": True, **result}
