@@ -1,1 +1,1 @@
-trigger 2026-10-08 european hockey rerun with current KHL season via API-Hockey
+trigger 2026-10-08 european hockey Neon persistence test
