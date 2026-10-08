@@ -1,6 +1,11 @@
 name: soccer-steam-watch
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/soccer-steam-watch.yml"
+      - ".github/soccer-steam-run-now.txt"
   schedule:
     - cron: "3,18,33,48 * * * *"
   workflow_dispatch:
