@@ -15,8 +15,9 @@ def test_outcomes(market,selection,line,h,a,expected):
     assert outcome(p,h,a)==expected
     assert outcome({**p,'period':'REGULATION'},h,a) is None
 
-def test_postgres_internal_evaluation():
-    if not os.getenv('SPORTS_DATABASE_URL'): pytest.skip('requires PostgreSQL 15+')
+def test_postgres_internal_evaluation(monkeypatch):
+    if not os.getenv('SPORTS_SQL_TEST_URL'): pytest.skip('requires isolated PostgreSQL test database')
+    monkeypatch.setenv('SPORTS_DATABASE_URL',os.environ['SPORTS_SQL_TEST_URL'])
     with connect() as c:
         migrate(c);migrate(c)
         with c.transaction(force_rollback=True):
@@ -39,8 +40,9 @@ def test_postgres_internal_evaluation():
             assert c.execute('SELECT outcome FROM sports.prediction_evaluations').fetchone()['outcome']==0
 
 
-def test_existing_scanner_predictions_are_evaluated():
-    if not os.getenv('SPORTS_DATABASE_URL'): pytest.skip('requires PostgreSQL 15+')
+def test_existing_scanner_predictions_are_evaluated(monkeypatch):
+    if not os.getenv('SPORTS_SQL_TEST_URL'): pytest.skip('requires isolated PostgreSQL test database')
+    monkeypatch.setenv('SPORTS_DATABASE_URL',os.environ['SPORTS_SQL_TEST_URL'])
     from oddswatch.sql.legacy import evaluate_scanner
     with connect() as c:
         migrate(c)
