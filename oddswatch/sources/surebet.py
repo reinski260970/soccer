@@ -15,7 +15,7 @@ from urllib.parse import urlencode
 from .. import fetch
 
 BASE = "https://api.apostasseguras.com/request"
-DEFAULT_SPORTS = ("Football", "Hockey", "Basketball")
+DEFAULT_SPORTS = ("Football", "Hockey", "Basketball", "American football")
 DEFAULT_BOOKS = ("bet365", "betfair", "orbitxch")
 
 
@@ -110,14 +110,8 @@ def _selection(row: dict) -> tuple[str, str]:
         "q2": "2. Viertel",
         "q3": "3. Viertel",
         "q4": "4. Viertel",
-        "p1": "1. Drittel",
-        "p2": "2. Drittel",
-        "p3": "3. Drittel",
         "half1": "1. Halbzeit",
         "half2": "2. Halbzeit",
-        "period1": "1. Drittel",
-        "period2": "2. Drittel",
-        "period3": "3. Drittel",
         "quarter1": "1. Viertel",
         "quarter2": "2. Viertel",
         "quarter3": "3. Viertel",
@@ -125,10 +119,17 @@ def _selection(row: dict) -> tuple[str, str]:
         "overtime": "inkl. Verlängerung",
         "shootout": "inkl. Verlängerung/Shootout",
     }
-    period_text = period_labels.get(period, period)
+    if period in {"p1", "period1"}:
+        period_text = "1. Drittel" if sport == "Hockey" else "1. Viertel"
+    elif period in {"p2", "period2"}:
+        period_text = "2. Drittel" if sport == "Hockey" else "2. Viertel"
+    elif period in {"p3", "period3"}:
+        period_text = "3. Drittel" if sport == "Hockey" else "3. Viertel"
+    else:
+        period_text = period_labels.get(period, period)
 
     def _total_unit() -> str:
-        return "Punkte" if sport == "Basketball" else "Tore"
+        return "Punkte" if sport in {"Basketball", "American football"} else "Tore"
 
     def _base_label() -> str:
         b = base.casefold()
