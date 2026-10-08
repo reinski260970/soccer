@@ -1,8 +1,8 @@
-"""SureBet API: Bet365 Valuebets for football, hockey and basketball.
+"""Valuebet API feed: Bet365 Valuebets for football, hockey and basketball.
 
-This adapter is intentionally read-only.  SureBet supplies the observed Bet365
+This adapter is intentionally read-only.  The Valuebet feed supplies the observed Bet365
 price and its own value estimate.  We preserve that distinction in reporting:
-a SureBet signal is not silently relabelled as an oddswatch model PLAY.
+a Valuebet-API signal is not silently relabelled as an oddswatch model PLAY.
 """
 
 from __future__ import annotations
@@ -65,7 +65,7 @@ def _dt(value) -> datetime | None:
         x = float(value)
     except (TypeError, ValueError):
         return None
-    # SureBet documents milliseconds since epoch.
+    # The API documents milliseconds since epoch.
     if x > 10_000_000_000:
         x /= 1000.0
     try:
@@ -258,5 +258,5 @@ def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS,
         retries=1,
     )
     if data is None:
-        return [], f"SureBet API: {err or 'keine Antwort'}"
+        return [], f"Valuebet API: {err or 'keine Antwort'}"
     return parse(data), None
