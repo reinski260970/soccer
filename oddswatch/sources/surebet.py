@@ -91,25 +91,69 @@ def _selection(row: dict) -> tuple[str, str]:
     period = str(typ.get("period") or typ.get("periode") or "regularTime").strip()
     base = str(typ.get("base") or "overall").strip()
     teams = [str(x) for x in (row.get("teams") or [])]
+    sport = str(row.get("sport_id") or "")
+
+    t1 = teams[0] if len(teams) > 0 else "Team 1"
+    t2 = teams[1] if len(teams) > 1 else "Team 2"
+
+    period_labels = {
+        "regularTime": "reguläre Spielzeit",
+        "fullTime": "gesamtes Spiel",
+        "match": "gesamtes Spiel",
+        "1h": "1. Halbzeit",
+        "2h": "2. Halbzeit",
+        "q1": "1. Viertel",
+        "q2": "2. Viertel",
+        "q3": "3. Viertel",
+        "q4": "4. Viertel",
+        "p1": "1. Drittel",
+        "p2": "2. Drittel",
+        "p3": "3. Drittel",
+    }
+    period_text = period_labels.get(period, period)
+
+    def _total_unit() -> str:
+        return "Punkte" if sport == "Basketball" else "Tore"
+
+    def _base_label() -> str:
+        b = base.casefold()
+        if b in {"overall", "total", "match", ""}:
+            return f"Gesamt-{_total_unit()}"
+        if b in {"team1", "home", "1", "first"}:
+            return f"{t1} Teamtotal"
+        if b in {"team2", "away", "2", "second"}:
+            return f"{t2} Teamtotal"
+        if "team1" in b or "home" in b:
+            return f"{t1} Teamtotal"
+        if "team2" in b or "away" in b:
+            return f"{t2} Teamtotal"
+        return base
 
     labels = {
-        "win1": teams[0] if len(teams) > 0 else "Team 1",
-        "win2": teams[1] if len(teams) > 1 else "Team 2",
+        "win1": f"{t1} Sieg",
+        "win2": f"{t2} Sieg",
+        "winOnly1": f"{t1} Sieg (2-Wege)",
+        "winOnly2": f"{t2} Sieg (2-Wege)",
         "draw": "Unentschieden",
-        "win1RetX": (teams[0] if teams else "Team 1") + " DNB",
-        "win2RetX": (teams[1] if len(teams) > 1 else "Team 2") + " DNB",
-        "over": f"Over {condition}".strip(),
-        "under": f"Under {condition}".strip(),
+        "win1RetX": f"{t1} DNB (bei Remis Einsatz zurück)",
+        "win2RetX": f"{t2} DNB (bei Remis Einsatz zurück)",
         "yes": "Ja",
         "no": "Nein",
-        "ah1": f"{teams[0] if teams else 'Team 1'} AH {condition}".strip(),
-        "ah2": f"{teams[1] if len(teams) > 1 else 'Team 2'} AH {condition}".strip(),
-        "eh1": f"{teams[0] if teams else 'Team 1'} EH {condition}".strip(),
-        "ehx": f"Unentschieden EH {condition}".strip(),
-        "eh2": f"{teams[1] if len(teams) > 1 else 'Team 2'} EH {condition}".strip(),
+        "ah1": f"{t1} Asian Handicap {condition}".strip(),
+        "ah2": f"{t2} Asian Handicap {condition}".strip(),
+        "eh1": f"{t1} Europäisches Handicap {condition}".strip(),
+        "ehx": f"Unentschieden · Europäisches Handicap {condition}".strip(),
+        "eh2": f"{t2} Europäisches Handicap {condition}".strip(),
     }
-    selection = labels.get(code, code or "Markt unbekannt")
-    market = " · ".join(x for x in (period, base, code, condition) if x)
+
+    if code == "over":
+        selection = f"{_base_label()} Über {condition}".strip()
+    elif code == "under":
+        selection = f"{_base_label()} Unter {condition}".strip()
+    else:
+        selection = labels.get(code, code or "Markt unbekannt")
+
+    market = f"{selection} · {period_text}"
     return selection, market
 
 
