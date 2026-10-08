@@ -1,1 +1,1 @@
-trigger 2026-10-08 european hockey scan with Kalshi DEL-NL-KHL fixtures
+trigger 2026-10-08 european hockey rerun with price API and ticker kickoff fix
