@@ -17,10 +17,13 @@ reference, entry-vs-that-price is the immediate CLV capture opportunity.
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from pathlib import Path
 
 from . import pricing, steam
 
 SIDES = ("home", "draw", "away")
+MODEL_STEAM_STATE = Path("data/journal/soccer_model_steam_history.json")
+
 SOURCE_NAMES = {
     "pinnacle": "Pinnacle",
     "bet365": "Bet365",
@@ -124,7 +127,7 @@ def collect(fixtures) -> tuple[list[dict], dict[tuple[str, str], dict]]:
 def assess(fixtures, *, now: datetime | None = None) -> dict[tuple[str, str], dict]:
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     records, meta = collect(fixtures)
-    signals = steam.update_many(records, now=now) if records else []
+    signals = steam.update_many(records, now=now, path=MODEL_STEAM_STATE) if records else []
     by_key = {s["key"]: s for s in signals}
 
     for rec in records:

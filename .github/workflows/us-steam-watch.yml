@@ -1,0 +1,47 @@
+name: us-steam-watch
+
+on:
+  schedule:
+    - cron: "10,25,40,55 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: us-steam-watch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: US PRE-STEAM
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m oddswatch market-steam --send
+      - name: Persist US steam history
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          for f in data/journal/us_steam_history.json data/journal/us_steam_alerts.json; do
+            test -f "$f" && git add "$f"
+          done
+          git diff --cached --quiet && exit 0
+          git commit -m "US steam snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          for n in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep 3
+          done
+          exit 1

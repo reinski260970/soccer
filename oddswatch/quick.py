@@ -4,12 +4,41 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import os
+from pathlib import Path
 
 from . import guard, pricing, report, steam, telegram
 from .sources import apifootball
 
 MIN_EV = 0.03
 PLAYABLE = ("Bet365", "Betfair")
+SOCCER_MARKET_STEAM_STATE = Path("data/journal/soccer_market_steam_history.json")
+
+SUPPORTED_STEAM_LEAGUES = {
+    "germany": {"bundesliga", "2. bundesliga"},
+    "england": {"premier league", "championship"},
+    "spain": {"la liga"},
+    "italy": {"serie a"},
+    "france": {"ligue 1"},
+    "netherlands": {"eredivisie"},
+    "portugal": {"primeira liga", "liga portugal", "liga portugal betclic"},
+    "belgium": {"jupiler pro league", "pro league"},
+    "turkey": {"süper lig", "super lig"},
+    "türkiye": {"süper lig", "super lig"},
+    "scotland": {"premiership", "scottish premiership"},
+    "greece": {"super league 1", "super league greece"},
+    "austria": {"bundesliga", "admiral bundesliga"},
+    "switzerland": {"super league", "swiss super league"},
+    "sweden": {"allsvenskan"},
+    "norway": {"eliteserien"},
+    "denmark": {"superliga", "superligaen"},
+    "poland": {"ekstraklasa"},
+}
+
+
+def _supported_fixture(fx: apifootball.ApiFixture) -> bool:
+    country = fx.country.casefold().strip()
+    league = fx.league.casefold().strip()
+    return league in SUPPORTED_STEAM_LEAGUES.get(country, set())
 
 
 def _groups(pinnacle: dict[str, float]) -> list[list[str]]:
@@ -43,7 +72,8 @@ def _selection(fx: apifootball.ApiFixture, market: str) -> str:
 
 def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 25,
                      send: bool = False, days: int = 1,
-                     leagues: tuple[str, ...] = (), countries: tuple[str, ...] = ()) -> list[str]:
+                     leagues: tuple[str, ...] = (), countries: tuple[str, ...] = (),
+                     supported_only: bool = False) -> list[str]:
     """Alle API-Football-Spiele eines Tages gegen Pinnacle fair scannen.
 
     Pinnacle wird je Marktgruppe de-vigged. Bet365/Betfair sind die spielbaren
@@ -58,6 +88,8 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
             raise RuntimeError(err)
         fixtures.extend(daily)
 
+    if supported_only:
+        fixtures = [fx for fx in fixtures if _supported_fixture(fx)]
     if leagues:
         wanted = {x.casefold() for x in leagues}
         fixtures = [fx for fx in fixtures if fx.league.casefold() in wanted]
@@ -182,7 +214,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
             f"gesendet {tr['message_ids']}" if tr["sent"] else f"NICHT gesendet – {tr['error']}"
         ))
 
-    signals = steam.update_many(steam_records)
+    signals = steam.update_many(steam_records, path=SOCCER_MARKET_STEAM_STATE)
     if signals:
         signals.sort(key=lambda s: (-s["score"], -abs(s["lead_move"])))
         log += ["", f"⚡ PRE-STEAM: {len(signals)} Frühindikator(en)"]
@@ -225,7 +257,12 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
     return log
 
 
-def run(j=None, send=False, days=7, now=None, full=False, leagues=(), countries=(), start_day=None):
+def run(j=None, send=False, days=7, now=None, full=False, leagues=(), countries=(), start_day=None,
+        supported_only=False):
     if full:
-        return full_market_scan(day=start_day, send=send, days=days, leagues=tuple(leagues), countries=tuple(countries))
+        return full_market_scan(
+            day=start_day, send=send, days=days,
+            leagues=tuple(leagues), countries=tuple(countries),
+            supported_only=supported_only,
+        )
     return guard.run(j, send=send, now=now, strict=True)
