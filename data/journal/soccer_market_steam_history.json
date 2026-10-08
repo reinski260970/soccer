@@ -1,0 +1,1297 @@
+{
+ "1639324|home": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "home",
+   "selection": "Rosenborg U19 Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.628206101096094,
+    "Bet365": 0.641272176694784,
+    "Betfair": 0.5648700183278497
+   },
+   "odds": {
+    "Pinnacle": 1.51,
+    "Bet365": 1.48,
+    "Betfair": 1.67
+   }
+  }
+ ],
+ "1639324|draw": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.17577869272727237,
+    "Bet365": 0.14485949311402616,
+    "Betfair": 0.20223358822501947
+   },
+   "odds": {
+    "Pinnacle": 4.67,
+    "Bet365": 5.5,
+    "Betfair": 4.2
+   }
+  }
+ ],
+ "1639324|away": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "away",
+   "selection": "Lillestrøm U19 Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.19601520617663382,
+    "Bet365": 0.21386833019118978,
+    "Betfair": 0.23289639344713092
+   },
+   "odds": {
+    "Pinnacle": 4.24,
+    "Bet365": 3.9,
+    "Betfair": 3.7
+   }
+  }
+ ],
+ "1639324|O3.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6687875855207185
+   },
+   "odds": {
+    "Pinnacle": 1.42
+   }
+  }
+ ],
+ "1639324|U3.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3312124144792815
+   },
+   "odds": {
+    "Pinnacle": 2.62
+   }
+  }
+ ],
+ "1639324|O3.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6390158205800832
+   },
+   "odds": {
+    "Pinnacle": 1.48
+   }
+  }
+ ],
+ "1639324|U3.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.360984179419917
+   },
+   "odds": {
+    "Pinnacle": 2.44
+   }
+  }
+ ],
+ "1639324|O4": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O4",
+   "selection": "Über 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6631967721501123
+   },
+   "odds": {
+    "Pinnacle": 1.43
+   }
+  }
+ ],
+ "1639324|U4:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U4:no",
+   "selection": "Unter 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3368032278498877
+   },
+   "odds": {
+    "Pinnacle": 2.58
+   }
+  }
+ ],
+ "1639324|O4.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O4.25",
+   "selection": "Über 4.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5975859473257509
+   },
+   "odds": {
+    "Pinnacle": 1.57
+   }
+  }
+ ],
+ "1639324|U4.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U4.25:no",
+   "selection": "Unter 4.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.40241405267424923
+   },
+   "odds": {
+    "Pinnacle": 2.22
+   }
+  }
+ ],
+ "1639324|O4.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5436609717490634
+   },
+   "odds": {
+    "Pinnacle": 1.72
+   }
+  }
+ ],
+ "1639324|U4.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.456339028250937
+   },
+   "odds": {
+    "Pinnacle": 2.01
+   }
+  }
+ ],
+ "1639324|O4.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O4.75",
+   "selection": "Über 4.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4970389740562749
+   },
+   "odds": {
+    "Pinnacle": 1.88
+   }
+  }
+ ],
+ "1639324|U4.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U4.75:no",
+   "selection": "Unter 4.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5029610259437252
+   },
+   "odds": {
+    "Pinnacle": 1.86
+   }
+  }
+ ],
+ "1639324|O5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O5",
+   "selection": "Über 5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.44473511154559786
+   },
+   "odds": {
+    "Pinnacle": 2.06
+   }
+  }
+ ],
+ "1639324|U5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U5:no",
+   "selection": "Unter 5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5552648884544023
+   },
+   "odds": {
+    "Pinnacle": 1.69
+   }
+  }
+ ],
+ "1639324|O5.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O5.25",
+   "selection": "Über 5.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3990927754582945
+   },
+   "odds": {
+    "Pinnacle": 2.23
+   }
+  }
+ ],
+ "1639324|U5.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U5.25:no",
+   "selection": "Unter 5.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6009072245417058
+   },
+   "odds": {
+    "Pinnacle": 1.56
+   }
+  }
+ ],
+ "1639324|O5.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.36247736902305777
+   },
+   "odds": {
+    "Pinnacle": 2.42
+   }
+  }
+ ],
+ "1639324|U5.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Rosenborg U19 – Lillestrøm U19",
+   "kickoff": "2026-10-08T13:00:00+00:00",
+   "league": "Nasjonal U19 Champions League",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6375226309769425
+   },
+   "odds": {
+    "Pinnacle": 1.48
+   }
+  }
+ ],
+ "1510697|home": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "home",
+   "selection": "Vänersborgs FK Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.37381061051110503,
+    "Bet365": 0.36177229417656837,
+    "Betfair": 0.36177229417656837
+   },
+   "odds": {
+    "Pinnacle": 2.39,
+    "Bet365": 2.5,
+    "Betfair": 2.5
+   }
+  }
+ ],
+ "1510697|draw": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.23389208608850204,
+    "Bet365": 0.24138602281501356,
+    "Betfair": 0.24138602281501356
+   },
+   "odds": {
+    "Pinnacle": 3.62,
+    "Bet365": 3.6,
+    "Betfair": 3.6
+   }
+  }
+ ],
+ "1510697|away": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "away",
+   "selection": "Kumla Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.39229730340039315,
+    "Bet365": 0.39684168300841804,
+    "Betfair": 0.39684168300841804
+   },
+   "odds": {
+    "Pinnacle": 2.29,
+    "Bet365": 2.3,
+    "Betfair": 2.3
+   }
+  }
+ ],
+ "1510697|O2": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O2",
+   "selection": "Über 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7668323895555775
+   },
+   "odds": {
+    "Pinnacle": 1.25
+   }
+  }
+ ],
+ "1510697|U2:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.23316761044442263
+   },
+   "odds": {
+    "Pinnacle": 3.4
+   }
+  }
+ ],
+ "1510697|O2.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7080648005829505
+   },
+   "odds": {
+    "Pinnacle": 1.34
+   }
+  }
+ ],
+ "1510697|U2.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.29193519941704965
+   },
+   "odds": {
+    "Pinnacle": 2.84
+   }
+  }
+ ],
+ "1510697|O2.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6483372424786482,
+    "Bet365": 0.6212004351050009,
+    "Betfair": 0.6552624977153009
+   },
+   "odds": {
+    "Pinnacle": 1.45,
+    "Bet365": 1.53,
+    "Betfair": 1.45
+   }
+  }
+ ],
+ "1510697|U2.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.351662757521352,
+    "Bet365": 0.3787995648949994,
+    "Betfair": 0.3447375022846993
+   },
+   "odds": {
+    "Pinnacle": 2.45,
+    "Bet365": 2.38,
+    "Betfair": 2.55
+   }
+  }
+ ],
+ "1510697|O2.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6048752663058998
+   },
+   "odds": {
+    "Pinnacle": 1.54
+   }
+  }
+ ],
+ "1510697|U2.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3951247336941002
+   },
+   "odds": {
+    "Pinnacle": 2.22
+   }
+  }
+ ],
+ "1510697|O3": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.548099494211268
+   },
+   "odds": {
+    "Pinnacle": 1.69
+   }
+  }
+ ],
+ "1510697|U3:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.45190050578873214
+   },
+   "odds": {
+    "Pinnacle": 2.0
+   }
+  }
+ ],
+ "1510697|O3.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4786333391369188
+   },
+   "odds": {
+    "Pinnacle": 1.92
+   }
+  }
+ ],
+ "1510697|U3.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5213666608630811
+   },
+   "odds": {
+    "Pinnacle": 1.78
+   }
+  }
+ ],
+ "1510697|O3.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.42483137859521475,
+    "Bet365": 0.41562003296959216,
+    "Betfair": 0.4020247789631946
+   },
+   "odds": {
+    "Pinnacle": 2.11,
+    "Bet365": 2.2,
+    "Betfair": 2.3
+   }
+  }
+ ],
+ "1510697|U3.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5751686214047854,
+    "Bet365": 0.584379967030408,
+    "Betfair": 0.5979752210368053
+   },
+   "odds": {
+    "Pinnacle": 1.62,
+    "Bet365": 1.62,
+    "Betfair": 1.6
+   }
+  }
+ ],
+ "1510697|O3.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.36273448251623636
+   },
+   "odds": {
+    "Pinnacle": 2.38
+   }
+  }
+ ],
+ "1510697|U3.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6372655174837639
+   },
+   "odds": {
+    "Pinnacle": 1.47
+   }
+  }
+ ],
+ "1510697|O4": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "O4",
+   "selection": "Über 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.28720901532114196
+   },
+   "odds": {
+    "Pinnacle": 2.86
+   }
+  }
+ ],
+ "1510697|U4:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Vänersborgs FK – Kumla",
+   "kickoff": "2026-10-08T17:30:00+00:00",
+   "league": "Division 2 - Norra Götaland",
+   "market": "U4:no",
+   "selection": "Unter 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7127909846788582
+   },
+   "odds": {
+    "Pinnacle": 1.33
+   }
+  }
+ ],
+ "1617037|home": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "home",
+   "selection": "Txantrea Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3604822367086269,
+    "Bet365": 0.3473061902628808,
+    "Betfair": 0.4063860807713239
+   },
+   "odds": {
+    "Pinnacle": 2.47,
+    "Bet365": 2.62,
+    "Betfair": 2.25
+   }
+  }
+ ],
+ "1617037|draw": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.25819742995139616,
+    "Bet365": 0.27883943246147663,
+    "Betfair": 0.27484304554251127
+   },
+   "odds": {
+    "Pinnacle": 3.32,
+    "Bet365": 3.2,
+    "Betfair": 3.2
+   }
+  }
+ ],
+ "1617037|away": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "away",
+   "selection": "Cortes Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.38132033333997695,
+    "Bet365": 0.3738543772756426,
+    "Betfair": 0.31877087368616513
+   },
+   "odds": {
+    "Pinnacle": 2.35,
+    "Bet365": 2.45,
+    "Betfair": 2.8
+   }
+  }
+ ],
+ "1617037|O1.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O1.75",
+   "selection": "Über 1.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7509464126923695
+   },
+   "odds": {
+    "Pinnacle": 1.27
+   }
+  }
+ ],
+ "1617037|U1.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U1.75:no",
+   "selection": "Unter 1.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.24905358730763064
+   },
+   "odds": {
+    "Pinnacle": 3.19
+   }
+  }
+ ],
+ "1617037|O2": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O2",
+   "selection": "Über 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7070754668006104
+   },
+   "odds": {
+    "Pinnacle": 1.34
+   }
+  }
+ ],
+ "1617037|U2:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.29292453319938977
+   },
+   "odds": {
+    "Pinnacle": 2.82
+   }
+  }
+ ],
+ "1617037|O2.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6042605781171511
+   },
+   "odds": {
+    "Pinnacle": 1.55
+   }
+  }
+ ],
+ "1617037|U2.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.39573942188284905
+   },
+   "odds": {
+    "Pinnacle": 2.24
+   }
+  }
+ ],
+ "1617037|O2.5": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5275137823150152,
+    "Bet365": 0.5285427352713827
+   },
+   "odds": {
+    "Pinnacle": 1.76,
+    "Bet365": 1.8
+   }
+  }
+ ],
+ "1617037|U2.5:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4724862176849849,
+    "Bet365": 0.4714572647286174
+   },
+   "odds": {
+    "Pinnacle": 1.94,
+    "Bet365": 2.0
+   }
+  }
+ ],
+ "1617037|O2.75": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.46581861663079954
+   },
+   "odds": {
+    "Pinnacle": 1.95
+   }
+  }
+ ],
+ "1617037|U2.75:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5341813833692005
+   },
+   "odds": {
+    "Pinnacle": 1.73
+   }
+  }
+ ],
+ "1617037|O3": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.38547181757834814
+   },
+   "odds": {
+    "Pinnacle": 2.27
+   }
+  }
+ ],
+ "1617037|U3:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6145281824216521
+   },
+   "odds": {
+    "Pinnacle": 1.52
+   }
+  }
+ ],
+ "1617037|O3.25": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.33313238018272906
+   },
+   "odds": {
+    "Pinnacle": 2.54
+   }
+  }
+ ],
+ "1617037|U3.25:no": [
+  {
+   "ts": "2026-10-08T15:56:07.712803+00:00",
+   "event": "Txantrea – Cortes",
+   "kickoff": "2026-10-08T18:00:00+00:00",
+   "league": "Tercera División RFEF - Group 15",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.666867619817271
+   },
+   "odds": {
+    "Pinnacle": 1.41
+   }
+  }
+ ]
+}
