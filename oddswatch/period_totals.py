@@ -12,7 +12,7 @@ Supported:
 from __future__ import annotations
 
 import math
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from dataclasses import dataclass
 
 from . import matching
@@ -46,7 +46,7 @@ def _dedupe_games(raw, period: str) -> list[Game]:
     seen = set()
     out = []
     for g in raw:
-        if not g.final or g.id in seen:
+        if not g.final or g.id in seen or g.season_type not in (2, 3):
             continue
         pts = _period_points(g, period)
         if pts is None:
@@ -85,28 +85,23 @@ def _nfl_raw(as_of: date, issues: list[str]):
 
 
 def _schedule_raw(league: str, as_of: date, issues: list[str]):
-    if league == "nba":
-        current = as_of.year + 1 if as_of.month >= 8 else as_of.year
-    elif league == "nhl":
-        current = as_of.year + 1 if as_of.month >= 7 else as_of.year
-    else:
-        raise ValueError(league)
+    """Historical NBA/NHL scoreboards in bounded date chunks.
 
-    ids, err = espn.team_ids(league)
-    if err:
-        issues.append(f"{league.upper()} Teams: {err}")
-        return []
-
+    Scoreboard payloads expose quarter/period linescores directly and need far
+    fewer requests than walking every team schedule.
+    """
+    start = as_of - timedelta(days=430)
+    end_limit = as_of - timedelta(days=1)
     raw = []
-    for tid in ids:
-        for season, cache_days in ((current - 1, 30.0), (current, 0.25)):
-            for st in (2, 3):
-                gs, err = espn.team_schedule(
-                    league, tid, season, st, cache_days=cache_days,
-                )
-                if err and st == 2:
-                    issues.append(f"{league.upper()} schedule {tid}/{season}: {err}")
-                raw += [g for g in gs if g.kickoff.date() < as_of]
+    cur = start
+    while cur <= end_limit:
+        end = min(cur + timedelta(days=44), end_limit)
+        cache_days = 30.0 if end < as_of - timedelta(days=30) else 0.25
+        gs, err = espn.scoreboard_range(league, cur, end, cache_days=cache_days)
+        if err:
+            issues.append(f"{league.upper()} scoreboard {cur}–{end}: {err}")
+        raw += gs
+        cur = end + timedelta(days=1)
     return raw
 
 
