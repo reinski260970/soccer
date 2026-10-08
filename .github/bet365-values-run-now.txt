@@ -1,1 +1,1 @@
-trigger 2026-10-08 exact Bet365 market validation and no-unverified-value labels
+trigger 2026-10-08 rename Telegram labels to Valuebet
