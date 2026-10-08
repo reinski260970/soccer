@@ -13,7 +13,8 @@
   python -m oddswatch quick [--send]    # Fußball-Quotenwächter (API-Football)
   python -m oddswatch guard [--send]    # Quotenwächter: CEO-Tipps gegen Pinnacle/Bet365/Betfair (API-Football)
   python -m oddswatch tennis [--send] [--all]   # Tennis-Valuebets aus MongoDB Atlas (tennis_db, nur lesend)
-  python -m oddswatch bet365-values [--send]      # SureBet: Bet365 Valuebets Fußball/Hockey/Basketball
+  python -m oddswatch bet365-values [--send]      # Valuebet API: Bet365 Kandidaten -> eigenes Modell
+  python -m oddswatch valuebet-clv                 # Bet365-Quotes nachladen + CLV schließen
   python -m oddswatch hockey-data [--seasons 5]    # Hockey-Historie backfillen + Datenabdeckung auditieren
   python -m oddswatch place --ref <Valuebet-Referenz> --odds 2.1 --stake 1 --bookmaker bet365
   python -m oddswatch send <datei>      # Telegram-Text senden (Bot API)
@@ -269,6 +270,13 @@ def _bet365_values(a) -> int:
     return 0
 
 
+def _valuebet_clv(a) -> int:
+    from . import surebet_values
+    for line in surebet_values.run_clv_snapshot():
+        print(line)
+    return 0
+
+
 def _hockey_data(a) -> int:
     from . import hockey_data
     for line in hockey_data.run(seasons=a.seasons):
@@ -398,6 +406,7 @@ def main(argv: list[str] | None = None) -> int:
     bv.add_argument("--send", action="store_true")
     bv.add_argument("--limit", type=int, default=100)
     bv.set_defaults(fn=_bet365_values)
+    sub.add_parser("valuebet-clv").set_defaults(fn=_valuebet_clv)
     hd = sub.add_parser("hockey-data")
     hd.add_argument("--seasons", type=int, default=5)
     hd.set_defaults(fn=_hockey_data)
