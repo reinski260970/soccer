@@ -1,0 +1,54 @@
+name: NBA NFL SQL
+on:
+  pull_request:
+    paths: ['oddswatch/sql/**', 'tests/test_sports_sql.py', 'requirements-sql.txt', '.github/workflows/sports-sql.yml']
+  push:
+    branches: [main]
+    paths: ['oddswatch/sql/**', '.github/workflows/sports-sql.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */2 * * *'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: sports_test
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      SPORTS_SQL_TEST_URL: postgresql://postgres:test@localhost:5432/sports_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-sql.txt
+      - run: python -m pytest tests/test_sports_sql.py -q
+  sync:
+    timeout-minutes: 20
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    concurrency:
+      group: sports-sql-production
+      cancel-in-progress: false
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-sql.txt
+      - run: python -m oddswatch.sql sync
+      - run: python -m oddswatch.sql report > sports-sql-report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sports-sql-report
+          path: sports-sql-report.json
