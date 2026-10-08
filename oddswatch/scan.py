@@ -1193,6 +1193,20 @@ def run(start: date | None = None, days: int = 7, watch_days: int = 14,
             sql_store.sync_scan(fixtures, picks)
         except Exception as exc:  # SQL darf Scan/Telegram nicht blockieren.
             issues.append(f"SQL-Tracking: {type(exc).__name__}: {exc}")
+
+    # Normalized Neon/Postgres hockey store. This is independent from Telegram
+    # and the legacy SQL mirror and is a no-op when SPORTS_DATABASE_URL is absent.
+    try:
+        from .sql.hockey import persist_if_configured
+        persisted = persist_if_configured(fixtures)
+        if persisted.get("configured"):
+            notes.append(
+                "Neon Hockey: "
+                + ", ".join(f"{k}={v}" for k, v in persisted.items() if k != "configured")
+            )
+    except Exception as exc:
+        issues.append(f"Neon Hockey: {type(exc).__name__}: {exc}")
+
     return ScanResult(stand, fixtures, cands, picks, issues, notes, steam_state)
 
 
