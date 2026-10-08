@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl, oddalerts, soccerstats, xg_external
+from .sources import apihockey, clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
 from .m17_11_external_shadow import fair as external_structural_fair
@@ -883,8 +883,32 @@ def _hockey_results(lg: str, season_start: int, issues: list[str]
         api = True
         if err2:
             issues.append(f"{lg}-API: {err2}")
+
+    # KHL: aktuelle Saison bevorzugt aus API-Hockey, damit das Modell nicht
+    # ausschließlich auf Vorsaison-Daten läuft. KHL.ru selbst verbietet
+    # automatisiertes Extrahieren in seinen Nutzungsbedingungen.
+    khl_current: list[Match] = []
+    if lg == "khl":
+        rows, err2 = apihockey.league_games("KHL", season_start)
+        if err2:
+            issues.append(f"KHL API-Hockey {season_start}: {err2}")
+        else:
+            known2 = known or sorted({HA_CANON.get(n, n) for r in prev for n in (r.home, r.away)})
+            for g in rows:
+                if g.get("home_goals") is None or g.get("away_goals") is None:
+                    continue
+                ko = g["start"]
+                if ko.date() >= date.today():
+                    continue
+                h = matching.find_strict(g["home"], known2, al) or HA_CANON.get(g["home"], g["home"])
+                a = matching.find_strict(g["away"], known2, al) or HA_CANON.get(g["away"], g["away"])
+                khl_current.append(Match(ko.date(), h, a, g["home_goals"], g["away_goals"]))
+
     ms = [Match(r.date, name(r.home, False), name(r.away, False), r.reg_home, r.reg_away)
           for r in prev]
+    if lg == "khl" and khl_current:
+        ms += khl_current
+        return ms, len(khl_current)
     ms += [Match(r.date, name(r.home, api), name(r.away, api), r.reg_home, r.reg_away) for r in cur]
     return ms, len(cur)
 
