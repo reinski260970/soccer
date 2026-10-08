@@ -229,3 +229,80 @@ def attach(fixtures, issues: list[str]) -> int:
                     league=fx.league, executable=is_exec,
                 ))
     return matched
+
+
+def find_league_id(name: str, season: int | None = None) -> tuple[int | None, str | None]:
+    """Resolve an API-Hockey league id by exact/normalized name."""
+    from urllib.parse import urlencode
+    params = {"search": name}
+    if season is not None:
+        params["season"] = season
+    data, err = _get("/leagues?" + urlencode(params))
+    if data is None:
+        return None, err
+    rows = data.get("response") or []
+    exact = []
+    loose = []
+    target = matching.norm(name)
+    for row in rows:
+        lg = row.get("league") or row
+        try:
+            lid = int(lg.get("id"))
+        except (TypeError, ValueError, AttributeError):
+            continue
+        lname = str(lg.get("name") or row.get("name") or "")
+        n = matching.norm(lname)
+        if n == target:
+            exact.append(lid)
+        elif target and (target in n or n in target):
+            loose.append(lid)
+    hits = exact or loose
+    return (hits[0] if len(set(hits)) == 1 else None), None
+
+
+def league_games(league_name: str, season: int) -> tuple[list[dict], str | None]:
+    """Fetch a complete league season from API-Hockey.
+
+    Returns normalized rows with kickoff, teams, status and scores. The parser
+    is defensive because API-Hockey has used both nested and flat score shapes.
+    """
+    from urllib.parse import urlencode
+    lid, err = find_league_id(league_name, season)
+    if err or lid is None:
+        return [], err or f"API-Hockey: Liga nicht eindeutig gefunden ({league_name})"
+    data, err = _get("/games?" + urlencode({"league": lid, "season": season, "timezone": "UTC"}))
+    if data is None:
+        return [], err
+    out = []
+    for row in data.get("response") or []:
+        try:
+            ko = datetime.fromisoformat(str(row["date"]).replace("Z", "+00:00"))
+            home = str(row["teams"]["home"]["name"])
+            away = str(row["teams"]["away"]["name"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        status = str((row.get("status") or {}).get("short") if isinstance(row.get("status"), dict)
+                     else row.get("status") or "")
+        scores = row.get("scores") or row.get("score") or {}
+        def _score(side: str):
+            v = scores.get(side)
+            if isinstance(v, dict):
+                for key in ("total", "current", "points"):
+                    if v.get(key) not in (None, ""):
+                        return v.get(key)
+            return v
+        try:
+            hg = int(_score("home")) if _score("home") not in (None, "") else None
+            ag = int(_score("away")) if _score("away") not in (None, "") else None
+        except (TypeError, ValueError):
+            hg = ag = None
+        out.append({
+            "id": row.get("id"),
+            "start": ko,
+            "home": home,
+            "away": away,
+            "status": status,
+            "home_goals": hg,
+            "away_goals": ag,
+        })
+    return out, None
