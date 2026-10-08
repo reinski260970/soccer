@@ -16,11 +16,15 @@ from .. import fetch, matching
 from ..selection import Offer
 
 BASE = "https://external-api.kalshi.com/trade-api/v2"
-SUPPORTED = {"nfl", "nhl", "nba"}
+SUPPORTED = {"nfl", "nhl", "nba", "euroleague", "eurocup"}
 HOCKEY_SERIES = {
     "del": "KXDELGAME",
     "nl": "KXNLGAME",
     "khl": "KXKHLGAME",
+}
+BASKETBALL_SERIES = {
+    "euroleague": "KXEUROLEAGUEGAME",
+    "eurocup": "KXEUROCUPGAME",
 }
 MAX_PAGES = 5
 
@@ -190,15 +194,28 @@ def attach(fixtures, issues: list[str]) -> int:
     rows = [f for f in fixtures if f.league in SUPPORTED]
     if not rows:
         return 0
-    es, err = events()
-    if err:
-        issues.append(f"Kalshi: {err}")
-        return 0
     executable = _enabled()
     now = datetime.now(timezone.utc)
     matched = 0
+    cache: dict[str, list[dict]] = {}
+    generic_events: list[dict] | None = None
 
     for fx in rows:
+        series = BASKETBALL_SERIES.get(fx.league)
+        if series:
+            if series not in cache:
+                cache[series], err = series_events(series)
+                if err:
+                    issues.append(f"Kalshi {fx.league}: {err}")
+                    cache[series] = []
+            es = cache[series]
+        else:
+            if generic_events is None:
+                generic_events, err = events()
+                if err:
+                    issues.append(f"Kalshi: {err}")
+                    generic_events = []
+            es = generic_events
         hits = [e for e in es if _event_hit(e, fx.game)]
         if len(hits) != 1:
             continue
