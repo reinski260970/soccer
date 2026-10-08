@@ -194,28 +194,44 @@ def _hockey_period1_probability(v: surebet.SurebetValue, cache: dict) -> tuple[f
 
 def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
     out: list[Audit] = []
+    period_cache: dict = {}
     for v in values:
+        # We challenge Bet365 BACK candidates. Betfair/OrbitX remain market
+        # references and must never inflate the number of "validated values".
+        if v.bookmaker != "bet365":
+            continue
         if not v.back:
             out.append(Audit(v, "LAY_REFERENZ", note="Lay-Quote wird nicht als Back-Value bestätigt"))
             continue
-        side = _candidate_side(v)
-        if side is None:
-            out.append(Audit(v, "NO_MODEL", note="Marktart im aktuellen Fair-Modell nicht unterstützt"))
-            continue
+
         hits = [fx for fx in fixtures if _same_event(v, fx)]
-        if len(hits) != 1:
+        p = None
+        model_note = ""
+        ref = None
+
+        if len(hits) == 1:
+            fx = hits[0]
+            p, model_note = _model_probability(v, fx)
+            side = _candidate_side(v)
+            if side is not None:
+                direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
+                model_side = side
+                if not direct and side in {"home", "away"}:
+                    model_side = "away" if side == "home" else "home"
+                ref = fx.ref_probs.get(model_side)
+        elif v.sport == "Hockey":
+            p, model_note = _hockey_period1_probability(v, period_cache)
+            if p is None:
+                out.append(Audit(v, "NO_MATCH", note=model_note or "kein eindeutiges Modell-Spiel gefunden"))
+                continue
+        else:
             out.append(Audit(v, "NO_MATCH", note="kein eindeutiges Modell-Spiel gefunden"))
             continue
-        fx = hits[0]
-        direct = matching.same(v.teams[0], fx.game.home.name)
-        model_side = side
-        if not direct and side in {"home", "away"}:
-            model_side = "away" if side == "home" else "home"
-        p = fx.probs.get(model_side)
+
         if p is None or p <= 0:
-            out.append(Audit(v, "NO_MODEL", note="keine Modellwahrscheinlichkeit für Auswahl"))
+            out.append(Audit(v, "NO_MODEL", note=model_note or "keine Modellwahrscheinlichkeit für Auswahl"))
             continue
-        ref = fx.ref_probs.get(model_side)
+
         our_ev = p * v.odds - 1.0
         api_ev = v.ev
         if our_ev < 0:
@@ -224,9 +240,12 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
             status = "REDUZIERT"
         else:
             status = "BESTÄTIGT"
+
         if ref is not None and ref > 0 and v.odds * ref - 1.0 < -0.02 and status == "BESTÄTIGT":
             status = "KONFLIKT"
-        note = f"API-EV {api_ev:+.1%}" if api_ev is not None else "API-EV unbekannt"
+
+        api = f"SureBet-EV {api_ev:+.1%}" if api_ev is not None else "SureBet-EV unbekannt"
+        note = f"{model_note}; {api}" if model_note else api
         out.append(Audit(
             v, status,
             our_probability=p,
