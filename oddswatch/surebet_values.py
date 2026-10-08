@@ -375,26 +375,61 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
 
 
 def run(send: bool = False, limit: int = 100) -> list[str]:
-    values, err = surebet.fetch_valuebets(limit=limit)
+    # 1) Candidate-first: first read only genuine Bet365 BACK proposals from
+    # the Valuebet API. No model scan is started before we know what must be checked.
+    values, err = surebet.fetch_valuebets(
+        books=("bet365",),
+        limit=limit,
+    )
+    values = [v for v in values if v.bookmaker == "bet365" and v.back]
+
     audits: list[Audit] = []
     if not err and values:
         try:
             from . import scan
+
+            # 2) Run only the model families needed by the ingested candidates.
+            sports_needed: list[str] = []
+            if any(v.sport == "Football" for v in values):
+                sports_needed.append("soccer")
+            if any(v.sport == "Hockey" for v in values):
+                sports_needed.extend(["nhl", "hockey_eu"])
+            if any(v.sport == "Basketball" for v in values):
+                # NBA model is available in the shared scanner. European
+                # basketball candidates remain NO_MODEL until their own model
+                # has a fair price for the exact market.
+                sports_needed.append("nba")
+
+            # Candidate horizon instead of an unconditional broad scan.
+            now = datetime.now(_TZ)
+            future = [v.kickoff.astimezone(_TZ) for v in values if v.kickoff and v.kickoff > now]
+            max_days = 1
+            if future:
+                max_days = max(1, min(14, max((dt.date() - now.date()).days + 1 for dt in future)))
+
             res = scan.run(
-                days=7,
-                watch_days=14,
-                sports=("soccer", "nhl", "hockey_eu", "nba"),
+                days=max_days,
+                watch_days=max_days,
+                sports=tuple(dict.fromkeys(sports_needed)),
                 journal=None,
             )
+
+            # 3) Challenge every candidate against our independent fair model.
             audits = audit_values(values, res.fixtures)
         except Exception as exc:
             err = f"Modell-Audit fehlgeschlagen: {type(exc).__name__}: {exc}"
+
+    # 4) Telegram reports the result of our audit, never the raw feed as VALUE.
     txt = telegram_text(values, err, audits)
     counts = {}
     for a in audits:
         counts[a.status] = counts.get(a.status, 0) + 1
     summary = ", ".join(f"{k}={v}" for k, v in sorted(counts.items())) if counts else "kein Modell-Audit"
-    lines = [txt, f"Gefunden: {len(values)} Value-Signale", f"Audit: {summary}"]
+    lines = [
+        txt,
+        f"Eingelesene Bet365-Kandidaten: {len(values)}",
+        f"Audit: {summary}",
+    ]
     if send:
         r = telegram.send(txt)
         lines.append(
