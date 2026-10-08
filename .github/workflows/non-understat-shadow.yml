@@ -1,0 +1,32 @@
+name: non-understat-shadow
+
+on:
+  push:
+    paths:
+      - ".github/non-understat-run-now.txt"
+  workflow_dispatch:
+
+concurrency:
+  group: non-understat-shadow
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Targeted tests
+        run: PYTHONPATH=. pytest -q tests/test_m17_11_external_shadow.py tests/test_oddalerts.py
+      - name: Multi-league non-Understat shadow
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch.non_understat_shadow
