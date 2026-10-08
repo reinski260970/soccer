@@ -11,16 +11,11 @@ import os
 from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 
-from .sources import apibasketball, kalshi, polymarket
+from .sources import kalshi, polymarket
 from .sql.store import connect, ingest, migrate
 
 
-TARGETS = {
-    "euroleague": ("Euroleague", None),
-    "eurocup": ("Eurocup", None),
-    "bbl": ("BBL", "Germany"),
-    "acb": ("ACB", "Spain"),
-}
+TARGETS = ("euroleague", "eurocup")
 
 
 class Team:
@@ -32,38 +27,17 @@ class Team:
         return [self.name]
 
 
-def _season(now: datetime) -> str:
-    y = now.year if now.month >= 7 else now.year - 1
-    return str(y)
-
-
-def _event_row(league: str, g: dict, observed: datetime) -> dict:
-    return {
-        "event_id": f"{league}:apibasketball:{g['id']}",
-        "league": league,
-        "source": "API-Basketball",
-        "source_event_id": str(g["id"]),
-        "home_team_id": f"{league}:api:{g['home_id']}",
-        "away_team_id": f"{league}:api:{g['away_id']}",
-        "home_name": g["home"],
-        "away_name": g["away"],
-        "kickoff": g["start"],
-        "season": int(_season(g["start"])),
-        "season_type": "regular",
-        "status": g["status"] or "NS",
-        "home_score": None,
-        "away_score": None,
-        "observed_at": observed,
-    }
-
-
-def _fixture(code: str, g: dict):
+def _fixture_from_poly(code: str, q):
+    outcomes = [str(x) for x in q.outcomes]
+    if len(outcomes) != 2:
+        return None
+    home, away = outcomes[0], outcomes[1]
     game = SimpleNamespace(
-        id=str(g["id"]),
-        title=f"{g['home']} - {g['away']}",
-        kickoff=g["start"],
-        home=Team(g["home"]),
-        away=Team(g["away"]),
+        id=f"poly:{q.slug}",
+        title=f"{home} - {away}",
+        kickoff=q.kickoff or datetime.now(timezone.utc) + timedelta(days=1),
+        home=Team(home),
+        away=Team(away),
     )
     return SimpleNamespace(
         league=code,
@@ -78,50 +52,104 @@ def _fixture(code: str, g: dict):
     )
 
 
+def _fixture_from_kalshi(code: str, event: dict):
+    title = str(event.get("title") or "").strip()
+    if " vs " not in title:
+        return None
+    away, home = [x.strip() for x in title.split(" vs ", 1)]
+    ko = kalshi._sports_ticker_kickoff(str(event.get("event_ticker") or "")) or kalshi._dt(
+        event.get("strike_date"), event.get("expected_expiration_time"),
+        event.get("latest_expiration_time"), event.get("close_time"),
+    )
+    if ko is None:
+        return None
+    game = SimpleNamespace(
+        id=f"kalshi:{event.get('event_ticker')}",
+        title=f"{home} - {away}",
+        kickoff=ko,
+        home=Team(home),
+        away=Team(away),
+    )
+    return SimpleNamespace(
+        league=code,
+        sport="basketball",
+        game=game,
+        probs={"home": 0.5, "away": 0.5},
+        context=[],
+        ref_probs={},
+        flags={},
+        offers={},
+        market_quotes={},
+    )
+
+
+def _dedupe(fixtures):
+    out = []
+    seen = set()
+    for fx in sorted(fixtures, key=lambda x: x.game.kickoff):
+        key = (
+            fx.league,
+            fx.game.home.name.casefold(),
+            fx.game.away.name.casefold(),
+            fx.game.kickoff.date().isoformat(),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(fx)
+    return out
+
+
 def audit(days: int = 7) -> dict:
     now = datetime.now(timezone.utc)
     until = now + timedelta(days=days)
-    season = _season(now)
-    result = {"generated_at": now.isoformat(), "season": season, "leagues": {}}
-    bundle = {"events": [], "odds_snapshots": []}
+    result = {"generated_at": now.isoformat(), "leagues": {}, "sources": ["Polymarket", "Kalshi"]}
 
-    for code, (search, country) in TARGETS.items():
-        league_row, err = apibasketball.resolve_league(search, country)
-        if err or not league_row:
-            result["leagues"][code] = {"error": err or "not found"}
-            continue
-        lg = league_row.get("league") or league_row
-        league_id = lg.get("id") or league_row.get("id")
-        if league_id is None:
-            result["leagues"][code] = {"error": "league id missing"}
-            continue
-
-        rows, err = apibasketball.games(league_id=int(league_id), season=season)
-        if err:
-            result["leagues"][code] = {"error": err}
-            continue
-
+    for code in TARGETS:
         fixtures = []
-        for raw in rows:
-            g = apibasketball.parse_game(raw)
-            if not g or not (now < g["start"] <= until):
-                continue
-            fixtures.append((_fixture(code, g), g))
-            bundle["events"].append(_event_row(code, g, now))
-
-        fx_only = [x[0] for x in fixtures]
         issues = []
+
+        # Fixture discovery and price reference from Polymarket.
         try:
-            polymarket.attach(fx_only, issues)
+            pquotes, err = polymarket.discover(polymarket.TAGS[code])
+            if err:
+                issues.append(f"Polymarket {code}: {err}")
+            for q in pquotes:
+                if q.kickoff and now < q.kickoff <= until:
+                    fx = _fixture_from_poly(code, q)
+                    if fx:
+                        fixtures.append(fx)
         except Exception as exc:
-            issues.append(f"Polymarket: {type(exc).__name__}: {exc}")
+            issues.append(f"Polymarket {code}: {type(exc).__name__}: {exc}")
+
+        # Kalshi is a second independent fixture/market source where available.
+        series = kalshi.BASKETBALL_SERIES.get(code)
+        if series:
+            try:
+                events, err = kalshi.series_events(series)
+                if err:
+                    issues.append(f"Kalshi {code}: {err}")
+                for event in events:
+                    fx = _fixture_from_kalshi(code, event)
+                    if fx and now < fx.game.kickoff <= until:
+                        fixtures.append(fx)
+            except Exception as exc:
+                issues.append(f"Kalshi {code}: {type(exc).__name__}: {exc}")
+
+        fixtures = _dedupe(fixtures)
+
+        # Attach both markets to the combined fixture list.
         try:
-            kalshi.attach(fx_only, issues)
+            polymarket.attach(fixtures, issues)
         except Exception as exc:
-            issues.append(f"Kalshi: {type(exc).__name__}: {exc}")
+            issues.append(f"Polymarket attach {code}: {type(exc).__name__}: {exc}")
+        try:
+            kalshi.attach(fixtures, issues)
+        except Exception as exc:
+            issues.append(f"Kalshi attach {code}: {type(exc).__name__}: {exc}")
 
         games = []
-        for fx, g in fixtures:
+        for fx in fixtures:
             refs = {}
             for side, offers in (fx.offers or {}).items():
                 for q in offers:
@@ -131,57 +159,27 @@ def audit(days: int = 7) -> dict:
                         "liquidity": q.liquidity,
                         "ref": q.ref,
                     }
-                    bundle["odds_snapshots"].append({
-                        "quote_id": f"{code}:{g['id']}:{q.source}:{side}:{int(now.timestamp())}",
-                        "event_id": f"{code}:apibasketball:{g['id']}",
-                        "market": "moneyline",
-                        "selection": side.upper(),
-                        "line": 0,
-                        "period": "FULL_GAME",
-                        "settlement_rules": "INCLUDING_OT",
-                        "bookmaker": q.source,
-                        "source": q.source,
-                        "source_url": None,
-                        "observed_at": now,
-                        "source_time": None,
-                        "odds": float(q.odds),
-                        "commission": 0,
-                        "executable": False,
-                        "live": False,
-                        "liquidity": q.liquidity,
-                    })
             games.append({
-                "game_id": g["id"],
-                "kickoff": g["start"].isoformat(),
-                "home": g["home"],
-                "away": g["away"],
+                "event_id": str(fx.game.id),
+                "kickoff": fx.game.kickoff.isoformat(),
+                "home": fx.game.home.name,
+                "away": fx.game.away.name,
                 "reference_probabilities": fx.ref_probs,
                 "references": refs,
                 "context": fx.context,
             })
 
         result["leagues"][code] = {
-            "league_id": league_id,
-            "name": lg.get("name") or search,
             "count": len(games),
             "games": games,
             "issues": issues,
             "reference_note": (
-                "Polymarket/Kalshi reference only; compare an observed Bet365 price "
-                "against these markets and the independent model before calling it value."
+                "No API-Basketball and no bookmaker feed. Fixtures/prices are discovered "
+                "from Polymarket and Kalshi only. Bet365 prices must be supplied/observed "
+                "separately and are then audited against these references plus our model."
             ),
         }
 
-    if os.getenv("SPORTS_DATABASE_URL", "").strip() and bundle["events"]:
-        with connect() as conn:
-            migrate(conn)
-            result["neon"] = ingest(conn, bundle)
-    else:
-        result["neon"] = {
-            "configured": False,
-            "events": len(bundle["events"]),
-            "odds": len(bundle["odds_snapshots"]),
-        }
     return result
 
 
