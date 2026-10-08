@@ -1,0 +1,29 @@
+name: bundesliga-scan
+on:
+  push:
+    paths:
+      - ".github/bundesliga-run-now.txt"
+  workflow_dispatch:
+concurrency:
+  group: bundesliga-scan
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Bundesliga 1+2 scan
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIKEY: ${{ secrets.APIKEY }}
+        run: >
+          python -m oddswatch quick --full --send
+          --start-day 2026-10-09 --days 3
+          --countries Germany
+          --leagues "Bundesliga,2. Bundesliga"
