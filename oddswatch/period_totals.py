@@ -113,7 +113,40 @@ def _schedule_raw(league: str, as_of: date, issues: list[str]):
                 if err and st == 2:
                     issues.append(f"{league.upper()} schedule {tid}/{season}: {err}")
                 raw += [g for g in gs if g.kickoff.date() < as_of]
-    return raw
+
+    # Team schedules expose event/date/team metadata but often omit linescores.
+    # Hydrate only real game dates through the daily scoreboard, which does
+    # contain quarter/period scores. Stop once the period model has ample data.
+    if sum(bool(g.home_periods and g.away_periods) for g in raw) >= 300:
+        return raw
+
+    game_dates = sorted({
+        g.kickoff.date()
+        for g in raw
+        if g.final and g.season_type in (2, 3) and g.kickoff.date() < as_of
+    }, reverse=True)
+
+    hydrated = []
+    seen = set()
+    for day in game_dates:
+        cache_days = 30.0 if day < as_of - timedelta(days=30) else 0.25
+        gs, err = espn.scoreboard_day(league, day, cache_days=cache_days)
+        if err:
+            issues.append(f"{league.upper()} scoreboard {day}: {err}")
+            continue
+        for g in gs:
+            if (
+                g.final
+                and g.season_type in (2, 3)
+                and g.id not in seen
+                and g.home_periods
+                and g.away_periods
+            ):
+                seen.add(g.id)
+                hydrated.append(g)
+        if len(hydrated) >= 500:
+            break
+    return hydrated
 
 
 def history(sport: str, period: str, as_of: date, cache: dict):
