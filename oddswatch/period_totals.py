@@ -85,23 +85,34 @@ def _nfl_raw(as_of: date, issues: list[str]):
 
 
 def _schedule_raw(league: str, as_of: date, issues: list[str]):
-    """Historical NBA/NHL scoreboards in bounded date chunks.
+    """Historical NBA/NHL games from team schedules.
 
-    Scoreboard payloads expose quarter/period linescores directly and need far
-    fewer requests than walking every team schedule.
+    ESPN range scoreboards return HTTP 400 for these leagues in the runner.
+    Team schedules are deduplicated by event id later and expose linescores on
+    completed games.
     """
-    start = as_of - timedelta(days=430)
-    end_limit = as_of - timedelta(days=1)
+    if league == "nba":
+        current = as_of.year + 1 if as_of.month >= 8 else as_of.year
+    elif league == "nhl":
+        current = as_of.year + 1 if as_of.month >= 7 else as_of.year
+    else:
+        raise ValueError(league)
+
+    ids, err = espn.team_ids(league)
+    if err:
+        issues.append(f"{league.upper()} Teams: {err}")
+        return []
+
     raw = []
-    cur = start
-    while cur <= end_limit:
-        end = min(cur + timedelta(days=44), end_limit)
-        cache_days = 30.0 if end < as_of - timedelta(days=30) else 0.25
-        gs, err = espn.scoreboard_range(league, cur, end, cache_days=cache_days)
-        if err:
-            issues.append(f"{league.upper()} scoreboard {cur}–{end}: {err}")
-        raw += gs
-        cur = end + timedelta(days=1)
+    for tid in ids:
+        for season, cache_days in ((current - 1, 30.0), (current, 0.25)):
+            for st in (2, 3):
+                gs, err = espn.team_schedule(
+                    league, tid, season, st, cache_days=cache_days,
+                )
+                if err and st == 2:
+                    issues.append(f"{league.upper()} schedule {tid}/{season}: {err}")
+                raw += [g for g in gs if g.kickoff.date() < as_of]
     return raw
 
 
@@ -110,19 +121,22 @@ def history(sport: str, period: str, as_of: date, cache: dict):
     if key in cache:
         return cache[key]
 
-    issues: list[str] = []
-    if sport == "nba":
-        raw = _schedule_raw("nba", as_of, issues)
-    elif sport == "nfl":
-        raw = _nfl_raw(as_of, issues)
-    elif sport == "nhl":
-        raw = _schedule_raw("nhl", as_of, issues)
-    else:
-        cache[key] = ([], issues)
-        return cache[key]
+    raw_key = ("raw", sport, as_of.isoformat())
+    if raw_key not in cache:
+        issues: list[str] = []
+        if sport == "nba":
+            raw = _schedule_raw("nba", as_of, issues)
+        elif sport == "nfl":
+            raw = _nfl_raw(as_of, issues)
+        elif sport == "nhl":
+            raw = _schedule_raw("nhl", as_of, issues)
+        else:
+            raw = []
+        cache[raw_key] = (raw, issues)
 
+    raw, issues = cache[raw_key]
     games = _dedupe_games(raw, period)
-    cache[key] = (games, issues)
+    cache[key] = (games, list(issues))
     return cache[key]
 
 
