@@ -88,7 +88,7 @@ def _selection(row: dict) -> tuple[str, str]:
     typ = row.get("type") if isinstance(row.get("type"), dict) else {}
     code = str(typ.get("type") or row.get("bet_type") or "").strip()
     condition = str(typ.get("condition") or "").strip()
-    period = str(typ.get("period") or "regularTime").strip()
+    period = str(typ.get("period") or typ.get("periode") or "regularTime").strip()
     base = str(typ.get("base") or "overall").strip()
     teams = [str(x) for x in (row.get("teams") or [])]
 
@@ -134,7 +134,7 @@ def parse(data) -> list[SurebetValue]:
         if probability is not None and not (0 < probability < 1):
             probability = None
         overvalue = _num(row.get("overvalue"))
-        key = (str(row.get("id") or ""), sport, teams, selection, round(odds, 6))
+        key = (str(row.get("id") or ""), sport, teams, selection, bookmaker, round(odds, 6))
         if key in seen:
             continue
         seen.add(key)
@@ -149,6 +149,9 @@ def parse(data) -> list[SurebetValue]:
             odds=odds,
             probability=probability,
             overvalue=overvalue,
+            bookmaker=bookmaker,
+            back=bool(typ.get("back", True)) if isinstance((typ := row.get("type")), dict) else True,
+            commission=float(row.get("commission") or 0.0),
         ))
     out.sort(key=lambda x: (
         x.kickoff or datetime.max.replace(tzinfo=timezone.utc),
