@@ -153,7 +153,22 @@ def _selection(row: dict) -> tuple[str, str]:
     else:
         selection = labels.get(code, code or "Markt unbekannt")
 
-    market = f"{selection} · {period_text}"
+    if code in {"win1", "win2", "draw"}:
+        market_name = "3-Wege-Sieg"
+    elif code in {"winOnly1", "winOnly2"}:
+        market_name = "2-Wege-Sieg"
+    elif code in {"win1RetX", "win2RetX"}:
+        market_name = "Draw No Bet"
+    elif code in {"ah1", "ah2"}:
+        market_name = "Asian Handicap"
+    elif code in {"eh1", "ehx", "eh2"}:
+        market_name = "Europäisches Handicap"
+    elif code in {"over", "under"}:
+        market_name = _base_label()
+    else:
+        market_name = code or "Markt"
+
+    market = f"{market_name} · {period_text}"
     return selection, market
 
 
