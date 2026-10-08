@@ -166,6 +166,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
             out += [
                 f"• {a.status} · {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
                 f"  {v.event} · {v.selection} @ {_q(v.odds)}",
+                f"  Markt: {v.market}",
                 f"  unser Fair {fair} | unser EV {own} | Referenz-Fair {ref}",
                 f"  {a.note}",
             ]
@@ -190,6 +191,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
                 f"• {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
                 f"  {v.event}",
                 f"  ➡️ {v.selection} @ {_q(v.odds)} ({names.get(v.bookmaker, v.bookmaker)}{side})",
+                f"  Markt: {v.market}",
                 ("  " + " | ".join(calc)) if calc else "  SureBet: Value-Signal",
             ]
     out += ["", "ℹ️ Match = gleiches Event + gleiche Markt-/Auswahlstruktur. PLAY-Freigabe durch unser Modell bleibt separat."]
