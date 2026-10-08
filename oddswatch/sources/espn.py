@@ -162,6 +162,27 @@ def scoreboard_day(league: str, day: date, cache_days: float = 0.0) -> tuple[lis
     return parse_scoreboard(data, league), None
 
 
+def scoreboard_range(
+    league: str,
+    start: date,
+    end: date,
+    cache_days: float = 0.0,
+) -> tuple[list[EspnGame], str | None]:
+    """Scoreboard range for historical period/quarter data.
+
+    ESPN's scoreboard includes competitor.linescores for completed NBA/NFL/NHL
+    games. Keep ranges reasonably small at call sites to avoid oversized payloads.
+    """
+    url = (
+        f"{SITE}/{PATHS[league]}/scoreboard?limit=1000"
+        f"&dates={start:%Y%m%d}-{end:%Y%m%d}"
+    )
+    data, err = fetch.get_json(url, cache_days=cache_days)
+    if data is None:
+        return [], err
+    return parse_scoreboard(data, league), None
+
+
 def upcoming(league: str, start: date, days: int) -> tuple[list[EspnGame], list[str]]:
     games, errs = [], []
     for k in range(days + 1):
