@@ -76,44 +76,159 @@ def _poisson_total_probability(lam: float, line: float, over: bool) -> float | N
     return 1.0 - under_or_equal if over else under_or_equal
 
 
-def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, str]:
-    """Independent fair probability for the exact Valuebet market when supported."""
-    market = (v.market or "").casefold()
-    selection = (v.selection or "").casefold()
+def _score_matrix(lh: float, la: float, max_goals: int = 14):
+    ph = [math.exp(-lh) * lh**k / math.factorial(k) for k in range(max_goals + 1)]
+    pa = [math.exp(-la) * la**k / math.factorial(k) for k in range(max_goals + 1)]
+    rows = [(i, j, ph[i] * pa[j]) for i in range(len(ph)) for j in range(len(pa))]
+    z = sum(p for _, _, p in rows)
+    return [(i, j, p / z) for i, j, p in rows]
 
-    # Plain winner / draw.
-    side = _candidate_side(v)
-    if side is not None:
+
+def _asian_legs(line: float) -> list[float]:
+    q = round(line * 4) / 4
+    if abs(q * 2 - round(q * 2)) < 1e-9:
+        return [q]
+    return [q - 0.25, q + 0.25]
+
+
+def _fair_from_fractional_outcomes(rows, value_fn, odds: float) -> tuple[float | None, float | None, float | None]:
+    win = loss = 0.0
+    for item in rows:
+        p = item[-1]
+        vals = value_fn(item)
+        vals = vals if isinstance(vals, list) else [vals]
+        frac = 1.0 / len(vals)
+        for v in vals:
+            if v > 1e-12:
+                win += p * frac
+            elif v < -1e-12:
+                loss += p * frac
+    if win <= 0:
+        return None, None, None
+    fair = 1.0 + loss / win
+    ev = win * (odds - 1.0) - loss
+    return fair, 1.0 / fair, ev
+
+
+def _poisson_market_fair(v: surebet.SurebetValue, fx) -> tuple[float | None, float | None, float | None, str]:
+    xg = _expected_goals_from_detail(fx)
+    if not xg:
+        return None, None, None, "keine Torerwartung im Modell"
+    lh, la = xg
+    rows = _score_matrix(lh, la)
+    code = (v.bet_type or "").strip()
+    cond = None
+    try:
+        cond = float(v.condition)
+    except (TypeError, ValueError):
+        pass
+    period = (v.period or "").casefold()
+    full_reg = period in {"regulartime", "fulltime", "match", ""}
+    if not full_reg:
+        return None, None, None, "Periodenmarkt braucht eigenes Periodenmodell"
+
+    # 1X2 / double chance / DNB.
+    p1 = sum(p for h, a, p in rows if h > a)
+    px = sum(p for h, a, p in rows if h == a)
+    p2 = 1.0 - p1 - px
+    if code in {"win1", "win2", "draw"}:
+        p = {"win1": p1, "draw": px, "win2": p2}[code]
+        return 1.0 / p, p, p * v.odds - 1.0, "Poisson 1X2"
+    if code in {"1x", "x1", "x2", "2x", "_12", "12"}:
+        p = {
+            "1x": p1 + px, "x1": p1 + px,
+            "x2": px + p2, "2x": px + p2,
+            "_12": p1 + p2, "12": p1 + p2,
+        }[code]
+        return 1.0 / p, p, p * v.odds - 1.0, "Poisson Double Chance"
+    if code in {"win1RetX", "win2RetX"}:
+        pw, pl = (p1, p2) if code == "win1RetX" else (p2, p1)
+        if pw <= 0:
+            return None, None, None, "DNB nicht berechenbar"
+        fair = 1.0 + pl / pw
+        ev = pw * (v.odds - 1.0) - pl
+        return fair, 1.0 / fair, ev, "Poisson DNB"
+
+    # Totals and team totals, including Asian quarter lines.
+    if code in {"over", "under"} and cond is not None:
+        legs = _asian_legs(cond)
+        base = (v.base or "overall").casefold()
+        over = code == "over"
+        def values(item):
+            h, a, _ = item
+            total = h + a
+            if base in {"team1", "home", "1", "first"} or "team1" in base or "home" in base:
+                total = h
+            elif base in {"team2", "away", "2", "second"} or "team2" in base or "away" in base:
+                total = a
+            return [(total - leg) if over else (leg - total) for leg in legs]
+        fair, p, ev = _fair_from_fractional_outcomes(rows, values, v.odds)
+        label = "Poisson Teamtotal" if base not in {"overall", "total", "match", ""} else "Poisson Total"
+        return fair, p, ev, label
+
+    # Asian handicap, selection perspective.
+    if code in {"ah1", "ah2"} and cond is not None:
+        legs = _asian_legs(cond)
+        home_sel = code == "ah1"
+        def values(item):
+            h, a, _ = item
+            margin = (h - a) if home_sel else (a - h)
+            return [margin + leg for leg in legs]
+        fair, p, ev = _fair_from_fractional_outcomes(rows, values, v.odds)
+        return fair, p, ev, "Poisson Asian Handicap"
+
+    # European handicap: condition is applied to team 1, then 3-way result.
+    if code in {"eh1", "ehx", "eh2"} and cond is not None:
+        probs = {"eh1": 0.0, "ehx": 0.0, "eh2": 0.0}
+        for h, a, p in rows:
+            m = (h + cond) - a
+            k = "eh1" if m > 0 else ("ehx" if abs(m) < 1e-12 else "eh2")
+            probs[k] += p
+        p = probs[code]
+        return (1.0 / p, p, p * v.odds - 1.0, "Poisson Europäisches Handicap") if p > 0 else (None, None, None, "EH nicht berechenbar")
+
+    # BTTS when the feed maps yes/no to the market.
+    if code in {"yes", "no"}:
+        py = sum(p for h, a, p in rows if h > 0 and a > 0)
+        p = py if code == "yes" else 1.0 - py
+        return 1.0 / p, p, p * v.odds - 1.0, "Poisson BTTS"
+
+    return None, None, None, "Marktart im aktuellen Fair-Modell nicht unterstützt"
+
+
+def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, float | None, float | None, str]:
+    """Return fair odds, equivalent fair probability, EV at candidate odds, note."""
+    code = (v.bet_type or "").strip()
+    period = (v.period or "").casefold()
+
+    # Hockey/NBA 2-way winner including extra time where our fixture probabilities
+    # are already full-game moneyline probabilities.
+    if code in {"winOnly1", "winOnly2"} or (
+        code in {"win1", "win2"} and period in {"overtime", "shootout"}
+    ):
+        side = "home" if code in {"winOnly1", "win1"} else "away"
         direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
-        model_side = side
-        if not direct and side in {"home", "away"}:
-            model_side = "away" if side == "home" else "home"
-        p = fx.probs.get(model_side)
-        return (p, "1X2/ML") if p is not None else (None, "keine Modellwahrscheinlichkeit")
+        if not direct:
+            side = "away" if side == "home" else "home"
+        p = fx.probs.get(side)
+        if p is not None and p > 0:
+            return 1.0 / p, p, p * v.odds - 1.0, "2-Wege-Moneyline-Modell"
 
-    # Draw-no-bet can be derived exactly from 1X2 probabilities.
-    if "draw no bet" in market and len(v.teams) >= 2:
-        if "dnb" not in selection:
-            return None, "DNB-Auswahl nicht erkannt"
-        target = "home" if v.teams[0].casefold() in selection else (
-            "away" if v.teams[1].casefold() in selection else None
-        )
-        if target and all(k in fx.probs for k in ("home", "draw", "away")):
-            denom = fx.probs["home"] + fx.probs["away"]
-            if denom > 0:
-                return fx.probs[target] / denom, "DNB aus 1X2-Modell"
-        return None, "DNB nicht sauber ableitbar"
+    # Soccer/hockey regulation markets come from the model's score distribution.
+    if fx.sport in {"soccer", "hockey", "nhl"}:
+        return _poisson_market_fair(v, fx)
 
-    # Regulation full-game soccer/hockey goal totals from our Poisson expected goals.
-    if "gesamt-tore" in market and "reguläre spielzeit" in market:
-        mm = re.search(r"(über|unter)\s+([0-9]+(?:\.[0-9]+)?)", selection)
-        xg = _expected_goals_from_detail(fx)
-        if not mm or not xg:
-            return None, "Tor-Total nicht sauber ableitbar"
-        p = _poisson_total_probability(xg[0] + xg[1], float(mm.group(2)), mm.group(1) == "über")
-        return (p, "Poisson-Gesamttore") if p is not None else (None, "Push-Linie noch nicht unterstützt")
-
-    return None, "Marktart im aktuellen Fair-Modell nicht unterstützt"
+    # NBA/NFL: moneyline only here; spread/total are added when exact model
+    # parameters/lines are exposed by the fixture path.
+    side = _candidate_side(v)
+    if side in {"home", "away"}:
+        direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
+        if not direct:
+            side = "away" if side == "home" else "home"
+        p = fx.probs.get(side)
+        if p is not None and p > 0:
+            return 1.0 / p, p, p * v.odds - 1.0, "Moneyline-Modell"
+    return None, None, None, "Marktart im aktuellen Fair-Modell nicht unterstützt"
 
 
 _HOCKEY_TOURNAMENTS = {
