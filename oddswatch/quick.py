@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import os
 
 from . import guard, pricing, report, steam, telegram
@@ -42,16 +42,29 @@ def _selection(fx: apifootball.ApiFixture, market: str) -> str:
 
 
 def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 25,
-                     send: bool = False) -> list[str]:
+                     send: bool = False, days: int = 1,
+                     leagues: tuple[str, ...] = (), countries: tuple[str, ...] = ()) -> list[str]:
     """Alle API-Football-Spiele eines Tages gegen Pinnacle fair scannen.
 
     Pinnacle wird je Marktgruppe de-vigged. Bet365/Betfair sind die spielbaren
     Preise. Das ist ein Marktpreis-Scan, kein unabhängiges Prognosemodell.
     """
-    day = day or datetime.now(timezone.utc).date().isoformat()
-    fixtures, err = apifootball.fixtures_on(day)
-    if err:
-        raise RuntimeError(err)
+    start = datetime.fromisoformat(day).date() if day else datetime.now(timezone.utc).date()
+    fixtures: list[apifootball.ApiFixture] = []
+    for offset in range(max(1, days)):
+        d = (start + timedelta(days=offset)).isoformat()
+        daily, err = apifootball.fixtures_on(d)
+        if err:
+            raise RuntimeError(err)
+        fixtures.extend(daily)
+
+    if leagues:
+        wanted = {x.casefold() for x in leagues}
+        fixtures = [fx for fx in fixtures if fx.league.casefold() in wanted]
+    if countries:
+        wanted_countries = {x.casefold() for x in countries}
+        fixtures = [fx for fx in fixtures if fx.country.casefold() in wanted_countries]
+    day_label = start.isoformat() if days <= 1 else f"{start.isoformat()}–{(start + timedelta(days=max(1, days)-1)).isoformat()}"
 
     rows: list[dict] = []
     steam_records: list[dict] = []
@@ -124,7 +137,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
 
     rows.sort(key=lambda r: r["ev"], reverse=True)
     log = [
-        f"API-Football FULLSCAN {day}: {len(fixtures)} Fixture(s)",
+        f"API-Football FULLSCAN {day_label}: {len(fixtures)} Fixture(s)",
         f"API: {api_ok}/{api_total} Request(s) OK | {odds_with_data} Fixture(s) mit Odds | "
         f"{quotes} Bet365/Betfair Marktquote(n)",
         f"Filter: EV >= {min_ev * 100:.1f}% gegen Pinnacle de-vigged fair "
@@ -148,7 +161,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
     if send and event_name != "schedule":
         lines = [
             f"📊 SOCCER MARKET SCAN {report.stand()}",
-            f"{day} · {len(fixtures)} Spiele · {odds_with_data} mit Odds",
+            f"{day_label} · {len(fixtures)} Spiele · {odds_with_data} mit Odds",
             f"Treffer ab {min_ev * 100:.1f}% Markt-EV: {len(rows)}",
             "⚠️ WATCH: Pinnacle de-vigged Referenz, kein unabhaengiges Modell/kein PLAY.",
         ]
@@ -212,7 +225,7 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
     return log
 
 
-def run(j=None, send=False, days=7, now=None, full=False):
+def run(j=None, send=False, days=7, now=None, full=False, leagues=(), countries=(), start_day=None):
     if full:
-        return full_market_scan(send=send)
+        return full_market_scan(day=start_day, send=send, days=days, leagues=tuple(leagues), countries=tuple(countries))
     return guard.run(j, send=send, now=now, strict=True)
