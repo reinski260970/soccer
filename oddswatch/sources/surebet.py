@@ -264,6 +264,7 @@ def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS,
         "sport": "|".join(wanted),
         "limit": str(max(1, min(int(limit), 500))),
         "oddsFormat": "eu",
+        "group": "off",
     }
     data, err = fetch.get_json(
         f"{BASE}?{urlencode(params, safe='|')}",
