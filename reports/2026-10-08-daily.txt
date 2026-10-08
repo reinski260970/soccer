@@ -1,0 +1,54 @@
+🗞 Tagesbericht Do 08.10. 15:34 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 6 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -3.00 EH (-30.00 $) | Einsatz 3 EH | ROI -100,0 %
+   Bilanz 0-8 (8 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 14 Wetten, 10,5 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ NHL · Fr 09.10. 01:00 MESZ
+🆚 Ottawa Senators – Philadelphia Flyers
+➡️ Ottawa Senators Sieg (inkl. OT) @ 1,82 | 0,25 EH
+✅ National League (CH) · Fr 09.10. 19:45 MESZ
+🆚 HC Davos – EHC Kloten
+➡️ HC Davos Sieg (inkl. OT) @ 1,29 | 1,5 EH
+
+👀 Watchlist
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,25)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,50)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,40)
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,00)
+• 2. Bundesliga · Fr 09.10. 18:30 MESZ
+🆚 1. FC Heidenheim 1846 – Kaiserslautern
+➡️ Unentschieden (90 Min.) spielbar ab 3,76 (jetzt 3,90)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 70 Spiele | ausführbare Preise 68 | Marktreferenz 70 | 0 PLAY
+   • 1. FC Heidenheim 1846 – Kaiserslautern · Fr 09.10. 18:30 MESZ: Unentschieden (90 Min.) @ 3,90, spielbar ab 3,76 (EV 6,8 %)
+   • 1. FC Heidenheim 1846 – Kaiserslautern · Fr 09.10. 18:30 MESZ: Unentschieden (90 Min.) @ 3,80, spielbar ab 3,76 (EV 4,1 %)
+🏒 Eishockey Europa: 75 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: 52 Spiele | ausführbare Preise 0 | Marktreferenz 52 | 0 PLAY
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele | ausführbare Preise 0 | Marktreferenz 15 | 0 PLAY
+🎾 Tennis: 1 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Pinnington Jones J. vs Schwaerzler J. · ATP · Villena challenger · ATP Challenger · hard · Do 08.10. 12:00 (Zeit unbestätigt): Pinnington Jones J. @ 1,80 (EV 27,6 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 15.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

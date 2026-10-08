@@ -1,56 +1,122 @@
 [
  {
-  "source": "1xbet",
-  "status": "PLAY",
-  "league": "nl",
-  "event": "HC Davos – EHC Kloten",
-  "kickoff": "2026-10-09T17:45:00+00:00",
-  "market": "home",
-  "selection": "HC Davos Sieg (inkl. OT)",
-  "odds": 1.29,
-  "fair": 1.2406973129967476,
-  "min_odds": 1.27791823238665,
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "epl",
+  "event": "Fulham – Hull City",
+  "kickoff": "2026-10-17T14:00:00+00:00",
+  "market": "away",
+  "selection": "Hull City Sieg (90 Min.)",
+  "odds": 6.25,
+  "fair": 5.281430272123354,
+  "min_odds": 5.439873180287055,
   "home": [
-   "HC Davos"
+   "Fulham",
+   "Fulham",
+   "Fulham",
+   "FUL"
   ],
   "away": [
-   "EHC Kloten"
+   "Hull City",
+   "Hull City",
+   "Hull",
+   "HUL"
   ]
  },
  {
-  "source": "1xbet",
+  "source": "betfair",
   "status": "WATCH",
-  "league": "del",
-  "event": "Kolner Haie – Schwenninger Wild Wings",
-  "kickoff": "2026-10-09T17:30:00+00:00",
-  "market": "home",
-  "selection": "Kolner Haie Sieg (inkl. OT)",
-  "odds": 1.25,
-  "fair": 1.2176774567733248,
-  "min_odds": 1.2542077804765246,
+  "league": "epl",
+  "event": "AFC Bournemouth – Sunderland",
+  "kickoff": "2026-10-18T13:00:00+00:00",
+  "market": "away",
+  "selection": "Sunderland Sieg (90 Min.)",
+  "odds": 4.5,
+  "fair": 3.8196772472203038,
+  "min_odds": 3.934267564636913,
   "home": [
-   "Kolner Haie"
+   "AFC Bournemouth",
+   "AFC Bournemouth",
+   "Bournemouth",
+   "BOU"
   ],
   "away": [
-   "Schwenninger Wild Wings"
+   "Sunderland",
+   "Sunderland",
+   "Sunderland",
+   "SUN"
   ]
  },
  {
-  "source": "1xbet",
+  "source": "bet365",
   "status": "WATCH",
-  "league": "nl",
-  "event": "Fribourg Gottéron – HC Ajoie",
-  "kickoff": "2026-10-08T18:00:00+00:00",
-  "market": "home",
-  "selection": "Fribourg Gottéron Sieg (inkl. OT)",
-  "odds": 1.26,
-  "fair": 1.2406973129967476,
-  "min_odds": 1.27791823238665,
+  "league": "epl",
+  "event": "AFC Bournemouth – Sunderland",
+  "kickoff": "2026-10-18T13:00:00+00:00",
+  "market": "away",
+  "selection": "Sunderland Sieg (90 Min.)",
+  "odds": 4.4,
+  "fair": 3.8196772472203038,
+  "min_odds": 3.934267564636913,
   "home": [
-   "Fribourg Gottéron"
+   "AFC Bournemouth",
+   "AFC Bournemouth",
+   "Bournemouth",
+   "BOU"
   ],
   "away": [
-   "HC Ajoie"
+   "Sunderland",
+   "Sunderland",
+   "Sunderland",
+   "SUN"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "epl",
+  "event": "Fulham – Hull City",
+  "kickoff": "2026-10-17T14:00:00+00:00",
+  "market": "away",
+  "selection": "Hull City Sieg (90 Min.)",
+  "odds": 6.0,
+  "fair": 5.281430272123354,
+  "min_odds": 5.439873180287055,
+  "home": [
+   "Fulham",
+   "Fulham",
+   "Fulham",
+   "FUL"
+  ],
+  "away": [
+   "Hull City",
+   "Hull City",
+   "Hull",
+   "HUL"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "2bundesliga",
+  "event": "1. FC Heidenheim 1846 – Kaiserslautern",
+  "kickoff": "2026-10-09T16:30:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.9,
+  "fair": 3.6505283779874835,
+  "min_odds": 3.760044229327108,
+  "home": [
+   "1. FC Heidenheim 1846",
+   "1. FC Heidenheim 1846",
+   "Heidenheim",
+   "HDH"
+  ],
+  "away": [
+   "Kaiserslautern",
+   "Kaiserslautern",
+   "Kaiserslautern",
+   "FCK"
   ]
  }
 ]
