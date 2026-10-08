@@ -1,0 +1,52 @@
+name: soccer-steam-watch
+
+on:
+  push:
+    paths:
+      - ".github/soccer-steam-run-now.txt"
+  schedule:
+    - cron: "3,18,33,48 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: soccer-steam-watch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Soccer PRE-STEAM
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIKEY: ${{ secrets.APIKEY }}
+        run: >
+          python -m oddswatch quick --full --send --days 2 --supported-only
+      - name: Persist soccer steam history
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          f="data/journal/soccer_market_steam_history.json"
+          test -f "$f" || exit 0
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add "$f"
+          git diff --cached --quiet && exit 0
+          git commit -m "Soccer steam snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          for n in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep 3
+          done
+          exit 1
