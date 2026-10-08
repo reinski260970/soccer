@@ -117,16 +117,37 @@ def track_record(docs: list[dict]) -> TrackRecord:
         first_day=days[0] if days else "", last_day=days[-1] if days else "")
 
 
+MONGO_ENV_KEYS = (
+    "MONGODB_URI", "MONGO_URI", "MONGO_CONNECTION_STRING", "MONGO_ATLAS_URI",
+    "ATLAS_URI", "MONGO_CLUSTER_URI", "MONGO", "MONGO_DB_URI", "ATLAS_MONGO_URI",
+)
+
+
+def _mongo_uri(explicit: str | None = None) -> tuple[str | None, str | None]:
+    if explicit:
+        return explicit, "explicit"
+    for key in MONGO_ENV_KEYS:
+        value = (os.environ.get(key) or "").strip()
+        if value:
+            return value, key
+    return None, None
+
+
 def _db(uri: str | None, db_name: str | None):
-    uri = uri or os.environ.get("MONGODB_URI")
+    uri, source_key = _mongo_uri(uri)
     if not uri:
-        return None, "MONGODB_URI nicht gesetzt – Tennis (tennis_db) nicht abrufbar"
+        return None, (
+            "Tennis-System vorhanden; Mongo-Zugang in diesem Workflow fehlt "
+            "(erwartet MONGODB_URI oder MONGO_URI)"
+        )
     try:
         from pymongo import MongoClient
     except ImportError:
         return None, "Paket pymongo fehlt (pip install -r requirements.txt)"
     client = MongoClient(uri, serverSelectionTimeoutMS=15000, appname="oddswatch")
-    return client[db_name or os.environ.get("MONGODB_DB") or DB_DEFAULT], None
+    name = (db_name or os.environ.get("MONGODB_DB") or os.environ.get("MONGO_DB_NAME")
+            or os.environ.get("DB_NAME") or DB_DEFAULT)
+    return client[name], None
 
 
 def fetch(uri: str | None = None, db_name: str | None = None,
