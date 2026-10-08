@@ -100,4 +100,4 @@ def test_empty_value_audit_does_not_send_telegram(monkeypatch):
     monkeypatch.setattr(surebet_values.telegram, "send", lambda txt: sent.append(txt))
     lines = surebet_values.run(send=True, limit=10)
     assert sent == []
-    assert any("nichts gesendet" in x for x in lines)
+    assert any("nicht gesendet" in x for x in lines)
