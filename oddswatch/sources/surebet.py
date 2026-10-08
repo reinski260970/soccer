@@ -97,7 +97,7 @@ def _selection(row: dict) -> tuple[str, str]:
     teams = [str(x) for x in (row.get("teams") or [])]
     sport = str(row.get("sport_id") or "")
     if sport.replace(" ", "").casefold() == "americanfootball":
-        sport = "AmericanFootball"
+        sport = "American football"
 
     t1 = teams[0] if len(teams) > 0 else "Team 1"
     t2 = teams[1] if len(teams) > 1 else "Team 2"
