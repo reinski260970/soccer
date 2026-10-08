@@ -1,0 +1,27 @@
+name: bet365-value-watch
+on:
+  push:
+    paths:
+      - ".github/bet365-values-run-now.txt"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6,10,16 * * *"
+concurrency:
+  group: bet365-value-watch
+  cancel-in-progress: true
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Bet365 Valuebets Football Hockey Basketball
+        env:
+          SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m oddswatch bet365-values --send --limit 100
