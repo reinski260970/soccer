@@ -26,6 +26,7 @@ MIN_LEAD_MOVE = 0.008       # 0.8 percentage points
 MIN_LAG_GAP = 0.007         # 0.7 pp: lead moved more than slow books
 MIN_CURRENT_GAP = 0.008     # 0.8 pp current lead-vs-slow divergence
 MIN_SCORE = 3
+MAX_SNAPSHOTS_PER_KEY = 40
 
 
 def _load(path: Path = STATE) -> dict[str, list[dict]]:
@@ -149,6 +150,22 @@ def update_many(records: list[dict], *, now: datetime | None = None,
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     data = _load(path)
     cutoff = now - timedelta(hours=MAX_AGE_HOURS)
+
+    # Global GC: remove stale event/market keys even when they are not present
+    # in the current scan. Otherwise completed fixtures accumulate forever and
+    # make the repository journal grow by megabytes.
+    cleaned = {}
+    for key, rows in data.items():
+        if not isinstance(rows, list):
+            continue
+        fresh = [
+            r for r in rows
+            if (ts := _parse_ts(r.get("ts", ""))) is not None and ts >= cutoff
+        ]
+        if fresh:
+            cleaned[key] = fresh[-MAX_SNAPSHOTS_PER_KEY:]
+    data = cleaned
+
     signals = []
     for rec in records:
         key = rec["key"]
@@ -171,6 +188,8 @@ def update_many(records: list[dict], *, now: datetime | None = None,
             if (ts := _parse_ts(r.get("ts", ""))) is not None and ts >= cutoff
         ]
         rows.append(current)
+        if len(rows) > MAX_SNAPSHOTS_PER_KEY:
+            del rows[:-MAX_SNAPSHOTS_PER_KEY]
         if signal:
             signal.update({
                 "key": key,
