@@ -538,10 +538,16 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
             # 3) Challenge every candidate against our independent fair model.
             audits = audit_values(values, res.fixtures)
+            try:
+                from .sql.valuebet import persist_audits
+                sql_status = persist_audits(audits, res.fixtures)
+            except Exception as exc:
+                sql_status = {"error": f"{type(exc).__name__}: {exc}"}
         except Exception as exc:
             err = f"Modell-Audit fehlgeschlagen: {type(exc).__name__}: {exc}"
 
     # 4) Telegram reports the result of our audit, never the raw feed as VALUE.
+    sql_status = locals().get("sql_status", {})
     txt = telegram_text(values, err, audits)
     counts = {}
     for a in audits:
@@ -552,9 +558,29 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
         f"Eingelesene Bet365-Kandidaten: {len(values)}",
         f"Audit: {summary}",
     ]
+    if sql_status:
+        lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
     if send:
         r = telegram.send(txt)
         lines.append(
             f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}"
         )
     return lines
+
+
+def run_clv_snapshot() -> list[str]:
+    """Lightweight quote snapshot + sampled CLV close; no model scan."""
+    values, err = surebet.fetch_valuebets(books=("bet365",), limit=500)
+    if err:
+        return [f"Valuebet-CLV: {err}"]
+    values = [v for v in values if v.bookmaker == "bet365" and v.back]
+    try:
+        from .sql.valuebet import snapshot_open_candidates, capture_sampled_clv
+        snap = snapshot_open_candidates(values)
+        close = capture_sampled_clv()
+        return [
+            f"Valuebet-CLV Snapshot: {snap}",
+            f"Valuebet-CLV Close: closed={len(close['closed'])}, NO_CLOSE={close['no_close']}",
+        ]
+    except Exception as exc:
+        return [f"Valuebet-CLV Fehler: {type(exc).__name__}: {exc}"]
