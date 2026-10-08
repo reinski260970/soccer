@@ -1,4 +1,4 @@
-📊 CEO-Freigaben 08.10.2026 07:00 MESZ
+📊 CEO-Freigaben 08.10.2026 07:24 MESZ
 
 ✅ PLAY · National League (CH) · Fr 09.10. 19:45 MESZ
 🆚 HC Davos – EHC Kloten
@@ -26,4 +26,4 @@
 🏒 NHL: keine Spiele in 7 Tagen
 🏀 NBA: keine Spiele in 7 Tagen
 🏈 NFL: keine Spiele in 7 Tagen
-🎾 Tennis: keine Daten (MONGODB_URI nicht gesetzt – Tennis (tennis_db) nicht abrufbar)
+🎾 Tennis: keine Daten (Tennis-System vorhanden; Mongo-Zugang in diesem Workflow fehlt (erwartet MONGODB_URI oder MONGO_URI))
