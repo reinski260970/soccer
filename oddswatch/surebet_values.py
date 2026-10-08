@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 
 from . import telegram
 from . import matching
+from . import period_totals
 from .sources import hockeyarchives, surebet
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 
@@ -307,6 +308,89 @@ def _hockey_period1_probability(v: surebet.SurebetValue, cache: dict) -> tuple[f
     return float(mk[keym]), f"1.-Drittel-Poisson ({len(rows)} Spiele)"
 
 
+def _period_kind(v: surebet.SurebetValue) -> str | None:
+    p = (v.period or "").casefold().strip()
+    m = (v.market or "").casefold()
+    sport = (v.sport or "").casefold()
+
+    if sport == "basketball":
+        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m:
+            return "q1"
+        if p in {"1h", "half1"} or "1. halbzeit" in m:
+            return "1h"
+
+    if sport == "american football":
+        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m or "1st period" in m:
+            return "q1"
+        if p in {"1h", "half1"} or "1. halbzeit" in m or "1st half" in m:
+            return "1h"
+
+    if sport == "hockey":
+        if p in {"p1", "period1"} or "1. drittel" in m:
+            return "p1"
+
+    return None
+
+
+def _period_total_fair(v: surebet.SurebetValue, cache: dict):
+    """Exact candidate-driven period total fair for NBA/NFL/NHL."""
+    kind = _period_kind(v)
+    if kind is None or (v.bet_type or "").strip() not in {"over", "under"}:
+        return None
+
+    if len(v.teams) != 2 or v.kickoff is None:
+        return (None, None, None, "Periodenmarkt ohne eindeutiges Event")
+
+    base = (v.base or "overall").casefold()
+    if base not in {"overall", "total", "match", ""}:
+        return (None, None, None, "Perioden-Teamtotal noch nicht freigegeben")
+
+    try:
+        line = float(v.condition)
+    except (TypeError, ValueError):
+        return (None, None, None, "Perioden-Total-Linie nicht erkannt")
+
+    tournament = (v.tournament or "").casefold()
+    sport = (v.sport or "").casefold()
+    if sport == "basketball":
+        if "nba" not in tournament:
+            return (None, None, None, "Periodenmodell aktuell nur NBA")
+        model_sport = "nba"
+    elif sport == "american football":
+        if "nfl" not in tournament:
+            return (None, None, None, "Periodenmodell aktuell nur NFL")
+        model_sport = "nfl"
+    elif sport == "hockey":
+        if "nhl" not in tournament:
+            return None  # EU hockey keeps its existing period model below.
+        model_sport = "nhl"
+    else:
+        return None
+
+    pf, err, issues = period_totals.fair_total(
+        model_sport,
+        kind,
+        v.teams[0],
+        v.teams[1],
+        v.kickoff,
+        line,
+        (v.bet_type or "").strip() == "over",
+        cache,
+    )
+    if pf is None:
+        note = err or "Periodenmodell nicht verfügbar"
+        if issues:
+            note += f"; Datenhinweise {len(issues)}"
+        return (None, None, None, note)
+
+    ev = pf.probability * v.odds - 1.0
+    note = (
+        f"{pf.model} · erwartetes Total {pf.expected_total:.2f} · "
+        f"{pf.sample_games} historische Periodenspiele"
+    )
+    return pf.fair_odds, pf.probability, ev, note
+
+
 def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
     out: list[Audit] = []
     period_cache: dict = {}
@@ -322,9 +406,13 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
         model_note = ""
         ref = None
 
-        # Exact hockey 1st-period market uses its own period model even when
-        # the full-game fixture is available.
-        if v.sport == "Hockey" and "1. drittel" in (v.market or "").casefold():
+        # Exact period totals are always evaluated by their own period model,
+        # never by scaling the full-game expectation.
+        period_result = _period_total_fair(v, period_cache)
+        if period_result is not None:
+            fair, p, our_ev, model_note = period_result
+        elif v.sport == "Hockey" and "1. drittel" in (v.market or "").casefold():
+            # European hockey keeps its historical period-score Poisson.
             p1, model_note = _hockey_period1_probability(v, period_cache)
             if p1 is not None and p1 > 0:
                 p = p1
@@ -351,7 +439,8 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
             continue
 
         if fair is None or p is None or our_ev is None:
-            status = "NO_MATCH" if not hits and "Drittel" not in (v.market or "") else "NO_MODEL"
+            is_period = _period_kind(v) is not None
+            status = "NO_MODEL" if is_period or hits else "NO_MATCH"
             out.append(Audit(v, status, note=model_note or "keine Modellwahrscheinlichkeit für exakten Markt"))
             continue
 
@@ -518,6 +607,8 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
                 # basketball candidates remain NO_MODEL until their own model
                 # has a fair price for the exact market.
                 sports_needed.append("nba")
+            if any(v.sport == "American football" for v in values):
+                sports_needed.append("nfl")
 
             # Candidate horizon instead of an unconditional broad scan.
             now = datetime.now(_TZ)

@@ -16,7 +16,6 @@ LEAGUES = ("nfl", "nhl", "nba")
 DAYS = 4
 ALERT_STATE = Path("data/journal/us_steam_alerts.json")
 US_STEAM_STATE = Path("data/journal/us_steam_history.json")
-ALERT_COOLDOWN_MIN = 90
 MIN_EXTRA_MOVE = 0.015
 
 
@@ -129,16 +128,13 @@ def _new_alerts(signals: list[dict], now: datetime) -> list[dict]:
     for s in signals:
         key = s["key"]
         prev = state.get(key) or {}
-        try:
-            pts = datetime.fromisoformat(prev.get("ts", "")).astimezone(timezone.utc)
-        except (TypeError, ValueError):
-            pts = None
         last_p = float(prev.get("lead_prob", 0.0) or 0.0)
         cur_p = float((s.get("probs") or {}).get("Polymarket", 0.0) or 0.0)
         changed = prev.get("direction") != s.get("direction")
-        cooled = pts is None or now - pts >= timedelta(minutes=ALERT_COOLDOWN_MIN)
         extended = abs(cur_p - last_p) >= MIN_EXTRA_MOVE
-        if changed or cooled or extended:
+        # Never repeat the same signal just because time passed. Re-alert only
+        # when direction flips or the lead market extends by >= 1.5pp.
+        if changed or extended:
             out.append(s)
             state[key] = {
                 "ts": now.isoformat(),

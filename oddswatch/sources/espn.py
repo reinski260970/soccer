@@ -56,6 +56,8 @@ class EspnGame:
     neutral: bool = False
     season_type: int = 2
     ref_line: dict = field(default_factory=dict)  # DraftKings: spread/total/ml
+    home_periods: tuple[float, ...] = field(default_factory=tuple)
+    away_periods: tuple[float, ...] = field(default_factory=tuple)
 
     @property
     def final(self) -> bool:
@@ -70,6 +72,19 @@ def _team(c: dict) -> Team:
     t = c.get("team", {})
     return Team(t.get("displayName", ""), t.get("location", ""),
                 t.get("shortDisplayName", ""), t.get("abbreviation", ""), str(t.get("id", "")))
+
+
+def _period_scores(c: dict) -> tuple[float, ...]:
+    out = []
+    for row in c.get("linescores") or []:
+        value = row.get("value")
+        if value is None:
+            value = row.get("displayValue")
+        try:
+            out.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    return tuple(out)
 
 
 def _ml(v) -> float | None:
@@ -133,12 +148,35 @@ def parse_scoreboard(data: dict, league: str) -> list[EspnGame]:
             neutral=bool(comp.get("neutralSite")),
             season_type=int((e.get("season") or {}).get("type", 2) or 2),
             ref_line=ref,
+            home_periods=_period_scores(cs["home"]),
+            away_periods=_period_scores(cs["away"]),
         ))
     return out
 
 
 def scoreboard_day(league: str, day: date, cache_days: float = 0.0) -> tuple[list[EspnGame], str | None]:
     url = f"{SITE}/{PATHS[league]}/scoreboard?dates={day:%Y%m%d}"
+    data, err = fetch.get_json(url, cache_days=cache_days)
+    if data is None:
+        return [], err
+    return parse_scoreboard(data, league), None
+
+
+def scoreboard_range(
+    league: str,
+    start: date,
+    end: date,
+    cache_days: float = 0.0,
+) -> tuple[list[EspnGame], str | None]:
+    """Scoreboard range for historical period/quarter data.
+
+    ESPN's scoreboard includes competitor.linescores for completed NBA/NFL/NHL
+    games. Keep ranges reasonably small at call sites to avoid oversized payloads.
+    """
+    url = (
+        f"{SITE}/{PATHS[league]}/scoreboard?limit=1000"
+        f"&dates={start:%Y%m%d}-{end:%Y%m%d}"
+    )
     data, err = fetch.get_json(url, cache_days=cache_days)
     if data is None:
         return [], err
@@ -227,7 +265,9 @@ def team_schedule(league: str, team_id: str, season: int, season_type: int = 2,
             home=_team(cs["home"]), away=_team(cs["away"]), status=st,
             home_score=_score(cs["home"]) if final else None,
             away_score=_score(cs["away"]) if final else None,
-            neutral=bool(comp.get("neutralSite")), season_type=season_type))
+            neutral=bool(comp.get("neutralSite")), season_type=season_type,
+            home_periods=_period_scores(cs["home"]),
+            away_periods=_period_scores(cs["away"])))
     return out, None
 
 
