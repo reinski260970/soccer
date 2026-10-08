@@ -20,7 +20,8 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 
-from . import matchpulse, understat
+from . import matchpulse, understat, football_data
+from .. import fetch
 
 
 SNAPSHOTS = Path("data/journal/xg_external_snapshots.json")
@@ -89,6 +90,47 @@ def _understat_snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], s
     return out, None
 
 
+def _football_data_snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], str | None]:
+    if code not in football_data.LEAGUES:
+        return [], f"football-data xG: Liga {code} nicht unterstützt"
+    year = _season_year(as_of)
+    text, err = fetch.get(
+        football_data.csv_url(code, year),
+        cache_days=0.10,
+    )
+    if text is None:
+        return [], err or f"football-data xG {code}: Abruf fehlgeschlagen"
+    matches = football_data.parse(text, shots_as_xg=False)[0]
+    cutoff = as_of.astimezone(timezone.utc).date()
+    st = defaultdict(lambda: {"n":0, "xf":0.0, "xa":0.0, "hn":0, "hxf":0.0, "hxa":0.0,
+                              "an":0, "axf":0.0, "axa":0.0})
+    for m in matches:
+        if m.date >= cutoff or m.home_xg is None or m.away_xg is None:
+            continue
+        hx, ax = float(m.home_xg), float(m.away_xg)
+        h, a = st[m.home], st[m.away]
+        h["n"] += 1; h["xf"] += hx; h["xa"] += ax
+        h["hn"] += 1; h["hxf"] += hx; h["hxa"] += ax
+        a["n"] += 1; a["xf"] += ax; a["xa"] += hx
+        a["an"] += 1; a["axf"] += ax; a["axa"] += hx
+    out = []
+    for team, s in st.items():
+        if not s["n"]:
+            continue
+        out.append(XGSnapshot(
+            team=team,
+            xg=s["xf"]/s["n"], xga=s["xa"]/s["n"],
+            xg_home=(s["hxf"]/s["hn"]) if s["hn"] else None,
+            xga_home=(s["hxa"]/s["hn"]) if s["hn"] else None,
+            xg_away=(s["axf"]/s["an"]) if s["an"] else None,
+            xga_away=(s["axa"]/s["an"]) if s["an"] else None,
+            matches=s["n"], source="football-data-xg",
+        ))
+    if not out:
+        return [], f"football-data xG {code}/{year}: keine echten HxG/AxG vor {cutoff}"
+    return out, None
+
+
 def snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], str | None]:
     """Return the best real-xG source available for a league and time."""
     us, uerr = _understat_snapshot(code, as_of)
@@ -112,7 +154,11 @@ def snapshot(code: str, as_of: datetime) -> tuple[list[XGSnapshot], str | None]:
             for r in mp
         ], None
 
-    return [], merr or uerr or f"xG: keine Quelle für {code}"
+    fd, ferr = _football_data_snapshot(code, as_of)
+    if fd:
+        return fd, None
+
+    return [], merr or ferr or uerr or f"xG: keine Quelle für {code}"
 
 
 def persist_snapshot(code: str, rows: list[XGSnapshot], as_of: datetime,
