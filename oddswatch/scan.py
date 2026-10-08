@@ -416,6 +416,12 @@ def scan_soccer(start: date, days: int, issues: list[str], notes: list[str]) -> 
             notes.append(f"{label}: keine Spiele bis {start + timedelta(days=days):%d.%m.}")
             continue
 
+        if code in NON_UNDERSTAT_CODES:
+            out += _scan_external_structural_league(
+                lg, label, code, games, start, issues, notes, cache, aut_ms
+            )
+            continue
+
         m8_row = m8v.get(lg) or {}
         params = _m8_params(lg) if code else None
         if params and code:
