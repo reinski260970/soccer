@@ -346,17 +346,19 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
         if no_match:
             out.append(f"🔎 {len(no_match)} Events noch nicht eindeutig unserem Spiel zugeordnet.")
 
-    # Show genuine Bet365 candidates compactly, because these are the prices the
-    # user ultimately wants to challenge with the independent model.
-    bet365 = [v for v in values if v.bookmaker == "bet365" and v.back]
-    if bet365:
-        out += ["", "🏷️ BET365-KANDIDATEN"]
-        for v in bet365[:20]:
+    # Never present an unverified feed item as "value". Only unresolved Bet365
+    # candidates are shown here, explicitly marked as NOT checked.
+    unresolved = [a for a in audits if a.status in {"NO_MODEL", "NO_MATCH"}]
+    if unresolved:
+        out += ["", "❔ BET365-KANDIDATEN · NOCH NICHT GEPRÜFT"]
+        for a in unresolved[:10]:
+            v = a.value
             out += [
                 f"• {_kick(v.kickoff)} · {v.tournament or 'Liga unbekannt'}",
                 f"  {v.event}",
                 f"  ➡️ {v.selection} @ {_q(v.odds)}",
-                f"  {v.market} · SureBet-EV {_pct(v.ev)}",
+                f"  {v.market}",
+                f"  Status: {a.status} · {a.note}",
             ]
 
     books = {}
@@ -367,7 +369,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
     out += [
         "",
         f"📊 Feed: {len(values)} Signale · {book_summary}",
-        "ℹ️ SureBet entdeckt Kandidaten. PLAY gibt es nur, wenn unser unabhängiges Modell den Markt bestätigt.",
+        "ℹ️ SureBet entdeckt nur Kandidaten. Als VALUE gilt hier erst, was unser unabhängiges Modell für den exakten Markt bestätigt.",
     ]
     return "\n".join(out)
 
