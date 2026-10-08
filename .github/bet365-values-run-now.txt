@@ -1,1 +1,1 @@
-trigger 2026-10-08 improved wager descriptions and lay handling
+trigger 2026-10-08 cleaner model audit and Bet365-focused Telegram output
