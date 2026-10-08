@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import os
 from datetime import datetime, timedelta, timezone
+import re
+from zoneinfo import ZoneInfo
 from urllib.parse import urlencode
 
 from .. import fetch, matching
@@ -84,6 +86,22 @@ def series_events(series: str, status: str = "open") -> tuple[list[dict], str | 
     return rows, None
 
 
+def _sports_ticker_kickoff(event_ticker: str) -> datetime | None:
+    """Parse legacy Kalshi sports ticker time, e.g. -26SEP291345."""
+    m = re.search(r"-(\d{2})([A-Z]{3})(\d{2})(\d{4})", str(event_ticker or ""))
+    if not m:
+        return None
+    try:
+        local = datetime.strptime(
+            f"20{m.group(1)}{m.group(2).title()}{m.group(3)}{m.group(4)}",
+            "%Y%b%d%H%M",
+        )
+    except ValueError:
+        return None
+    # Kalshi sports ticker timestamps are encoded in US Eastern time.
+    return local.replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+
+
 def hockey_fixtures(league: str, start: datetime, until: datetime) -> tuple[list[dict], str | None]:
     """Read-only fixture discovery for European hockey.
 
@@ -102,7 +120,7 @@ def hockey_fixtures(league: str, start: datetime, until: datetime) -> tuple[list
         if " vs " not in title:
             continue
         away, home = [x.strip() for x in title.split(" vs ", 1)]
-        ko = _dt(
+        ko = _sports_ticker_kickoff(str(event.get("event_ticker") or "")) or _dt(
             event.get("strike_date"),
             event.get("expected_expiration_time"),
             event.get("latest_expiration_time"),
