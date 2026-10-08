@@ -582,6 +582,44 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
     return "\n".join(out)
 
 
+def telegram_actionable_text(audits: list[Audit]) -> str:
+    """Telegram surface: confirmed positive model values only.
+
+    Internal audit states (NO_MATCH/NO_MODEL/REDUZIERT/WIDERLEGT/KONFLIKT)
+    stay in logs/Neon and are never pushed to the user channel.
+    """
+    rows = [
+        a for a in audits
+        if a.status == "BESTÄTIGT"
+        and a.our_ev is not None
+        and a.our_ev >= 0.03
+        and a.value.back
+    ]
+    rows.sort(key=lambda a: -(a.our_ev or 0.0))
+    if not rows:
+        return ""
+
+    names = {"bet365": "Bet365", "betfair": "Betfair", "orbitxch": "OrbitX"}
+    out = [f"🎯 VALUEBET · {datetime.now(_TZ):%d.%m.%Y %H:%M}"]
+    for a in rows[:20]:
+        v = a.value
+        out += [
+            "",
+            f"✅ {v.tournament or v.sport} · {_kick(v.kickoff)}",
+            v.event,
+            f"➡️ {v.selection} @ {_q(v.odds)} · {names.get(v.bookmaker, v.bookmaker)}",
+            f"Markt: {v.market}",
+            f"Unser Fair {_q(a.our_fair)} · EV {_pct(a.our_ev)}",
+            f"Modell: {a.note}",
+        ]
+    out += [
+        "",
+        "Status: vom unabhängigen Modell bestätigt.",
+        "18+ · Keine Gewinn-Garantie.",
+    ]
+    return "\n".join(out)
+
+
 def run(send: bool = False, limit: int = 100) -> list[str]:
     # 1) Candidate-first: first read only genuine Bet365 BACK proposals from
     # the Valuebet API. No model scan is started before we know what must be checked.
@@ -649,10 +687,29 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
     if sql_status:
         lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
     if send:
-        r = telegram.send(txt)
-        lines.append(
-            f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}"
-        )
+        from .sql.valuebet import filter_unsent_actionable, mark_actionable_sent
+
+        fresh, dedupe = filter_unsent_actionable(audits)
+        alert_txt = telegram_actionable_text(fresh)
+        if not alert_txt:
+            reason = dedupe.get("reason")
+            if reason == "dedupe_store_missing":
+                lines.append("Telegram: NICHT gesendet – persistenter Dedupe-Store fehlt")
+            elif dedupe.get("duplicate"):
+                lines.append(
+                    f"Telegram: nicht gesendet – {dedupe['duplicate']} bestätigte Value(s) bereits gemeldet"
+                )
+            else:
+                lines.append("Telegram: nicht gesendet – kein neuer bestätigter Value")
+        else:
+            r = telegram.send(alert_txt)
+            if r["sent"]:
+                mark = mark_actionable_sent(fresh)
+                lines.append(
+                    f"Telegram: gesendet, message_id {r['message_ids']} · Dedupe gespeichert={mark.get('stored', 0)}"
+                )
+            else:
+                lines.append(f"Telegram: NICHT gesendet – {r['error']}")
     return lines
 
 
