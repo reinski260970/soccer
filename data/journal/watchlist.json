@@ -1,1 +1,56 @@
-[]
+[
+ {
+  "source": "1xbet",
+  "status": "PLAY",
+  "league": "nl",
+  "event": "HC Davos – EHC Kloten",
+  "kickoff": "2026-10-09T17:45:00+00:00",
+  "market": "home",
+  "selection": "HC Davos Sieg (inkl. OT)",
+  "odds": 1.29,
+  "fair": 1.2406973129967476,
+  "min_odds": 1.27791823238665,
+  "home": [
+   "HC Davos"
+  ],
+  "away": [
+   "EHC Kloten"
+  ]
+ },
+ {
+  "source": "1xbet",
+  "status": "WATCH",
+  "league": "del",
+  "event": "Kolner Haie – Schwenninger Wild Wings",
+  "kickoff": "2026-10-09T17:30:00+00:00",
+  "market": "home",
+  "selection": "Kolner Haie Sieg (inkl. OT)",
+  "odds": 1.25,
+  "fair": 1.2176774567733248,
+  "min_odds": 1.2542077804765246,
+  "home": [
+   "Kolner Haie"
+  ],
+  "away": [
+   "Schwenninger Wild Wings"
+  ]
+ },
+ {
+  "source": "1xbet",
+  "status": "WATCH",
+  "league": "nl",
+  "event": "Fribourg Gottéron – HC Ajoie",
+  "kickoff": "2026-10-08T18:00:00+00:00",
+  "market": "home",
+  "selection": "Fribourg Gottéron Sieg (inkl. OT)",
+  "odds": 1.26,
+  "fair": 1.2406973129967476,
+  "min_odds": 1.27791823238665,
+  "home": [
+   "Fribourg Gottéron"
+  ],
+  "away": [
+   "HC Ajoie"
+  ]
+ }
+]
