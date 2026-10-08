@@ -15,8 +15,23 @@ from urllib.parse import urlencode
 from .. import fetch
 
 BASE = "https://api.apostasseguras.com/request"
-DEFAULT_SPORTS = ("Football", "Hockey", "Basketball", "American football")
+DEFAULT_SPORTS = ("Football", "Hockey", "Basketball", "AmericanFootball")
 DEFAULT_BOOKS = ("bet365", "betfair", "orbitxch")
+
+SPORT_QUERY_IDS = {
+    "Football": "Football",
+    "Hockey": "Hockey",
+    "Basketball": "Basketball",
+    "AmericanFootball": "AmericanFootball",
+    "American football": "AmericanFootball",
+}
+
+
+def _canonical_sport(value: str) -> str:
+    raw = str(value or "").strip()
+    if raw.replace(" ", "").casefold() == "americanfootball":
+        return "American football"
+    return raw
 
 
 @dataclass(frozen=True)
@@ -95,7 +110,7 @@ def _selection(row: dict) -> tuple[str, str]:
     period = str(typ.get("period") or typ.get("periode") or "regularTime").strip()
     base = str(typ.get("base") or "overall").strip()
     teams = [str(x) for x in (row.get("teams") or [])]
-    sport = str(row.get("sport_id") or "")
+    sport = _canonical_sport(row.get("sport_id"))
 
     t1 = teams[0] if len(teams) > 0 else "Team 1"
     t2 = teams[1] if len(teams) > 1 else "Team 2"
@@ -200,8 +215,8 @@ def parse(data) -> list[SurebetValue]:
         odds = _num(row.get("value"))
         if not odds or odds <= 1.0:
             continue
-        sport = str(row.get("sport_id") or "")
-        if sport not in DEFAULT_SPORTS:
+        sport = _canonical_sport(row.get("sport_id"))
+        if sport not in {"Football", "Hockey", "Basketball", "American football"}:
             continue
         teams_raw = row.get("teams")
         teams = tuple(str(x) for x in teams_raw) if isinstance(teams_raw, list) else ()
@@ -252,7 +267,9 @@ def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS,
     token = api_token()
     if not token:
         return [], "SUREBET_API_TOKEN nicht gesetzt"
-    wanted = tuple(s for s in sports if s in DEFAULT_SPORTS)
+    wanted = tuple(dict.fromkeys(
+        SPORT_QUERY_IDS[s] for s in sports if s in SPORT_QUERY_IDS
+    ))
     if not wanted:
         return [], "Keine unterstützte Sportart angefordert"
     wanted_books = tuple(b for b in books if b in DEFAULT_BOOKS)
