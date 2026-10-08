@@ -22,11 +22,57 @@
     "Bet365": 2.15,
     "Betfair": 2.15
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "home",
+   "selection": "Wieczysta Kraków Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.44232556147374075,
+    "Bet365": 0.4313732682205966,
+    "Betfair": 0.43968242208547575
+   },
+   "odds": {
+    "Pinnacle": 2.17,
+    "Bet365": 2.15,
+    "Betfair": 2.15
+   }
   }
  ],
  "1553190|draw": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.26187644828847106,
+    "Bet365": 0.269444892198722,
+    "Betfair": 0.25283022729952925
+   },
+   "odds": {
+    "Pinnacle": 3.57,
+    "Bet365": 3.3,
+    "Betfair": 3.6
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -72,11 +118,57 @@
     "Bet365": 3.0,
     "Betfair": 3.0
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "away",
+   "selection": "Wisla Plock Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2957979902377882,
+    "Bet365": 0.29918183958068145,
+    "Betfair": 0.3074873506149952
+   },
+   "odds": {
+    "Pinnacle": 3.18,
+    "Bet365": 3.0,
+    "Betfair": 3.0
+   }
   }
  ],
  "1553190|O1.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8072428988051826,
+    "Bet365": 0.812178465987023,
+    "Betfair": 0.8150125589214786
+   },
+   "odds": {
+    "Pinnacle": 1.21,
+    "Bet365": 1.2,
+    "Betfair": 1.2
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -122,11 +214,53 @@
     "Bet365": 4.33,
     "Betfair": 4.5
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.19275710119481743,
+    "Bet365": 0.18782153401297694,
+    "Betfair": 0.18498744107852141
+   },
+   "odds": {
+    "Pinnacle": 4.33,
+    "Bet365": 4.33,
+    "Betfair": 4.5
+   }
   }
  ],
  "1553190|O2.25": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6407440403762515
+   },
+   "odds": {
+    "Pinnacle": 1.51
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -164,11 +298,53 @@
    "odds": {
     "Pinnacle": 2.58
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3592559596237485
+   },
+   "odds": {
+    "Pinnacle": 2.58
+   }
   }
  ],
  "1553190|O2.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5652372633932713,
+    "Bet365": 0.5578476444686542,
+    "Betfair": 0.5690045351285498
+   },
+   "odds": {
+    "Pinnacle": 1.7,
+    "Bet365": 1.7,
+    "Betfair": 1.67
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -214,11 +390,53 @@
     "Bet365": 2.1,
     "Betfair": 2.15
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.43476273660672893,
+    "Bet365": 0.442152355531346,
+    "Betfair": 0.4309954648714502
+   },
+   "odds": {
+    "Pinnacle": 2.17,
+    "Bet365": 2.1,
+    "Betfair": 2.15
+   }
   }
  ],
  "1553190|O2.75": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5069655657426988
+   },
+   "odds": {
+    "Pinnacle": 1.89
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -256,11 +474,49 @@
    "odds": {
     "Pinnacle": 1.94
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.49303443425730137
+   },
+   "odds": {
+    "Pinnacle": 1.94
+   }
   }
  ],
  "1553190|O3": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.43476273660672893
+   },
+   "odds": {
+    "Pinnacle": 2.17
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -298,11 +554,49 @@
    "odds": {
     "Pinnacle": 1.7
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5652372633932713
+   },
+   "odds": {
+    "Pinnacle": 1.7
+   }
   }
  ],
  "1553190|O3.25": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3799853344737623
+   },
+   "odds": {
+    "Pinnacle": 2.46
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -340,11 +634,53 @@
    "odds": {
     "Pinnacle": 1.56
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6200146655262377
+   },
+   "odds": {
+    "Pinnacle": 1.56
+   }
   }
  ],
  "1553190|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.333712979328578,
+    "Bet365": 0.33730244021489025,
+    "Betfair": 0.3325100618225324
+   },
+   "odds": {
+    "Pinnacle": 2.73,
+    "Bet365": 2.62,
+    "Betfair": 2.7
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -390,11 +726,57 @@
     "Bet365": 1.44,
     "Betfair": 1.44
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.666287020671422,
+    "Bet365": 0.6626975597851099,
+    "Betfair": 0.6674899381774676
+   },
+   "odds": {
+    "Pinnacle": 1.45,
+    "Bet365": 1.44,
+    "Betfair": 1.44
+   }
   }
  ],
  "1553190|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.16221378786907395,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.14017181327137657
+   },
+   "odds": {
+    "Pinnacle": 5.02,
+    "Bet365": 5.0,
+    "Betfair": 5.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Wieczysta Kraków – Wisla Plock",
    "kickoff": "2026-10-09T16:00:00+00:00",
    "league": "Ekstraklasa",
@@ -440,11 +822,57 @@
     "Bet365": 1.17,
     "Betfair": 1.14
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Wieczysta Kraków – Wisla Plock",
+   "kickoff": "2026-10-09T16:00:00+00:00",
+   "league": "Ekstraklasa",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8377862121309262,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.8598281867286236
+   },
+   "odds": {
+    "Pinnacle": 1.17,
+    "Bet365": 1.17,
+    "Betfair": 1.14
+   }
   }
  ],
  "1576189|home": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "home",
+   "selection": "Eintracht Braunschweig Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3555847706983087,
+    "Bet365": 0.3571906304921565,
+    "Betfair": 0.3699216849414439
+   },
+   "odds": {
+    "Pinnacle": 2.69,
+    "Bet365": 2.62,
+    "Betfair": 2.55
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -490,11 +918,57 @@
     "Bet365": 3.7,
     "Betfair": 3.9
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.24381648369560305,
+    "Bet365": 0.2469900625908416,
+    "Betfair": 0.2355479046599636
+   },
+   "odds": {
+    "Pinnacle": 3.86,
+    "Bet365": 3.7,
+    "Betfair": 3.9
+   }
   }
  ],
  "1576189|away": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "away",
+   "selection": "Holstein Kiel Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.40059874560608816,
+    "Bet365": 0.3958193069170018,
+    "Betfair": 0.39453041039859243
+   },
+   "odds": {
+    "Pinnacle": 2.4,
+    "Bet365": 2.38,
+    "Betfair": 2.4
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -540,11 +1014,57 @@
     "Bet365": 1.14,
     "Betfair": 1.13
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8620854375072001,
+    "Bet365": 0.8598281867286236,
+    "Betfair": 0.8700577270811191
+   },
+   "odds": {
+    "Pinnacle": 1.14,
+    "Bet365": 1.14,
+    "Betfair": 1.13
+   }
   }
  ],
  "1576189|U1.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1379145624927999,
+    "Bet365": 0.14017181327137657,
+    "Betfair": 0.1299422729188811
+   },
+   "odds": {
+    "Pinnacle": 5.75,
+    "Bet365": 5.5,
+    "Betfair": 6.0
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -590,11 +1110,57 @@
     "Bet365": 1.5,
     "Betfair": 1.47
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6452908999535112,
+    "Bet365": 0.6379213858088065,
+    "Betfair": 0.654672104565457
+   },
+   "odds": {
+    "Pinnacle": 1.5,
+    "Bet365": 1.5,
+    "Betfair": 1.47
+   }
   }
  ],
  "1576189|U2.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.354709100046489,
+    "Bet365": 0.3620786141911938,
+    "Betfair": 0.3453278954345431
+   },
+   "odds": {
+    "Pinnacle": 2.61,
+    "Bet365": 2.5,
+    "Betfair": 2.63
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -636,11 +1202,49 @@
    "odds": {
     "Pinnacle": 1.61
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5991983592240308
+   },
+   "odds": {
+    "Pinnacle": 1.61
+   }
   }
  ],
  "1576189|U2.75:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4008016407759695
+   },
+   "odds": {
+    "Pinnacle": 2.34
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -678,11 +1282,49 @@
    "odds": {
     "Pinnacle": 1.78
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5390602956725724
+   },
+   "odds": {
+    "Pinnacle": 1.78
+   }
   }
  ],
  "1576189|U3:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4609397043274279
+   },
+   "odds": {
+    "Pinnacle": 2.06
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -720,6 +1362,25 @@
    "odds": {
     "Pinnacle": 2.05
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.46862826633591714
+   },
+   "odds": {
+    "Pinnacle": 2.05
+   }
   }
  ],
  "1576189|U3.25:no": [
@@ -741,11 +1402,53 @@
    "odds": {
     "Pinnacle": 1.82
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5313717336640831
+   },
+   "odds": {
+    "Pinnacle": 1.82
+   }
   }
  ],
  "1576189|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.41444334691400786,
+    "Bet365": 0.41562003296959216,
+    "Betfair": 0.4309954648714502
+   },
+   "odds": {
+    "Pinnacle": 2.28,
+    "Bet365": 2.2,
+    "Betfair": 2.15
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -791,11 +1494,53 @@
     "Bet365": 1.62,
     "Betfair": 1.67
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5855566530859923,
+    "Bet365": 0.584379967030408,
+    "Betfair": 0.5690045351285498
+   },
+   "odds": {
+    "Pinnacle": 1.65,
+    "Bet365": 1.62,
+    "Betfair": 1.67
+   }
   }
  ],
  "1576189|O3.75": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3534435069876406
+   },
+   "odds": {
+    "Pinnacle": 2.63
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -833,11 +1578,53 @@
    "odds": {
     "Pinnacle": 1.5
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6465564930123596
+   },
+   "odds": {
+    "Pinnacle": 1.5
+   }
   }
  ],
  "1576189|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.22445729225026756,
+    "Bet365": 0.22349859889953516,
+    "Betfair": 0.22226638352660325
+   },
+   "odds": {
+    "Pinnacle": 3.89,
+    "Bet365": 3.75,
+    "Betfair": 3.8
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -883,11 +1670,57 @@
     "Bet365": 1.25,
     "Betfair": 1.25
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7755427077497326,
+    "Bet365": 0.776501401100465,
+    "Betfair": 0.777733616473397
+   },
+   "odds": {
+    "Pinnacle": 1.26,
+    "Bet365": 1.25,
+    "Betfair": 1.25
+   }
   }
  ],
  "1576189|O5.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.10284914219869447,
+    "Bet365": 0.10465836653976265,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 7.37,
+    "Bet365": 7.0,
+    "Betfair": 6.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Eintracht Braunschweig – Holstein Kiel",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -933,11 +1766,57 @@
     "Bet365": 1.1,
     "Betfair": 1.1
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Eintracht Braunschweig – Holstein Kiel",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8971508578013058,
+    "Bet365": 0.8953416334602374,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.1,
+    "Bet365": 1.1,
+    "Betfair": 1.1
+   }
   }
  ],
  "1576191|home": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "home",
+   "selection": "1. FC Heidenheim Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5095116367442062,
+    "Bet365": 0.5139821021586448,
+    "Betfair": 0.5197616280211038
+   },
+   "odds": {
+    "Pinnacle": 1.9,
+    "Bet365": 1.85,
+    "Betfair": 1.85
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -983,11 +1862,57 @@
     "Bet365": 3.8,
     "Betfair": 3.9
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2739329479069259,
+    "Bet365": 0.23590355769006782,
+    "Betfair": 0.23511104552882575
+   },
+   "odds": {
+    "Pinnacle": 3.43,
+    "Bet365": 3.8,
+    "Betfair": 3.9
+   }
   }
  ],
  "1576191|away": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "away",
+   "selection": "1. FC Kaiserslautern Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2165554153488679,
+    "Bet365": 0.2501143401512873,
+    "Betfair": 0.2451273264500707
+   },
+   "odds": {
+    "Pinnacle": 4.29,
+    "Bet365": 3.6,
+    "Betfair": 3.75
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1033,11 +1958,57 @@
     "Bet365": 1.17,
     "Betfair": 1.17
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8313713943168926,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.837541601183481
+   },
+   "odds": {
+    "Pinnacle": 1.18,
+    "Bet365": 1.17,
+    "Betfair": 1.17
+   }
   }
  ],
  "1576191|U1.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.16862860568310753,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.1624583988165192
+   },
+   "odds": {
+    "Pinnacle": 4.93,
+    "Bet365": 5.0,
+    "Betfair": 5.0
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1083,11 +2054,57 @@
     "Bet365": 1.57,
     "Betfair": 1.53
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5961939520868107,
+    "Bet365": 0.6090604904807742,
+    "Betfair": 0.6265767132166719
+   },
+   "odds": {
+    "Pinnacle": 1.62,
+    "Bet365": 1.57,
+    "Betfair": 1.53
+   }
   }
  ],
  "1576191|U2.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4038060479131896,
+    "Bet365": 0.3909395095192259,
+    "Betfair": 0.3734232867833283
+   },
+   "odds": {
+    "Pinnacle": 2.33,
+    "Bet365": 2.35,
+    "Betfair": 2.45
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1129,11 +2146,49 @@
    "odds": {
     "Pinnacle": 1.76
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5458767458003576
+   },
+   "odds": {
+    "Pinnacle": 1.76
+   }
   }
  ],
  "1576191|U2.75:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.45412325419964245
+   },
+   "odds": {
+    "Pinnacle": 2.09
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1171,11 +2226,49 @@
    "odds": {
     "Pinnacle": 1.98
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4863307685700093
+   },
+   "odds": {
+    "Pinnacle": 1.98
+   }
   }
  ],
  "1576191|U3:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5136692314299909
+   },
+   "odds": {
+    "Pinnacle": 1.88
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1213,6 +2306,25 @@
    "odds": {
     "Pinnacle": 2.21
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.426955833882466
+   },
+   "odds": {
+    "Pinnacle": 2.21
+   }
   }
  ],
  "1576191|U3.25:no": [
@@ -1234,11 +2346,53 @@
    "odds": {
     "Pinnacle": 1.68
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5730441661175342
+   },
+   "odds": {
+    "Pinnacle": 1.68
+   }
   }
  ],
  "1576191|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3799853344737623,
+    "Bet365": 0.3787995648949994,
+    "Betfair": 0.3734232867833283
+   },
+   "odds": {
+    "Pinnacle": 2.46,
+    "Bet365": 2.38,
+    "Betfair": 2.45
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1284,11 +2438,57 @@
     "Bet365": 1.53,
     "Betfair": 1.53
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6200146655262377,
+    "Bet365": 0.6212004351050009,
+    "Betfair": 0.6265767132166719
+   },
+   "odds": {
+    "Pinnacle": 1.56,
+    "Bet365": 1.53,
+    "Betfair": 1.53
+   }
   }
  ],
  "1576191|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1964663461595014,
+    "Bet365": 0.18782153401297694,
+    "Betfair": 0.18782153401297694
+   },
+   "odds": {
+    "Pinnacle": 4.39,
+    "Bet365": 4.33,
+    "Betfair": 4.33
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
    "kickoff": "2026-10-09T16:30:00+00:00",
    "league": "2. Bundesliga",
@@ -1334,6 +2534,29 @@
     "Bet365": 1.2,
     "Betfair": 1.2
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "1. FC Heidenheim – 1. FC Kaiserslautern",
+   "kickoff": "2026-10-09T16:30:00+00:00",
+   "league": "2. Bundesliga",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8035336538404987,
+    "Bet365": 0.812178465987023,
+    "Betfair": 0.812178465987023
+   },
+   "odds": {
+    "Pinnacle": 1.22,
+    "Bet365": 1.2,
+    "Betfair": 1.2
+   }
   }
  ],
  "1494292|home": [
@@ -1356,6 +2579,29 @@
    },
    "odds": {
     "Pinnacle": 1.76,
+    "Bet365": 1.75,
+    "Betfair": 1.73
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "home",
+   "selection": "IFK Goteborg Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5428255457866508,
+    "Bet365": 0.5491453434591048,
+    "Betfair": 0.5567702870301752
+   },
+   "odds": {
+    "Pinnacle": 1.78,
     "Bet365": 1.75,
     "Betfair": 1.73
    }
@@ -1384,6 +2630,29 @@
     "Bet365": 3.75,
     "Betfair": 4.0
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.23579906011243001,
+    "Bet365": 0.242754767109702,
+    "Betfair": 0.22738955101447056
+   },
+   "odds": {
+    "Pinnacle": 3.91,
+    "Bet365": 3.75,
+    "Betfair": 4.0
+   }
   }
  ],
  "1494292|away": [
@@ -1409,6 +2678,29 @@
     "Bet365": 4.33,
     "Betfair": 4.2
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "away",
+   "selection": "Vasteras SK FK Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.22137539410091917,
+    "Bet365": 0.20809988943119354,
+    "Betfair": 0.2158401619553546
+   },
+   "odds": {
+    "Pinnacle": 4.15,
+    "Bet365": 4.33,
+    "Betfair": 4.2
+   }
   }
  ],
  "1494292|O1.5": [
@@ -1426,6 +2718,29 @@
    ],
    "probs": {
     "Pinnacle": 0.822502198251811,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.837541601183481
+   },
+   "odds": {
+    "Pinnacle": 1.19,
+    "Bet365": 1.17,
+    "Betfair": 1.17
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8229406854939979,
     "Bet365": 0.837541601183481,
     "Betfair": 0.837541601183481
    },
@@ -1459,6 +2774,29 @@
     "Bet365": 5.0,
     "Betfair": 5.0
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.17705931450600218,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.1624583988165192
+   },
+   "odds": {
+    "Pinnacle": 4.69,
+    "Bet365": 5.0,
+    "Betfair": 5.0
+   }
   }
  ],
  "1494292|O2.5": [
@@ -1476,6 +2814,29 @@
    ],
    "probs": {
     "Pinnacle": 0.5927272353885503,
+    "Bet365": 0.5979752210368053,
+    "Betfair": 0.6115000303209293
+   },
+   "odds": {
+    "Pinnacle": 1.62,
+    "Bet365": 1.6,
+    "Betfair": 1.57
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5936071493942947,
     "Bet365": 0.5979752210368053,
     "Betfair": 0.6115000303209293
    },
@@ -1509,6 +2870,29 @@
     "Bet365": 2.3,
     "Betfair": 2.38
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.40639285060570535,
+    "Bet365": 0.4020247789631946,
+    "Betfair": 0.38849996967907074
+   },
+   "odds": {
+    "Pinnacle": 2.3,
+    "Bet365": 2.3,
+    "Betfair": 2.38
+   }
   }
  ],
  "1494292|O2.75": [
@@ -1529,6 +2913,25 @@
    },
    "odds": {
     "Pinnacle": 1.78
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5407517779768556
+   },
+   "odds": {
+    "Pinnacle": 1.77
    }
   }
  ],
@@ -1551,6 +2954,25 @@
    "odds": {
     "Pinnacle": 2.05
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4592482220231444
+   },
+   "odds": {
+    "Pinnacle": 2.06
+   }
   }
  ],
  "1494292|O3": [
@@ -1571,6 +2993,25 @@
    },
    "odds": {
     "Pinnacle": 2.02
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4734366981943472
+   },
+   "odds": {
+    "Pinnacle": 2.01
    }
   }
  ],
@@ -1593,6 +3034,25 @@
    "odds": {
     "Pinnacle": 1.81
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5265633018056528
+   },
+   "odds": {
+    "Pinnacle": 1.82
+   }
   }
  ],
  "1494292|O3.25": [
@@ -1614,11 +3074,49 @@
    "odds": {
     "Pinnacle": 2.28
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4102917044441917
+   },
+   "odds": {
+    "Pinnacle": 2.28
+   }
   }
  ],
  "1494292|U3.25:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5897082955558086
+   },
+   "odds": {
+    "Pinnacle": 1.63
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "IFK Goteborg – Vasteras SK FK",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Allsvenskan",
@@ -1660,6 +3158,29 @@
     "Bet365": 2.5,
     "Betfair": 2.55
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.36449398286325374,
+    "Bet365": 0.3787995648949994,
+    "Betfair": 0.3586397243479171
+   },
+   "odds": {
+    "Pinnacle": 2.54,
+    "Bet365": 2.38,
+    "Betfair": 2.55
+   }
   }
  ],
  "1494292|U3.5:no": [
@@ -1685,6 +3206,29 @@
     "Bet365": 1.5,
     "Betfair": 1.5
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6355060171367464,
+    "Bet365": 0.6212004351050009,
+    "Betfair": 0.6413602756520832
+   },
+   "odds": {
+    "Pinnacle": 1.52,
+    "Bet365": 1.53,
+    "Betfair": 1.5
+   }
   }
  ],
  "1494292|O4.5": [
@@ -1707,6 +3251,29 @@
    },
    "odds": {
     "Pinnacle": 4.54,
+    "Bet365": 4.33,
+    "Betfair": 4.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1845088559967526,
+    "Bet365": 0.18782153401297694,
+    "Betfair": 0.18498744107852141
+   },
+   "odds": {
+    "Pinnacle": 4.53,
     "Bet365": 4.33,
     "Betfair": 4.5
    }
@@ -1735,11 +3302,57 @@
     "Bet365": 1.2,
     "Betfair": 1.2
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "IFK Goteborg – Vasteras SK FK",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Allsvenskan",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8154911440032474,
+    "Bet365": 0.812178465987023,
+    "Betfair": 0.8150125589214786
+   },
+   "odds": {
+    "Pinnacle": 1.2,
+    "Bet365": 1.2,
+    "Betfair": 1.2
+   }
   }
  ],
  "1494774|home": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "home",
+   "selection": "Brann Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3106816780302058,
+    "Bet365": 0.31195809071614583,
+    "Betfair": 0.32039488369124514
+   },
+   "odds": {
+    "Pinnacle": 3.05,
+    "Bet365": 2.9,
+    "Betfair": 2.9
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -1785,11 +3398,57 @@
     "Bet365": 3.8,
     "Betfair": 4.0
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2344277412264586,
+    "Bet365": 0.2320952052683981,
+    "Betfair": 0.2271870585271203
+   },
+   "odds": {
+    "Pinnacle": 3.99,
+    "Bet365": 3.8,
+    "Betfair": 4.0
+   }
   }
  ],
  "1494774|away": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "away",
+   "selection": "Viking Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4548905807433358,
+    "Bet365": 0.45594670401545645,
+    "Betfair": 0.4524180577816345
+   },
+   "odds": {
+    "Pinnacle": 2.12,
+    "Bet365": 2.05,
+    "Betfair": 2.1
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -1835,11 +3494,57 @@
     "Bet365": 1.11,
     "Betfair": 1.1
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8719915678246851,
+    "Bet365": 0.8859788979215435,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.13,
+    "Bet365": 1.11,
+    "Betfair": 1.1
+   }
   }
  ],
  "1494774|U1.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.12800843217531502,
+    "Bet365": 0.11402110207845671,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 6.26,
+    "Bet365": 6.5,
+    "Betfair": 6.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -1885,11 +3590,57 @@
     "Bet365": 1.4,
     "Betfair": 1.4
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6781179372490624,
+    "Bet365": 0.6894029905975132,
+    "Betfair": 0.6894029905975132
+   },
+   "odds": {
+    "Pinnacle": 1.43,
+    "Bet365": 1.4,
+    "Betfair": 1.4
+   }
   }
  ],
  "1494774|U2.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3218820627509377,
+    "Bet365": 0.3105970094024869,
+    "Betfair": 0.3105970094024869
+   },
+   "odds": {
+    "Pinnacle": 2.84,
+    "Bet365": 2.88,
+    "Betfair": 2.88
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -1931,11 +3682,49 @@
    "odds": {
     "Pinnacle": 1.52
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6381878887212403
+   },
+   "odds": {
+    "Pinnacle": 1.52
+   }
   }
  ],
  "1494774|U2.75:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3618121112787597
+   },
+   "odds": {
+    "Pinnacle": 2.58
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -1973,11 +3762,49 @@
    "odds": {
     "Pinnacle": 1.64
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5885063447012056
+   },
+   "odds": {
+    "Pinnacle": 1.64
+   }
   }
  ],
  "1494774|U3:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.41149365529879467
+   },
+   "odds": {
+    "Pinnacle": 2.29
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -2015,6 +3842,25 @@
    "odds": {
     "Pinnacle": 1.87
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5164104828207734
+   },
+   "odds": {
+    "Pinnacle": 1.87
+   }
   }
  ],
  "1494774|U3.25:no": [
@@ -2036,11 +3882,53 @@
    "odds": {
     "Pinnacle": 1.99
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4835895171792269
+   },
+   "odds": {
+    "Pinnacle": 1.99
+   }
   }
  ],
  "1494774|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4609397043274279,
+    "Bet365": 0.45940384285039115,
+    "Betfair": 0.4714572647286174
+   },
+   "odds": {
+    "Pinnacle": 2.06,
+    "Bet365": 2.0,
+    "Betfair": 2.0
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -2086,11 +3974,53 @@
     "Bet365": 1.73,
     "Betfair": 1.8
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5390602956725724,
+    "Bet365": 0.5405961571496092,
+    "Betfair": 0.5285427352713827
+   },
+   "odds": {
+    "Pinnacle": 1.78,
+    "Bet365": 1.73,
+    "Betfair": 1.8
+   }
   }
  ],
  "1494774|O3.75": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4038060479131896
+   },
+   "odds": {
+    "Pinnacle": 2.33
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -2128,11 +4058,53 @@
    "odds": {
     "Pinnacle": 1.62
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5961939520868107
+   },
+   "odds": {
+    "Pinnacle": 1.62
+   }
   }
  ],
  "1494774|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2673923407815342,
+    "Bet365": 0.25435426919334314,
+    "Betfair": 0.27092092359712366
+   },
+   "odds": {
+    "Pinnacle": 3.35,
+    "Bet365": 3.4,
+    "Betfair": 3.25
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -2178,11 +4150,57 @@
     "Bet365": 1.3,
     "Betfair": 1.33
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.732607659218466,
+    "Bet365": 0.745645730806657,
+    "Betfair": 0.7290790764028765
+   },
+   "odds": {
+    "Pinnacle": 1.33,
+    "Bet365": 1.3,
+    "Betfair": 1.33
+   }
   }
  ],
  "1494774|O5.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1294066867689466,
+    "Bet365": 0.12378413609134302,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 6.07,
+    "Bet365": 6.0,
+    "Betfair": 6.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Brann – Viking",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Eliteserien",
@@ -2228,11 +4246,57 @@
     "Bet365": 1.12,
     "Betfair": 1.1
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Brann – Viking",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Eliteserien",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8705933132310536,
+    "Bet365": 0.8762158639086571,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.13,
+    "Bet365": 1.12,
+    "Betfair": 1.1
+   }
   }
  ],
  "1549031|home": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "home",
+   "selection": "FC Nordsjaelland Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6537532984554275,
+    "Bet365": 0.6695441161333889,
+    "Betfair": 0.6686293545108761
+   },
+   "odds": {
+    "Pinnacle": 1.49,
+    "Bet365": 1.45,
+    "Betfair": 1.44
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2278,11 +4342,57 @@
     "Bet365": 4.75,
     "Betfair": 4.75
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.18341238475523436,
+    "Bet365": 0.1859552403309558,
+    "Betfair": 0.17906289084058913
+   },
+   "odds": {
+    "Pinnacle": 4.91,
+    "Bet365": 4.75,
+    "Betfair": 4.75
+   }
   }
  ],
  "1549031|away": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "away",
+   "selection": "Odense Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.16283431678933816,
+    "Bet365": 0.1445006435356555,
+    "Betfair": 0.152307754648535
+   },
+   "odds": {
+    "Pinnacle": 5.49,
+    "Bet365": 6.0,
+    "Betfair": 5.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2328,11 +4438,57 @@
     "Bet365": 1.11,
     "Betfair": 1.1
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8879195226531486,
+    "Bet365": 0.8859788979215435,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.11,
+    "Bet365": 1.11,
+    "Betfair": 1.1
+   }
   }
  ],
  "1549031|U1.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.11208047734685142,
+    "Bet365": 0.11402110207845671,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 6.83,
+    "Bet365": 6.5,
+    "Betfair": 6.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2378,11 +4534,57 @@
     "Bet365": 1.4,
     "Betfair": 1.4
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7095904856640797,
+    "Bet365": 0.6894029905975132,
+    "Betfair": 0.6894029905975132
+   },
+   "odds": {
+    "Pinnacle": 1.37,
+    "Bet365": 1.4,
+    "Betfair": 1.4
+   }
   }
  ],
  "1549031|U2.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2904095143359203,
+    "Bet365": 0.3105970094024869,
+    "Betfair": 0.3105970094024869
+   },
+   "odds": {
+    "Pinnacle": 3.11,
+    "Bet365": 2.88,
+    "Betfair": 2.88
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2424,11 +4626,49 @@
    "odds": {
     "Pinnacle": 1.48
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6543631451298039
+   },
+   "odds": {
+    "Pinnacle": 1.48
+   }
   }
  ],
  "1549031|U2.75:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3456368548701963
+   },
+   "odds": {
+    "Pinnacle": 2.67
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2466,11 +4706,49 @@
    "odds": {
     "Pinnacle": 1.55
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6253061687767855
+   },
+   "odds": {
+    "Pinnacle": 1.55
+   }
   }
  ],
  "1549031|U3:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3746938312232147
+   },
+   "odds": {
+    "Pinnacle": 2.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2508,6 +4786,25 @@
    "odds": {
     "Pinnacle": 1.75
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5498232222600424
+   },
+   "odds": {
+    "Pinnacle": 1.75
+   }
   }
  ],
  "1549031|U3.25:no": [
@@ -2529,11 +4826,53 @@
    "odds": {
     "Pinnacle": 2.11
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4501767777399576
+   },
+   "odds": {
+    "Pinnacle": 2.11
+   }
   }
  ],
  "1549031|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4903736748703254,
+    "Bet365": 0.4833455519302531,
+    "Betfair": 0.4714572647286174
+   },
+   "odds": {
+    "Pinnacle": 1.96,
+    "Bet365": 1.91,
+    "Betfair": 2.0
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2579,11 +4918,53 @@
     "Bet365": 1.8,
     "Betfair": 1.8
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5096263251296747,
+    "Bet365": 0.516654448069747,
+    "Betfair": 0.5285427352713827
+   },
+   "odds": {
+    "Pinnacle": 1.89,
+    "Bet365": 1.8,
+    "Betfair": 1.8
+   }
   }
  ],
  "1549031|O3.75": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4317683398583068
+   },
+   "odds": {
+    "Pinnacle": 2.2
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2621,11 +5002,49 @@
    "odds": {
     "Pinnacle": 1.7
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5682316601416935
+   },
+   "odds": {
+    "Pinnacle": 1.7
+   }
   }
  ],
  "1549031|O4": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O4",
+   "selection": "Über 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.36050586601038054
+   },
+   "odds": {
+    "Pinnacle": 2.6
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2663,11 +5082,53 @@
    "odds": {
     "Pinnacle": 1.52
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U4:no",
+   "selection": "Unter 4 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6394941339896194
+   },
+   "odds": {
+    "Pinnacle": 1.52
+   }
   }
  ],
  "1549031|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2846025068014035,
+    "Bet365": 0.27092092359712366,
+    "Betfair": 0.27092092359712366
+   },
+   "odds": {
+    "Pinnacle": 3.17,
+    "Bet365": 3.25,
+    "Betfair": 3.25
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2713,11 +5174,57 @@
     "Bet365": 1.33,
     "Betfair": 1.33
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7153974931985965,
+    "Bet365": 0.7290790764028765,
+    "Betfair": 0.7290790764028765
+   },
+   "odds": {
+    "Pinnacle": 1.36,
+    "Bet365": 1.33,
+    "Betfair": 1.33
+   }
   }
  ],
  "1549031|O5.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.14453611184612328,
+    "Bet365": 0.12378413609134302,
+    "Betfair": 0.1299422729188811
+   },
+   "odds": {
+    "Pinnacle": 5.65,
+    "Bet365": 6.0,
+    "Betfair": 6.0
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "FC Nordsjaelland – Odense",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Superliga",
@@ -2763,11 +5270,57 @@
     "Bet365": 1.12,
     "Betfair": 1.13
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "FC Nordsjaelland – Odense",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Superliga",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8554638881538769,
+    "Bet365": 0.8762158639086571,
+    "Betfair": 0.8700577270811191
+   },
+   "odds": {
+    "Pinnacle": 1.15,
+    "Bet365": 1.12,
+    "Betfair": 1.13
+   }
   }
  ],
  "1584424|home": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "home",
+   "selection": "Galatasaray Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7828052995875482,
+    "Bet365": 0.7780209906445908,
+    "Betfair": 0.79848670344719
+   },
+   "odds": {
+    "Pinnacle": 1.25,
+    "Bet365": 1.25,
+    "Betfair": 1.22
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -2813,11 +5366,57 @@
     "Bet365": 5.5,
     "Betfair": 6.0
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.13771577704319007,
+    "Bet365": 0.14696271685999365,
+    "Betfair": 0.13163646837467557
+   },
+   "odds": {
+    "Pinnacle": 6.09,
+    "Bet365": 5.5,
+    "Betfair": 6.0
+   }
   }
  ],
  "1584424|away": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "away",
+   "selection": "Kasımpaşa Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.0794789233692619,
+    "Bet365": 0.07501629249541555,
+    "Betfair": 0.06987682817813456
+   },
+   "odds": {
+    "Pinnacle": 10.05,
+    "Bet365": 10.0,
+    "Betfair": 10.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -2863,11 +5462,57 @@
     "Bet365": 1.12,
     "Betfair": 1.1
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8618242742825373,
+    "Bet365": 0.8762158639086571,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.14,
+    "Bet365": 1.12,
+    "Betfair": 1.1
+   }
   }
  ],
  "1584424|U1.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1381757257174628,
+    "Bet365": 0.12378413609134302,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 5.72,
+    "Bet365": 6.0,
+    "Betfair": 6.5
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -2913,11 +5558,57 @@
     "Bet365": 1.44,
     "Betfair": 1.4
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6703278303946429,
+    "Bet365": 0.6674899381774676,
+    "Betfair": 0.6894029905975132
+   },
+   "odds": {
+    "Pinnacle": 1.44,
+    "Bet365": 1.44,
+    "Betfair": 1.4
+   }
   }
  ],
  "1584424|U2.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3296721696053572,
+    "Bet365": 0.3325100618225324,
+    "Betfair": 0.3105970094024869
+   },
+   "odds": {
+    "Pinnacle": 2.75,
+    "Bet365": 2.7,
+    "Betfair": 2.88
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -2959,11 +5650,49 @@
    "odds": {
     "Pinnacle": 1.54
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6262974411384459
+   },
+   "odds": {
+    "Pinnacle": 1.54
+   }
   }
  ],
  "1584424|U2.75:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3737025588615541
+   },
+   "odds": {
+    "Pinnacle": 2.48
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -3001,11 +5730,49 @@
    "odds": {
     "Pinnacle": 1.68
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.570088129065736
+   },
+   "odds": {
+    "Pinnacle": 1.68
+   }
   }
  ],
  "1584424|U3:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.42991187093426414
+   },
+   "odds": {
+    "Pinnacle": 2.18
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -3043,6 +5810,25 @@
    "odds": {
     "Pinnacle": 1.93
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4958213648025795
+   },
+   "odds": {
+    "Pinnacle": 1.93
+   }
   }
  ],
  "1584424|U3.25:no": [
@@ -3064,11 +5850,53 @@
    "odds": {
     "Pinnacle": 1.9
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5041786351974207
+   },
+   "odds": {
+    "Pinnacle": 1.9
+   }
   }
  ],
  "1584424|O3.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.43681473618534056,
+    "Bet365": 0.43631838437334225,
+    "Betfair": 0.45695029435061363
+   },
+   "odds": {
+    "Pinnacle": 2.15,
+    "Bet365": 2.1,
+    "Betfair": 2.05
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -3114,11 +5942,53 @@
     "Bet365": 1.67,
     "Betfair": 1.75
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5631852638146597,
+    "Bet365": 0.5636816156266578,
+    "Betfair": 0.5430497056493866
+   },
+   "odds": {
+    "Pinnacle": 1.7,
+    "Bet365": 1.67,
+    "Betfair": 1.75
+   }
   }
  ],
  "1584424|O3.75": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O3.75",
+   "selection": "Über 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3768615713424933
+   },
+   "odds": {
+    "Pinnacle": 2.47
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -3156,11 +6026,53 @@
    "odds": {
     "Pinnacle": 1.55
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U3.75:no",
+   "selection": "Unter 3.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6231384286575067
+   },
+   "odds": {
+    "Pinnacle": 1.55
+   }
   }
  ],
  "1584424|O4.5": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.23889409391408523,
+    "Bet365": 0.24317681709911804,
+    "Betfair": 0.25435426919334314
+   },
+   "odds": {
+    "Pinnacle": 3.65,
+    "Bet365": 3.5,
+    "Betfair": 3.4
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
@@ -3206,6 +6118,29 @@
     "Bet365": 1.28,
     "Betfair": 1.3
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7611059060859149,
+    "Bet365": 0.756823182900882,
+    "Betfair": 0.745645730806657
+   },
+   "odds": {
+    "Pinnacle": 1.28,
+    "Bet365": 1.28,
+    "Betfair": 1.3
+   }
   }
  ],
  "1584424|O5.5": [
@@ -3231,11 +6166,57 @@
     "Bet365": 6.5,
     "Betfair": 6.5
    }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1056019759043853,
+    "Bet365": 0.11402110207845671,
+    "Betfair": 0.10739583487790848
+   },
+   "odds": {
+    "Pinnacle": 6.82,
+    "Bet365": 6.5,
+    "Betfair": 6.5
+   }
   }
  ],
  "1584424|U5.5:no": [
   {
    "ts": "2026-10-08T16:57:55.343597+00:00",
+   "event": "Galatasaray – Kasımpaşa",
+   "kickoff": "2026-10-09T17:00:00+00:00",
+   "league": "Süper Lig",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8943980240956149,
+    "Bet365": 0.8859788979215435,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.1,
+    "Bet365": 1.11,
+    "Betfair": 1.1
+   }
+  },
+  {
+   "ts": "2026-10-08T17:06:16.028144+00:00",
    "event": "Galatasaray – Kasımpaşa",
    "kickoff": "2026-10-09T17:00:00+00:00",
    "league": "Süper Lig",
