@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, oddalerts, soccerstats, xg_external
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, kalshi, nhl, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
 from .m17_11_external_shadow import fair as external_structural_fair
@@ -892,9 +892,46 @@ def _hockey_results(lg: str, season_start: int, issues: list[str]
 def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) -> list[Fixture]:
     now = datetime.now(timezone.utc)
     until = datetime.combine(start + timedelta(days=days + 1), datetime.min.time(), tzinfo=timezone.utc)
-    issues.append("Eishockey Europa: DEL/CH/KHL-Spielplanquelle entfernt; Abdeckung unvollständig")
     out = _scan_icehl(start, until, now, issues, notes)
     season = start.year if start.month >= 7 else start.year - 1
+
+    # DEL, Schweizer National League und KHL: Kalshi nur als read-only
+    # Spielplanquelle. Preise werden danach separat über die Preisquellen
+    # (API-Hockey/Polymarket etc.) angehängt.
+    for lg, label in (("del", "DEL"), ("nl", "National League (CH)"), ("khl", "KHL")):
+        upcoming, err = kalshi.hockey_fixtures(lg, now, until)
+        if err:
+            issues.append(f"Kalshi Fixture {label}: {err}")
+            continue
+        if not upcoming:
+            notes.append(f"{label}: keine offenen Kalshi-Spiele im Scanfenster")
+            continue
+        ms, n_cur = _hockey_results(lg, season, issues)
+        if len(ms) < 150:
+            issues.append(f"{label}: nur {len(ms)} Ergebnisse für Modell")
+            continue
+        model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
+        notes.append(f"{label}: Spielplan Kalshi read-only · Modell aus {len(ms)} Spielen, davon {n_cur} aktuell")
+        for g in upcoming:
+            h = matching.find_strict(g["home"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
+            a = matching.find_strict(g["away"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
+            if not h or not a:
+                issues.append(f"{label}: Team nicht zugeordnet ({g['away']} at {g['home']})")
+                continue
+            mk = model.markets(h, a)
+            ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
+            game = espn.EspnGame(
+                g.get("event_ticker") or f"{lg}:{g['start'].isoformat()}:{h}:{a}",
+                lg, g["start"], espn.Team(g["home"]), espn.Team(g["away"]), "STATUS_SCHEDULED"
+            )
+            out.append(Fixture(
+                lg, "hockey", game, {"home": ph, "away": pa},
+                f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}",
+                [f"Fixture: Kalshi read-only", f"Form {h} {_form(ms, h, g['start'].date())}, {a} {_form(ms, a, g['start'].date())}"],
+                estimate=True, model="poisson-hockey-eu"
+            ))
+
+    # Liiga und SHL kommen direkt aus ihren offiziellen Liga-Feeds.
     for lg in ("liiga", "shl"):
         _, upcoming, err = (hockeyarchives.liiga(season + 1) if lg == "liiga" else hockeyarchives.shl(season))
         if err:
@@ -920,6 +957,7 @@ def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) 
                                  espn.Team(g["home"]), espn.Team(g["away"]), "STATUS_SCHEDULED")
             out.append(Fixture(lg, "hockey", game, {"home": ph, "away": pa},
                                f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}",
+                               [f"Fixture: offizieller {lg.upper()}-Feed"],
                                estimate=True, model="poisson-hockey-eu"))
     return out
 
