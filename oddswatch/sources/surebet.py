@@ -109,6 +109,17 @@ def _selection(row: dict) -> tuple[str, str]:
         "p1": "1. Drittel",
         "p2": "2. Drittel",
         "p3": "3. Drittel",
+        "half1": "1. Halbzeit",
+        "half2": "2. Halbzeit",
+        "period1": "1. Drittel",
+        "period2": "2. Drittel",
+        "period3": "3. Drittel",
+        "quarter1": "1. Viertel",
+        "quarter2": "2. Viertel",
+        "quarter3": "3. Viertel",
+        "quarter4": "4. Viertel",
+        "overtime": "inkl. Verlängerung",
+        "shootout": "inkl. Verlängerung/Shootout",
     }
     period_text = period_labels.get(period, period)
 
@@ -144,6 +155,7 @@ def _selection(row: dict) -> tuple[str, str]:
         "eh1": f"{t1} Europäisches Handicap {condition}".strip(),
         "ehx": f"Unentschieden · Europäisches Handicap {condition}".strip(),
         "eh2": f"{t2} Europäisches Handicap {condition}".strip(),
+        "_12": "Eine Mannschaft gewinnt (kein Unentschieden)",
     }
 
     if code == "over":
