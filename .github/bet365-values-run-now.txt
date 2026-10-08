@@ -1,1 +1,1 @@
-trigger 2026-10-08 cleaner model audit and Bet365-focused Telegram output
+trigger 2026-10-08 exact Bet365 market validation and no-unverified-value labels
