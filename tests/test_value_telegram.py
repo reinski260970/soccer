@@ -65,3 +65,26 @@ def test_alert_key_changes_when_market_line_changes():
     object.__setattr__(v, "condition", "56.5")
     b = Audit(v, "BESTÄTIGT", our_probability=0.50, our_fair=2.0, our_ev=0.05)
     assert _alert_key(a) != _alert_key(b)
+
+
+def test_run_does_not_send_api_errors(monkeypatch):
+    from oddswatch import surebet_values
+
+    monkeypatch.setattr(
+        surebet_values.surebet,
+        "fetch_valuebets",
+        lambda **kwargs: ([], "HTTP 403"),
+    )
+    sent = []
+
+    def _send(text):
+        sent.append(text)
+        return {"sent": True, "message_ids": [999], "error": None}
+
+    monkeypatch.setattr(surebet_values.telegram, "send", _send)
+
+    lines = surebet_values.run(send=True, limit=1)
+
+    assert sent == []
+    assert any("nicht gesendet" in line.lower() for line in lines)
+    assert any("HTTP 403" in line for line in lines)
