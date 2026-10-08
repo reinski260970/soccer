@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import os
+import json
 from pathlib import Path
 
 from . import guard, pricing, report, steam, telegram
@@ -11,6 +12,31 @@ from .sources import apifootball
 
 MIN_EV = 0.03
 PLAYABLE = ("Bet365", "Betfair")
+SOCCER_ALERT_STATE = Path("data/journal/soccer_steam_alerts.json")
+
+
+def _fresh_signals(signals, state):
+    """Repeat only after a direction change or another 1.5pp lead move."""
+    fresh = []
+    for s in signals:
+        old = state.get(s["key"], {})
+        p = float(s["probs"][s.get("lead_source", "Pinnacle")])
+        if (old.get("direction") != s["direction"] or
+                abs(p - float(old.get("lead_prob", p))) >= 0.015):
+            fresh.append(s)
+    return fresh
+
+
+def _mark_sent(signals, state):
+    for s in signals:
+        state[s["key"]] = {
+            "direction": s["direction"],
+            "lead_prob": float(s["probs"][s.get("lead_source", "Pinnacle")]),
+        }
+    SOCCER_ALERT_STATE.parent.mkdir(parents=True, exist_ok=True)
+    SOCCER_ALERT_STATE.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+
+
 SOCCER_MARKET_STEAM_STATE = Path("data/journal/soccer_market_steam_history.json")
 
 SUPPORTED_STEAM_LEAGUES = {
@@ -190,7 +216,8 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
     # Bericht senden. Geplante 15-Minuten-Laeufe bleiben still, solange es
     # kein PRE-STEAM-Signal gibt, damit der Kanal nicht zugespammt wird.
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
-    if send and event_name != "schedule":
+    if (send and event_name != "schedule" and
+            os.environ.get("GITHUB_WORKFLOW") != "soccer-steam-watch"):
         lines = [
             f"📊 SOCCER MARKET SCAN {report.stand()}",
             f"{day_label} · {len(fixtures)} Spiele · {odds_with_data} mit Odds",
@@ -228,12 +255,18 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
                 f"Pinnacle Δ {s['lead_move']*100:+.1f}pp in {s['minutes']}m | "
                 f"Lead-vs-Slow {s['lag']*100:+.1f}pp | {slow}"
             )
-        if send:
+        try:
+            alert_state = json.loads(SOCCER_ALERT_STATE.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            alert_state = {}
+        fresh = _fresh_signals(signals, alert_state)[:8]
+        log.append(f"PRE-STEAM neu/sendbar: {len(fresh)}")
+        if send and fresh:
             lines = [
                 f"⚡ PRE-STEAM {report.stand()}",
                 "Frühindikator: Pinnacle bewegt sich vor Bet365/Betfair. Kein automatisches PLAY.",
             ]
-            for s in signals[:8]:
+            for s in fresh:
                 odds = s.get("odds") or {}
                 slow = " | ".join(
                     f"{b} {odds[b]:.2f}" for b in ("Bet365", "Betfair") if b in odds
@@ -249,6 +282,9 @@ def full_market_scan(day: str | None = None, min_ev: float = MIN_EV, top: int = 
                     f"   {slow}",
                 ]
             tr = telegram.send("\n".join(lines))
+            if not tr["sent"]:
+                raise RuntimeError(f"PRE-STEAM Telegram fehlgeschlagen: {tr['error']}")
+            _mark_sent(fresh, alert_state)
             log.append("PRE-STEAM Telegram: " + (
                 f"gesendet {tr['message_ids']}" if tr["sent"] else f"NICHT gesendet – {tr['error']}"
             ))
