@@ -16,6 +16,7 @@ from .. import fetch
 
 BASE = "https://api.apostasseguras.com/request"
 DEFAULT_SPORTS = ("Football", "Hockey", "Basketball")
+DEFAULT_BOOKS = ("bet365", "betfair", "orbitxch")
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,8 @@ class SurebetValue:
     probability: float | None
     overvalue: float | None
     bookmaker: str = "bet365"
+    back: bool = True
+    commission: float = 0.0
 
     @property
     def event(self) -> str:
@@ -115,7 +118,8 @@ def parse(data) -> list[SurebetValue]:
     seen: set[tuple] = set()
     for row in _iter_dicts(data):
         # Bet objects are documented with bk/value/sport_id/teams/type.
-        if str(row.get("bk") or "").lower() != "bet365":
+        bookmaker = str(row.get("bk") or "").lower()
+        if bookmaker not in DEFAULT_BOOKS:
             continue
         odds = _num(row.get("value"))
         if not odds or odds <= 1.0:
@@ -153,7 +157,9 @@ def parse(data) -> list[SurebetValue]:
     return out
 
 
-def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS, limit: int = 100
+def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS,
+                    books: tuple[str, ...] = DEFAULT_BOOKS,
+                    limit: int = 100
                     ) -> tuple[list[SurebetValue], str | None]:
     token = api_token()
     if not token:
@@ -161,9 +167,12 @@ def fetch_valuebets(sports: tuple[str, ...] = DEFAULT_SPORTS, limit: int = 100
     wanted = tuple(s for s in sports if s in DEFAULT_SPORTS)
     if not wanted:
         return [], "Keine unterstützte Sportart angefordert"
+    wanted_books = tuple(b for b in books if b in DEFAULT_BOOKS)
+    if not wanted_books:
+        return [], "Keine unterstützte Buchmacherquelle angefordert"
     params = {
         "product": "valuebets",
-        "source": "bet365",
+        "source": "|".join(wanted_books),
         "sport": "|".join(wanted),
         "limit": str(max(1, min(int(limit), 500))),
         "oddsFormat": "eu",
