@@ -1,4 +1,4 @@
-"""Bet365 Valuebet watch from SureBet API."""
+"""Bet365 Valuebet watch from the configured Valuebet API feed."""
 
 from __future__ import annotations
 
@@ -77,7 +77,7 @@ def _poisson_total_probability(lam: float, line: float, over: bool) -> float | N
 
 
 def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, str]:
-    """Independent fair probability for the exact SureBet market when supported."""
+    """Independent fair probability for the exact Valuebet market when supported."""
     market = (v.market or "").casefold()
     selection = (v.selection or "").casefold()
 
@@ -140,7 +140,7 @@ def _hockey_league(v: surebet.SurebetValue) -> str | None:
 def _hockey_period1_probability(v: surebet.SurebetValue, cache: dict) -> tuple[float | None, str]:
     """Candidate-driven 1st-period total model from historical period scores.
 
-    This is independent of the SureBet probability and is used only when the
+    This is independent of the Valuebet-API probability and is used only when the
     exact event is not available in the normal scanner.
     """
     if v.sport != "Hockey" or len(v.teams) != 2 or v.kickoff is None:
@@ -244,7 +244,7 @@ def audit_values(values: list[surebet.SurebetValue], fixtures) -> list[Audit]:
         if ref is not None and ref > 0 and v.odds * ref - 1.0 < -0.02 and status == "BESTÄTIGT":
             status = "KONFLIKT"
 
-        api = f"SureBet-EV {api_ev:+.1%}" if api_ev is not None else "SureBet-EV unbekannt"
+        api = f"Valuebet-EV {api_ev:+.1%}" if api_ev is not None else "Valuebet-EV unbekannt"
         note = f"{model_note}; {api}" if model_note else api
         out.append(Audit(
             v, status,
@@ -331,7 +331,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
                 f"➡️ {v.selection} @ {_q(v.odds)} · {names.get(v.bookmaker, v.bookmaker)}",
                 f"Markt: {v.market}",
                 f"Unser Fair: {fair} · Unser EV: {own}",
-                f"SureBet-EV: {api} · Referenz-Fair: {ref}",
+                f"Valuebet-EV: {api} · Referenz-Fair: {ref}",
             ]
 
     lay = [a for a in audits if a.status == "LAY_REFERENZ"]
@@ -369,7 +369,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
     out += [
         "",
         f"📊 Feed: {len(values)} Signale · {book_summary}",
-        "ℹ️ SureBet entdeckt nur Kandidaten. Als VALUE gilt hier erst, was unser unabhängiges Modell für den exakten Markt bestätigt.",
+        "ℹ️ Valuebet-API entdeckt nur Kandidaten. Als VALUE gilt hier erst, was unser unabhängiges Modell für den exakten Markt bestätigt.",
     ]
     return "\n".join(out)
 
