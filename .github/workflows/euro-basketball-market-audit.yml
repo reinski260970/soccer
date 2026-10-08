@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      APIKEY: ${{ secrets.APIKEY }}
       SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
       EU_BASKETBALL_AUDIT_DAYS: "7"
     steps:
