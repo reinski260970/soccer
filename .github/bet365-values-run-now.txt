@@ -1,1 +1,1 @@
-trigger 2026-10-08 model audit test run
+trigger 2026-10-08 improved wager descriptions and lay handling
