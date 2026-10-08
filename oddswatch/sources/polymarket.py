@@ -18,7 +18,7 @@ from ..selection import Offer
 
 GAMMA = "https://gamma-api.polymarket.com"
 CLOB = "https://clob.polymarket.com"
-TAGS = {"nfl": "nfl", "nhl": "nhl", "nba": "nba"}
+TAGS = {"nfl": "nfl", "nhl": "nhl", "nba": "nba", "euroleague": "euroleague", "eurocup": "bkeurocup"}
 SERIES = {"nfl": "10187", "nba": "10345"}
 GAME_TAG_ID = "100639"
 MIN_TOP_DEPTH_USD = 10.0
