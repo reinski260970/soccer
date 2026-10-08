@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements-sql.txt
-      - name: Bet365 vs Pinnacle audit
+      - name: Polymarket and Kalshi reference audit
         run: python -m oddswatch.euro_basketball_market_audit > europe-basketball-market-audit.json
       - uses: actions/upload-artifact@v4
         with:
