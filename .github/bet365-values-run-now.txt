@@ -1,1 +1,1 @@
-trigger 2026-10-08 expanded exact-market model audit plus CLV persistence
+trigger 2026-10-08 hide NO_MATCH from Telegram
