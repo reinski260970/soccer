@@ -24,4 +24,6 @@ jobs:
           SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
         run: python -m oddswatch bet365-values --send --limit 100
