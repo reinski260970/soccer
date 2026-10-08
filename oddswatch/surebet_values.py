@@ -648,11 +648,13 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
     ]
     if sql_status:
         lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
-    if send:
+    if send and values:
         r = telegram.send(txt)
         lines.append(
             f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}"
         )
+    elif send and not values:
+        lines.append("Telegram: keine Kandidaten – nichts gesendet")
     return lines
 
 
