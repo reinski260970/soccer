@@ -49,7 +49,14 @@ def get(url: str, timeout: float = 20.0, cache_days: float = 0.0,
                 cp.write_text(text, encoding="utf-8")
             return text, None
         except urllib.error.HTTPError as e:
-            err = f"{url}: HTTP {e.code}"
+            detail = ""
+            try:
+                body = e.read().decode("utf-8", "replace").strip()
+                if body:
+                    detail = " · " + body[:500].replace("\n", " ")
+            except Exception:
+                pass
+            err = f"{url}: HTTP {e.code}{detail}"
             if e.code == 429:
                 time.sleep(4.0 * (attempt + 1))
             elif e.code < 500:
