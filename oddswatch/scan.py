@@ -17,9 +17,10 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, soccerstats, xg_external
+from .sources import clubelo, eloratings, espn, football_data, hockeyarchives, nhl, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
+from .m17_11_external_shadow import fair as external_structural_fair
 
 VALIDATION = Path("data/validation.json")
 M8_VALIDATION = Path("data/m8_validation.json")
@@ -67,7 +68,17 @@ SOCCER_LEAGUES = {
     "turkey": ("Süper Lig", "T1"),
     "scotland": ("Scottish Premiership", "SC0"),
     "greece": ("Super League Greece", "G1"),
-    "austria": ("Admiral Bundesliga (AT)", None),
+    "austria": ("Admiral Bundesliga (AT)", "AUT"),
+    "switzerland": ("Swiss Super League", "SUI"),
+    "sweden": ("Allsvenskan", "SWE"),
+    "norway": ("Eliteserien", "NOR"),
+    "denmark": ("Danish Superliga", "DEN"),
+    "poland": ("Ekstraklasa", "POL"),
+}
+
+NON_UNDERSTAT_CODES = {
+    "D2", "E1", "N1", "P1", "B1", "T1", "SC0", "G1",
+    "AUT", "SUI", "SWE", "NOR", "DEN", "POL",
 }
 
 
