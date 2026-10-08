@@ -18,6 +18,92 @@ from .store import connect, ingest, migrate, timestamp
 AUDITED_STATUSES = {"BESTÄTIGT", "REDUZIERT", "KONFLIKT", "WIDERLEGT"}
 
 
+def _alert_key(a) -> str:
+    v = a.value
+    teams = "|".join(sorted(str(x).strip().casefold() for x in (v.teams or ())))
+    kick = v.kickoff.isoformat() if v.kickoff else ""
+    parts = (
+        v.sport, v.tournament, teams, kick, v.bookmaker,
+        v.bet_type, v.condition, v.period, v.base,
+    )
+    return "vba:" + _id(*parts)
+
+
+def filter_unsent_actionable(audits):
+    """Return new confirmed >=3% model-EV alerts.
+
+    Fail closed when Neon is unavailable: Telegram dedupe must never degrade
+    into repeated alerts.
+    """
+    import os
+    eligible = [
+        a for a in audits
+        if a.status == "BESTÄTIGT"
+        and a.our_ev is not None
+        and a.our_ev >= 0.03
+        and getattr(a.value, "back", False)
+    ]
+    if not eligible:
+        return [], {"configured": bool(os.getenv("SPORTS_DATABASE_URL", "").strip()), "reason": "no_actionable"}
+    if not os.getenv("SPORTS_DATABASE_URL", "").strip():
+        return [], {"configured": False, "reason": "dedupe_store_missing"}
+
+    with connect() as conn:
+        migrate(conn)
+        keys = [_alert_key(a) for a in eligible]
+        rows = conn.execute(
+            "SELECT alert_key FROM sports.value_alerts WHERE alert_key = ANY(%s)",
+            (keys,),
+        ).fetchall()
+        seen = {r["alert_key"] for r in rows}
+    fresh = [a for a in eligible if _alert_key(a) not in seen]
+    return fresh, {
+        "configured": True,
+        "eligible": len(eligible),
+        "fresh": len(fresh),
+        "duplicate": len(eligible) - len(fresh),
+    }
+
+
+def mark_actionable_sent(audits, now=None):
+    """Mark alerts only after Telegram send succeeded."""
+    if not audits:
+        return {"stored": 0}
+    now = timestamp(now or datetime.now(timezone.utc))
+    from psycopg.types.json import Jsonb
+    stored = 0
+    with connect() as conn:
+        migrate(conn)
+        with conn.transaction():
+            for a in audits:
+                v = a.value
+                payload = {
+                    "sport": v.sport,
+                    "tournament": v.tournament,
+                    "teams": list(v.teams or ()),
+                    "kickoff": v.kickoff.isoformat() if v.kickoff else None,
+                    "selection": v.selection,
+                    "market": v.market,
+                    "bet_type": v.bet_type,
+                    "condition": v.condition,
+                    "period": v.period,
+                    "base": v.base,
+                    "fair": a.our_fair,
+                    "model_ev": a.our_ev,
+                }
+                stored += conn.execute(
+                    "INSERT INTO sports.value_alerts("
+                    "alert_key,valuebet_id,first_sent_at,last_sent_at,bookmaker,odds,model_ev,payload"
+                    ") VALUES(%s,%s,%s,%s,%s,%s,%s,%s) "
+                    "ON CONFLICT(alert_key) DO NOTHING",
+                    (
+                        _alert_key(a), v.id or None, now, now, v.bookmaker,
+                        float(v.odds), float(a.our_ev), Jsonb(payload),
+                    ),
+                ).rowcount
+    return {"stored": stored}
+
+
 def _id(*parts) -> str:
     raw = "|".join(str(p) for p in parts)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
