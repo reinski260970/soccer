@@ -92,3 +92,12 @@ def test_euro_basketball_period_does_not_use_nba_model():
     fair, p, ev, note = surebet_values._period_total_fair(v, {})
     assert fair is None and p is None and ev is None
     assert "nur NBA" in note
+
+
+def test_empty_value_audit_does_not_send_telegram(monkeypatch):
+    monkeypatch.setattr(surebet, "fetch_valuebets", lambda **kwargs: ([], None))
+    sent = []
+    monkeypatch.setattr(surebet_values.telegram, "send", lambda txt: sent.append(txt))
+    lines = surebet_values.run(send=True, limit=10)
+    assert sent == []
+    assert any("nichts gesendet" in x for x in lines)
