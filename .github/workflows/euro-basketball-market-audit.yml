@@ -1,0 +1,30 @@
+name: European Basketball Market Audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/euro-basketball-run-now.txt"
+  schedule:
+    - cron: "20 5,11,17 * * *"
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      APIKEY: ${{ secrets.APIKEY }}
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+      EU_BASKETBALL_AUDIT_DAYS: "7"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Bet365 vs Pinnacle audit
+        run: python -m oddswatch.euro_basketball_market_audit > europe-basketball-market-audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: europe-basketball-market-audit
+          path: europe-basketball-market-audit.json
