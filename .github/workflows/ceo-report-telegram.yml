@@ -77,7 +77,10 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APIKEY: ${{ secrets.APIKEY }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI || secrets.MONGO_URI }}
+          MONGO_URI: ${{ secrets.MONGO_URI || secrets.MONGODB_URI }}
+          MONGODB_DB: tennis_db
+          MONGO_DB_NAME: tennis_db
           SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
         run: python -m oddswatch.ceo_runner --send --slot "${{ steps.gate.outputs.slot }}"
 
