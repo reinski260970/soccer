@@ -158,9 +158,15 @@ def fair(
     if hs is None or ass is None:
         raise KeyError(f"xG-Team nicht zugeordnet: {home} / {away}")
 
-    base_h, base_a = _league_baseline(matches, venue_rows, kickoff)
     lxg = sum(float(r.xg) for r in snapshots) / len(snapshots)
     lxga = sum(float(r.xga) for r in snapshots) / len(snapshots)
+    base_h, base_a = _league_baseline(matches, venue_rows, kickoff)
+    if not matches and not venue_rows:
+        # No league-specific result/venue history: anchor the scoring level to
+        # the current real-xG league mean, with only a mild generic home split.
+        # Shadow only; this assumption is tracked by estimate=True upstream.
+        level = max((lxg + lxga) / 2.0, 0.60)
+        base_h, base_a = level * 1.08, level * 0.92
 
     hp = _clip(base_h * math.exp(_log_ratio(hs.xg, lxg) + _log_ratio(ass.xga, lxga)))
     ap = _clip(base_a * math.exp(_log_ratio(ass.xg, lxg) + _log_ratio(hs.xga, lxga)))
@@ -209,5 +215,7 @@ def fair(
         home_venue=hv, away_venue=av,
         home_ppg=hppg, away_ppg=appg,
         home_recent_n=hn, away_recent_n=an,
-        signals_used=len(hsigs),
+        signals_used=(2 if ha is not None and aa is not None else 1)
+                     + (1 if hslo is not None and aslo is not None else 0)
+                     + (1 if hv is not None and av is not None else 0),
     )
