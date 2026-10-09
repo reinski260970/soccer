@@ -1,0 +1,56 @@
+name: valuebet-match-diagnostics
+on:
+  push:
+    paths:
+      - ".github/valuebet-audit-run-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Diagnose unmatched Bet365 Valuebets (no Telegram)
+        env:
+          SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from oddswatch.sources import surebet
+          values, err = surebet.fetch_valuebets(
+              sports=("Football", "Hockey", "Basketball"),
+              books=("bet365",),
+              limit=100,
+          )
+          now = datetime.now(timezone.utc)
+          print("FEED_ERROR:", err)
+          print("FEED_TOTAL:", len(values))
+          rows = [
+              {
+                  "id": v.id,
+                  "sport": v.sport,
+                  "tournament": v.tournament,
+                  "teams": list(v.teams),
+                  "kickoff": v.kickoff.isoformat() if v.kickoff else None,
+                  "market": v.market,
+                  "selection": v.selection,
+                  "bet_type": v.bet_type,
+                  "condition": v.condition,
+                  "period": v.period,
+                  "base": v.base,
+                  "odds": v.odds
+              }
+              for v in values if v.bookmaker == "bet365" and v.back
+              and v.kickoff and v.kickoff > now
+          ]
+          print("UPCOMING_BET365_BACK_COUNT:",len(rows))
+          print("UNMATCHED_CANDIDATE_INPUTS:")
+          for row in rows: print(json.dumps(row,ensure_ascii=False))
+          PY
