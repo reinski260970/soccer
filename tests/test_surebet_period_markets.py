@@ -58,10 +58,14 @@ def test_surebet_parses_american_football_first_half_total():
 
 def test_period_kind_routes_exact_sports():
     assert surebet_values._period_kind(_value("Basketball", "NBA", "q1")) == "q1"
+    assert surebet_values._period_kind(_value("Basketball", "NBA", "q4")) == "q4"
     assert surebet_values._period_kind(_value("Basketball", "NBA", "1h")) == "1h"
+    assert surebet_values._period_kind(_value("Basketball", "NBA", "2h")) == "2h"
     assert surebet_values._period_kind(_value("American football", "NFL", "1h")) == "1h"
     assert surebet_values._period_kind(_value("American football", "NFL", "period1")) == "q1"
+    assert surebet_values._period_kind(_value("American football", "NFL", "period4")) == "q4"
     assert surebet_values._period_kind(_value("Hockey", "NHL", "p1", "1.5")) == "p1"
+    assert surebet_values._period_kind(_value("Hockey", "NHL", "p3", "1.5")) == "p3"
 
 
 def test_period_total_fair_uses_independent_period_model(monkeypatch):
