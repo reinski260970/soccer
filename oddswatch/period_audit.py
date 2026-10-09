@@ -8,11 +8,11 @@ from . import period_totals
 
 
 TARGETS = (
-    ("nba", "q1"),
-    ("nba", "1h"),
-    ("nfl", "q1"),
-    ("nfl", "1h"),
-    ("nhl", "p1"),
+    ("nba", "q1"), ("nba", "q2"), ("nba", "q3"), ("nba", "q4"),
+    ("nba", "1h"), ("nba", "2h"),
+    ("nfl", "q1"), ("nfl", "q2"), ("nfl", "q3"), ("nfl", "q4"),
+    ("nfl", "1h"), ("nfl", "2h"),
+    ("nhl", "p1"), ("nhl", "p2"), ("nhl", "p3"),
 )
 
 
