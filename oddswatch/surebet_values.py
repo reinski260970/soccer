@@ -583,16 +583,42 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
 
 
 def run(send: bool = False, limit: int = 100) -> list[str]:
-    # 1) Candidate-first: first read only genuine Bet365 BACK proposals from
-    # the Valuebet API. No model scan is started before we know what must be checked.
-    values, err = surebet.fetch_valuebets(
+    # 1) Candidate-first. Keep NFL in a separate request: the provider can
+    # reject "American football" independently and must never take down
+    # Football/Hockey/Basketball with it.
+    core_values, core_err = surebet.fetch_valuebets(
+        sports=("Football", "Hockey", "Basketball"),
         books=("bet365",),
         limit=limit,
     )
-    values = [v for v in values if v.bookmaker == "bet365" and v.back]
+    nfl_values, nfl_err = surebet.fetch_valuebets(
+        sports=("American football",),
+        books=("bet365",),
+        limit=limit,
+    )
+    values = core_values + nfl_values
+
+    # De-duplicate in case the provider returns the same record across queries.
+    seen = set()
+    unique = []
+    for v in values:
+        key = (v.id, v.sport, v.teams, v.selection, v.market, v.bookmaker, round(v.odds, 6))
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(v)
+    values = [v for v in unique if v.bookmaker == "bet365" and v.back]
+
+    feed_warnings = []
+    if core_err:
+        feed_warnings.append(f"Core-Feed: {core_err}")
+    if nfl_err:
+        feed_warnings.append(f"NFL-Feed: {nfl_err}")
+    # Only fail the whole audit when no feed produced candidates.
+    err = "; ".join(feed_warnings) if not values and feed_warnings else None
 
     audits: list[Audit] = []
-    if not err and values:
+    if values:
         try:
             from . import scan
 
@@ -646,6 +672,8 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
         f"Eingelesene Bet365-Kandidaten: {len(values)}",
         f"Audit: {summary}",
     ]
+    if feed_warnings:
+        lines.append("Feed-Hinweise: " + " | ".join(feed_warnings))
     if sql_status:
         lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
     if send and values:
