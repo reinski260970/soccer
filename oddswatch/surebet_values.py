@@ -313,23 +313,68 @@ def _period_kind(v: surebet.SurebetValue) -> str | None:
     m = (v.market or "").casefold()
     sport = (v.sport or "").casefold()
 
-    if sport == "basketball":
-        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m:
-            return "q1"
-        if p in {"1h", "half1"} or "1. halbzeit" in m:
+    if sport in {"basketball", "american football"}:
+        aliases = {
+            "q1": "q1", "quarter1": "q1", "p1": "q1", "period1": "q1",
+            "q2": "q2", "quarter2": "q2", "p2": "q2", "period2": "q2",
+            "q3": "q3", "quarter3": "q3", "p3": "q3", "period3": "q3",
+            "q4": "q4", "quarter4": "q4", "p4": "q4", "period4": "q4",
+            "1h": "1h", "half1": "1h",
+            "2h": "2h", "half2": "2h",
+        }
+        if p in aliases:
+            return aliases[p]
+        for i in range(1, 5):
+            if f"{i}. viertel" in m:
+                return f"q{i}"
+        if "1. halbzeit" in m or "1st half" in m:
             return "1h"
-
-    if sport == "american football":
-        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m or "1st period" in m:
-            return "q1"
-        if p in {"1h", "half1"} or "1. halbzeit" in m or "1st half" in m:
-            return "1h"
+        if "2. halbzeit" in m or "2nd half" in m:
+            return "2h"
 
     if sport == "hockey":
-        if p in {"p1", "period1"} or "1. drittel" in m:
-            return "p1"
+        aliases = {
+            "p1": "p1", "period1": "p1",
+            "p2": "p2", "period2": "p2",
+            "p3": "p3", "period3": "p3",
+        }
+        if p in aliases:
+            return aliases[p]
+        for i in range(1, 4):
+            if f"{i}. drittel" in m:
+                return f"p{i}"
 
     return None
+
+
+def _is_independent_period_total(v: surebet.SurebetValue) -> bool:
+    kind = _period_kind(v)
+    if kind is None or (v.bet_type or "").strip() not in {"over", "under"}:
+        return False
+    base = (v.base or "overall").casefold()
+    if base not in {"overall", "total", "match", ""}:
+        return False
+    t = (v.tournament or "").casefold()
+    sport = (v.sport or "").casefold()
+    if sport == "basketball":
+        return "nba" in t
+    if sport == "american football":
+        return "nfl" in t
+    if sport == "hockey":
+        return "nhl" in t
+    return False
+
+
+def _period_watch_owned(v: surebet.SurebetValue) -> bool:
+    """Markets whose Telegram decision belongs to the fast period watcher."""
+    if (v.bet_type or "").strip() not in {"over", "under"}:
+        return False
+    base = (v.base or "overall").casefold()
+    if base not in {"overall", "total", "match", ""}:
+        return False
+    if _is_independent_period_total(v):
+        return True
+    return v.sport == "Hockey" and _period_kind(v) == "p1"
 
 
 def _period_total_fair(v: surebet.SurebetValue, cache: dict):
@@ -620,14 +665,42 @@ def telegram_actionable_text(audits: list[Audit]) -> str:
     return "\n".join(out)
 
 
-def run(send: bool = False, limit: int = 100) -> list[str]:
-    # 1) Candidate-first: first read only genuine Bet365 BACK proposals from
-    # the Valuebet API. No model scan is started before we know what must be checked.
-    values, err = surebet.fetch_valuebets(
+def _fetch_candidate_values(limit: int = 100):
+    core_values, core_err = surebet.fetch_valuebets(
+        sports=("Football", "Hockey", "Basketball"),
         books=("bet365",),
         limit=limit,
     )
-    values = [v for v in values if v.bookmaker == "bet365" and v.back]
+    nfl_values, nfl_err = surebet.fetch_valuebets(
+        sports=("American football",),
+        books=("bet365",),
+        limit=limit,
+    )
+    values = core_values + nfl_values
+
+    seen = set()
+    unique = []
+    for v in values:
+        key = (v.id, v.sport, v.teams, v.selection, v.market, v.bookmaker, round(v.odds, 6))
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(v)
+    values = [v for v in unique if v.bookmaker == "bet365" and v.back]
+
+    warnings = []
+    if core_err:
+        warnings.append(f"Core-Feed: {core_err}")
+    if nfl_err:
+        warnings.append(f"NFL-Feed: {nfl_err}")
+    err = "; ".join(warnings) if not values and warnings else None
+    return values, warnings, err
+
+
+def run(send: bool = False, limit: int = 100) -> list[str]:
+    # 1) Candidate-first. NFL is isolated from the core feed so a provider
+    # failure for AmericanFootball cannot suppress Football/Hockey/Basketball.
+    values, feed_warnings, err = _fetch_candidate_values(limit)
 
     audits: list[Audit] = []
     if not err and values:
@@ -636,16 +709,14 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
             # 2) Run only the model families needed by the ingested candidates.
             sports_needed: list[str] = []
-            if any(v.sport == "Football" for v in values):
+            fullgame_values = [v for v in values if not _is_independent_period_total(v)]
+            if any(v.sport == "Football" for v in fullgame_values):
                 sports_needed.append("soccer")
-            if any(v.sport == "Hockey" for v in values):
+            if any(v.sport == "Hockey" for v in fullgame_values):
                 sports_needed.extend(["nhl", "hockey_eu"])
-            if any(v.sport == "Basketball" for v in values):
-                # NBA model is available in the shared scanner. European
-                # basketball candidates remain NO_MODEL until their own model
-                # has a fair price for the exact market.
+            if any(v.sport == "Basketball" for v in fullgame_values):
                 sports_needed.append("nba")
-            if any(v.sport == "American football" for v in values):
+            if any(v.sport == "American football" for v in fullgame_values):
                 sports_needed.append("nfl")
 
             # Candidate horizon instead of an unconditional broad scan.
@@ -655,18 +726,22 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
             if future:
                 max_days = max(1, min(14, max((dt.date() - now.date()).days + 1 for dt in future)))
 
-            res = scan.run(
-                days=max_days,
-                watch_days=max_days,
-                sports=tuple(dict.fromkeys(sports_needed)),
-                journal=None,
-            )
+            if sports_needed:
+                res = scan.run(
+                    days=max_days,
+                    watch_days=max_days,
+                    sports=tuple(dict.fromkeys(sports_needed)),
+                    journal=None,
+                )
+                fixtures = res.fixtures
+            else:
+                fixtures = []
 
             # 3) Challenge every candidate against our independent fair model.
-            audits = audit_values(values, res.fixtures)
+            audits = audit_values(values, fixtures)
             try:
                 from .sql.valuebet import persist_audits
-                sql_status = persist_audits(audits, res.fixtures)
+                sql_status = persist_audits(audits, fixtures)
             except Exception as exc:
                 sql_status = {"error": f"{type(exc).__name__}: {exc}"}
         except Exception as exc:
@@ -684,12 +759,18 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
         f"Eingelesene Bet365-Kandidaten: {len(values)}",
         f"Audit: {summary}",
     ]
+    if feed_warnings:
+        lines.append("Feed-Hinweise: " + " | ".join(feed_warnings))
     if sql_status:
         lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
     if send:
         from .sql.valuebet import filter_unsent_actionable, mark_actionable_sent
 
-        fresh, dedupe = filter_unsent_actionable(audits)
+        # Period totals have their own price-trend/CLV gate and Telegram
+        # watcher. Keep them out of the general channel path to avoid un-gated
+        # or duplicate period messages.
+        general_audits = [a for a in audits if not _period_watch_owned(a.value)]
+        fresh, dedupe = filter_unsent_actionable(general_audits)
         alert_txt = telegram_actionable_text(fresh)
         if not alert_txt:
             reason = dedupe.get("reason")
@@ -715,17 +796,19 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
 def run_clv_snapshot() -> list[str]:
     """Lightweight quote snapshot + sampled CLV close; no model scan."""
-    values, err = surebet.fetch_valuebets(books=("bet365",), limit=500)
-    if err:
+    values, warnings, err = _fetch_candidate_values(500)
+    if err and not values:
         return [f"Valuebet-CLV: {err}"]
-    values = [v for v in values if v.bookmaker == "bet365" and v.back]
     try:
         from .sql.valuebet import snapshot_open_candidates, capture_sampled_clv
         snap = snapshot_open_candidates(values)
         close = capture_sampled_clv()
-        return [
+        lines = [
             f"Valuebet-CLV Snapshot: {snap}",
             f"Valuebet-CLV Close: closed={len(close['closed'])}, NO_CLOSE={close['no_close']}",
         ]
+        if warnings:
+            lines.append("Feed-Hinweise: " + " | ".join(warnings))
+        return lines
     except Exception as exc:
         return [f"Valuebet-CLV Fehler: {type(exc).__name__}: {exc}"]
