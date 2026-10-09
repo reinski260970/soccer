@@ -17,6 +17,8 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
       - name: Run independent M17.11 soccer model (no Telegram)
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
         run: python -m oddswatch scan --dry --sports soccer --days 4 --watch-days 4
       - name: Preserve model report
         if: always()
