@@ -1,10 +1,10 @@
-name: NBA NFL SQL
+name: Sports SQL & Hockey Validation
 on:
   pull_request:
-    paths: ['oddswatch/sql/**', 'tests/test_sports_sql.py', 'requirements-sql.txt', '.github/workflows/sports-sql.yml']
+    paths: ['oddswatch/sql/**', 'tests/test_sports_sql.py', 'tests/test_hockey_forward_settlement.py', 'requirements-sql.txt', '.github/workflows/sports-sql.yml']
   push:
     branches: [main]
-    paths: ['oddswatch/sql/**', '.github/workflows/sports-sql.yml']
+    paths: ['oddswatch/sql/**', 'tests/test_hockey_forward_settlement.py', '.github/workflows/sports-sql.yml']
   workflow_dispatch:
   schedule:
     - cron: '17 */2 * * *'
