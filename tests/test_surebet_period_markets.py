@@ -131,3 +131,18 @@ def test_surebet_normalizes_nfl_sport_variants():
     assert surebet.canonical_sport("American Football") == "American football"
     assert surebet.canonical_sport("american-football") == "American football"
     assert surebet.canonical_sport("NFL") == "American football"
+
+
+def test_independent_period_totals_skip_full_game_scanner():
+    assert surebet_values._is_independent_period_total(
+        _value("Basketball", "NBA", "q3", "57.5")
+    )
+    assert surebet_values._is_independent_period_total(
+        _value("American football", "NFL", "2h", "24.5")
+    )
+    assert surebet_values._is_independent_period_total(
+        _value("Hockey", "NHL", "p2", "1.5")
+    )
+    assert not surebet_values._is_independent_period_total(
+        _value("Basketball", "EuroLeague", "q1", "42.5")
+    )
