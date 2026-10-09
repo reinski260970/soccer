@@ -26,7 +26,7 @@ def _value(odds=2.10):
     )
 
 
-def _audit(status="BESTÄTIGT", ev=0.05, odds=2.10):
+def _audit(status="BESTÄTIGT", ev=0.05, odds=2.10, validated=False):
     v = _value(odds)
     return Audit(
         v, status,
@@ -34,18 +34,20 @@ def _audit(status="BESTÄTIGT", ev=0.05, odds=2.10):
         our_fair=2.00,
         our_ev=ev,
         note="NBA q1 PointsModel",
+        validated_for_release=validated,
     )
 
 
 def test_telegram_actionable_empty_for_nonplays():
     assert telegram_actionable_text([]) == ""
+    assert telegram_actionable_text([_audit("BESTÄTIGT", 0.06, validated=False)]) == ""
     assert telegram_actionable_text([_audit("WIDERLEGT", -0.08)]) == ""
     assert telegram_actionable_text([_audit("REDUZIERT", 0.02)]) == ""
     assert telegram_actionable_text([_audit("KONFLIKT", 0.08)]) == ""
 
 
 def test_telegram_actionable_only_confirmed_positive_value():
-    txt = telegram_actionable_text([_audit("BESTÄTIGT", 0.06)])
+    txt = telegram_actionable_text([_audit("BESTÄTIGT", 0.06, validated=True)])
     assert "🎯 VALUEBET" in txt
     assert "Unser Fair 2,00" in txt
     assert "EV 6,0%" in txt
@@ -88,3 +90,10 @@ def test_run_does_not_send_api_errors(monkeypatch):
     assert sent == []
     assert any("nicht gesendet" in line.lower() for line in lines)
     assert any("HTTP 403" in line for line in lines)
+
+
+def test_unvalidated_positives_never_enter_release_or_dedupe():
+    from oddswatch.sql.valuebet import filter_unsent_actionable
+    fresh, status = filter_unsent_actionable([_audit("BESTÄTIGT", 0.12, validated=False)])
+    assert fresh == []
+    assert status["reason"] == "no_actionable"
