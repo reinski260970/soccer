@@ -303,7 +303,8 @@ def _surebet_value_lines(fixtures: list) -> list[str]:
     now = datetime.now(timezone.utc)
     values, err = surebet.fetch_valuebets(
         sports=("Football", "Hockey", "Basketball"),
-        books=("bet365", "betfair", "orbitxch"),
+        # Audit the entire Bet365 candidate set; mixed-book limit truncated it.
+        books=("bet365",),
         limit=100,
     )
     out = ["💰 VALUEBET-API · EIGENE MODELLPRÜFUNG"]
