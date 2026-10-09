@@ -1,1 +1,1 @@
-Trigger Europe M17.11 full coverage audit 2026-10-09 v2. No Telegram; save JSON with all league gaps.
+Rerun after module import path fix; 2026-10-09 Europe M17.11 v3; no Telegram.
