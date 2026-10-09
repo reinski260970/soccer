@@ -1,1 +1,1 @@
-trigger period model audit 2026-10-08T18:34:07.994Z
+trigger .github/period-model-run-now.txt 2026-10-09T04:24Z
