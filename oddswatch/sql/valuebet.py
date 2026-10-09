@@ -162,14 +162,23 @@ def _descriptor(v):
         "match": "FULL_GAME",
         "overtime": "FULL_GAME",
         "shootout": "FULL_GAME",
+        "1h": "FIRST_HALF",
         "half1": "FIRST_HALF",
+        "2h": "SECOND_HALF",
         "half2": "SECOND_HALF",
+        "p1": "FIRST_PERIOD",
         "period1": "FIRST_PERIOD",
+        "p2": "SECOND_PERIOD",
         "period2": "SECOND_PERIOD",
+        "p3": "THIRD_PERIOD",
         "period3": "THIRD_PERIOD",
+        "q1": "FIRST_QUARTER",
         "quarter1": "FIRST_QUARTER",
+        "q2": "SECOND_QUARTER",
         "quarter2": "SECOND_QUARTER",
+        "q3": "THIRD_QUARTER",
         "quarter3": "THIRD_QUARTER",
+        "q4": "FOURTH_QUARTER",
         "quarter4": "FOURTH_QUARTER",
     }
     period = periods.get(p, p.upper() or "REGULATION")
@@ -224,16 +233,44 @@ def persist_audits(audits, fixtures):
             continue
         fx = _match_fixture(v, fixtures)
         desc = _descriptor(v)
-        if fx is None or desc is None:
+        if desc is None:
             continue
         market, selection, line, period, rules = desc
 
-        event_id = f"valueaudit:{fx.league}:{fx.game.id}"
-        model_name = fx.model or fx.sport or "independent"
-        model_id = f"valueaudit:{fx.league}:{model_name}:{now:%Y%m%d}"
+        if fx is not None:
+            league = fx.league
+            source_event_id = str(fx.game.id)
+            home_name = fx.game.home.name
+            away_name = fx.game.away.name
+            kickoff = fx.game.kickoff
+            status = fx.game.status
+            model_name = fx.model or fx.sport or "independent"
+        else:
+            # Independent NBA/NFL/NHL period totals do not require the
+            # full-game scanner. Build a stable event identity from the
+            # candidate itself so CLV can still be tracked.
+            if len(v.teams) != 2 or v.kickoff is None:
+                continue
+            t = (v.tournament or "").casefold()
+            if v.sport == "Basketball" and "nba" in t:
+                league = "nba"
+            elif v.sport == "American football" and "nfl" in t:
+                league = "nfl"
+            elif v.sport == "Hockey" and "nhl" in t:
+                league = "nhl"
+            else:
+                continue
+            home_name, away_name = v.teams[0], v.teams[1]
+            kickoff = v.kickoff
+            source_event_id = v.id or _id(league, home_name, away_name, kickoff.isoformat())
+            status = "STATUS_SCHEDULED"
+            model_name = f"period-total:{period}"
+
+        event_id = f"valueaudit:{league}:{source_event_id}"
+        model_id = f"valueaudit:{league}:{model_name}:{now:%Y%m%d}"
         if model_id not in models:
             bundle["model_versions"].append({
-                "model_id": model_id, "league": fx.league,
+                "model_id": model_id, "league": league,
                 "trained_through": now - timedelta(seconds=2),
                 "created_at": now - timedelta(seconds=1),
                 "method": model_name,
@@ -244,13 +281,13 @@ def persist_audits(audits, fixtures):
             models.add(model_id)
 
         bundle["events"].append({
-            "event_id": event_id, "league": fx.league, "source": "oddswatch",
-            "source_event_id": str(fx.game.id),
-            "home_team_id": f"{fx.league}:{fx.game.home.name}",
-            "away_team_id": f"{fx.league}:{fx.game.away.name}",
-            "home_name": fx.game.home.name, "away_name": fx.game.away.name,
-            "kickoff": fx.game.kickoff, "season": fx.game.kickoff.year,
-            "season_type": "regular", "status": fx.game.status,
+            "event_id": event_id, "league": league, "source": "oddswatch",
+            "source_event_id": source_event_id,
+            "home_team_id": f"{league}:{home_name}",
+            "away_team_id": f"{league}:{away_name}",
+            "home_name": home_name, "away_name": away_name,
+            "kickoff": kickoff, "season": kickoff.year,
+            "season_type": "regular", "status": status,
             "home_score": None, "away_score": None, "observed_at": now,
         })
 
