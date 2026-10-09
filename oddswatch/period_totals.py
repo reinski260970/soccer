@@ -4,9 +4,9 @@ Historical quarter/period scores come from ESPN linescores. These models are
 candidate-driven and never use bookmaker odds as features.
 
 Supported:
-- NBA q1 / 1h totals
-- NFL q1 / 1h totals
-- NHL p1 totals
+- NBA q1-q4 / 1h / 2h totals
+- NFL q1-q4 / 1h / 2h totals
+- NHL p1-p3 totals
 """
 
 from __future__ import annotations
@@ -33,12 +33,24 @@ class PeriodFair:
 def _period_points(g: espn.EspnGame, period: str):
     hp = tuple(g.home_periods or ())
     ap = tuple(g.away_periods or ())
-    if period == "q1" and len(hp) >= 1 and len(ap) >= 1:
-        return hp[0], ap[0]
+
+    quarter_index = {"q1": 0, "q2": 1, "q3": 2, "q4": 3}
+    if period in quarter_index:
+        i = quarter_index[period]
+        if len(hp) > i and len(ap) > i:
+            return hp[i], ap[i]
+
     if period == "1h" and len(hp) >= 2 and len(ap) >= 2:
         return sum(hp[:2]), sum(ap[:2])
-    if period == "p1" and len(hp) >= 1 and len(ap) >= 1:
-        return hp[0], ap[0]
+    if period == "2h" and len(hp) >= 4 and len(ap) >= 4:
+        return sum(hp[2:4]), sum(ap[2:4])
+
+    period_index = {"p1": 0, "p2": 1, "p3": 2}
+    if period in period_index:
+        i = period_index[period]
+        if len(hp) > i and len(ap) > i:
+            return hp[i], ap[i]
+
     return None
 
 
@@ -254,9 +266,10 @@ def _points_period_fair(
 
     ph, pa = model.expected_points(h, a)
     mu = ph + pa
-    max_total = 120 if sport == "nba" and period == "q1" else (
-        220 if sport == "nba" else 90
-    )
+    if sport == "nba":
+        max_total = 130 if period.startswith("q") else 240
+    else:
+        max_total = 60 if period.startswith("q") else 100
     pmf = _normal_integer_pmf(mu, model.sigma_total, max_total)
     fp = _fair_from_pmf(pmf, line, over)
     if not fp:
@@ -271,10 +284,10 @@ def _points_period_fair(
     ), None, issues
 
 
-def _nhl_p1_fair(home, away, as_of, line, over, cache):
-    games, issues = history("nhl", "p1", as_of, cache)
+def _nhl_period_fair(period, home, away, as_of, line, over, cache):
+    games, issues = history("nhl", period, as_of, cache)
     if len(games) < 250:
-        return None, f"NHL p1: zu wenig ESPN-Linescore-Daten ({len(games)})", issues
+        return None, f"NHL {period}: zu wenig ESPN-Linescore-Daten ({len(games)})", issues
 
     ms = [Match(g.date, g.home, g.away, g.home_pts, g.away_pts) for g in games]
     model = PoissonModel.fit(
@@ -285,19 +298,19 @@ def _nhl_p1_fair(home, away, as_of, line, over, cache):
     h = matching.find(home, names)
     a = matching.find(away, names)
     if not h or not a:
-        return None, "NHL p1: Teams nicht eindeutig im Modell", issues
+        return None, f"NHL {period}: Teams nicht eindeutig im Modell", issues
     lh, la = model.expected_goals(h, a)
     pmf = _poisson_total_pmf(lh + la, max_total=12)
     fp = _fair_from_pmf(pmf, line, over)
     if not fp:
-        return None, "NHL p1: Fair nicht berechenbar", issues
+        return None, f"NHL {period}: Fair nicht berechenbar", issues
     fair_odds, p = fp
     return PeriodFair(
         fair_odds=fair_odds,
         probability=p,
         expected_total=lh + la,
         sample_games=len(games),
-        model="NHL p1 Poisson",
+        model=f"NHL {period} Poisson",
     ), None, issues
 
 
@@ -311,10 +324,10 @@ def fair_total(
     over: bool,
     cache: dict,
 ):
-    if sport in {"nba", "nfl"} and period in {"q1", "1h"}:
+    if sport in {"nba", "nfl"} and period in {"q1", "q2", "q3", "q4", "1h", "2h"}:
         return _points_period_fair(
             sport, period, home, away, kickoff.date(), line, over, cache,
         )
-    if sport == "nhl" and period == "p1":
-        return _nhl_p1_fair(home, away, kickoff.date(), line, over, cache)
+    if sport == "nhl" and period in {"p1", "p2", "p3"}:
+        return _nhl_period_fair(period, home, away, kickoff.date(), line, over, cache)
     return None, f"Periodenmarkt nicht unterstützt: {sport} {period}", []
