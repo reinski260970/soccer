@@ -8,6 +8,8 @@ only new confirmed values through the shared persistent Telegram dedupe.
 
 from __future__ import annotations
 
+import argparse
+
 from . import telegram
 from .surebet_values import (
     _fetch_candidate_values,
@@ -94,5 +96,9 @@ def run(send: bool = False, limit: int = 200) -> list[str]:
 
 
 if __name__ == "__main__":
-    for line in run(send=False):
+    p = argparse.ArgumentParser()
+    p.add_argument("--send", action="store_true")
+    p.add_argument("--limit", type=int, default=200)
+    args = p.parse_args()
+    for line in run(send=args.send, limit=args.limit):
         print(line)
