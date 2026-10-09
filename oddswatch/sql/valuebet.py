@@ -162,14 +162,23 @@ def _descriptor(v):
         "match": "FULL_GAME",
         "overtime": "FULL_GAME",
         "shootout": "FULL_GAME",
+        "1h": "FIRST_HALF",
         "half1": "FIRST_HALF",
+        "2h": "SECOND_HALF",
         "half2": "SECOND_HALF",
+        "p1": "FIRST_PERIOD",
         "period1": "FIRST_PERIOD",
+        "p2": "SECOND_PERIOD",
         "period2": "SECOND_PERIOD",
+        "p3": "THIRD_PERIOD",
         "period3": "THIRD_PERIOD",
+        "q1": "FIRST_QUARTER",
         "quarter1": "FIRST_QUARTER",
+        "q2": "SECOND_QUARTER",
         "quarter2": "SECOND_QUARTER",
+        "q3": "THIRD_QUARTER",
         "quarter3": "THIRD_QUARTER",
+        "q4": "FOURTH_QUARTER",
         "quarter4": "FOURTH_QUARTER",
     }
     period = periods.get(p, p.upper() or "REGULATION")
@@ -206,6 +215,32 @@ def _match_fixture(v, fixtures):
     return hits[0] if len(hits) == 1 else None
 
 
+def _fallback_period_league(v):
+    t = (v.tournament or "").casefold()
+    if v.sport == "Basketball" and "nba" in t:
+        return "nba"
+    if v.sport == "American football" and "nfl" in t:
+        return "nfl"
+    if v.sport == "Hockey":
+        if "nhl" in t:
+            return "nhl"
+        hockey = (
+            ("czechia extraliga", "extraliga"),
+            ("czech extraliga", "extraliga"),
+            ("finland liiga", "liiga"),
+            ("liiga", "liiga"),
+            ("sweden shl", "shl"),
+            ("shl", "shl"),
+            ("austria ice hockey league", "icehl"),
+            ("ice hockey league", "icehl"),
+            ("khl", "khl"),
+        )
+        for label, code in hockey:
+            if label in t:
+                return code
+    return None
+
+
 def persist_audits(audits, fixtures):
     """Persist model-audited Bet365 candidates as WATCH signals + entry quotes."""
     import os
@@ -224,16 +259,38 @@ def persist_audits(audits, fixtures):
             continue
         fx = _match_fixture(v, fixtures)
         desc = _descriptor(v)
-        if fx is None or desc is None:
+        if desc is None:
             continue
         market, selection, line, period, rules = desc
 
-        event_id = f"valueaudit:{fx.league}:{fx.game.id}"
-        model_name = fx.model or fx.sport or "independent"
-        model_id = f"valueaudit:{fx.league}:{model_name}:{now:%Y%m%d}"
+        if fx is not None:
+            league = fx.league
+            source_event_id = str(fx.game.id)
+            home_name = fx.game.home.name
+            away_name = fx.game.away.name
+            kickoff = fx.game.kickoff
+            status = fx.game.status
+            model_name = fx.model or fx.sport or "independent"
+        else:
+            # Independent NBA/NFL/NHL period totals do not require the
+            # full-game scanner. Build a stable event identity from the
+            # candidate itself so CLV can still be tracked.
+            if len(v.teams) != 2 or v.kickoff is None:
+                continue
+            league = _fallback_period_league(v)
+            if league is None:
+                continue
+            home_name, away_name = v.teams[0], v.teams[1]
+            kickoff = v.kickoff
+            source_event_id = v.id or _id(league, home_name, away_name, kickoff.isoformat())
+            status = "STATUS_SCHEDULED"
+            model_name = f"period-total:{period}"
+
+        event_id = f"valueaudit:{league}:{source_event_id}"
+        model_id = f"valueaudit:{league}:{model_name}:{now:%Y%m%d}"
         if model_id not in models:
             bundle["model_versions"].append({
-                "model_id": model_id, "league": fx.league,
+                "model_id": model_id, "league": league,
                 "trained_through": now - timedelta(seconds=2),
                 "created_at": now - timedelta(seconds=1),
                 "method": model_name,
@@ -244,13 +301,13 @@ def persist_audits(audits, fixtures):
             models.add(model_id)
 
         bundle["events"].append({
-            "event_id": event_id, "league": fx.league, "source": "oddswatch",
-            "source_event_id": str(fx.game.id),
-            "home_team_id": f"{fx.league}:{fx.game.home.name}",
-            "away_team_id": f"{fx.league}:{fx.game.away.name}",
-            "home_name": fx.game.home.name, "away_name": fx.game.away.name,
-            "kickoff": fx.game.kickoff, "season": fx.game.kickoff.year,
-            "season_type": "regular", "status": fx.game.status,
+            "event_id": event_id, "league": league, "source": "oddswatch",
+            "source_event_id": source_event_id,
+            "home_team_id": f"{league}:{home_name}",
+            "away_team_id": f"{league}:{away_name}",
+            "home_name": home_name, "away_name": away_name,
+            "kickoff": kickoff, "season": kickoff.year,
+            "season_type": "regular", "status": status,
             "home_score": None, "away_score": None, "observed_at": now,
         })
 
@@ -343,6 +400,82 @@ def snapshot_open_candidates(values):
         if bundle["odds_snapshots"]:
             inserted = ingest(conn, bundle).get("odds_snapshots", 0)
     return {"configured": True, "odds_snapshots": inserted}
+
+
+def _trend_from_quotes(rows, min_move_pp=0.5):
+    """Classify same-market Bet365 movement in implied-probability points."""
+    if len(rows) < 2:
+        return {"direction": "NO_HISTORY", "samples": len(rows)}
+    first = rows[0]
+    last = rows[-1]
+    o0 = float(first["odds"])
+    o1 = float(last["odds"])
+    if o0 <= 1 or o1 <= 1:
+        return {"direction": "NO_HISTORY", "samples": len(rows)}
+    move_pp = 100.0 * (1.0 / o1 - 1.0 / o0)
+    if move_pp >= min_move_pp:
+        direction = "SHORTENING"
+    elif move_pp <= -min_move_pp:
+        direction = "DRIFTING"
+    else:
+        direction = "NEUTRAL"
+    t0 = first.get("observed_at")
+    t1 = last.get("observed_at")
+    minutes = None
+    try:
+        minutes = int((t1 - t0).total_seconds() / 60)
+    except Exception:
+        pass
+    return {
+        "direction": direction,
+        "samples": len(rows),
+        "old_odds": o0,
+        "new_odds": o1,
+        "move_pp": move_pp,
+        "minutes": minutes,
+    }
+
+
+def period_price_trends(audits, lookback_hours=6):
+    """Recent Bet365 direction for exact audited period markets.
+
+    This is not a Pinnacle sharp-steam proxy. It is a same-source exact-line
+    price trend used as a CLV/entry timing gate when no period sharp feed exists.
+    """
+    import os
+    if not os.getenv("SPORTS_DATABASE_URL", "").strip():
+        return {}
+
+    now = datetime.now(timezone.utc)
+    out = {}
+    with connect() as conn:
+        migrate(conn)
+        for a in audits:
+            v = a.value
+            if v.kickoff is None or len(v.teams) != 2:
+                continue
+            league = _fallback_period_league(v)
+            desc = _descriptor(v)
+            if league is None or desc is None:
+                continue
+            market, selection, line, period, rules = desc
+            source_event_id = v.id or _id(
+                league, v.teams[0], v.teams[1], v.kickoff.isoformat()
+            )
+            event_id = f"valueaudit:{league}:{source_event_id}"
+            rows = conn.execute(
+                "SELECT odds,observed_at FROM sports.odds_snapshots "
+                "WHERE event_id=%s AND market=%s AND selection=%s AND line=%s "
+                "AND period=%s AND settlement_rules=%s AND bookmaker='bet365' "
+                "AND source='valuebet_api' AND observed_at>=%s "
+                "ORDER BY observed_at ASC,quote_id ASC",
+                (
+                    event_id, market, selection, line, period, rules,
+                    now - timedelta(hours=lookback_hours),
+                ),
+            ).fetchall()
+            out[_alert_key(a)] = _trend_from_quotes(rows)
+    return out
 
 
 def capture_sampled_clv(now=None, max_age_minutes=60):
