@@ -111,3 +111,26 @@ def test_eu_hockey_period_audit_persists_without_fixture(monkeypatch):
     assert out["events"] == 1
     assert captured["events"][0]["league"] == "extraliga"
     assert captured["predictions"][0]["period"] == "FIRST_PERIOD"
+
+
+def test_period_price_trend_classification():
+    from datetime import timedelta
+
+    t0 = datetime(2026, 10, 9, 8, 0, tzinfo=timezone.utc)
+    shortening = vb._trend_from_quotes([
+        {"odds": 2.20, "observed_at": t0},
+        {"odds": 2.00, "observed_at": t0 + timedelta(hours=1)},
+    ])
+    assert shortening["direction"] == "SHORTENING"
+    assert shortening["move_pp"] > 0.5
+
+    drifting = vb._trend_from_quotes([
+        {"odds": 2.00, "observed_at": t0},
+        {"odds": 2.20, "observed_at": t0 + timedelta(hours=1)},
+    ])
+    assert drifting["direction"] == "DRIFTING"
+    assert drifting["move_pp"] < -0.5
+
+    assert vb._trend_from_quotes([
+        {"odds": 2.00, "observed_at": t0},
+    ])["direction"] == "NO_HISTORY"
