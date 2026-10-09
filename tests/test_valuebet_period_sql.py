@@ -79,3 +79,35 @@ def test_period_audit_persists_without_fullgame_fixture(monkeypatch):
     assert captured["predictions"][0]["period"] == "FIRST_HALF"
     assert captured["predictions"][0]["market"] == "total"
     assert captured["signals"][0]["signal_type"] == "WATCH"
+
+
+def test_eu_hockey_period_audit_persists_without_fixture(monkeypatch):
+    captured = {}
+
+    monkeypatch.setenv("SPORTS_DATABASE_URL", "postgresql://dummy")
+    monkeypatch.setattr(vb, "connect", lambda: _DummyConn())
+    monkeypatch.setattr(vb, "migrate", lambda conn: None)
+
+    def fake_ingest(conn, bundle):
+        captured.update(bundle)
+        return {
+            "events": len(bundle.get("events", [])),
+            "predictions": len(bundle.get("predictions", [])),
+            "signals": len(bundle.get("signals", [])),
+            "odds_snapshots": len(bundle.get("odds_snapshots", [])),
+        }
+
+    monkeypatch.setattr(vb, "ingest", fake_ingest)
+
+    a = _audit(sport="Hockey", tournament="Czechia Extraliga", period="period1")
+    a.value = SurebetValue(
+        **{**a.value.__dict__,
+           "selection": "Gesamt-Tore Über 1.5",
+           "market": "Gesamt-Tore · 1. Drittel",
+           "condition": "1.5"}
+    )
+    out = vb.persist_audits([a], fixtures=[])
+
+    assert out["events"] == 1
+    assert captured["events"][0]["league"] == "extraliga"
+    assert captured["predictions"][0]["period"] == "FIRST_PERIOD"
