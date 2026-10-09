@@ -319,8 +319,29 @@ def _scan_external_structural_league(
     """
     now = datetime.now(timezone.utc)
     snapshots, xerr = xg_external.snapshot(code, now)
+    # Check the independent alternative before declaring the entire league NO_XG.
+    # Only actual xG/xGA observations are accepted; no goal or shot proxy is
+    # silently promoted to measured xG.
+    oa, oaerr = oddalerts.team_xg(code)
+    alt = {r.team: (r.xg_per90, r.xga_per90) for r in oa}
+    if not snapshots and oa:
+        from .sources.xg_external import XGSnapshot
+        snapshots = [
+            XGSnapshot(
+                team=r.team, xg=float(r.xg_per90), xga=float(r.xga_per90),
+                xg_home=None, xga_home=None, xg_away=None, xga_away=None,
+                matches=0, source="oddalerts-fallback",
+            )
+            for r in oa
+            if r.xg_per90 > 0 and r.xga_per90 > 0
+        ]
+        # A fallback is the primary source, not an independent cross-check.
+        alt = {}
+        notes.append(f"{label}: primäre xG-Quelle ausgefallen ({xerr}); OddAlerts-Ersatzquelle verwendet")
     if not snapshots:
-        notes.append(f"{label}: M17.11 external NO_XG ({xerr})")
+        notes.append(f"{label}: M17.11 external NO_XG ({xerr}; OddAlerts: {oaerr})")
+        for g in games:
+            issues.append(f"{label}: NO_MODEL / NO_XG: {g.title}")
         return []
     xg_external.persist_snapshot(code, snapshots, now)
 
@@ -328,9 +349,7 @@ def _scan_external_structural_league(
     if verr and not venue:
         notes.append(f"{label}: SoccerSTATS Venue nicht verfügbar ({verr})")
 
-    oa, oaerr = oddalerts.team_xg(code)
-    alt = {r.team: (r.xg_per90, r.xga_per90) for r in oa}
-    if oaerr:
+    if oaerr and not alt:
         notes.append(f"{label}: OddAlerts Crosscheck nicht verfügbar ({oaerr})")
 
     if code == "AUT":
@@ -359,12 +378,12 @@ def _scan_external_structural_league(
                 alt_xg=alt,
             )
         except KeyError as exc:
-            issues.append(f"{label}: {exc} ({g.title})")
+            issues.append(f"{label}: NO_MODEL / TEAM_MATCH: {exc} ({g.title})")
             continue
 
         if sf.signals_used < 2:
-            notes.append(
-                f"{label}: {g.title} NO_MODEL – nur {sf.signals_used} belastbares Struktursignal"
+            issues.append(
+                f"{label}: {g.title} NO_MODEL / INSUFFICIENT_SIGNALS – nur {sf.signals_used} belastbares Struktursignal"
             )
             continue
 
