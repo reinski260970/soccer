@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Bet365 Valuebets Football Hockey Basketball
+      - name: Bet365 Valuebets Football Hockey Basketball NFL
         env:
           SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
