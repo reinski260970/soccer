@@ -313,21 +313,36 @@ def _period_kind(v: surebet.SurebetValue) -> str | None:
     m = (v.market or "").casefold()
     sport = (v.sport or "").casefold()
 
-    if sport == "basketball":
-        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m:
-            return "q1"
-        if p in {"1h", "half1"} or "1. halbzeit" in m:
+    if sport in {"basketball", "american football"}:
+        aliases = {
+            "q1": "q1", "quarter1": "q1", "p1": "q1", "period1": "q1",
+            "q2": "q2", "quarter2": "q2", "p2": "q2", "period2": "q2",
+            "q3": "q3", "quarter3": "q3", "p3": "q3", "period3": "q3",
+            "q4": "q4", "quarter4": "q4", "p4": "q4", "period4": "q4",
+            "1h": "1h", "half1": "1h",
+            "2h": "2h", "half2": "2h",
+        }
+        if p in aliases:
+            return aliases[p]
+        for i in range(1, 5):
+            if f"{i}. viertel" in m or f"{i}st quarter" in m or f"{i}th quarter" in m:
+                return f"q{i}"
+        if "1. halbzeit" in m or "1st half" in m:
             return "1h"
-
-    if sport == "american football":
-        if p in {"q1", "quarter1", "p1", "period1"} or "1. viertel" in m or "1st period" in m:
-            return "q1"
-        if p in {"1h", "half1"} or "1. halbzeit" in m or "1st half" in m:
-            return "1h"
+        if "2. halbzeit" in m or "2nd half" in m:
+            return "2h"
 
     if sport == "hockey":
-        if p in {"p1", "period1"} or "1. drittel" in m:
-            return "p1"
+        aliases = {
+            "p1": "p1", "period1": "p1",
+            "p2": "p2", "period2": "p2",
+            "p3": "p3", "period3": "p3",
+        }
+        if p in aliases:
+            return aliases[p]
+        for i in range(1, 4):
+            if f"{i}. drittel" in m:
+                return f"p{i}"
 
     return None
 
