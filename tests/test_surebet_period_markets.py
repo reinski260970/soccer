@@ -146,3 +146,37 @@ def test_independent_period_totals_skip_full_game_scanner():
     assert not surebet_values._is_independent_period_total(
         _value("Basketball", "EuroLeague", "q1", "42.5")
     )
+
+
+def test_value_audit_telegram_dedupe_requires_real_change(tmp_path):
+    a = surebet_values.Audit(
+        value=_value("Basketball", "NBA", "q1", "55.5"),
+        status="BESTÄTIGT",
+        our_probability=0.56,
+        our_fair=1.79,
+        our_ev=0.09,
+    )
+    state = {}
+    fresh = surebet_values._fresh_value_audits([a], state)
+    assert fresh == [a]
+    surebet_values._mark_value_audits_sent(fresh, state, tmp_path / "value.json")
+
+    assert surebet_values._fresh_value_audits([a], state) == []
+
+    a2 = surebet_values.Audit(
+        value=surebet.SurebetValue(**{**a.value.__dict__, "odds": 2.01}),
+        status="BESTÄTIGT",
+        our_probability=0.56,
+        our_fair=1.79,
+        our_ev=0.1256,
+    )
+    assert surebet_values._fresh_value_audits([a2], state) == [a2]
+
+    a3 = surebet_values.Audit(
+        value=a.value,
+        status="REDUZIERT",
+        our_probability=0.52,
+        our_fair=1.92,
+        our_ev=0.014,
+    )
+    assert surebet_values._fresh_value_audits([a3], state) == [a3]
