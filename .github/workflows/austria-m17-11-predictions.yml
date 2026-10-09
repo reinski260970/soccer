@@ -19,7 +19,7 @@ jobs:
       - name: Run independent M17.11 soccer model (no Telegram)
         env:
           APIKEY: ${{ secrets.APIKEY }}
-        run: python scripts/europe_m17_11_coverage.py
+        run: python -m scripts.europe_m17_11_coverage
       - name: Preserve model report
         if: always()
         uses: actions/upload-artifact@v4
