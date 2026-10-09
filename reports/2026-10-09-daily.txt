@@ -1,0 +1,54 @@
+🗞 Tagesbericht Fr 09.10. 15:21 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+• NHL · Fr 09.10. 01:00 MESZ (Freigabe)
+🆚 Ottawa Senators – Philadelphia Flyers
+➡️ Ottawa Senators Sieg (inkl. OT) @ 1,82 → ✅ Gewinn +0.20 EH
+   ⏳ 7 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+✅ National League (CH) · Fr 09.10. 19:45 MESZ
+🆚 HC Davos – EHC Kloten
+➡️ HC Davos Sieg (inkl. OT) @ 1,29 | 1,5 EH
+
+👀 Watchlist
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,25)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,50)
+• Premier League · So 18.10. 15:00 MESZ
+🆚 AFC Bournemouth – Sunderland
+➡️ Sunderland Sieg (90 Min.) spielbar ab 3,93 (jetzt 4,40)
+• Europa League · Do 15.10. 18:45 MESZ
+🆚 AZ Alkmaar – Hapoel Be'er
+➡️ Hapoel Be'er Sieg (90 Min.) spielbar ab 10,75 (jetzt 12,00)
+• Premier League · Sa 17.10. 16:00 MESZ
+🆚 Fulham – Hull City
+➡️ Hull City Sieg (90 Min.) spielbar ab 5,44 (jetzt 6,00)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 104 Spiele | ausführbare Preise 93 | Marktreferenz 104 | 0 PLAY
+   • AZ Alkmaar – Hapoel Be'er · Do 15.10. 18:45 MESZ: Hapoel Be'er Sieg (90 Min.) @ 12,00, spielbar ab 10,75 (EV 14,9 %)
+   • CSKA Sofia – AS Monaco · Do 15.10. 18:45 MESZ: CSKA Sofia Sieg (90 Min.) @ 6,50, spielbar ab 6,33 (EV 5,7 %)
+🏒 Eishockey Europa: 78 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: 53 Spiele | ausführbare Preise 4 | Marktreferenz 53 | 0 PLAY
+   • Detroit Red Wings – Seattle Kraken · Sa 10.10. 01:00 MESZ: Seattle Kraken Sieg (inkl. OT) @ 2,30, spielbar ab 2,38 (EV -0,5 %)
+   • Winnipeg Jets – Anaheim Ducks · Sa 10.10. 02:00 MESZ: Winnipeg Jets Sieg (inkl. OT) @ 1,85, spielbar ab 1,93 (EV -1,1 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele | ausführbare Preise 0 | Marktreferenz 15 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 16.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
