@@ -6,7 +6,7 @@ on:
       - ".github/period-value-run-now.txt"
   workflow_dispatch:
   schedule:
-    - cron: "12 6,10,16 * * *"
+    - cron: "47 * * * *"
 
 concurrency:
   group: bet365-period-watch
