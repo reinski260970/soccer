@@ -402,6 +402,82 @@ def snapshot_open_candidates(values):
     return {"configured": True, "odds_snapshots": inserted}
 
 
+def _trend_from_quotes(rows, min_move_pp=0.5):
+    """Classify same-market Bet365 movement in implied-probability points."""
+    if len(rows) < 2:
+        return {"direction": "NO_HISTORY", "samples": len(rows)}
+    first = rows[0]
+    last = rows[-1]
+    o0 = float(first["odds"])
+    o1 = float(last["odds"])
+    if o0 <= 1 or o1 <= 1:
+        return {"direction": "NO_HISTORY", "samples": len(rows)}
+    move_pp = 100.0 * (1.0 / o1 - 1.0 / o0)
+    if move_pp >= min_move_pp:
+        direction = "SHORTENING"
+    elif move_pp <= -min_move_pp:
+        direction = "DRIFTING"
+    else:
+        direction = "NEUTRAL"
+    t0 = first.get("observed_at")
+    t1 = last.get("observed_at")
+    minutes = None
+    try:
+        minutes = int((t1 - t0).total_seconds() / 60)
+    except Exception:
+        pass
+    return {
+        "direction": direction,
+        "samples": len(rows),
+        "old_odds": o0,
+        "new_odds": o1,
+        "move_pp": move_pp,
+        "minutes": minutes,
+    }
+
+
+def period_price_trends(audits, lookback_hours=6):
+    """Recent Bet365 direction for exact audited period markets.
+
+    This is not a Pinnacle sharp-steam proxy. It is a same-source exact-line
+    price trend used as a CLV/entry timing gate when no period sharp feed exists.
+    """
+    import os
+    if not os.getenv("SPORTS_DATABASE_URL", "").strip():
+        return {}
+
+    now = datetime.now(timezone.utc)
+    out = {}
+    with connect() as conn:
+        migrate(conn)
+        for a in audits:
+            v = a.value
+            if v.kickoff is None or len(v.teams) != 2:
+                continue
+            league = _fallback_period_league(v)
+            desc = _descriptor(v)
+            if league is None or desc is None:
+                continue
+            market, selection, line, period, rules = desc
+            source_event_id = v.id or _id(
+                league, v.teams[0], v.teams[1], v.kickoff.isoformat()
+            )
+            event_id = f"valueaudit:{league}:{source_event_id}"
+            rows = conn.execute(
+                "SELECT odds,observed_at FROM sports.odds_snapshots "
+                "WHERE event_id=%s AND market=%s AND selection=%s AND line=%s "
+                "AND period=%s AND settlement_rules=%s AND bookmaker='bet365' "
+                "AND source='valuebet_api' AND observed_at>=%s "
+                "ORDER BY observed_at ASC,quote_id ASC",
+                (
+                    event_id, market, selection, line, period, rules,
+                    now - timedelta(hours=lookback_hours),
+                ),
+            ).fetchall()
+            out[_alert_key(a)] = _trend_from_quotes(rows)
+    return out
+
+
 def capture_sampled_clv(now=None, max_age_minutes=60):
     """Close Valuebet WATCH signals with a same-market Bet365 quote near kickoff."""
     now = timestamp(now or datetime.now(timezone.utc))
