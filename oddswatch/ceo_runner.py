@@ -298,53 +298,57 @@ def _euro_hockey_fair_lines(res) -> list[str]:
     out.append("Regel: Kein Fair-only Tipp. PLAY nur mit aktuellem, als ausführbar markiertem Marktpreis.")
     return out
 
-def _surebet_value_lines() -> list[str]:
+def _surebet_value_lines(fixtures: list) -> list[str]:
+    """Candidate-first independent model audit. Raw API EV is never a PLAY."""
+    now = datetime.now(timezone.utc)
     values, err = surebet.fetch_valuebets(
         sports=("Football", "Hockey", "Basketball"),
         books=("bet365", "betfair", "orbitxch"),
         limit=100,
     )
-    out = ["💰 VALUE-WATCH · BET365 / BETFAIR / ORBIT"]
+    out = ["💰 VALUEBET-API · EIGENE MODELLPRÜFUNG"]
     if err:
-        return out + [f"Quelle nicht verfügbar: {err}"]
+        return out + [f"Feed nicht verfügbar: {err}"]
     if not values:
-        return out + ["Keine aktuellen SureBet-Value-Signale in Fußball, Eishockey oder Basketball."]
+        return out + ["Keine aktuellen Valuebet-API-Kandidaten."]
 
-    names = {"bet365": "Bet365", "betfair": "Betfair", "orbitxch": "Orbit"}
-    groups = surebet_values.matched(values)
-    if groups:
-        out.append(f"{len(groups)} gematchte Markt-Signale")
-        for group in groups[:8]:
-            v = group[0]
-            when = v.kickoff.astimezone(report._TZ).strftime("%d.%m. %H:%M") if v.kickoff else "Zeit unbekannt"
-            out.append(f"• {v.sport} · {when} · {v.event}")
-            out.append(f"  {v.selection} · {v.market}")
-            q = []
-            for x in group:
-                side = "" if x.back else " LAY"
-                ev = f" · EV {x.ev*100:+.1f}%" if x.ev is not None else ""
-                q.append(f"{names.get(x.bookmaker, x.bookmaker)}{side} {x.odds:.2f}{ev}")
-            out.append("  " + " | ".join(q))
-    else:
-        out.append("Keine identische Auswahl auf mindestens zwei der drei Märkte gematcht.")
-
-    top = sorted(
-        values,
-        key=lambda v: (v.ev is not None, v.ev if v.ev is not None else -999),
-        reverse=True,
-    )[:6]
-    if top:
-        out.append("Top Einzel-Signale:")
-        for v in top:
-            when = v.kickoff.astimezone(report._TZ).strftime("%d.%m. %H:%M") if v.kickoff else "Zeit unbekannt"
-            ev = f" · EV {v.ev*100:+.1f}%" if v.ev is not None else ""
-            out.append(
-                f"• {v.sport} · {when} · {v.event} · {v.selection} @ {v.odds:.2f} "
-                f"({names.get(v.bookmaker, v.bookmaker)}){ev}"
-            )
-    out.append("SureBet = Markt-/Value-Signal; PLAY erst nach CEO-Modell-/CLV-Gate.")
+    backs = [v for v in values if v.bookmaker == "bet365" and v.back
+             and v.kickoff is not None and v.kickoff > now]
+    try:
+        audits = surebet_values.audit_values(backs, fixtures)
+    except Exception as exc:
+        return out + [f"Audit nicht möglich: {type(exc).__name__}: {exc}",
+                      "Keine PLAY-Freigabe."]
+    counts: dict[str, int] = {}
+    for audit in audits:
+        counts[audit.status] = counts.get(audit.status, 0) + 1
+    out.append(
+        f"API-Kandidaten {len(values)} · Bet365 BACK vor Anstoß {len(backs)} · "
+        + (", ".join(f"{key} {n}" for key, n in sorted(counts.items())) or "kein Modell-Audit")
+    )
+    checked = [
+        a for a in audits
+        if a.status in {"BESTÄTIGT", "REDUZIERT", "WIDERLEGT", "KONFLIKT"}
+        and a.our_ev is not None
+    ]
+    checked.sort(key=lambda a: -(a.our_ev or -1))
+    for a in checked[:6]:
+        v = a.value
+        when = v.kickoff.astimezone(report._TZ).strftime("%d.%m. %H:%M")
+        fair = f"{a.our_fair:.2f}" if a.our_fair else "–"
+        out += [
+            f"• {v.sport} · {when} · {v.event}",
+            f"  {v.selection} · {v.market} · Bet365 @ {v.odds:.2f} (API-Referenz)",
+            f"  Eigenes Modell fair {fair} · EV {a.our_ev*100:+.1f}% · "
+            f"Audit {a.status} · {'WATCH' if a.our_ev > 0 else 'PASS'}, nie automatisch PLAY",
+        ]
+    if not checked:
+        out.append("Kein Kandidat mit eindeutiger eigenständiger Modellbewertung.")
+    out.append(
+        "API-/Modellprüfung ist keine OOS-/CLV-Freigabe. "
+        "Kein PLAY ohne validierte Modellqualität, Preis und exakten Markt."
+    )
     return out
-
 
 def _broad_news_lines(issues: list[str]) -> list[str]:
     """Breiter Sports-Intelligence-Scan zusätzlich zu PLAY/WATCH-spezifischen
@@ -416,7 +420,7 @@ def build_report(
     lines += [""] + core
     lines += [""] + _market_diag_lines(res)
     lines += [""] + _soccer_steam_lines(res)
-    lines += [""] + _surebet_value_lines()
+    lines += [""] + _surebet_value_lines(res.fixtures)
     lines += [""] + _euro_hockey_fair_lines(res)
     lines += [""] + _clv_lines(j)
 
