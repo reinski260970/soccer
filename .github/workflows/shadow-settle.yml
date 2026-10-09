@@ -28,4 +28,10 @@ jobs:
       - name: Settle forward shadow and PLAY tracking
         env:
           SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
-        run: python -m oddswatch settle
+          APIKEY: ${{ secrets.APIKEY }}
+        run: |
+          python -m oddswatch settle
+          python -m oddswatch.sql hockey-settle
+          python -m oddswatch.sql soccer-settle
+          python -m oddswatch.sql clv
+          python -m oddswatch.sql report
