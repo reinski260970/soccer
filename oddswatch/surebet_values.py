@@ -726,17 +726,19 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
 def run_clv_snapshot() -> list[str]:
     """Lightweight quote snapshot + sampled CLV close; no model scan."""
-    values, err = surebet.fetch_valuebets(books=("bet365",), limit=500)
-    if err:
+    values, warnings, err = _fetch_candidate_values(500)
+    if err and not values:
         return [f"Valuebet-CLV: {err}"]
-    values = [v for v in values if v.bookmaker == "bet365" and v.back]
     try:
         from .sql.valuebet import snapshot_open_candidates, capture_sampled_clv
         snap = snapshot_open_candidates(values)
         close = capture_sampled_clv()
-        return [
+        lines = [
             f"Valuebet-CLV Snapshot: {snap}",
             f"Valuebet-CLV Close: closed={len(close['closed'])}, NO_CLOSE={close['no_close']}",
         ]
+        if warnings:
+            lines.append("Feed-Hinweise: " + " | ".join(warnings))
+        return lines
     except Exception as exc:
         return [f"Valuebet-CLV Fehler: {type(exc).__name__}: {exc}"]
