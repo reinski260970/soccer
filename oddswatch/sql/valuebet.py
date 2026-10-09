@@ -244,7 +244,7 @@ def persist_audits(audits, fixtures):
             models.add(model_id)
 
         bundle["events"].append({
-            "event_id": event_id, "league": fx.league, "source": "oddswatch",
+            "event_id": event_id, "league": fx.league, "source": "valueaudit",
             "source_event_id": str(fx.game.id),
             "home_team_id": f"{fx.league}:{fx.game.home.name}",
             "away_team_id": f"{fx.league}:{fx.game.away.name}",
