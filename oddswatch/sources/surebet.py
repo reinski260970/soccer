@@ -29,8 +29,13 @@ SPORT_QUERY_IDS = {
 
 def _canonical_sport(value: str) -> str:
     raw = str(value or "").strip()
-    if raw.replace(" ", "").casefold() == "americanfootball":
+    key = raw.replace(" ", "").replace("-", "").casefold()
+    if key in {"americanfootball", "nfl"}:
         return "American football"
+    if key in {"icehockey"}:
+        return "Hockey"
+    if key in {"soccer"}:
+        return "Football"
     return raw
 
 
@@ -140,6 +145,8 @@ def _selection(row: dict) -> tuple[str, str]:
         period_text = "2. Drittel" if sport == "Hockey" else "2. Viertel"
     elif period in {"p3", "period3"}:
         period_text = "3. Drittel" if sport == "Hockey" else "3. Viertel"
+    elif period in {"p4", "period4"}:
+        period_text = "4. Viertel" if sport != "Hockey" else period
     else:
         period_text = period_labels.get(period, period)
 
