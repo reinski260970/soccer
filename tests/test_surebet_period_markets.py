@@ -58,10 +58,14 @@ def test_surebet_parses_american_football_first_half_total():
 
 def test_period_kind_routes_exact_sports():
     assert surebet_values._period_kind(_value("Basketball", "NBA", "q1")) == "q1"
+    assert surebet_values._period_kind(_value("Basketball", "NBA", "q4")) == "q4"
     assert surebet_values._period_kind(_value("Basketball", "NBA", "1h")) == "1h"
+    assert surebet_values._period_kind(_value("Basketball", "NBA", "2h")) == "2h"
     assert surebet_values._period_kind(_value("American football", "NFL", "1h")) == "1h"
     assert surebet_values._period_kind(_value("American football", "NFL", "period1")) == "q1"
+    assert surebet_values._period_kind(_value("American football", "NFL", "period4")) == "q4"
     assert surebet_values._period_kind(_value("Hockey", "NHL", "p1", "1.5")) == "p1"
+    assert surebet_values._period_kind(_value("Hockey", "NHL", "p3", "1.5")) == "p3"
 
 
 def test_period_total_fair_uses_independent_period_model(monkeypatch):
@@ -101,3 +105,44 @@ def test_empty_value_audit_does_not_send_telegram(monkeypatch):
     lines = surebet_values.run(send=True, limit=10)
     assert sent == []
     assert any("nicht gesendet" in x for x in lines)
+
+
+def test_nfl_feed_failure_does_not_block_core_candidates(monkeypatch):
+    core = _value("Basketball", "NBA", "q1", "55.5")
+    calls = []
+
+    def fake_fetch(*, sports, books, limit):
+        calls.append(tuple(sports))
+        if tuple(sports) == ("American football",):
+            return [], "HTTP 403"
+        return [core], None
+
+    monkeypatch.setattr(surebet, "fetch_valuebets", fake_fetch)
+    values, warnings, err = surebet_values._fetch_candidate_values(25)
+
+    assert values == [core]
+    assert err is None
+    assert any("NFL-Feed" in w and "403" in w for w in warnings)
+    assert ("Football", "Hockey", "Basketball") in calls
+    assert ("American football",) in calls
+
+
+def test_surebet_normalizes_nfl_sport_variants():
+    assert surebet._canonical_sport("American Football") == "American football"
+    assert surebet._canonical_sport("american-football") == "American football"
+    assert surebet._canonical_sport("NFL") == "American football"
+
+
+def test_independent_period_totals_skip_full_game_scanner():
+    assert surebet_values._is_independent_period_total(
+        _value("Basketball", "NBA", "q3", "57.5")
+    )
+    assert surebet_values._is_independent_period_total(
+        _value("American football", "NFL", "2h", "24.5")
+    )
+    assert surebet_values._is_independent_period_total(
+        _value("Hockey", "NHL", "p2", "1.5")
+    )
+    assert not surebet_values._is_independent_period_total(
+        _value("Basketball", "EuroLeague", "q1", "42.5")
+    )
