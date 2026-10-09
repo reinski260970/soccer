@@ -62,5 +62,10 @@ def test_period_points_extracts_q1_half_and_p1():
         away_periods=(20, 22, 23, 25),
     )
     assert period_totals._period_points(g, "q1") == (24, 20)
+    assert period_totals._period_points(g, "q2") == (26, 22)
+    assert period_totals._period_points(g, "q4") == (25, 25)
     assert period_totals._period_points(g, "1h") == (50, 42)
+    assert period_totals._period_points(g, "2h") == (50, 48)
     assert period_totals._period_points(g, "p1") == (24, 20)
+    assert period_totals._period_points(g, "p2") == (26, 22)
+    assert period_totals._period_points(g, "p3") == (25, 23)
