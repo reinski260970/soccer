@@ -54,6 +54,36 @@ def test_european_result_requires_unambiguous_regulation_win():
                                                    "home": r.away, "away": r.home})]) is None
 
 
+
+@pytest.mark.parametrize("league,local_name,archive_name", [
+    ("del", "Lowen Frankfurt", "Francfort"),
+    ("del", "Krefeld Pinguine", "Krefeld"),
+    ("del", "Eisbären Berlin", "Berlin"),
+    ("del", "Nuremberg Ice Tigers", "Nuremberg"),
+    ("del", "Kölner Haie", "Cologne"),
+    ("extraliga", "Sparta Praha", "Sparta Praha"),
+])
+def test_archive_league_result_team_aliases(league, local_name, archive_name):
+    kickoff = datetime(2026,10,8,17,30,tzinfo=timezone.utc)
+    match = {"league":league,"kickoff":kickoff,"home_name":local_name,
+             "away_name":"Test Visitor"}
+    archive = SimpleNamespace(date=date(2026,10,8),home=archive_name,
+                              away="Test Visitor",reg_home=4,reg_away=1,extra="")
+    assert european_final(match,[archive]) == (4,1)
+    assert european_final(match,[SimpleNamespace(**{**vars(archive),"extra":"OT"})]) is None
+    assert european_final(match,[SimpleNamespace(**{**vars(archive),"away":"Test Opponent"})]) is None
+
+
+def test_archive_league_tie_rejected_and_wrong_date():
+    ev = {"league":"del","kickoff":datetime(2026,10,8,17,30,tzinfo=timezone.utc),
+          "home_name":"Straubing Tigers","away_name":"Iserlohn Roosters"}
+    r = SimpleNamespace(date=date(2026,10,8),home="Straubing",away="Iserlohn",
+                        reg_home=2,reg_away=2,extra="SO")
+    assert european_final(ev,[r]) is None
+    assert european_final(ev,[SimpleNamespace(**{**vars(r),"date":date(2026,10,9),
+        "extra":"","reg_home":3,"reg_away":1})]) is None
+
+
 def test_postgres_hockey_forward_settlement_and_latest_forecast(monkeypatch):
     if not os.getenv("SPORTS_SQL_TEST_URL"):
         pytest.skip("requires isolated PostgreSQL test database")
