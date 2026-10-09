@@ -57,10 +57,43 @@ def nhl_finals(data: dict) -> dict[str, dict]:
     return out
 
 
+
+# Only audited name variants of hockeyarchives' top-league teams.
+# Never use generic city-only fuzzy matching across different leagues.
+_DEL_NAMES = {
+    "adler mannheim": "Mannheim",
+    "augsburger panther": "Augsbourg",
+    "erc ingolstadt": "Ingolstadt",
+    "eisbaren berlin": "Berlin",
+    "fischtown pinguins": "Bremerhaven",
+    "grizzlys wolfsburg": "Wolfsburg",
+    "iserlohn roosters": "Iserlohn",
+    "kolner haie": "Cologne",
+    "krefeld pinguine": "Krefeld",
+    "lowen frankfurt": "Francfort",
+    "nuremberg ice tigers": "Nuremberg",
+    "nurnberg ice tigers": "Nuremberg",
+    "red bull munich": "Munich",
+    "ehc red bull munchen": "Munich",
+    "schwenninger wild wings": "Schwenningen",
+    "straubing tigers": "Straubing",
+    "dresdner eislowen": "Dresde",
+    "dusseldorfer eg": "Düsseldorf",
+}
+
+
+def _hockeyarchives_team(name: str, league: str) -> str:
+    if league == "del":
+        return _DEL_NAMES.get(matching.norm(name), name)
+    return name
+
+
 def _same_team(a: str, b: str, league: str) -> bool:
     if league == "icehl":
         a = hockeyarchives.canonical_icehl(a)
         b = hockeyarchives.canonical_icehl(b)
+    a = _hockeyarchives_team(a, league)
+    b = _hockeyarchives_team(b, league)
     na, nb = matching.norm(a), matching.norm(b)
     if not na or not nb:
         return False
@@ -78,7 +111,8 @@ def european_final(event: dict, results: list) -> tuple[int, int] | None:
     """Use verified regulation winners only: OT/SO data lack final winner here."""
     league = event["league"]
     zones = {"icehl": "Europe/Vienna", "liiga": "Europe/Helsinki",
-             "shl": "Europe/Stockholm"}
+             "shl": "Europe/Stockholm", "del": "Europe/Berlin",
+             "extraliga": "Europe/Prague"}
     day = event["kickoff"].astimezone(ZoneInfo(zones[league])).date()
     hits = [r for r in results
             if r.date == day
@@ -142,10 +176,16 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
         "liiga": lambda season: hockeyarchives.liiga(season + 1),
         "icehl": lambda season: hockeyarchives.icehl(season, cache_days=0),
         "shl": hockeyarchives.shl,
+        # Historical top-league pages carry 60-minute period totals.
+        # OT/SO ties are withheld: we cannot identify the market winner.
+        "del": lambda season: (*hockeyarchives.season_results(
+            "del", season, cache_days=0.02),),
+        "extraliga": lambda season: (*hockeyarchives.season_results(
+            "extraliga", season, cache_days=0.02),),
     }
     pending = conn.execute(
         "SELECT e.event_id,e.league,e.source_event_id,e.home_name,e.away_name,e.kickoff "
-        "FROM sports.events e WHERE e.league IN ('nhl','liiga','icehl','shl') "
+        "FROM sports.events e WHERE e.league IN ('nhl','liiga','icehl','shl','del','extraliga') "
         "AND e.status<>'STATUS_FINAL' AND e.kickoff<%s AND "
         "EXISTS(SELECT 1 FROM sports.predictions p WHERE p.event_id=e.event_id) "
         "ORDER BY e.kickoff LIMIT 200", (now,),
@@ -167,12 +207,16 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
             except Exception as exc:
                 totals["errors"].append(f"ESPN NHL {day}: {type(exc).__name__}")
     euro_results = {}
-    for league in ("liiga", "icehl", "shl"):
+    for league in ("liiga", "icehl", "shl", "del", "extraliga"):
         rows = [e for e in pending if e["league"] == league]
         for season in sorted({e["kickoff"].year if e["kickoff"].month >= 7
                               else e["kickoff"].year - 1 for e in rows}):
             try:
-                done, _, err = fetch_europe[league](season)
+                result = fetch_europe[league](season)
+                if league in ("del", "extraliga") and len(result) == 2:
+                    done, err = result
+                else:
+                    done, _, err = result
                 if err:
                     totals["errors"].append(f"{league} {season}: {err}")
                 else:
@@ -197,7 +241,9 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
                 totals["not_verifiable"] += 1
                 continue
             home, away = result
-            source = f"{league}-official-regulation-final"
+            source = (f"{league}-hockeyarchives-regulation-final"
+                      if league in ("del", "extraliga")
+                      else f"{league}-official-regulation-final")
             proof = {"method": "regulation win, no OT/SO; full-game winner proven"}
         if _write_final(conn, event, home, away, source, proof, now):
             totals["events_settled"] += 1
