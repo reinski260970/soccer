@@ -41,6 +41,7 @@ def filter_unsent_actionable(audits):
         if a.status == "BESTÄTIGT"
         and a.our_ev is not None
         and a.our_ev >= 0.03
+        and getattr(a, "validated_for_release", False)
         and getattr(a.value, "back", False)
     ]
     if not eligible:
