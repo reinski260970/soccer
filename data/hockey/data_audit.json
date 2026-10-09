@@ -7,18 +7,18 @@
   },
   "leagues": {
     "nhl": {
-      "history_games": 5303,
+      "history_games": 5313,
       "seasons": {
         "2022/23": 1312,
         "2023/24": 1312,
         "2024/25": 1312,
         "2025/26": 1312,
-        "2026/27": 55
+        "2026/27": 65
       },
       "substantial_seasons": 4,
       "teams": 33,
       "date_from": "2022-10-07",
-      "date_to": "2026-10-07",
+      "date_to": "2026-10-08",
       "training_data_ready": true,
       "market_closing_rows": 3,
       "market_data_ready": false
@@ -58,18 +58,18 @@
       "market_data_ready": false
     },
     "liiga": {
-      "history_games": 2023,
+      "history_games": 2025,
       "seasons": {
         "2022/23": 464,
         "2023/24": 466,
         "2024/25": 507,
         "2025/26": 500,
-        "2026/27": 86
+        "2026/27": 88
       },
       "substantial_seasons": 4,
       "teams": 34,
       "date_from": "2022-09-13",
-      "date_to": "2026-10-07",
+      "date_to": "2026-10-08",
       "training_data_ready": true,
       "market_closing_rows": 10,
       "market_data_ready": false
@@ -92,6 +92,6 @@
     }
   },
   "issues": [
-    "hockeyarchives extraliga 2026: https://www.hockeyarchives.info/Tcheque2027.htm: HTTP 404"
+    "hockeyarchives extraliga 2026: https://www.hockeyarchives.info/Tcheque2027.htm: HTTP 404 · <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>"
   ]
 }
