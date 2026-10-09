@@ -54,3 +54,10 @@ jobs:
           print("UNMATCHED_CANDIDATE_INPUTS:")
           for row in rows: print(json.dumps(row,ensure_ascii=False))
           PY
+
+      - name: Independent exact-market Valuebet audit (no send)
+        env:
+          SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch bet365-values --limit 100
