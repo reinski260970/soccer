@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements-sql.txt
-      - run: python -m pytest tests/test_sports_sql.py -q
+      - run: python -m pytest tests/test_sports_sql.py tests/test_hockey_forward_settlement.py -q
   sync:
     timeout-minutes: 20
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -47,6 +47,8 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements-sql.txt
       - run: python -m oddswatch.sql sync
+      - name: Settle verified NHL/European hockey results (no Telegram)
+        run: python -m oddswatch.sql hockey-settle
       - run: python -m oddswatch.sql report > sports-sql-report.json
       - uses: actions/upload-artifact@v4
         with:
