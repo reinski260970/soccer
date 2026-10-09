@@ -5,8 +5,22 @@ from decimal import Decimal
 
 
 def outcome(p, home, away):
-    # Only explicit full-game including OT, push-on-tie contracts supported.
-    if p['period'] != 'FULL_GAME' or p['settlement_rules'] != 'INCLUDING_OT_PUSH_ON_TIE':
+    # Scores in sports.events are final-game results, not regulation-period
+    # results. Never settle REGULATION or a period market from those scores.
+    if p['period'] != 'FULL_GAME':
+        return None
+    rules = p['settlement_rules']
+    if rules in ('INCLUDING_OT', 'INCLUDING_OT_SO'):
+        # NHL/European hockey final score identifies the OT/SO winner, but
+        # may include a synthetic shootout deciding goal. Only moneyline
+        # can be settled safely, never the score-dependent total/spread.
+        if p['market'] != 'moneyline' or p['selection'] not in ('HOME', 'AWAY'):
+            return None
+        if home == away:  # A final hockey 2-way market must have a winner.
+            return None
+        return ('WIN' if (home > away) == (p['selection'] == 'HOME')
+                else 'LOSE')
+    if rules != 'INCLUDING_OT_PUSH_ON_TIE':
         return None
     h,a=Decimal(str(home)),Decimal(str(away))
     line=Decimal(str(p['line']))
