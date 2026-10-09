@@ -27,6 +27,7 @@ class Audit:
     reference_probability: float | None = None
     reference_fair: float | None = None
     note: str = ""
+    validated_for_release: bool = False  # independent OOS + CLV approval; never inferred from EV alone
 
 
 def _candidate_side(v: surebet.SurebetValue) -> str | None:
@@ -593,6 +594,7 @@ def telegram_actionable_text(audits: list[Audit]) -> str:
         if a.status == "BESTÄTIGT"
         and a.our_ev is not None
         and a.our_ev >= 0.03
+        and a.validated_for_release
         and a.value.back
     ]
     rows.sort(key=lambda a: -(a.our_ev or 0.0))
