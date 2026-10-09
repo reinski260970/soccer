@@ -1,1 +1,1 @@
-trigger 2026-10-08 telegram compact market scan test
+trigger 2026-10-09 M17.11 Austria Bundesliga model scan
