@@ -1,0 +1,37 @@
+name: austria-m17-11-predictions
+on:
+  push:
+    paths:
+      - ".github/austria-model-run-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Run independent M17.11 soccer model (no Telegram)
+        run: python -m oddswatch scan --dry --sports soccer --days 4 --watch-days 4
+      - name: Preserve model report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: austria-m17-11-report
+          path: |
+            reports/*-bericht.md
+            reports/*-telegram.txt
+          if-no-files-found: warn
+      - name: Commit report for inspection
+        if: success()
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add reports/*-bericht.md
+          git diff --cached --quiet || git commit -m "M17.11 Austria model prediction report"
+          git pull --rebase --autostash && git push
