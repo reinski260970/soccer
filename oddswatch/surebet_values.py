@@ -582,10 +582,7 @@ def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, 
     return "\n".join(out)
 
 
-def run(send: bool = False, limit: int = 100) -> list[str]:
-    # 1) Candidate-first. Keep NFL in a separate request: the provider can
-    # reject "American football" independently and must never take down
-    # Football/Hockey/Basketball with it.
+def _fetch_candidate_values(limit: int = 100):
     core_values, core_err = surebet.fetch_valuebets(
         sports=("Football", "Hockey", "Basketball"),
         books=("bet365",),
@@ -598,7 +595,6 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
     )
     values = core_values + nfl_values
 
-    # De-duplicate in case the provider returns the same record across queries.
     seen = set()
     unique = []
     for v in values:
@@ -609,13 +605,19 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
         unique.append(v)
     values = [v for v in unique if v.bookmaker == "bet365" and v.back]
 
-    feed_warnings = []
+    warnings = []
     if core_err:
-        feed_warnings.append(f"Core-Feed: {core_err}")
+        warnings.append(f"Core-Feed: {core_err}")
     if nfl_err:
-        feed_warnings.append(f"NFL-Feed: {nfl_err}")
-    # Only fail the whole audit when no feed produced candidates.
-    err = "; ".join(feed_warnings) if not values and feed_warnings else None
+        warnings.append(f"NFL-Feed: {nfl_err}")
+    err = "; ".join(warnings) if not values and warnings else None
+    return values, warnings, err
+
+
+def run(send: bool = False, limit: int = 100) -> list[str]:
+    # 1) Candidate-first. NFL is isolated from the core feed so an NFL-only
+    # provider error cannot suppress Football/Hockey/Basketball.
+    values, feed_warnings, err = _fetch_candidate_values(limit)
 
     audits: list[Audit] = []
     if values:
