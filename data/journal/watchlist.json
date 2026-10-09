@@ -72,6 +72,30 @@
   ]
  },
  {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "uel",
+  "event": "AZ Alkmaar – Hapoel Be'er",
+  "kickoff": "2026-10-15T16:45:00+00:00",
+  "market": "away",
+  "selection": "Hapoel Be'er Sieg (90 Min.)",
+  "odds": 12.0,
+  "fair": 10.43951394545681,
+  "min_odds": 10.752699363820515,
+  "home": [
+   "AZ Alkmaar",
+   "AZ Alkmaar",
+   "AZ Alkmaar",
+   "AZ"
+  ],
+  "away": [
+   "Hapoel Be'er",
+   "Hapoel Be'er",
+   "Hapoel Be'er",
+   "HBE"
+  ]
+ },
+ {
   "source": "betfair",
   "status": "WATCH",
   "league": "epl",
@@ -93,30 +117,6 @@
    "Hull City",
    "Hull",
    "HUL"
-  ]
- },
- {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "2bundesliga",
-  "event": "1. FC Heidenheim 1846 – Kaiserslautern",
-  "kickoff": "2026-10-09T16:30:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.9,
-  "fair": 3.6505283779874835,
-  "min_odds": 3.760044229327108,
-  "home": [
-   "1. FC Heidenheim 1846",
-   "1. FC Heidenheim 1846",
-   "Heidenheim",
-   "HDH"
-  ],
-  "away": [
-   "Kaiserslautern",
-   "Kaiserslautern",
-   "Kaiserslautern",
-   "FCK"
   ]
  }
 ]
