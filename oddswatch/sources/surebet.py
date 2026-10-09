@@ -140,6 +140,8 @@ def _selection(row: dict) -> tuple[str, str]:
         period_text = "2. Drittel" if sport == "Hockey" else "2. Viertel"
     elif period in {"p3", "period3"}:
         period_text = "3. Drittel" if sport == "Hockey" else "3. Viertel"
+    elif period in {"p4", "period4"}:
+        period_text = "4. Viertel" if sport != "Hockey" else period
     else:
         period_text = period_labels.get(period, period)
 
