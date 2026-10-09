@@ -347,6 +347,24 @@ def _period_kind(v: surebet.SurebetValue) -> str | None:
     return None
 
 
+def _is_independent_period_total(v: surebet.SurebetValue) -> bool:
+    kind = _period_kind(v)
+    if kind is None or (v.bet_type or "").strip() not in {"over", "under"}:
+        return False
+    base = (v.base or "overall").casefold()
+    if base not in {"overall", "total", "match", ""}:
+        return False
+    t = (v.tournament or "").casefold()
+    sport = (v.sport or "").casefold()
+    if sport == "basketball":
+        return "nba" in t
+    if sport == "american football":
+        return "nfl" in t
+    if sport == "hockey":
+        return "nhl" in t or _hockey_league(v) is not None
+    return False
+
+
 def _period_total_fair(v: surebet.SurebetValue, cache: dict):
     """Exact candidate-driven period total fair for NBA/NFL/NHL."""
     kind = _period_kind(v)
@@ -641,16 +659,15 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
             # 2) Run only the model families needed by the ingested candidates.
             sports_needed: list[str] = []
-            if any(v.sport == "Football" for v in values):
+            fullgame_values = [v for v in values if not _is_independent_period_total(v)]
+            if any(v.sport == "Football" for v in fullgame_values):
                 sports_needed.append("soccer")
-            if any(v.sport == "Hockey" for v in values):
+            if any(v.sport == "Hockey" for v in fullgame_values):
                 sports_needed.extend(["nhl", "hockey_eu"])
-            if any(v.sport == "Basketball" for v in values):
-                # NBA model is available in the shared scanner. European
-                # basketball candidates remain NO_MODEL until their own model
-                # has a fair price for the exact market.
+            if any(v.sport == "Basketball" for v in fullgame_values):
+                # NBA full-game markets still need the shared scanner.
                 sports_needed.append("nba")
-            if any(v.sport == "American football" for v in values):
+            if any(v.sport == "American football" for v in fullgame_values):
                 sports_needed.append("nfl")
 
             # Candidate horizon instead of an unconditional broad scan.
@@ -660,18 +677,22 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
             if future:
                 max_days = max(1, min(14, max((dt.date() - now.date()).days + 1 for dt in future)))
 
-            res = scan.run(
-                days=max_days,
-                watch_days=max_days,
-                sports=tuple(dict.fromkeys(sports_needed)),
-                journal=None,
-            )
+            if sports_needed:
+                res = scan.run(
+                    days=max_days,
+                    watch_days=max_days,
+                    sports=tuple(dict.fromkeys(sports_needed)),
+                    journal=None,
+                )
+                fixtures = res.fixtures
+            else:
+                fixtures = []
 
             # 3) Challenge every candidate against our independent fair model.
-            audits = audit_values(values, res.fixtures)
+            audits = audit_values(values, fixtures)
             try:
                 from .sql.valuebet import persist_audits
-                sql_status = persist_audits(audits, res.fixtures)
+                sql_status = persist_audits(audits, fixtures)
             except Exception as exc:
                 sql_status = {"error": f"{type(exc).__name__}: {exc}"}
         except Exception as exc:
