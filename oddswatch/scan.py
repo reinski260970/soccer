@@ -1157,6 +1157,8 @@ def evaluate_fixture(fx: Fixture, val: dict | None = None) -> list[Candidate]:
             flags.append("keine unabhängige Marktreferenz")
         if w > 0 and pr is not None and abs(pm - pr) > MAX_DIVERGENCE:
             flags.append("Modell weicht stark vom Markt ab – Kader-/Newsprüfung nötig")
+        if fx.estimate:
+            flags.append("SHADOW/Schätzung: keine validierte Freigabe, nur WATCH")
         reason = f"Unabhängige Referenz {pr}, Modell {pm:.3f} – {wnote}. {fx.detail}. " + "; ".join(fx.context)
         for offer in offers:
             out.append(evaluate(offer, pm, estimate=fx.estimate, reason=reason,
