@@ -1,1 +1,1 @@
-Run M17.11 Austria predictions with API-Football odds 2026-10-09 06:49 Europe/Vienna
+Run M17.11 Europe data-gap recovery 2026-10-09; test alternative real xG provider; no Telegram
