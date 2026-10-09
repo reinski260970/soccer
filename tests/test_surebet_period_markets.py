@@ -101,3 +101,29 @@ def test_empty_value_audit_does_not_send_telegram(monkeypatch):
     lines = surebet_values.run(send=True, limit=10)
     assert sent == []
     assert any("nichts gesendet" in x for x in lines)
+
+
+def test_nfl_feed_failure_does_not_block_core_candidates(monkeypatch):
+    core = _value("Basketball", "NBA", "q1", "55.5")
+    calls = []
+
+    def fake_fetch(*, sports, books, limit):
+        calls.append(tuple(sports))
+        if tuple(sports) == ("American football",):
+            return [], "HTTP 403"
+        return [core], None
+
+    monkeypatch.setattr(surebet, "fetch_valuebets", fake_fetch)
+    values, warnings, err = surebet_values._fetch_candidate_values(25)
+
+    assert values == [core]
+    assert err is None
+    assert any("NFL-Feed" in w and "403" in w for w in warnings)
+    assert ("Football", "Hockey", "Basketball") in calls
+    assert ("American football",) in calls
+
+
+def test_surebet_normalizes_nfl_sport_variants():
+    assert surebet.canonical_sport("American Football") == "American football"
+    assert surebet.canonical_sport("american-football") == "American football"
+    assert surebet.canonical_sport("NFL") == "American football"
