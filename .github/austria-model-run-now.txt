@@ -1,1 +1,1 @@
-Run M17.11 Europe data-gap recovery 2026-10-09; test alternative real xG provider; no Telegram
+Trigger Europe M17.11 full coverage audit 2026-10-09 v2. No Telegram; save JSON with all league gaps.
