@@ -1,1 +1,1 @@
-trigger period value smoke 2026-10-09T04:42Z
+trigger steam-gated period smoke 2026-10-09T04:47Z
