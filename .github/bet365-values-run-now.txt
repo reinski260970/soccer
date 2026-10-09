@@ -1,1 +1,1 @@
-trigger period value audit 2026-10-08T18:36:25.651Z
+trigger .github/bet365-values-run-now.txt 2026-10-09T04:24Z
