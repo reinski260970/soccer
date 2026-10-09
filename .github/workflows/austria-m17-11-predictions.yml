@@ -19,7 +19,7 @@ jobs:
       - name: Run independent M17.11 soccer model (no Telegram)
         env:
           APIKEY: ${{ secrets.APIKEY }}
-        run: python -m oddswatch scan --dry --sports soccer --days 4 --watch-days 4
+        run: python scripts/europe_m17_11_coverage.py
       - name: Preserve model report
         if: always()
         uses: actions/upload-artifact@v4
@@ -27,13 +27,13 @@ jobs:
           name: austria-m17-11-report
           path: |
             reports/*-bericht.md
-            reports/*-telegram.txt
+            reports/*-europe-m17_11-coverage.json
           if-no-files-found: warn
       - name: Commit report for inspection
         if: success()
         run: |
           git config user.name "oddswatch-bot"
           git config user.email "oddswatch-bot@users.noreply.github.com"
-          git add reports/*-bericht.md
-          git diff --cached --quiet || git commit -m "M17.11 Austria model prediction report"
+          git add reports/*-europe-m17_11-coverage.json
+          git diff --cached --quiet || git commit -m "M17.11 Europe coverage audit"
           git pull --rebase --autostash && git push
