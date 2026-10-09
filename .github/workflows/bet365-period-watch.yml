@@ -1,0 +1,31 @@
+name: bet365-period-watch
+
+on:
+  push:
+    paths:
+      - ".github/period-value-run-now.txt"
+  workflow_dispatch:
+  schedule:
+    - cron: "47 * * * *"
+
+concurrency:
+  group: bet365-period-watch
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Bet365 period Valuebets NBA NFL NHL Hockey
+        env:
+          SUREBET_API_TOKEN: ${{ secrets.SUREBET_API_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch.period_value_watch --send --limit 200
