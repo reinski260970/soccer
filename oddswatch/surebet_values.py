@@ -365,6 +365,18 @@ def _is_independent_period_total(v: surebet.SurebetValue) -> bool:
     return False
 
 
+def _period_watch_owned(v: surebet.SurebetValue) -> bool:
+    """Markets whose Telegram decision belongs to the fast period watcher."""
+    if (v.bet_type or "").strip() not in {"over", "under"}:
+        return False
+    base = (v.base or "overall").casefold()
+    if base not in {"overall", "total", "match", ""}:
+        return False
+    if _is_independent_period_total(v):
+        return True
+    return v.sport == "Hockey" and _period_kind(v) == "p1"
+
+
 def _period_total_fair(v: surebet.SurebetValue, cache: dict):
     """Exact candidate-driven period total fair for NBA/NFL/NHL."""
     kind = _period_kind(v)
@@ -754,7 +766,11 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
     if send:
         from .sql.valuebet import filter_unsent_actionable, mark_actionable_sent
 
-        fresh, dedupe = filter_unsent_actionable(audits)
+        # Period totals have their own price-trend/CLV gate and Telegram
+        # watcher. Keep them out of the general channel path to avoid un-gated
+        # or duplicate period messages.
+        general_audits = [a for a in audits if not _period_watch_owned(a.value)]
+        fresh, dedupe = filter_unsent_actionable(general_audits)
         alert_txt = telegram_actionable_text(fresh)
         if not alert_txt:
             reason = dedupe.get("reason")
