@@ -37,9 +37,21 @@ jobs:
           echo "Wien: $now"
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event_name }}" = "push" ]; then
-            slot="manual-$(TZ=Europe/Vienna date +%H%M)"
-            echo "run=yes" >> "$GITHUB_OUTPUT"
-            echo "slot=$slot" >> "$GITHUB_OUTPUT"
+            # Manual push around noon takes the 12:00 report slot.
+            # The regular 12:07 run sees its committed report and skips.
+            if [ "$h" = "11" ] || [ "$h" = "12" ]; then
+              slot="12"
+            else
+              slot="manual-$(TZ=Europe/Vienna date +%H%M)"
+            fi
+            f="reports/${day}-ceo-${slot}.txt"
+            if [ -f "$f" ]; then
+              echo "CEO-Slot bereits vorhanden: $f"
+              echo "run=no" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=yes" >> "$GITHUB_OUTPUT"
+              echo "slot=$slot" >> "$GITHUB_OUTPUT"
+            fi
             exit 0
           fi
 
