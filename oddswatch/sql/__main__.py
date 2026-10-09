@@ -11,7 +11,7 @@ from .runner import run
 def main():
     parser=argparse.ArgumentParser(description='NBA/NFL internal PostgreSQL store')
     sub=parser.add_subparsers(dest='command',required=True)
-    for name in ('migrate','evaluate','clv','report'): sub.add_parser(name)
+    for name in ('migrate','evaluate','clv','report','hockey-settle'): sub.add_parser(name)
     imp=sub.add_parser('ingest'); imp.add_argument('file')
     sync=sub.add_parser('sync'); sync.add_argument('--start',type=date.fromisoformat,default=datetime.now(ZoneInfo('Europe/Vienna')).date())
     sync.add_argument('--days',type=int,default=3)
@@ -22,10 +22,13 @@ def main():
             with open(args.file) as f: result=ingest(conn,json.load(f))
             result['evaluated']=evaluate(conn)
         elif args.command=='sync': result=run(conn,args.start,args.days)
+        elif args.command=='hockey-settle':
+            from .hockey_settlement import run as settle_hockey
+            result=settle_hockey(conn)
         elif args.command=='evaluate': result={'evaluated':evaluate(conn)}
         elif args.command=='clv': result=capture_closing(conn)
         elif args.command=='report':
-            result={name:conn.execute(f'SELECT * FROM sports.{name}').fetchall() for name in ('model_metrics','calibration','performance','scanner_metrics')}
+            result={name:conn.execute(f'SELECT * FROM sports.{name}').fetchall() for name in ('model_metrics','calibration','performance','scanner_metrics','forward_market_comparison','result_coverage')}
             result['pending']=conn.execute("SELECT e.league,count(*) AS pending,min(e.kickoff) AS oldest FROM sports.predictions p JOIN sports.events e USING(event_id) LEFT JOIN sports.prediction_evaluations v USING(prediction_id) WHERE v.prediction_id IS NULL AND e.kickoff<now() GROUP BY e.league").fetchall()
         else: result={'migration':'OK'}
     print(json.dumps(result,default=str,ensure_ascii=False))
