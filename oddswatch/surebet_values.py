@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
+import json
 import math
+from pathlib import Path
 import re
 from zoneinfo import ZoneInfo
 
@@ -15,6 +17,7 @@ from .sources import hockeyarchives, surebet
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 
 _TZ = ZoneInfo("Europe/Vienna")
+VALUE_ALERT_STATE = Path("data/journal/valuebet_alerts.json")
 
 
 @dataclass
@@ -544,6 +547,61 @@ def matched(values: list[surebet.SurebetValue]) -> list[list[surebet.SurebetValu
     rows.sort(key=lambda g: (-(len({v.bookmaker for v in g})), -(g[0].odds if g else 0)))
     return rows
 
+def _audit_alert_key(a: Audit) -> str:
+    v = a.value
+    kick = v.kickoff.isoformat() if v.kickoff else ""
+    return "|".join([
+        v.sport or "", v.tournament or "", kick,
+        " vs ".join(v.teams), v.market or "", v.selection or "",
+        v.period or "", v.condition or "", v.base or "",
+    ])
+
+
+def _load_value_alert_state(path: Path = VALUE_ALERT_STATE) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except (FileNotFoundError, ValueError, OSError):
+        return {}
+
+
+def _fresh_value_audits(audits: list[Audit], state: dict) -> list[Audit]:
+    fresh = []
+    for a in audits:
+        if a.status not in {"BESTÄTIGT", "REDUZIERT", "KONFLIKT", "WIDERLEGT"}:
+            continue
+        key = _audit_alert_key(a)
+        old = state.get(key)
+        if not old:
+            fresh.append(a)
+            continue
+        old_status = old.get("status")
+        old_odds = float(old.get("odds") or 0.0)
+        old_fair = float(old.get("our_fair") or 0.0)
+        odds_changed = abs(float(a.value.odds) - old_odds) >= 0.05
+        fair_changed = (
+            a.our_fair is not None and old_fair > 0
+            and abs(float(a.our_fair) - old_fair) >= 0.05
+        )
+        if a.status != old_status or odds_changed or fair_changed:
+            fresh.append(a)
+    return fresh
+
+
+def _mark_value_audits_sent(audits: list[Audit], state: dict,
+                            path: Path = VALUE_ALERT_STATE) -> None:
+    for a in audits:
+        key = _audit_alert_key(a)
+        state[key] = {
+            "status": a.status,
+            "odds": float(a.value.odds),
+            "our_fair": float(a.our_fair) if a.our_fair is not None else None,
+            "sent_at": datetime.now(_TZ).isoformat(),
+        }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+
+
 def telegram_text(values: list[surebet.SurebetValue], error: str | None = None, audits: list[Audit] | None = None) -> str:
     now = datetime.now(_TZ).strftime("%d.%m.%Y %H:%M")
     out = [f"🎯 VALUE-AUDIT · {now}"]
@@ -700,7 +758,10 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
 
     # 4) Telegram reports the result of our audit, never the raw feed as VALUE.
     sql_status = locals().get("sql_status", {})
-    txt = telegram_text(values, err, audits)
+    alert_state = _load_value_alert_state()
+    fresh_audits = _fresh_value_audits(audits, alert_state)
+    fresh_values = [a.value for a in fresh_audits]
+    txt = telegram_text(fresh_values, err, fresh_audits)
     counts = {}
     for a in audits:
         counts[a.status] = counts.get(a.status, 0) + 1
@@ -714,11 +775,15 @@ def run(send: bool = False, limit: int = 100) -> list[str]:
         lines.append("Feed-Hinweise: " + " | ".join(feed_warnings))
     if sql_status:
         lines.append("CLV-Tracking: " + ", ".join(f"{k}={v}" for k, v in sql_status.items()))
-    if send and values:
+    if send and fresh_audits:
         r = telegram.send(txt)
-        lines.append(
-            f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}"
-        )
+        if r["sent"]:
+            _mark_value_audits_sent(fresh_audits, alert_state)
+            lines.append(f"Telegram: gesendet, message_id {r['message_ids']}")
+        else:
+            lines.append("Telegram: NICHT gesendet – " + r["error"])
+    elif send and values:
+        lines.append("Telegram: keine neuen/geänderten Audits – nichts gesendet")
     elif send and not values:
         lines.append("Telegram: keine Kandidaten – nichts gesendet")
     return lines
