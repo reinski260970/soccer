@@ -178,10 +178,10 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
         "shl": hockeyarchives.shl,
         # Historical top-league pages carry 60-minute period totals.
         # OT/SO ties are withheld: we cannot identify the market winner.
-        "del": lambda season: (*hockeyarchives.season_results(
-            "del", season, cache_days=0.02),),
-        "extraliga": lambda season: (*hockeyarchives.season_results(
-            "extraliga", season, cache_days=0.02),),
+        "del": lambda season: hockeyarchives.season_results(
+            "del", season, cache_days=0.02),
+        "extraliga": lambda season: hockeyarchives.season_results(
+            "extraliga", season, cache_days=0.02),
     }
     pending = conn.execute(
         "SELECT e.event_id,e.league,e.source_event_id,e.home_name,e.away_name,e.kickoff "
