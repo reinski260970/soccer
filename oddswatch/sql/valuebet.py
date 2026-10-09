@@ -215,6 +215,32 @@ def _match_fixture(v, fixtures):
     return hits[0] if len(hits) == 1 else None
 
 
+def _fallback_period_league(v):
+    t = (v.tournament or "").casefold()
+    if v.sport == "Basketball" and "nba" in t:
+        return "nba"
+    if v.sport == "American football" and "nfl" in t:
+        return "nfl"
+    if v.sport == "Hockey":
+        if "nhl" in t:
+            return "nhl"
+        hockey = (
+            ("czechia extraliga", "extraliga"),
+            ("czech extraliga", "extraliga"),
+            ("finland liiga", "liiga"),
+            ("liiga", "liiga"),
+            ("sweden shl", "shl"),
+            ("shl", "shl"),
+            ("austria ice hockey league", "icehl"),
+            ("ice hockey league", "icehl"),
+            ("khl", "khl"),
+        )
+        for label, code in hockey:
+            if label in t:
+                return code
+    return None
+
+
 def persist_audits(audits, fixtures):
     """Persist model-audited Bet365 candidates as WATCH signals + entry quotes."""
     import os
@@ -251,14 +277,8 @@ def persist_audits(audits, fixtures):
             # candidate itself so CLV can still be tracked.
             if len(v.teams) != 2 or v.kickoff is None:
                 continue
-            t = (v.tournament or "").casefold()
-            if v.sport == "Basketball" and "nba" in t:
-                league = "nba"
-            elif v.sport == "American football" and "nfl" in t:
-                league = "nfl"
-            elif v.sport == "Hockey" and "nhl" in t:
-                league = "nhl"
-            else:
+            league = _fallback_period_league(v)
+            if league is None:
                 continue
             home_name, away_name = v.teams[0], v.teams[1]
             kickoff = v.kickoff
