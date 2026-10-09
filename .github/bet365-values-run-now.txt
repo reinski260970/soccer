@@ -1,1 +1,1 @@
-trigger .github/bet365-values-run-now.txt 2026-10-09T04:26Z
+trigger optimized period audit 2026-10-09T04:28Z
