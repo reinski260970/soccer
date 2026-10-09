@@ -1,0 +1,2350 @@
+{
+  "generated_at": "2026-10-09T05:19:48.119282+00:00",
+  "scan_from": "2026-10-09",
+  "horizon_days": 4,
+  "telegram_sent": false,
+  "configured_leagues": [
+    "2bundesliga",
+    "austria",
+    "belgium",
+    "bundesliga",
+    "championship",
+    "denmark",
+    "epl",
+    "eredivisie",
+    "greece",
+    "laliga",
+    "ligue1",
+    "norway",
+    "poland",
+    "primeira",
+    "scotland",
+    "seriea",
+    "sweden",
+    "switzerland",
+    "turkey"
+  ],
+  "predictions_by_league": {
+    "bundesliga": 9,
+    "2bundesliga": 9,
+    "epl": 10,
+    "championship": 19,
+    "laliga": 9,
+    "seriea": 10,
+    "ligue1": 7,
+    "eredivisie": 9,
+    "primeira": 7,
+    "belgium": 4,
+    "turkey": 8,
+    "scotland": 5,
+    "greece": 4,
+    "austria": 5,
+    "sweden": 5,
+    "norway": 5,
+    "denmark": 2
+  },
+  "prediction_count": 127,
+  "fixtures": [
+    {
+      "league": "bundesliga",
+      "event": "Borussia Dortmund – Werder Bremen",
+      "kickoff": "2026-10-09T18:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.732439,
+        "draw": 0.177245,
+        "away": 0.090316
+      },
+      "model_features": "erw. Tore 2.28:0.68 (Tore+xG 50/50), O2.5 57 %",
+      "market_reference": {
+        "home": 0.7467303102726052,
+        "draw": 0.15244507104618726,
+        "away": 0.1008246186812076
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "1. FC Union Berlin – SV Elversberg",
+      "kickoff": "2026-10-10T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.302726,
+        "draw": 0.235523,
+        "away": 0.461751
+      },
+      "model_features": "erw. Tore 1.47:1.85 (Tore+xG 50/50), O2.5 64 %",
+      "market_reference": {
+        "home": 0.40816338754055026,
+        "draw": 0.24834508600671876,
+        "away": 0.343491526452731
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "FC Augsburg – Bayern Munich",
+      "kickoff": "2026-10-10T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.110776,
+        "draw": 0.1403,
+        "away": 0.748924
+      },
+      "model_features": "erw. Tore 1.20:3.11 (Tore+xG 50/50), O2.5 80 %",
+      "market_reference": {
+        "home": 0.07284379657017023,
+        "draw": 0.09389406107223662,
+        "away": 0.8332621423575931
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "Mainz – Bayer Leverkusen",
+      "kickoff": "2026-10-10T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.324823,
+        "draw": 0.245262,
+        "away": 0.429915
+      },
+      "model_features": "erw. Tore 1.45:1.70 (Tore+xG 50/50), O2.5 61 %",
+      "market_reference": {
+        "home": 0.31869396208724976,
+        "draw": 0.24181159234337077,
+        "away": 0.43949444556937983
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "SC Paderborn 07 – VfB Stuttgart",
+      "kickoff": "2026-10-10T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.296237,
+        "draw": 0.266805,
+        "away": 0.436957
+      },
+      "model_features": "erw. Tore 1.20:1.50 (Tore+xG 50/50), O2.5 51 %",
+      "market_reference": {
+        "home": 0.1839040786797601,
+        "draw": 0.19286600351224412,
+        "away": 0.6232299178079959
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "TSG Hoffenheim – Hamburg SV",
+      "kickoff": "2026-10-10T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.628318,
+        "draw": 0.203023,
+        "away": 0.168659
+      },
+      "model_features": "erw. Tore 2.23:1.08 (Tore+xG 50/50), O2.5 64 %",
+      "market_reference": {}
+    },
+    {
+      "league": "bundesliga",
+      "event": "RB Leipzig – Eintracht Frankfurt",
+      "kickoff": "2026-10-10T16:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.629022,
+        "draw": 0.185129,
+        "away": 0.185849
+      },
+      "model_features": "erw. Tore 2.56:1.37 (Tore+xG 50/50), O2.5 75 %",
+      "market_reference": {
+        "home": 0.6246941144724601,
+        "draw": 0.18984981528770356,
+        "away": 0.18545607023983632
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "FC Cologne – Borussia Mönchengladbach",
+      "kickoff": "2026-10-11T13:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.4779,
+        "draw": 0.233868,
+        "away": 0.288232
+      },
+      "model_features": "erw. Tore 1.88:1.43 (Tore+xG 50/50), O2.5 64 %",
+      "market_reference": {
+        "home": 0.4727329145073037,
+        "draw": 0.23290235036811235,
+        "away": 0.2943647351245843
+      }
+    },
+    {
+      "league": "bundesliga",
+      "event": "SC Freiburg – Schalke 04",
+      "kickoff": "2026-10-11T15:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.509691,
+        "draw": 0.256736,
+        "away": 0.233573
+      },
+      "model_features": "erw. Tore 1.65:1.04 (Tore+xG 50/50), O2.5 50 %",
+      "market_reference": {
+        "home": 0.5890606272474183,
+        "draw": 0.23004907593321297,
+        "away": 0.18089029681936897
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "1. FC Heidenheim 1846 – Kaiserslautern",
+      "kickoff": "2026-10-09T16:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.470266,
+        "draw": 0.277978,
+        "away": 0.251755
+      },
+      "model_features": "M17.11 external structural xG 1.45:0.99; fast 1.76:1.01; slow 1.19:0.97",
+      "market_reference": {
+        "home": 0.504739759846311,
+        "draw": 0.25810274563079183,
+        "away": 0.23715749452289714
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "TSV Eintracht Braunschweig – Holstein Kiel",
+      "kickoff": "2026-10-09T16:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.49699,
+        "draw": 0.234636,
+        "away": 0.268374
+      },
+      "model_features": "M17.11 external structural xG 1.88:1.34; fast 2.03:1.63; slow 1.75:1.10",
+      "market_reference": {
+        "home": 0.33309945552655856,
+        "draw": 0.24972981158539492,
+        "away": 0.4171707328880469
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "1. FC Magdeburg – Hannover 96",
+      "kickoff": "2026-10-10T11:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.492836,
+        "draw": 0.239576,
+        "away": 0.267589
+      },
+      "model_features": "M17.11 external structural xG 1.82:1.30; fast 1.79:1.53; slow 1.86:1.10",
+      "market_reference": {
+        "home": 0.37617679935079773,
+        "draw": 0.23089891813338018,
+        "away": 0.39292428251582195
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "SV Darmstadt 98 – Energie Cottbus",
+      "kickoff": "2026-10-10T11:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.266009,
+        "draw": 0.218929,
+        "away": 0.515062
+      },
+      "model_features": "M17.11 external structural xG 1.48:2.10; fast 1.38:1.67; slow 1.58:2.64",
+      "market_reference": {
+        "home": 0.4227045809624562,
+        "draw": 0.23571180774924147,
+        "away": 0.34158361128830256
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "VfL Osnabruck – Dynamo Dresden",
+      "kickoff": "2026-10-10T11:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.522254,
+        "draw": 0.220072,
+        "away": 0.257674
+      },
+      "model_features": "M17.11 external structural xG 2.08:1.43; fast 1.99:1.45; slow 2.18:1.40",
+      "market_reference": {
+        "home": 0.3603280429052165,
+        "draw": 0.24717775963662678,
+        "away": 0.39249419745815706
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "1. FC Nürnberg – VfL Wolfsburg",
+      "kickoff": "2026-10-10T18:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.514916,
+        "draw": 0.231274,
+        "away": 0.25381
+      },
+      "model_features": "M17.11 external structural xG 1.93:1.31; fast 1.60:1.27; slow 2.33:1.35",
+      "market_reference": {
+        "home": 0.382803064782546,
+        "draw": 0.24259208233021054,
+        "away": 0.3746048528872435
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "Hertha Berlin – SpVgg Greuther Fürth",
+      "kickoff": "2026-10-11T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.621206,
+        "draw": 0.19521,
+        "away": 0.183584
+      },
+      "model_features": "M17.11 external structural xG 2.38:1.25; fast 2.44:1.20; slow 2.33:1.29",
+      "market_reference": {
+        "home": 0.607843576089463,
+        "draw": 0.2030339690713352,
+        "away": 0.18912245483920218
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "St. Pauli – Karlsruher SC",
+      "kickoff": "2026-10-11T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.60354,
+        "draw": 0.233725,
+        "away": 0.162734
+      },
+      "model_features": "M17.11 external structural xG 1.84:0.85; fast 1.75:0.83; slow 1.94:0.86",
+      "market_reference": {
+        "home": 0.5604405282336105,
+        "draw": 0.21402126400009894,
+        "away": 0.22553820776629102
+      }
+    },
+    {
+      "league": "2bundesliga",
+      "event": "VfL Bochum – Arminia Bielefeld",
+      "kickoff": "2026-10-11T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.492266,
+        "draw": 0.267,
+        "away": 0.240734
+      },
+      "model_features": "M17.11 external structural xG 1.55:1.01; fast 1.67:0.94; slow 1.44:1.08",
+      "market_reference": {
+        "home": 0.41934230193695216,
+        "draw": 0.2611718806546949,
+        "away": 0.319485817408353
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Arsenal – Leeds United",
+      "kickoff": "2026-10-10T11:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.609557,
+        "draw": 0.243228,
+        "away": 0.147215
+      },
+      "model_features": "erw. Tore 1.73:0.72 (Tore+xG 50/50), O2.5 44 %",
+      "market_reference": {
+        "home": 0.7082006124458703,
+        "draw": 0.18151799476563274,
+        "away": 0.11028139278849718
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Aston Villa – Brentford",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.376853,
+        "draw": 0.259618,
+        "away": 0.363528
+      },
+      "model_features": "erw. Tore 1.46:1.43 (Tore+xG 50/50), O2.5 55 %",
+      "market_reference": {
+        "home": 0.362629023107922,
+        "draw": 0.2674805792109145,
+        "away": 0.3698903976811635
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Chelsea – AFC Bournemouth",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.400932,
+        "draw": 0.249453,
+        "away": 0.349614
+      },
+      "model_features": "erw. Tore 1.60:1.48 (Tore+xG 50/50), O2.5 60 %",
+      "market_reference": {
+        "home": 0.5837649737017861,
+        "draw": 0.22043593509375833,
+        "away": 0.19579909120445568
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Ipswich Town – Fulham",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.416127,
+        "draw": 0.256888,
+        "away": 0.326984
+      },
+      "model_features": "erw. Tore 1.56:1.36 (Tore+xG 50/50), O2.5 56 %",
+      "market_reference": {
+        "home": 0.33426017234932204,
+        "draw": 0.26563331207503116,
+        "away": 0.400106515575647
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Sunderland – Brighton & Hove Albion",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.318239,
+        "draw": 0.263205,
+        "away": 0.418556
+      },
+      "model_features": "erw. Tore 1.29:1.51 (Tore+xG 50/50), O2.5 53 %",
+      "market_reference": {
+        "home": 0.3234030260349954,
+        "draw": 0.2665880268873874,
+        "away": 0.4100089470776175
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Manchester United – Tottenham Hotspur",
+      "kickoff": "2026-10-10T16:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.650757,
+        "draw": 0.202426,
+        "away": 0.146818
+      },
+      "model_features": "erw. Tore 2.18:0.94 (Tore+xG 50/50), O2.5 60 %",
+      "market_reference": {
+        "home": 0.5694356583721811,
+        "draw": 0.21786736967653816,
+        "away": 0.21269697195128076
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Crystal Palace – Nottingham Forest",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.310663,
+        "draw": 0.286289,
+        "away": 0.403049
+      },
+      "model_features": "erw. Tore 1.12:1.31 (Tore+xG 50/50), O2.5 44 %",
+      "market_reference": {
+        "home": 0.3632875098260607,
+        "draw": 0.2804123157897292,
+        "away": 0.3563001743842103
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Hull City – Everton",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.406256,
+        "draw": 0.302462,
+        "away": 0.291282
+      },
+      "model_features": "erw. Tore 1.21:0.98 (Tore+xG 50/50), O2.5 38 %",
+      "market_reference": {
+        "home": 0.25819569606260534,
+        "draw": 0.2697793360805649,
+        "away": 0.47202496785682985
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Liverpool – Manchester City",
+      "kickoff": "2026-10-11T15:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.300024,
+        "draw": 0.247695,
+        "away": 0.452282
+      },
+      "model_features": "erw. Tore 1.35:1.70 (Tore+xG 50/50), O2.5 59 %",
+      "market_reference": {
+        "home": 0.36122583583265094,
+        "draw": 0.25487319886559595,
+        "away": 0.3839009653017535
+      }
+    },
+    {
+      "league": "epl",
+      "event": "Coventry City – Newcastle United",
+      "kickoff": "2026-10-12T19:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.319541,
+        "draw": 0.271223,
+        "away": 0.409236
+      },
+      "model_features": "erw. Tore 1.23:1.43 (Tore+xG 50/50), O2.5 50 %",
+      "market_reference": {
+        "home": 0.2769198763083118,
+        "draw": 0.2565402913251041,
+        "away": 0.46653983236658414
+      }
+    },
+    {
+      "league": "championship",
+      "event": "West Ham United – Queens Park Rangers",
+      "kickoff": "2026-10-09T19:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.604841,
+        "draw": 0.210915,
+        "away": 0.184244
+      },
+      "model_features": "M17.11 external structural xG 2.15:1.12; fast 1.67:1.21; slow 2.77:1.03",
+      "market_reference": {
+        "home": 0.6516373472257644,
+        "draw": 0.19074276365805912,
+        "away": 0.15761988911617675
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Charlton Athletic – Bristol City",
+      "kickoff": "2026-10-10T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.271155,
+        "draw": 0.298527,
+        "away": 0.430319
+      },
+      "model_features": "M17.11 external structural xG 0.95:1.27; fast 0.83:1.31; slow 1.09:1.23",
+      "market_reference": {
+        "home": 0.2972123148335886,
+        "draw": 0.28334402637664696,
+        "away": 0.4194436587897647
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Swansea City – Norwich City",
+      "kickoff": "2026-10-10T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.614307,
+        "draw": 0.209298,
+        "away": 0.176395
+      },
+      "model_features": "M17.11 external structural xG 2.16:1.08; fast 1.76:1.30; slow 2.64:0.90",
+      "market_reference": {
+        "home": 0.4008004627752084,
+        "draw": 0.2702745474298234,
+        "away": 0.32892498979496837
+      }
+    },
+    {
+      "league": "championship",
+      "event": "West Bromwich Albion – Birmingham City",
+      "kickoff": "2026-10-10T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.352252,
+        "draw": 0.295833,
+        "away": 0.351915
+      },
+      "model_features": "M17.11 external structural xG 1.16:1.16; fast 1.21:1.43; slow 1.11:0.94",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Blackburn Rovers – Cardiff City",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.384587,
+        "draw": 0.261958,
+        "away": 0.353455
+      },
+      "model_features": "M17.11 external structural xG 1.46:1.39; fast 1.22:1.76; slow 1.74:1.09",
+      "market_reference": {
+        "home": 0.3481477637325274,
+        "draw": 0.25912701015424766,
+        "away": 0.3927252261132249
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Bolton Wanderers – Stoke City",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.415313,
+        "draw": 0.2504,
+        "away": 0.334287
+      },
+      "model_features": "M17.11 external structural xG 1.62:1.43; fast 1.45:1.25; slow 1.81:1.64",
+      "market_reference": {
+        "home": 0.34685032068872673,
+        "draw": 0.2777735525536298,
+        "away": 0.3753761267576436
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Derby County – Wrexham",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.349145,
+        "draw": 0.274338,
+        "away": 0.376516
+      },
+      "model_features": "M17.11 external structural xG 1.29:1.35; fast 1.14:1.34; slow 1.45:1.35",
+      "market_reference": {
+        "home": 0.34685032068872673,
+        "draw": 0.2777735525536298,
+        "away": 0.3753761267576436
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Middlesbrough – Wolverhampton Wanderers",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.455033,
+        "draw": 0.227643,
+        "away": 0.317324
+      },
+      "model_features": "M17.11 external structural xG 1.94:1.60; fast 1.47:1.27; slow 2.55:2.01",
+      "market_reference": {
+        "home": 0.4283188393061364,
+        "draw": 0.2546262354502838,
+        "away": 0.31705492524357987
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Preston North End – Millwall",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.278647,
+        "draw": 0.229654,
+        "away": 0.491698
+      },
+      "model_features": "M17.11 external structural xG 1.43:1.94; fast 1.37:1.68; slow 1.49:2.25",
+      "market_reference": {
+        "home": 0.33579960351146415,
+        "draw": 0.27109107271309896,
+        "away": 0.39310932377543706
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Watford – Burnley",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.349693,
+        "draw": 0.277031,
+        "away": 0.373276
+      },
+      "model_features": "M17.11 external structural xG 1.27:1.32; fast 1.22:1.30; slow 1.32:1.34",
+      "market_reference": {
+        "home": 0.3191093688025033,
+        "draw": 0.26024780950036924,
+        "away": 0.4206428216971278
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Southampton – Portsmouth",
+      "kickoff": "2026-10-11T11:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.660888,
+        "draw": 0.181714,
+        "away": 0.157398
+      },
+      "model_features": "M17.11 external structural xG 2.53:1.19; fast 2.02:1.24; slow 3.16:1.14",
+      "market_reference": {
+        "home": 0.6081981002120609,
+        "draw": 0.2163469894492132,
+        "away": 0.17545491033872604
+      }
+    },
+    {
+      "league": "championship",
+      "event": "Bristol City – Blackburn Rovers",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.454007,
+        "draw": 0.268237,
+        "away": 0.277756
+      },
+      "model_features": "M17.11 external structural xG 1.51:1.13; fast 1.50:0.97; slow 1.52:1.31",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Burnley – Charlton Athletic",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.436221,
+        "draw": 0.290569,
+        "away": 0.27321
+      },
+      "model_features": "M17.11 external structural xG 1.32:0.99; fast 1.44:0.74; slow 1.22:1.33",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Cardiff City – Watford",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.686516,
+        "draw": 0.192864,
+        "away": 0.12062
+      },
+      "model_features": "M17.11 external structural xG 2.21:0.82; fast 2.66:0.90; slow 1.84:0.75",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Millwall – Swansea City",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.329721,
+        "draw": 0.257773,
+        "away": 0.412506
+      },
+      "model_features": "M17.11 external structural xG 1.36:1.55; fast 1.66:1.41; slow 1.12:1.70",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Wolverhampton Wanderers – Bolton Wanderers",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.727101,
+        "draw": 0.160119,
+        "away": 0.11278
+      },
+      "model_features": "M17.11 external structural xG 2.69:1.00; fast 2.33:0.82; slow 3.12:1.23",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Wrexham – West Bromwich Albion",
+      "kickoff": "2026-10-13T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.355414,
+        "draw": 0.307718,
+        "away": 0.336868
+      },
+      "model_features": "M17.11 external structural xG 1.10:1.06; fast 1.30:0.97; slow 0.93:1.17",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Birmingham City – Preston North End",
+      "kickoff": "2026-10-13T19:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.625374,
+        "draw": 0.212575,
+        "away": 0.162051
+      },
+      "model_features": "M17.11 external structural xG 2.08:0.97; fast 1.87:0.97; slow 2.33:0.98",
+      "market_reference": {}
+    },
+    {
+      "league": "championship",
+      "event": "Stoke City – Middlesbrough",
+      "kickoff": "2026-10-13T19:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.239769,
+        "draw": 0.223677,
+        "away": 0.536555
+      },
+      "model_features": "M17.11 external structural xG 1.31:2.03; fast 1.05:1.69; slow 1.63:2.44",
+      "market_reference": {}
+    },
+    {
+      "league": "laliga",
+      "event": "Málaga – Espanyol",
+      "kickoff": "2026-10-09T19:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.344903,
+        "draw": 0.307248,
+        "away": 0.347848
+      },
+      "model_features": "erw. Tore 1.08:1.09 (Tore+xG 50/50), O2.5 37 %",
+      "market_reference": {
+        "home": 0.3348191512847442,
+        "draw": 0.2966573172415142,
+        "away": 0.3685235314737415
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Rayo Vallecano – Athletic Club",
+      "kickoff": "2026-10-10T12:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.462286,
+        "draw": 0.279195,
+        "away": 0.258519
+      },
+      "model_features": "erw. Tore 1.43:1.00 (Tore+xG 50/50), O2.5 44 %",
+      "market_reference": {
+        "home": 0.35385484045566035,
+        "draw": 0.27804304352532466,
+        "away": 0.3681021160190154
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Alavés – Atlético Madrid",
+      "kickoff": "2026-10-10T14:15:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.330427,
+        "draw": 0.267832,
+        "away": 0.401741
+      },
+      "model_features": "erw. Tore 1.29:1.44 (Tore+xG 50/50), O2.5 51 %",
+      "market_reference": {
+        "home": 0.22148009984163322,
+        "draw": 0.2494788055332538,
+        "away": 0.5290410946251131
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Barcelona – Getafe",
+      "kickoff": "2026-10-10T16:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.785855,
+        "draw": 0.153946,
+        "away": 0.060199
+      },
+      "model_features": "erw. Tore 2.38:0.52 (Tore+xG 50/50), O2.5 56 %",
+      "market_reference": {
+        "home": 0.9144083047281434,
+        "draw": 0.052331986090124634,
+        "away": 0.03325970918173207
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Real Madrid – Villarreal",
+      "kickoff": "2026-10-10T19:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.625346,
+        "draw": 0.195617,
+        "away": 0.179037
+      },
+      "model_features": "erw. Tore 2.36:1.21 (Tore+xG 50/50), O2.5 69 %",
+      "market_reference": {
+        "home": 0.710312677442048,
+        "draw": 0.15431606591438413,
+        "away": 0.13537125664356792
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Elche – Celta Vigo",
+      "kickoff": "2026-10-11T12:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.402637,
+        "draw": 0.269075,
+        "away": 0.328288
+      },
+      "model_features": "erw. Tore 1.43:1.27 (Tore+xG 50/50), O2.5 51 %",
+      "market_reference": {
+        "home": 0.3421206445701822,
+        "draw": 0.2883004013493199,
+        "away": 0.36957895408049807
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Real Betis – Osasuna",
+      "kickoff": "2026-10-11T16:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.591058,
+        "draw": 0.231214,
+        "away": 0.177728
+      },
+      "model_features": "erw. Tore 1.89:0.94 (Tore+xG 50/50), O2.5 54 %",
+      "market_reference": {
+        "home": 0.639270215134581,
+        "draw": 0.20362489960558836,
+        "away": 0.1571048852598308
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Racing Santander – Valencia",
+      "kickoff": "2026-10-11T19:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.452958,
+        "draw": 0.233176,
+        "away": 0.313866
+      },
+      "model_features": "erw. Tore 1.86:1.53 (Tore+xG 50/50), O2.5 66 %",
+      "market_reference": {
+        "home": 0.4180723112671115,
+        "draw": 0.26538793559061463,
+        "away": 0.3165397531422741
+      }
+    },
+    {
+      "league": "laliga",
+      "event": "Levante – Sevilla",
+      "kickoff": "2026-10-12T19:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.467345,
+        "draw": 0.260292,
+        "away": 0.272363
+      },
+      "model_features": "erw. Tore 1.59:1.16 (Tore+xG 50/50), O2.5 52 %",
+      "market_reference": {
+        "home": 0.34934197392153654,
+        "draw": 0.28707319919350793,
+        "away": 0.3635848268849556
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Genoa – Fiorentina",
+      "kickoff": "2026-10-10T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.344355,
+        "draw": 0.29494,
+        "away": 0.360706
+      },
+      "model_features": "erw. Tore 1.15:1.18 (Tore+xG 50/50), O2.5 41 %",
+      "market_reference": {
+        "home": 0.2943965708171497,
+        "draw": 0.28934925541959494,
+        "away": 0.4162541737632555
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Internazionale – Parma",
+      "kickoff": "2026-10-10T16:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.755624,
+        "draw": 0.161761,
+        "away": 0.082616
+      },
+      "model_features": "erw. Tore 2.45:0.70 (Tore+xG 50/50), O2.5 61 %",
+      "market_reference": {
+        "home": 0.8725374028946322,
+        "draw": 0.08395995160347902,
+        "away": 0.04350264550188888
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Napoli – Frosinone",
+      "kickoff": "2026-10-10T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.488589,
+        "draw": 0.256449,
+        "away": 0.254962
+      },
+      "model_features": "erw. Tore 1.64:1.12 (Tore+xG 50/50), O2.5 52 %",
+      "market_reference": {
+        "home": 0.6741794493416363,
+        "draw": 0.1845053009800134,
+        "away": 0.14131524967835057
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Como – AS Roma",
+      "kickoff": "2026-10-11T10:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.356097,
+        "draw": 0.272252,
+        "away": 0.371651
+      },
+      "model_features": "erw. Tore 1.32:1.35 (Tore+xG 50/50), O2.5 50 %",
+      "market_reference": {
+        "home": 0.37236883837341006,
+        "draw": 0.2631279815021259,
+        "away": 0.364503180124464
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Lazio – Monza",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.414734,
+        "draw": 0.267324,
+        "away": 0.317942
+      },
+      "model_features": "erw. Tore 1.47:1.26 (Tore+xG 50/50), O2.5 51 %",
+      "market_reference": {
+        "home": 0.6230661197135846,
+        "draw": 0.22224976289216544,
+        "away": 0.15468411739424975
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Lecce – Bologna",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.24605,
+        "draw": 0.299455,
+        "away": 0.454495
+      },
+      "model_features": "erw. Tore 0.87:1.28 (Tore+xG 50/50), O2.5 37 %",
+      "market_reference": {
+        "home": 0.21405276488737682,
+        "draw": 0.2866686736749398,
+        "away": 0.49927856143768345
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Sassuolo – AC Milan",
+      "kickoff": "2026-10-11T16:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.303562,
+        "draw": 0.276067,
+        "away": 0.420371
+      },
+      "model_features": "erw. Tore 1.16:1.41 (Tore+xG 50/50), O2.5 47 %",
+      "market_reference": {
+        "home": 0.22553926848088887,
+        "draw": 0.2457037486529032,
+        "away": 0.5287569828662081
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Cagliari – Juventus",
+      "kickoff": "2026-10-11T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.196276,
+        "draw": 0.273162,
+        "away": 0.530562
+      },
+      "model_features": "erw. Tore 0.81:1.51 (Tore+xG 50/50), O2.5 41 %",
+      "market_reference": {
+        "home": 0.14202838533811926,
+        "draw": 0.22707271374500632,
+        "away": 0.6308989009168746
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Atalanta – Venezia",
+      "kickoff": "2026-10-12T16:30:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.661981,
+        "draw": 0.193494,
+        "away": 0.144525
+      },
+      "model_features": "erw. Tore 2.29:0.99 (Tore+xG 50/50), O2.5 64 %",
+      "market_reference": {
+        "home": 0.6204801142138009,
+        "draw": 0.21933065165994983,
+        "away": 0.16018923412624927
+      }
+    },
+    {
+      "league": "seriea",
+      "event": "Torino – Udinese",
+      "kickoff": "2026-10-12T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.317752,
+        "draw": 0.261062,
+        "away": 0.421186
+      },
+      "model_features": "erw. Tore 1.30:1.53 (Tore+xG 50/50), O2.5 54 %",
+      "market_reference": {
+        "home": 0.41280125415482233,
+        "draw": 0.2909949924250269,
+        "away": 0.296203753420151
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Lens – Lyon",
+      "kickoff": "2026-10-09T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.473615,
+        "draw": 0.243863,
+        "away": 0.282522
+      },
+      "model_features": "erw. Tore 1.76:1.32 (Tore+xG 50/50), O2.5 59 %",
+      "market_reference": {
+        "home": 0.4076971959844194,
+        "draw": 0.2531193678872662,
+        "away": 0.3391834361283145
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Lille – Le Havre AC",
+      "kickoff": "2026-10-10T15:15:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.537704,
+        "draw": 0.277434,
+        "away": 0.184863
+      },
+      "model_features": "erw. Tore 1.47:0.75 (Tore+xG 50/50), O2.5 38 %",
+      "market_reference": {
+        "home": 0.6771306959214906,
+        "draw": 0.18543827648085923,
+        "away": 0.1374310275976503
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "AS Monaco – Toulouse",
+      "kickoff": "2026-10-10T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.520651,
+        "draw": 0.231413,
+        "away": 0.247936
+      },
+      "model_features": "erw. Tore 1.93:1.28 (Tore+xG 50/50), O2.5 62 %",
+      "market_reference": {
+        "home": 0.606893262010858,
+        "draw": 0.2097757054038804,
+        "away": 0.18333103258526173
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Brest – Angers",
+      "kickoff": "2026-10-10T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.48294,
+        "draw": 0.273592,
+        "away": 0.243469
+      },
+      "model_features": "erw. Tore 1.49:0.98 (Tore+xG 50/50), O2.5 45 %",
+      "market_reference": {
+        "home": 0.4840828716341568,
+        "draw": 0.2542599762249681,
+        "away": 0.26165715214087526
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Nice – Strasbourg",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.268986,
+        "draw": 0.247655,
+        "away": 0.483359
+      },
+      "model_features": "erw. Tore 1.24:1.73 (Tore+xG 50/50), O2.5 57 %",
+      "market_reference": {
+        "home": 0.4113136048509021,
+        "draw": 0.2639798689739986,
+        "away": 0.3247065261750995
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Stade Rennais – AJ Auxerre",
+      "kickoff": "2026-10-11T15:15:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.551816,
+        "draw": 0.225872,
+        "away": 0.222313
+      },
+      "model_features": "erw. Tore 1.99:1.20 (Tore+xG 50/50), O2.5 62 %",
+      "market_reference": {
+        "home": 0.6783535556498911,
+        "draw": 0.1829473853410722,
+        "away": 0.13869905900903695
+      }
+    },
+    {
+      "league": "ligue1",
+      "event": "Troyes – Marseille",
+      "kickoff": "2026-10-11T18:45:00+00:00",
+      "model": "poisson-baseline",
+      "status": "PREDICTION",
+      "probabilities": {
+        "home": 0.271399,
+        "draw": 0.226678,
+        "away": 0.501923
+      },
+      "model_features": "erw. Tore 1.43:1.99 (Tore+xG 50/50), O2.5 66 %",
+      "market_reference": {
+        "home": 0.2508541670374052,
+        "draw": 0.24076881424624103,
+        "away": 0.5083770187163541
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "PSV Eindhoven – Heerenveen",
+      "kickoff": "2026-10-09T18:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.663565,
+        "draw": 0.192076,
+        "away": 0.144358
+      },
+      "model_features": "M17.11 external structural xG 2.32:1.00; fast 2.18:1.00; slow 2.46:1.00",
+      "market_reference": {
+        "home": 0.7755493932415586,
+        "draw": 0.12036350135888071,
+        "away": 0.10408710539956084
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Go Ahead Eagles – Sparta Rotterdam",
+      "kickoff": "2026-10-10T14:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.653177,
+        "draw": 0.166623,
+        "away": 0.1802
+      },
+      "model_features": "M17.11 external structural xG 2.92:1.56; fast 2.57:1.43; slow 3.32:1.70",
+      "market_reference": {
+        "home": 0.5532956086357803,
+        "draw": 0.23066731382514954,
+        "away": 0.21603707753907012
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Feyenoord Rotterdam – AZ Alkmaar",
+      "kickoff": "2026-10-10T16:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.539905,
+        "draw": 0.229116,
+        "away": 0.230979
+      },
+      "model_features": "M17.11 external structural xG 1.96:1.22; fast 1.66:1.25; slow 2.30:1.19",
+      "market_reference": {
+        "home": 0.5332533869768187,
+        "draw": 0.23977414735069133,
+        "away": 0.22697246567249027
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Fortuna Sittard – FC Twente",
+      "kickoff": "2026-10-10T18:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.037696,
+        "draw": 0.102809,
+        "away": 0.859495
+      },
+      "model_features": "M17.11 external structural xG 0.54:3.01; fast 0.54:3.01",
+      "market_reference": {
+        "home": 0.14218381325990032,
+        "draw": 0.17340131895627325,
+        "away": 0.6844148677838265
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Ajax Amsterdam – NEC Nijmegen",
+      "kickoff": "2026-10-10T19:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.735172,
+        "draw": 0.152508,
+        "away": 0.112319
+      },
+      "model_features": "M17.11 external structural xG 2.84:1.08; fast 3.10:1.01; slow 2.61:1.15",
+      "market_reference": {
+        "home": 0.7486585238666691,
+        "draw": 0.1409290325869728,
+        "away": 0.11041244354635824
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "FC Utrecht – Willem II",
+      "kickoff": "2026-10-11T10:15:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.61915,
+        "draw": 0.192108,
+        "away": 0.188742
+      },
+      "model_features": "M17.11 external structural xG 2.45:1.32; fast 1.93:1.47; slow 3.10:1.18",
+      "market_reference": {
+        "home": 0.6504273472563729,
+        "draw": 0.19164041970548798,
+        "away": 0.15793223303813933
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "PEC Zwolle – SC Cambuur",
+      "kickoff": "2026-10-11T12:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.286873,
+        "draw": 0.242245,
+        "away": 0.470882
+      },
+      "model_features": "M17.11 external structural xG 1.35:1.78; fast 1.16:1.61; slow 1.56:1.97",
+      "market_reference": {
+        "home": 0.4900476023294942,
+        "draw": 0.23436061642006265,
+        "away": 0.2755917812504435
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Telstar – ADO Den Haag",
+      "kickoff": "2026-10-11T12:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.375268,
+        "draw": 0.288523,
+        "away": 0.336209
+      },
+      "model_features": "M17.11 external structural xG 1.25:1.17; fast 1.25:1.17",
+      "market_reference": {
+        "home": 0.4757591570407405,
+        "draw": 0.2460708130854147,
+        "away": 0.27817002987384504
+      }
+    },
+    {
+      "league": "eredivisie",
+      "event": "Excelsior – FC Groningen",
+      "kickoff": "2026-10-11T14:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.530733,
+        "draw": 0.22083,
+        "away": 0.248437
+      },
+      "model_features": "M17.11 external structural xG 2.07:1.38; fast 1.70:1.17; slow 2.53:1.62",
+      "market_reference": {
+        "home": 0.3685098281460521,
+        "draw": 0.25511527743468204,
+        "away": 0.37637489441926586
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Moreirense – Gil Vicente",
+      "kickoff": "2026-10-09T17:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.197752,
+        "draw": 0.300909,
+        "away": 0.501338
+      },
+      "model_features": "M17.11 external structural xG 0.71:1.30; fast 0.47:1.64; slow 1.09:1.04",
+      "market_reference": {
+        "home": 0.2847178624535821,
+        "draw": 0.29900118461784136,
+        "away": 0.4162809529285768
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Casa Pia – Santa Clara",
+      "kickoff": "2026-10-10T14:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.070931,
+        "draw": 0.207923,
+        "away": 0.721146
+      },
+      "model_features": "M17.11 external structural xG 0.42:1.85; fast 0.60:1.76; slow 0.29:1.95",
+      "market_reference": {
+        "home": 0.20425716792253923,
+        "draw": 0.27360130532675825,
+        "away": 0.5221415267507026
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Maritimo – FC Porto",
+      "kickoff": "2026-10-10T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.086366,
+        "draw": 0.170658,
+        "away": 0.742976
+      },
+      "model_features": "M17.11 external structural xG 0.68:2.34; fast 0.82:2.12; slow 0.57:2.59",
+      "market_reference": {
+        "home": 0.09130484481013003,
+        "draw": 0.18108745244275096,
+        "away": 0.7276077027471191
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Académico de Viseu – Estoril",
+      "kickoff": "2026-10-10T19:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.515179,
+        "draw": 0.275915,
+        "away": 0.208906
+      },
+      "model_features": "M17.11 external structural xG 1.48:0.85; fast 1.38:1.29; slow 1.59:0.56",
+      "market_reference": {
+        "home": 0.41098295403339125,
+        "draw": 0.2795380250212843,
+        "away": 0.30947902094532465
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Rio Ave – C.D. Nacional",
+      "kickoff": "2026-10-11T14:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.287256,
+        "draw": 0.27437,
+        "away": 0.438374
+      },
+      "model_features": "M17.11 external structural xG 1.12:1.44; fast 1.15:1.45; slow 1.10:1.44",
+      "market_reference": {
+        "home": 0.41960106952821563,
+        "draw": 0.2877523561378006,
+        "away": 0.2926465743339841
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "Arouca – Estrela",
+      "kickoff": "2026-10-11T19:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.497468,
+        "draw": 0.223927,
+        "away": 0.278605
+      },
+      "model_features": "M17.11 external structural xG 2.02:1.48; fast 1.45:1.54; slow 2.82:1.43",
+      "market_reference": {
+        "home": 0.4625674088458298,
+        "draw": 0.2644721889834372,
+        "away": 0.2729604021707331
+      }
+    },
+    {
+      "league": "primeira",
+      "event": "FC Famalicao – Alverca",
+      "kickoff": "2026-10-12T19:15:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.464278,
+        "draw": 0.300752,
+        "away": 0.23497
+      },
+      "model_features": "M17.11 external structural xG 1.28:0.83; fast 1.19:1.07; slow 1.39:0.65",
+      "market_reference": {
+        "home": 0.5207491763060963,
+        "draw": 0.28117267382214595,
+        "away": 0.1980781498717577
+      }
+    },
+    {
+      "league": "belgium",
+      "event": "Cercle Brugge KSV – Anderlecht",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.25074,
+        "draw": 0.250012,
+        "away": 0.499248
+      },
+      "model_features": "M17.11 external structural xG 1.15:1.71; fast 1.01:1.66; slow 1.31:1.76",
+      "market_reference": {
+        "home": 0.2711379026002879,
+        "draw": 0.2513783561285583,
+        "away": 0.4774837412711539
+      }
+    },
+    {
+      "league": "belgium",
+      "event": "Racing Genk – KV Kortrijk",
+      "kickoff": "2026-10-10T18:45:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.799382,
+        "draw": 0.154799,
+        "away": 0.045819
+      },
+      "model_features": "M17.11 external structural xG 2.25:0.38; fast 2.02:0.69; slow 2.50:0.21",
+      "market_reference": {
+        "home": 0.6701892683746901,
+        "draw": 0.19940224126072975,
+        "away": 0.13040849036458024
+      }
+    },
+    {
+      "league": "belgium",
+      "event": "Standard Liege – Royal Charleroi SC",
+      "kickoff": "2026-10-11T11:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.256771,
+        "draw": 0.246089,
+        "away": 0.49714
+      },
+      "model_features": "M17.11 external structural xG 1.20:1.75; fast 1.38:1.84; slow 1.05:1.67",
+      "market_reference": {
+        "home": 0.3231348401506125,
+        "draw": 0.2729525444097819,
+        "away": 0.4039126154396058
+      }
+    },
+    {
+      "league": "belgium",
+      "event": "KVC Westerlo – Antwerp",
+      "kickoff": "2026-10-11T16:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.623347,
+        "draw": 0.189403,
+        "away": 0.18725
+      },
+      "model_features": "M17.11 external structural xG 2.49:1.33; fast 2.61:1.11; slow 2.38:1.60",
+      "market_reference": {
+        "home": 0.4530690711130728,
+        "draw": 0.23728116154838122,
+        "away": 0.3096497673385461
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Genclerbirligi – Amed SFK",
+      "kickoff": "2026-10-10T10:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.158697,
+        "draw": 0.195328,
+        "away": 0.645974
+      },
+      "model_features": "M17.11 external structural xG 1.08:2.31; fast 1.08:2.31",
+      "market_reference": {
+        "home": 0.3620038957220259,
+        "draw": 0.2523784191837758,
+        "away": 0.3856176850941983
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Alanyaspor – Erzurum BB",
+      "kickoff": "2026-10-10T13:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.68054,
+        "draw": 0.235477,
+        "away": 0.083983
+      },
+      "model_features": "M17.11 external structural xG 1.67:0.42; fast 1.24:0.52; slow 2.25:0.34",
+      "market_reference": {
+        "home": 0.477663603441437,
+        "draw": 0.2846862948534886,
+        "away": 0.23765010170507453
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Samsunspor – Trabzonspor",
+      "kickoff": "2026-10-10T13:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.401698,
+        "draw": 0.246134,
+        "away": 0.352169
+      },
+      "model_features": "M17.11 external structural xG 1.64:1.52; fast 1.59:1.33; slow 1.69:1.74",
+      "market_reference": {}
+    },
+    {
+      "league": "turkey",
+      "event": "Caykur Rizespor – Fenerbahce",
+      "kickoff": "2026-10-10T16:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.236855,
+        "draw": 0.233524,
+        "away": 0.529622
+      },
+      "model_features": "M17.11 external structural xG 1.21:1.90; fast 1.08:1.59; slow 1.37:2.28",
+      "market_reference": {
+        "home": 0.2094311902744627,
+        "draw": 0.2293826156325031,
+        "away": 0.5611861940930346
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Konyaspor – Istanbul Basaksehir",
+      "kickoff": "2026-10-11T10:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.447196,
+        "draw": 0.275164,
+        "away": 0.27764
+      },
+      "model_features": "M17.11 external structural xG 1.45:1.09; fast 1.45:1.09",
+      "market_reference": {
+        "home": 0.3547005442957977,
+        "draw": 0.2679222984019776,
+        "away": 0.3773771573022248
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Gaziantep FK – Çorum FK",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.41353,
+        "draw": 0.261999,
+        "away": 0.324471
+      },
+      "model_features": "M17.11 external structural xG 1.51:1.31; fast 1.44:0.87; slow 1.58:1.98",
+      "market_reference": {
+        "home": 0.3603388868094393,
+        "draw": 0.2793222263811216,
+        "away": 0.3603388868094393
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Besiktas – Kocaelispor",
+      "kickoff": "2026-10-11T16:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.713482,
+        "draw": 0.215622,
+        "away": 0.070896
+      },
+      "model_features": "M17.11 external structural xG 1.79:0.40; fast 2.39:0.31; slow 1.33:0.50",
+      "market_reference": {
+        "home": 0.7668789510297568,
+        "draw": 0.15085669530770315,
+        "away": 0.0822643536625402
+      }
+    },
+    {
+      "league": "turkey",
+      "event": "Eyupspor – Goztepe",
+      "kickoff": "2026-10-12T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.380729,
+        "draw": 0.222873,
+        "away": 0.396398
+      },
+      "model_features": "M17.11 external structural xG 1.85:1.89; fast 1.50:1.96; slow 2.28:1.82",
+      "market_reference": {}
+    },
+    {
+      "league": "scotland",
+      "event": "Dundee United – Hibernian",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.338689,
+        "draw": 0.278543,
+        "away": 0.382768
+      },
+      "model_features": "M17.11 external structural xG 1.23:1.33; fast 1.40:1.56; slow 1.08:1.13",
+      "market_reference": {
+        "home": 0.3517426855268997,
+        "draw": 0.2570888560890379,
+        "away": 0.3911684583840627
+      }
+    },
+    {
+      "league": "scotland",
+      "event": "Falkirk – Dundee",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.234574,
+        "draw": 0.272883,
+        "away": 0.492543
+      },
+      "model_features": "M17.11 external structural xG 0.96:1.50; fast 1.09:1.13; slow 0.84:1.99",
+      "market_reference": {
+        "home": 0.46541857868003333,
+        "draw": 0.26729071065998333,
+        "away": 0.26729071065998333
+      }
+    },
+    {
+      "league": "scotland",
+      "event": "Rangers – Kilmarnock",
+      "kickoff": "2026-10-10T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.75412,
+        "draw": 0.157904,
+        "away": 0.087976
+      },
+      "model_features": "M17.11 external structural xG 2.55:0.78; fast 3.30:0.55; slow 1.98:1.10",
+      "market_reference": {
+        "home": 0.8583788473146589,
+        "draw": 0.09272662444767109,
+        "away": 0.04889452823767027
+      }
+    },
+    {
+      "league": "scotland",
+      "event": "Motherwell – Celtic",
+      "kickoff": "2026-10-11T11:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.143434,
+        "draw": 0.197752,
+        "away": 0.658815
+      },
+      "model_features": "M17.11 external structural xG 0.95:2.23; fast 1.12:2.32; slow 0.81:2.15",
+      "market_reference": {
+        "home": 0.197574469082025,
+        "draw": 0.2024200432211442,
+        "away": 0.6000054876968308
+      }
+    },
+    {
+      "league": "scotland",
+      "event": "Aberdeen – St Johnstone",
+      "kickoff": "2026-10-11T13:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.340606,
+        "draw": 0.302998,
+        "away": 0.356396
+      },
+      "model_features": "M17.11 external structural xG 1.09:1.13; fast 0.98:1.22; slow 1.22:1.04",
+      "market_reference": {
+        "home": 0.43266863038145015,
+        "draw": 0.2767632809842102,
+        "away": 0.2905680886343398
+      }
+    },
+    {
+      "league": "greece",
+      "event": "Asteras Tripoli – Atromitos",
+      "kickoff": "2026-10-10T16:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.454897,
+        "draw": 0.27216,
+        "away": 0.272943
+      },
+      "model_features": "M17.11 external structural xG 1.48:1.09; fast 1.35:0.76; slow 1.62:1.56",
+      "market_reference": {
+        "home": 0.4080158644217624,
+        "draw": 0.2908538738387119,
+        "away": 0.30113026173952595
+      }
+    },
+    {
+      "league": "greece",
+      "event": "Kifisia – Panetolikos",
+      "kickoff": "2026-10-11T14:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.47364,
+        "draw": 0.291035,
+        "away": 0.235325
+      },
+      "model_features": "M17.11 external structural xG 1.35:0.87; fast 1.57:0.64; slow 1.17:1.19",
+      "market_reference": {
+        "home": 0.5104220496102201,
+        "draw": 0.26420717344003614,
+        "away": 0.2253707769497441
+      }
+    },
+    {
+      "league": "greece",
+      "event": "Aris – Volos NFC",
+      "kickoff": "2026-10-11T16:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.739323,
+        "draw": 0.151383,
+        "away": 0.109294
+      },
+      "model_features": "M17.11 external structural xG 2.84:1.05; fast 1.99:1.12; slow 4.05:0.99",
+      "market_reference": {
+        "home": 0.6367660953649028,
+        "draw": 0.21472818344733102,
+        "away": 0.14850572118776623
+      }
+    },
+    {
+      "league": "greece",
+      "event": "PAOK – Kalamata",
+      "kickoff": "2026-10-12T15:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.702407,
+        "draw": 0.170848,
+        "away": 0.126745
+      },
+      "model_features": "M17.11 external structural xG 2.58:1.04; fast 2.43:0.97; slow 2.74:1.10",
+      "market_reference": {
+        "home": 0.8264932405796005,
+        "draw": 0.1086354696099805,
+        "away": 0.0648712898104192
+      }
+    },
+    {
+      "league": "austria",
+      "event": "Grazer AK – RB Salzburg",
+      "kickoff": "2026-10-10T15:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.134912,
+        "draw": 0.184695,
+        "away": 0.680393
+      },
+      "model_features": "M17.11 external structural xG 0.99:2.39; fast 0.80:2.41; slow 1.22:2.37",
+      "market_reference": {
+        "home": 0.1593867655884624,
+        "draw": 0.18879470642545393,
+        "away": 0.6518185279860836
+      }
+    },
+    {
+      "league": "austria",
+      "event": "Austria Vienna – SK Sturm Graz",
+      "kickoff": "2026-10-10T17:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.225957,
+        "draw": 0.285935,
+        "away": 0.488108
+      },
+      "model_features": "M17.11 external structural xG 0.86:1.40; fast 0.77:1.30; slow 0.97:1.50",
+      "market_reference": {
+        "home": 0.28875713270656433,
+        "draw": 0.2584591740908937,
+        "away": 0.45278369320254214
+      }
+    },
+    {
+      "league": "austria",
+      "event": "SC Rheindorf Altach – Wolfsberger",
+      "kickoff": "2026-10-11T12:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.432747,
+        "draw": 0.277193,
+        "away": 0.29006
+      },
+      "model_features": "M17.11 external structural xG 1.41:1.11; fast 1.76:0.78; slow 1.14:1.58",
+      "market_reference": {
+        "home": 0.47725032496743197,
+        "draw": 0.24752860601208734,
+        "away": 0.27522106902048055
+      }
+    },
+    {
+      "league": "austria",
+      "event": "TSV Hartberg – Austria Lustenau",
+      "kickoff": "2026-10-11T12:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.404066,
+        "draw": 0.265788,
+        "away": 0.330146
+      },
+      "model_features": "M17.11 external structural xG 1.46:1.30; fast 1.12:1.24; slow 1.91:1.36",
+      "market_reference": {
+        "home": 0.45407276137314806,
+        "draw": 0.2558802615505734,
+        "away": 0.29004697707627874
+      }
+    },
+    {
+      "league": "austria",
+      "event": "LASK Linz – Rapid Vienna",
+      "kickoff": "2026-10-11T15:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.642055,
+        "draw": 0.199001,
+        "away": 0.158944
+      },
+      "model_features": "M17.11 external structural xG 2.26:1.05; fast 1.67:0.89; slow 3.07:1.24",
+      "market_reference": {
+        "home": 0.5321229392154432,
+        "draw": 0.22583928247532115,
+        "away": 0.24203777830923603
+      }
+    },
+    {
+      "league": "sweden",
+      "event": "IFK Göteborg – Västerås SK",
+      "kickoff": "2026-10-09T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.59535,
+        "draw": 0.214818,
+        "away": 0.189833
+      },
+      "model_features": "M17.11 external structural xG 2.11:1.12; fast 2.11:1.12",
+      "market_reference": {
+        "home": 0.5718646349186555,
+        "draw": 0.21675093343510382,
+        "away": 0.21138443164624082
+      }
+    },
+    {
+      "league": "sweden",
+      "event": "GAIS – IK Sirius",
+      "kickoff": "2026-10-10T13:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.351478,
+        "draw": 0.257085,
+        "away": 0.391437
+      },
+      "model_features": "M17.11 external structural xG 1.42:1.51; fast 1.42:1.51",
+      "market_reference": {
+        "home": 0.38601662062330644,
+        "draw": 0.27254194350875094,
+        "away": 0.34144143586794284
+      }
+    },
+    {
+      "league": "sweden",
+      "event": "Mjällby AIF – Degerfors IF",
+      "kickoff": "2026-10-10T15:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.481822,
+        "draw": 0.249614,
+        "away": 0.268564
+      },
+      "model_features": "M17.11 external structural xG 1.71:1.22; fast 1.71:1.22",
+      "market_reference": {
+        "home": 0.5110124096422681,
+        "draw": 0.2568168218420332,
+        "away": 0.232170768515699
+      }
+    },
+    {
+      "league": "sweden",
+      "event": "BK Häcken – Örgryte IS",
+      "kickoff": "2026-10-11T14:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.677971,
+        "draw": 0.189581,
+        "away": 0.132448
+      },
+      "model_features": "M17.11 external structural xG 2.31:0.93; fast 2.31:0.93",
+      "market_reference": {
+        "home": 0.735804950093847,
+        "draw": 0.16209316999802845,
+        "away": 0.1021018799081247
+      }
+    },
+    {
+      "league": "sweden",
+      "event": "Malmö FF – Kalmar FF",
+      "kickoff": "2026-10-12T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.478892,
+        "draw": 0.257839,
+        "away": 0.263269
+      },
+      "model_features": "M17.11 external structural xG 1.62:1.15; fast 1.62:1.15",
+      "market_reference": {
+        "home": 0.5474174545937899,
+        "draw": 0.23099145814819638,
+        "away": 0.22159108725801396
+      }
+    },
+    {
+      "league": "norway",
+      "event": "SK Brann – Viking FK",
+      "kickoff": "2026-10-09T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.237698,
+        "draw": 0.22481,
+        "away": 0.537492
+      },
+      "model_features": "M17.11 external structural xG 1.29:2.01; fast 1.29:2.01",
+      "market_reference": {
+        "home": 0.30185566437681804,
+        "draw": 0.2304644447062844,
+        "away": 0.46767989091689793
+      }
+    },
+    {
+      "league": "norway",
+      "event": "Rosenborg – Sandefjord",
+      "kickoff": "2026-10-10T16:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.554448,
+        "draw": 0.235822,
+        "away": 0.20973
+      },
+      "model_features": "M17.11 external structural xG 1.87:1.07; fast 1.87:1.07",
+      "market_reference": {
+        "home": 0.7134193274944861,
+        "draw": 0.1562855466976165,
+        "away": 0.13029512580789757
+      }
+    },
+    {
+      "league": "norway",
+      "event": "Fredrikstad – Tromso",
+      "kickoff": "2026-10-11T12:30:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.227967,
+        "draw": 0.253196,
+        "away": 0.518837
+      },
+      "model_features": "M17.11 external structural xG 1.04:1.68; fast 1.04:1.68",
+      "market_reference": {
+        "home": 0.33267178751138826,
+        "draw": 0.26613681356655366,
+        "away": 0.4011913989220582
+      }
+    },
+    {
+      "league": "norway",
+      "event": "Aalesund – Sarpsborg FK",
+      "kickoff": "2026-10-11T15:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.294656,
+        "draw": 0.233555,
+        "away": 0.471789
+      },
+      "model_features": "M17.11 external structural xG 1.45:1.88; fast 1.45:1.88",
+      "market_reference": {
+        "home": 0.36941979066247876,
+        "draw": 0.24509934530012426,
+        "away": 0.3854808640373973
+      }
+    },
+    {
+      "league": "norway",
+      "event": "KFUM Oslo – Vålerenga",
+      "kickoff": "2026-10-12T17:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.295556,
+        "draw": 0.260908,
+        "away": 0.443536
+      },
+      "model_features": "M17.11 external structural xG 1.23:1.56; fast 1.23:1.56",
+      "market_reference": {
+        "home": 0.33779611708452795,
+        "draw": 0.2530239673802302,
+        "away": 0.4091799155352422
+      }
+    },
+    {
+      "league": "denmark",
+      "event": "Randers FC – Viborg FF",
+      "kickoff": "2026-10-11T12:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.212085,
+        "draw": 0.254281,
+        "away": 0.533634
+      },
+      "model_features": "M17.11 external structural xG 0.97:1.67; fast 0.97:1.67",
+      "market_reference": {
+        "home": 0.29004697707627874,
+        "draw": 0.2558802615505734,
+        "away": 0.45407276137314806
+      }
+    },
+    {
+      "league": "denmark",
+      "event": "Silkeborg IF – AC Horsens",
+      "kickoff": "2026-10-11T12:00:00+00:00",
+      "model": "m17.11-external-shadow",
+      "status": "PREDICTION_SHADOW",
+      "probabilities": {
+        "home": 0.41162,
+        "draw": 0.278022,
+        "away": 0.310358
+      },
+      "model_features": "M17.11 external structural xG 1.38:1.17; fast 1.38:1.17",
+      "market_reference": {
+        "home": 0.44064985952989527,
+        "draw": 0.2615317597540312,
+        "away": 0.29781838071607375
+      }
+    }
+  ],
+  "issues": [
+    "Championship: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Sheffield United / Lincoln' (Sheffield United – Lincoln City)",
+    "La Liga: Team nicht zugeordnet (Real Sociedad – Deportivo)",
+    "Ligue 1: Team nicht zugeordnet (Lorient – Paris FC)",
+    "Ligue 1: Team nicht zugeordnet (Paris Saint-Germain – Le Mans)",
+    "Primeira Liga: Braga – Sporting CP NO_MODEL / INSUFFICIENT_SIGNALS – nur 1 belastbares Struktursignal",
+    "Primeira Liga: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Benfica / Guimaraes' (Benfica – Vitória de Guimaraes)",
+    "Belgian Pro League: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Waasland-Beveren / Lommel SK' (Waasland-Beveren – Lommel SK)",
+    "Belgian Pro League: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: RAAL La Louviere / Club Brugge' (RAAL La Louvière – Club Brugge)",
+    "Belgian Pro League: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Zulte-Waregem / KAA Gent' (Zulte-Waregem – KAA Gent)",
+    "Belgian Pro League: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Union St.-Gilloise / OH Leuven' (Union St.-Gilloise – OH Leuven)",
+    "Belgian Pro League: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Mechelen / Sint-Truidense' (KV Mechelen – Sint-Truidense)",
+    "Süper Lig: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Galatasaray / Kasimpasa' (Galatasaray – Kasimpasa)",
+    "Scottish Premiership: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Hearts / St Mirren' (Heart of Midlothian – St Mirren)",
+    "Super League Greece: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: AEK Athens / OFI Crete' (AEK Athens – OFI Crete)",
+    "Super League Greece: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Iraklis / Levadiakos' (Iraklis – Levadiakos)",
+    "Super League Greece: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Olympiacos / Panathinaikos' (Olympiacos – Panathinaikos)",
+    "Admiral Bundesliga (AT): NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Tirol / Ried' (WSG Swarovski Tirol – SV Josko Ried)",
+    "Allsvenskan: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: AIK / IF Brommapojkarna' (AIK – IF Brommapojkarna)",
+    "Allsvenskan: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Hammarby IF / Djurgården' (Hammarby IF – Djurgården)",
+    "Allsvenskan: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: IF Elfsborg / Halmstads BK' (IF Elfsborg – Halmstads BK)",
+    "Eliteserien: Bodo/Glimt – Kristiansund BK NO_MODEL / INSUFFICIENT_SIGNALS – nur 1 belastbares Struktursignal",
+    "Eliteserien: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: IK Start / Hamarkameratene' (IK Start – Hamarkameratene)",
+    "Eliteserien: Lillestrom – Molde NO_MODEL / INSUFFICIENT_SIGNALS – nur 1 belastbares Struktursignal",
+    "Danish Superliga: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: FC Nordsjælland / Odense Boldklub' (FC Nordsjælland – Odense Boldklub)",
+    "Danish Superliga: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: Brøndby IF / Lyngby Boldklub' (Brøndby IF – Lyngby Boldklub)",
+    "Danish Superliga: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: FC Midtjylland / F.C. København' (FC Midtjylland – F.C. København)",
+    "Danish Superliga: NO_MODEL / TEAM_MATCH: 'xG-Team nicht zugeordnet: AGF / Sønderjyske Fodbold' (AGF – Sønderjyske Fodbold)"
+  ],
+  "notes": [
+    "Bundesliga: SoccerSTATS-Kontext nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/latest.asp?league=germany: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-EKyjxTL2yBL5Ehz8VtZ95p&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "2. Bundesliga: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=germany2: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-OsMMklFLHsxRqqnmWcN504&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "2. Bundesliga: M17.11 external shadow aktiv – 9/9 Spiele modelliert",
+    "Premier League: SoccerSTATS-Kontext nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/latest.asp?league=england: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-yMO7pYJGgRdT8PCOb4vEV0&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Championship: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=england2: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-Pt5j37PxXpCy2S84Vl8heK&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Championship: M17.11 external shadow aktiv – 19/20 Spiele modelliert",
+    "La Liga: SoccerSTATS-Kontext nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/latest.asp?league=spain: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-dpy6dwRPWkNqpK6ULu4E1S&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Serie A: SoccerSTATS-Kontext nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/latest.asp?league=italy: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-LpssymV4HHAh7iosmZs0HX&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Ligue 1: SoccerSTATS-Kontext nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/latest.asp?league=france: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-yy4tme1Wuhdl9OgTPgqmDd&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Eredivisie: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=netherlands: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-XNv5kTQW94fd94AliYOQyn&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Eredivisie: M17.11 external shadow aktiv – 9/9 Spiele modelliert",
+    "Primeira Liga: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=portugal: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-Zyk2GrGH8y2XlGzuiLljse&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Primeira Liga: M17.11 external shadow aktiv – 7/9 Spiele modelliert",
+    "Belgian Pro League: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=belgium: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-9lCbnr03l7DZUymFUQX3Zk&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Belgian Pro League: M17.11 external shadow aktiv – 4/9 Spiele modelliert",
+    "Süper Lig: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=turkey: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-ZMYmTv6FssuDL38FZcNxnH&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Süper Lig: M17.11 external shadow aktiv – 8/9 Spiele modelliert",
+    "Scottish Premiership: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=scotland: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-fOKWgYiWB3vhkWojHGTjMx&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Scottish Premiership: M17.11 external shadow aktiv – 5/6 Spiele modelliert",
+    "Super League Greece: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=greece: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-LwEP2U8gbiUKLR21CSlWPu&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Super League Greece: OddAlerts Crosscheck nicht verfügbar (OddAlerts: Liga G1 nicht verifiziert)",
+    "Super League Greece: M17.11 external shadow aktiv – 4/7 Spiele modelliert",
+    "Admiral Bundesliga (AT): SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=austria: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-3CRD18YFVXY3MUXlTC8sD9&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Admiral Bundesliga (AT): M17.11 external shadow aktiv – 5/6 Spiele modelliert",
+    "Swiss Super League: keine Spiele bis 13.10.",
+    "Allsvenskan: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=sweden: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-ISvWtyv0cV0Ye2nG1hLpeR&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Allsvenskan: M17.11 external shadow aktiv – 5/8 Spiele modelliert",
+    "Eliteserien: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=norway: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-jntFBoerqUyyRGP5AN4cjC&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Eliteserien: M17.11 external shadow aktiv – 5/8 Spiele modelliert",
+    "Danish Superliga: SoccerSTATS Venue nicht verfügbar (https://r.jina.ai/https://www.soccerstats.com/homeaway.asp?league=denmark: HTTP 403 · <!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-0Ov7LEvyhRCt5UdwAlwrzR&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-s)",
+    "Danish Superliga: M17.11 external shadow aktiv – 2/6 Spiele modelliert",
+    "Ekstraklasa: keine Spiele bis 13.10."
+  ]
+}
