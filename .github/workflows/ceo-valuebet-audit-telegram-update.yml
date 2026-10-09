@@ -1,0 +1,62 @@
+name: ceo-valuebet-audit-telegram-update
+on:
+  push:
+    paths:
+      - ".github/ceo-valuebet-update-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ceo-valuebet-update-20261009
+  cancel-in-progress: false
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send once to existing Telegram channel
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from oddswatch import telegram
+          out = Path("reports/2026-10-09-ceo-valuebet-audit-update.txt")
+          if out.exists():
+              print("Duplicate prevented: report already committed")
+          else:
+              text = """🎯 CEO VALUEBET-AUDIT | 09.10.2026 12:01 MESZ
+
+50 Bet365-BACK-Kandidaten geprüft. Modell-Audit:
+✅ 2 positiver Modell-EV (nur WATCH)
+❌ 2 widerlegt
+⚪ 5 NO_MODEL, 41 NO_MATCH
+
+🏒 KooKoo – Jukurit: KooKoo 2-Wege inkl. OT @1,67 | Modell-Fair 1,44 | EV +16,2 %. Qualität LOW/Trainerwechsel → WATCH, kein PLAY.
+
+🏒 Litvínov – Olomouc: Over 1,5 Tore 1. Drittel @2,35 | Fair 2,21 | EV +6,2 %. Bereits am 08.10. gemeldet; keine erneute PLAY-Empfehlung.
+
+❌ Pelicans – Kärpät:
+Pelicans Sieg inkl. OT @1,80 | Fair 1,81 | EV −0,4 % → PASS.
+Pelicans Europäisches Handicap −1 @3,20 | Fair 3,50 | EV −8,6 % → PASS.
+
+Die Quotes stammen aus der Valuebet-API, nicht aus bestätigter Orbit-Ausführung. Positive Modell-EV sind keine CLV-/OOS-Freigabe.
+
+CEO: 0 PLAY | 0 EH. 18+ · Keine Gewinne garantiert."""
+              result = telegram.send(text)
+              if not result["sent"]:
+                  raise SystemExit(f"Telegram NOT SENT: {result['error']}")
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_text("message_ids: " + str(result["message_ids"]) + "\n\n" + text + "\n", encoding="utf-8")
+              print("Telegram audit update sent; message_ids:", result["message_ids"])
+          PY
+      - name: Persist delivered update for deduplication
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add reports/2026-10-09-ceo-valuebet-audit-update.txt
+          git diff --cached --quiet || git commit -m "CEO Valuebet audit correction confirmed Telegram"
+          git pull --rebase --autostash
+          git push
