@@ -16,6 +16,21 @@ from .. import fetch
 
 BASE = "https://api.apostasseguras.com/request"
 DEFAULT_SPORTS = ("Football", "Hockey", "Basketball", "American football")
+
+
+def canonical_sport(value: str) -> str:
+    raw = str(value or "").strip()
+    key = raw.replace(" ", "").replace("-", "").casefold()
+    mapping = {
+        "football": "Football",
+        "soccer": "Football",
+        "hockey": "Hockey",
+        "icehockey": "Hockey",
+        "basketball": "Basketball",
+        "americanfootball": "American football",
+        "nfl": "American football",
+    }
+    return mapping.get(key, raw)
 DEFAULT_BOOKS = ("bet365", "betfair", "orbitxch")
 
 
@@ -95,9 +110,7 @@ def _selection(row: dict) -> tuple[str, str]:
     period = str(typ.get("period") or typ.get("periode") or "regularTime").strip()
     base = str(typ.get("base") or "overall").strip()
     teams = [str(x) for x in (row.get("teams") or [])]
-    sport = str(row.get("sport_id") or "")
-    if sport.replace(" ", "").casefold() == "americanfootball":
-        sport = "American football"
+    sport = canonical_sport(row.get("sport_id") or "")
 
     t1 = teams[0] if len(teams) > 0 else "Team 1"
     t2 = teams[1] if len(teams) > 1 else "Team 2"
@@ -202,7 +215,7 @@ def parse(data) -> list[SurebetValue]:
         odds = _num(row.get("value"))
         if not odds or odds <= 1.0:
             continue
-        sport = str(row.get("sport_id") or "")
+        sport = canonical_sport(row.get("sport_id") or "")
         if sport not in DEFAULT_SPORTS:
             continue
         teams_raw = row.get("teams")
