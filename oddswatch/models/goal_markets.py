@@ -125,3 +125,75 @@ def goal_markets(
         matrix = [[p / norm for p in row] for row in matrix]
     markets = markets_from_matrix(matrix, expected_home, expected_away)
     return matrix, markets
+
+
+def quote_market(
+    expected_home: float,
+    expected_away: float,
+    *,
+    market: str,
+    selection: str,
+    line: float | None = None,
+    odds: float | None = None,
+    rho: float = -0.05,
+    draw_factor: float = 1.0,
+) -> dict:
+    """Pre-match fair from one joint distribution, never a PLAY authorization.
+
+    For push/half-settlement markets the quoted 1/fair odds is not the
+    chance of outright winning. Publish the separate fractional win/loss
+    probabilities, not a misleading binary success rate.
+    """
+    matrix, mk = goal_markets(expected_home, expected_away,
+                              rho=rho, draw_factor=draw_factor)
+    m = market.casefold().strip()
+    s = selection.casefold().strip()
+    if m in {"1x2", "moneyline", "regulation"}:
+        prob = {"home":mk["1"], "draw":mk["X"], "away":mk["2"],
+                "1":mk["1"], "x":mk["X"], "2":mk["2"]}.get(s)
+        if prob is None:
+            raise ValueError("unknown 1X2 selection")
+        price = AsianPrice(prob, 1.0-prob, 0.0)
+    elif m in {"btts", "both_teams_to_score"}:
+        prob = {"yes":mk["BTTS_Y"], "no":mk["BTTS_N"]}.get(s)
+        if prob is None:
+            raise ValueError("unknown BTTS selection")
+        price = AsianPrice(prob, 1.0-prob, 0.0)
+    elif m in {"double_chance", "dc"}:
+        prob = {"1x":mk["1X"], "x2":mk["X2"],
+                "12":mk["1"]+mk["2"]}.get(s)
+        if prob is None:
+            raise ValueError("unknown double chance selection")
+        price = AsianPrice(prob, 1.0-prob, 0.0)
+    elif m in {"dnb", "draw_no_bet"}:
+        if s not in {"home", "away"}:
+            raise ValueError("unknown DNB selection")
+        price = asian_probability(
+            matrix, kind="asian_handicap", selection=s.upper(), line=0.0
+        )
+    elif m in {"total", "over_under", "ou"}:
+        if line is None:
+            raise ValueError("O/U requires a goal line")
+        price = asian_probability(
+            matrix, kind="total", selection=s.upper(), line=float(line)
+        )
+    elif m in {"asian_handicap", "ah"}:
+        if line is None:
+            raise ValueError("AH requires a handicap for selected side")
+        price = asian_probability(
+            matrix, kind="asian_handicap", selection=s.upper(), line=float(line)
+        )
+    else:
+        raise ValueError("unsupported full-time soccer market")
+    return {
+        "market":m, "selection":s, "line":line,
+        "fair_odds":price.fair_odds,
+        "win_fraction":price.win_fraction,
+        "lose_fraction":price.lose_fraction,
+        "push_fraction":price.push_fraction,
+        "ev_at_market_odds":price.ev(odds) if odds is not None else None,
+        "expected_home_goals":expected_home,
+        "expected_away_goals":expected_away,
+        "release_eligible":False,  # validated strategy gate not provided
+        "model_status":"SHADOW_UNVALIDATED",
+    }
