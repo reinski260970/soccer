@@ -14,7 +14,7 @@ import json
 import os
 from pathlib import Path
 
-from oddswatch import m17_17_research as historic
+from oddswatch import m17_17_research as historic, pricing
 from oddswatch.m14_research import load_league, train_proxy
 from oddswatch.m17_1_research import load_real_shots
 from oddswatch.models.learned_goals import (
@@ -25,6 +25,8 @@ from scripts.mongo_goal_markets_backtest import (
     _market_prices,
     _one_x2_market_test,
     _total_market_test,
+    _matrix,
+    _outcomes,
 )
 from scripts.mongo_m17_17_backtest import LEAGUE_GROUPS
 
@@ -89,6 +91,60 @@ def _early_choose(data, score_map):
     return best
 
 
+def historical_1x2_entry_test(rows, score_map, cfg):
+    """Fixed 3%-model-EV historical opening entry, never train on prices.
+
+    Three-way CLV is entry price multiplied by no-vig closing probability - 1.
+    Missing opening/closing quotes exclude the fixture, no made-up quotes.
+    """
+    games = bets = positive = 0
+    roi = clv = 0.0
+    by_side = {"home":0, "draw":0, "away":0}
+    for row in rows:
+        score = score_map.get((row["date"],row["home"],row["away"]))
+        opening,closing = row.get("op"),row.get("cl")
+        if score is None or not opening or not closing:
+            continue
+        if len(opening)!=3 or len(closing)!=3:
+            continue
+        if any(
+            not isinstance(x,(float,int)) or not 1.01 < x < 75
+            for x in list(opening)+list(closing)
+        ):
+            continue
+        try:
+            p_close = pricing.devig(list(closing))
+        except (TypeError,ValueError,ZeroDivisionError):
+            continue
+        if any(p<=0 for p in p_close):
+            continue
+        _, prices = _matrix(row,cfg)
+        probs = (prices["1"],prices["X"],prices["2"])
+        result = _outcomes(score)[0]
+        games += 1
+        for k, side in enumerate(("home","draw","away")):
+            ev = probs[k]*opening[k]-1.0
+            if ev < 0.03 or opening[k] > 3.0:
+                continue
+            bets += 1
+            by_side[side] += 1
+            shift = opening[k]*p_close[k]-1.0
+            clv += shift
+            positive += int(shift>0)
+            roi += opening[k]-1 if k==result else -1
+    return {
+        "paired_open_close_games":games,
+        "retrospective_bets":bets,
+        "market_sides":by_side,
+        "clv":clv/bets if bets else None,
+        "positive_clv_rate":positive/bets if bets else None,
+        "roi":roi/bets if bets else None,
+        "entry_rule":"fixed +3% model EV, Pinnacle opening <= 3.0",
+        "release_eligible":False,
+        "note":"Retrospective 2024 research, not executable forward value",
+    }
+
+
 def evaluate_league(code,proxy):
     matches,odds_rows,coverage=load_league(code,proxy,2017,2025)
     shot_map=load_real_shots(code,2017,2025)
@@ -131,6 +187,8 @@ def evaluate_league(code,proxy):
     odds,odds_cov=_market_prices(code,start_year=2024,end_year=2024)
     market_total=_total_market_test(latest,cfg,score_map,odds)
     result["market_2024_1x2"]=market_1x2
+    result["retrospective_1x2_clv"]=historical_1x2_entry_test(
+        latest,score_map,cfg)
     result["market_2024_total25"]=market_total
     result["market_2024_total_coverage"]=odds_cov
     result["market_2024_btts"]="NO_HISTORICAL_PAIRED_QUOTES"
@@ -183,7 +241,9 @@ def main():
             "n":diag.get("n"),"goal_nll":(diag.get("intensity") or {}).get("goal_nll"),
             "BTTS_ll":((diag.get("scoring") or {}).get("logloss") or {}).get("BTTS"),
             "selected":(outcome.get("early_selected") or {}).get("alpha"),
-            "1x2":x2,"O2.5":ou,"error":outcome.get("error"),
+            "1x2":x2,
+            "1x2_entries":outcome.get("retrospective_1x2_clv"),
+            "O2.5":ou,"error":outcome.get("error"),
         },ensure_ascii=False),flush=True)
     path=Path(f"reports/mongo_learned_goals_{args.group}.json")
     path.parent.mkdir(parents=True,exist_ok=True)
