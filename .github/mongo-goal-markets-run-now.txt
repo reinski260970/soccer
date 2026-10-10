@@ -1,1 +1,1 @@
-2026-10-10 research: calibrated multi-market 1X2/OU/BTTS/AH from Soccer Mongo. No PLAY unless real future validation.
+2026-10-10 rerun after strict historical-score conversion fix and tests; full 13-league O/U BTTS Asian research only; no PLAY.
