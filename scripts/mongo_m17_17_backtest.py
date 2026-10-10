@@ -39,16 +39,27 @@ def main() -> None:
         print(line, flush=True)
     result = json.loads(out.read_text(encoding="utf-8"))
     good = 0
+    print("xG proxy train seasons:", result.get("_proxy", {}).get("train_seasons"), flush=True)
+    print("Chronology:", result.get("_temporal_integrity"), flush=True)
     print("\n=== LIGAERGEBNISSE ===", flush=True)
     for name, row in result["leagues"].items():
         stress = row.get("retrospective_stress_2024") or {}
         ll = row.get("retrospective_stress_logloss_2024") or {}
         validation = row.get("entry_validation_2023") or {}
+        coverage = row.get("coverage") or {}
+        diag = row.get("probability_diagnostics") or {}
         if row.get("samples", 0) and ll.get("model", 0) < 8:
             good += 1
         print(json.dumps({
             "league": name,
             "samples": row.get("samples"),
+            "proxy_coverage": coverage.get("proxy_coverage"),
+            "odds_rows": coverage.get("odds_rows"),
+            "canonical_score_matched": coverage.get("canonical_team_score_fixed"),
+            "2024_model_oos_games": (diag.get("2024") or {}).get("n"),
+            "2024_calibration_gaps": (diag.get("2024") or {}).get("gap_pred_minus_actual"),
+            "2025_diagnostic_games": (diag.get("2025") or {}).get("n"),
+            "2023_gate_survived": row.get("gate_survived_2023"),
             "2023_bets": validation.get("bets"),
             "2023_clv": validation.get("clv"),
             "2024_bets": stress.get("bets"),
