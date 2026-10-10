@@ -132,7 +132,7 @@ def _odds_pair(doc, kind):
 def _market_prices(code, start_year=2017, end_year=2025):
     """Read-only O/U 2.5 odds; unambiguous (season, home, away) joins only."""
     from pymongo import MongoClient, timeout
-    uri = os.getenv("MONGO_SOCCER") or os.getenv("MONGODB_URI")
+    uri = (os.getenv("MONGO_SOCCER") or os.getenv("MONGODB_URI") or "").strip()
     if not uri:
         raise RuntimeError("MONGO_SOCCER/MONGODB_URI required")
     fields = ("P>2.5", "P<2.5", "PC>2.5", "PC<2.5",
