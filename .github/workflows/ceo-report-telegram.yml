@@ -8,9 +8,15 @@ on:
     paths:
       - ".github/ceo-run-now.txt"
   schedule:
-    # Europe/Vienna: 08/12/19 Uhr. Je zwei UTC-Zeiten decken CEST/CET ab;
-    # der Gate-Schritt lässt pro lokaler Slot nur genau einen Lauf durch.
-    - cron: "7 6,7,10,11,17,18 * * *"
+    # Separate cron expressions are intentional: github.event.schedule then
+    # identifies the intended CEO slot even when GitHub starts a run hours late.
+    # Paired UTC hours cover CEST/CET; the report file deduplicates the pair.
+    - cron: "7 6 * * *"
+    - cron: "7 7 * * *"
+    - cron: "7 10 * * *"
+    - cron: "7 11 * * *"
+    - cron: "7 17 * * *"
+    - cron: "7 18 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -55,12 +61,14 @@ jobs:
             exit 0
           fi
 
-          case "$h" in
-            8|9) slot="08" ;;
-            12|13) slot="12" ;;
-            19|20) slot="19" ;;
+          # For scheduled runs use the cron expression that triggered the job,
+          # not the actual runner start hour. GitHub schedules can be delayed.
+          case "${{ github.event.schedule }}" in
+            "7 6 * * *"|"7 7 * * *") slot="08" ;;
+            "7 10 * * *"|"7 11 * * *") slot="12" ;;
+            "7 17 * * *"|"7 18 * * *") slot="19" ;;
             *)
-              echo "Außerhalb CEO-Zeitfenster"
+              echo "Unbekannter CEO-Schedule: ${{ github.event.schedule }}"
               echo "run=no" >> "$GITHUB_OUTPUT"
               exit 0
               ;;
