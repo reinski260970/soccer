@@ -1,5 +1,1 @@
-trigger CEO non-understat structural 2026-10-08T04:43:01.033Z
-
-trigger 2026-10-08 CEO surebet linkage test
-trigger 2026-10-08 CEO surebet retry 2
-trigger CEO telegram + independent valuebet audit 2026-10-09 local-noon-slot
+trigger ceo telegram with audited valuebets 2026-10-10T08:23+02:00
