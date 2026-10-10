@@ -1,0 +1,34 @@
+name: soccer-mongo-m17-backtest
+on:
+  push:
+    paths:
+      - ".github/mongo-m17-backtest-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["germany", "top5-other", "europe"]
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Historical walk-forward M17.17 from read-only Soccer Mongo
+        run: python -m scripts.mongo_m17_17_backtest --group "${{ matrix.group }}"
+      - name: Upload per-league audit result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mongo-m17-backtest-${{ matrix.group }}
+          path: reports/mongo_m17_17_${{ matrix.group }}.json
+          if-no-files-found: warn
