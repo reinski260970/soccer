@@ -79,3 +79,17 @@ def test_goals_pair_is_converted_to_three_market_outcomes_before_scoring():
     assert diag["n"] == 1
     assert set(diag["logloss"]) == {"1X2","OU2.5","BTTS"}
     assert all(v > 0 for v in diag["logloss"].values())
+
+def test_1x2_market_logloss_is_paired_and_uses_openings_only():
+    from scripts.mongo_goal_markets_backtest import _one_x2_market_test
+    row = _row(2024, "2024-08-01", (2,1))
+    row["op"] = [2.1, 3.3, 3.5]
+    row["cl"] = [1.01, 1.01, 100]  # Must have NO influence.
+    cfg = {"scale":1.0, "fast_weight":0.35, "draw_factor":1.0}
+    targets = {("2024-08-01","A","B"):(2,1)}
+    result = _one_x2_market_test([row], cfg, targets)
+    assert result["paired_2024_games"] == 1
+    assert result["model_logloss"] is not None
+    assert result["opening_no_vig_logloss"] is not None
+    row["cl"] = [100, 1.01, 1.01]
+    assert _one_x2_market_test([row], cfg, targets) == result
