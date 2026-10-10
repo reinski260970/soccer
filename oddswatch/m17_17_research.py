@@ -31,6 +31,7 @@ from __future__ import annotations
 import json
 import os
 from collections import defaultdict
+from itertools import groupby
 from pathlib import Path
 
 from .m12_research import _season_start
@@ -165,112 +166,128 @@ def build_regime_dataset(matches, odds_rows, shot_map) -> list[dict]:
     out = []
     previous_season = None
 
-    for m in sorted(matches, key=lambda z: z.date):
-        d, h, a = m.date, m.home, m.away
-        season = _season_start(d)
+    # Historical feeds contain calendar dates, not reliable kickoff hours.
+    # Every fixture on date D must use state frozen at the end of D-1:
+    # otherwise a previously iterated same-day match leaks its result/xG
+    # into the next fixture's allegedly prematch features.
+    for day, match_group in groupby(sorted(matches, key=lambda z: z.date),
+                                    key=lambda z: z.date):
+        fixtures = list(match_group)
+        season = _season_start(day)
 
         if previous_season is None or season != previous_season:
             season_games = defaultdict(int)
             reset_done = set()
             previous_season = season
 
-        # Before a club's first match of season Y, reset stale state if it did
-        # not participate in Y-1. Membership is schedule/league-status context.
-        for team in (h, a):
-            key = (season, team)
-            if key not in reset_done:
-                if team not in membership.get(season - 1, set()):
-                    _reset_team_state(states, strengths, team)
-                reset_done.add(key)
+        # 1. All forecasts/feature rows are taken from the exact same
+        #    pre-day information set. No results from this day are applied.
+        for m in fixtures:
+            d, h, a = m.date, m.home, m.away
 
-        shot = shot_map.get((season, h, a))
-        hs, as_ = states[h], states[a]
-        hr, ar = strengths[h], strengths[a]
+            for team in (h, a):
+                key = (season, team)
+                if key not in reset_done:
+                    if team not in membership.get(season - 1, set()):
+                        _reset_team_state(states, strengths, team)
+                    reset_done.add(key)
 
-        if hs.n >= 6 and as_.n >= 6 and (d, h, a) in odds and shot is not None:
-            s, hg, ag, op, cl = odds[(d, h, a)]
-            expected = _expected_xg(
-                league["home_xg"], league["away_xg"], hr, ar
-            )
-            x = _features(hs, as_, league, d)
-            x += _structural_features(
-                league["home_xg"], league["away_xg"], hr, ar
-            )
-            x += _regime_features(
-                h, a, season, season_games, membership
-            )
-            out.append({
-                "season": s,
-                "date": d,
-                "home": h,
-                "away": a,
-                "x": x,
-                "y": 0 if hg > ag else (1 if hg == ag else 2),
-                "op": op,
-                "cl": cl,
-                "early_season_uncertainty": 1.0 - min(
-                    min(season_games[h], CURRENT_SEASON_CONF_GAMES)
-                    / CURRENT_SEASON_CONF_GAMES,
-                    min(season_games[a], CURRENT_SEASON_CONF_GAMES)
-                    / CURRENT_SEASON_CONF_GAMES,
-                ),
-                "home_prev_topflight": h in membership.get(season - 1, set()),
-                "away_prev_topflight": a in membership.get(season - 1, set()),
-                "home_season_gap": _gap_from_previous_membership(
-                    h, season, membership
-                ),
-                "away_season_gap": _gap_from_previous_membership(
-                    a, season, membership
-                ),
-                "structural_uncertainty": (
-                    abs(expected["home_fast"] - expected["home_slow"])
-                    + abs(expected["away_fast"] - expected["away_slow"])
-                ),
-            })
+            shot = shot_map.get((season, h, a))
+            hs, as_ = states[h], states[a]
+            hr, ar = strengths[h], strengths[a]
 
-        hg, ag = float(m.home_goals), float(m.away_goals)
-        hx, ax = _xg(m, True), _xg(m, False)
+            if hs.n >= 6 and as_.n >= 6 and (d, h, a) in odds and shot is not None:
+                s, hg, ag, op, cl = odds[(d, h, a)]
+                expected = _expected_xg(
+                    league["home_xg"], league["away_xg"], hr, ar
+                )
+                x = _features(hs, as_, league, d)
+                x += _structural_features(
+                    league["home_xg"], league["away_xg"], hr, ar
+                )
+                x += _regime_features(
+                    h, a, season, season_games, membership
+                )
+                out.append({
+                    "season": s,
+                    "date": d,
+                    "home": h,
+                    "away": a,
+                    "x": x,
+                    "y": 0 if hg > ag else (1 if hg == ag else 2),
+                    "op": op,
+                    "cl": cl,
+                    "early_season_uncertainty": 1.0 - min(
+                        min(season_games[h], CURRENT_SEASON_CONF_GAMES)
+                        / CURRENT_SEASON_CONF_GAMES,
+                        min(season_games[a], CURRENT_SEASON_CONF_GAMES)
+                        / CURRENT_SEASON_CONF_GAMES,
+                    ),
+                    "home_prev_topflight": h in membership.get(season - 1, set()),
+                    "away_prev_topflight": a in membership.get(season - 1, set()),
+                    "home_season_gap": _gap_from_previous_membership(
+                        h, season, membership
+                    ),
+                    "away_season_gap": _gap_from_previous_membership(
+                        a, season, membership
+                    ),
+                    "structural_uncertainty": (
+                        abs(expected["home_fast"] - expected["home_slow"])
+                        + abs(expected["away_fast"] - expected["away_slow"])
+                    ),
+                })
 
-        _update_strengths(
-            hr, ar, hx, ax, league["home_xg"], league["away_xg"]
-        )
+        # 2. Update rolling team, structural and league state only AFTER all
+        #    forecasts for date D have been generated.
+        for m in fixtures:
+            d, h, a = m.date, m.home, m.away
+            shot = shot_map.get((season, h, a))
+            hs, as_ = states[h], states[a]
+            hr, ar = strengths[h], strengths[a]
 
-        if shot is not None:
-            hshots, ashots, hsot, asot = shot
-            _update(
-                hs, hg, ag, hx, ax, hshots, ashots, hsot, asot,
-                _points(hg, ag), d, True,
-            )
-            _update(
-                as_, ag, hg, ax, hx, ashots, hshots, asot, hsot,
-                _points(ag, hg), d, False,
-            )
-        else:
-            _update(
-                hs, hg, ag, hx, ax,
-                hs.shots_f, hs.shots_a, hs.sot_f, hs.sot_a,
-                _points(hg, ag), d, True,
-            )
-            _update(
-                as_, ag, hg, ax, hx,
-                as_.shots_f, as_.shots_a, as_.sot_f, as_.sot_a,
-                _points(ag, hg), d, False,
+            hg, ag = float(m.home_goals), float(m.away_goals)
+            hx, ax = _xg(m, True), _xg(m, False)
+
+            _update_strengths(
+                hr, ar, hx, ax, league["home_xg"], league["away_xg"]
             )
 
-        season_games[h] += 1
-        season_games[a] += 1
+            if shot is not None:
+                hshots, ashots, hsot, asot = shot
+                _update(
+                    hs, hg, ag, hx, ax, hshots, ashots, hsot, asot,
+                    _points(hg, ag), d, True,
+                )
+                _update(
+                    as_, ag, hg, ax, hx, ashots, hshots, asot, hsot,
+                    _points(ag, hg), d, False,
+                )
+            else:
+                _update(
+                    hs, hg, ag, hx, ax,
+                    hs.shots_f, hs.shots_a, hs.sot_f, hs.sot_a,
+                    _points(hg, ag), d, True,
+                )
+                _update(
+                    as_, ag, hg, ax, hx,
+                    as_.shots_f, as_.shots_a, as_.sot_f, as_.sot_a,
+                    _points(ag, hg), d, False,
+                )
 
-        league["n"] += 1
-        league["home"] += int(hg > ag)
-        league["draw"] += int(hg == ag)
-        league["away"] += int(hg < ag)
-        n = league["n"]
-        league["home_rate"] = league["home"] / n
-        league["draw_rate"] = league["draw"] / n
-        league["away_rate"] = league["away"] / n
-        league["goals"] = 0.97 * league["goals"] + 0.03 * (hg + ag)
-        league["home_xg"] = 0.97 * league["home_xg"] + 0.03 * hx
-        league["away_xg"] = 0.97 * league["away_xg"] + 0.03 * ax
+            season_games[h] += 1
+            season_games[a] += 1
+
+            league["n"] += 1
+            league["home"] += int(hg > ag)
+            league["draw"] += int(hg == ag)
+            league["away"] += int(hg < ag)
+            n = league["n"]
+            league["home_rate"] = league["home"] / n
+            league["draw_rate"] = league["draw"] / n
+            league["away_rate"] = league["away"] / n
+            league["goals"] = 0.97 * league["goals"] + 0.03 * (hg + ag)
+            league["home_xg"] = 0.97 * league["home_xg"] + 0.03 * hx
+            league["away_xg"] = 0.97 * league["away_xg"] + 0.03 * ax
 
     return out
 
@@ -378,7 +395,12 @@ def run(out: Path = OUT):
         os.environ["MONGO_SOCCER"] = os.environ["MONGODB_URI"]
 
     profile = mongo_coverage()
-    proxy = train_proxy()
+    # The early validation folds are 2020 and 2021. Training the xG proxy
+    # on 2020-2022 (as the previous runner did) contaminates those folds.
+    # Freeze a proxy using ONLY completed pre-2020 seasons.
+    proxy = train_proxy(years=range(2017, 2020))
+    if max(proxy["train_seasons"]) >= 2020:
+        raise RuntimeError("xG-proxy leakage into early OOS folds")
 
     result = {
         "_method": (
@@ -386,6 +408,8 @@ def run(out: Path = OUT):
             "current-season confidence/regime features; no market features"
         ),
         "_focus": FOCUS,
+        "_proxy": {"n": proxy["n"], "rmse": proxy["rmse"], "train_seasons": proxy["train_seasons"]},
+        "_temporal_integrity": "proxy fit before 2020; same-day features frozen before any day results",
         "_methodology_note": (
             "2024 is retrospective research stress, NOT an untouched release "
             "holdout; production release requires future forward/shadow CLV"
