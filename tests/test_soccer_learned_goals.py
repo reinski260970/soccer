@@ -57,6 +57,7 @@ def test_2024_2025_not_used_in_early_calibration():
 
 
 def test_model_intensities_positive_and_do_not_depend_on_market_quotes():
+    pytest.importorskip("sklearn", reason="research optional dependency")
     training=[_example(i,2018) for i in range(110)]
     test=[_example(i+200,2020) for i in range(4)]
     p=predict_intensities(training,test,alpha=0.3)
