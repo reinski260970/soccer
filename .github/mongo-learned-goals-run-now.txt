@@ -1,0 +1,1 @@
+2026-10-10: retrain 13-league independent pre-match goal models and evaluate fixed-3%-EV Pinnacle 1X2 opening/closing CLV plus O/U2.5. No release.
