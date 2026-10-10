@@ -81,3 +81,24 @@ def test_historical_result_join_does_not_use_quoted_price_as_label():
     assert score_map[("2019-08-13","A","B")]==(2,1)
     assert labeled[0]["home_goals"]==2
     assert labeled[0]["away_goals"]==1
+
+
+def test_1x2_entry_uses_only_paired_market_quotes_and_closes_fail_closed():
+    from scripts.mongo_learned_goals_backtest import historical_1x2_entry_test
+    row=_example(20,2024)
+    row.update({"date":"2024-11-30","home":"One","away":"Two",
+                "lambda_home_fast":1.65,"lambda_home_slow":1.65,
+                "lambda_away_fast":0.95,"lambda_away_slow":0.95,
+                "op":[2.80,3.3,4.0],"cl":[2.5,3.5,4.5]})
+    score_map={("2024-11-30","One","Two"):(1,0)}
+    cfg={"scale":1.0,"fast_weight":0.5,"draw_factor":1.0}
+    audited=historical_1x2_entry_test([row],score_map,cfg)
+    assert audited["paired_open_close_games"]==1
+    assert audited["release_eligible"] is False
+    assert audited["retrospective_bets"]>=1
+    assert audited["clv"] is not None
+    without_close=dict(row,cl=None)
+    missing=historical_1x2_entry_test([without_close],score_map,cfg)
+    assert missing["paired_open_close_games"]==0
+    assert missing["retrospective_bets"]==0
+    assert missing["clv"] is None
