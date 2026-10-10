@@ -217,6 +217,12 @@ def build_regime_dataset(matches, odds_rows, shot_map) -> list[dict]:
                     "y": 0 if hg > ag else (1 if hg == ag else 2),
                     "op": op,
                     "cl": cl,
+                    # Frozen pre-match goal-rate estimates, not using prices.
+                    # Different market models can reuse this historical state.
+                    "lambda_home_fast": expected["home_fast"],
+                    "lambda_away_fast": expected["away_fast"],
+                    "lambda_home_slow": expected["home_slow"],
+                    "lambda_away_slow": expected["away_slow"],
                     "early_season_uncertainty": 1.0 - min(
                         min(season_games[h], CURRENT_SEASON_CONF_GAMES)
                         / CURRENT_SEASON_CONF_GAMES,
