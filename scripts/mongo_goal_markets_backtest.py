@@ -165,10 +165,53 @@ def _market_prices(code, start_year=2017, end_year=2025):
                 records[key] = sorted(candidates,
                                       key=lambda v: (v["closing"] is None,
                                                      v["source"] != "pinnacle"))
-    return {k:v[0] for k,v in records.items() if seen[k] == 1 and v}, {
-        "ambiguous_team_pairs":sum(n>1 for n in seen.values()),
-        "unique_matches_with_ou_prices":sum(seen[k]==1 and bool(v)
-                                            for k,v in records.items()),
+    mongo_prices = {k:v[0] for k,v in records.items() if seen[k] == 1 and v}
+
+    # The soccer Mongo import contains extensive 1X2 opening/closing quotes
+    # but historically sparse O2.5 price columns. Use football-data's archived
+    # *same-season* CSV as a completely separate market comparator. It never
+    # enters goal-rate features or the 2020/21 calibration.
+    import csv
+    import io
+    from oddswatch import fetch
+    from oddswatch.sources import football_data as fd
+
+    archive = {}
+    fd_seen = Counter()
+    fd_errors = {}
+    for season in range(start_year, end_year + 1):
+        raw, err = fetch.get(fd.csv_url(code, season), cache_days=30)
+        if not raw:
+            fd_errors[str(season)] = err or "football-data source unavailable"
+            continue
+        for d in csv.DictReader(io.StringIO(raw.lstrip("\ufeff"))):
+            home, away = d.get("HomeTeam"), d.get("AwayTeam")
+            if not home or not away:
+                continue
+            key = (season, home, away)
+            fd_seen[key] += 1
+            quotes = []
+            for book in ("pinnacle", "bet365"):
+                op, cl = _odds_pair(d, book)
+                if op:
+                    quotes.append({
+                        "source":book+"_football_data",
+                        "opening":op, "closing":cl,
+                    })
+            archive[key] = sorted(quotes,
+                                  key=lambda v: (v["closing"] is None,
+                                                 not v["source"].startswith("pinnacle")))
+    fallback = {k:v[0] for k,v in archive.items() if fd_seen[k] == 1 and v}
+    selected = dict(fallback)
+    # Prefer the Mongo source when it has real opening/closing O/U pairs.
+    selected.update(mongo_prices)
+    return selected, {
+        "mongo_ou_prices":len(mongo_prices),
+        "football_data_ou_prices":len(fallback),
+        "ambiguous_mongo_pairs":sum(n>1 for n in seen.values()),
+        "ambiguous_football_data_pairs":sum(n>1 for n in fd_seen.values()),
+        "merged_price_rows":len(selected),
+        "football_data_errors":fd_errors,
     }
 
 
@@ -244,7 +287,7 @@ def evaluate_league(code, proxy):
         rows = [r for r in data if r["season"]==season]
         score = _losses(rows,outcomes,cfg)
         result[str(season)] = score
-    prices, market_coverage = _market_prices(code)
+    prices, market_coverage = _market_prices(code, start_year=2024, end_year=2024)
     result["historical_ou2.5_coverage"] = market_coverage
     result["retrospective_2024_ou2.5_vs_market"] = _total_market_test(
         [r for r in data if r["season"]==2024],cfg,outcomes,prices)
