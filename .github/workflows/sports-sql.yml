@@ -1,7 +1,7 @@
 name: Sports SQL & Hockey Validation
 on:
   pull_request:
-    paths: ['oddswatch/sql/**', 'tests/test_sports_sql.py', 'tests/test_hockey_forward_settlement.py', 'requirements-sql.txt', '.github/workflows/sports-sql.yml']
+    paths: ['oddswatch/sql/**', 'tests/test_sports_sql.py', 'tests/test_hockey_forward_settlement.py', 'tests/test_soccer_3way_market_baseline.py', 'requirements-sql.txt', '.github/workflows/sports-sql.yml']
   push:
     branches: [main]
     paths: ['oddswatch/sql/**', 'tests/test_hockey_forward_settlement.py', '.github/workflows/sports-sql.yml']
@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements-sql.txt
-      - run: python -m pytest tests/test_sports_sql.py tests/test_hockey_forward_settlement.py -q
+      - run: python -m pytest tests/test_sports_sql.py tests/test_hockey_forward_settlement.py tests/test_soccer_3way_market_baseline.py -q
   sync:
     timeout-minutes: 20
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
