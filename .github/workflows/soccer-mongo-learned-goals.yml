@@ -1,0 +1,39 @@
+name: soccer-mongo-learned-goal-intensities
+on:
+  push:
+    paths:
+      - ".github/mongo-learned-goals-run-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  learned-goals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["germany", "top5-other", "europe"]
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt "scikit-learn>=1.5,<2"
+      - name: Leak, target, market and Asian settlement regression tests
+        run: python -m pytest -q tests/test_soccer_learned_goals.py tests/test_soccer_goal_markets.py tests/test_soccer_goal_market_backtest.py tests/test_m17_17_temporal_integrity.py
+      - name: Expanding-window Mongo goal intensity model
+        run: python -m scripts.mongo_learned_goals_backtest --group "${{ matrix.group }}"
+      - name: Upload complete league-level diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soccer-learned-goals-${{ matrix.group }}
+          path: reports/mongo_learned_goals_${{ matrix.group }}.json
+          if-no-files-found: warn
