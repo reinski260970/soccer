@@ -1,1 +1,1 @@
-2026-10-10 final run: goal markets O/U2.5 BTTS Asian, corrected Mongo URI trimming and outcome mapping, 13 leagues, no PLAY.
+2026-10-10 market-pricing final rerun with independently archived Pinnacle/B365 O2.5 open and close price comparison (2024), all 13 leagues, no PLAY.
