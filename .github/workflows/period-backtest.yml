@@ -1,0 +1,34 @@
+name: period-backtest
+
+on:
+  push:
+    paths:
+      - ".github/period-backtest-run-now.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Period model tests
+        run: PYTHONPATH=. pytest -q tests/test_espn_periods.py tests/test_period_totals.py tests/test_surebet_period_markets.py
+      - name: Strict walk-forward period backtest
+        run: python -m oddswatch.period_backtest
+      - name: Persist backtest result
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add data/period_backtest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Period backtest result $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
