@@ -69,3 +69,13 @@ def test_early_hyper_requires_genuine_2020_2021_rows():
     assert _early_calibration([], {}) is None
     rows = [_row(2024, "2024-08-01", (1,2))]
     assert _early_calibration(rows, {}) is None
+
+
+def test_goals_pair_is_converted_to_three_market_outcomes_before_scoring():
+    row = _row(2024, "2024-08-01", (2, 1))
+    cfg = {"scale":1.0, "fast_weight":0.35, "draw_factor":1.0}
+    results = {("2024-08-01","A","B"):(2,1)}
+    diag = _losses([row], results, cfg)
+    assert diag["n"] == 1
+    assert set(diag["logloss"]) == {"1X2","OU2.5","BTTS"}
+    assert all(v > 0 for v in diag["logloss"].values())
