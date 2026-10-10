@@ -1,0 +1,157 @@
+📊 CEO MATCHDAY REPORT · 10.10.2026 15:30 MESZ
+
+📰 CEO NEWS
+1 neu · HIGH 0 · MEDIUM 1
+• Ottawa Senators – Nashville Predators · Verletzung · Ottawa Senators · UNVERIFIED · MEDIUM · FAIR RECALC: NEIN
+
+🌐 SPORTS-INTELLIGENCE HEADLINES (24h)
+• HIGH · Österr. Bundesliga · Ausfall · Vienna - SKN St.Pölten (Austrian Soccer Board) · SOURCE_ONLY
+• HIGH · Österr. Bundesliga · Sperre · Portugals Verband suspendiert Ronaldo nach Abreise-Eklat vorläufig (derStandard) · SOURCE_ONLY
+• HIGH · Österr. Bundesliga · Sperre · Medien: Vorläufige Verbandssperre für Ronaldo (ORF) · SOURCE_ONLY
+• HIGH · NFL · Ausfall · Saquon Barkley, DeVonta Smith among 5 Eagles ruled out vs. Jags (ESPN) · SOURCE_ONLY
+• HIGH · Bundesliga · Ausfall · Regenschlacht von Nürnberg: Absurde Szenen und ein historischer Spielabbruch (kicker) · SOURCE_ONLY
+• HIGH · NHL · Sperre · Blackhawks' Frank Nazar suspended 2 games for check to the head (ESPN) · SOURCE_ONLY
+SOURCE_ONLY verändert Fair Odds nicht; Recalc erst nach Bestätigung/Team-Zuordnung.
+
+🗓 TODAY / NEXT 36H
+Fußball: 82 Spiele
+• Premier League · Sa 10.10. 16:00 MESZ · Aston Villa – Brentford · Markt 1 2.90 pinnacle[R] | X 3.57 pinnacle[R] | 2 2.48 pinnacle[R] · ausführbar
+• Premier League · Sa 10.10. 16:00 MESZ · Chelsea – AFC Bournemouth · Markt 1 1.85 pinnacle[R] | X 3.94 pinnacle[R] | 2 4.20 betfair[E] · ausführbar
+• Premier League · Sa 10.10. 16:00 MESZ · Ipswich Town – Fulham · Markt 1 2.83 pinnacle[R] | X 3.55 pinnacle[R] | 2 2.55 pinnacle[R] · ausführbar
+• Premier League · Sa 10.10. 16:00 MESZ · Sunderland – Brighton & Hove Albion · Markt 1 3.20 pinnacle[R] | X 3.45 pinnacle[R] | 2 2.35 pinnacle[R] · ausführbar
+  + 78 weitere
+Eishockey Europa: 33 Spiele
+• KHL · Sa 10.10. 16:00 MESZ · Lokomotiv Yaroslavl – Dinamo Minsk · NO_PRICE
+• KHL · Sa 10.10. 16:00 MESZ · Ak Bars Kazan – Severstal Cherepovets · NO_PRICE
+• Liiga · Sa 10.10. 16:00 MESZ · HPK – KooKoo · NO_PRICE
+• Liiga · Sa 10.10. 16:00 MESZ · Jukurit – Kärpät · NO_PRICE
+  + 29 weitere
+NHL: 17 Spiele
+• NHL · Sa 10.10. 19:00 MESZ · Boston Bruins – Philadelphia Flyers · Markt 1 1.75 polymarket[R] | 2 2.27 polymarket[R] · ausführbar
+• NHL · Sa 10.10. 21:30 MESZ · New Jersey Devils – Vancouver Canucks · Markt 1 1.39 1xbet[E] | 2 3.75 bet365[E] · ausführbar
+• NHL · Sa 10.10. 22:00 MESZ · San Jose Sharks – Edmonton Oilers · Markt 1 2.44 polymarket[R] | 2 1.69 1xbet[E] · ausführbar
+• NHL · So 11.10. 00:00 MESZ · Florida Panthers – Minnesota Wild · Markt 1 1.82 polymarket[R] | 2 2.19 1xbet[E] · ausführbar
+  + 13 weitere
+NFL: 13 Spiele
+• NFL · So 11.10. 15:30 MESZ · Jacksonville Jaguars – Philadelphia Eagles · Markt 1 1.30 polymarket[R] | 2 4.17 polymarket[R]
+• NFL · So 11.10. 19:00 MESZ · Green Bay Packers – Chicago Bears · Markt 1 2.08 polymarket[R] | 2 1.89 polymarket[R]
+• NFL · So 11.10. 19:00 MESZ · Tennessee Titans – Houston Texans · Markt 1 4.00 polymarket[R] | 2 1.32 polymarket[R]
+• NFL · So 11.10. 19:00 MESZ · Miami Dolphins – Cincinnati Bengals · Markt 1 4.00 polymarket[R] | 2 1.32 polymarket[R]
+  + 9 weitere
+
+⛔ NO PLAY: kein belegter Vorteil.
+
+👀 WATCH (nicht freigegeben)
+
+🔬 MODEL-WATCH · Conference League · Do 15.10. 18:45 MESZ
+🆚 Panathinaikos – Borac Banja Luka
+➡️ Borac Banja Luka Sieg (90 Min.) @ 9,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 5,86 | Pinnacle fair 8,83 | Δ +5,8 pp
+
+🔬 MODEL-WATCH · Conference League · Do 15.10. 18:45 MESZ
+🆚 CSKA Sofia – AS Monaco
+➡️ CSKA Sofia Sieg (90 Min.) @ 6,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 5,42 | Pinnacle fair 6,15 | Δ +2,2 pp
+
+🔬 MODEL-WATCH · Europa League · Do 15.10. 21:00 MESZ
+🆚 Benfica – Celtic
+➡️ Celtic Sieg (90 Min.) @ 12,00
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 5,63 | Pinnacle fair 11,48 | Δ +9,1 pp
+
+• NHL · So 11.10. 01:00 MESZ
+🆚 Ottawa Senators – Nashville Predators
+➡️ Nashville Predators Sieg (inkl. OT) @ 2,60 | spielbar ab 2,57 | EV 4,2 %
+   Grund: SHADOW/Schätzung: keine validierte Freigabe, nur WATCH
+
+🔬 MODEL-WATCH · Super League Greece · So 11.10. 18:00 MESZ
+🆚 Aris – Volos NFC
+➡️ Volos NFC Sieg (90 Min.) @ 6,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 9,15 | Pinnacle fair 6,26 | Δ -5,1 pp
+
+⚽ Fußball-Modellstatus: Research-Gate offen. MODEL-WATCH = Diagnosesignal, keine Einsatzfreigabe.
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 104 Spiele | ausführbare Preise 88 | Marktreferenz 99 | 0 PLAY
+   • Panathinaikos – Borac Banja Luka · Do 15.10. 18:45 MESZ: Borac Banja Luka Sieg (90 Min.) @ 9,50, spielbar ab 9,10 (EV 7,6 %)
+   • CSKA Sofia – AS Monaco · Do 15.10. 18:45 MESZ: CSKA Sofia Sieg (90 Min.) @ 6,50, spielbar ab 6,33 (EV 5,7 %)
+🏒 Eishockey Europa: 68 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: 51 Spiele | ausführbare Preise 9 | Marktreferenz 51 | 0 PLAY
+   • Ottawa Senators – Nashville Predators · So 11.10. 01:00 MESZ: Nashville Predators Sieg (inkl. OT) @ 2,60, spielbar ab 2,57 (EV 4,2 %)
+   • New Jersey Devils – Vancouver Canucks · Sa 10.10. 21:30 MESZ: Vancouver Canucks Sieg (inkl. OT) @ 3,75, spielbar ab 3,72 (EV 3,7 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele | ausführbare Preise 0 | Marktreferenz 15 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 17.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
+
+📐 MODELL ↔ MARKTREFERENZ (kein PLAY ohne ausführbaren Preis)
+• NFL · Arizona Cardinals – Detroit Lions · Arizona Cardinals
+  Modell 48.3% (fair 2.07) · Markt-No-Vig 30.3% (fair 3.30) · Δ +18.1 pp · Marktquote 3.23 (polymarket, Referenz)
+  erw. Punkte 28.2:28.7 (Marge -0.5, Total 56.8)
+• NHL · New Jersey Devils – Ottawa Senators · Ottawa Senators
+  Modell 61.7% (fair 1.62) · Markt-No-Vig 44.5% (fair 2.25) · Δ +17.2 pp
+  erw. Tore 2.64:3.32, 60-Min-Remis 16 % (OT-Aufteilung geschätzt)
+• NFL · Atlanta Falcons – Baltimore Ravens · Baltimore Ravens
+  Modell 54.0% (fair 1.85) · Markt-No-Vig 37.6% (fair 2.66) · Δ +16.4 pp · Marktquote 2.56 (polymarket, Referenz)
+  erw. Punkte 23.5:24.8 (Marge -1.3, Total 48.3)
+• NHL · Buffalo Sabres – Florida Panthers · Buffalo Sabres
+  Modell 63.1% (fair 1.59) · Markt-No-Vig 50.5% (fair 1.98) · Δ +12.6 pp
+  erw. Tore 3.60:2.80, 60-Min-Remis 15 % (OT-Aufteilung geschätzt)
+
+⚡ SOCCER STEAM / CLV-GATE
+• Conference League · Panathinaikos – Borac Banja Luka
+  Borac Banja Luka Sieg (90 Min.) · Modell fair 5.86 · Markt 9.50 (Betfair)
+  Pinnacle no-vig 8.83 · CLV-Ziel +7.6% · EV +7.6%
+  🟡 SHARP GAP+ +2.8pp · noch kein bestätigter Steam
+• Conference League · CSKA Sofia – AS Monaco
+  CSKA Sofia Sieg (90 Min.) · Modell fair 5.42 · Markt 6.50 (Betfair)
+  Pinnacle no-vig 6.15 · CLV-Ziel +5.7% · EV +5.7%
+  🟡 SHARP GAP+ +2.9pp · noch kein bestätigter Steam
+• Europa League · Benfica – Celtic
+  Celtic Sieg (90 Min.) · Modell fair 5.63 · Markt 12.00 (Betfair)
+  Pinnacle no-vig 11.48 · CLV-Ziel +4.5% · EV +4.5%
+  🟡 SHARP GAP+ +1.5pp · noch kein bestätigter Steam
+• Super League Greece · Aris – Volos NFC
+  Volos NFC Sieg (90 Min.) · Modell fair 9.15 · Markt 6.50 (Bet365)
+  Pinnacle no-vig 6.26 · CLV-Ziel +3.9% · EV +3.9%
+  🟡 SHARP GAP+ +2.4pp · noch kein bestätigter Steam
+• Premier League · Nottingham Forest – Arsenal
+  Unentschieden (90 Min.) · Modell fair 3.44 · Markt 4.20 (Bet365)
+  Pinnacle no-vig 4.05 · CLV-Ziel +3.7% · EV +3.7%
+  🟡 SHARP GAP+ +3.0pp · noch kein bestätigter Steam
+• Scottish Premiership · Motherwell – Celtic
+  Motherwell Sieg (90 Min.) · Modell fair 6.97 · Markt 5.00 (Betfair)
+  Pinnacle no-vig 4.85 · CLV-Ziel +3.1% · EV +3.1%
+  🟡 SHARP GAP+ +2.8pp · noch kein bestätigter Steam
+• Serie A · Bologna – Internazionale
+  Unentschieden (90 Min.) · Modell fair 4.86 · Markt 4.33 (Betfair)
+  Pinnacle no-vig 4.24 · CLV-Ziel +2.1% · EV +2.1%
+  🟡 SHARP GAP+ +2.2pp · noch kein bestätigter Steam
+• Conference League · Panathinaikos – Borac Banja Luka
+  Borac Banja Luka Sieg (90 Min.) · Modell fair 5.86 · Markt 9.50 (Betfair)
+  Pinnacle no-vig 8.83 · CLV-Ziel +7.6% · EV +1.9%
+  🟡 SHARP GAP+ +2.8pp · noch kein bestätigter Steam
+PLAY-Regel: Fair-Edge + positiver CLV-Case; bestätigter STEAM− blockiert die Freigabe.
+
+💰 VALUEBET-API · EIGENE MODELLPRÜFUNG
+API-Kandidaten 50 · Bet365 BACK vor Anstoß 50 · NO_MATCH 44, NO_MODEL 5, WIDERLEGT 1
+• Hockey · 10.10. 18:00 · IF Bjorkloven vs Frolunda HC
+  Unentschieden · 3-Wege-Sieg · reguläre Spielzeit · Bet365 @ 4.75 (API-Referenz)
+  Eigenes Modell fair 5.53 · EV -14.1% · Audit WIDERLEGT · PASS, nie automatisch PLAY
+API-/Modellprüfung ist keine OOS-/CLV-Freigabe. Kein PLAY ohne validierte Modellqualität, Preis und exakten Markt.
+
+🏒 EURO-HOCKEY · FAIR vs MARKT
+NO_PRICE: Für die anstehenden europäischen Hockeyspiele wurde noch keine aktuelle Marktquote gefunden.
+Regel: Kein Fair-only Tipp. PLAY nur mit aktuellem, als ausführbar markiertem Marktpreis.
+
+📈 CLV / PERFORMANCE
+Modell-Freigaben: ROI -86.0% · Ø CLV -6.9% (n=8) · 9 abgerechnet
+Gespielt: ROI -100.0% · Ø CLV -3.6% (n=2) · 2 abgerechnet
+CLV ist Freigabemaßstab; kurzfristiger ROI überstimmt schwachen CLV nicht.
+
+CEO: kein freigegebener Tipp, 0 EH.
