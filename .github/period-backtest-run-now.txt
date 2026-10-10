@@ -1,1 +1,1 @@
-trigger period backtest 2026-10-10T10:17:27.214Z
+manual period backtest request 2026-10-10 12:19 Europe/Vienna
