@@ -719,7 +719,8 @@ def run_clv_snapshot() -> list[str]:
     """Lightweight quote snapshot + sampled CLV close; no model scan."""
     values, err = surebet.fetch_valuebets(books=("bet365",), limit=500)
     if err:
-        return [f"Valuebet-CLV: {err}"]
+        # A failed data feed must produce a failing scheduled job, not a green run.
+        raise RuntimeError(f"Valuebet-CLV Feed-Fehler: {err}")
     values = [v for v in values if v.bookmaker == "bet365" and v.back]
     try:
         from .sql.valuebet import snapshot_open_candidates, capture_sampled_clv
@@ -730,4 +731,5 @@ def run_clv_snapshot() -> list[str]:
             f"Valuebet-CLV Close: closed={len(close['closed'])}, NO_CLOSE={close['no_close']}",
         ]
     except Exception as exc:
-        return [f"Valuebet-CLV Fehler: {type(exc).__name__}: {exc}"]
+        # Propagate failure to GitHub Actions; never mask missing CLV as success.
+        raise RuntimeError(f"Valuebet-CLV SQL-Fehler: {type(exc).__name__}") from exc
