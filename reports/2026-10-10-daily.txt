@@ -1,0 +1,50 @@
+🗞 Tagesbericht Sa 10.10. 14:37 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 8 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Conference League · Do 15.10. 18:45 MESZ
+🆚 Panathinaikos – Borac Banja Luka
+➡️ Borac Banja Luka Sieg (90 Min.) spielbar ab 9,10 (jetzt 9,50)
+• Conference League · Do 15.10. 18:45 MESZ
+🆚 CSKA Sofia – AS Monaco
+➡️ CSKA Sofia Sieg (90 Min.) spielbar ab 6,33 (jetzt 6,50)
+• Europa League · Do 15.10. 21:00 MESZ
+🆚 Benfica – Celtic
+➡️ Celtic Sieg (90 Min.) spielbar ab 11,82 (jetzt 12,00)
+• NHL · So 11.10. 01:00 MESZ
+🆚 Ottawa Senators – Nashville Predators
+➡️ Nashville Predators Sieg (inkl. OT) spielbar ab 2,57 (jetzt 2,60)
+• Super League Greece · So 11.10. 18:00 MESZ
+🆚 Aris – Volos NFC
+➡️ Volos NFC Sieg (90 Min.) spielbar ab 6,44 (jetzt 6,50)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 89 | Marktreferenz 100 | 0 PLAY
+   • Panathinaikos – Borac Banja Luka · Do 15.10. 18:45 MESZ: Borac Banja Luka Sieg (90 Min.) @ 9,50, spielbar ab 9,10 (EV 7,6 %)
+   • CSKA Sofia – AS Monaco · Do 15.10. 18:45 MESZ: CSKA Sofia Sieg (90 Min.) @ 6,50, spielbar ab 6,33 (EV 5,7 %)
+🏒 Eishockey Europa: 66 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: 51 Spiele | ausführbare Preise 9 | Marktreferenz 51 | 0 PLAY
+   • Ottawa Senators – Nashville Predators · So 11.10. 01:00 MESZ: Nashville Predators Sieg (inkl. OT) @ 2,60, spielbar ab 2,57 (EV 4,2 %)
+   • New Jersey Devils – Vancouver Canucks · Sa 10.10. 21:30 MESZ: Vancouver Canucks Sieg (inkl. OT) @ 3,75, spielbar ab 3,72 (EV 3,7 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele | ausführbare Preise 0 | Marktreferenz 15 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 17.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

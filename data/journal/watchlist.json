@@ -24,30 +24,6 @@
   ]
  },
  {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Montreal Canadiens – Detroit Red Wings",
-  "kickoff": "2026-10-10T23:00:00+00:00",
-  "market": "away",
-  "selection": "Detroit Red Wings Sieg (inkl. OT)",
-  "odds": 3.1,
-  "fair": 2.8905472687598612,
-  "min_odds": 2.977263686822657,
-  "home": [
-   "Montreal Canadiens",
-   "Montreal",
-   "Canadiens",
-   "MTL"
-  ],
-  "away": [
-   "Detroit Red Wings",
-   "Detroit",
-   "Red Wings",
-   "DET"
-  ]
- },
- {
   "source": "betfair",
   "status": "WATCH",
   "league": "uecl",
@@ -93,6 +69,30 @@
    "Celtic",
    "Celtic",
    "CEL"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "nhl",
+  "event": "Ottawa Senators – Nashville Predators",
+  "kickoff": "2026-10-10T23:00:00+00:00",
+  "market": "away",
+  "selection": "Nashville Predators Sieg (inkl. OT)",
+  "odds": 2.6,
+  "fair": 2.4955479406622545,
+  "min_odds": 2.5704143788821225,
+  "home": [
+   "Ottawa Senators",
+   "Ottawa",
+   "Senators",
+   "OTT"
+  ],
+  "away": [
+   "Nashville Predators",
+   "Nashville",
+   "Predators",
+   "NSH"
   ]
  },
  {
