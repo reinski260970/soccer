@@ -1,1 +1,1 @@
-trigger soccer-forward settlement 2026-10-09T17:16+02:00
+trigger soccer-3way baseline verification 2026-10-10T08:23+02:00
