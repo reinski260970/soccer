@@ -103,6 +103,7 @@ def goal_markets(
     expected_away: float,
     *,
     rho: float = -0.05,
+    draw_factor: float = 1.0,
     max_goals: int = 12,
 ) -> tuple[list[list[float]], dict[str, float]]:
     """Consistent 1X2, goal totals and BTTS from one score distribution."""
@@ -113,7 +114,14 @@ def goal_markets(
         raise ValueError("low-score rho outside calibrated research bounds")
     if max_goals < 8:
         raise ValueError("score grid must cover at least goals 0..8")
+    if not math.isfinite(draw_factor) or not 0.7 <= draw_factor <= 1.4:
+        raise ValueError("draw calibration outside research bounds")
     model = PoissonModel(rho=rho, max_goals=max_goals)
     matrix = model.score_matrix(expected_home, expected_away)
+    if draw_factor != 1.0:
+        for i, row in enumerate(matrix):
+            row[i] *= draw_factor
+        norm = sum(map(sum, matrix))
+        matrix = [[p / norm for p in row] for row in matrix]
     markets = markets_from_matrix(matrix, expected_home, expected_away)
     return matrix, markets
