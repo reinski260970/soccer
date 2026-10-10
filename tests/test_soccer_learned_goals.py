@@ -61,7 +61,10 @@ def test_model_intensities_positive_and_do_not_depend_on_market_quotes():
     test=[_example(i+200,2020) for i in range(4)]
     p=predict_intensities(training,test,alpha=0.3)
     test2=[dict(r,op=[1.01,3,90],cl=[90,1.01,3]) for r in test]
-    assert p==pytest.approx(predict_intensities(training,test2,alpha=0.3))
+    repeated=predict_intensities(training,test2,alpha=0.3)
+    assert [v for pair in p for v in pair] == pytest.approx(
+        [v for pair in repeated for v in pair]
+    )
     assert len(p)==4
     assert all(0<a<=5.8 and 0<b<=5.8 for a,b in p)
     row=scored_rows(test,p)
