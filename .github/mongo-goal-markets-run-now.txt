@@ -1,1 +1,1 @@
-2026-10-10 rerun after strict historical-score conversion fix and tests; full 13-league O/U BTTS Asian research only; no PLAY.
+2026-10-10 final run: goal markets O/U2.5 BTTS Asian, corrected Mongo URI trimming and outcome mapping, 13 leagues, no PLAY.
