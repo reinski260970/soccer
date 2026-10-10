@@ -9,10 +9,6 @@ from __future__ import annotations
 
 import math
 
-from sklearn.linear_model import PoissonRegressor
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
-
 from .goal_markets import goal_markets
 
 # Feature positions are fixed by m17_17_research.build_regime_dataset() and
@@ -58,6 +54,12 @@ def predict_intensities(
     capped_goals: float = 5.8,
 ) -> list[tuple[float, float]]:
     """Independent home/away goal regressions, trained on strictly older rows."""
+    # Research-only sklearn dependency is loaded on demand; production
+    # scanners and CI without the extra do not import it accidentally.
+    from sklearn.linear_model import PoissonRegressor
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
     if len(training) < 100 or not test:
         raise ValueError("too few training fixtures or no predictions requested")
     if not math.isfinite(alpha) or alpha <= 0:
