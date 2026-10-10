@@ -215,6 +215,37 @@ def _market_prices(code, start_year=2017, end_year=2025):
     }
 
 
+def _one_x2_market_test(rows, cfg, score_map):
+    """Same-match 1X2 outcome logloss vs no-vig historical opening quotes."""
+    model_loss = market_loss = 0.0
+    n = 0
+    for r in rows:
+        outcome = score_map.get((r["date"], r["home"], r["away"]))
+        op = r.get("op")
+        if outcome is None or not op or len(op) != 3:
+            continue
+        y = _outcomes(outcome)[0]
+        try:
+            p_market = pricing.devig(list(op))
+        except (TypeError, ValueError, ZeroDivisionError):
+            continue
+        if any(not math.isfinite(p) or p <= 0 for p in p_market):
+            continue
+        _, pm = _matrix(r, cfg)
+        p_model = [pm["1"], pm["X"], pm["2"]]
+        model_loss += _safe_log(p_model[y])
+        market_loss += _safe_log(p_market[y])
+        n += 1
+    return {
+        "paired_2024_games":n,
+        "model_logloss":model_loss/n if n else None,
+        "opening_no_vig_logloss":market_loss/n if n else None,
+        "gain_vs_market":(market_loss-model_loss)/n if n else None,
+        "market_reference":"Pinnacle opening 1X2 as archived in Mongo",
+        "release_eligible":False,
+    }
+
+
 def _total_market_test(rows, cfg, score_map, historical_prices):
     """Strict paired O2.5 opening market; no prices leak into model."""
     n = n_close = bets = positive = 0
@@ -287,6 +318,8 @@ def evaluate_league(code, proxy):
         rows = [r for r in data if r["season"]==season]
         score = _losses(rows,outcomes,cfg)
         result[str(season)] = score
+    result["retrospective_2024_1x2_vs_market"] = _one_x2_market_test(
+        [r for r in data if r["season"] == 2024],cfg,outcomes)
     prices, market_coverage = _market_prices(code, start_year=2024, end_year=2024)
     result["historical_ou2.5_coverage"] = market_coverage
     result["retrospective_2024_ou2.5_vs_market"] = _total_market_test(
@@ -332,6 +365,7 @@ def main():
         print("GOAL_MODEL",league,json.dumps({
             "sample":row.get("samples"),
             "2024":row.get("2024"),
+            "2024_1x2_market":row.get("retrospective_2024_1x2_vs_market"),
             "2024_ou2.5_market":row.get("retrospective_2024_ou2.5_vs_market"),
             "missing":row.get("error"),
         },ensure_ascii=False),flush=True)
