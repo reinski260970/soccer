@@ -63,7 +63,7 @@ def _losses(rows: list[dict], outcomes: dict[tuple, tuple], cfg: dict):
         key = (r["date"], r["home"], r["away"])
         if key not in outcomes:
             continue
-        y, over, btts = outcomes[key]
+        y, over, btts = _outcomes(outcomes[key])
         _, m = _matrix(r, cfg)
         p1x2 = [m["1"], m["X"], m["2"]]
         losses["1X2"] += _safe_log(p1x2[y])
