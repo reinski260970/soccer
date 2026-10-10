@@ -48,30 +48,6 @@
   ]
  },
  {
-  "source": "1xbet",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Pittsburgh Penguins – Dallas Stars",
-  "kickoff": "2026-10-10T23:00:00+00:00",
-  "market": "away",
-  "selection": "Dallas Stars Sieg (inkl. OT)",
-  "odds": 1.69,
-  "fair": 1.602621062176179,
-  "min_odds": 1.6506996940414642,
-  "home": [
-   "Pittsburgh Penguins",
-   "Pittsburgh",
-   "Penguins",
-   "PIT"
-  ],
-  "away": [
-   "Dallas Stars",
-   "Dallas",
-   "Stars",
-   "DAL"
-  ]
- },
- {
   "source": "betfair",
   "status": "WATCH",
   "league": "uel",
@@ -117,6 +93,30 @@
    "Nashville",
    "Predators",
    "NSH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "greece",
+  "event": "Aris – Volos NFC",
+  "kickoff": "2026-10-11T16:00:00+00:00",
+  "market": "away",
+  "selection": "Volos NFC Sieg (90 Min.)",
+  "odds": 6.5,
+  "fair": 6.2567316270279445,
+  "min_odds": 6.444433575838783,
+  "home": [
+   "Aris",
+   "Aris",
+   "Aris",
+   "ARI"
+  ],
+  "away": [
+   "Volos NFC",
+   "Volos NFC",
+   "Volos",
+   "VOL"
   ]
  }
 ]
