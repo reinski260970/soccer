@@ -1,0 +1,36 @@
+name: soccer-mongo-goal-market-backtest
+on:
+  push:
+    paths:
+      - ".github/mongo-goal-markets-run-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  goal-markets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["germany", "top5-other", "europe"]
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Matrix, quarter-line and chronology regression tests
+        run: python -m pytest -q tests/test_soccer_goal_markets.py tests/test_m17_17_temporal_integrity.py
+      - name: Independent soccer 1X2 O/U BTTS goal model on Mongo
+        run: python -m scripts.mongo_goal_markets_backtest --group "${{ matrix.group }}"
+      - name: Upload historical markets audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soccer-goal-market-${{ matrix.group }}
+          path: reports/mongo_goal_markets_${{ matrix.group }}.json
+          if-no-files-found: warn
