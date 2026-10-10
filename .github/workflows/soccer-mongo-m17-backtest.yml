@@ -23,6 +23,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
+      - name: Chronological leakage regression tests
+        run: python -m pytest -q tests/test_m17_17.py tests/test_m17_17_temporal_integrity.py
       - name: Historical walk-forward M17.17 from read-only Soccer Mongo
         run: python -m scripts.mongo_m17_17_backtest --group "${{ matrix.group }}"
       - name: Upload per-league audit result
