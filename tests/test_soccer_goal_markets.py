@@ -83,3 +83,38 @@ def test_invalid_market_and_probability_rejected():
         goal_markets(1.5, 1.1, rho=-0.5)
     with pytest.raises(ValueError):
         AsianPrice(0.4, 0.5, 0.1).ev(1)
+
+
+def test_shadow_quote_interface_includes_all_soccer_families_without_release():
+    from oddswatch.models.goal_markets import quote_market
+    specs = [
+        ("1x2", "home", None),
+        ("1x2", "draw", None),
+        ("btts", "yes", None),
+        ("btts", "no", None),
+        ("double_chance", "1x", None),
+        ("dnb", "away", None),
+        ("total", "over", 2.25),
+        ("total", "under", 2.75),
+        ("asian_handicap", "home", -0.25),
+        ("asian_handicap", "away", 0.75),
+    ]
+    for market, selection, line in specs:
+        row = quote_market(1.4, 1.2, market=market,
+                           selection=selection, line=line, odds=2.1)
+        assert row["model_status"] == "SHADOW_UNVALIDATED"
+        assert row["release_eligible"] is False
+        assert row["fair_odds"] >= 1.0
+        assert row["win_fraction"] + row["lose_fraction"] + row["push_fraction"] == pytest.approx(1)
+        pwin, ploss = row["win_fraction"],row["lose_fraction"]
+        assert row["ev_at_market_odds"] == pytest.approx(pwin * 1.1 - ploss)
+        fair = quote_market(1.4,1.2,market=market,
+                            selection=selection,line=line,odds=row["fair_odds"])
+        assert fair["ev_at_market_odds"] == pytest.approx(0,abs=1e-10)
+
+
+def test_shadow_quote_rejects_unbacked_period_markets():
+    from oddswatch.models.goal_markets import quote_market
+    with pytest.raises(ValueError):
+        quote_market(1.5,1.2,market="first_half_total",
+                     selection="over",line=1.5)
