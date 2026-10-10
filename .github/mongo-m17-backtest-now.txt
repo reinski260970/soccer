@@ -1,1 +1,1 @@
-Run historical M17.17 Soccer Mongo walk-forward for 13 leagues; no PLAY releases. Triggered 2026-10-10.
+Leakage-safe M17.17 re-backtest, 13 leagues; pre-2020 xG proxy + same-day frozen state; diagnostic only; 2026-10-10.
