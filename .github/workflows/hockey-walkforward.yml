@@ -38,11 +38,23 @@ jobs:
           git config user.name "oddswatch-bot"
           git config user.email "oddswatch-bot@users.noreply.github.com"
           cp data/hockey/walkforward_validation.json /tmp/hockey-walkforward.json
-          git restore data/hockey/walkforward_validation.json 2>/dev/null || true
-          git pull --rebase --autostash
-          cp /tmp/hockey-walkforward.json data/hockey/walkforward_validation.json
-          git add data/hockey/walkforward_validation.json
-          if ! git diff --cached --quiet; then
+          # A busy repository can receive other scan commits during the job.
+          # Retry from the latest main without ever force-pushing; keep the
+          # independently generated report bytes unchanged.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/hockey-walkforward.json data/hockey/walkforward_validation.json
+            git add data/hockey/walkforward_validation.json
+            if git diff --cached --quiet; then
+              echo "Walkforward report already current"
+              exit 0
+            fi
             git commit -m "Hockey OOS research audit $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
-          fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Could not publish walkforward after five safe retries"
+          exit 1
