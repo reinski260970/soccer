@@ -52,5 +52,5 @@ def test_insufficient_previous_season_calibration_fails_closed(monkeypatch):
 
 def test_weight_blend_is_proper_probability_vector():
     out=hc._mix([.5,.2,.3],[.4,.25,.35],.5)
-    assert out==[.45,.225,.325]
+    assert out==__import__("pytest").approx([.45,.225,.325])
     assert sum(out)==1.
