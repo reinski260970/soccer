@@ -117,6 +117,19 @@ def _poisson_market_fair(v: surebet.SurebetValue, fx) -> tuple[float | None, flo
     if not xg:
         return None, None, None, "keine Torerwartung im Modell"
     lh, la = xg
+    # API's win1 / handicap1 / team1 always refer to v.teams[0], not
+    # necessarily the scanner's home team. Re-orient both xG values before
+    # computing ANY market probability, including handicaps and team totals.
+    if len(v.teams) != 2:
+        return None, None, None, "keine zwei eindeutig identifizierten Teams"
+    direct = (matching.same(v.teams[0], fx.game.home.name)
+              and matching.same(v.teams[1], fx.game.away.name))
+    reverse = (matching.same(v.teams[0], fx.game.away.name)
+               and matching.same(v.teams[1], fx.game.home.name))
+    if direct == reverse:  # unmatched or ambiguous: never infer market side
+        return None, None, None, "Teamzuordnung uneindeutig"
+    if reverse:
+        lh, la = la, lh
     rows = _score_matrix(lh, la)
     code = (v.bet_type or "").strip()
     cond = None
@@ -209,8 +222,15 @@ def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, float
         code in {"win1", "win2"} and period in {"overtime", "shootout"}
     ):
         side = "home" if code in {"winOnly1", "win1"} else "away"
-        direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
-        if not direct:
+        direct = (len(v.teams) == 2
+                  and matching.same(v.teams[0], fx.game.home.name)
+                  and matching.same(v.teams[1], fx.game.away.name))
+        reverse = (len(v.teams) == 2
+                   and matching.same(v.teams[0], fx.game.away.name)
+                   and matching.same(v.teams[1], fx.game.home.name))
+        if direct == reverse:
+            return None, None, None, "Teamzuordnung uneindeutig"
+        if reverse:
             side = "away" if side == "home" else "home"
         p = fx.probs.get(side)
         if p is not None and p > 0:
@@ -224,8 +244,15 @@ def _model_probability(v: surebet.SurebetValue, fx) -> tuple[float | None, float
     # parameters/lines are exposed by the fixture path.
     side = _candidate_side(v)
     if side in {"home", "away"}:
-        direct = matching.same(v.teams[0], fx.game.home.name) if v.teams else True
-        if not direct:
+        direct = (len(v.teams) == 2
+                  and matching.same(v.teams[0], fx.game.home.name)
+                  and matching.same(v.teams[1], fx.game.away.name))
+        reverse = (len(v.teams) == 2
+                   and matching.same(v.teams[0], fx.game.away.name)
+                   and matching.same(v.teams[1], fx.game.home.name))
+        if direct == reverse:
+            return None, None, None, "Teamzuordnung uneindeutig"
+        if reverse:
             side = "away" if side == "home" else "home"
         p = fx.probs.get(side)
         if p is not None and p > 0:
