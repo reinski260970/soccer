@@ -141,6 +141,10 @@ def _poisson_market_fair(v: surebet.SurebetValue, fx) -> tuple[float | None, flo
     full_reg = period in {"regulartime", "fulltime", "match", ""}
     if not full_reg:
         return None, None, None, "Periodenmarkt braucht eigenes Periodenmodell"
+    # Hockey score-grid describes regulation only, NOT a full game including OT/SO.
+    # True full-game two-way winners are handled by fx.probs above.
+    if fx.sport in {"hockey", "nhl"} and period != "regulartime":
+        return None, None, None, "Hockey Full-Game inkl. OT/SO braucht ein eigenes korrektes Marktmodell"
 
     # 1X2 / double chance / DNB.
     p1 = sum(p for h, a, p in rows if h > a)
