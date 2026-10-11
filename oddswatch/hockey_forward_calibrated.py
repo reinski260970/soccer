@@ -23,7 +23,32 @@ def _season_start(t):
     return t.year if t.month>=7 else t.year-1
 
 
+# The historical NHL dataset stores official three-letter franchise codes,
+# whereas the ESPN schedule stores full franchise names. Exact audited mapping.
+_NHL_CODES = {
+    "Anaheim Ducks":"ANA", "Arizona Coyotes":"ARI",
+    "Boston Bruins":"BOS", "Buffalo Sabres":"BUF",
+    "Carolina Hurricanes":"CAR", "Columbus Blue Jackets":"CBJ",
+    "Calgary Flames":"CGY", "Chicago Blackhawks":"CHI",
+    "Colorado Avalanche":"COL", "Dallas Stars":"DAL",
+    "Detroit Red Wings":"DET", "Edmonton Oilers":"EDM",
+    "Florida Panthers":"FLA", "Los Angeles Kings":"LAK",
+    "Minnesota Wild":"MIN", "Montreal Canadiens":"MTL",
+    "New Jersey Devils":"NJD", "Nashville Predators":"NSH",
+    "New York Islanders":"NYI", "New York Rangers":"NYR",
+    "Ottawa Senators":"OTT", "Philadelphia Flyers":"PHI",
+    "Pittsburgh Penguins":"PIT", "Seattle Kraken":"SEA",
+    "San Jose Sharks":"SJS", "St. Louis Blues":"STL",
+    "Tampa Bay Lightning":"TBL", "Toronto Maple Leafs":"TOR",
+    "Utah Mammoth":"UTA", "Utah Hockey Club":"UTA",
+    "Vancouver Canucks":"VAN", "Vegas Golden Knights":"VGK",
+    "Winnipeg Jets":"WPG", "Washington Capitals":"WSH",
+}
+
+
 def _normal_name(league, name):
+    if league=="nhl":
+        return _NHL_CODES.get(name.strip(),name.strip())
     if league=="icehl":
         name=canonical_icehl(name)
     return _canonical(league,_hockeyarchives_team(name,league))
