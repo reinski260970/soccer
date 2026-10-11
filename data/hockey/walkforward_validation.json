@@ -266,13 +266,13 @@
         "status": "EVALUATED_RESEARCH",
         "train_n": 657,
         "test_n": 329,
-        "scored_n": 328,
-        "unseen_teams_n": 1,
-        "model_logloss": 1.025906,
-        "base_rate_logloss": 1.043241,
-        "logloss_gain_vs_base": 0.017335,
-        "model_brier_3way": 0.616466,
-        "base_rate_brier_3way": 0.632423,
+        "scored_n": 329,
+        "unseen_teams_n": 0,
+        "model_logloss": 1.024258,
+        "base_rate_logloss": 1.042377,
+        "logloss_gain_vs_base": 0.018119,
+        "model_brier_3way": 0.615274,
+        "base_rate_brier_3way": 0.631832,
         "baseline_probabilities_home_draw_away": [
           0.4682,
           0.1833,
@@ -293,9 +293,9 @@
           },
           {
             "bucket": 6,
-            "n": 68,
-            "mean_confidence": 0.6394,
-            "hit_rate": 0.5588
+            "n": 69,
+            "mean_confidence": 0.6391,
+            "hit_rate": 0.5652
           },
           {
             "bucket": 7,
@@ -315,13 +315,13 @@
         "status": "EVALUATED_RESEARCH",
         "train_n": 986,
         "test_n": 330,
-        "scored_n": 272,
-        "unseen_teams_n": 58,
-        "model_logloss": 1.013115,
-        "base_rate_logloss": 1.035585,
-        "logloss_gain_vs_base": 0.022469,
-        "model_brier_3way": 0.60867,
-        "base_rate_brier_3way": 0.625139,
+        "scored_n": 282,
+        "unseen_teams_n": 48,
+        "model_logloss": 1.019949,
+        "base_rate_logloss": 1.036553,
+        "logloss_gain_vs_base": 0.016604,
+        "model_brier_3way": 0.613867,
+        "base_rate_brier_3way": 0.625889,
         "baseline_probabilities_home_draw_away": [
           0.4621,
           0.185,
@@ -330,26 +330,26 @@
         "calibration_top_choice": [
           {
             "bucket": 4,
-            "n": 100,
-            "mean_confidence": 0.4549,
-            "hit_rate": 0.41
+            "n": 106,
+            "mean_confidence": 0.4558,
+            "hit_rate": 0.4245
           },
           {
             "bucket": 5,
-            "n": 94,
-            "mean_confidence": 0.549,
-            "hit_rate": 0.4468
+            "n": 96,
+            "mean_confidence": 0.5501,
+            "hit_rate": 0.4167
           },
           {
             "bucket": 6,
-            "n": 52,
-            "mean_confidence": 0.6381,
-            "hit_rate": 0.5962
+            "n": 54,
+            "mean_confidence": 0.6383,
+            "hit_rate": 0.5926
           },
           {
             "bucket": 7,
             "n": 24,
-            "mean_confidence": 0.7265,
+            "mean_confidence": 0.7269,
             "hit_rate": 0.75
           },
           {
@@ -366,10 +366,10 @@
         "test_n": 59,
         "scored_n": 50,
         "unseen_teams_n": 9,
-        "model_logloss": 1.022655,
+        "model_logloss": 1.023707,
         "base_rate_logloss": 1.08349,
-        "logloss_gain_vs_base": 0.060835,
-        "model_brier_3way": 0.606968,
+        "logloss_gain_vs_base": 0.059783,
+        "model_brier_3way": 0.60769,
         "base_rate_brier_3way": 0.655668,
         "baseline_probabilities_home_draw_away": [
           0.4678,
@@ -379,32 +379,32 @@
         "calibration_top_choice": [
           {
             "bucket": 4,
-            "n": 21,
-            "mean_confidence": 0.4563,
-            "hit_rate": 0.619
+            "n": 22,
+            "mean_confidence": 0.4567,
+            "hit_rate": 0.6364
           },
           {
             "bucket": 5,
-            "n": 13,
-            "mean_confidence": 0.5425,
-            "hit_rate": 0.3846
+            "n": 12,
+            "mean_confidence": 0.5464,
+            "hit_rate": 0.3333
           },
           {
             "bucket": 6,
             "n": 13,
-            "mean_confidence": 0.6516,
+            "mean_confidence": 0.6528,
             "hit_rate": 0.7692
           },
           {
             "bucket": 7,
             "n": 1,
-            "mean_confidence": 0.7212,
+            "mean_confidence": 0.7181,
             "hit_rate": 0.0
           },
           {
             "bucket": 8,
             "n": 2,
-            "mean_confidence": 0.8294,
+            "mean_confidence": 0.829,
             "hit_rate": 0.5
           }
         ]
@@ -498,22 +498,41 @@
         ]
       },
       "2026/27": {
-        "status": "NO_SUPPORTED_TEST_TEAMS",
+        "status": "EVALUATED_RESEARCH",
         "train_n": 1937,
         "test_n": 99,
-        "scored_n": 0,
-        "unseen_teams_n": 99,
-        "model_logloss": null,
-        "base_rate_logloss": null,
-        "logloss_gain_vs_base": null,
-        "model_brier_3way": null,
-        "base_rate_brier_3way": null,
+        "scored_n": 99,
+        "unseen_teams_n": 0,
+        "model_logloss": 1.05544,
+        "base_rate_logloss": 1.044582,
+        "logloss_gain_vs_base": -0.010858,
+        "model_brier_3way": 0.64141,
+        "base_rate_brier_3way": 0.631669,
         "baseline_probabilities_home_draw_away": [
           0.4438,
           0.2314,
           0.3247
         ],
-        "calibration_top_choice": []
+        "calibration_top_choice": [
+          {
+            "bucket": 4,
+            "n": 56,
+            "mean_confidence": 0.4502,
+            "hit_rate": 0.3393
+          },
+          {
+            "bucket": 5,
+            "n": 31,
+            "mean_confidence": 0.5432,
+            "hit_rate": 0.4516
+          },
+          {
+            "bucket": 6,
+            "n": 12,
+            "mean_confidence": 0.649,
+            "hit_rate": 0.5833
+          }
+        ]
       }
     },
     "extraliga": {
