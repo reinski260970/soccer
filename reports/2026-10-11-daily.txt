@@ -1,0 +1,52 @@
+🗞 Tagesbericht So 11.10. 14:54 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 8 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Conference League · Do 15.10. 18:45 MESZ
+🆚 Panathinaikos – Borac Banja Luka
+➡️ Borac Banja Luka Sieg (90 Min.) spielbar ab 9,35 (jetzt 9,50)
+• Scottish Premiership · Sa 17.10. 21:00 MESZ
+🆚 Dundee – Rangers
+➡️ Rangers Sieg (90 Min.) spielbar ab 1,37 (jetzt 1,38)
+• Scottish Premiership · Sa 17.10. 16:00 MESZ
+🆚 Hibernian – Falkirk
+➡️ Hibernian Sieg (90 Min.) spielbar ab 1,70 (jetzt 1,70)
+• Conference League · Do 15.10. 18:45 MESZ
+🆚 CSKA Sofia – AS Monaco
+➡️ CSKA Sofia Sieg (90 Min.) spielbar ab 6,51 (jetzt 6,50)
+• Premier League · So 18.10. 17:30 MESZ
+🆚 Nottingham Forest – Arsenal
+➡️ Unentschieden (90 Min.) spielbar ab 4,21 (jetzt 4,20)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 103 Spiele | ausführbare Preise 86 | Marktreferenz 97 | 0 PLAY
+   • Panathinaikos – Borac Banja Luka · Do 15.10. 18:45 MESZ: Borac Banja Luka Sieg (90 Min.) @ 9,50, spielbar ab 9,35 (EV 4,6 %)
+   • CSKA Sofia – AS Monaco · Do 15.10. 18:45 MESZ: CSKA Sofia Sieg (90 Min.) @ 6,50, spielbar ab 6,51 (EV 2,8 %)
+🏒 Eishockey Europa: 61 Spiele | ausführbare Preise 2 | Marktreferenz 2 | 0 PLAY
+   • Amur Khabarovsk – Lada Togliatti · Mo 12.10. 11:00 MESZ: Amur Khabarovsk Sieg (inkl. OT) @ 1,53, spielbar ab 1,61 (EV -2,1 %)
+   • Adler Mannheim – Straubing Tigers · So 11.10. 19:00 MESZ: Adler Mannheim Sieg (inkl. OT) @ 1,47, spielbar ab 1,55 (EV -2,5 %)
+🏒 NHL: 51 Spiele | ausführbare Preise 3 | Marktreferenz 51 | 0 PLAY
+   • Philadelphia Flyers – Carolina Hurricanes · Mo 12.10. 01:00 MESZ: Philadelphia Flyers Sieg (inkl. OT) @ 2,72, spielbar ab 2,74 (EV 2,3 %)
+   • Washington Capitals – Seattle Kraken · So 11.10. 23:00 MESZ: Washington Capitals Sieg (inkl. OT) @ 1,52, spielbar ab 1,54 (EV 1,5 %)
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: 15 Spiele | ausführbare Preise 0 | Marktreferenz 15 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ NBA: keine Regular-Season-Spiele bis 18.10. (Preseason wird nicht bewertet; Saisonstart 20.10.)
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
