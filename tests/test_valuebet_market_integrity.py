@@ -92,3 +92,14 @@ def test_negative_and_rejected_valuebets_stored_for_research_not_as_watches(monk
     assert all(p["features"]["release_eligible"] is False for p in bundle["predictions"])
     assert bundle["signals"][0]["stake_eh"]==0
     assert bundle["signals"][0]["signal_type"]=="WATCH"
+
+
+def test_full_game_hockey_must_not_use_regulation_goal_model():
+    fx=_fixture()
+    full=_value(fx,"over",line="5.5")
+    full.period="fullTime"
+    fair,p,ev,note=surebet_values._poisson_market_fair(full,fx)
+    assert fair is None and p is None and ev is None
+    assert "Full-Game" in note
+    regular=_value(fx,"over",line="5.5")
+    assert surebet_values._poisson_market_fair(regular,fx)[1] is not None
