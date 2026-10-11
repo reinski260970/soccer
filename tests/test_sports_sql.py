@@ -57,3 +57,52 @@ def test_existing_scanner_predictions_are_evaluated(monkeypatch):
             row=c.execute('SELECT * FROM sports.scanner_metrics').fetchone()
             assert row['evaluated']==1
             assert float(row['brier_score'])==pytest.approx(.09)
+
+
+def test_soccer_three_way_no_vig_market_baseline_and_view_upgrade(monkeypatch):
+    """The 009 migration must append (not rename) existing view columns."""
+    if not os.getenv("SPORTS_SQL_TEST_URL"):
+        pytest.skip("requires isolated PostgreSQL test database")
+    monkeypatch.setenv("SPORTS_DATABASE_URL", os.environ["SPORTS_SQL_TEST_URL"])
+    with connect() as c:
+        migrate(c)
+        cols=[r["column_name"] for r in c.execute(
+            "SELECT column_name FROM information_schema.columns "
+            "WHERE table_schema='sports' AND table_name='forward_market_comparison' "
+            "ORDER BY ordinal_position"
+        ).fetchall()]
+        assert cols[:6] == ["league","model_id","market","period","source_reference","matches"]
+        assert cols[-1] == "market_structure"
+        with c.transaction(force_rollback=True):
+            c.execute("TRUNCATE sports.events,sports.model_versions CASCADE")
+            ev = dict(event_id="soccer:3way:test",league="bundesliga",
+                source="test-3way",source_event_id="q-3way",
+                home_team_id="a",away_team_id="b",home_name="Home",away_name="Away",
+                kickoff="2026-10-09T18:30:00Z",season=2026,season_type="regular",
+                status="STATUS_FINAL",home_score=2,away_score=1,
+                observed_at="2026-10-09T20:35:00Z")
+            mod=dict(model_id="3way-test",league="bundesliga",
+                trained_through="2026-10-08T00:00:00Z",
+                created_at="2026-10-08T01:00:00Z",method="3way-test",
+                parameters={},validation={},approved=False)
+            ps=[dict(prediction_id="three-"+sel,event_id=ev["event_id"],
+                model_id=mod["model_id"],as_of="2026-10-09T17:00:00Z",
+                market="moneyline",selection=sel,line=0,period="REGULATION",
+                settlement_rules="REGULATION",probability=p,quality="LOW",
+                features={"estimate":True})
+                for sel,p in (("HOME",.5),("DRAW",.3),("AWAY",.2))]
+            qs=[dict(quote_id="q3-"+sel,event_id=ev["event_id"],market="moneyline",
+                selection=sel,line=0,period="REGULATION",settlement_rules="REGULATION",
+                bookmaker="pinnacle",source="pinnacle",source_url=None,
+                observed_at="2026-10-09T16:15:00Z",source_time=None,odds=odd,
+                commission=0,executable=False,live=False,liquidity=None)
+                for sel,odd in (("HOME",2.5),("DRAW",3.8),("AWAY",3.3))]
+            ingest(c,{"events":[ev],"model_versions":[mod],"predictions":ps,
+                      "odds_snapshots":qs})
+            rows=c.execute("SELECT * FROM sports.forward_market_comparison "
+                "WHERE model_id='3way-test'").fetchall()
+            assert len(rows)==1
+            assert rows[0]["market_structure"]=="3WAY"
+            assert rows[0]["matches"]==1 and rows[0]["outcomes"]==1
+            assert float(rows[0]["model_logloss"])==pytest.approx(-__import__("math").log(.5))
+            assert float(rows[0]["market_logloss"])>0
