@@ -8,8 +8,8 @@
   "market": "away",
   "selection": "Borac Banja Luka Sieg (90 Min.)",
   "odds": 9.5,
-  "fair": 8.83300547605707,
-  "min_odds": 9.097995640338782,
+  "fair": 9.082352144840904,
+  "min_odds": 9.354822709186132,
   "home": [
    "Panathinaikos",
    "Panathinaikos",
@@ -24,6 +24,54 @@
   ]
  },
  {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "scotland",
+  "event": "Dundee – Rangers",
+  "kickoff": "2026-10-17T19:00:00+00:00",
+  "market": "away",
+  "selection": "Rangers Sieg (90 Min.)",
+  "odds": 1.38,
+  "fair": 1.3290806935619934,
+  "min_odds": 1.3689531143688531,
+  "home": [
+   "Dundee",
+   "Dundee",
+   "Dundee",
+   "DUN"
+  ],
+  "away": [
+   "Rangers",
+   "Rangers",
+   "Rangers",
+   "RAN"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "scotland",
+  "event": "Hibernian – Falkirk",
+  "kickoff": "2026-10-17T14:00:00+00:00",
+  "market": "home",
+  "selection": "Hibernian Sieg (90 Min.)",
+  "odds": 1.7,
+  "fair": 1.6457912480677257,
+  "min_odds": 1.6951649855097575,
+  "home": [
+   "Hibernian",
+   "Hibernian",
+   "Hibernian",
+   "HIBS"
+  ],
+  "away": [
+   "Falkirk",
+   "Falkirk",
+   "Falkirk",
+   "FALK"
+  ]
+ },
+ {
   "source": "betfair",
   "status": "WATCH",
   "league": "uecl",
@@ -32,8 +80,8 @@
   "market": "home",
   "selection": "CSKA Sofia Sieg (90 Min.)",
   "odds": 6.5,
-  "fair": 6.150380130432795,
-  "min_odds": 6.33489153434578,
+  "fair": 6.320896140127689,
+  "min_odds": 6.51052302433152,
   "home": [
    "CSKA Sofia",
    "CSKA Sofia",
@@ -48,75 +96,27 @@
   ]
  },
  {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "uel",
-  "event": "Benfica – Celtic",
-  "kickoff": "2026-10-15T19:00:00+00:00",
-  "market": "away",
-  "selection": "Celtic Sieg (90 Min.)",
-  "odds": 12.0,
-  "fair": 11.4804377664213,
-  "min_odds": 11.824850899413939,
-  "home": [
-   "Benfica",
-   "Benfica",
-   "Benfica",
-   "SLB"
-  ],
-  "away": [
-   "Celtic",
-   "Celtic",
-   "Celtic",
-   "CEL"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
-  "league": "nhl",
-  "event": "Ottawa Senators – Nashville Predators",
-  "kickoff": "2026-10-10T23:00:00+00:00",
-  "market": "away",
-  "selection": "Nashville Predators Sieg (inkl. OT)",
-  "odds": 2.6,
-  "fair": 2.4955479406622545,
-  "min_odds": 2.5704143788821225,
+  "league": "epl",
+  "event": "Nottingham Forest – Arsenal",
+  "kickoff": "2026-10-18T15:30:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 4.2,
+  "fair": 4.0856977467157085,
+  "min_odds": 4.20826867911718,
   "home": [
-   "Ottawa Senators",
-   "Ottawa",
-   "Senators",
-   "OTT"
+   "Nottingham Forest",
+   "Nottingham Forest",
+   "Nottm Forest",
+   "NFO"
   ],
   "away": [
-   "Nashville Predators",
-   "Nashville",
-   "Predators",
-   "NSH"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Aris – Volos NFC",
-  "kickoff": "2026-10-11T16:00:00+00:00",
-  "market": "away",
-  "selection": "Volos NFC Sieg (90 Min.)",
-  "odds": 6.5,
-  "fair": 6.2567316270279445,
-  "min_odds": 6.444433575838783,
-  "home": [
-   "Aris",
-   "Aris",
-   "Aris",
-   "ARI"
-  ],
-  "away": [
-   "Volos NFC",
-   "Volos NFC",
-   "Volos",
-   "VOL"
+   "Arsenal",
+   "Arsenal",
+   "Arsenal",
+   "ARS"
   ]
  }
 ]
