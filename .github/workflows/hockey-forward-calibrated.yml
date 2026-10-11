@@ -1,0 +1,31 @@
+name: Hockey Calibrated Forward Shadow
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/hockey_forward_calibrated.py"
+      - "tests/test_hockey_forward_calibrated.py"
+      - ".github/workflows/hockey-forward-calibrated.yml"
+  schedule:
+    - cron: "15 7,19 * * *"
+permissions:
+  contents: read
+concurrency:
+  group: hockey-calibrated-forward-shadow
+  cancel-in-progress: false
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test leakage and abstention rules
+        run: python -m pytest tests/test_hockey_forward_calibrated.py -q
+      - name: Store forward calibrated hockey predictions in Neon SHADOW only
+        run: python -m oddswatch.hockey_forward_calibrated
