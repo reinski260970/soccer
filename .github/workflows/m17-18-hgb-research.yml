@@ -1,0 +1,40 @@
+name: m17-18-hgb-research
+
+on:
+  push:
+    paths:
+      - ".github/m17-18-hgb-run-now.txt"
+  workflow_dispatch:
+
+concurrency:
+  group: m17-18-hgb-research
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: M17.18 HGB leakage tests
+        run: python -m pytest -q tests/test_m17_18_hgb.py
+      - name: Run M17.18 HGB challenger across main leagues
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: python -m oddswatch.m17_18_hgb_research
+      - name: Persist challenger artifact
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add data/m17_18_hgb_validation.json
+          git diff --cached --quiet || git commit -m "M17.18 HGB challenger validation"
+          git pull --rebase --autostash
+          git push
