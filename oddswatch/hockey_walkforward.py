@@ -23,6 +23,30 @@ OUTPUT = Path("data/hockey/walkforward_validation.json")
 LEAGUES = ("nhl", "del", "icehl", "liiga", "extraliga")
 TEST_SEASONS = ("2024/25", "2025/26", "2026/27")
 
+# Canonical club identities across official short-name APIs and archive labels.
+# Only exact audited aliases, no fuzzy/city matching or team identity invention.
+_TEAM_ALIASES = {
+    "liiga": {
+        "HIFK": "HIFK Helsinki", "HPK": "HPK Hämeenlinna",
+        "Ilves": "Ilves Tampere", "JYP": "JYP Jyväskylä",
+        "Jokerit": "Jokerit Helsinki", "Jukurit": "Jukurit Mikkeli",
+        "K-Espoo": "Kiekko-Espoo", "KalPa": "KalPa Kuopio",
+        "KooKoo": "KooKoo Kouvola", "Kärpät": "Kärpät Oulu",
+        "Lukko": "Lukko Rauma", "Pelicans": "Pelicans Lahti",
+        "SaiPa": "SaiPa Lappeenranta", "Sport": "Sport Vaasa",
+        "TPS": "TPS Turku", "Tappara": "Tappara Tampere",
+        "Ässät": "Ässät Pori",
+    },
+    "icehl": {
+        "Fehérvár AV19": "Fehérvár", "Olimpija Ljubljana": "Ljubljana",
+        "Vienna Capitals": "Vienne", "Vorarlberg": "Feldkirch",
+    },
+}
+
+
+def _canonical(league: str, team: str) -> str:
+    return _TEAM_ALIASES.get(league, {}).get(team.strip(), team.strip())
+
 
 def load_history(path=INPUT, as_of: date | None = None) -> list[dict]:
     as_of = as_of or date.today()
@@ -32,7 +56,8 @@ def load_history(path=INPUT, as_of: date | None = None) -> list[dict]:
             try:
                 league, season = raw["league"], raw["season"]
                 day = date.fromisoformat(raw["date"])
-                home, away = raw["home_team"].strip(), raw["away_team"].strip()
+                home = _canonical(league, raw["home_team"])
+                away = _canonical(league, raw["away_team"])
                 hg, ag = int(raw["reg_home"]), int(raw["reg_away"])
             except (KeyError, TypeError, ValueError):
                 continue
