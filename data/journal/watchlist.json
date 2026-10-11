@@ -1,26 +1,74 @@
 [
  {
-  "source": "betfair",
+  "source": "bet365",
   "status": "WATCH",
-  "league": "seriea",
-  "event": "AS Roma – Genoa",
-  "kickoff": "2026-10-17T18:45:00+00:00",
+  "league": "greece",
+  "event": "Kifisia – Aris",
+  "kickoff": "2026-10-18T17:00:00+00:00",
   "market": "away",
-  "selection": "Genoa Sieg (90 Min.)",
-  "odds": 10.0,
-  "fair": 9.38832083177628,
-  "min_odds": 9.669970456729567,
+  "selection": "Aris Sieg (90 Min.)",
+  "odds": 2.45,
+  "fair": 2.1840559257906516,
+  "min_odds": 2.2495776035643713,
   "home": [
-   "AS Roma",
-   "AS Roma",
-   "AS Roma",
-   "ROMA"
+   "Kifisia",
+   "Kifisia",
+   "Kifisia",
+   "KIF"
   ],
   "away": [
-   "Genoa",
-   "Genoa",
-   "Genoa",
-   "GEN"
+   "Aris",
+   "Aris",
+   "Aris",
+   "ARI"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "austria",
+  "event": "Rapid Vienna – TSV Hartberg",
+  "kickoff": "2026-10-16T17:30:00+00:00",
+  "market": "away",
+  "selection": "TSV Hartberg Sieg (90 Min.)",
+  "odds": 9.5,
+  "fair": 8.808873012781975,
+  "min_odds": 9.073139203165434,
+  "home": [
+   "Rapid Vienna",
+   "Rapid Vienna",
+   "Rapid Vienna",
+   "VIE"
+  ],
+  "away": [
+   "TSV Hartberg",
+   "TSV Hartberg",
+   "TSV Hartberg",
+   "HAR"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "ligue1",
+  "event": "Lyon – Nice",
+  "kickoff": "2026-10-18T18:45:00+00:00",
+  "market": "away",
+  "selection": "Nice Sieg (90 Min.)",
+  "odds": 5.25,
+  "fair": 4.955096760287988,
+  "min_odds": 5.103749663096628,
+  "home": [
+   "Lyon",
+   "Lyon",
+   "Lyon",
+   "LYON"
+  ],
+  "away": [
+   "Nice",
+   "Nice",
+   "Nice",
+   "NICE"
   ]
  },
  {
@@ -50,73 +98,25 @@
  {
   "source": "betfair",
   "status": "WATCH",
-  "league": "uecl",
-  "event": "Panathinaikos – Borac Banja Luka",
-  "kickoff": "2026-10-15T16:45:00+00:00",
-  "market": "away",
-  "selection": "Borac Banja Luka Sieg (90 Min.)",
-  "odds": 9.5,
-  "fair": 9.082352144840904,
-  "min_odds": 9.354822709186132,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Borac Banja Luka",
-   "Borac Banja Luka",
-   "Borac",
-   "BBL"
-  ]
- },
- {
-  "source": "1xbet",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Philadelphia Flyers – Carolina Hurricanes",
-  "kickoff": "2026-10-11T23:00:00+00:00",
-  "market": "away",
-  "selection": "Carolina Hurricanes Sieg (inkl. OT)",
-  "odds": 1.55,
-  "fair": 1.4977457543591228,
-  "min_odds": 1.5426781269898966,
-  "home": [
-   "Philadelphia Flyers",
-   "Philadelphia",
-   "Flyers",
-   "PHI"
-  ],
-  "away": [
-   "Carolina Hurricanes",
-   "Carolina",
-   "Hurricanes",
-   "CAR"
-  ]
- },
- {
-  "source": "betfair",
-  "status": "WATCH",
   "league": "eredivisie",
-  "event": "PEC Zwolle – Go Ahead Eagles",
-  "kickoff": "2026-10-18T10:15:00+00:00",
+  "event": "Heerenveen – Excelsior",
+  "kickoff": "2026-10-16T18:00:00+00:00",
   "market": "draw",
   "selection": "Unentschieden (90 Min.)",
-  "odds": 4.0,
-  "fair": 3.866788458514391,
-  "min_odds": 3.9827921122698227,
+  "odds": 4.33,
+  "fair": 4.138786375667689,
+  "min_odds": 4.262949966937719,
   "home": [
-   "PEC Zwolle",
-   "PEC Zwolle",
-   "PEC Zwolle",
-   "PEC"
+   "Heerenveen",
+   "Heerenveen",
+   "Heerenveen",
+   "HEE"
   ],
   "away": [
-   "Go Ahead Eagles",
-   "Go Ahead Eagles",
-   "Go Ahead Eagles",
-   "GAE"
+   "Excelsior",
+   "Excelsior",
+   "Excelsior",
+   "EXC"
   ]
  }
 ]
