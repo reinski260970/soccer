@@ -151,11 +151,12 @@ scored AS (
   SELECT * FROM twoway_scored
 )
 SELECT
-  league,model_id,market,period,source_reference,market_structure,
+  league,model_id,market,period,source_reference,
   COUNT(DISTINCT event_id) AS matches,
   COUNT(*) AS outcomes,
   AVG(model_logloss) AS model_logloss,
   AVG(market_logloss) AS market_logloss,
-  AVG(market_logloss)-AVG(model_logloss) AS logloss_gain_vs_market
+  AVG(market_logloss)-AVG(model_logloss) AS logloss_gain_vs_market,
+  market_structure
 FROM scored
 GROUP BY league,model_id,market,period,source_reference,market_structure;
