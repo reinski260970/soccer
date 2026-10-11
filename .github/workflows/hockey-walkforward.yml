@@ -1,0 +1,48 @@
+name: Hockey Historical Walkforward Validation
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 5 * * *"
+  push:
+    paths:
+      - "oddswatch/hockey_walkforward.py"
+      - "tests/test_hockey_walkforward.py"
+      - "data/hockey/history.csv"
+      - ".github/workflows/hockey-walkforward.yml"
+permissions:
+  contents: write
+concurrency:
+  group: hockey-historical-walkforward
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install pytest
+      - name: Check no-lookahead tests
+        run: python -m pytest tests/test_hockey_walkforward.py -q
+      - name: Run frozen pre-season Poisson vs base-rate benchmark
+        run: python -m oddswatch.hockey_walkforward
+      - name: Upload league/season validation table
+        uses: actions/upload-artifact@v4
+        with:
+          name: hockey-walkforward-validation
+          path: data/hockey/walkforward_validation.json
+      - name: Commit independently evaluated research only
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/walkforward_validation.json /tmp/hockey-walkforward.json
+          git restore data/hockey/walkforward_validation.json 2>/dev/null || true
+          git pull --rebase --autostash
+          cp /tmp/hockey-walkforward.json data/hockey/walkforward_validation.json
+          git add data/hockey/walkforward_validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Hockey OOS research audit $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
