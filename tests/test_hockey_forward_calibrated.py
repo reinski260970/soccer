@@ -62,3 +62,32 @@ def test_started_or_too_distant_games_are_not_backfilled(monkeypatch):
     monkeypatch.setattr(fc.calibrate,"_fit",lambda *args: (_ for _ in ()).throw(AssertionError("No fit expected")))
     bundle,issues=fc.build_bundle([_event(now,delta=-2),_event(now,delta=99)],[],now)
     assert not bundle["predictions"] and not issues
+
+
+def test_nhl_full_club_names_map_to_historical_codes():
+    examples={
+        "Washington Capitals":"WSH","Seattle Kraken":"SEA",
+        "New York Rangers":"NYR","New York Islanders":"NYI",
+        "Columbus Blue Jackets":"CBJ","St. Louis Blues":"STL",
+        "Utah Mammoth":"UTA","Montreal Canadiens":"MTL",
+        "Pittsburgh Penguins":"PIT"
+    }
+    for name,code in examples.items():
+        assert fc._normal_name("nhl",name)==code
+    assert len(set(fc._NHL_CODES.values()))==32
+    assert fc._normal_name("nhl","Unidentified NHL team")=="Unidentified NHL team"
+
+
+def test_forward_nhl_candidates_use_valid_training_codes(monkeypatch):
+    now=datetime(2026,10,11,18,tzinfo=timezone.utc)
+    seen=[]
+    class Model:
+        def markets(self,h,a):
+            seen.append((h,a))
+            return {"1":.53,"X":.21,"2":.26}
+    monkeypatch.setattr(fc.calibrate,"_fit",lambda rows,year:(Model(),[None]*1000,[.45,.25,.30]))
+    monkeypatch.setattr(fc,"_best_preseason_weight",lambda rows,year:(.25,500))
+    b,issues=fc.build_bundle([_event(now,home="Washington Capitals",
+        away="Seattle Kraken",league="nhl")],[],now)
+    assert seen==[("WSH","SEA")]
+    assert len(b["predictions"])==2 and not issues
