@@ -2,6 +2,54 @@
  {
   "source": "betfair",
   "status": "WATCH",
+  "league": "seriea",
+  "event": "AS Roma – Genoa",
+  "kickoff": "2026-10-17T18:45:00+00:00",
+  "market": "away",
+  "selection": "Genoa Sieg (90 Min.)",
+  "odds": 10.0,
+  "fair": 9.38832083177628,
+  "min_odds": 9.669970456729567,
+  "home": [
+   "AS Roma",
+   "AS Roma",
+   "AS Roma",
+   "ROMA"
+  ],
+  "away": [
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "eredivisie",
+  "event": "Sparta Rotterdam – Willem II",
+  "kickoff": "2026-10-17T19:00:00+00:00",
+  "market": "away",
+  "selection": "Willem II Sieg (90 Min.)",
+  "odds": 5.25,
+  "fair": 4.955662359523338,
+  "min_odds": 5.104332230309038,
+  "home": [
+   "Sparta Rotterdam",
+   "Sparta Rotterdam",
+   "Sparta",
+   "SPA"
+  ],
+  "away": [
+   "Willem II",
+   "Willem II",
+   "Willem II",
+   "WIL"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
   "league": "uecl",
   "event": "Panathinaikos – Borac Banja Luka",
   "kickoff": "2026-10-15T16:45:00+00:00",
@@ -24,99 +72,51 @@
   ]
  },
  {
-  "source": "bet365",
+  "source": "1xbet",
   "status": "WATCH",
-  "league": "scotland",
-  "event": "Dundee – Rangers",
-  "kickoff": "2026-10-17T19:00:00+00:00",
+  "league": "nhl",
+  "event": "Philadelphia Flyers – Carolina Hurricanes",
+  "kickoff": "2026-10-11T23:00:00+00:00",
   "market": "away",
-  "selection": "Rangers Sieg (90 Min.)",
-  "odds": 1.38,
-  "fair": 1.3290806935619934,
-  "min_odds": 1.3689531143688531,
+  "selection": "Carolina Hurricanes Sieg (inkl. OT)",
+  "odds": 1.55,
+  "fair": 1.4977457543591228,
+  "min_odds": 1.5426781269898966,
   "home": [
-   "Dundee",
-   "Dundee",
-   "Dundee",
-   "DUN"
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
   ],
   "away": [
-   "Rangers",
-   "Rangers",
-   "Rangers",
-   "RAN"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "scotland",
-  "event": "Hibernian – Falkirk",
-  "kickoff": "2026-10-17T14:00:00+00:00",
-  "market": "home",
-  "selection": "Hibernian Sieg (90 Min.)",
-  "odds": 1.7,
-  "fair": 1.6457912480677257,
-  "min_odds": 1.6951649855097575,
-  "home": [
-   "Hibernian",
-   "Hibernian",
-   "Hibernian",
-   "HIBS"
-  ],
-  "away": [
-   "Falkirk",
-   "Falkirk",
-   "Falkirk",
-   "FALK"
+   "Carolina Hurricanes",
+   "Carolina",
+   "Hurricanes",
+   "CAR"
   ]
  },
  {
   "source": "betfair",
   "status": "WATCH",
-  "league": "uecl",
-  "event": "CSKA Sofia – AS Monaco",
-  "kickoff": "2026-10-15T16:45:00+00:00",
-  "market": "home",
-  "selection": "CSKA Sofia Sieg (90 Min.)",
-  "odds": 6.5,
-  "fair": 6.320896140127689,
-  "min_odds": 6.51052302433152,
-  "home": [
-   "CSKA Sofia",
-   "CSKA Sofia",
-   "CSKA Sofia",
-   "CSKA"
-  ],
-  "away": [
-   "AS Monaco",
-   "AS Monaco",
-   "Monaco",
-   "MON"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "epl",
-  "event": "Nottingham Forest – Arsenal",
-  "kickoff": "2026-10-18T15:30:00+00:00",
+  "league": "eredivisie",
+  "event": "PEC Zwolle – Go Ahead Eagles",
+  "kickoff": "2026-10-18T10:15:00+00:00",
   "market": "draw",
   "selection": "Unentschieden (90 Min.)",
-  "odds": 4.2,
-  "fair": 4.0856977467157085,
-  "min_odds": 4.20826867911718,
+  "odds": 4.0,
+  "fair": 3.866788458514391,
+  "min_odds": 3.9827921122698227,
   "home": [
-   "Nottingham Forest",
-   "Nottingham Forest",
-   "Nottm Forest",
-   "NFO"
+   "PEC Zwolle",
+   "PEC Zwolle",
+   "PEC Zwolle",
+   "PEC"
   ],
   "away": [
-   "Arsenal",
-   "Arsenal",
-   "Arsenal",
-   "ARS"
+   "Go Ahead Eagles",
+   "Go Ahead Eagles",
+   "Go Ahead Eagles",
+   "GAE"
   ]
  }
 ]
