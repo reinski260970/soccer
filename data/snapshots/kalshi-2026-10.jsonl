@@ -686,3 +686,6 @@
 {"ticker": "KXSERIEAGAME-26OCT17ROMGEN-ROM", "event_ticker": "KXSERIEAGAME-26OCT17ROMGEN", "side": "home", "bid": 0.72, "ask": 0.75, "observed_at": "2026-10-10T13:24:11+00:00", "kickoff": "2026-10-17T18:45:00+00:00"}
 {"ticker": "KXSERIEAGAME-26OCT17ROMGEN-GEN", "event_ticker": "KXSERIEAGAME-26OCT17ROMGEN", "side": "away", "bid": 0.08, "ask": 0.1, "observed_at": "2026-10-10T13:24:11+00:00", "kickoff": "2026-10-17T18:45:00+00:00"}
 {"ticker": "KXSERIEAGAME-26OCT17ROMGEN-TIE", "event_ticker": "KXSERIEAGAME-26OCT17ROMGEN", "side": "draw", "bid": 0.15, "ask": 0.17, "observed_at": "2026-10-10T13:24:11+00:00", "kickoff": "2026-10-17T18:45:00+00:00"}
+{"ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH-SCF", "event_ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH", "side": "SCF", "bid": 0.58, "ask": 0.59, "observed_at": "2026-10-11T15:21:08+00:00", "kickoff": "2026-10-11T15:30:00+00:00"}
+{"ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH-SCH", "event_ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH", "side": "SCH", "bid": 0.17, "ask": 0.18, "observed_at": "2026-10-11T15:21:08+00:00", "kickoff": "2026-10-11T15:30:00+00:00"}
+{"ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH-TIE", "event_ticker": "KXBUNDESLIGAGAME-26OCT11SCFSCH", "side": "TIE", "bid": 0.23, "ask": 0.24, "observed_at": "2026-10-11T15:21:08+00:00", "kickoff": "2026-10-11T15:30:00+00:00"}
