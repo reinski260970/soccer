@@ -201,8 +201,10 @@ def _match_fixture(v, fixtures):
         if abs(fx.game.kickoff - v.kickoff) > timedelta(hours=12):
             continue
         direct = matching.same(v.teams[0], fx.game.home.name) and matching.same(v.teams[1], fx.game.away.name)
-        reverse = matching.same(v.teams[0], fx.game.away.name) and matching.same(v.teams[1], fx.game.home.name)
-        if direct or reverse:
+        # Stored quote selections/handicap lines are fixture-side oriented.
+        # If source teams are reversed, do not silently store the wrong side:
+        # research audit still evaluates it with corrected source orientation.
+        if direct:
             hits.append(fx)
     return hits[0] if len(hits) == 1 else None
 
@@ -273,17 +275,26 @@ def persist_audits(audits, fixtures):
             "prediction_id": pid, "event_id": event_id, "model_id": model_id,
             "as_of": now, "market": market, "selection": selection, "line": line,
             "period": period, "settlement_rules": rules,
-            "probability": float(a.our_probability), "quality": "MEDIUM",
+            # This is SHADOW-model research regardless of raw candidate EV.
+            "probability": float(a.our_probability), "quality": "LOW",
             "features": {
+                "estimate": True, "release_eligible": False,
                 "audit_status": a.status, "our_fair": a.our_fair, "our_ev": a.our_ev,
                 "valuebet_ev": v.ev, "valuebet_market": v.market,
                 "valuebet_id": v.id, "note": a.note,
             },
         })
-        bundle["signals"].append({
-            "signal_id": sid, "prediction_id": pid, "entry_quote_id": qid,
-            "signal_type": "WATCH", "created_at": now, "stake_eh": 0,
-        })
+        # Keep EVERY audited selection for research/calibration, but only
+        # create actionable WATCH signals for independently supported positive
+        # value. No negative EV, conflicts or rejected candidates in the
+        # signal/Sharperty path. Even eligible WATCH always has 0 EH.
+        if (a.status == "BESTÄTIGT"
+                and a.our_ev is not None and a.our_ev >= 0.03
+                and bool(getattr(v, "back", False))):
+            bundle["signals"].append({
+                "signal_id": sid, "prediction_id": pid, "entry_quote_id": qid,
+                "signal_type": "WATCH", "created_at": now, "stake_eh": 0,
+            })
 
     if not bundle["events"]:
         return {"configured": True, "stored": 0}
@@ -318,8 +329,7 @@ def snapshot_open_candidates(values):
                 if abs(v.kickoff - row["kickoff"]) > timedelta(hours=12):
                     continue
                 direct = matching.same(v.teams[0], row["home_name"]) and matching.same(v.teams[1], row["away_name"])
-                reverse = matching.same(v.teams[0], row["away_name"]) and matching.same(v.teams[1], row["home_name"])
-                if not (direct or reverse):
+                if not direct:  # never attach an inverted handicap/team quote
                     continue
                 desc = _descriptor(v)
                 if not desc:
