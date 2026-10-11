@@ -3,3 +3,4 @@ openpyxl>=3.1
 pymongo>=4.6
 SQLAlchemy>=2.0
 psycopg[binary]>=3.2
+scikit-learn>=1.4
