@@ -68,3 +68,22 @@ def test_no_false_market_claims(tmp_path,monkeypatch):
     assert data["market_logloss"] is None
     assert data["release_eligible"] is False
     assert data["leagues"]["nhl"]["2026/27"]["status"]=="INSUFFICIENT_HISTORY_OR_TEST_MATCHES"
+
+
+def test_aliases_unify_current_liiga_without_merging_real_opponents(tmp_path):
+    src=tmp_path/"liiga.csv"
+    with src.open("w",encoding="utf-8",newline="") as f:
+        w=csv.writer(f)
+        w.writerow(("league","season","date","home_team","away_team","reg_home","reg_away","extra","source"))
+        w.writerow(("liiga","2025/26","2026-01-10","KooKoo Kouvola","HIFK Helsinki",3,2,"","liiga-api"))
+        w.writerow(("liiga","2026/27","2026-10-01","KooKoo","HIFK",2,1,"","liiga-api"))
+        w.writerow(("liiga","2026/27","2026-10-01","KooKoo Kouvola","HIFK Helsinki",2,1,"","liiga-api"))
+        w.writerow(("icehl","2026/27","2026-10-02","Fehérvár AV19","Vienna Capitals",4,2,"","icehl-api"))
+        w.writerow(("icehl","2025/26","2026-03-02","Fehérvár","Vienne",1,3,"","hockeyarchives"))
+    rows=hw.load_history(src,as_of=date(2026,10,11))
+    assert len(rows)==4  # same Liiga event with short/full labels deduplicated
+    li=[x for x in rows if x["league"]=="liiga"]
+    assert len(li)==2
+    assert {(x["home"],x["away"]) for x in li}=={("KooKoo Kouvola","HIFK Helsinki")}
+    ice=[x for x in rows if x["league"]=="icehl"]
+    assert {(x["home"],x["away"]) for x in ice}=={("Fehérvár","Vienne")}
