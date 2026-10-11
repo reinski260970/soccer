@@ -74,7 +74,8 @@ def test_nhl_full_club_names_map_to_historical_codes():
     }
     for name,code in examples.items():
         assert fc._normal_name("nhl",name)==code
-    assert len(set(fc._NHL_CODES.values()))==32
+    # 32 active NHL franchises plus the historical ARI code.
+    assert len(set(fc._NHL_CODES.values()))==33
     assert fc._normal_name("nhl","Unidentified NHL team")=="Unidentified NHL team"
 
 
