@@ -1,0 +1,35 @@
+name: Model Profitability Evidence Audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/profitability_audit.py"
+      - "tests/test_profitability_audit.py"
+      - ".github/workflows/profitability-audit.yml"
+  schedule:
+    - cron: "45 5 * * *"
+permissions:
+  contents: read
+concurrency:
+  group: model-profitability-evidence
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test gate integrity and fee calculations
+        run: python -m pytest tests/test_profitability_audit.py -q
+      - name: Compare matched hockey OOS model vs market and gate release
+        run: python -m oddswatch.profitability_audit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hockey-profitability-evidence
+          path: data/hockey/profitability_gate.json
