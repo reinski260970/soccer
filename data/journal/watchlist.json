@@ -74,30 +74,6 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "turkey",
-  "event": "Trabzonspor – Besiktas",
-  "kickoff": "2026-10-19T17:00:00+00:00",
-  "market": "away",
-  "selection": "Besiktas Sieg (90 Min.)",
-  "odds": 2.25,
-  "fair": 2.0489010943120034,
-  "min_odds": 2.1103681271413635,
-  "home": [
-   "Trabzonspor",
-   "Trabzonspor",
-   "Trabzonspor",
-   "TRAB"
-  ],
-  "away": [
-   "Besiktas",
-   "Besiktas",
-   "Besiktas",
-   "BES"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "greece",
   "event": "Kalamata – OFI Crete",
   "kickoff": "2026-10-18T13:00:00+00:00",
@@ -117,6 +93,30 @@
    "OFI Crete",
    "OFI Crete",
    "OFI"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Levante – Athletic Club",
+  "kickoff": "2026-10-21T18:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.4,
+  "fair": 3.12557806471274,
+  "min_odds": 3.219345406654122,
+  "home": [
+   "Levante",
+   "Levante",
+   "Levante",
+   "LEV"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
   ]
  }
 ]
