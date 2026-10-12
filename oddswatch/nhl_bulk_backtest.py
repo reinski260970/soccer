@@ -159,6 +159,12 @@ def evaluate_season(rows:list[dict],season:int)->dict:
         "market_logloss":round(market_ll/n,6) if n else None,
         "logloss_gain_vs_market":round((market_ll-model_ll)/n,6) if n else None,
         "bets":bets,"wins":wins,
+        "profit_units":round(profit,6),
+        "model_loss_sum":model_ll,
+        "market_loss_sum":market_ll,
+        "clv_sum":clv_sum,
+        "entry_ev_sum":ev_sum,
+        "positive_clv_count":positive_clv,
         "flat_roi":round(profit/bets,6) if bets else None,
         "mean_entry_ev":round(ev_sum/bets,6) if bets else None,
         "mean_archive_clv":round(clv_sum/bets,6) if bets else None,
@@ -173,9 +179,24 @@ def run(path:Path=SOURCE,dest:Path=OUT)->dict:
     pooled=[v for v in reports.values() if v.get("status")=="EVALUATED"]
     total_scored=sum(v["scored_n"] for v in pooled)
     total_bets=sum(v["bets"] for v in pooled)
-    # weighted headline summaries; ROI pooled exactly cannot be reconstructed
-    # from rounded season ROI, so aggregate via an independent full pass is not
-    # claimed here.
+    total_profit=sum(v["profit_units"] for v in pooled)
+    total_model_loss=sum(v["model_loss_sum"] for v in pooled)
+    total_market_loss=sum(v["market_loss_sum"] for v in pooled)
+    total_clv=sum(v["clv_sum"] for v in pooled)
+    total_ev=sum(v["entry_ev_sum"] for v in pooled)
+    total_pos_clv=sum(v["positive_clv_count"] for v in pooled)
+    pooled_summary={
+        "scored_games":total_scored,
+        "model_logloss":round(total_model_loss/total_scored,6) if total_scored else None,
+        "market_logloss":round(total_market_loss/total_scored,6) if total_scored else None,
+        "logloss_gain_vs_market":round((total_market_loss-total_model_loss)/total_scored,6) if total_scored else None,
+        "bets":total_bets,
+        "profit_units":round(total_profit,3),
+        "flat_roi":round(total_profit/total_bets,6) if total_bets else None,
+        "mean_entry_ev":round(total_ev/total_bets,6) if total_bets else None,
+        "mean_archive_clv":round(total_clv/total_bets,6) if total_bets else None,
+        "positive_clv_rate":round(total_pos_clv/total_bets,6) if total_bets else None,
+    }
     result={
         "generated_at":datetime.now(timezone.utc).isoformat(),
         "source_rows":len(rows),
@@ -189,6 +210,7 @@ def run(path:Path=SOURCE,dest:Path=OUT)->dict:
         "evaluated_seasons":len(pooled),
         "scored_games":total_scored,
         "bets":total_bets,
+        "pooled":pooled_summary,
         "season_results":reports,
     }
     dest.parent.mkdir(parents=True,exist_ok=True)
