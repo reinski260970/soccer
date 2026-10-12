@@ -1,1 +1,1 @@
-trigger soccer-3way baseline verification 2026-10-10T08:23+02:00
+run 2026-10-12T06:40+02:00 m17-19-pipeline-check
