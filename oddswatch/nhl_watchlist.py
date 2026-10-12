@@ -141,7 +141,7 @@ def _candidate_rows(conn, now: datetime) -> list[dict]:
         SELECT e.event_id,e.league,e.home_name,e.away_name,e.kickoff,
                p.selection,p.probability,p.model_id,p.as_of,
                x.metrics->>'venue_xg_agreement' AS gate_state,
-               x.metrics->>'venue_model_direction' AS model_direction,
+               x.metrics->>'venue_xg_direction' AS model_direction,
                (x.metrics->>'fast_matchup_home_xg')::double precision AS fast_matchup_home_xg,
                (x.metrics->>'fast_matchup_away_xg')::double precision AS fast_matchup_away_xg,
                (x.metrics->>'home_home_fast_xgf5')::double precision AS home_fast_xgf5,
