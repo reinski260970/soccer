@@ -31,7 +31,7 @@ def american_to_decimal(x: float) -> float:
     x=float(x)
     if x == 0:
         raise ValueError("zero American odds")
-    return 1 + (100/x if x>0 else 100/abs(x))
+    return 1 + (x/100 if x>0 else 100/abs(x))
 
 
 def load_rows(path: Path = SOURCE) -> list[dict]:
