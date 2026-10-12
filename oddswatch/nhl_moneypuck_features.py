@@ -64,8 +64,8 @@ def load_mp_games(path=MP_PATH):
                 continue
             out.append({
                 "season":int(r["season"]),"date":day,
-                "home":r["home_team"],"away":r["away_team"],
-                "home":{
+                "home_code":r["home_team"],"away_code":r["away_team"],
+                "home_stats":{
                     "xgf5":_float(r,"home_5on5_xGoalsFor"),
                     "xga5":_float(r,"home_5on5_xGoalsAgainst"),
                     "sogf5":_float(r,"home_5on5_shotsOnGoalFor"),
@@ -81,7 +81,7 @@ def load_mp_games(path=MP_PATH):
                     "svaxgf":_float(r,"home_all_scoreVenueAdjustedxGoalsFor"),
                     "svaxga":_float(r,"home_all_scoreVenueAdjustedxGoalsAgainst"),
                 },
-                "away":{
+                "away_stats":{
                     "xgf5":_float(r,"away_5on5_xGoalsFor"),
                     "xga5":_float(r,"away_5on5_xGoalsAgainst"),
                     "sogf5":_float(r,"away_5on5_shotsOnGoalFor"),
@@ -98,14 +98,14 @@ def load_mp_games(path=MP_PATH):
                     "svaxga":_float(r,"away_all_scoreVenueAdjustedxGoalsAgainst"),
                 },
             })
-    return sorted(out,key=lambda x:(x["date"],x["home"],x["away"]))
+    return sorted(out,key=lambda x:(x["date"],x["home_code"],x["away_code"]))
 
 
 def build_mp_pregame(path=MP_PATH,alpha=.10):
     states=defaultdict(_new_state)
     snapshots={}
     for g in load_mp_games(path):
-        h,a=states[g["home"]],states[g["away"]]
+        h,a=states[g["home_code"]],states[g["away_code"]]
         feat={}
         for k in METRICS:
             # Defensive against feature is inverted so positive generally favors home.
@@ -119,10 +119,10 @@ def build_mp_pregame(path=MP_PATH,alpha=.10):
         hx=h.values["xgf5"]/(h.values["xgf5"]+h.values["xga5"]) if h.values["xgf5"]+h.values["xga5"] else .5
         ax=a.values["xgf5"]/(a.values["xgf5"]+a.values["xga5"]) if a.values["xgf5"]+a.values["xga5"] else .5
         feat["mp_xg_share_diff"]=hx-ax
-        snapshots[(g["date"],g["home"],g["away"])]=feat
+        snapshots[(g["date"],g["home_code"],g["away_code"])]=feat
 
         # Only now ingest current-game performance.
-        for state,vals in ((h,g["home"]),(a,g["away"])):
+        for state,vals in ((h,g["home_stats"]),(a,g["away_stats"])):
             for k in METRICS:
                 state.values[k]=_ema(state.values[k],float(vals[k]),alpha)
             state.last_date=g["date"]
