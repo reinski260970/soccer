@@ -1,0 +1,51 @@
+name: NHL Bulk Model V6 Backtest
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_bulk_v6.py"
+      - "tests/test_nhl_bulk_v6.py"
+      - ".github/workflows/nhl-bulk-v6.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-bulk-v6
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Test V6 feature isolation
+        run: python -m pytest tests/test_nhl_bulk_v6.py tests/test_nhl_bulk_v5.py -q
+      - name: Run NHL V6
+        run: python -m oddswatch.nhl_bulk_v6
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-bulk-v6-backtest
+          path: data/hockey/nhl_bulk_v6_backtest.json
+      - name: Save V6 result
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/nhl_bulk_v6_backtest.json /tmp/nhl_bulk_v6.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nhl_bulk_v6.json data/hockey/nhl_bulk_v6_backtest.json
+            git add data/hockey/nhl_bulk_v6_backtest.json
+            git diff --cached --quiet && exit 0
+            git commit -m "NHL V6 interaction backtest"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
