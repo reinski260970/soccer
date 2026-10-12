@@ -1,0 +1,40 @@
+name: Cross-Sport Neon Watchlist
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/sports_watchlist.py"
+      - "oddswatch/nhl_watchlist.py"
+      - "tests/test_sports_watchlist.py"
+      - "tests/test_nhl_watchlist.py"
+      - "oddswatch/sql/migrations/011_general_watchlist.sql"
+      - ".github/workflows/sports-watchlist.yml"
+  schedule:
+    - cron: "35 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-sport-neon-watchlist
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test shared and NHL watchlist rules
+        run: python -m pytest tests/test_sports_watchlist.py tests/test_nhl_watchlist.py -q
+      - name: Refresh audited cross-sport WATCH registry
+        run: python -m oddswatch.sports_watchlist
+      - name: Refresh NHL model-native WATCH registry
+        run: python -m oddswatch.nhl_watchlist
