@@ -103,6 +103,7 @@ def _rows(conn, now: datetime) -> list[dict]:
           JOIN sports.events e USING(event_id)
           JOIN sports.odds_snapshots q ON q.quote_id=s.entry_quote_id
           WHERE s.signal_type='WATCH'
+            AND e.status='STATUS_SCHEDULED'
             AND e.kickoff>%s
         ),
         latest_book AS (
@@ -182,11 +183,26 @@ def run(now: datetime | None = None) -> dict:
                     book = r["entry_bookmaker"]
                     price_type = "EXECUTABLE" if r["entry_executable"] else "REFERENCE"
 
+                entry = float(r["entry_odds"])
+                watch_id = _watch_id(r["signal_id"])
+                exists = conn.execute(
+                    "SELECT watch_id FROM sports.watchlist WHERE watch_id=%s",
+                    (watch_id,),
+                ).fetchone()
+
+                # Legacy WATCH rows are imported only if their own recorded entry
+                # price really cleared today's sport/market trigger. This prevents
+                # stale/bad historic WATCH flags from contaminating the registry.
+                entry_qualified = entry >= trigger
+                if not exists and not entry_qualified:
+                    continue
+
                 status = state(
                     kickoff=r["kickoff"], now=now,
                     executable_odds=exe, trigger=trigger,
                 )
-                watch_id = _watch_id(r["signal_id"])
+                if exists and not entry_qualified:
+                    status = "REJECTED"
                 reason = (
                     f"Audited {sport} WATCH from sports.signals; "
                     f"fair {fair:.3f}; target EV {target_ev(sport,r['market'])*100:.1f}%; "
@@ -196,7 +212,7 @@ def run(now: datetime | None = None) -> dict:
                     "signal_id": r["signal_id"],
                     "prediction_id": r["prediction_id"],
                     "entry_quote_id": r["entry_quote_id"],
-                    "entry_odds": float(r["entry_odds"]),
+                    "entry_odds": entry,
                     "entry_bookmaker": r["entry_bookmaker"],
                     "entry_executable": bool(r["entry_executable"]),
                     "prediction_features": r["features"],
@@ -213,10 +229,6 @@ def run(now: datetime | None = None) -> dict:
                     ),
                 }
 
-                exists = conn.execute(
-                    "SELECT watch_id FROM sports.watchlist WHERE watch_id=%s",
-                    (watch_id,),
-                ).fetchone()
                 if not exists:
                     created += conn.execute(
                         """
