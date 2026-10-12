@@ -118,8 +118,9 @@ def parse_team_games(text: str) -> list[dict]:
             continue
         gid = (raw.get("gameId") or "").strip()
         team = (raw.get("playerTeam") or raw.get("team") or "").strip()
+        venue = (raw.get("home_or_away") or "").strip().upper()
         day_raw = (raw.get("gameDate") or "").strip()
-        if not gid or not team or len(day_raw) != 8:
+        if not gid or not team or venue not in {"HOME", "AWAY"} or len(day_raw) != 8:
             continue
         key = (gid, team)
         if key in seen:
@@ -139,6 +140,7 @@ def parse_team_games(text: str) -> list[dict]:
             "game_id": gid,
             "team": team,
             "season": season,
+            "venue": venue,
             "xgf5": xgf,
             "xga5": xga,
         })
@@ -162,6 +164,8 @@ def build_event_signals(events: list[dict], games: list[dict]) -> tuple[list[dic
     """
     slow: dict[str, XGState] = defaultdict(XGState)
     fast: dict[str, XGState] = defaultdict(XGState)
+    venue_slow: dict[tuple[str, str], XGState] = defaultdict(XGState)
+    venue_fast: dict[tuple[str, str], XGState] = defaultdict(XGState)
     signals: list[dict] = []
     issues: list[dict] = []
     i = 0
@@ -173,6 +177,8 @@ def build_event_signals(events: list[dict], games: list[dict]) -> tuple[list[dic
             row = games[i]
             _update(slow, row, SLOW_ALPHA)
             _update(fast, row, FAST_ALPHA)
+            _update(venue_slow, {**row, "team": (row["team"], row["venue"])}, SLOW_ALPHA)
+            _update(venue_fast, {**row, "team": (row["team"], row["venue"])}, FAST_ALPHA)
             i += 1
 
         home_code = NHL_TO_MP.get(event["home_name"])
@@ -188,8 +194,11 @@ def build_event_signals(events: list[dict], games: list[dict]) -> tuple[list[dic
 
         hs, away_slow = slow[home_code], slow[away_code]
         hf, away_fast = fast[home_code], fast[away_code]
+        hvs, avs = venue_slow[(home_code, "HOME")], venue_slow[(away_code, "AWAY")]
+        hvf, avf = venue_fast[(home_code, "HOME")], venue_fast[(away_code, "AWAY")]
         # Require actual observations for both teams; do not classify pure priors.
-        if min(hs.games, away_slow.games, hf.games, away_fast.games) <= 0:
+        if min(hs.games, away_slow.games, hf.games, away_fast.games,
+               hvs.games, avs.games, hvf.games, avf.games) <= 0:
             issues.append({
                 "event_id": event["event_id"],
                 "reason": "NO_PRIOR_MONEYPUCK_GAMES",
@@ -205,9 +214,37 @@ def build_event_signals(events: list[dict], games: list[dict]) -> tuple[list[dic
         slow_diff = slow_home - slow_away
         fast_diff = fast_home - fast_away
         agreement = classify_xg_agreement(slow_diff, fast_diff)
+
+        # Venue-aware 5v5 matchup projection: home offense at HOME versus
+        # opponent defense AWAY, and vice versa. This is a transparent SHADOW
+        # diagnostic, not yet a released fair-odds model.
+        slow_matchup_home_xg = (hvs.xgf5 + avs.xga5) / 2.0
+        slow_matchup_away_xg = (avs.xgf5 + hvs.xga5) / 2.0
+        fast_matchup_home_xg = (hvf.xgf5 + avf.xga5) / 2.0
+        fast_matchup_away_xg = (avf.xgf5 + hvf.xga5) / 2.0
+        slow_total = slow_matchup_home_xg + slow_matchup_away_xg
+        fast_total = fast_matchup_home_xg + fast_matchup_away_xg
+        slow_venue_share_diff = (
+            slow_matchup_home_xg / slow_total - 0.5 if slow_total > 0 else 0.0
+        )
+        fast_venue_share_diff = (
+            fast_matchup_home_xg / fast_total - 0.5 if fast_total > 0 else 0.0
+        )
+        venue_agreement = classify_xg_agreement(
+            slow_venue_share_diff, fast_venue_share_diff
+        )
+        if slow_venue_share_diff > 0 and fast_venue_share_diff > 0:
+            venue_direction = "HOME"
+        elif slow_venue_share_diff < 0 and fast_venue_share_diff < 0:
+            venue_direction = "AWAY"
+        else:
+            venue_direction = "MIXED"
+
         through_dates = [
-            d for d in (hs.last_date, away_slow.last_date, hf.last_date, away_fast.last_date)
-            if d
+            d for d in (
+                hs.last_date, away_slow.last_date, hf.last_date, away_fast.last_date,
+                hvs.last_date, avs.last_date, hvf.last_date, avf.last_date,
+            ) if d
         ]
         data_through_date = max(through_dates) if through_dates else event_day - timedelta(days=1)
         data_through = datetime.combine(
@@ -230,6 +267,24 @@ def build_event_signals(events: list[dict], games: list[dict]) -> tuple[list[dic
             "slow_mp_xg_share_diff": slow_diff,
             "fast_mp_xg_share_diff": fast_diff,
             "xg_agreement": agreement,
+            "home_home_slow_xgf5": hvs.xgf5,
+            "home_home_slow_xga5": hvs.xga5,
+            "away_away_slow_xgf5": avs.xgf5,
+            "away_away_slow_xga5": avs.xga5,
+            "home_home_fast_xgf5": hvf.xgf5,
+            "home_home_fast_xga5": hvf.xga5,
+            "away_away_fast_xgf5": avf.xgf5,
+            "away_away_fast_xga5": avf.xga5,
+            "slow_matchup_home_xg": slow_matchup_home_xg,
+            "slow_matchup_away_xg": slow_matchup_away_xg,
+            "fast_matchup_home_xg": fast_matchup_home_xg,
+            "fast_matchup_away_xg": fast_matchup_away_xg,
+            "slow_venue_xg_share_diff": slow_venue_share_diff,
+            "fast_venue_xg_share_diff": fast_venue_share_diff,
+            "venue_xg_agreement": venue_agreement,
+            "venue_xg_direction": venue_direction,
+            "home_home_games": hvs.games,
+            "away_away_games": avs.games,
             "home_slow_games": hs.games,
             "away_slow_games": away_slow.games,
             "home_fast_games": hf.games,
@@ -259,6 +314,28 @@ def build_snapshots(signals: list[dict], observed_at: datetime) -> list[dict]:
             "fast_away_xg_share": s["fast_away_xg_share"],
             "slow_mp_xg_share_diff": s["slow_mp_xg_share_diff"],
             "fast_mp_xg_share_diff": s["fast_mp_xg_share_diff"],
+            "home_home_slow_xgf5": s["home_home_slow_xgf5"],
+            "home_home_slow_xga5": s["home_home_slow_xga5"],
+            "away_away_slow_xgf5": s["away_away_slow_xgf5"],
+            "away_away_slow_xga5": s["away_away_slow_xga5"],
+            "home_home_fast_xgf5": s["home_home_fast_xgf5"],
+            "home_home_fast_xga5": s["home_home_fast_xga5"],
+            "away_away_fast_xgf5": s["away_away_fast_xgf5"],
+            "away_away_fast_xga5": s["away_away_fast_xga5"],
+            "slow_matchup_home_xg": s["slow_matchup_home_xg"],
+            "slow_matchup_away_xg": s["slow_matchup_away_xg"],
+            "fast_matchup_home_xg": s["fast_matchup_home_xg"],
+            "fast_matchup_away_xg": s["fast_matchup_away_xg"],
+            "slow_venue_xg_share_diff": s["slow_venue_xg_share_diff"],
+            "fast_venue_xg_share_diff": s["fast_venue_xg_share_diff"],
+            "venue_xg_agreement": s["venue_xg_agreement"],
+            "venue_xg_direction": s["venue_xg_direction"],
+            "venue_gate_candidate": (
+                s["venue_xg_agreement"] == "AGREE"
+                and s["xg_agreement"] == "AGREE"
+            ),
+            "home_home_games": s["home_home_games"],
+            "away_away_games": s["away_away_games"],
             "home_games": s["home_slow_games"],
             "away_games": s["away_slow_games"],
             "source_url": SOURCE_URL,
