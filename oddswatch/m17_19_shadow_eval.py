@@ -12,7 +12,7 @@ SIDES = ("home","draw","away")
 SOURCE_PRIORITY = ("pinnacle","betfair","bet365")
 
 
-def _complete_close(quotes, kickoff):
+def _latest_market(quotes, kickoff):
     by = defaultdict(lambda: defaultdict(dict))
     for r in quotes:
         if r["observed_at"] >= kickoff:
@@ -74,16 +74,23 @@ def run():
             continue
         qs = q_by_event.get(event_id, [])
         entry = _entry_best(qs, p["created_at"], side)
-        source, close_ts, close_probs = _complete_close(qs, g["kickoff"])
-        close_p = close_probs.get(side) if close_probs else None
+        source, market_ts, market_probs = _latest_market(qs, g["kickoff"])
+        market_p = market_probs.get(side) if market_probs else None
         ev = float(p["p_model"]) * entry - 1.0 if entry else None
-        clv = entry * close_p - 1.0 if entry and close_p else None
+        market_move = entry * market_p - 1.0 if entry and market_p else None
+        close_ready = bool(
+            market_ts is not None
+            and g["kickoff"] - market_ts <= timedelta(minutes=30)
+            and market_ts < g["kickoff"]
+        )
+        clv = market_move if close_ready else None
         rows.append({
             "event": g["event"], "league": g["league"], "kickoff": g["kickoff"],
             "side": side, "p_model": float(p["p_model"]),
             "fair_odds": float(p["fair_odds"]), "entry_odds": entry, "entry_ev": ev,
-            "close_source": source, "close_at": close_ts,
-            "close_prob": close_p, "shadow_clv": clv,
+            "market_source": source, "market_at": market_ts,
+            "market_prob": market_p, "market_move": market_move,
+            "close_ready": close_ready, "shadow_clv": clv,
             "outcome": p["outcome"],
         })
 
@@ -93,15 +100,17 @@ def run():
     avg_clv = sum(r["shadow_clv"] for r in closed)/len(closed) if closed else None
     pos = sum(r["shadow_clv"] > 0 for r in closed)/len(closed) if closed else None
 
-    print(f"M17.19 SHADOW candidates={len(candidates)} closed={len(closed)} settled={len(settled)}")
+    print(f"M17.19 SHADOW candidates={len(candidates)} true_closes={len(closed)} settled={len(settled)}")
     if avg_clv is not None:
-        print(f"CLV avg={avg_clv*100:+.2f}% positive={pos*100:.1f}%")
+        print(f"TRUE CLV avg={avg_clv*100:+.2f}% positive={pos*100:.1f}%")
     for r in sorted(candidates, key=lambda x:(x["kickoff"],-(x["entry_ev"] or -9))):
         clv = "OPEN" if r["shadow_clv"] is None else f"{r['shadow_clv']*100:+.2f}%"
+        move = "NA" if r["market_move"] is None else f"{r['market_move']*100:+.2f}%"
         print(
             f"{r['league']} | {r['event']} | {r['side']} | "
             f"p={r['p_model']:.3f} fair={r['fair_odds']:.2f} "
-            f"entry={r['entry_odds']:.2f} EV={r['entry_ev']*100:+.1f}% CLV={clv}"
+            f"entry={r['entry_odds']:.2f} EV={r['entry_ev']*100:+.1f}% "
+            f"market_move={move} TRUE_CLV={clv}"
         )
     return rows
 
