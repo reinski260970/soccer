@@ -4,7 +4,7 @@ from __future__ import annotations
 import csv
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 MP_PATH=Path("data/hockey/market/nhl_moneypuck_games_2011_2021.csv")
@@ -139,7 +139,18 @@ def augment_sbr_rows(sbr_rows, path=MP_PATH, alpha=.10):
             continue
         snap=pre.get((r["date"],hc,ac))
         if snap is None:
-            unmatched.append((r["date"],r["home"],r["away"],"game"))
-            continue
+            # Date conventions can differ around late-night games. Accept only
+            # a unique exact team-pair match one calendar day either side.
+            candidates=[
+                pre[k] for k in (
+                    (r["date"]-timedelta(days=1),hc,ac),
+                    (r["date"]+timedelta(days=1),hc,ac),
+                ) if k in pre
+            ]
+            if len(candidates)==1:
+                snap=candidates[0]
+            else:
+                unmatched.append((r["date"],r["home"],r["away"],"game"))
+                continue
         q=dict(r); q.update(snap); out.append(q)
     return out,unmatched
