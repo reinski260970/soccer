@@ -17,7 +17,7 @@ SBR_TO_MP={
     "Jets":"WPG","WinnipegJets":"WPG","Kings":"L.A","Kraken":"SEA",
     "SeattleKraken":"SEA","Lightning":"T.B","Tampa":"T.B","Tampa Bay":"T.B",
     "Maple Leafs":"TOR","Oilers":"EDM","Panthers":"FLA","Penguins":"PIT",
-    "Phoenix":"PHX","Predators":"NSH","Rangers":"NYR","Red Wings":"DET",
+    "Phoenix":"ARI","Predators":"NSH","Rangers":"NYR","Red Wings":"DET",
     "Sabres":"BUF","Senators":"OTT","Sharks":"S.J","St.Louis":"STL",
     "Stars":"DAL","Wild":"MIN",
 }
