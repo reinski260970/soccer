@@ -1,0 +1,47 @@
+name: NHL V5 Diagnostics
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v5_diagnostics.py"
+      - "tests/test_nhl_v5_diagnostics.py"
+      - ".github/workflows/nhl-v5-diagnostics.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-v5-diagnostics
+  cancel-in-progress: true
+
+jobs:
+  diagnostics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Test diagnostics
+        run: python -m pytest tests/test_nhl_v5_diagnostics.py -q
+      - name: Run V5 regime diagnostics
+        run: python -m oddswatch.nhl_v5_diagnostics
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-v5-diagnostics
+          path: data/hockey/nhl_v5_diagnostics.json
+      - name: Save diagnostics
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/nhl_v5_diagnostics.json /tmp/nhl_v5_diagnostics.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/nhl_v5_diagnostics.json data/hockey/nhl_v5_diagnostics.json
+          git add data/hockey/nhl_v5_diagnostics.json
+          git diff --cached --quiet && exit 0
+          git commit -m "NHL V5 regime diagnostics"
+          git push origin HEAD:main
