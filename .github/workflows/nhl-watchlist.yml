@@ -1,0 +1,36 @@
+name: NHL Neon Watchlist
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_watchlist.py"
+      - "tests/test_nhl_watchlist.py"
+      - "oddswatch/sql/migrations/010_watchlist.sql"
+      - ".github/workflows/nhl-watchlist.yml"
+  schedule:
+    - cron: "25 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nhl-neon-watchlist
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test watchlist state machine
+        run: python -m pytest tests/test_nhl_watchlist.py -q
+      - name: Refresh persistent Neon watchlist
+        run: python -m oddswatch.nhl_watchlist
