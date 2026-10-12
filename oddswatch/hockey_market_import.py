@@ -7,6 +7,7 @@ conflicts, and audits strict team matching against our historical team universe.
 from __future__ import annotations
 
 import csv
+import json
 import math
 from collections import Counter
 from dataclasses import dataclass
@@ -18,6 +19,7 @@ from .hockey_walkforward import load_history
 from .matching import norm
 
 MARKET_DIR = Path("data/hockey/market")
+AUDIT_FILE = MARKET_DIR / "import_audit.json"
 
 
 @dataclass(frozen=True)
@@ -153,11 +155,13 @@ def audit_matching(
     }
 
 
-def run() -> dict:
+def run(dest: Path = AUDIT_FILE) -> dict:
     rows, issues = read_market_dir()
     report = audit_matching(rows)
     report["issues"] = issues
-    print(report)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(report, ensure_ascii=False))
     return report
 
 
