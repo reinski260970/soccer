@@ -35,3 +35,4 @@ jobs:
           python -m oddswatch.sql soccer-settle
           python -m oddswatch.sql clv
           python -m oddswatch.sql report
+          python -m oddswatch.m17_19_shadow_eval
