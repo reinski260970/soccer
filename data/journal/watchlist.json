@@ -98,25 +98,25 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "laliga",
-  "event": "Levante – Athletic Club",
-  "kickoff": "2026-10-21T18:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.4,
-  "fair": 3.12557806471274,
-  "min_odds": 3.219345406654122,
+  "league": "greece",
+  "event": "Kalamata – OFI Crete",
+  "kickoff": "2026-10-18T13:00:00+00:00",
+  "market": "away",
+  "selection": "OFI Crete Sieg (90 Min.)",
+  "odds": 3.0,
+  "fair": 2.749836704835491,
+  "min_odds": 2.832331805980556,
   "home": [
-   "Levante",
-   "Levante",
-   "Levante",
-   "LEV"
+   "Kalamata",
+   "Kalamata",
+   "Kalamata",
+   "KAL"
   ],
   "away": [
-   "Athletic Club",
-   "Athletic Club",
-   "Athletic",
-   "ATH"
+   "OFI Crete",
+   "OFI Crete",
+   "OFI Crete",
+   "OFI"
   ]
  }
 ]
