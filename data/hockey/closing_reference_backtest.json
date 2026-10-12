@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-10-12T16:13:40.127010+00:00",
+  "season": "2026/27",
+  "method": "preseason Poisson + prior-season-selected calibration; archived 1X2 closing reference",
+  "fixed_min_ev": 0.03,
+  "release_eligible": false,
+  "true_clv": null,
+  "production_roi": null,
+  "warning": "Archived closing references are not authenticated executable entry prices.",
+  "leagues": {
+    "nhl": {
+      "archive_rows": 3,
+      "training_n": 5248,
+      "alpha": 0.25,
+      "matched": 0,
+      "unmatched": 3,
+      "model_logloss": null,
+      "market_logloss": null,
+      "logloss_gain_vs_market": null,
+      "bets": 0,
+      "wins": 0,
+      "closing_reference_roi": null,
+      "mean_model_ev_at_close": null
+    },
+    "del": {
+      "archive_rows": 17,
+      "training_n": 1267,
+      "alpha": 1.0,
+      "matched": 0,
+      "unmatched": 17,
+      "model_logloss": null,
+      "market_logloss": null,
+      "logloss_gain_vs_market": null,
+      "bets": 0,
+      "wins": 0,
+      "closing_reference_roi": null,
+      "mean_model_ev_at_close": null
+    },
+    "icehl": {
+      "archive_rows": 50,
+      "training_n": 1316,
+      "alpha": 0.75,
+      "matched": 24,
+      "unmatched": 26,
+      "model_logloss": 0.947624,
+      "market_logloss": 0.889298,
+      "logloss_gain_vs_market": -0.058326,
+      "bets": 19,
+      "wins": 4,
+      "closing_reference_roi": -0.51,
+      "mean_model_ev_at_close": 0.202454
+    },
+    "liiga": {
+      "archive_rows": 10,
+      "training_n": 1937,
+      "alpha": 0.5,
+      "matched": 10,
+      "unmatched": 0,
+      "model_logloss": 1.223623,
+      "market_logloss": 1.200753,
+      "logloss_gain_vs_market": -0.02287,
+      "bets": 5,
+      "wins": 2,
+      "closing_reference_roi": 0.35,
+      "mean_model_ev_at_close": 0.2174
+    },
+    "extraliga": {
+      "archive_rows": 29,
+      "training_n": 1552,
+      "alpha": 0.5,
+      "matched": 25,
+      "unmatched": 4,
+      "model_logloss": 1.058951,
+      "market_logloss": 0.989925,
+      "logloss_gain_vs_market": -0.069025,
+      "bets": 19,
+      "wins": 2,
+      "closing_reference_roi": -0.48,
+      "mean_model_ev_at_close": 0.206512
+    }
+  }
+}
