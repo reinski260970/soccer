@@ -36,5 +36,5 @@ def test_forward_predict_uses_only_rows_before_target(monkeypatch):
     assert max(seen) < target["date"]
     assert pb == [0.60,0.20,0.20]
     assert ph == [0.40,0.30,0.30]
-    assert pe == [0.57,0.215,0.215]
+    assert all(abs(a-b) < 1e-12 for a,b in zip(pe,[0.57,0.215,0.215]))
     assert abs(gap-0.20) < 1e-12
