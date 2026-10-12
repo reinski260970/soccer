@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 from . import bookmaker, fetch, matching, soccer_steam, sql_store
 from .m12_research import _season_start
 from .m13_research import _resolve_understat
-from .m14_research import proxy_xg, train_proxy
+from .m14_research import proxy_xg
 from .m17_1_research import _calibrate
 from .m17_5_research import _fit_predict
 from .m17_18_hgb_research import _fit_raw, build_data, load_one
@@ -32,6 +32,7 @@ from .sources import espn, football_data, oddalerts, soccerstats, understat, xg_
 
 TZ = ZoneInfo("Europe/Vienna")
 VALIDATION = Path("data/m17_19_ensemble_validation.json")
+PROXY_VALIDATION = Path("data/m17_6_validation.json")
 SCOPE = {
     "epl": ("Premier League", "E0"),
     "primeira": ("Primeira Liga", "P1"),
@@ -39,6 +40,13 @@ SCOPE = {
 
 def _validation():
     return json.loads(VALIDATION.read_text(encoding="utf-8"))
+
+def _frozen_proxy():
+    data=json.loads(PROXY_VALIDATION.read_text(encoding="utf-8"))
+    proxy=data.get("_proxy") or {}
+    if not proxy.get("beta") or not proxy.get("n"):
+        raise RuntimeError("frozen M17 proxy missing")
+    return proxy
 
 def _season_year(d: date) -> int:
     return d.year if d.month >= 7 else d.year - 1
@@ -184,7 +192,7 @@ def build(start: date | None=None, days: int=7):
     now=datetime.now(timezone.utc)
     start=start or now.astimezone(TZ).date()
     season=_season_year(start)
-    proxy=train_proxy()
+    proxy=_frozen_proxy()
     val=_validation()
     fixtures=[]
     issues=[]
