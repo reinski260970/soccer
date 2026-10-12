@@ -35,12 +35,38 @@ def _rest_days(last: date | None, current: date) -> float:
     return float(max(0, min(14, (current - last).days)))
 
 
-def build_features(rows: list[dict], alpha: float = 0.10, elo_k: float = 18.0) -> list[dict]:
-    """Return rows augmented with pre-game features and binary home-win target."""
+def _season_reset(states: dict[str, TeamState], retain: float) -> None:
+    retain=max(0.0,min(1.0,float(retain)))
+    for s in states.values():
+        s.elo=1500.0 + retain*(s.elo-1500.0)
+        s.gf_ema=2.75 + retain*(s.gf_ema-2.75)
+        s.ga_ema=2.75 + retain*(s.ga_ema-2.75)
+        s.win_ema=0.5 + retain*(s.win_ema-0.5)
+        s.home_gf_ema=2.85 + retain*(s.home_gf_ema-2.85)
+        s.home_ga_ema=2.65 + retain*(s.home_ga_ema-2.65)
+        s.away_gf_ema=2.65 + retain*(s.away_gf_ema-2.65)
+        s.away_ga_ema=2.85 + retain*(s.away_ga_ema-2.85)
+
+
+def build_features(
+    rows: list[dict],
+    alpha: float = 0.10,
+    elo_k: float = 18.0,
+    season_retain: float = 1.0,
+) -> list[dict]:
+    """Return rows augmented with pre-game features and binary home-win target.
+
+    season_retain controls off-season mean reversion. 1.0 preserves all state;
+    0.0 fully resets team strength toward league priors.
+    """
     states: dict[str, TeamState] = defaultdict(TeamState)
     out: list[dict] = []
+    previous_season = None
 
     for r in sorted(rows, key=lambda x: (x["date"], x["home"], x["away"])):
+        if previous_season is not None and r["season"] != previous_season:
+            _season_reset(states, season_retain)
+        previous_season = r["season"]
         h, a = states[r["home"]], states[r["away"]]
         home_rest = _rest_days(h.last_date, r["date"])
         away_rest = _rest_days(a.last_date, r["date"])
