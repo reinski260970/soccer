@@ -1,0 +1,354 @@
+{
+  "generated_at": "2026-10-12T17:06:54.957338+00:00",
+  "source_odds_rows": 13661,
+  "matched_moneypuck_rows": 12532,
+  "unmatched_rows": 1129,
+  "unmatched_examples": [
+    [
+      "2011-10-15",
+      "Phoenix",
+      "Jets",
+      "game"
+    ],
+    [
+      "2011-10-18",
+      "Phoenix",
+      "Blackhawks",
+      "game"
+    ],
+    [
+      "2011-10-20",
+      "Phoenix",
+      "Kings",
+      "game"
+    ],
+    [
+      "2011-10-25",
+      "Phoenix",
+      "Stars",
+      "game"
+    ],
+    [
+      "2011-10-27",
+      "Phoenix",
+      "Devils",
+      "game"
+    ],
+    [
+      "2011-10-29",
+      "Phoenix",
+      "Kings",
+      "game"
+    ],
+    [
+      "2011-11-03",
+      "Phoenix",
+      "Predators",
+      "game"
+    ],
+    [
+      "2011-11-05",
+      "Phoenix",
+      "Oilers",
+      "game"
+    ],
+    [
+      "2011-11-10",
+      "Phoenix",
+      "Canadiens",
+      "game"
+    ],
+    [
+      "2011-11-23",
+      "Phoenix",
+      "Ducks",
+      "game"
+    ],
+    [
+      "2011-11-25",
+      "Phoenix",
+      "Canucks",
+      "game"
+    ],
+    [
+      "2011-11-26",
+      "Phoenix",
+      "Stars",
+      "game"
+    ],
+    [
+      "2011-12-03",
+      "Phoenix",
+      "Flyers",
+      "game"
+    ],
+    [
+      "2011-12-10",
+      "Phoenix",
+      "Wild",
+      "game"
+    ],
+    [
+      "2011-12-15",
+      "Phoenix",
+      "Oilers",
+      "game"
+    ],
+    [
+      "2011-12-17",
+      "Phoenix",
+      "Rangers",
+      "game"
+    ],
+    [
+      "2011-12-23",
+      "Phoenix",
+      "St.Louis",
+      "game"
+    ],
+    [
+      "2011-12-28",
+      "Phoenix",
+      "Bruins",
+      "game"
+    ],
+    [
+      "2012-01-07",
+      "Phoenix",
+      "Islanders",
+      "game"
+    ],
+    [
+      "2012-01-16",
+      "Phoenix",
+      "Avalanche",
+      "game"
+    ]
+  ],
+  "features": [
+    "elo_diff",
+    "gf_diff",
+    "ga_diff",
+    "win_diff",
+    "venue_attack_diff",
+    "venue_defence_diff",
+    "rest_diff",
+    "home_rest",
+    "away_rest",
+    "mp_xgf5_diff",
+    "mp_xga5_diff",
+    "mp_sogf5_diff",
+    "mp_soga5_diff",
+    "mp_caf5_diff",
+    "mp_caa5_diff",
+    "mp_hdxgf5_diff",
+    "mp_hdxga5_diff",
+    "mp_xgfall_diff",
+    "mp_xgaall_diff",
+    "mp_sogfall_diff",
+    "mp_sogaall_diff",
+    "mp_svaxgf_diff",
+    "mp_svaxga_diff",
+    "mp_corsi_share_diff",
+    "mp_xg_share_diff"
+  ],
+  "market_features_used": false,
+  "fixed_min_ev": 0.03,
+  "release_eligible": false,
+  "pooled": {
+    "scored_games": 9207,
+    "model_logloss": 0.67265,
+    "market_logloss": 0.66839,
+    "logloss_gain_vs_market": -0.00426,
+    "bets": 4853,
+    "profit_units": 4.09,
+    "flat_roi": 0.000843,
+    "mean_entry_ev": 0.114766,
+    "mean_archive_clv": -0.015571,
+    "positive_clv_rate": 0.33402
+  },
+  "references": {
+    "v1": {
+      "scored_games": 9947,
+      "model_logloss": 0.679957,
+      "market_logloss": 0.667784,
+      "logloss_gain_vs_market": -0.012173,
+      "bets": 6325,
+      "profit_units": -213.319,
+      "flat_roi": -0.033726,
+      "mean_entry_ev": 0.162774,
+      "mean_archive_clv": -0.033583,
+      "positive_clv_rate": 0.233518
+    },
+    "v2": {
+      "scored_games": 10221,
+      "model_logloss": 0.673472,
+      "market_logloss": 0.667278,
+      "logloss_gain_vs_market": -0.006194,
+      "bets": 4907,
+      "profit_units": -215.131,
+      "flat_roi": -0.043842,
+      "mean_entry_ev": 0.111624,
+      "mean_archive_clv": -0.025944,
+      "positive_clv_rate": 0.265947
+    },
+    "v3": {
+      "scored_games": 10221,
+      "model_logloss": 0.67632,
+      "market_logloss": 0.667278,
+      "logloss_gain_vs_market": -0.009042,
+      "bets": 5218,
+      "profit_units": -320.528,
+      "flat_roi": -0.061427,
+      "mean_entry_ev": 0.132479,
+      "mean_archive_clv": -0.027676,
+      "positive_clv_rate": 0.263128
+    }
+  },
+  "season_results": {
+    "2014": {
+      "status": "EVALUATED",
+      "train_n": 3325,
+      "test_n": 1318,
+      "model": "logit_c0.05",
+      "shrink": 0.75,
+      "calibration_logloss": 0.677967,
+      "model_logloss": 0.673723,
+      "market_logloss": 0.665342,
+      "logloss_gain_vs_market": -0.008381,
+      "bets": 721,
+      "wins": 318,
+      "profit_units": -16.826047064019107,
+      "flat_roi": -0.023337,
+      "mean_entry_ev": 0.115435,
+      "mean_archive_clv": -0.02627,
+      "positive_clv_rate": 0.302358
+    },
+    "2015": {
+      "status": "EVALUATED",
+      "train_n": 4643,
+      "test_n": 1320,
+      "model": "logit_c0.05",
+      "shrink": 0.9,
+      "calibration_logloss": 0.673306,
+      "model_logloss": 0.678249,
+      "market_logloss": 0.6781,
+      "logloss_gain_vs_market": -0.000149,
+      "bets": 678,
+      "wins": 351,
+      "profit_units": 40.62688507389817,
+      "flat_roi": 0.059922,
+      "mean_entry_ev": 0.103543,
+      "mean_archive_clv": -0.01193,
+      "positive_clv_rate": 0.39233
+    },
+    "2016": {
+      "status": "EVALUATED",
+      "train_n": 5963,
+      "test_n": 1316,
+      "model": "logit_c1",
+      "shrink": 0.9,
+      "calibration_logloss": 0.677728,
+      "model_logloss": 0.672519,
+      "market_logloss": 0.669477,
+      "logloss_gain_vs_market": -0.003042,
+      "bets": 689,
+      "wins": 323,
+      "profit_units": -3.9647069051399058,
+      "flat_roi": -0.005754,
+      "mean_entry_ev": 0.104978,
+      "mean_archive_clv": -0.008592,
+      "positive_clv_rate": 0.416546
+    },
+    "2017": {
+      "status": "EVALUATED",
+      "train_n": 7279,
+      "test_n": 1353,
+      "model": "logit_c0.05",
+      "shrink": 1.0,
+      "calibration_logloss": 0.672041,
+      "model_logloss": 0.669206,
+      "market_logloss": 0.669644,
+      "logloss_gain_vs_market": 0.000438,
+      "bets": 699,
+      "wins": 337,
+      "profit_units": 4.383990592827724,
+      "flat_roi": 0.006272,
+      "mean_entry_ev": 0.103793,
+      "mean_archive_clv": -0.017905,
+      "positive_clv_rate": 0.336195
+    },
+    "2018": {
+      "status": "EVALUATED",
+      "train_n": 8632,
+      "test_n": 1357,
+      "model": "logit_c0.05",
+      "shrink": 1.0,
+      "calibration_logloss": 0.669206,
+      "model_logloss": 0.679155,
+      "market_logloss": 0.675721,
+      "logloss_gain_vs_market": -0.003434,
+      "bets": 691,
+      "wins": 337,
+      "profit_units": 17.71314528128851,
+      "flat_roi": 0.025634,
+      "mean_entry_ev": 0.109948,
+      "mean_archive_clv": -0.007943,
+      "positive_clv_rate": 0.334298
+    },
+    "2019": {
+      "status": "EVALUATED",
+      "train_n": 9989,
+      "test_n": 1082,
+      "model": "logit_c0.05",
+      "shrink": 0.9,
+      "calibration_logloss": 0.678711,
+      "model_logloss": 0.678003,
+      "market_logloss": 0.679145,
+      "logloss_gain_vs_market": 0.001142,
+      "bets": 525,
+      "wins": 250,
+      "profit_units": 34.087782814016364,
+      "flat_roi": 0.064929,
+      "mean_entry_ev": 0.110991,
+      "mean_archive_clv": -0.005048,
+      "positive_clv_rate": 0.304762
+    },
+    "2020": {
+      "status": "EVALUATED",
+      "train_n": 11071,
+      "test_n": 403,
+      "model": "logit_c0.05",
+      "shrink": 0.9,
+      "calibration_logloss": 0.678003,
+      "model_logloss": 0.668946,
+      "market_logloss": 0.653255,
+      "logloss_gain_vs_market": -0.015691,
+      "bets": 248,
+      "wins": 98,
+      "profit_units": -27.18924360871565,
+      "flat_roi": -0.109634,
+      "mean_entry_ev": 0.146325,
+      "mean_archive_clv": -0.036702,
+      "positive_clv_rate": 0.229839
+    },
+    "2021": {
+      "status": "EVALUATED",
+      "train_n": 11474,
+      "test_n": 1058,
+      "model": "logit_c1",
+      "shrink": 0.9,
+      "calibration_logloss": 0.668847,
+      "model_logloss": 0.656484,
+      "market_logloss": 0.642477,
+      "logloss_gain_vs_market": -0.014007,
+      "bets": 602,
+      "wins": 231,
+      "profit_units": -44.741531623019405,
+      "flat_roi": -0.074321,
+      "mean_entry_ev": 0.146373,
+      "mean_archive_clv": -0.021363,
+      "positive_clv_rate": 0.277409
+    }
+  }
+}
