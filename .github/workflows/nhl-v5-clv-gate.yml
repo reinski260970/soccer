@@ -1,0 +1,51 @@
+name: NHL V5 CLV Entry Gate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v5_clv_gate.py"
+      - "tests/test_nhl_v5_clv_gate.py"
+      - ".github/workflows/nhl-v5-clv-gate.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-v5-clv-gate
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Test model/gate separation
+        run: python -m pytest tests/test_nhl_v5_clv_gate.py tests/test_nhl_bulk_v5.py -q
+      - name: Run nested CLV gate research
+        run: python -m oddswatch.nhl_v5_clv_gate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-v5-clv-gate
+          path: data/hockey/nhl_bulk_v5_clv_gate.json
+      - name: Save gate result
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/nhl_bulk_v5_clv_gate.json /tmp/nhl_v5_clv_gate.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nhl_v5_clv_gate.json data/hockey/nhl_bulk_v5_clv_gate.json
+            git add data/hockey/nhl_bulk_v5_clv_gate.json
+            git diff --cached --quiet && exit 0
+            git commit -m "NHL V5 nested CLV gate"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
