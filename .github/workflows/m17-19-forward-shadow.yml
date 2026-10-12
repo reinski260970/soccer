@@ -10,7 +10,7 @@ on:
 
 concurrency:
   group: m17-19-forward-shadow
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
