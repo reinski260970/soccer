@@ -6,7 +6,7 @@ without contaminating the fair model.
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from sqlalchemy import select
 
 from . import sql_store
@@ -52,6 +52,23 @@ def run(hours_ahead: int = 192) -> list[str]:
                 days.get(day, []),
                 [g["home"]], [g["away"]], g["kickoff"]
             )
+            if hit is None:
+                # Schedule feeds can disagree by calendar day after late changes.
+                # Search only adjacent days and still require one unique team pair.
+                around = []
+                for delta in (-1, 1):
+                    d2 = (g["kickoff"].astimezone(timezone.utc).date() + timedelta(days=delta)).isoformat()
+                    if d2 not in days:
+                        days[d2], err = apifootball.fixtures_on(d2)
+                        if err:
+                            issues.append(err)
+                    around.extend(days.get(d2, []))
+                team_hits = [
+                    x for x in around
+                    if apifootball._hit(x.home, [g["home"]])
+                    and apifootball._hit(x.away, [g["away"]])
+                ]
+                hit = team_hits[0] if len(team_hits) == 1 else None
             if hit is None:
                 issues.append(f"NO_MATCH {g['event']}")
                 continue
