@@ -1,0 +1,50 @@
+name: MoneyPuck NHL Bulk Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/moneypuck-nhl-bulk-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe official MoneyPuck bulk CSV
+        run: |
+          python - <<'PY'
+          import csv, io, urllib.request
+          url="https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv"
+          req=urllib.request.Request(url,headers={"User-Agent":"oddswatch-research/1.0"})
+          with urllib.request.urlopen(req,timeout=90) as r:
+              data=r.read()
+          print("bytes",len(data))
+          text=data.decode("utf-8-sig","replace")
+          reader=csv.DictReader(io.StringIO(text))
+          print("columns",reader.fieldnames)
+          n=0; seasons=set(); games=set(); situations=set(); teams=set()
+          sample=[]
+          for row in reader:
+              n+=1
+              if len(sample)<3: sample.append(row)
+              for k in ("season","seasonId"):
+                  if row.get(k): seasons.add(row[k])
+              for k in ("gameId","game_id"):
+                  if row.get(k): games.add(row[k])
+              if row.get("situation"): situations.add(row["situation"])
+              for k in ("team","playerTeam"):
+                  if row.get(k): teams.add(row[k])
+          print("rows",n)
+          print("seasons",sorted(seasons)[:5],"...",sorted(seasons)[-5:])
+          print("games",len(games),"teams",len(teams),"situations",sorted(situations))
+          for i,row in enumerate(sample):
+              print("sample",i,{k:row.get(k) for k in (reader.fieldnames or [])[:25]})
+          PY
