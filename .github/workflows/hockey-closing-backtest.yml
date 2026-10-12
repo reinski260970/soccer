@@ -1,0 +1,48 @@
+name: Hockey Closing Reference Backtest
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/hockey_closing_backtest.py"
+      - "tests/test_hockey_closing_backtest.py"
+      - "data/hockey/market/*.csv"
+      - ".github/workflows/hockey-closing-backtest.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - name: Test closing-reference rules
+        run: python -m pytest tests/test_hockey_closing_backtest.py -q
+      - name: Run hockey closing-reference backtest
+        run: python -m oddswatch.hockey_closing_backtest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hockey-closing-reference-backtest
+          path: data/hockey/closing_reference_backtest.json
+      - name: Save research report
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/closing_reference_backtest.json /tmp/hockey-close.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/hockey-close.json data/hockey/closing_reference_backtest.json
+            git add data/hockey/closing_reference_backtest.json
+            git diff --cached --quiet && exit 0
+            git commit -m "Hockey closing-reference backtest $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
