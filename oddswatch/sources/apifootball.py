@@ -106,11 +106,20 @@ def _hit(name: str, aliases: list[str]) -> bool:
 
 def find_fixture(fixtures: list[ApiFixture], home: list[str], away: list[str],
                  kickoff: datetime, tolerance: timedelta = timedelta(minutes=90)) -> ApiFixture | None:
-    """Spiel mit passendem Anstoß (±90 Min., schließt U19/U21 zu anderer Zeit aus)
-    und beiden Teams; nur bei genau einem Treffer."""
-    hits = [f for f in fixtures if abs(f.kickoff - kickoff) <= tolerance
-            and _hit(f.home, home) and _hit(f.away, away)]
-    return hits[0] if len(hits) == 1 else None
+    """Eindeutiges Spiel anhand Teams + Anstoß finden.
+
+    Primär gilt ±90 Minuten. Falls der Datenanbieter am selben Kalendertag einen
+    deutlich abweichenden Anstoß führt, ist ein Fallback nur erlaubt, wenn genau
+    EIN Fixture mit demselben Home/Away-Paar existiert. Mehrdeutige U19/U21-/Cup-
+    Treffer werden weiterhin verworfen.
+    """
+    team_hits = [f for f in fixtures if _hit(f.home, home) and _hit(f.away, away)]
+    timed = [f for f in team_hits if abs(f.kickoff - kickoff) <= tolerance]
+    if len(timed) == 1:
+        return timed[0]
+    if len(timed) > 1:
+        return None
+    return team_hits[0] if len(team_hits) == 1 else None
 
 
 def _key(bet: str, value: str) -> str | None:
