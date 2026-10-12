@@ -1,0 +1,52 @@
+name: NHL Bulk Model V3 Backtest
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_bulk_features.py"
+      - "oddswatch/nhl_bulk_v3.py"
+      - "tests/test_nhl_bulk_v3.py"
+      - ".github/workflows/nhl-bulk-v3.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-bulk-v3
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Test v3 no-lookahead and offseason reversion
+        run: python -m pytest tests/test_nhl_bulk_v2.py tests/test_nhl_bulk_v3.py -q
+      - name: Run NHL bulk v3
+        run: python -m oddswatch.nhl_bulk_v3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-bulk-v3-backtest
+          path: data/hockey/nhl_bulk_v3_backtest.json
+      - name: Save v3 result
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/nhl_bulk_v3_backtest.json /tmp/nhl_bulk_v3.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nhl_bulk_v3.json data/hockey/nhl_bulk_v3_backtest.json
+            git add data/hockey/nhl_bulk_v3_backtest.json
+            git diff --cached --quiet && exit 0
+            git commit -m "NHL bulk v3 backtest"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
