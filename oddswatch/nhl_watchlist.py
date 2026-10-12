@@ -109,7 +109,7 @@ def _candidate_rows(conn, now: datetime) -> list[dict]:
                  p.event_id,p.selection,p.probability,p.model_id,p.as_of
           FROM sports.predictions p
           JOIN ev USING(event_id)
-          WHERE p.model_id LIKE 'hockey-chronocal-v1:nhl:%'
+          WHERE p.model_id LIKE 'hockey-chronocal-v1:nhl:%%'
             AND p.market='moneyline' AND p.period='FULL_GAME'
             AND p.settlement_rules='INCLUDING_OT'
             AND p.selection IN ('HOME','AWAY')
