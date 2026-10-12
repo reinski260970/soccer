@@ -1,0 +1,35 @@
+name: NHL First Period xG Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_first_period_xg.py"
+      - "tests/test_nhl_first_period_xg.py"
+      - ".github/workflows/nhl-first-period-xg.yml"
+  schedule:
+    - cron: "55 6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nhl-first-period-xg-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test first-period xG/xGA model
+        run: python -m pytest tests/test_nhl_first_period_xg.py -q
+      - name: Persist first-period fair odds to Neon SHADOW
+        run: python -m oddswatch.nhl_first_period_xg
