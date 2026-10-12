@@ -1,0 +1,22 @@
+{
+  "source_repository": "flancast90/sportsbookreview-scraper",
+  "source_commit": "1a820e50c6fbd0276cde073c22bfffae78930868",
+  "source_file": "data/nhl_archive_10Y.json",
+  "source_license": "MIT repository",
+  "download_mode": "single pinned static GitHub file; no scraping",
+  "rows": 13661,
+  "rejected": 17,
+  "seasons": {
+    "2011": 1314,
+    "2012": 805,
+    "2013": 1321,
+    "2014": 1318,
+    "2015": 1320,
+    "2016": 1316,
+    "2017": 1354,
+    "2018": 1357,
+    "2019": 1211,
+    "2020": 945,
+    "2021": 1400
+  }
+}
