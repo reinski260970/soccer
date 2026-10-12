@@ -1,0 +1,51 @@
+name: MoneyPuck NHL Bulk Import
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/moneypuck_bulk_import.py"
+      - ".github/workflows/moneypuck-nhl-bulk-import.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moneypuck-nhl-bulk-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download official MoneyPuck bulk file once and normalize
+        run: python -m oddswatch.moneypuck_bulk_import
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moneypuck-nhl-2011-2021
+          path: |
+            data/hockey/market/nhl_moneypuck_games_2011_2021.csv
+            data/hockey/market/nhl_moneypuck_games_2011_2021.provenance.json
+      - name: Save normalized MoneyPuck game data
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/market/nhl_moneypuck_games_2011_2021.csv /tmp/mp.csv
+          cp data/hockey/market/nhl_moneypuck_games_2011_2021.provenance.json /tmp/mp.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/mp.csv data/hockey/market/nhl_moneypuck_games_2011_2021.csv
+            cp /tmp/mp.json data/hockey/market/nhl_moneypuck_games_2011_2021.provenance.json
+            git add data/hockey/market/nhl_moneypuck_games_2011_2021.csv                     data/hockey/market/nhl_moneypuck_games_2011_2021.provenance.json
+            git diff --cached --quiet && exit 0
+            git commit -m "Import MoneyPuck NHL game-level bulk data"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
