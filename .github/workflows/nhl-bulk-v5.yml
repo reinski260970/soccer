@@ -1,0 +1,52 @@
+name: NHL Bulk Model V5 Backtest
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_moneypuck_features.py"
+      - "oddswatch/nhl_bulk_v5.py"
+      - "tests/test_nhl_bulk_v5.py"
+      - ".github/workflows/nhl-bulk-v5.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nhl-bulk-v5
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Test V5 feature isolation
+        run: python -m pytest tests/test_nhl_bulk_v5.py tests/test_nhl_bulk_v2.py -q
+      - name: Run NHL MoneyPuck V5
+        run: python -m oddswatch.nhl_bulk_v5
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-bulk-v5-backtest
+          path: data/hockey/nhl_bulk_v5_backtest.json
+      - name: Save V5 result
+        run: |
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          cp data/hockey/nhl_bulk_v5_backtest.json /tmp/nhl_bulk_v5.json
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nhl_bulk_v5.json data/hockey/nhl_bulk_v5_backtest.json
+            git add data/hockey/nhl_bulk_v5_backtest.json
+            git diff --cached --quiet && exit 0
+            git commit -m "NHL MoneyPuck v5 backtest"
+            git push origin HEAD:main && exit 0
+            sleep 2
+          done
+          exit 1
