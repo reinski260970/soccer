@@ -35,6 +35,13 @@ jobs:
           APIKEY: ${{ secrets.APIKEY }}
         run: >
           python -m oddswatch quick --full --send --days 2 --supported-only
+      - name: M17.19 forward market watch
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: |
+          python -m oddswatch.m17_19_market_watch
+          python -m oddswatch.m17_19_shadow_eval
       - name: Persist soccer steam history
         if: always()
         shell: bash
