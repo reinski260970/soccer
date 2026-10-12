@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-10-12T17:16:21.063569+00:00",
+  "method": "V5 forecast; entry gate selected on prior-season archive CLV only",
+  "market_features_used_in_forecast": false,
+  "gate_selection_uses_roi": false,
+  "gate_grid": {
+    "min_ev": [
+      0.03,
+      0.05,
+      0.08,
+      0.12,
+      0.16
+    ],
+    "max_odds": [
+      1.85,
+      2.1,
+      2.4,
+      2.8,
+      3.5,
+      5.0
+    ],
+    "min_calibration_bets": 80
+  },
+  "release_eligible": false,
+  "qualified_test_seasons": 1,
+  "qualified_pooled": {
+    "bets": 173,
+    "profit_units": -16.29,
+    "roi": -0.094164,
+    "mean_archive_clv": 0.016656,
+    "positive_clv_rate": 0.485549
+  },
+  "season_results": {
+    "2015": {
+      "status": "EVALUATED",
+      "season": 2015,
+      "model_choice": {
+        "C": 0.3,
+        "shrink": 0.9,
+        "calibration_logloss": 0.671153330514808
+      },
+      "gate": {
+        "min_ev": 0.16,
+        "max_odds": 2.8,
+        "calibration_season": 2014,
+        "calibration_forecast_choice": {
+          "C": 0.01,
+          "shrink": 0.75,
+          "calibration_logloss": 0.6774390878090168
+        },
+        "calibration_bets": 113,
+        "calibration_mean_clv": -0.01031808302316382,
+        "calibration_positive_clv_rate": 0.39823008849557523,
+        "qualified": false
+      },
+      "test_bets": 170,
+      "test_mean_archive_clv": 0.002997,
+      "test_positive_clv_rate": 0.505882,
+      "test_profit_units": 17.413832,
+      "test_roi": 0.102434
+    },
+    "2016": {
+      "status": "EVALUATED",
+      "season": 2016,
+      "model_choice": {
+        "C": 1.0,
+        "shrink": 0.9,
+        "calibration_logloss": 0.6763909778441027
+      },
+      "gate": {
+        "min_ev": 0.16,
+        "max_odds": 3.5,
+        "calibration_season": 2015,
+        "calibration_forecast_choice": {
+          "C": 0.3,
+          "shrink": 0.9,
+          "calibration_logloss": 0.671153330514808
+        },
+        "calibration_bets": 184,
+        "calibration_mean_clv": 0.004377147311425048,
+        "calibration_positive_clv_rate": 0.5054347826086957,
+        "qualified": true
+      },
+      "test_bets": 173,
+      "test_mean_archive_clv": 0.016656,
+      "test_positive_clv_rate": 0.485549,
+      "test_profit_units": -16.290411,
+      "test_roi": -0.094164
+    },
+    "2017": {
+      "status": "EVALUATED",
+      "season": 2017,
+      "model_choice": {
+        "C": 0.01,
+        "shrink": 0.9,
+        "calibration_logloss": 0.6743178782342977
+      },
+      "gate": {
+        "min_ev": 0.16,
+        "max_odds": 2.8,
+        "calibration_season": 2016,
+        "calibration_forecast_choice": {
+          "C": 1.0,
+          "shrink": 0.9,
+          "calibration_logloss": 0.6763909778441027
+        },
+        "calibration_bets": 147,
+        "calibration_mean_clv": 0.017138710460903785,
+        "calibration_positive_clv_rate": 0.4897959183673469,
+        "qualified": false
+      },
+      "test_bets": 95,
+      "test_mean_archive_clv": -0.005246,
+      "test_positive_clv_rate": 0.431579,
+      "test_profit_units": 16.921164,
+      "test_roi": 0.178118
+    },
+    "2018": {
+      "status": "EVALUATED",
+      "season": 2018,
+      "model_choice": {
+        "C": 0.3,
+        "shrink": 1.0,
+        "calibration_logloss": 0.666773278374539
+      },
+      "gate": {
+        "min_ev": 0.16,
+        "max_odds": 2.8,
+        "calibration_season": 2017,
+        "calibration_forecast_choice": {
+          "C": 0.01,
+          "shrink": 0.9,
+          "calibration_logloss": 0.6743178782342977
+        },
+        "calibration_bets": 95,
+        "calibration_mean_clv": -0.005246251347478639,
+        "calibration_positive_clv_rate": 0.43157894736842106,
+        "qualified": false
+      },
+      "test_bets": 149,
+      "test_mean_archive_clv": -0.007719,
+      "test_positive_clv_rate": 0.402685,
+      "test_profit_units": 10.572365,
+      "test_roi": 0.070955
+    },
+    "2019": {
+      "status": "EVALUATED",
+      "season": 2019,
+      "model_choice": {
+        "C": 0.01,
+        "shrink": 0.9,
+        "calibration_logloss": 0.6780408790131977
+      },
+      "gate": {
+        "min_ev": 0.16,
+        "max_odds": 2.4,
+        "calibration_season": 2018,
+        "calibration_forecast_choice": {
+          "C": 0.3,
+          "shrink": 1.0,
+          "calibration_logloss": 0.666773278374539
+        },
+        "calibration_bets": 106,
+        "calibration_mean_clv": -0.003350994897704542,
+        "calibration_positive_clv_rate": 0.4339622641509434,
+        "qualified": false
+      },
+      "test_bets": 44,
+      "test_mean_archive_clv": 0.004654,
+      "test_positive_clv_rate": 0.431818,
+      "test_profit_units": 7.069495,
+      "test_roi": 0.16067
+    },
+    "2020": {
+      "status": "EVALUATED",
+      "season": 2020,
+      "model_choice": {
+        "C": 0.03,
+        "shrink": 0.9,
+        "calibration_logloss": 0.6785402944585172
+      },
+      "gate": {
+        "min_ev": 0.12,
+        "max_odds": 2.8,
+        "calibration_season": 2019,
+        "calibration_forecast_choice": {
+          "C": 0.01,
+          "shrink": 0.9,
+          "calibration_logloss": 0.6780408790131977
+        },
+        "calibration_bets": 159,
+        "calibration_mean_clv": 0.005607876744711321,
+        "calibration_positive_clv_rate": 0.4088050314465409,
+        "qualified": false
+      },
+      "test_bets": 74,
+      "test_mean_archive_clv": -0.032474,
+      "test_positive_clv_rate": 0.27027,
+      "test_profit_units": -17.614343,
+      "test_roi": -0.238032
+    },
+    "2021": {
+      "status": "EVALUATED",
+      "season": 2021,
+      "model_choice": {
+        "C": 0.03,
+        "shrink": 1.0,
+        "calibration_logloss": 0.6652944874803844
+      },
+      "gate": {
+        "min_ev": 0.08,
+        "max_odds": 2.8,
+        "calibration_season": 2020,
+        "calibration_forecast_choice": {
+          "C": 0.03,
+          "shrink": 0.9,
+          "calibration_logloss": 0.6785402944585172
+        },
+        "calibration_bets": 115,
+        "calibration_mean_clv": -0.03131730511385725,
+        "calibration_positive_clv_rate": 0.2608695652173913,
+        "qualified": false
+      },
+      "test_bets": 268,
+      "test_mean_archive_clv": -0.019389,
+      "test_positive_clv_rate": 0.343284,
+      "test_profit_units": -34.601038,
+      "test_roi": -0.129108
+    }
+  }
+}
