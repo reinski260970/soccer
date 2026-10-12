@@ -119,6 +119,21 @@ def build_mp_pregame(path=MP_PATH,alpha=.10):
         hx=h.values["xgf5"]/(h.values["xgf5"]+h.values["xga5"]) if h.values["xgf5"]+h.values["xga5"] else .5
         ax=a.values["xgf5"]/(a.values["xgf5"]+a.values["xga5"]) if a.values["xgf5"]+a.values["xga5"] else .5
         feat["mp_xg_share_diff"]=hx-ax
+        # Derived shot-quality and non-5v5 proxies, all from prior state.
+        hq=h.values["xgfall"]/h.values["sogfall"] if h.values["sogfall"] else 0.0
+        aq=a.values["xgfall"]/a.values["sogfall"] if a.values["sogfall"] else 0.0
+        feat["mp_xg_per_sog_for_diff"]=hq-aq
+        hqa=h.values["xgaall"]/h.values["sogaall"] if h.values["sogaall"] else 0.0
+        aqa=a.values["xgaall"]/a.values["sogaall"] if a.values["sogaall"] else 0.0
+        feat["mp_xg_per_sog_against_diff"]=aqa-hqa
+        hhd=h.values["hdxgf5"]/h.values["xgf5"] if h.values["xgf5"] else 0.0
+        ahd=a.values["hdxgf5"]/a.values["xgf5"] if a.values["xgf5"] else 0.0
+        feat["mp_hd_share_for_diff"]=hhd-ahd
+        hhda=h.values["hdxga5"]/h.values["xga5"] if h.values["xga5"] else 0.0
+        ahda=a.values["hdxga5"]/a.values["xga5"] if a.values["xga5"] else 0.0
+        feat["mp_hd_share_against_diff"]=ahda-hhda
+        feat["mp_non5v5_xgf_diff"]=(h.values["xgfall"]-h.values["xgf5"])-(a.values["xgfall"]-a.values["xgf5"])
+        feat["mp_non5v5_xga_diff"]=(a.values["xgaall"]-a.values["xga5"])-(h.values["xgaall"]-h.values["xga5"])
         snapshots[(g["date"],g["home_code"],g["away_code"])]=feat
 
         # Only now ingest current-game performance.
