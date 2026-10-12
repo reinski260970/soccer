@@ -1,0 +1,37 @@
+name: m17-19-market-watch
+
+on:
+  push:
+    paths:
+      - ".github/m17-19-market-run-now.txt"
+  schedule:
+    - cron: "6,21,36,51 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: m17-19-market-watch
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Refresh M17.19 market prices only
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch.m17_19_market_watch
+      - name: Show current shadow EV and CLV
+        env:
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch.m17_19_shadow_eval
