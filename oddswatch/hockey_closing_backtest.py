@@ -56,6 +56,13 @@ ALIASES = {
         "fehervar av19":"Fehérvár",
         "hk olimpija":"Ljubljana",
         "vorarlberg":"Feldkirch",
+        "salzburg":"Salzbourg",
+        "black wings linz":"Linz",
+        "valpusteria":"Pustertal",
+        "milano":"Milano HC",
+    },
+    "extraliga": {
+        "mountfield hk":"Hradec Králové",
     },
     "liiga": {
         "ifk helsinki":"HIFK Helsinki",
