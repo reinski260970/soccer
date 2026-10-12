@@ -48,15 +48,15 @@ def classify_status(
     *,
     kickoff: datetime,
     now: datetime,
-    xg_gate: str,
-    xg_direction: str,
+    gate_state: str,
+    model_direction: str,
     selection: str,
     executable_odds: float | None,
     trigger: float,
 ) -> str:
     if kickoff <= now:
         return "EXPIRED"
-    if xg_gate != "AGREE" or xg_direction != selection:
+    if gate_state != "AGREE" or model_direction != selection:
         return "REJECTED"
     if executable_odds is not None and executable_odds >= trigger:
         return "TRIGGERED"
@@ -67,16 +67,16 @@ def qualifies_new_watch(
     *,
     kickoff: datetime,
     now: datetime,
-    xg_gate: str,
-    xg_direction: str,
+    gate_state: str,
+    model_direction: str,
     selection: str,
     reference_odds: float | None,
     trigger: float,
 ) -> bool:
     return (
         kickoff > now
-        and xg_gate == "AGREE"
-        and xg_direction == selection
+        and gate_state == "AGREE"
+        and model_direction == selection
         and reference_odds is not None
         and reference_odds >= trigger
     )
@@ -140,8 +140,8 @@ def _candidate_rows(conn, now: datetime) -> list[dict]:
         )
         SELECT e.event_id,e.league,e.home_name,e.away_name,e.kickoff,
                p.selection,p.probability,p.model_id,p.as_of,
-               x.metrics->>'venue_xg_agreement' AS xg_gate,
-               x.metrics->>'venue_xg_direction' AS xg_direction,
+               x.metrics->>'venue_xg_agreement' AS gate_state,
+               x.metrics->>'venue_xg_direction' AS model_direction,
                (x.metrics->>'fast_matchup_home_xg')::double precision AS fast_matchup_home_xg,
                (x.metrics->>'fast_matchup_away_xg')::double precision AS fast_matchup_away_xg,
                (x.metrics->>'home_home_fast_xgf5')::double precision AS home_fast_xgf5,
@@ -215,14 +215,14 @@ def run(now: datetime | None = None) -> dict:
 
                 if old is None and not qualifies_new_watch(
                     kickoff=r["kickoff"], now=now,
-                    xg_gate=r["xg_gate"], xg_direction=r["xg_direction"],
+                    gate_state=r["gate_state"], model_direction=r["model_direction"],
                     selection=selection, reference_odds=ref, trigger=trigger,
                 ):
                     continue
 
                 status = classify_status(
                     kickoff=r["kickoff"], now=now,
-                    xg_gate=r["xg_gate"], xg_direction=r["xg_direction"],
+                    gate_state=r["gate_state"], model_direction=r["model_direction"],
                     selection=selection, executable_odds=exe, trigger=trigger,
                 )
                 if exe is not None:
@@ -240,8 +240,8 @@ def run(now: datetime | None = None) -> dict:
 
                 team = r["home_name"] if selection == "HOME" else r["away_name"]
                 reason = (
-                    f"{team} {selection}: V5.1 venue xG {r['xg_gate']} "
-                    f"{r['xg_direction']}; fair {fair:.3f}; "
+                    f"{team} {selection}: V5.1 venue xG {r['gate_state']} "
+                    f"{r['model_direction']}; fair {fair:.3f}; "
                     f"3% EV trigger {trigger:.3f}."
                 )
                 meta = {
@@ -271,14 +271,15 @@ def run(now: datetime | None = None) -> dict:
                     created += conn.execute(
                         """
                         INSERT INTO sports.watchlist(
-                          watch_id,event_id,league,market,selection,line,period,
+                          watch_id,event_id,league,sport,market,selection,line,period,
                           settlement_rules,model_id,fair_probability,fair_odds,
                           trigger_odds,current_odds,current_bookmaker,price_type,
-                          xg_gate,xg_direction,status,reason,created_at,updated_at,
-                          last_checked_at,expires_at,metadata
+                          gate_type,gate_state,model_direction,watch_source,status,reason,
+                          created_at,updated_at,last_checked_at,expires_at,metadata
                         ) VALUES(
-                          %s,%s,'nhl','moneyline',%s,0,'FULL_GAME','INCLUDING_OT',
-                          %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s
+                          %s,%s,'nhl','hockey','moneyline',%s,0,'FULL_GAME','INCLUDING_OT',
+                          %s,%s,%s,%s,%s,%s,%s,'VENUE_XG',%s,%s,'nhl-v5.1',%s,%s,
+                          %s,%s,%s,%s,%s
                         )
                         ON CONFLICT(event_id,market,selection,line,period,settlement_rules)
                         DO NOTHING
@@ -286,7 +287,7 @@ def run(now: datetime | None = None) -> dict:
                         (
                             watch_id,r["event_id"],selection,r["model_id"],p,fair,
                             trigger,current_odds,current_book,price_type,
-                            r["xg_gate"],r["xg_direction"],status,reason,
+                            r["gate_state"],r["model_direction"],status,reason,
                             now,now,now,r["kickoff"],Jsonb(meta),
                         ),
                     ).rowcount
@@ -296,13 +297,15 @@ def run(now: datetime | None = None) -> dict:
                         UPDATE sports.watchlist SET
                           model_id=%s,fair_probability=%s,fair_odds=%s,trigger_odds=%s,
                           current_odds=%s,current_bookmaker=%s,price_type=%s,
-                          xg_gate=%s,xg_direction=%s,status=%s,reason=%s,
+                          sport='hockey',gate_type='VENUE_XG',
+                          gate_state=%s,model_direction=%s,watch_source='nhl-v5.1',
+                          status=%s,reason=%s,
                           updated_at=%s,last_checked_at=%s,expires_at=%s,metadata=%s
                         WHERE watch_id=%s
                         """,
                         (
                             r["model_id"],p,fair,trigger,current_odds,current_book,
-                            price_type,r["xg_gate"],r["xg_direction"],status,reason,
+                            price_type,r["gate_state"],r["model_direction"],status,reason,
                             now,now,r["kickoff"],Jsonb(meta),watch_id,
                         ),
                     ).rowcount
@@ -311,14 +314,14 @@ def run(now: datetime | None = None) -> dict:
                     """
                     INSERT INTO sports.watchlist_observations(
                       watch_id,observed_at,fair_probability,fair_odds,trigger_odds,
-                      current_odds,current_bookmaker,price_type,xg_gate,xg_direction,
-                      status,metadata
-                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                      current_odds,current_bookmaker,price_type,gate_type,gate_state,model_direction,
+                      watch_source,status,metadata
+                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,'VENUE_XG',%s,%s,'nhl-v5.1',%s,%s)
                     ON CONFLICT DO NOTHING
                     """,
                     (
                         watch_id,now,p,fair,trigger,current_odds,current_book,
-                        price_type,r["xg_gate"],r["xg_direction"],status,Jsonb(meta),
+                        price_type,r["gate_state"],r["model_direction"],status,Jsonb(meta),
                     ),
                 ).rowcount
 
@@ -360,7 +363,7 @@ def run(now: datetime | None = None) -> dict:
             """
             SELECT w.watch_id,e.home_name,e.away_name,e.kickoff,w.selection,
                    w.fair_odds,w.trigger_odds,w.current_odds,w.current_bookmaker,
-                   w.price_type,w.xg_gate,w.xg_direction,w.status
+                   w.price_type,w.gate_state,w.model_direction,w.status
             FROM sports.watchlist w
             JOIN sports.events e USING(event_id)
             WHERE w.league='nhl' AND w.status IN ('WATCH','TRIGGERED')
