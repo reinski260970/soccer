@@ -21,8 +21,9 @@ def test_forward_predict_uses_only_rows_before_target(monkeypatch):
     monkeypatch.setattr(fwd,"_calibrate",lambda p,a:p)
 
     data=[
-        {"date":date(2026,9,1),"x":[1],"y":0},
-        {"date":date(2026,10,1),"x":[1],"y":2},
+        {"date":date(2025,1,1),"x":[1],"y":i % 3}
+        for i in range(500)
+    ] + [
         {"date":date(2026,10,20),"x":[1],"y":1},
     ]
     target={"date":date(2026,10,15),"x":[1],"y":1}
