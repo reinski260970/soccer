@@ -1,0 +1,35 @@
+name: NHL V5.1 Forward Entry Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v5_1_forward.py"
+      - "tests/test_nhl_v5_1_forward.py"
+      - ".github/workflows/nhl-v5-1-forward.yml"
+  schedule:
+    - cron: "35 6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nhl-v5-1-forward-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-sql.txt
+      - name: Test frozen xG-agreement and leakage rules
+        run: python -m pytest tests/test_nhl_v5_1_forward.py -q
+      - name: Persist V5.1 xG agreement to Neon SHADOW only
+        run: python -m oddswatch.nhl_v5_1_forward
