@@ -27,6 +27,30 @@ LEAGUE_MAP = {
 # Audited archive label aliases only. Resolver otherwise requires one exact
 # normalized candidate among teams known to the preseason model.
 ALIASES = {
+    "nhl": {
+        "anaheim ducks":"ANA","boston bruins":"BOS","buffalo sabres":"BUF",
+        "carolina hurricanes":"CAR","columbus blue jackets":"CBJ","calgary flames":"CGY",
+        "chicago blackhawks":"CHI","colorado avalanche":"COL","dallas stars":"DAL",
+        "detroit red wings":"DET","edmonton oilers":"EDM","florida panthers":"FLA",
+        "los angeles kings":"LAK","minnesota wild":"MIN","montreal canadiens":"MTL",
+        "new jersey devils":"NJD","nashville predators":"NSH","new york islanders":"NYI",
+        "new york rangers":"NYR","ottawa senators":"OTT","philadelphia flyers":"PHI",
+        "pittsburgh penguins":"PIT","seattle kraken":"SEA","san jose sharks":"SJS",
+        "st louis blues":"STL","tampa bay lightning":"TBL","toronto maple leafs":"TOR",
+        "utah mammoth":"UTA","utah hockey club":"UTA","vancouver canucks":"VAN",
+        "vegas golden knights":"VGK","winnipeg jets":"WPG","washington capitals":"WSH",
+    },
+    "del": {
+        "erc ingolstadt":"Ingolstadt","adler mannheim":"Mannheim",
+        "iserlohn roosters":"Iserlohn","augsburger panther":"Augsbourg",
+        "nurnberg ice tigers":"Nuremberg","nuremberg ice tigers":"Nuremberg",
+        "kolner":"Cologne","kolner haie":"Cologne","frankfurt lowen":"Francfort",
+        "lowen frankfurt":"Francfort","grizzly wolfsburg":"Wolfsburg",
+        "grizzlys wolfsburg":"Wolfsburg","munchen":"Munich","red bull munich":"Munich",
+        "eisbaren berlin":"Berlin","bremerhaven":"Bremerhaven",
+        "straubing tigers":"Straubing","krefeld pinguine":"Krefeld",
+        "schwenninger":"Schwenningen","schwenninger wild wings":"Schwenningen",
+    },
     "icehl": {
         "vienna":"Vienne",
         "fehervar av19":"Fehérvár",
