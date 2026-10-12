@@ -269,7 +269,7 @@ def project_event(
     }
 
 
-def run(now: datetime | None = None, horizon_days: int = 3) -> dict:
+def run(now: datetime | None = None, horizon_days: int = 7) -> dict:
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("timezone-aware now required")
