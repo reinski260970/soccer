@@ -39,3 +39,14 @@ def test_importer_never_needs_network(monkeypatch, tmp_path):
     rows, issues = hm.read_market_dir(tmp_path)
     assert len(rows) == 1
     assert issues == []
+
+
+def test_known_icehl_and_extraliga_aliases_match_history_names():
+    ice={"Salzbourg","Linz","Pustertal","Milano HC"}
+    assert hm._resolve("Salzburg","icehl",ice)=="Salzbourg"
+    assert hm._resolve("Black Wings Linz","icehl",ice)=="Linz"
+    assert hm._resolve("Valpusteria","icehl",ice)=="Pustertal"
+    assert hm._resolve("Milano","icehl",ice)=="Milano HC"
+
+    ext={"Hradec Králové"}
+    assert hm._resolve("Mountfield HK","extraliga",ext)=="Hradec Králové"
