@@ -1,0 +1,54 @@
+name: m17-19-forward-shadow
+
+on:
+  push:
+    paths:
+      - ".github/m17-19-forward-run-now.txt"
+  schedule:
+    - cron: "17 5,11,17,23 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: m17-19-forward-shadow
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Forward chronology tests
+        run: PYTHONPATH=. pytest -q tests/test_m17_19_forward.py
+      - name: M17.19 EPL + Primeira forward shadow
+        env:
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          APIKEY: ${{ secrets.APIKEY }}
+          SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+        run: python -m oddswatch.m17_19_forward
+      - name: Persist free-xG and soccer steam snapshots
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          for f in data/journal/xg_external_snapshots.json data/journal/soccer_model_steam_history.json; do
+            test -f "$f" && git add "$f" || true
+          done
+          git diff --cached --quiet && exit 0
+          git commit -m "M17.19 forward xG/steam snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          for n in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep 3
+          done
+          exit 1
