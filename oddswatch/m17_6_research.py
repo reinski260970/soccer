@@ -87,7 +87,9 @@ def build_previous_season_priors(matches) -> dict[int, list[VenuePrior]]:
 
     out = {}
     seasons = sorted(raw)
-    for target in range(min(seasons) + 1 if seasons else START_YEAR, END_YEAR + 1):
+    target_start = (min(seasons) + 1) if seasons else START_YEAR
+    target_end = (max(seasons) + 2) if seasons else (END_YEAR + 1)
+    for target in range(target_start, target_end):
         prev = raw.get(target - 1, {})
         rows = []
         for team, s in prev.items():
