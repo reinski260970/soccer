@@ -1,1 +1,1 @@
-run 2026-10-12T07:57+02:00 m17-19-market-watch
+run 2026-10-12T17:55+02:00 status-refresh
