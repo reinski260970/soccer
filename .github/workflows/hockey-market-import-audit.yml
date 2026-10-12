@@ -1,0 +1,32 @@
+name: Hockey Market Import Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/hockey_market_import.py"
+      - "tests/test_hockey_market_import.py"
+      - "data/hockey/market/*.csv"
+      - ".github/workflows/hockey-market-import-audit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - name: Test offline importer
+        run: python -m pytest tests/test_hockey_market_import.py -q
+      - name: Audit local market files only
+        run: python -m oddswatch.hockey_market_import
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hockey-market-import-audit
+          path: data/hockey/market/import_audit.json
