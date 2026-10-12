@@ -19,13 +19,13 @@ def test_classifier_matches_frozen_v5_diagnostic_rule():
 
 
 def _bulk_csv():
-    return """season,gameDate,gameId,situation,position,playerTeam,opposingTeam,xGoalsFor,xGoalsAgainst
-2025,20261010,1,5on5,Team Level,N.J,OTT,2.8,1.8
-2025,20261010,1,5on5,Team Level,OTT,N.J,1.8,2.8
-2025,20261011,2,5on5,Team Level,N.J,OTT,3.1,1.7
-2025,20261011,2,5on5,Team Level,OTT,N.J,1.7,3.1
-2025,20261012,3,5on5,Team Level,N.J,OTT,0.1,5.0
-2025,20261012,3,5on5,Team Level,OTT,N.J,5.0,0.1
+    return """season,gameDate,gameId,situation,position,playerTeam,opposingTeam,home_or_away,xGoalsFor,xGoalsAgainst
+2025,20261010,1,5on5,Team Level,N.J,OTT,HOME,2.8,1.8
+2025,20261010,1,5on5,Team Level,OTT,N.J,AWAY,1.8,2.8
+2025,20261011,2,5on5,Team Level,N.J,OTT,HOME,3.1,1.7
+2025,20261011,2,5on5,Team Level,OTT,N.J,AWAY,1.7,3.1
+2025,20261012,3,5on5,Team Level,N.J,OTT,HOME,0.1,5.0
+2025,20261012,3,5on5,Team Level,OTT,N.J,AWAY,5.0,0.1
 """
 
 
@@ -47,6 +47,11 @@ def test_forward_signal_excludes_same_day_money_puck_rows():
     assert s["slow_mp_xg_share_diff"] > 0
     assert s["fast_mp_xg_share_diff"] > 0
     assert s["xg_agreement"] == "AGREE"
+    assert s["home_home_slow_xgf5"] > s["away_away_slow_xgf5"]
+    assert s["home_home_slow_xga5"] < s["away_away_slow_xga5"]
+    assert s["slow_matchup_home_xg"] > s["slow_matchup_away_xg"]
+    assert s["venue_xg_agreement"] == "AGREE"
+    assert s["venue_xg_direction"] == "HOME"
     assert s["data_through"].date().isoformat() == "2026-10-11"
 
 
@@ -68,3 +73,6 @@ def test_snapshots_are_shadow_only_and_never_create_play():
     assert all(r["metrics"]["release_status"] == "SHADOW" for r in rows)
     assert all(r["metrics"]["price_used_as_feature"] is False for r in rows)
     assert all(r["metrics"]["result_used_as_feature"] is False for r in rows)
+    assert all("home_home_slow_xgf5" in r["metrics"] for r in rows)
+    assert all("away_away_slow_xga5" in r["metrics"] for r in rows)
+    assert all(r["metrics"]["venue_xg_agreement"] == "AGREE" for r in rows)
