@@ -18000,7 +18000,7 @@
   ]
  },
  "2026-10-13|E0|understat": {
-  "as_of": "2026-10-13T00:33:07.627475+00:00",
+  "as_of": "2026-10-13T12:44:37.723316+00:00",
   "league": "E0",
   "source": "understat",
   "teams": [
@@ -19242,14 +19242,14 @@
   ]
  },
  "2026-10-13|P1|matchpulse": {
-  "as_of": "2026-10-13T00:34:46.851211+00:00",
+  "as_of": "2026-10-13T12:44:37.723316+00:00",
   "league": "P1",
   "source": "matchpulse",
   "teams": [
    {
     "team": "Benfica",
-    "xg": 2.35,
-    "xga": 0.73,
+    "xg": 2.36,
+    "xga": 0.74,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19258,8 +19258,8 @@
    },
    {
     "team": "FC Porto",
-    "xg": 2.25,
-    "xga": 0.9,
+    "xg": 2.26,
+    "xga": 0.91,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19268,7 +19268,7 @@
    },
    {
     "team": "Vitória SC",
-    "xg": 1.79,
+    "xg": 1.8,
     "xga": 1.15,
     "xg_home": null,
     "xga_home": null,
@@ -19278,8 +19278,18 @@
    },
    {
     "team": "Sporting CP",
-    "xg": 1.53,
-    "xga": 0.91,
+    "xg": 1.54,
+    "xga": 0.92,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Alverca",
+    "xg": 1.49,
+    "xga": 1.26,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19288,8 +19298,8 @@
    },
    {
     "team": "Estrela",
-    "xg": 1.45,
-    "xga": 1.51,
+    "xg": 1.46,
+    "xga": 1.52,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19298,8 +19308,8 @@
    },
    {
     "team": "Santa Clara",
-    "xg": 1.27,
-    "xga": 0.82,
+    "xg": 1.28,
+    "xga": 0.83,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19308,7 +19318,7 @@
    },
    {
     "team": "Estoril",
-    "xg": 1.23,
+    "xg": 1.24,
     "xga": 1.39,
     "xg_home": null,
     "xga_home": null,
@@ -19318,7 +19328,7 @@
    },
    {
     "team": "SC Braga",
-    "xg": 1.35,
+    "xg": 1.37,
     "xga": 0.67,
     "xg_home": null,
     "xga_home": null,
@@ -19328,8 +19338,8 @@
    },
    {
     "team": "GIL Vicente",
-    "xg": 1.34,
-    "xga": 0.78,
+    "xg": 1.35,
+    "xga": 0.79,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19338,8 +19348,8 @@
    },
    {
     "team": "Arouca",
-    "xg": 1.16,
-    "xga": 1.66,
+    "xg": 1.17,
+    "xga": 1.67,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19347,19 +19357,9 @@
     "matches": 8
    },
    {
-    "team": "Alverca",
-    "xg": 1.27,
-    "xga": 1.37,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 7
-   },
-   {
     "team": "Nacional",
     "xg": 1.07,
-    "xga": 2.08,
+    "xga": 2.09,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19369,17 +19369,7 @@
    {
     "team": "Academico Viseu",
     "xg": 1.05,
-    "xga": 1.74,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 8
-   },
-   {
-    "team": "Rio Ave",
-    "xg": 0.98,
-    "xga": 1.73,
+    "xga": 1.75,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19388,18 +19378,28 @@
    },
    {
     "team": "Famalicao",
-    "xg": 1.1,
-    "xga": 1.18,
+    "xg": 1.02,
+    "xga": 1.41,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
     "xga_away": null,
-    "matches": 7
+    "matches": 8
+   },
+   {
+    "team": "Rio Ave",
+    "xg": 0.99,
+    "xga": 1.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
    },
    {
     "team": "Maritimo",
     "xg": 0.89,
-    "xga": 1.49,
+    "xga": 1.5,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19408,8 +19408,8 @@
    },
    {
     "team": "Casa Pia",
-    "xg": 0.81,
-    "xga": 1.63,
+    "xg": 0.82,
+    "xga": 1.64,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19418,8 +19418,8 @@
    },
    {
     "team": "Moreirense",
-    "xg": 0.73,
-    "xga": 1.73,
+    "xg": 0.74,
+    "xga": 1.74,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
