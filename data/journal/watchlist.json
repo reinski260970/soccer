@@ -1,5 +1,29 @@
 [
  {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "greece",
+  "event": "Panathinaikos – Asteras Tripoli",
+  "kickoff": "2026-10-18T14:30:00+00:00",
+  "market": "away",
+  "selection": "Asteras Tripoli Sieg (90 Min.)",
+  "odds": 21.0,
+  "fair": 18.10154193799162,
+  "min_odds": 18.64458819613137,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Asteras Tripoli",
+   "Asteras Tripoli",
+   "Asteras Trip",
+   "AST"
+  ]
+ },
+ {
   "source": "bet365",
   "status": "WATCH",
   "league": "bundesliga",
@@ -48,54 +72,6 @@
   ]
  },
  {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Panathinaikos – Asteras Tripoli",
-  "kickoff": "2026-10-18T14:30:00+00:00",
-  "market": "away",
-  "selection": "Asteras Tripoli Sieg (90 Min.)",
-  "odds": 21.0,
-  "fair": 18.923935575897772,
-  "min_odds": 19.491653643174708,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Asteras Tripoli",
-   "Asteras Tripoli",
-   "Asteras Trip",
-   "AST"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Kalamata – OFI Crete",
-  "kickoff": "2026-10-18T13:00:00+00:00",
-  "market": "away",
-  "selection": "OFI Crete Sieg (90 Min.)",
-  "odds": 3.0,
-  "fair": 2.749836704835491,
-  "min_odds": 2.832331805980556,
-  "home": [
-   "Kalamata",
-   "Kalamata",
-   "Kalamata",
-   "KAL"
-  ],
-  "away": [
-   "OFI Crete",
-   "OFI Crete",
-   "OFI Crete",
-   "OFI"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
   "league": "laliga",
@@ -117,6 +93,30 @@
    "Athletic Club",
    "Athletic",
    "ATH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "uecl",
+  "event": "Panathinaikos – Borac Banja Luka",
+  "kickoff": "2026-10-15T16:45:00+00:00",
+  "market": "away",
+  "selection": "Borac Banja Luka Sieg (90 Min.)",
+  "odds": 13.0,
+  "fair": 11.979986651364737,
+  "min_odds": 12.33938625090568,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Borac Banja Luka",
+   "Borac Banja Luka",
+   "Borac",
+   "BBL"
   ]
  }
 ]
