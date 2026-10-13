@@ -1,0 +1,68 @@
+name: NHL Historical Coverage Probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe NHL historical coverage (max 10 requests)
+        env:
+          RSA_API_KEY: ${{ secrets.RSA_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os, json, urllib.request, urllib.error
+          key = os.environ.get('RSA_API_KEY')
+          if not key:
+              raise SystemExit('RSA_API_KEY secret missing')
+          base = 'https://www.realtimesportsapi.com/api/v1/sports/hockey/leagues/nhl'
+          calls = 0
+          def get(path):
+              global calls
+              if calls >= 10:
+                  raise RuntimeError('Request budget exhausted')
+              calls += 1
+              req = urllib.request.Request(base + path, headers={
+                  'Authorization': 'Bearer ' + key,
+                  'Accept': 'application/json',
+              })
+              try:
+                  with urllib.request.urlopen(req, timeout=15) as response:
+                      data = json.load(response)
+                      print('HTTP', response.status, path)
+              except urllib.error.HTTPError as error:
+                  print('HTTP', error.code, path)
+                  return {}
+              if isinstance(data, dict):
+                  print('top-level keys:', list(data))
+                  meta = data.get('meta', {})
+                  if isinstance(meta, dict):
+                      print('rateLimit:', meta.get('rateLimit'))
+              return data
+          for season in ('2021', '2024', '2025'):
+              result = get('/seasons/' + season + '/schedule')
+              payload = result.get('data') if isinstance(result, dict) else None
+              print('season', season, 'payload type:', type(payload).__name__)
+              if isinstance(payload, dict):
+                  print('data keys:', list(payload))
+              elif isinstance(payload, list):
+                  print('items:', len(payload))
+          current = get('/events')
+          payload = current.get('data', []) if isinstance(current, dict) else []
+          if isinstance(payload, dict):
+              payload = payload.get('events', payload.get('items', []))
+          event = next((e for e in payload if isinstance(e, dict) and e.get('id')), None) if isinstance(payload, list) else None
+          if event:
+              eid = str(event['id'])
+              if not eid.isdecimal():
+                  raise SystemExit('Unexpected event ID format')
+              for suffix in ('/boxscore', '/odds/history', '/plays'):
+                  result = get('/events/' + eid + suffix)
+                  data = result.get('data') if isinstance(result, dict) else None
+                  print('event', eid, suffix, 'data type:', type(data).__name__)
+                  if isinstance(data, dict):
+                      print('data keys:', list(data))
+          print('Total API calls:', calls)
+          PY
