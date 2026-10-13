@@ -118,5 +118,29 @@
    "Athletic",
    "ATH"
   ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "uecl",
+  "event": "Panathinaikos – Borac Banja Luka",
+  "kickoff": "2026-10-15T16:45:00+00:00",
+  "market": "away",
+  "selection": "Borac Banja Luka Sieg (90 Min.)",
+  "odds": 13.0,
+  "fair": 11.979986651364737,
+  "min_odds": 12.33938625090568,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Borac Banja Luka",
+   "Borac Banja Luka",
+   "Borac",
+   "BBL"
+  ]
  }
 ]
