@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T17:26:35.681172+00:00",
+  "generated_at": "2026-10-13T18:21:11.240879+00:00",
   "source_odds_rows": 13661,
   "matched_rows": 12539,
   "slow_unmatched": 1122,
@@ -143,14 +143,14 @@
       "C": 1.0,
       "shrink": 0.9,
       "calibration_logloss": 0.676951,
-      "model_logloss": 0.676518,
+      "model_logloss": 0.676517,
       "market_logloss": 0.669477,
       "logloss_gain_vs_market": -0.007041,
       "bets": 799,
       "wins": 391,
       "profit_units": 1.4557927695498925,
       "flat_roi": 0.001822,
-      "mean_entry_ev": 0.124471,
+      "mean_entry_ev": 0.12447,
       "mean_archive_clv": -0.013566,
       "positive_clv_rate": 0.370463
     },
