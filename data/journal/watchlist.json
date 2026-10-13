@@ -98,49 +98,25 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "laliga",
-  "event": "Levante – Athletic Club",
-  "kickoff": "2026-10-21T18:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.4,
-  "fair": 3.12557806471274,
-  "min_odds": 3.219345406654122,
-  "home": [
-   "Levante",
-   "Levante",
-   "Levante",
-   "LEV"
-  ],
-  "away": [
-   "Athletic Club",
-   "Athletic Club",
-   "Athletic",
-   "ATH"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "uecl",
-  "event": "Panathinaikos – Borac Banja Luka",
-  "kickoff": "2026-10-15T16:45:00+00:00",
+  "event": "SC Freiburg – Jablonec",
+  "kickoff": "2026-10-15T19:00:00+00:00",
   "market": "away",
-  "selection": "Borac Banja Luka Sieg (90 Min.)",
-  "odds": 13.0,
-  "fair": 11.979986651364737,
-  "min_odds": 12.33938625090568,
+  "selection": "Jablonec Sieg (90 Min.)",
+  "odds": 11.0,
+  "fair": 10.045447190787781,
+  "min_odds": 10.346810606511415,
   "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
+   "SC Freiburg",
+   "SC Freiburg",
+   "Freiburg",
+   "SCF"
   ],
   "away": [
-   "Borac Banja Luka",
-   "Borac Banja Luka",
-   "Borac",
-   "BBL"
+   "Jablonec",
+   "Jablonec",
+   "Jablonec",
+   "JABL"
   ]
  }
 ]
