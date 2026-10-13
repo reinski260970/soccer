@@ -1,0 +1,38 @@
+name: Realtime Sports API discovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify API key exists without printing it
+        env:
+          RSA_API_KEY: ${{ secrets.RSA_API_KEY }}
+        run: |
+          if [ -z "$RSA_API_KEY" ]; then echo 'RSA_API_KEY missing'; exit 1; fi
+          echo 'RSA_API_KEY configured'
+      - name: Discover public OpenAPI schema (no quota-consuming sports requests)
+        run: |
+          python - <<'PY'
+          import urllib.request, json
+          base='https://www.realtimesportsapi.com'
+          candidates=['/openapi.json','/api/openapi.json','/swagger.json','/api-docs/openapi.json']
+          for path in candidates:
+              try:
+                  req=urllib.request.Request(base+path,headers={'Accept':'application/json','User-Agent':'NHL-API-discovery/1.0'})
+                  with urllib.request.urlopen(req,timeout=12) as r:
+                      obj=json.load(r)
+                  paths=obj.get('paths',{})
+                  if paths:
+                      print('Schema:',path,'endpoints:',len(paths))
+                      for p,methods in paths.items():
+                          if any(s in p.lower() for s in ('nhl','hockey','sport','league','odds')):
+                              print(p,','.join(k.upper() for k in methods if k in ('get','post')))
+                      break
+              except Exception as e:
+                  print(path,'unavailable:',type(e).__name__)
+          else:
+              print('No public OpenAPI JSON found; check Swagger UI network spec URL. No sports API call made.')
+          PY
