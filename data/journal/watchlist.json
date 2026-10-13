@@ -1,5 +1,29 @@
 [
  {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "greece",
+  "event": "Panathinaikos – Asteras Tripoli",
+  "kickoff": "2026-10-18T14:30:00+00:00",
+  "market": "away",
+  "selection": "Asteras Tripoli Sieg (90 Min.)",
+  "odds": 21.0,
+  "fair": 18.10154193799162,
+  "min_odds": 18.64458819613137,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Asteras Tripoli",
+   "Asteras Tripoli",
+   "Asteras Trip",
+   "AST"
+  ]
+ },
+ {
   "source": "bet365",
   "status": "WATCH",
   "league": "bundesliga",
@@ -26,6 +50,30 @@
  {
   "source": "bet365",
   "status": "WATCH",
+  "league": "uecl",
+  "event": "Panathinaikos – Borac Banja Luka",
+  "kickoff": "2026-10-15T16:45:00+00:00",
+  "market": "away",
+  "selection": "Borac Banja Luka Sieg (90 Min.)",
+  "odds": 15.0,
+  "fair": 12.983397930343259,
+  "min_odds": 13.372899868253556,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Borac Banja Luka",
+   "Borac Banja Luka",
+   "Borac",
+   "BBL"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
   "league": "bundesliga",
   "event": "FC Augsburg – 1. FC Union Berlin",
   "kickoff": "2026-10-24T13:30:00+00:00",
@@ -45,54 +93,6 @@
    "1. FC Union Berlin",
    "Union Berlin",
    "FCU"
-  ]
- },
- {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Panathinaikos – Asteras Tripoli",
-  "kickoff": "2026-10-18T14:30:00+00:00",
-  "market": "away",
-  "selection": "Asteras Tripoli Sieg (90 Min.)",
-  "odds": 21.0,
-  "fair": 18.923935575897772,
-  "min_odds": 19.491653643174708,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Asteras Tripoli",
-   "Asteras Tripoli",
-   "Asteras Trip",
-   "AST"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Kalamata – OFI Crete",
-  "kickoff": "2026-10-18T13:00:00+00:00",
-  "market": "away",
-  "selection": "OFI Crete Sieg (90 Min.)",
-  "odds": 3.0,
-  "fair": 2.749836704835491,
-  "min_odds": 2.832331805980556,
-  "home": [
-   "Kalamata",
-   "Kalamata",
-   "Kalamata",
-   "KAL"
-  ],
-  "away": [
-   "OFI Crete",
-   "OFI Crete",
-   "OFI Crete",
-   "OFI"
   ]
  },
  {

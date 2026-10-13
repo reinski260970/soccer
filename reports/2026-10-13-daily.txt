@@ -1,0 +1,51 @@
+🗞 Tagesbericht Di 13.10. 16:26 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Super League Greece · So 18.10. 16:30 MESZ
+🆚 Panathinaikos – Asteras Tripoli
+➡️ Asteras Tripoli Sieg (90 Min.) spielbar ab 18,64 (jetzt 21,00)
+• Bundesliga · Sa 24.10. 18:30 MESZ
+🆚 Borussia Dortmund – Eintracht Frankfurt
+➡️ Eintracht Frankfurt Sieg (90 Min.) spielbar ab 6,67 (jetzt 7,50)
+• Conference League · Do 15.10. 18:45 MESZ
+🆚 Panathinaikos – Borac Banja Luka
+➡️ Borac Banja Luka Sieg (90 Min.) spielbar ab 13,37 (jetzt 15,00)
+• Bundesliga · Sa 24.10. 15:30 MESZ
+🆚 FC Augsburg – 1. FC Union Berlin
+➡️ 1. FC Union Berlin Sieg (90 Min.) spielbar ab 4,01 (jetzt 4,33)
+• La Liga · Mi 21.10. 20:00 MESZ
+🆚 Levante – Athletic Club
+➡️ Unentschieden (90 Min.) spielbar ab 3,22 (jetzt 3,40)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 104 Spiele | ausführbare Preise 94 | Marktreferenz 104 | 0 PLAY
+   • Panathinaikos – Borac Banja Luka · Do 15.10. 18:45 MESZ: Borac Banja Luka Sieg (90 Min.) @ 15,00, spielbar ab 13,37 (EV 15,5 %)
+   • Fiorentina – Como · So 18.10. 15:00 MESZ: Fiorentina Sieg (90 Min.) @ 3,75, spielbar ab 3,69 (EV 4,8 %)
+🏒 Eishockey Europa: 56 Spiele | ausführbare Preise 0 | Marktreferenz 0 | 0 PLAY
+🏒 NHL: 51 Spiele | ausführbare Preise 8 | Marktreferenz 51 | 0 PLAY
+   • New York Rangers – Tampa Bay Lightning · Mi 14.10. 01:15 MESZ: New York Rangers Sieg (inkl. OT) @ 2,60, spielbar ab 2,57 (EV 4,2 %)
+   • New York Islanders – Vancouver Canucks · Mi 14.10. 01:45 MESZ: New York Islanders Sieg (inkl. OT) @ 1,50, spielbar ab 1,54 (EV 0,2 %)
+🏀 NBA: keine Spiele in 7 Tagen – nächster Spieltag ab Di 20.10. 21:00 MESZ (3 Spiele)
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 2 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Derepasko T. vs Becroft I. · ATP · Catania challenger · ATP Challenger · hard · Mi 14.10. 04:00 (Zeit unbestätigt): Derepasko T. @ 2,33 (EV 22,7 %)
+   • Almazan Valiente I. vs Gill F. · ATP · Catania challenger · ATP Challenger · hard · Mi 14.10. 10:00 (Zeit unbestätigt): Almazan Valiente I. @ 2,34 (EV 8,6 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

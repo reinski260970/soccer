@@ -17626,7 +17626,7 @@
   ]
  },
  "2026-10-13|D1|understat": {
-  "as_of": "2026-10-13T00:32:23.842290+00:00",
+  "as_of": "2026-10-13T14:19:25.183815+00:00",
   "league": "D1",
   "source": "understat",
   "teams": [
@@ -17813,7 +17813,7 @@
   ]
  },
  "2026-10-13|D2|matchpulse": {
-  "as_of": "2026-10-13T00:32:42.271608+00:00",
+  "as_of": "2026-10-13T14:19:29.735693+00:00",
   "league": "D2",
   "source": "matchpulse",
   "teams": [
@@ -18000,7 +18000,7 @@
   ]
  },
  "2026-10-13|E0|understat": {
-  "as_of": "2026-10-13T12:44:37.723316+00:00",
+  "as_of": "2026-10-13T14:19:41.144968+00:00",
   "league": "E0",
   "source": "understat",
   "teams": [
@@ -18207,7 +18207,7 @@
   ]
  },
  "2026-10-13|E1|matchpulse": {
-  "as_of": "2026-10-13T00:33:17.868972+00:00",
+  "as_of": "2026-10-13T14:19:46.187622+00:00",
   "league": "E1",
   "source": "matchpulse",
   "teams": [
@@ -18454,7 +18454,7 @@
   ]
  },
  "2026-10-13|SP1|understat": {
-  "as_of": "2026-10-13T00:33:37.549057+00:00",
+  "as_of": "2026-10-13T14:19:56.656076+00:00",
   "league": "SP1",
   "source": "understat",
   "teams": [
@@ -18661,7 +18661,7 @@
   ]
  },
  "2026-10-13|I1|understat": {
-  "as_of": "2026-10-13T00:33:59.646453+00:00",
+  "as_of": "2026-10-13T14:20:03.021626+00:00",
   "league": "I1",
   "source": "understat",
   "teams": [
@@ -18868,7 +18868,7 @@
   ]
  },
  "2026-10-13|F1|understat": {
-  "as_of": "2026-10-13T00:34:20.627128+00:00",
+  "as_of": "2026-10-13T14:20:10.313233+00:00",
   "league": "F1",
   "source": "understat",
   "teams": [
@@ -19034,28 +19034,28 @@
    },
    {
     "team": "Paris Saint Germain",
-    "xg": 2.5280349999999996,
-    "xga": 1.3350745,
-    "xg_home": 2.4599933333333333,
-    "xga_home": 1.2465523333333335,
+    "xg": 2.611731666666667,
+    "xga": 1.5078656666666668,
+    "xg_home": 2.6273866666666668,
+    "xga_home": 1.5921346666666667,
     "xg_away": 2.5960766666666664,
     "xga_away": 1.4235966666666666,
     "matches": 6
    },
    {
     "team": "Rennes",
-    "xg": 2.066093833333334,
-    "xga": 1.8898849999999998,
+    "xg": 2.2388850000000002,
+    "xga": 1.9735816666666668,
     "xg_home": 2.65208,
     "xga_home": 1.745666666666667,
-    "xg_away": 1.4801076666666668,
-    "xga_away": 2.0341033333333334,
+    "xg_away": 1.8256899999999998,
+    "xga_away": 2.201496666666667,
     "matches": 6
    }
   ]
  },
  "2026-10-13|N1|matchpulse": {
-  "as_of": "2026-10-13T00:34:39.207450+00:00",
+  "as_of": "2026-10-13T14:20:14.924609+00:00",
   "league": "N1",
   "source": "matchpulse",
   "teams": [
@@ -19242,7 +19242,7 @@
   ]
  },
  "2026-10-13|P1|matchpulse": {
-  "as_of": "2026-10-13T12:44:37.723316+00:00",
+  "as_of": "2026-10-13T14:20:25.876840+00:00",
   "league": "P1",
   "source": "matchpulse",
   "teams": [
@@ -19429,7 +19429,7 @@
   ]
  },
  "2026-10-13|B1|matchpulse": {
-  "as_of": "2026-10-13T00:34:59.601141+00:00",
+  "as_of": "2026-10-13T14:20:34.424838+00:00",
   "league": "B1",
   "source": "matchpulse",
   "teams": [
@@ -19616,7 +19616,7 @@
   ]
  },
  "2026-10-13|T1|matchpulse": {
-  "as_of": "2026-10-13T00:35:07.313006+00:00",
+  "as_of": "2026-10-13T14:20:45.793755+00:00",
   "league": "T1",
   "source": "matchpulse",
   "teams": [
@@ -19634,6 +19634,16 @@
     "team": "Fenerbahçe",
     "xg": 2.16,
     "xga": 1.08,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Göztepe",
+    "xg": 1.96,
+    "xga": 1.84,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -19669,16 +19679,6 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 7
-   },
-   {
-    "team": "Göztepe",
-    "xg": 1.75,
-    "xga": 1.92,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 6
    },
    {
     "team": "Çorum FK",
@@ -19771,6 +19771,16 @@
     "matches": 7
    },
    {
+    "team": "Eyüpspor",
+    "xg": 0.95,
+    "xga": 2.24,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
     "team": "Erzurumspor FK",
     "xg": 0.8,
     "xga": 1.2,
@@ -19789,21 +19799,11 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 7
-   },
-   {
-    "team": "Eyüpspor",
-    "xg": 0.88,
-    "xga": 2.08,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 6
    }
   ]
  },
  "2026-10-13|SC0|matchpulse": {
-  "as_of": "2026-10-13T00:35:15.331568+00:00",
+  "as_of": "2026-10-13T14:20:53.685399+00:00",
   "league": "SC0",
   "source": "matchpulse",
   "teams": [
@@ -19930,7 +19930,7 @@
   ]
  },
  "2026-10-13|G1|football-data-xg": {
-  "as_of": "2026-10-13T00:35:36.612982+00:00",
+  "as_of": "2026-10-13T14:21:01.252198+00:00",
   "league": "G1",
   "source": "football-data-xg",
   "teams": [
@@ -20077,7 +20077,7 @@
   ]
  },
  "2026-10-13|AUT|matchpulse": {
-  "as_of": "2026-10-13T00:35:52.675743+00:00",
+  "as_of": "2026-10-13T14:21:08.383044+00:00",
   "league": "AUT",
   "source": "matchpulse",
   "teams": [
@@ -20204,7 +20204,7 @@
   ]
  },
  "2026-10-13|SWE|matchpulse": {
-  "as_of": "2026-10-13T00:36:05.037067+00:00",
+  "as_of": "2026-10-13T14:21:16.180480+00:00",
   "league": "SWE",
   "source": "matchpulse",
   "teams": [
@@ -20230,8 +20230,18 @@
    },
    {
     "team": "Djurgardens IF",
-    "xg": 1.82,
+    "xg": 1.81,
     "xga": 1.14,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Malmo FF",
+    "xg": 1.75,
+    "xga": 1.47,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -20241,22 +20251,12 @@
    {
     "team": "IFK Goteborg",
     "xg": 1.7,
-    "xga": 1.38,
+    "xga": 1.37,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
     "xga_away": null,
     "matches": 23
-   },
-   {
-    "team": "Malmo FF",
-    "xg": 1.77,
-    "xga": 1.45,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 22
    },
    {
     "team": "BK Hacken",
@@ -20299,6 +20299,16 @@
     "matches": 23
    },
    {
+    "team": "IF Elfsborg",
+    "xg": 1.44,
+    "xga": 1.14,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
     "team": "Vasteras SK FK",
     "xg": 1.36,
     "xga": 1.67,
@@ -20309,39 +20319,29 @@
     "matches": 23
    },
    {
-    "team": "IF Elfsborg",
-    "xg": 1.35,
-    "xga": 1.17,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 22
-   },
-   {
     "team": "Kalmar FF",
-    "xg": 1.25,
-    "xga": 1.47,
+    "xg": 1.28,
+    "xga": 1.46,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
     "xga_away": null,
-    "matches": 22
+    "matches": 23
    },
    {
     "team": "Halmstad",
-    "xg": 1.24,
-    "xga": 1.93,
+    "xg": 1.2,
+    "xga": 1.99,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
     "xga_away": null,
-    "matches": 22
+    "matches": 23
    },
    {
     "team": "IF Brommapojkarna",
     "xg": 1.16,
-    "xga": 1.88,
+    "xga": 1.87,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -20371,7 +20371,7 @@
   ]
  },
  "2026-10-13|NOR|matchpulse": {
-  "as_of": "2026-10-13T00:36:16.305856+00:00",
+  "as_of": "2026-10-13T14:21:23.193764+00:00",
   "league": "NOR",
   "source": "matchpulse",
   "teams": [
@@ -20456,6 +20456,16 @@
     "matches": 22
    },
    {
+    "team": "Valerenga",
+    "xg": 1.47,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
     "team": "Aalesund",
     "xg": 1.46,
     "xga": 2.06,
@@ -20464,16 +20474,6 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 22
-   },
-   {
-    "team": "Valerenga",
-    "xg": 1.46,
-    "xga": 1.68,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 21
    },
    {
     "team": "Start",
@@ -20516,6 +20516,16 @@
     "matches": 22
    },
    {
+    "team": "KFUM Oslo",
+    "xg": 1.12,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
     "team": "Kristiansund BK",
     "xg": 1.02,
     "xga": 1.85,
@@ -20524,21 +20534,11 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 22
-   },
-   {
-    "team": "KFUM Oslo",
-    "xg": 1.07,
-    "xga": 1.69,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 21
    }
   ]
  },
  "2026-10-13|DEN|matchpulse": {
-  "as_of": "2026-10-13T00:36:35.075339+00:00",
+  "as_of": "2026-10-13T14:21:28.559516+00:00",
   "league": "DEN",
   "source": "matchpulse",
   "teams": [
@@ -20603,9 +20603,19 @@
     "matches": 10
    },
    {
+    "team": "Aarhus",
+    "xg": 1.46,
+    "xga": 1.44,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
     "team": "Odense",
     "xg": 1.43,
-    "xga": 1.6,
+    "xga": 1.59,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -20623,19 +20633,19 @@
     "matches": 10
    },
    {
-    "team": "Aarhus",
-    "xg": 1.49,
-    "xga": 1.44,
+    "team": "Brondby",
+    "xg": 1.31,
+    "xga": 1.49,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
     "xga_away": null,
-    "matches": 9
+    "matches": 10
    },
    {
-    "team": "Brondby",
-    "xg": 1.31,
-    "xga": 1.49,
+    "team": "Sonderjyske",
+    "xg": 1.13,
+    "xga": 1.82,
     "xg_home": null,
     "xga_home": null,
     "xg_away": null,
@@ -20651,16 +20661,6 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 10
-   },
-   {
-    "team": "Sonderjyske",
-    "xg": 1.1,
-    "xga": 1.88,
-    "xg_home": null,
-    "xga_home": null,
-    "xg_away": null,
-    "xga_away": null,
-    "matches": 9
    }
   ]
  }
