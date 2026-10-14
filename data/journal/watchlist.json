@@ -56,8 +56,8 @@
   "market": "away",
   "selection": "Borac Banja Luka Sieg (90 Min.)",
   "odds": 15.0,
-  "fair": 13.430632638003729,
-  "min_odds": 13.83355161714384,
+  "fair": 13.057997743790827,
+  "min_odds": 13.44973767610455,
   "home": [
    "Panathinaikos",
    "Panathinaikos",
@@ -96,27 +96,27 @@
   ]
  },
  {
-  "source": "bet365",
+  "source": "1xbet",
   "status": "WATCH",
-  "league": "laliga",
-  "event": "Levante – Athletic Club",
-  "kickoff": "2026-10-21T18:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.4,
-  "fair": 3.12557806471274,
-  "min_odds": 3.219345406654122,
+  "league": "nhl",
+  "event": "Tampa Bay Lightning – Seattle Kraken",
+  "kickoff": "2026-10-15T23:00:00+00:00",
+  "market": "home",
+  "selection": "Tampa Bay Lightning Sieg (inkl. OT)",
+  "odds": 1.59,
+  "fair": 1.4440197689278527,
+  "min_odds": 1.4873403619956882,
   "home": [
-   "Levante",
-   "Levante",
-   "Levante",
-   "LEV"
+   "Tampa Bay Lightning",
+   "Tampa Bay",
+   "Lightning",
+   "TB"
   ],
   "away": [
-   "Athletic Club",
-   "Athletic Club",
-   "Athletic",
-   "ATH"
+   "Seattle Kraken",
+   "Seattle",
+   "Kraken",
+   "SEA"
   ]
  }
 ]
