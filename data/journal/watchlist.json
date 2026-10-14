@@ -1,29 +1,5 @@
 [
  {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Panathinaikos – Asteras Tripoli",
-  "kickoff": "2026-10-18T14:30:00+00:00",
-  "market": "away",
-  "selection": "Asteras Tripoli Sieg (90 Min.)",
-  "odds": 21.0,
-  "fair": 18.10154193799162,
-  "min_odds": 18.64458819613137,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Asteras Tripoli",
-   "Asteras Tripoli",
-   "Asteras Trip",
-   "AST"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
   "league": "bundesliga",
@@ -48,6 +24,30 @@
   ]
  },
  {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "greece",
+  "event": "Panathinaikos – Asteras Tripoli",
+  "kickoff": "2026-10-18T14:30:00+00:00",
+  "market": "away",
+  "selection": "Asteras Tripoli Sieg (90 Min.)",
+  "odds": 21.0,
+  "fair": 18.19309966188271,
+  "min_odds": 18.73889265173919,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Asteras Tripoli",
+   "Asteras Tripoli",
+   "Asteras Trip",
+   "AST"
+  ]
+ },
+ {
   "source": "bet365",
   "status": "WATCH",
   "league": "uecl",
@@ -56,8 +56,8 @@
   "market": "away",
   "selection": "Borac Banja Luka Sieg (90 Min.)",
   "odds": 15.0,
-  "fair": 12.983397930343259,
-  "min_odds": 13.372899868253556,
+  "fair": 13.430632638003729,
+  "min_odds": 13.83355161714384,
   "home": [
    "Panathinaikos",
    "Panathinaikos",
@@ -98,25 +98,25 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "uecl",
-  "event": "SC Freiburg – Jablonec",
-  "kickoff": "2026-10-15T19:00:00+00:00",
-  "market": "away",
-  "selection": "Jablonec Sieg (90 Min.)",
-  "odds": 11.0,
-  "fair": 10.045447190787781,
-  "min_odds": 10.346810606511415,
+  "league": "laliga",
+  "event": "Levante – Athletic Club",
+  "kickoff": "2026-10-21T18:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.4,
+  "fair": 3.12557806471274,
+  "min_odds": 3.219345406654122,
   "home": [
-   "SC Freiburg",
-   "SC Freiburg",
-   "Freiburg",
-   "SCF"
+   "Levante",
+   "Levante",
+   "Levante",
+   "LEV"
   ],
   "away": [
-   "Jablonec",
-   "Jablonec",
-   "Jablonec",
-   "JABL"
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
   ]
  }
 ]
