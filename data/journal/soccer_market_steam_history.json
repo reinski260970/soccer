@@ -1,29 +1,6 @@
 {
  "1563200|home": [
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "Norwich – Southampton",
-   "kickoff": "2026-10-14T18:45:00+00:00",
-   "league": "Championship",
-   "market": "home",
-   "selection": "Norwich Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.38699413245021674,
-    "Bet365": 0.38534946910195533,
-    "Betfair": 0.38833972664536204
-   },
-   "odds": {
-    "Pinnacle": 2.5,
-    "Bet365": 2.45,
-    "Betfair": 2.45
-   }
-  },
-  {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
@@ -45,32 +22,32 @@
     "Bet365": 2.45,
     "Betfair": 2.45
    }
-  }
- ],
- "1563200|draw": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "Norwich Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.25010263370119856,
-    "Bet365": 0.25585297546689106,
-    "Betfair": 0.25132109781298767
+    "Pinnacle": 0.38223212072982593,
+    "Bet365": 0.3772918083541969,
+    "Betfair": 0.3948313204042857
    },
    "odds": {
-    "Pinnacle": 3.81,
-    "Bet365": 3.6,
-    "Betfair": 3.7
+    "Pinnacle": 2.54,
+    "Bet365": 2.5,
+    "Betfair": 2.4
    }
-  },
+  }
+ ],
+ "1563200|draw": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -93,32 +70,32 @@
     "Bet365": 3.6,
     "Betfair": 3.7
    }
-  }
- ],
- "1563200|away": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "away",
-   "selection": "Southampton Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3629032338485846,
-    "Bet365": 0.35879755543115394,
-    "Betfair": 0.3603391755416507
+    "Pinnacle": 0.2629506764027815,
+    "Bet365": 0.2637719191873967,
+    "Betfair": 0.256739933585843
    },
    "odds": {
-    "Pinnacle": 2.66,
-    "Bet365": 2.62,
-    "Betfair": 2.63
+    "Pinnacle": 3.65,
+    "Bet365": 3.5,
+    "Betfair": 3.6
    }
-  },
+  }
+ ],
+ "1563200|away": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -141,32 +118,32 @@
     "Bet365": 2.62,
     "Betfair": 2.63
    }
-  }
- ],
- "1563200|O1.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
+   "market": "away",
+   "selection": "Southampton Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.855921987959317,
-    "Bet365": 0.8598281867286236,
-    "Betfair": 0.8700577270811191
+    "Pinnacle": 0.3548172028673926,
+    "Bet365": 0.3589362724584066,
+    "Betfair": 0.34842874600987134
    },
    "odds": {
-    "Pinnacle": 1.15,
-    "Bet365": 1.14,
-    "Betfair": 1.13
+    "Pinnacle": 2.73,
+    "Bet365": 2.62,
+    "Betfair": 2.7
    }
-  },
+  }
+ ],
+ "1563200|O1.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -189,32 +166,32 @@
     "Bet365": 1.14,
     "Betfair": 1.13
    }
-  }
- ],
- "1563200|U1.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.14407801204068316,
-    "Bet365": 0.14017181327137657,
-    "Betfair": 0.1299422729188811
+    "Pinnacle": 0.8353794077881422,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.837541601183481
    },
    "odds": {
-    "Pinnacle": 5.7,
-    "Bet365": 5.5,
-    "Betfair": 6.0
+    "Pinnacle": 1.18,
+    "Bet365": 1.17,
+    "Betfair": 1.17
    }
-  },
+  }
+ ],
+ "1563200|U1.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -237,32 +214,32 @@
     "Bet365": 5.5,
     "Betfair": 6.0
    }
-  }
- ],
- "1563200|O2.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6433268554506862,
-    "Bet365": 0.6459263927735975,
-    "Betfair": 0.654672104565457
+    "Pinnacle": 0.16462059221185785,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.1624583988165192
    },
    "odds": {
-    "Pinnacle": 1.51,
-    "Bet365": 1.5,
-    "Betfair": 1.47
+    "Pinnacle": 5.26,
+    "Bet365": 5.0,
+    "Betfair": 5.0
    }
-  },
+  }
+ ],
+ "1563200|O2.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -285,32 +262,32 @@
     "Bet365": 1.53,
     "Betfair": 1.47
    }
-  }
- ],
- "1563200|U2.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3566731445493139,
-    "Bet365": 0.35407360722640263,
-    "Betfair": 0.3453278954345431
+    "Pinnacle": 0.6093820970389429,
+    "Bet365": 0.6115000303209293,
+    "Betfair": 0.6265767132166719
    },
    "odds": {
-    "Pinnacle": 2.62,
-    "Bet365": 2.62,
-    "Betfair": 2.63
+    "Pinnacle": 1.6,
+    "Bet365": 1.57,
+    "Betfair": 1.53
    }
-  },
+  }
+ ],
+ "1563200|U2.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -333,28 +310,32 @@
     "Bet365": 2.5,
     "Betfair": 2.63
    }
-  }
- ],
- "1563200|O2.75": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5987043781242922
+    "Pinnacle": 0.3906179029610574,
+    "Bet365": 0.38849996967907074,
+    "Betfair": 0.3734232867833283
    },
    "odds": {
-    "Pinnacle": 1.62
+    "Pinnacle": 2.44,
+    "Bet365": 2.38,
+    "Betfair": 2.45
    }
-  },
+  }
+ ],
+ "1563200|O2.75": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -373,28 +354,28 @@
    "odds": {
     "Pinnacle": 1.62
    }
-  }
- ],
- "1563200|U2.75:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4012956218757081
+    "Pinnacle": 0.5617096960361215
    },
    "odds": {
-    "Pinnacle": 2.36
+    "Pinnacle": 1.73
    }
-  },
+  }
+ ],
+ "1563200|U2.75:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -413,28 +394,28 @@
    "odds": {
     "Pinnacle": 2.39
    }
-  }
- ],
- "1563200|O3": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5408069830219533
+    "Pinnacle": 0.43829030396387875
    },
    "odds": {
-    "Pinnacle": 1.79
+    "Pinnacle": 2.19
    }
-  },
+  }
+ ],
+ "1563200|O3": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -453,28 +434,28 @@
    "odds": {
     "Pinnacle": 1.78
    }
-  }
- ],
- "1563200|U3:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
+   "market": "O3",
+   "selection": "Über 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.45919301697804693
+    "Pinnacle": 0.5000000000000001
    },
    "odds": {
-    "Pinnacle": 2.09
+    "Pinnacle": 1.94
    }
-  },
+  }
+ ],
+ "1563200|U3:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -493,28 +474,28 @@
    "odds": {
     "Pinnacle": 2.11
    }
-  }
- ],
- "1563200|O3.25": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4729332527752725
+    "Pinnacle": 0.5000000000000001
    },
    "odds": {
-    "Pinnacle": 2.04
+    "Pinnacle": 1.94
    }
-  },
+  }
+ ],
+ "1563200|O3.25": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -533,28 +514,28 @@
    "odds": {
     "Pinnacle": 2.03
    }
-  }
- ],
- "1563200|U3.25:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5270667472247278
+    "Pinnacle": 0.43730039426476935
    },
    "odds": {
-    "Pinnacle": 1.84
+    "Pinnacle": 2.2
    }
-  },
+  }
+ ],
+ "1563200|U3.25:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -573,32 +554,28 @@
    "odds": {
     "Pinnacle": 1.86
    }
-  }
- ],
- "1563200|O3.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4213206753015531,
-    "Bet365": 0.42596410505166415,
-    "Betfair": 0.4219318622803373
+    "Pinnacle": 0.5626996057352309
    },
    "odds": {
-    "Pinnacle": 2.27,
-    "Bet365": 2.2,
-    "Betfair": 2.2
+    "Pinnacle": 1.73
    }
-  },
+  }
+ ],
+ "1563200|O3.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -621,32 +598,32 @@
     "Bet365": 2.2,
     "Betfair": 2.2
    }
-  }
- ],
- "1563200|U3.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5786793246984471,
-    "Bet365": 0.5740358949483358,
-    "Betfair": 0.5780681377196628
+    "Pinnacle": 0.38763915359347045,
+    "Bet365": 0.38849996967907074,
+    "Betfair": 0.3734232867833283
    },
    "odds": {
-    "Pinnacle": 1.68,
-    "Bet365": 1.67,
-    "Betfair": 1.65
+    "Pinnacle": 2.45,
+    "Bet365": 2.38,
+    "Betfair": 2.45
    }
-  },
+  }
+ ],
+ "1563200|U3.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -669,11 +646,34 @@
     "Bet365": 1.67,
     "Betfair": 1.65
    }
+  },
+  {
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Norwich – Southampton",
+   "kickoff": "2026-10-14T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6123608464065295,
+    "Bet365": 0.6115000303209293,
+    "Betfair": 0.6265767132166719
+   },
+   "odds": {
+    "Pinnacle": 1.59,
+    "Bet365": 1.57,
+    "Betfair": 1.53
+   }
   }
  ],
  "1563200|O3.75": [
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -685,14 +685,14 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.35986112826334943
+    "Pinnacle": 0.3630090489101693
    },
    "odds": {
-    "Pinnacle": 2.61
+    "Pinnacle": 2.6
    }
   },
   {
-   "ts": "2026-10-14T12:01:26.059980+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -713,7 +713,7 @@
  ],
  "1563200|U3.75:no": [
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -725,14 +725,14 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6401388717366507
+    "Pinnacle": 0.6369909510898307
    },
    "odds": {
-    "Pinnacle": 1.52
+    "Pinnacle": 1.53
    }
   },
   {
-   "ts": "2026-10-14T12:01:26.059980+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -752,29 +752,6 @@
   }
  ],
  "1563200|O4.5": [
-  {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "Norwich – Southampton",
-   "kickoff": "2026-10-14T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.23010774190957461,
-    "Bet365": 0.21764786776437622,
-    "Betfair": 0.22226638352660325
-   },
-   "odds": {
-    "Pinnacle": 3.83,
-    "Bet365": 4.0,
-    "Betfair": 3.8
-   }
-  },
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -797,32 +774,32 @@
     "Bet365": 4.0,
     "Betfair": 3.8
    }
-  }
- ],
- "1563200|U4.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7698922580904255,
-    "Bet365": 0.7823521322356239,
-    "Betfair": 0.777733616473397
+    "Pinnacle": 0.2077433601933979,
+    "Bet365": 0.19752831714945088,
+    "Betfair": 0.18782153401297694
    },
    "odds": {
-    "Pinnacle": 1.27,
-    "Bet365": 1.25,
-    "Betfair": 1.25
+    "Pinnacle": 4.27,
+    "Bet365": 4.33,
+    "Betfair": 4.33
    }
-  },
+  }
+ ],
+ "1563200|U4.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -845,32 +822,32 @@
     "Bet365": 1.25,
     "Betfair": 1.25
    }
-  }
- ],
- "1563200|O5.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O5.5",
-   "selection": "Über 5.5 Tore",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.10984176113442125,
-    "Bet365": 0.11402110207845671,
-    "Betfair": 0.10739583487790848
+    "Pinnacle": 0.7922566398066023,
+    "Bet365": 0.8024716828505494,
+    "Betfair": 0.812178465987023
    },
    "odds": {
-    "Pinnacle": 7.25,
-    "Bet365": 6.5,
-    "Betfair": 6.5
+    "Pinnacle": 1.24,
+    "Bet365": 1.22,
+    "Betfair": 1.2
    }
-  },
+  }
+ ],
+ "1563200|O5.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -893,32 +870,32 @@
     "Bet365": 7.0,
     "Betfair": 6.5
    }
-  }
- ],
- "1563200|U5.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U5.5:no",
-   "selection": "Unter 5.5 Tore",
+   "market": "O5.5",
+   "selection": "Über 5.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.8901582388655789,
-    "Bet365": 0.8859788979215435,
-    "Betfair": 0.8926041651220916
+    "Pinnacle": 0.10949099162440382,
+    "Bet365": 0.08657569924458287,
+    "Betfair": 0.07919602308831539
    },
    "odds": {
-    "Pinnacle": 1.11,
-    "Bet365": 1.11,
-    "Betfair": 1.1
+    "Pinnacle": 7.32,
+    "Bet365": 8.0,
+    "Betfair": 8.0
    }
-  },
+  }
+ ],
+ "1563200|U5.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Norwich – Southampton",
@@ -941,32 +918,32 @@
     "Bet365": 1.1,
     "Betfair": 1.1
    }
-  }
- ],
- "1563201|home": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "Portsmouth – Sheffield Utd",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Norwich – Southampton",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "home",
-   "selection": "Portsmouth Sieg (90 Min.)",
+   "market": "U5.5:no",
+   "selection": "Unter 5.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.41946976847976364,
-    "Bet365": 0.41478158104839213,
-    "Betfair": 0.42399694273429567
+    "Pinnacle": 0.8905090083755963,
+    "Bet365": 0.9134243007554173,
+    "Betfair": 0.9208039769116847
    },
    "odds": {
-    "Pinnacle": 2.31,
-    "Bet365": 2.3,
-    "Betfair": 2.25
+    "Pinnacle": 1.11,
+    "Bet365": 1.08,
+    "Betfair": 1.07
    }
-  },
+  }
+ ],
+ "1563201|home": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -989,32 +966,32 @@
     "Bet365": 2.38,
     "Betfair": 2.38
    }
-  }
- ],
- "1563201|draw": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "Portsmouth Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.27748788305779465,
-    "Bet365": 0.29260920947580404,
-    "Betfair": 0.273938323318087
+    "Pinnacle": 0.40921788951476684,
+    "Bet365": 0.4130222918531317,
+    "Betfair": 0.4139412953382508
    },
    "odds": {
-    "Pinnacle": 3.44,
-    "Bet365": 3.2,
-    "Betfair": 3.4
+    "Pinnacle": 2.38,
+    "Bet365": 2.3,
+    "Betfair": 2.3
    }
-  },
+  }
+ ],
+ "1563201|draw": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1037,32 +1014,32 @@
     "Bet365": 3.2,
     "Betfair": 3.3
    }
-  }
- ],
- "1563201|away": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "away",
-   "selection": "Sheffield Utd Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3030423484624417,
-    "Bet365": 0.29260920947580404,
-    "Betfair": 0.3020647339476175
+    "Pinnacle": 0.27912705783819725,
+    "Bet365": 0.28612884835438773,
+    "Betfair": 0.27363797242340104
    },
    "odds": {
-    "Pinnacle": 3.16,
-    "Bet365": 3.2,
-    "Betfair": 3.1
+    "Pinnacle": 3.45,
+    "Bet365": 3.25,
+    "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1563201|away": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1085,32 +1062,32 @@
     "Bet365": 3.0,
     "Betfair": 3.0
    }
-  }
- ],
- "1563201|O1.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
+   "market": "away",
+   "selection": "Sheffield Utd Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7467327336229078,
-    "Bet365": 0.7637669422133119,
-    "Betfair": 0.7527450737790052
+    "Pinnacle": 0.311655052647036,
+    "Bet365": 0.30084885979248066,
+    "Betfair": 0.3124207322383481
    },
    "odds": {
-    "Pinnacle": 1.31,
-    "Bet365": 1.28,
-    "Betfair": 1.29
+    "Pinnacle": 3.1,
+    "Bet365": 3.1,
+    "Betfair": 3.0
    }
-  },
+  }
+ ],
+ "1563201|O1.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1133,32 +1110,32 @@
     "Bet365": 1.3,
     "Betfair": 1.3
    }
-  }
- ],
- "1563201|U1.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.25326726637709246,
-    "Bet365": 0.23623305778668835,
-    "Betfair": 0.2472549262209948
+    "Pinnacle": 0.748767631305627,
+    "Bet365": 0.7637669422133119,
+    "Betfair": 0.7496411908320331
    },
    "odds": {
-    "Pinnacle": 3.56,
-    "Bet365": 3.75,
-    "Betfair": 3.5
+    "Pinnacle": 1.31,
+    "Bet365": 1.28,
+    "Betfair": 1.29
    }
-  },
+  }
+ ],
+ "1563201|U1.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1181,28 +1158,32 @@
     "Bet365": 3.5,
     "Betfair": 3.4
    }
-  }
- ],
- "1563201|O2": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2",
-   "selection": "Über 2 Tore",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6534588641823239
+    "Pinnacle": 0.251232368694373,
+    "Bet365": 0.23623305778668835,
+    "Betfair": 0.25035880916796704
    },
    "odds": {
-    "Pinnacle": 1.49
+    "Pinnacle": 3.63,
+    "Bet365": 3.75,
+    "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1563201|O2": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1221,28 +1202,28 @@
    "odds": {
     "Pinnacle": 1.51
    }
-  }
- ],
- "1563201|U2:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
+   "market": "O2",
+   "selection": "Über 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.34654113581767626
+    "Pinnacle": 0.6563501557095389
    },
    "odds": {
-    "Pinnacle": 2.7
+    "Pinnacle": 1.49
    }
-  },
+  }
+ ],
+ "1563201|U2:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1261,28 +1242,28 @@
    "odds": {
     "Pinnacle": 2.69
    }
-  }
- ],
- "1563201|O2.25": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5530374943907707
+    "Pinnacle": 0.3436498442904612
    },
    "odds": {
-    "Pinnacle": 1.75
+    "Pinnacle": 2.75
    }
-  },
+  }
+ ],
+ "1563201|O2.25": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1301,28 +1282,28 @@
    "odds": {
     "Pinnacle": 1.77
    }
-  }
- ],
- "1563201|U2.25:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4469625056092294
+    "Pinnacle": 0.5561452687831518
    },
    "odds": {
-    "Pinnacle": 2.14
+    "Pinnacle": 1.75
    }
-  },
+  }
+ ],
+ "1563201|U2.25:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1341,32 +1322,28 @@
    "odds": {
     "Pinnacle": 2.13
    }
-  }
- ],
- "1563201|O2.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.47960357548800636,
-    "Bet365": 0.5000000000000001,
-    "Betfair": 0.4956490992452807
+    "Pinnacle": 0.4438547312168484
    },
    "odds": {
-    "Pinnacle": 2.01,
-    "Bet365": 1.91,
-    "Betfair": 1.9
+    "Pinnacle": 2.17
    }
-  },
+  }
+ ],
+ "1563201|O2.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1389,32 +1366,32 @@
     "Bet365": 2.0,
     "Betfair": 1.9
    }
-  }
- ],
- "1563201|U2.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5203964245119939,
+    "Pinnacle": 0.4825607364992274,
     "Bet365": 0.5000000000000001,
-    "Betfair": 0.5043509007547192
+    "Betfair": 0.48814771840985005
    },
    "odds": {
-    "Pinnacle": 1.86,
+    "Pinnacle": 2.01,
     "Bet365": 1.91,
-    "Betfair": 1.87
+    "Betfair": 1.91
    }
-  },
+  }
+ ],
+ "1563201|U2.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1437,28 +1414,32 @@
     "Bet365": 1.8,
     "Betfair": 1.87
    }
-  }
- ],
- "1563201|O2.75": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4155731675010944
+    "Pinnacle": 0.5174392635007727,
+    "Bet365": 0.5000000000000001,
+    "Betfair": 0.5118522815901502
    },
    "odds": {
-    "Pinnacle": 2.29
+    "Pinnacle": 1.88,
+    "Bet365": 1.91,
+    "Betfair": 1.83
    }
-  },
+  }
+ ],
+ "1563201|O2.75": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1477,28 +1458,28 @@
    "odds": {
     "Pinnacle": 2.33
    }
-  }
- ],
- "1563201|U2.75:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5844268324989057
+    "Pinnacle": 0.41951920410818894
    },
    "odds": {
-    "Pinnacle": 1.66
+    "Pinnacle": 2.29
    }
-  },
+  }
+ ],
+ "1563201|U2.75:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1517,28 +1498,28 @@
    "odds": {
     "Pinnacle": 1.66
    }
-  }
- ],
- "1563201|O3": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3365651191527051
+    "Pinnacle": 0.5804807958918111
    },
    "odds": {
-    "Pinnacle": 2.78
+    "Pinnacle": 1.68
    }
-  },
+  }
+ ],
+ "1563201|O3": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1557,28 +1538,28 @@
    "odds": {
     "Pinnacle": 2.85
    }
-  }
- ],
- "1563201|U3:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
+   "market": "O3",
+   "selection": "Über 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.663434880847295
+    "Pinnacle": 0.3360177233082522
    },
    "odds": {
-    "Pinnacle": 1.47
+    "Pinnacle": 2.79
    }
-  },
+  }
+ ],
+ "1563201|U3:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1597,32 +1578,28 @@
    "odds": {
     "Pinnacle": 1.46
    }
-  }
- ],
- "1563201|O3.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.26040483058860037,
-    "Bet365": 0.26570901467853736,
-    "Betfair": 0.27092092359712366
+    "Pinnacle": 0.6639822766917478
    },
    "odds": {
-    "Pinnacle": 3.45,
-    "Bet365": 3.4,
-    "Betfair": 3.25
+    "Pinnacle": 1.47
    }
-  },
+  }
+ ],
+ "1563201|O3.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1645,32 +1622,32 @@
     "Bet365": 3.4,
     "Betfair": 3.4
    }
-  }
- ],
- "1563201|U3.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7395951694113998,
-    "Bet365": 0.7342909853214629,
-    "Betfair": 0.7290790764028765
+    "Pinnacle": 0.259143699729627,
+    "Bet365": 0.26570901467853736,
+    "Betfair": 0.25035880916796704
    },
    "odds": {
-    "Pinnacle": 1.32,
-    "Bet365": 1.33,
-    "Betfair": 1.33
+    "Pinnacle": 3.49,
+    "Bet365": 3.4,
+    "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1563201|U3.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1693,32 +1670,32 @@
     "Bet365": 1.33,
     "Betfair": 1.3
    }
-  }
- ],
- "1563201|O4.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.11883592803393339,
-    "Bet365": 0.12378413609134302,
-    "Betfair": 0.10739583487790848
+    "Pinnacle": 0.7408563002703733,
+    "Bet365": 0.7342909853214629,
+    "Betfair": 0.7496411908320331
    },
    "odds": {
-    "Pinnacle": 6.74,
-    "Bet365": 6.0,
-    "Betfair": 6.5
+    "Pinnacle": 1.32,
+    "Bet365": 1.33,
+    "Betfair": 1.29
    }
-  },
+  }
+ ],
+ "1563201|O4.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1741,32 +1718,32 @@
     "Bet365": 6.5,
     "Betfair": 6.5
    }
-  }
- ],
- "1563201|U4.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.8811640719660666,
-    "Bet365": 0.8762158639086571,
-    "Betfair": 0.8926041651220916
+    "Pinnacle": 0.11749290470773999,
+    "Bet365": 0.12378413609134302,
+    "Betfair": 0.09060103067643709
    },
    "odds": {
-    "Pinnacle": 1.12,
-    "Bet365": 1.12,
-    "Betfair": 1.1
+    "Pinnacle": 6.97,
+    "Bet365": 6.0,
+    "Betfair": 7.0
    }
-  },
+  }
+ ],
+ "1563201|U4.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Portsmouth – Sheffield Utd",
@@ -1789,32 +1766,32 @@
     "Bet365": 1.11,
     "Betfair": 1.1
    }
-  }
- ],
- "1563202|home": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "QPR – Derby",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Portsmouth – Sheffield Utd",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "home",
-   "selection": "QPR Sieg (90 Min.)",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.588983403050567,
-    "Bet365": 0.5861667623132389,
-    "Betfair": 0.5979396415112379
+    "Pinnacle": 0.88250709529226,
+    "Bet365": 0.8762158639086571,
+    "Betfair": 0.909398969323563
    },
    "odds": {
-    "Pinnacle": 1.66,
-    "Bet365": 1.65,
-    "Betfair": 1.62
+    "Pinnacle": 1.12,
+    "Bet365": 1.12,
+    "Betfair": 1.08
    }
-  },
+  }
+ ],
+ "1563202|home": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -1837,32 +1814,32 @@
     "Bet365": 1.62,
     "Betfair": 1.65
    }
-  }
- ],
- "1563202|draw": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "QPR Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.22675654772596923,
-    "Bet365": 0.23417586170709742,
-    "Betfair": 0.22221503454114958
+    "Pinnacle": 0.5732729560333488,
+    "Bet365": 0.5756856978808407,
+    "Betfair": 0.5811307807872134
    },
    "odds": {
-    "Pinnacle": 4.14,
-    "Bet365": 3.9,
-    "Betfair": 4.1
+    "Pinnacle": 1.71,
+    "Bet365": 1.67,
+    "Betfair": 1.67
    }
-  },
+  }
+ ],
+ "1563202|draw": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -1885,32 +1862,32 @@
     "Bet365": 3.9,
     "Betfair": 4.0
    }
-  }
- ],
- "1563202|away": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "away",
-   "selection": "Derby Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.18426004922346378,
-    "Bet365": 0.1796573759796637,
-    "Betfair": 0.1798453239476127
+    "Pinnacle": 0.23870729750896186,
+    "Bet365": 0.23752320165208177,
+    "Betfair": 0.23681501675738745
    },
    "odds": {
-    "Pinnacle": 5.05,
-    "Bet365": 5.0,
-    "Betfair": 5.0
+    "Pinnacle": 3.98,
+    "Bet365": 3.8,
+    "Betfair": 3.9
    }
-  },
+  }
+ ],
+ "1563202|away": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -1933,32 +1910,32 @@
     "Bet365": 5.0,
     "Betfair": 5.0
    }
-  }
- ],
- "1563202|O1.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
+   "market": "away",
+   "selection": "Derby Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7834355254116683,
-    "Bet365": 0.7823521322356239,
-    "Betfair": 0.7981180828405287
+    "Pinnacle": 0.1880197464576896,
+    "Bet365": 0.18679110046707786,
+    "Betfair": 0.1820542024553993
    },
    "odds": {
-    "Pinnacle": 1.25,
-    "Bet365": 1.25,
-    "Betfair": 1.22
+    "Pinnacle": 5.01,
+    "Bet365": 4.75,
+    "Betfair": 5.0
    }
-  },
+  }
+ ],
+ "1563202|O1.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -1981,32 +1958,32 @@
     "Bet365": 1.28,
     "Betfair": 1.22
    }
-  }
- ],
- "1563202|U1.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.21656447458833172,
-    "Bet365": 0.21764786776437622,
-    "Betfair": 0.20188191715947143
+    "Pinnacle": 0.7657947284727313,
+    "Bet365": 0.7637669422133119,
+    "Betfair": 0.777733616473397
    },
    "odds": {
-    "Pinnacle": 4.05,
-    "Bet365": 4.0,
-    "Betfair": 4.1
+    "Pinnacle": 1.28,
+    "Bet365": 1.28,
+    "Betfair": 1.25
    }
-  },
+  }
+ ],
+ "1563202|U1.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2029,28 +2006,32 @@
     "Bet365": 3.75,
     "Betfair": 4.1
    }
-  }
- ],
- "1563202|O2": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2",
-   "selection": "Über 2 Tore",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6950674731805864
+    "Pinnacle": 0.23420527152726894,
+    "Bet365": 0.23623305778668835,
+    "Betfair": 0.22226638352660325
    },
    "odds": {
-    "Pinnacle": 1.4
+    "Pinnacle": 3.83,
+    "Bet365": 3.75,
+    "Betfair": 3.8
    }
-  },
+  }
+ ],
+ "1563202|O2": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2069,28 +2050,28 @@
    "odds": {
     "Pinnacle": 1.43
    }
-  }
- ],
- "1563202|U2:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
+   "market": "O2",
+   "selection": "Über 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3049325268194138
+    "Pinnacle": 0.6845093590458265
    },
    "odds": {
-    "Pinnacle": 3.0
+    "Pinnacle": 1.43
    }
-  },
+  }
+ ],
+ "1563202|U2:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2109,28 +2090,28 @@
    "odds": {
     "Pinnacle": 2.99
    }
-  }
- ],
- "1563202|O2.25": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6138674527243936
+    "Pinnacle": 0.3154906409541736
    },
    "odds": {
-    "Pinnacle": 1.58
+    "Pinnacle": 2.97
    }
-  },
+  }
+ ],
+ "1563202|O2.25": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2149,28 +2130,28 @@
    "odds": {
     "Pinnacle": 1.65
    }
-  }
- ],
- "1563202|U2.25:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.38613254727560636
+    "Pinnacle": 0.5870547840020517
    },
    "odds": {
-    "Pinnacle": 2.44
+    "Pinnacle": 1.66
    }
-  },
+  }
+ ],
+ "1563202|U2.25:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2189,32 +2170,28 @@
    "odds": {
     "Pinnacle": 2.33
    }
-  }
- ],
- "1563202|O2.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5396825774706238,
-    "Bet365": 0.5285427352713827,
-    "Betfair": 0.5285427352713827
+    "Pinnacle": 0.4129452159979483
    },
    "odds": {
-    "Pinnacle": 1.79,
-    "Bet365": 1.8,
-    "Betfair": 1.8
+    "Pinnacle": 2.32
    }
-  },
+  }
+ ],
+ "1563202|O2.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2237,32 +2214,32 @@
     "Bet365": 1.91,
     "Betfair": 1.8
    }
-  }
- ],
- "1563202|U2.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.46031742252937646,
-    "Bet365": 0.4714572647286174,
-    "Betfair": 0.4714572647286174
+    "Pinnacle": 0.5147492334711145,
+    "Bet365": 0.5000000000000001,
+    "Betfair": 0.5285427352713827
    },
    "odds": {
-    "Pinnacle": 2.08,
-    "Bet365": 2.0,
-    "Betfair": 2.0
+    "Pinnacle": 1.89,
+    "Bet365": 1.91,
+    "Betfair": 1.8
    }
-  },
+  }
+ ],
+ "1563202|U2.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2285,28 +2262,32 @@
     "Bet365": 1.91,
     "Betfair": 2.0
    }
-  }
- ],
- "1563202|O2.75": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.47960357548800636
+    "Pinnacle": 0.4852507665288856,
+    "Bet365": 0.5000000000000001,
+    "Betfair": 0.4714572647286174
    },
    "odds": {
-    "Pinnacle": 2.01
+    "Pinnacle": 2.0,
+    "Bet365": 1.91,
+    "Betfair": 2.0
    }
-  },
+  }
+ ],
+ "1563202|O2.75": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2325,28 +2306,28 @@
    "odds": {
     "Pinnacle": 2.12
    }
-  }
- ],
- "1563202|U2.75:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5203964245119939
+    "Pinnacle": 0.4531602876282657
    },
    "odds": {
-    "Pinnacle": 1.86
+    "Pinnacle": 2.13
    }
-  },
+  }
+ ],
+ "1563202|U2.75:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2365,28 +2346,28 @@
    "odds": {
     "Pinnacle": 1.78
    }
-  }
- ],
- "1563202|O3": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4012956218757081
+    "Pinnacle": 0.5468397123717345
    },
    "odds": {
-    "Pinnacle": 2.36
+    "Pinnacle": 1.78
    }
-  },
+  }
+ ],
+ "1563202|O3": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2405,28 +2386,28 @@
    "odds": {
     "Pinnacle": 2.53
    }
-  }
- ],
- "1563202|U3:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
+   "market": "O3",
+   "selection": "Über 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5987043781242922
+    "Pinnacle": 0.3712089285428944
    },
    "odds": {
-    "Pinnacle": 1.62
+    "Pinnacle": 2.55
    }
-  },
+  }
+ ],
+ "1563202|U3:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2445,11 +2426,30 @@
    "odds": {
     "Pinnacle": 1.56
    }
+  },
+  {
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "QPR – Derby",
+   "kickoff": "2026-10-14T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6287910714571059
+   },
+   "odds": {
+    "Pinnacle": 1.55
+   }
   }
  ],
  "1563202|O3.25": [
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -2461,14 +2461,14 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3503713020124674
+    "Pinnacle": 0.34654113581767626
    },
    "odds": {
-    "Pinnacle": 2.68
+    "Pinnacle": 2.7
    }
   },
   {
-   "ts": "2026-10-14T12:01:26.059980+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -2489,7 +2489,7 @@
  ],
  "1563202|U3.25:no": [
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -2501,14 +2501,14 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6496286979875329
+    "Pinnacle": 0.6534588641823239
    },
    "odds": {
-    "Pinnacle": 1.5
+    "Pinnacle": 1.49
    }
   },
   {
-   "ts": "2026-10-14T12:01:26.059980+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
@@ -2528,29 +2528,6 @@
   }
  ],
  "1563202|O3.5": [
-  {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "QPR – Derby",
-   "kickoff": "2026-10-14T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.30897207900306733,
-    "Bet365": 0.3049325268194138,
-    "Betfair": 0.2874142808910671
-   },
-   "odds": {
-    "Pinnacle": 2.98,
-    "Bet365": 3.0,
-    "Betfair": 3.1
-   }
-  },
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2573,32 +2550,32 @@
     "Bet365": 3.2,
     "Betfair": 3.1
    }
-  }
- ],
- "1563202|U3.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6910279209969328,
-    "Bet365": 0.6950674731805864,
-    "Betfair": 0.7125857191089332
+    "Pinnacle": 0.28604979971646993,
+    "Bet365": 0.28343721242453956,
+    "Betfair": 0.2874142808910671
    },
    "odds": {
-    "Pinnacle": 1.41,
-    "Bet365": 1.4,
-    "Betfair": 1.36
+    "Pinnacle": 3.22,
+    "Bet365": 3.2,
+    "Betfair": 3.1
    }
-  },
+  }
+ ],
+ "1563202|U3.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2621,32 +2598,32 @@
     "Bet365": 1.36,
     "Betfair": 1.36
    }
-  }
- ],
- "1563202|O4.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.15062361304503297,
-    "Bet365": 0.1624583988165192,
-    "Betfair": 0.1299422729188811
+    "Pinnacle": 0.7139502002835302,
+    "Bet365": 0.7165627875754604,
+    "Betfair": 0.7125857191089332
    },
    "odds": {
-    "Pinnacle": 5.59,
-    "Bet365": 5.0,
-    "Betfair": 6.0
+    "Pinnacle": 1.37,
+    "Bet365": 1.36,
+    "Betfair": 1.36
    }
-  },
+  }
+ ],
+ "1563202|O4.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2669,32 +2646,32 @@
     "Bet365": 6.0,
     "Betfair": 6.0
    }
-  }
- ],
- "1563202|U4.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "QPR – Derby",
    "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.8493763869549671,
-    "Bet365": 0.837541601183481,
-    "Betfair": 0.8700577270811191
+    "Pinnacle": 0.13382932465594236,
+    "Bet365": 0.12378413609134302,
+    "Betfair": 0.10739583487790848
    },
    "odds": {
-    "Pinnacle": 1.16,
-    "Bet365": 1.17,
-    "Betfair": 1.13
+    "Pinnacle": 6.26,
+    "Bet365": 6.0,
+    "Betfair": 6.5
    }
-  },
+  }
+ ],
+ "1563202|U4.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "QPR – Derby",
@@ -2717,32 +2694,32 @@
     "Bet365": 1.12,
     "Betfair": 1.13
    }
-  }
- ],
- "1563199|home": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
-   "event": "Lincoln – West Ham",
-   "kickoff": "2026-10-14T19:00:00+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "QPR – Derby",
+   "kickoff": "2026-10-14T18:45:00+00:00",
    "league": "Championship",
-   "market": "home",
-   "selection": "Lincoln Sieg (90 Min.)",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.1987275276697171,
-    "Bet365": 0.17994612717750838,
-    "Betfair": 0.1904362390080904
+    "Pinnacle": 0.8661706753440578,
+    "Bet365": 0.8762158639086571,
+    "Betfair": 0.8926041651220916
    },
    "odds": {
-    "Pinnacle": 4.68,
-    "Bet365": 5.0,
-    "Betfair": 4.75
+    "Pinnacle": 1.14,
+    "Bet365": 1.12,
+    "Betfair": 1.1
    }
-  },
+  }
+ ],
+ "1563199|home": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2765,32 +2742,32 @@
     "Bet365": 4.75,
     "Betfair": 4.75
    }
-  }
- ],
- "1563199|draw": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "Lincoln Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.22037028738562395,
-    "Bet365": 0.24107574548599203,
-    "Betfair": 0.22272708502287916
+    "Pinnacle": 0.1961322924341448,
+    "Bet365": 0.17886951334386342,
+    "Betfair": 0.19030456469981347
    },
    "odds": {
-    "Pinnacle": 4.24,
-    "Bet365": 3.8,
-    "Betfair": 4.1
+    "Pinnacle": 4.81,
+    "Bet365": 5.0,
+    "Betfair": 4.75
    }
-  },
+  }
+ ],
+ "1563199|draw": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2813,32 +2790,32 @@
     "Bet365": 3.75,
     "Betfair": 4.0
    }
-  }
- ],
- "1563199|away": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "away",
-   "selection": "West Ham Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5809021849446592,
-    "Bet365": 0.5789781273364998,
-    "Betfair": 0.5868366759690304
+    "Pinnacle": 0.23746802440495582,
+    "Bet365": 0.25415691075795627,
+    "Betfair": 0.24134597075434014
    },
    "odds": {
-    "Pinnacle": 1.68,
-    "Bet365": 1.67,
-    "Betfair": 1.65
+    "Pinnacle": 4.0,
+    "Bet365": 3.6,
+    "Betfair": 3.8
    }
-  },
+  }
+ ],
+ "1563199|away": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2861,32 +2838,32 @@
     "Bet365": 1.7,
     "Betfair": 1.7
    }
-  }
- ],
- "1563199|O1.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
+   "market": "away",
+   "selection": "West Ham Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7982175130213637,
-    "Bet365": 0.8150125589214786,
-    "Betfair": 0.8150125589214786
+    "Pinnacle": 0.5663996831608996,
+    "Bet365": 0.5669735758981803,
+    "Betfair": 0.5683494645458463
    },
    "odds": {
-    "Pinnacle": 1.23,
-    "Bet365": 1.2,
-    "Betfair": 1.2
+    "Pinnacle": 1.73,
+    "Bet365": 1.7,
+    "Betfair": 1.7
    }
-  },
+  }
+ ],
+ "1563199|O1.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2909,32 +2886,32 @@
     "Bet365": 1.22,
     "Betfair": 1.22
    }
-  }
- ],
- "1563199|U1.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2017824869786364,
-    "Bet365": 0.18498744107852141,
-    "Betfair": 0.18498744107852141
+    "Pinnacle": 0.7597622882534856,
+    "Bet365": 0.8024716828505494,
+    "Betfair": 0.7527450737790052
    },
    "odds": {
-    "Pinnacle": 4.35,
-    "Bet365": 4.5,
-    "Betfair": 4.5
+    "Pinnacle": 1.29,
+    "Bet365": 1.22,
+    "Betfair": 1.29
    }
-  },
+  }
+ ],
+ "1563199|U1.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2957,28 +2934,32 @@
     "Bet365": 4.33,
     "Betfair": 4.2
    }
-  }
- ],
- "1563199|O2.25": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.644585547539857
+    "Pinnacle": 0.24023771174651454,
+    "Bet365": 0.19752831714945088,
+    "Betfair": 0.2472549262209948
    },
    "odds": {
-    "Pinnacle": 1.51
+    "Pinnacle": 3.75,
+    "Bet365": 4.33,
+    "Betfair": 3.5
    }
-  },
+  }
+ ],
+ "1563199|O2.25": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -2997,28 +2978,28 @@
    "odds": {
     "Pinnacle": 1.57
    }
-  }
- ],
- "1563199|U2.25:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3554144524601431
+    "Pinnacle": 0.5833235726155245
    },
    "odds": {
-    "Pinnacle": 2.64
+    "Pinnacle": 1.67
    }
-  },
+  }
+ ],
+ "1563199|U2.25:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3037,32 +3018,28 @@
    "odds": {
     "Pinnacle": 2.5
    }
-  }
- ],
- "1563199|O2.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5730309569626368,
-    "Bet365": 0.5740358949483358,
-    "Betfair": 0.5891152379885477
+    "Pinnacle": 0.41667642738447574
    },
    "odds": {
-    "Pinnacle": 1.69,
-    "Bet365": 1.67,
-    "Betfair": 1.62
+    "Pinnacle": 2.3
    }
-  },
+  }
+ ],
+ "1563199|O2.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3085,32 +3062,32 @@
     "Bet365": 1.73,
     "Betfair": 1.73
    }
-  }
- ],
- "1563199|U2.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4269690430373633,
-    "Bet365": 0.42596410505166415,
-    "Betfair": 0.41088476201145235
+    "Pinnacle": 0.512062742527476,
+    "Bet365": 0.5522897037446599,
+    "Betfair": 0.5043509007547192
    },
    "odds": {
-    "Pinnacle": 2.23,
-    "Bet365": 2.2,
-    "Betfair": 2.25
+    "Pinnacle": 1.9,
+    "Bet365": 1.73,
+    "Betfair": 1.87
    }
-  },
+  }
+ ],
+ "1563199|U2.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3133,28 +3110,32 @@
     "Bet365": 2.1,
     "Betfair": 2.1
    }
-  }
- ],
- "1563199|O2.75": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5161981329148496
+    "Pinnacle": 0.4879372574725241,
+    "Bet365": 0.44771029625534015,
+    "Betfair": 0.4956490992452807
    },
    "odds": {
-    "Pinnacle": 1.88
+    "Pinnacle": 1.99,
+    "Bet365": 2.1,
+    "Betfair": 1.9
    }
-  },
+  }
+ ],
+ "1563199|O2.75": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3173,28 +3154,28 @@
    "odds": {
     "Pinnacle": 1.98
    }
-  }
- ],
- "1563199|U2.75:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.48380186708515066
+    "Pinnacle": 0.45041239091858226
    },
    "odds": {
-    "Pinnacle": 2.0
+    "Pinnacle": 2.14
    }
-  },
+  }
+ ],
+ "1563199|U2.75:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3213,28 +3194,28 @@
    "odds": {
     "Pinnacle": 1.91
    }
-  }
- ],
- "1563199|O3": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.44591504168825835
+    "Pinnacle": 0.5495876090814179
    },
    "odds": {
-    "Pinnacle": 2.15
+    "Pinnacle": 1.77
    }
-  },
+  }
+ ],
+ "1563199|O3": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3253,28 +3234,28 @@
    "odds": {
     "Pinnacle": 2.3
    }
-  }
- ],
- "1563199|U3:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
+   "market": "O3",
+   "selection": "Über 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5540849583117419
+    "Pinnacle": 0.374268129774442
    },
    "odds": {
-    "Pinnacle": 1.75
+    "Pinnacle": 2.54
    }
-  },
+  }
+ ],
+ "1563199|U3:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3293,28 +3274,28 @@
    "odds": {
     "Pinnacle": 1.67
    }
-  }
- ],
- "1563199|O3.25": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.388395315889967
+    "Pinnacle": 0.6257318702255581
    },
    "odds": {
-    "Pinnacle": 2.44
+    "Pinnacle": 1.56
    }
-  },
+  }
+ ],
+ "1563199|O3.25": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3333,28 +3314,28 @@
    "odds": {
     "Pinnacle": 2.6
    }
-  }
- ],
- "1563199|U3.25:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6116046841100332
+    "Pinnacle": 0.36677789761512786
    },
    "odds": {
-    "Pinnacle": 1.59
+    "Pinnacle": 2.58
    }
-  },
+  }
+ ],
+ "1563199|U3.25:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3373,32 +3354,28 @@
    "odds": {
     "Pinnacle": 1.53
    }
-  }
- ],
- "1563199|O3.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3432651231906668,
-    "Bet365": 0.35407360722640263,
-    "Betfair": 0.3453278954345431
+    "Pinnacle": 0.6332221023848723
    },
    "odds": {
-    "Pinnacle": 2.71,
-    "Bet365": 2.62,
-    "Betfair": 2.63
+    "Pinnacle": 1.54
    }
-  },
+  }
+ ],
+ "1563199|O3.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3421,32 +3398,32 @@
     "Bet365": 2.75,
     "Betfair": 2.88
    }
-  }
- ],
- "1563199|U3.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6567348768093333,
-    "Bet365": 0.6459263927735975,
-    "Betfair": 0.654672104565457
+    "Pinnacle": 0.29090470469815993,
+    "Bet365": 0.3296721696053572,
+    "Betfair": 0.27092092359712366
    },
    "odds": {
-    "Pinnacle": 1.48,
-    "Bet365": 1.5,
-    "Betfair": 1.47
+    "Pinnacle": 3.18,
+    "Bet365": 2.75,
+    "Betfair": 3.25
    }
-  },
+  }
+ ],
+ "1563199|U3.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3469,32 +3446,32 @@
     "Bet365": 1.44,
     "Betfair": 1.4
    }
-  }
- ],
- "1563199|O4.5": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.16723744761463794,
-    "Bet365": 0.18498744107852141,
-    "Betfair": 0.1624583988165192
+    "Pinnacle": 0.7090952953018402,
+    "Bet365": 0.6703278303946429,
+    "Betfair": 0.7290790764028765
    },
    "odds": {
-    "Pinnacle": 5.04,
-    "Bet365": 4.5,
-    "Betfair": 5.0
+    "Pinnacle": 1.38,
+    "Bet365": 1.44,
+    "Betfair": 1.33
    }
-  },
+  }
+ ],
+ "1563199|O4.5": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3517,32 +3494,32 @@
     "Bet365": 5.0,
     "Betfair": 5.5
    }
-  }
- ],
- "1563199|U4.5:no": [
+  },
   {
-   "ts": "2026-10-14T06:12:33.636887+00:00",
+   "ts": "2026-10-14T17:03:39.627438+00:00",
    "event": "Lincoln – West Ham",
    "kickoff": "2026-10-14T19:00:00+00:00",
    "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.8327625523853622,
-    "Bet365": 0.8150125589214786,
-    "Betfair": 0.837541601183481
+    "Pinnacle": 0.13412752145593282,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.10739583487790848
    },
    "odds": {
-    "Pinnacle": 1.18,
-    "Bet365": 1.2,
-    "Betfair": 1.17
+    "Pinnacle": 6.22,
+    "Bet365": 5.0,
+    "Betfair": 6.5
    }
-  },
+  }
+ ],
+ "1563199|U4.5:no": [
   {
    "ts": "2026-10-14T12:01:26.059980+00:00",
    "event": "Lincoln – West Ham",
@@ -3564,6 +3541,71 @@
     "Pinnacle": 1.17,
     "Bet365": 1.17,
     "Betfair": 1.14
+   }
+  },
+  {
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Lincoln – West Ham",
+   "kickoff": "2026-10-14T19:00:00+00:00",
+   "league": "Championship",
+   "market": "U4.5:no",
+   "selection": "Unter 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.8658724785440673,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.8926041651220916
+   },
+   "odds": {
+    "Pinnacle": 1.14,
+    "Bet365": 1.17,
+    "Betfair": 1.1
+   }
+  }
+ ],
+ "1563199|O2": [
+  {
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Lincoln – West Ham",
+   "kickoff": "2026-10-14T19:00:00+00:00",
+   "league": "Championship",
+   "market": "O2",
+   "selection": "Über 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6786933828459963
+   },
+   "odds": {
+    "Pinnacle": 1.44
+   }
+  }
+ ],
+ "1563199|U2:no": [
+  {
+   "ts": "2026-10-14T17:03:39.627438+00:00",
+   "event": "Lincoln – West Ham",
+   "kickoff": "2026-10-14T19:00:00+00:00",
+   "league": "Championship",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3213066171540038
+   },
+   "odds": {
+    "Pinnacle": 2.91
    }
   }
  ]
