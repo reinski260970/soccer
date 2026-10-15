@@ -1,0 +1,51 @@
+🗞 Tagesbericht Do 15.10. 13:40 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Bundesliga · Sa 24.10. 18:30 MESZ
+🆚 Borussia Dortmund – Eintracht Frankfurt
+➡️ Eintracht Frankfurt Sieg (90 Min.) spielbar ab 6,67 (jetzt 7,50)
+• Bundesliga · Sa 24.10. 15:30 MESZ
+🆚 FC Augsburg – 1. FC Union Berlin
+➡️ 1. FC Union Berlin Sieg (90 Min.) spielbar ab 4,01 (jetzt 4,33)
+• Bundesliga · So 25.10. 15:30 MEZ
+🆚 TSG Hoffenheim – Bayer Leverkusen
+➡️ TSG Hoffenheim Sieg (90 Min.) spielbar ab 2,90 (jetzt 3,00)
+• La Liga · So 25.10. 14:00 MEZ
+🆚 Athletic Club – Getafe
+➡️ Getafe Sieg (90 Min.) spielbar ab 6,06 (jetzt 6,25)
+• Bundesliga · So 25.10. 17:30 MEZ
+🆚 SC Freiburg – Bayern Munich
+➡️ SC Freiburg Sieg (90 Min.) spielbar ab 7,80 (jetzt 8,00)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 88 | Marktreferenz 104 | 0 PLAY
+   • Liverpool – Villarreal · Di 20.10. 21:00 MESZ: Villarreal Sieg (90 Min.) @ 7,00, spielbar ab 6,91 (EV 4,3 %)
+   • Levante – Athletic Club · Mi 21.10. 20:00 MESZ: Unentschieden (90 Min.) @ 3,40, spielbar ab 3,36 (EV 4,3 %)
+🏒 Eishockey Europa: 89 Spiele | ausführbare Preise 4 | Marktreferenz 4 | 0 PLAY
+   • Schwenninger Wild Wings – ERC Ingolstadt · Fr 16.10. 19:30 MESZ: Schwenninger Wild Wings Sieg (inkl. OT) @ 2,10, spielbar ab 2,06 (EV 5,0 %)
+   • Augsburger Panther – Adler Mannheim · Fr 16.10. 19:30 MESZ: Adler Mannheim Sieg (inkl. OT) @ 1,65, spielbar ab 1,66 (EV 2,6 %)
+🏒 NHL: 46 Spiele | ausführbare Preise 11 | Marktreferenz 46 | 0 PLAY
+   • Tampa Bay Lightning – Seattle Kraken · Fr 16.10. 01:00 MESZ: Tampa Bay Lightning Sieg (inkl. OT) @ 1,44, spielbar ab 1,46 (EV 1,3 %)
+   • Florida Panthers – Vancouver Canucks · Fr 16.10. 01:00 MESZ: Florida Panthers Sieg (inkl. OT) @ 1,38, spielbar ab 1,41 (EV 1,1 %)
+🏀 NBA: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar

@@ -23704,7 +23704,7 @@
   ]
  },
  "2026-10-15|E0|understat": {
-  "as_of": "2026-10-15T09:57:36.657658+00:00",
+  "as_of": "2026-10-15T11:34:53.644878+00:00",
   "league": "E0",
   "source": "understat",
   "teams": [
@@ -23911,7 +23911,7 @@
   ]
  },
  "2026-10-15|P1|matchpulse": {
-  "as_of": "2026-10-15T09:57:36.657658+00:00",
+  "as_of": "2026-10-15T11:35:28.496207+00:00",
   "league": "P1",
   "source": "matchpulse",
   "teams": [
@@ -24094,6 +24094,2651 @@
     "xg_away": null,
     "xga_away": null,
     "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|D1|understat": {
+  "as_of": "2026-10-15T11:34:39.721293+00:00",
+  "league": "D1",
+  "source": "understat",
+  "teams": [
+   {
+    "team": "Bayern Munich",
+    "xg": 3.5808399999999994,
+    "xga": 0.9918165999999999,
+    "xg_home": 4.1048849999999995,
+    "xga_home": 0.8605315,
+    "xg_away": 3.231476666666667,
+    "xga_away": 1.07934,
+    "matches": 5
+   },
+   {
+    "team": "VfB Stuttgart",
+    "xg": 2.1391058,
+    "xga": 2.8202760000000002,
+    "xg_home": 2.0942245,
+    "xga_home": 2.4852049999999997,
+    "xg_away": 2.169026666666667,
+    "xga_away": 3.0436566666666667,
+    "matches": 5
+   },
+   {
+    "team": "Union Berlin",
+    "xg": 1.231881,
+    "xga": 2.6279600000000003,
+    "xg_home": 1.8126666666666666,
+    "xga_home": 1.8722833333333335,
+    "xg_away": 0.3607025,
+    "xga_away": 3.761475,
+    "matches": 5
+   },
+   {
+    "team": "Eintracht Frankfurt",
+    "xg": 2.166646,
+    "xga": 2.727618,
+    "xg_home": 2.2968,
+    "xga_home": 2.1885149999999998,
+    "xg_away": 2.079876666666667,
+    "xga_away": 3.0870200000000003,
+    "matches": 5
+   },
+   {
+    "team": "FC Cologne",
+    "xg": 2.09727,
+    "xga": 1.948104,
+    "xg_home": 1.8228933333333333,
+    "xga_home": 1.3805233333333333,
+    "xg_away": 2.508835,
+    "xga_away": 2.799475,
+    "matches": 5
+   },
+   {
+    "team": "Hoffenheim",
+    "xg": 1.9299123999999999,
+    "xga": 1.9722659999999999,
+    "xg_home": 2.0179440000000004,
+    "xga_home": 2.0688533333333337,
+    "xg_away": 1.797865,
+    "xga_away": 1.827385,
+    "matches": 5
+   },
+   {
+    "team": "RasenBallsport Leipzig",
+    "xg": 2.6961115999999996,
+    "xga": 1.4205762,
+    "xg_home": 3.6563166666666667,
+    "xga_home": 1.2345313333333332,
+    "xg_away": 1.255804,
+    "xga_away": 1.6996435,
+    "matches": 5
+   },
+   {
+    "team": "Borussia M.Gladbach",
+    "xg": 1.7033276000000002,
+    "xga": 2.791332,
+    "xg_home": 2.9889799999999997,
+    "xga_home": 3.250835,
+    "xg_away": 0.846226,
+    "xga_away": 2.484996666666667,
+    "matches": 5
+   },
+   {
+    "team": "Mainz 05",
+    "xg": 2.543072,
+    "xga": 1.698356,
+    "xg_home": 1.988616666666667,
+    "xga_home": 1.7147803333333336,
+    "xg_away": 3.374755,
+    "xga_away": 1.6737194999999998,
+    "matches": 5
+   },
+   {
+    "team": "Paderborn",
+    "xg": 1.0341121999999998,
+    "xga": 2.025334,
+    "xg_home": 1.3894443333333333,
+    "xga_home": 1.8106533333333334,
+    "xg_away": 0.5011140000000001,
+    "xga_away": 2.347355,
+    "matches": 5
+   },
+   {
+    "team": "Elversberg",
+    "xg": 1.3074524000000003,
+    "xga": 2.2140239999999998,
+    "xg_home": 1.21502,
+    "xga_home": 2.83781,
+    "xg_away": 1.3690740000000001,
+    "xga_away": 1.7981666666666667,
+    "matches": 5
+   },
+   {
+    "team": "Bayer Leverkusen",
+    "xg": 2.546516,
+    "xga": 1.1194266,
+    "xg_home": 2.9686500000000002,
+    "xga_home": 0.589925,
+    "xg_away": 2.265093333333333,
+    "xga_away": 1.4724276666666667,
+    "matches": 5
+   },
+   {
+    "team": "Borussia Dortmund",
+    "xg": 2.242476,
+    "xga": 1.019823,
+    "xg_home": 2.3584466666666666,
+    "xga_home": 0.7555986666666668,
+    "xg_away": 2.06852,
+    "xga_away": 1.4161595,
+    "matches": 5
+   },
+   {
+    "team": "Hamburger SV",
+    "xg": 1.0921146,
+    "xga": 2.0301004,
+    "xg_home": 1.1668945000000002,
+    "xga_home": 2.71966,
+    "xg_away": 1.0422613333333333,
+    "xga_away": 1.570394,
+    "matches": 5
+   },
+   {
+    "team": "Freiburg",
+    "xg": 2.051542,
+    "xga": 0.881878,
+    "xg_home": 2.05151,
+    "xga_home": 0.531009,
+    "xg_away": 2.05159,
+    "xga_away": 1.4081815,
+    "matches": 5
+   },
+   {
+    "team": "Werder Bremen",
+    "xg": 1.2270084,
+    "xga": 1.7878836,
+    "xg_home": 1.5776785,
+    "xga_home": 1.161924,
+    "xg_away": 0.9932283333333335,
+    "xga_away": 2.20519,
+    "matches": 5
+   },
+   {
+    "team": "Augsburg",
+    "xg": 2.1048522000000003,
+    "xga": 2.6230079999999996,
+    "xg_home": 2.7788576666666667,
+    "xga_home": 2.7678166666666666,
+    "xg_away": 1.0938439999999998,
+    "xga_away": 2.405795,
+    "matches": 5
+   },
+   {
+    "team": "Schalke 04",
+    "xg": 1.3902866,
+    "xga": 2.3847443999999998,
+    "xg_home": 0.760175,
+    "xga_home": 1.424486,
+    "xg_away": 1.810361,
+    "xga_away": 3.0249166666666665,
+    "matches": 5
+   }
+  ]
+ },
+ "2026-10-15|D2|matchpulse": {
+  "as_of": "2026-10-15T11:34:44.549680+00:00",
+  "league": "D2",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Eintracht Braunschweig",
+    "xg": 2.15,
+    "xga": 2.08,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Hertha BSC",
+    "xg": 2.06,
+    "xga": 1.43,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "VfL Wolfsburg",
+    "xg": 2.04,
+    "xga": 1.54,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Energie Cottbus",
+    "xg": 1.97,
+    "xga": 1.99,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "1. FC Heidenheim",
+    "xg": 1.79,
+    "xga": 1.4,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "1. FC Nürnberg",
+    "xg": 1.71,
+    "xga": 1.62,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "SpVgg Greuther Fürth",
+    "xg": 1.7,
+    "xga": 1.83,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Hannover 96",
+    "xg": 1.68,
+    "xga": 1.86,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "1. FC Magdeburg",
+    "xg": 1.65,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "1. FC Kaiserslautern",
+    "xg": 1.57,
+    "xga": 1.28,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "VfL Bochum",
+    "xg": 1.53,
+    "xga": 1.32,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Arminia Bielefeld",
+    "xg": 1.45,
+    "xga": 1.27,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "VfL Osnabrück",
+    "xg": 1.45,
+    "xga": 1.93,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "FC St. Pauli",
+    "xg": 1.41,
+    "xga": 1.18,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Holstein Kiel",
+    "xg": 1.37,
+    "xga": 1.36,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Karlsruher SC",
+    "xg": 1.35,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Dynamo Dresden",
+    "xg": 1.1,
+    "xga": 1.9,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "SV Darmstadt 98",
+    "xg": 0.97,
+    "xga": 1.57,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   }
+  ]
+ },
+ "2026-10-15|E1|matchpulse": {
+  "as_of": "2026-10-15T11:34:56.937632+00:00",
+  "league": "E1",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "West Ham",
+    "xg": 2.16,
+    "xga": 1.13,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Cardiff",
+    "xg": 2.07,
+    "xga": 1.58,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Southampton",
+    "xg": 1.9,
+    "xga": 1.17,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Middlesbrough",
+    "xg": 1.87,
+    "xga": 1.14,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Birmingham",
+    "xg": 1.81,
+    "xga": 1.23,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Norwich",
+    "xg": 1.74,
+    "xga": 1.64,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Swansea",
+    "xg": 1.64,
+    "xga": 1.08,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Bolton",
+    "xg": 1.62,
+    "xga": 1.73,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "QPR",
+    "xg": 1.59,
+    "xga": 1.1,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Bristol City",
+    "xg": 1.56,
+    "xga": 1.4,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Millwall",
+    "xg": 1.53,
+    "xga": 1.53,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Wolves",
+    "xg": 1.61,
+    "xga": 1.12,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 9
+   },
+   {
+    "team": "Portsmouth",
+    "xg": 1.52,
+    "xga": 1.6,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 9
+   },
+   {
+    "team": "Burnley",
+    "xg": 1.26,
+    "xga": 1.59,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Sheffield Utd",
+    "xg": 1.24,
+    "xga": 1.63,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Stoke City",
+    "xg": 1.21,
+    "xga": 1.83,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Blackburn",
+    "xg": 1.19,
+    "xga": 1.35,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "West Brom",
+    "xg": 1.13,
+    "xga": 1.45,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Lincoln",
+    "xg": 1.11,
+    "xga": 1.45,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Wrexham",
+    "xg": 1.09,
+    "xga": 1.28,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Derby",
+    "xg": 1.08,
+    "xga": 1.67,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Charlton",
+    "xg": 1.01,
+    "xga": 1.52,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Preston",
+    "xg": 1.0,
+    "xga": 1.61,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Watford",
+    "xg": 0.95,
+    "xga": 2.0,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   }
+  ]
+ },
+ "2026-10-15|SP1|understat": {
+  "as_of": "2026-10-15T11:35:06.786969+00:00",
+  "league": "SP1",
+  "source": "understat",
+  "teams": [
+   {
+    "team": "Alaves",
+    "xg": 1.4571578,
+    "xga": 1.2010655,
+    "xg_home": 1.4237738,
+    "xga_home": 1.239335,
+    "xg_away": 1.5127977999999997,
+    "xga_away": 1.137283,
+    "matches": 8
+   },
+   {
+    "team": "Getafe",
+    "xg": 0.8051674999999999,
+    "xga": 1.71347775,
+    "xg_home": 1.1559412500000001,
+    "xga_home": 1.0486255,
+    "xg_away": 0.45439375000000004,
+    "xga_away": 2.37833,
+    "matches": 8
+   },
+   {
+    "team": "Sevilla",
+    "xg": 1.32512075,
+    "xga": 1.5640469750000001,
+    "xg_home": 1.30308625,
+    "xga_home": 1.7578662,
+    "xg_away": 1.34715525,
+    "xga_away": 1.3702277500000002,
+    "matches": 8
+   },
+   {
+    "team": "Rayo Vallecano",
+    "xg": 1.3023155714285715,
+    "xga": 1.8621267142857139,
+    "xg_home": 1.196273,
+    "xga_home": 1.3369676666666666,
+    "xg_away": 1.3818475,
+    "xga_away": 2.2559959999999997,
+    "matches": 7
+   },
+   {
+    "team": "Racing Santander",
+    "xg": 1.4016955000000002,
+    "xga": 2.217850875,
+    "xg_home": 1.8272225,
+    "xga_home": 1.46645725,
+    "xg_away": 0.9761685,
+    "xga_away": 2.9692445,
+    "matches": 8
+   },
+   {
+    "team": "Villarreal",
+    "xg": 2.517072125,
+    "xga": 1.60804325,
+    "xg_home": 3.2003366666666664,
+    "xga_home": 2.4857906666666665,
+    "xg_away": 2.1071134,
+    "xga_away": 1.0813948,
+    "matches": 8
+   },
+   {
+    "team": "Espanyol",
+    "xg": 1.3500373749999999,
+    "xga": 1.3649285,
+    "xg_home": 1.4809675,
+    "xga_home": 1.095296,
+    "xg_away": 1.21910725,
+    "xga_away": 1.634561,
+    "matches": 8
+   },
+   {
+    "team": "Levante",
+    "xg": 1.6169191428571428,
+    "xga": 2.3574594285714285,
+    "xg_home": 2.572783333333333,
+    "xga_home": 2.5291599999999996,
+    "xg_away": 0.900021,
+    "xga_away": 2.228684,
+    "matches": 7
+   },
+   {
+    "team": "Deportivo La Coruna",
+    "xg": 1.341534375,
+    "xga": 1.472823875,
+    "xg_home": 0.9695677500000001,
+    "xga_home": 1.1148285,
+    "xg_away": 1.713501,
+    "xga_away": 1.8308192499999998,
+    "matches": 8
+   },
+   {
+    "team": "Elche",
+    "xg": 1.3193701249999998,
+    "xga": 2.0155318749999998,
+    "xg_home": 1.4563190000000001,
+    "xga_home": 2.25357375,
+    "xg_away": 1.18242125,
+    "xga_away": 1.77749,
+    "matches": 8
+   },
+   {
+    "team": "Atletico Madrid",
+    "xg": 1.9622020000000002,
+    "xga": 1.18455175,
+    "xg_home": 2.40805075,
+    "xga_home": 1.2275265,
+    "xg_away": 1.5163532499999999,
+    "xga_away": 1.141577,
+    "matches": 8
+   },
+   {
+    "team": "Malaga",
+    "xg": 0.7910030000000001,
+    "xga": 1.92120625,
+    "xg_home": 1.032429,
+    "xga_home": 1.9871225,
+    "xg_away": 0.549577,
+    "xga_away": 1.85529,
+    "matches": 8
+   },
+   {
+    "team": "Real Betis",
+    "xg": 1.976093,
+    "xga": 1.7418227499999999,
+    "xg_home": 1.96143725,
+    "xga_home": 1.4988605,
+    "xg_away": 1.9907487499999998,
+    "xga_away": 1.984785,
+    "matches": 8
+   },
+   {
+    "team": "Real Sociedad",
+    "xg": 1.3359378750000002,
+    "xga": 1.8916524999999997,
+    "xg_home": 1.468542,
+    "xga_home": 1.4335624999999999,
+    "xg_away": 1.20333375,
+    "xga_away": 2.3497425,
+    "matches": 8
+   },
+   {
+    "team": "Athletic Club",
+    "xg": 1.8806586666666665,
+    "xga": 1.2830777333333334,
+    "xg_home": 1.98225,
+    "xga_home": 0.6453191,
+    "xg_away": 1.677476,
+    "xga_away": 2.558595,
+    "matches": 6
+   },
+   {
+    "team": "Valencia",
+    "xg": 0.930373975,
+    "xga": 1.75939675,
+    "xg_home": 0.9392342499999999,
+    "xga_home": 2.1512685,
+    "xg_away": 0.9215137,
+    "xga_away": 1.3675249999999999,
+    "matches": 8
+   },
+   {
+    "team": "Celta Vigo",
+    "xg": 1.0043885,
+    "xga": 1.240386625,
+    "xg_home": 1.2545677499999999,
+    "xga_home": 1.5743715,
+    "xg_away": 0.7542092499999999,
+    "xga_away": 0.9064017499999999,
+    "matches": 8
+   },
+   {
+    "team": "Real Madrid",
+    "xg": 2.6358192500000004,
+    "xga": 1.038117875,
+    "xg_home": 2.81513,
+    "xga_home": 0.735551,
+    "xg_away": 2.4565085,
+    "xga_away": 1.3406847499999999,
+    "matches": 8
+   },
+   {
+    "team": "Barcelona",
+    "xg": 4.0393799999999995,
+    "xga": 0.992576375,
+    "xg_home": 4.31571,
+    "xga_home": 0.7031324999999999,
+    "xg_away": 3.7630500000000002,
+    "xga_away": 1.28202025,
+    "matches": 8
+   },
+   {
+    "team": "Osasuna",
+    "xg": 1.253962,
+    "xga": 1.8292138750000002,
+    "xg_home": 1.1569075,
+    "xga_home": 1.281685,
+    "xg_away": 1.3510165,
+    "xga_away": 2.37674275,
+    "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|I1|understat": {
+  "as_of": "2026-10-15T11:35:12.173415+00:00",
+  "league": "I1",
+  "source": "understat",
+  "teams": [
+   {
+    "team": "Inter",
+    "xg": 3.078035,
+    "xga": 1.3125561666666667,
+    "xg_home": 2.9772024999999998,
+    "xga_home": 1.3098877500000001,
+    "xg_away": 3.2797,
+    "xga_away": 1.3178930000000002,
+    "matches": 6
+   },
+   {
+    "team": "Monza",
+    "xg": 1.8697083333333335,
+    "xga": 1.6038065,
+    "xg_home": 1.754185,
+    "xga_home": 1.6468349999999998,
+    "xg_away": 1.92747,
+    "xga_away": 1.5822922499999998,
+    "matches": 6
+   },
+   {
+    "team": "Udinese",
+    "xg": 1.2763655,
+    "xga": 2.1609635,
+    "xg_home": 1.5890009999999999,
+    "xga_home": 1.6672103333333335,
+    "xg_away": 0.96373,
+    "xga_away": 2.654716666666667,
+    "matches": 6
+   },
+   {
+    "team": "Como",
+    "xg": 2.23345,
+    "xga": 1.5039178333333334,
+    "xg_home": 2.81082,
+    "xga_home": 1.34478,
+    "xg_away": 1.9447649999999999,
+    "xga_away": 1.58348675,
+    "matches": 6
+   },
+   {
+    "team": "Parma Calcio 1913",
+    "xg": 0.7782613333333335,
+    "xga": 2.119871666666667,
+    "xg_home": 0.8376443333333333,
+    "xga_home": 1.4084866666666667,
+    "xg_away": 0.7188783333333334,
+    "xga_away": 2.8312566666666665,
+    "matches": 6
+   },
+   {
+    "team": "Cagliari",
+    "xg": 1.0428745000000001,
+    "xga": 1.8583936666666665,
+    "xg_home": 1.0183286666666669,
+    "xga_home": 2.265634,
+    "xg_away": 1.0674203333333334,
+    "xga_away": 1.4511533333333333,
+    "matches": 6
+   },
+   {
+    "team": "Genoa",
+    "xg": 1.0320031666666665,
+    "xga": 1.4450111666666665,
+    "xg_home": 1.14615575,
+    "xga_home": 1.4240557500000002,
+    "xg_away": 0.803698,
+    "xga_away": 1.4869219999999999,
+    "matches": 6
+   },
+   {
+    "team": "Napoli",
+    "xg": 2.0697666666666668,
+    "xga": 1.2327633333333334,
+    "xg_home": 2.26941,
+    "xga_home": 0.6830846666666667,
+    "xg_away": 1.8701233333333331,
+    "xga_away": 1.7824419999999999,
+    "matches": 6
+   },
+   {
+    "team": "Frosinone",
+    "xg": 1.4833468333333333,
+    "xga": 2.421396666666667,
+    "xg_home": 1.4718623333333334,
+    "xga_home": 2.4475433333333334,
+    "xg_away": 1.4948313333333332,
+    "xga_away": 2.3952500000000003,
+    "matches": 6
+   },
+   {
+    "team": "Juventus",
+    "xg": 1.9352166666666666,
+    "xga": 0.4860659666666667,
+    "xg_home": 1.810336666666667,
+    "xga_home": 0.2616389333333333,
+    "xg_away": 2.060096666666667,
+    "xga_away": 0.710493,
+    "matches": 6
+   },
+   {
+    "team": "Venezia",
+    "xg": 1.9538411666666669,
+    "xga": 2.547651666666667,
+    "xg_home": 2.0252266666666667,
+    "xga_home": 2.4513766666666665,
+    "xg_away": 1.8824556666666667,
+    "xga_away": 2.6439266666666668,
+    "matches": 6
+   },
+   {
+    "team": "Lecce",
+    "xg": 1.2462725000000001,
+    "xga": 2.8018850000000004,
+    "xg_home": 1.453776666666667,
+    "xga_home": 3.0731699999999997,
+    "xg_away": 1.0387683333333333,
+    "xga_away": 2.5306,
+    "matches": 6
+   },
+   {
+    "team": "Torino",
+    "xg": 1.2416928333333335,
+    "xga": 1.3753131666666665,
+    "xg_home": 1.4060683333333335,
+    "xga_home": 1.5495366666666666,
+    "xg_away": 1.0773173333333332,
+    "xga_away": 1.2010896666666666,
+    "matches": 6
+   },
+   {
+    "team": "AC Milan",
+    "xg": 1.9260233,
+    "xga": 1.21034,
+    "xg_home": 2.846515,
+    "xga_home": 0.369765,
+    "xg_away": 1.46577745,
+    "xga_away": 1.6306275,
+    "matches": 6
+   },
+   {
+    "team": "Atalanta",
+    "xg": 1.1266475,
+    "xga": 2.2318849999999997,
+    "xg_home": 1.37464725,
+    "xga_home": 1.9834075,
+    "xg_away": 0.630648,
+    "xga_away": 2.72884,
+    "matches": 6
+   },
+   {
+    "team": "Sassuolo",
+    "xg": 1.7752970000000001,
+    "xga": 1.6827258333333335,
+    "xg_home": 1.2795706666666666,
+    "xga_home": 1.5184233333333335,
+    "xg_away": 2.2710233333333334,
+    "xga_away": 1.8470283333333333,
+    "matches": 6
+   },
+   {
+    "team": "Bologna",
+    "xg": 1.5284414999999998,
+    "xga": 1.2070855,
+    "xg_home": 1.923813,
+    "xga_home": 1.2014396666666667,
+    "xg_away": 1.13307,
+    "xga_away": 1.2127313333333334,
+    "matches": 6
+   },
+   {
+    "team": "Lazio",
+    "xg": 1.875818,
+    "xga": 1.4860414999999998,
+    "xg_home": 2.2328433333333333,
+    "xga_home": 1.401715333333333,
+    "xg_away": 1.5187926666666665,
+    "xga_away": 1.5703676666666666,
+    "matches": 6
+   },
+   {
+    "team": "Roma",
+    "xg": 2.872868333333333,
+    "xga": 1.2345490000000001,
+    "xg_home": 3.209513333333333,
+    "xga_home": 1.215753,
+    "xg_away": 2.536223333333333,
+    "xga_away": 1.2533450000000002,
+    "matches": 6
+   },
+   {
+    "team": "Fiorentina",
+    "xg": 1.4067014999999998,
+    "xga": 1.8304085,
+    "xg_home": 1.4122166666666667,
+    "xga_home": 1.6182303333333332,
+    "xg_away": 1.4011863333333334,
+    "xga_away": 2.0425866666666668,
+    "matches": 6
+   }
+  ]
+ },
+ "2026-10-15|F1|understat": {
+  "as_of": "2026-10-15T11:35:17.997163+00:00",
+  "league": "F1",
+  "source": "understat",
+  "teams": [
+   {
+    "team": "Marseille",
+    "xg": 1.62857,
+    "xga": 2.237256166666667,
+    "xg_home": 1.9803500000000003,
+    "xga_home": 2.747949,
+    "xg_away": 1.2767899999999999,
+    "xga_away": 1.7265633333333332,
+    "matches": 6
+   },
+   {
+    "team": "Strasbourg",
+    "xg": 1.1519943333333333,
+    "xga": 1.8616139999999997,
+    "xg_home": 1.2670005,
+    "xga_home": 1.8584005000000001,
+    "xg_away": 1.0944912500000001,
+    "xga_away": 1.86322075,
+    "matches": 6
+   },
+   {
+    "team": "Lens",
+    "xg": 2.318585,
+    "xga": 1.55363,
+    "xg_home": 2.5414499999999998,
+    "xga_home": 1.2569966666666668,
+    "xg_away": 2.09572,
+    "xga_away": 1.8502633333333334,
+    "matches": 6
+   },
+   {
+    "team": "Auxerre",
+    "xg": 1.3420936666666667,
+    "xga": 2.1133136666666665,
+    "xg_home": 1.4107219999999998,
+    "xga_home": 0.894514,
+    "xg_away": 1.2734653333333334,
+    "xga_away": 3.3321133333333335,
+    "matches": 6
+   },
+   {
+    "team": "Toulouse",
+    "xg": 2.001393333333333,
+    "xga": 1.588057166666667,
+    "xg_home": 2.65211,
+    "xga_home": 1.3190096666666666,
+    "xg_away": 1.3506766666666667,
+    "xga_away": 1.857104666666667,
+    "matches": 6
+   },
+   {
+    "team": "Lyon",
+    "xg": 1.8312996666666665,
+    "xga": 1.2181044999999997,
+    "xg_home": 2.932043333333333,
+    "xga_home": 1.0565586666666666,
+    "xg_away": 0.730556,
+    "xga_away": 1.3796503333333332,
+    "matches": 6
+   },
+   {
+    "team": "Troyes",
+    "xg": 1.2393701666666666,
+    "xga": 1.9658116666666665,
+    "xg_home": 1.412706,
+    "xga_home": 2.1110166666666665,
+    "xg_away": 1.0660343333333333,
+    "xga_away": 1.8206066666666665,
+    "matches": 6
+   },
+   {
+    "team": "Paris FC",
+    "xg": 1.7214761666666665,
+    "xga": 0.6286551666666668,
+    "xg_home": 1.5008746666666666,
+    "xga_home": 0.4075423333333334,
+    "xg_away": 1.9420776666666668,
+    "xga_away": 0.8497680000000001,
+    "matches": 6
+   },
+   {
+    "team": "Le Mans",
+    "xg": 1.6688528333333335,
+    "xga": 2.4483083333333338,
+    "xg_home": 1.294359,
+    "xga_home": 1.8587266666666666,
+    "xg_away": 2.043346666666667,
+    "xga_away": 3.0378899999999995,
+    "matches": 6
+   },
+   {
+    "team": "Brest",
+    "xg": 2.4796386666666668,
+    "xga": 1.162822,
+    "xg_home": 2.97819,
+    "xga_home": 1.2760833333333332,
+    "xg_away": 1.9810873333333332,
+    "xga_away": 1.0495606666666666,
+    "matches": 6
+   },
+   {
+    "team": "Nice",
+    "xg": 1.1675873333333333,
+    "xga": 1.7078123333333333,
+    "xg_home": 1.4535475,
+    "xga_home": 1.382641,
+    "xg_away": 0.595667,
+    "xga_away": 2.358155,
+    "matches": 6
+   },
+   {
+    "team": "Lorient",
+    "xg": 1.047435,
+    "xga": 1.1779190000000002,
+    "xg_home": 0.7324566666666668,
+    "xga_home": 1.3063376666666666,
+    "xg_away": 1.3624133333333333,
+    "xga_away": 1.0495003333333333,
+    "matches": 6
+   },
+   {
+    "team": "Angers",
+    "xg": 1.5928971666666667,
+    "xga": 1.930953333333333,
+    "xg_home": 2.0376499999999997,
+    "xga_home": 1.5834733333333333,
+    "xg_away": 1.1481443333333334,
+    "xga_away": 2.2784333333333335,
+    "matches": 6
+   },
+   {
+    "team": "Lille",
+    "xg": 1.4544966666666665,
+    "xga": 1.6231506666666666,
+    "xg_home": 1.5117366666666665,
+    "xga_home": 0.9929113333333334,
+    "xg_away": 1.3972566666666666,
+    "xga_away": 2.25339,
+    "matches": 6
+   },
+   {
+    "team": "Le Havre",
+    "xg": 1.2338565,
+    "xga": 1.9347371666666664,
+    "xg_home": 1.0997826666666668,
+    "xga_home": 1.716251,
+    "xg_away": 1.3679303333333335,
+    "xga_away": 2.153223333333333,
+    "matches": 6
+   },
+   {
+    "team": "Monaco",
+    "xg": 1.2338408333333335,
+    "xga": 1.3304115,
+    "xg_home": 1.4598099999999998,
+    "xga_home": 1.3739433333333333,
+    "xg_away": 1.0078716666666667,
+    "xga_away": 1.2868796666666666,
+    "matches": 6
+   },
+   {
+    "team": "Paris Saint Germain",
+    "xg": 2.611731666666667,
+    "xga": 1.5078656666666668,
+    "xg_home": 2.6273866666666668,
+    "xga_home": 1.5921346666666667,
+    "xg_away": 2.5960766666666664,
+    "xga_away": 1.4235966666666666,
+    "matches": 6
+   },
+   {
+    "team": "Rennes",
+    "xg": 2.2388850000000002,
+    "xga": 1.9735816666666668,
+    "xg_home": 2.65208,
+    "xga_home": 1.745666666666667,
+    "xg_away": 1.8256899999999998,
+    "xga_away": 2.201496666666667,
+    "matches": 6
+   }
+  ]
+ },
+ "2026-10-15|N1|matchpulse": {
+  "as_of": "2026-10-15T11:35:21.645155+00:00",
+  "league": "N1",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Feyenoord",
+    "xg": 3.01,
+    "xga": 0.93,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "PSV Eindhoven",
+    "xg": 2.56,
+    "xga": 1.31,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "AZ Alkmaar",
+    "xg": 2.5,
+    "xga": 1.15,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Ajax",
+    "xg": 2.57,
+    "xga": 1.27,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Twente",
+    "xg": 2.21,
+    "xga": 0.98,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "GO Ahead Eagles",
+    "xg": 1.86,
+    "xga": 1.8,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Groningen",
+    "xg": 1.85,
+    "xga": 1.84,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Sparta Rotterdam",
+    "xg": 1.62,
+    "xga": 2.3,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Heerenveen",
+    "xg": 1.59,
+    "xga": 1.44,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Excelsior",
+    "xg": 1.73,
+    "xga": 1.52,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "NEC Nijmegen",
+    "xg": 1.5,
+    "xga": 1.93,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Utrecht",
+    "xg": 1.47,
+    "xga": 2.15,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Cambuur",
+    "xg": 1.3,
+    "xga": 1.67,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "ADO Den Haag",
+    "xg": 1.21,
+    "xga": 2.43,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Telstar",
+    "xg": 1.18,
+    "xga": 2.08,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Willem II",
+    "xg": 1.15,
+    "xga": 2.19,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Fortuna Sittard",
+    "xg": 1.12,
+    "xga": 2.25,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "PEC Zwolle",
+    "xg": 1.1,
+    "xga": 2.09,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|B1|matchpulse": {
+  "as_of": "2026-10-15T11:35:34.907003+00:00",
+  "league": "B1",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Club Brugge KV",
+    "xg": 2.52,
+    "xga": 1.0,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Union St. Gilloise",
+    "xg": 2.21,
+    "xga": 1.06,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Charleroi",
+    "xg": 1.86,
+    "xga": 1.2,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Standard Liege",
+    "xg": 1.79,
+    "xga": 1.81,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Anderlecht",
+    "xg": 1.63,
+    "xga": 0.92,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "KVC Westerlo",
+    "xg": 1.86,
+    "xga": 1.27,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "St. Truiden",
+    "xg": 1.6,
+    "xga": 1.69,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Cercle Brugge",
+    "xg": 1.45,
+    "xga": 1.62,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Gent",
+    "xg": 1.28,
+    "xga": 0.79,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Zulte Waregem",
+    "xg": 1.26,
+    "xga": 1.41,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Genk",
+    "xg": 1.43,
+    "xga": 1.12,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "KV Mechelen",
+    "xg": 1.15,
+    "xga": 1.36,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Antwerp",
+    "xg": 1.15,
+    "xga": 2.28,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "OH Leuven",
+    "xg": 1.12,
+    "xga": 1.64,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "RAAL La Louvière",
+    "xg": 1.08,
+    "xga": 2.09,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Lommel United",
+    "xg": 1.04,
+    "xga": 1.52,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "SK Beveren",
+    "xg": 0.97,
+    "xga": 1.65,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Kortrijk",
+    "xg": 0.88,
+    "xga": 1.73,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|T1|matchpulse": {
+  "as_of": "2026-10-15T11:35:41.895245+00:00",
+  "league": "T1",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Galatasaray",
+    "xg": 2.28,
+    "xga": 0.93,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Fenerbahçe",
+    "xg": 2.16,
+    "xga": 1.08,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Göztepe",
+    "xg": 1.96,
+    "xga": 1.84,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Beşiktaş",
+    "xg": 1.89,
+    "xga": 0.73,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Trabzonspor",
+    "xg": 1.87,
+    "xga": 1.6,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Amed",
+    "xg": 1.81,
+    "xga": 1.09,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Çorum FK",
+    "xg": 1.43,
+    "xga": 1.55,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Başakşehir",
+    "xg": 1.4,
+    "xga": 1.54,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Rizespor",
+    "xg": 1.38,
+    "xga": 1.04,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Kasımpaşa",
+    "xg": 1.15,
+    "xga": 1.2,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Gaziantep FK",
+    "xg": 1.09,
+    "xga": 1.26,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Gençlerbirliği S.K.",
+    "xg": 1.07,
+    "xga": 2.35,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Samsunspor",
+    "xg": 1.06,
+    "xga": 1.51,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Kocaelispor",
+    "xg": 1.02,
+    "xga": 1.45,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Alanyaspor",
+    "xg": 0.96,
+    "xga": 1.3,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Eyüpspor",
+    "xg": 0.95,
+    "xga": 2.24,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Erzurumspor FK",
+    "xg": 0.8,
+    "xga": 1.2,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Konyaspor",
+    "xg": 0.78,
+    "xga": 1.17,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   }
+  ]
+ },
+ "2026-10-15|SC0|matchpulse": {
+  "as_of": "2026-10-15T11:35:48.897492+00:00",
+  "league": "SC0",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Celtic",
+    "xg": 2.76,
+    "xga": 1.01,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Rangers",
+    "xg": 1.77,
+    "xga": 1.0,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Heart Of Midlothian",
+    "xg": 1.73,
+    "xga": 0.9,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Dundee Utd",
+    "xg": 1.71,
+    "xga": 1.28,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Motherwell",
+    "xg": 1.45,
+    "xga": 1.52,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Hibernian",
+    "xg": 1.41,
+    "xga": 1.43,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "ST Johnstone",
+    "xg": 1.18,
+    "xga": 1.25,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Dundee",
+    "xg": 1.12,
+    "xga": 1.57,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "ST Mirren",
+    "xg": 1.04,
+    "xga": 1.85,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Falkirk",
+    "xg": 1.04,
+    "xga": 1.65,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Kilmarnock",
+    "xg": 0.93,
+    "xga": 1.98,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Aberdeen",
+    "xg": 0.93,
+    "xga": 1.6,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|G1|football-data-xg": {
+  "as_of": "2026-10-15T11:35:55.511467+00:00",
+  "league": "G1",
+  "source": "football-data-xg",
+  "teams": [
+   {
+    "team": "AEK",
+    "xg": 1.9633333333333332,
+    "xga": 0.8266666666666667,
+    "xg_home": 2.42,
+    "xga_home": 0.3333333333333333,
+    "xg_away": 1.5066666666666666,
+    "xga_away": 1.32,
+    "matches": 6
+   },
+   {
+    "team": "Iraklis",
+    "xg": 0.64,
+    "xga": 1.33,
+    "xg_home": 0.81,
+    "xga_home": 1.13,
+    "xg_away": 0.555,
+    "xga_away": 1.43,
+    "matches": 6
+   },
+   {
+    "team": "Kalamata",
+    "xg": 1.4466666666666665,
+    "xga": 1.5166666666666668,
+    "xg_home": 1.6133333333333333,
+    "xga_home": 1.72,
+    "xg_away": 1.28,
+    "xga_away": 1.3133333333333335,
+    "matches": 6
+   },
+   {
+    "team": "Aris",
+    "xg": 1.7966666666666666,
+    "xga": 1.7066666666666663,
+    "xg_home": 2.1466666666666665,
+    "xga_home": 0.9633333333333333,
+    "xg_away": 1.4466666666666665,
+    "xga_away": 2.4499999999999997,
+    "matches": 6
+   },
+   {
+    "team": "Olympiakos",
+    "xg": 1.6283333333333332,
+    "xga": 0.54,
+    "xg_home": 1.7599999999999998,
+    "xga_home": 0.5433333333333333,
+    "xg_away": 1.4966666666666668,
+    "xga_away": 0.5366666666666666,
+    "matches": 6
+   },
+   {
+    "team": "Atromitos",
+    "xg": 0.8383333333333334,
+    "xga": 1.4816666666666667,
+    "xg_home": 0.85,
+    "xga_home": 1.2166666666666666,
+    "xg_away": 0.8266666666666667,
+    "xga_away": 1.7466666666666668,
+    "matches": 6
+   },
+   {
+    "team": "OFI Crete",
+    "xg": 0.9,
+    "xga": 1.2566666666666668,
+    "xg_home": 0.9933333333333333,
+    "xga_home": 0.9166666666666666,
+    "xg_away": 0.8066666666666666,
+    "xga_away": 1.5966666666666667,
+    "matches": 6
+   },
+   {
+    "team": "Volos NFC",
+    "xg": 0.9716666666666667,
+    "xga": 1.805,
+    "xg_home": 0.9966666666666666,
+    "xga_home": 1.3399999999999999,
+    "xg_away": 0.9466666666666667,
+    "xga_away": 2.27,
+    "matches": 6
+   },
+   {
+    "team": "PAOK",
+    "xg": 1.7283333333333335,
+    "xga": 1.3566666666666667,
+    "xg_home": 1.9333333333333336,
+    "xga_home": 1.39,
+    "xg_away": 1.5233333333333334,
+    "xga_away": 1.3233333333333335,
+    "matches": 6
+   },
+   {
+    "team": "Levadeiakos",
+    "xg": 0.65,
+    "xga": 1.3116666666666665,
+    "xg_home": 0.7433333333333333,
+    "xga_home": 1.2033333333333334,
+    "xg_away": 0.5566666666666666,
+    "xga_away": 1.42,
+    "matches": 6
+   },
+   {
+    "team": "Panetolikos",
+    "xg": 0.8500000000000002,
+    "xga": 1.6066666666666667,
+    "xg_home": 1.0233333333333334,
+    "xga_home": 1.4266666666666667,
+    "xg_away": 0.6766666666666667,
+    "xga_away": 1.7866666666666668,
+    "matches": 6
+   },
+   {
+    "team": "Asteras Tripolis",
+    "xg": 1.0516666666666667,
+    "xga": 1.1283333333333336,
+    "xg_home": 1.0975,
+    "xga_home": 1.34,
+    "xg_away": 0.96,
+    "xga_away": 0.7050000000000001,
+    "matches": 6
+   },
+   {
+    "team": "Kifisia",
+    "xg": 1.1966666666666665,
+    "xga": 1.0050000000000001,
+    "xg_home": 1.3333333333333333,
+    "xga_home": 0.5366666666666666,
+    "xg_away": 1.0599999999999998,
+    "xga_away": 1.4733333333333334,
+    "matches": 6
+   },
+   {
+    "team": "Panathinaikos",
+    "xg": 1.9683333333333337,
+    "xga": 0.7583333333333332,
+    "xg_home": 2.8166666666666664,
+    "xga_home": 0.49666666666666665,
+    "xg_away": 1.1199999999999999,
+    "xga_away": 1.02,
+    "matches": 6
+   }
+  ]
+ },
+ "2026-10-15|AUT|matchpulse": {
+  "as_of": "2026-10-15T11:36:02.190725+00:00",
+  "league": "AUT",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Red Bull Salzburg",
+    "xg": 2.62,
+    "xga": 1.02,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Rapid Vienna",
+    "xg": 2.24,
+    "xga": 1.15,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Lask Linz",
+    "xg": 2.15,
+    "xga": 1.09,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Ried",
+    "xg": 1.7,
+    "xga": 1.63,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Sturm Graz",
+    "xg": 1.62,
+    "xga": 1.3,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "TSV Hartberg",
+    "xg": 1.48,
+    "xga": 1.97,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "WSG Wattens",
+    "xg": 1.31,
+    "xga": 1.79,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Grazer AK",
+    "xg": 1.3,
+    "xga": 1.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "SCR Altach",
+    "xg": 1.26,
+    "xga": 1.3,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Austria Lustenau",
+    "xg": 1.19,
+    "xga": 1.87,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Wolfsberger AC",
+    "xg": 1.05,
+    "xga": 2.19,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Austria Vienna",
+    "xg": 1.04,
+    "xga": 1.91,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   }
+  ]
+ },
+ "2026-10-15|SWE|matchpulse": {
+  "as_of": "2026-10-15T11:36:07.747348+00:00",
+  "league": "SWE",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Hammarby FF",
+    "xg": 2.36,
+    "xga": 1.06,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Sirius",
+    "xg": 1.92,
+    "xga": 1.24,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Djurgardens IF",
+    "xg": 1.81,
+    "xga": 1.14,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Malmo FF",
+    "xg": 1.75,
+    "xga": 1.47,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "IFK Goteborg",
+    "xg": 1.7,
+    "xga": 1.37,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "BK Hacken",
+    "xg": 1.66,
+    "xga": 1.41,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Gais",
+    "xg": 1.62,
+    "xga": 1.35,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Mjallby AIF",
+    "xg": 1.59,
+    "xga": 1.79,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "AIK Stockholm",
+    "xg": 1.49,
+    "xga": 2.0,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "IF Elfsborg",
+    "xg": 1.44,
+    "xga": 1.14,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Vasteras SK FK",
+    "xg": 1.36,
+    "xga": 1.67,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Kalmar FF",
+    "xg": 1.28,
+    "xga": 1.46,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Halmstad",
+    "xg": 1.2,
+    "xga": 1.99,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "IF Brommapojkarna",
+    "xg": 1.16,
+    "xga": 1.87,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Orgryte IS",
+    "xg": 1.1,
+    "xga": 1.83,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   },
+   {
+    "team": "Degerfors IF",
+    "xg": 1.07,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 23
+   }
+  ]
+ },
+ "2026-10-15|NOR|matchpulse": {
+  "as_of": "2026-10-15T11:36:11.328621+00:00",
+  "league": "NOR",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Bodo/Glimt",
+    "xg": 2.42,
+    "xga": 0.91,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Viking",
+    "xg": 2.03,
+    "xga": 1.12,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Molde",
+    "xg": 1.91,
+    "xga": 1.19,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Tromso",
+    "xg": 1.79,
+    "xga": 1.34,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Rosenborg",
+    "xg": 1.68,
+    "xga": 1.5,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Sarpsborg 08 FF",
+    "xg": 1.6,
+    "xga": 1.41,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Brann",
+    "xg": 1.59,
+    "xga": 1.55,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Lillestrom",
+    "xg": 1.49,
+    "xga": 1.43,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Valerenga",
+    "xg": 1.47,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Aalesund",
+    "xg": 1.46,
+    "xga": 2.06,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Start",
+    "xg": 1.37,
+    "xga": 1.73,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Ham-Kam",
+    "xg": 1.27,
+    "xga": 1.79,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Fredrikstad",
+    "xg": 1.18,
+    "xga": 1.65,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Sandefjord",
+    "xg": 1.12,
+    "xga": 1.61,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "KFUM Oslo",
+    "xg": 1.12,
+    "xga": 1.7,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   },
+   {
+    "team": "Kristiansund BK",
+    "xg": 1.02,
+    "xga": 1.85,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 22
+   }
+  ]
+ },
+ "2026-10-15|DEN|matchpulse": {
+  "as_of": "2026-10-15T11:36:14.782967+00:00",
+  "league": "DEN",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "FC Nordsjaelland",
+    "xg": 1.93,
+    "xga": 1.29,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Viborg",
+    "xg": 1.64,
+    "xga": 1.06,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "FC Midtjylland",
+    "xg": 1.64,
+    "xga": 1.18,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "FC Copenhagen",
+    "xg": 1.59,
+    "xga": 1.17,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Lyngby",
+    "xg": 1.57,
+    "xga": 1.47,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "AC Horsens",
+    "xg": 1.47,
+    "xga": 1.68,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Aarhus",
+    "xg": 1.46,
+    "xga": 1.44,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Odense",
+    "xg": 1.43,
+    "xga": 1.59,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Silkeborg",
+    "xg": 1.36,
+    "xga": 1.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Brondby",
+    "xg": 1.31,
+    "xga": 1.49,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Sonderjyske",
+    "xg": 1.13,
+    "xga": 1.82,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
+   },
+   {
+    "team": "Randers FC",
+    "xg": 1.11,
+    "xga": 1.73,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 10
    }
   ]
  }
