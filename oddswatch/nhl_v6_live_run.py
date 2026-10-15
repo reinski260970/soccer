@@ -8,6 +8,7 @@ from datetime import date,timedelta
 from pathlib import Path
 from .nhl_v6_feature_bridge import build
 from .nhl_v6_prematch import score_games
+from .nhl_first_period import first_period
 from .nhl_moneypuck_features import load_mp_games, SBR_TO_MP, PRIORS, _ema
 
 def main():
@@ -45,7 +46,10 @@ def main():
             game[side+'_xga_all']=round(states[code]['xgaall'],3)
             game[side+'_xg_5v5']=round(states[code]['xgf5'],3)
             game[side+'_xga_5v5']=round(states[code]['xga5'],3)
-        game['first_period_status']='NO_MODEL_UNTIL_PERIOD_VALIDATION'
+        try:
+            game.update(first_period(args.results,game))
+        except ValueError as exc:
+            game['first_period_status']='NO_MODEL: '+str(exc)
         game['value_status']='NO_MARKET_ODDS'
     path=Path(args.out);path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2)+"\n")
