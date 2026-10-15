@@ -6265,6 +6265,9 @@ liiga,2026/27,2026-10-10,HPK,KooKoo,5,3,,liiga-api
 liiga,2026/27,2026-10-10,Jokerit,Ilves,0,3,,liiga-api
 liiga,2026/27,2026-10-10,Jukurit,Kärpät,1,1,OT,liiga-api
 liiga,2026/27,2026-10-10,Tappara,TPS,3,3,SO,liiga-api
+liiga,2026/27,2026-10-14,HIFK,TPS,3,3,SO,liiga-api
+liiga,2026/27,2026-10-14,JYP,Lukko,2,2,SO,liiga-api
+liiga,2026/27,2026-10-14,KalPa,Ässät,0,1,,liiga-api
 nhl,2022/23,2022-10-07,NSH,SJS,4,1,,nhl-api
 nhl,2022/23,2022-10-08,SJS,NSH,2,3,,nhl-api
 nhl,2022/23,2022-10-11,LAK,VGK,3,4,,nhl-api
@@ -11618,3 +11621,5 @@ nhl,2026/27,2026-10-13,PHI,SEA,2,2,,nhl-api
 nhl,2026/27,2026-10-13,SJS,BOS,3,6,,nhl-api
 nhl,2026/27,2026-10-13,UTA,TOR,5,4,,nhl-api
 nhl,2026/27,2026-10-13,WPG,MIN,5,2,,nhl-api
+nhl,2026/27,2026-10-14,COL,DAL,2,2,,nhl-api
+nhl,2026/27,2026-10-14,WSH,MTL,5,4,,nhl-api
