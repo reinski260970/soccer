@@ -63,7 +63,9 @@ def parse(events, today):
             if fh==fa: continue
             results.append({"date":day.isoformat(),"season":day.year if day.month>=7 else day.year-1,
                             "home_team":home,"away_team":away,"reg_home":rh,"reg_away":ra,
-                            "final_home":fh,"final_away":fa})
+                            "final_home":fh,"final_away":fa,
+                            "p1_home":int(float(h["linescores"][0]["value"])),
+                            "p1_away":int(float(a["linescores"][0]["value"]))})
         elif not completed and day>=today:
             schedule.append({"date":day.isoformat(),"home":home,"away":away})
     return results,schedule
@@ -89,7 +91,7 @@ def main():
     rp=Path(args.results); rp.parent.mkdir(parents=True,exist_ok=True)
     with rp.open("w",newline="",encoding="utf-8") as f:
         writer=csv.DictWriter(f,fieldnames=["date","season","home_team","away_team",
-                                          "reg_home","reg_away","final_home","final_away"])
+                                          "reg_home","reg_away","final_home","final_away","p1_home","p1_away"])
         writer.writeheader();writer.writerows(sorted(results,key=lambda r:r["date"]))
     sp=Path(args.schedule);sp.parent.mkdir(parents=True,exist_ok=True)
     sp.write_text(json.dumps(sorted(schedule,key=lambda r:r["date"]),indent=2)+"\n",encoding="utf-8")
