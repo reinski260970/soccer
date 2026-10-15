@@ -1,0 +1,36 @@
+name: NHL V6 Prematch Validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v6_feature_bridge.py"
+      - "oddswatch/nhl_v6_prematch.py"
+      - "tests/test_nhl_v6_feature_bridge.py"
+      - ".github/workflows/nhl-v6-prematch.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Verify feature bridge and V6 code
+        run: |
+          python -m compileall -q oddswatch/nhl_v6_feature_bridge.py oddswatch/nhl_v6_prematch.py
+          python -m pytest tests/test_nhl_v6_feature_bridge.py tests/test_nhl_bulk_v6.py -q
+      - name: Verify current MoneyPuck download and parse
+        run: |
+          python - <<'PY'
+          from oddswatch.nhl_v5_1_forward import download_text, parse_team_games
+          games = parse_team_games(download_text())
+          assert games, "No MoneyPuck team games parsed"
+          print("MoneyPuck team rows:", len(games), "latest:", max(g["date"] for g in games))
+          PY
