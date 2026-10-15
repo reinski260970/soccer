@@ -112,7 +112,7 @@ def european_final(event: dict, results: list) -> tuple[int, int] | None:
     league = event["league"]
     zones = {"icehl": "Europe/Vienna", "liiga": "Europe/Helsinki",
              "shl": "Europe/Stockholm", "del": "Europe/Berlin",
-             "extraliga": "Europe/Prague"}
+             "extraliga": "Europe/Prague", "nl": "Europe/Zurich"}
     day = event["kickoff"].astimezone(ZoneInfo(zones[league])).date()
     hits = [r for r in results
             if r.date == day
@@ -182,10 +182,22 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
             "del", season, cache_days=0.02),
         "extraliga": lambda season: hockeyarchives.season_results(
             "extraliga", season, cache_days=0.02),
+        # Swiss National League: scanned via Kalshi (sources/kalshi.py "nl" ->
+        # KXNLGAME) and discoverable on hockeyarchives.info ("Suisse" country
+        # page), but this module never listed "nl" as a settleable league, so
+        # every NL prediction stayed open forever. hockeyarchives has no
+        # _TOP_SECTIONS entry for "nl" (unlike del/extraliga/icehl/shl), so the
+        # fetched page is NOT cut down to the top division only; it may also
+        # contain Swiss League (2nd tier) rows. Team names are distinctive
+        # enough in practice that this is unlikely to cause a false match, but
+        # it has not been verified against a live fetch (blocked from this
+        # environment) the way del/extraliga's sections were.
+        "nl": lambda season: hockeyarchives.season_results(
+            "nl", season, cache_days=0.02),
     }
     pending = conn.execute(
         "SELECT e.event_id,e.league,e.source_event_id,e.home_name,e.away_name,e.kickoff "
-        "FROM sports.events e WHERE e.league IN ('nhl','liiga','icehl','shl','del','extraliga') "
+        "FROM sports.events e WHERE e.league IN ('nhl','liiga','icehl','shl','del','extraliga','nl') "
         "AND e.status<>'STATUS_FINAL' AND e.kickoff<%s AND "
         "EXISTS(SELECT 1 FROM sports.predictions p WHERE p.event_id=e.event_id) "
         "ORDER BY e.kickoff LIMIT 200", (now,),
@@ -207,13 +219,13 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
             except Exception as exc:
                 totals["errors"].append(f"ESPN NHL {day}: {type(exc).__name__}")
     euro_results = {}
-    for league in ("liiga", "icehl", "shl", "del", "extraliga"):
+    for league in ("liiga", "icehl", "shl", "del", "extraliga", "nl"):
         rows = [e for e in pending if e["league"] == league]
         for season in sorted({e["kickoff"].year if e["kickoff"].month >= 7
                               else e["kickoff"].year - 1 for e in rows}):
             try:
                 result = fetch_europe[league](season)
-                if league in ("del", "extraliga") and len(result) == 2:
+                if league in ("del", "extraliga", "nl") and len(result) == 2:
                     done, err = result
                 else:
                     done, _, err = result
@@ -242,7 +254,7 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
                 continue
             home, away = result
             source = (f"{league}-hockeyarchives-regulation-final"
-                      if league in ("del", "extraliga")
+                      if league in ("del", "extraliga", "nl")
                       else f"{league}-official-regulation-final")
             proof = {"method": "regulation win, no OT/SO; full-game winner proven"}
         if _write_final(conn, event, home, away, source, proof, now):
