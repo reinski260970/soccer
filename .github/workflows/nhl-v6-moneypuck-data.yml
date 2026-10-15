@@ -1,0 +1,31 @@
+name: NHL V6 MoneyPuck Data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v6_moneypuck_convert.py"
+      - ".github/workflows/nhl-v6-moneypuck-data.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Compile converter
+        run: python -m compileall -q oddswatch/nhl_v6_moneypuck_convert.py
+      - name: Download and convert official MoneyPuck team games
+        run: python -m oddswatch.nhl_v6_moneypuck_convert --out data/hockey/market/nhl_moneypuck_games_live.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-v6-moneypuck-games
+          path: data/hockey/market/nhl_moneypuck_games_live.csv
+          retention-days: 7
