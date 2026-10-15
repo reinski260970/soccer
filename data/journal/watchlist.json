@@ -24,54 +24,6 @@
   ]
  },
  {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Panathinaikos – Asteras Tripoli",
-  "kickoff": "2026-10-18T14:30:00+00:00",
-  "market": "away",
-  "selection": "Asteras Tripoli Sieg (90 Min.)",
-  "odds": 21.0,
-  "fair": 18.19309966188271,
-  "min_odds": 18.73889265173919,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Asteras Tripoli",
-   "Asteras Tripoli",
-   "Asteras Trip",
-   "AST"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "uecl",
-  "event": "Panathinaikos – Borac Banja Luka",
-  "kickoff": "2026-10-15T16:45:00+00:00",
-  "market": "away",
-  "selection": "Borac Banja Luka Sieg (90 Min.)",
-  "odds": 15.0,
-  "fair": 13.057997743790827,
-  "min_odds": 13.44973767610455,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Borac Banja Luka",
-   "Borac Banja Luka",
-   "Borac",
-   "BBL"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
   "league": "bundesliga",
@@ -96,27 +48,75 @@
   ]
  },
  {
-  "source": "1xbet",
+  "source": "bet365",
   "status": "WATCH",
-  "league": "nhl",
-  "event": "Tampa Bay Lightning – Seattle Kraken",
-  "kickoff": "2026-10-15T23:00:00+00:00",
+  "league": "bundesliga",
+  "event": "TSG Hoffenheim – Bayer Leverkusen",
+  "kickoff": "2026-10-25T14:30:00+00:00",
   "market": "home",
-  "selection": "Tampa Bay Lightning Sieg (inkl. OT)",
-  "odds": 1.59,
-  "fair": 1.4440197689278527,
-  "min_odds": 1.4873403619956882,
+  "selection": "TSG Hoffenheim Sieg (90 Min.)",
+  "odds": 3.0,
+  "fair": 2.8111833948212808,
+  "min_odds": 2.8955188966659193,
   "home": [
-   "Tampa Bay Lightning",
-   "Tampa Bay",
-   "Lightning",
-   "TB"
+   "TSG Hoffenheim",
+   "TSG Hoffenheim",
+   "Hoffenheim",
+   "TSG"
   ],
   "away": [
-   "Seattle Kraken",
-   "Seattle",
-   "Kraken",
-   "SEA"
+   "Bayer Leverkusen",
+   "Bayer Leverkusen",
+   "Leverkusen",
+   "B04"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Athletic Club – Getafe",
+  "kickoff": "2026-10-25T13:00:00+00:00",
+  "market": "away",
+  "selection": "Getafe Sieg (90 Min.)",
+  "odds": 6.25,
+  "fair": 5.880870657299495,
+  "min_odds": 6.057296777018479,
+  "home": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
+  ],
+  "away": [
+   "Getafe",
+   "Getafe",
+   "Getafe",
+   "GET"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "bundesliga",
+  "event": "SC Freiburg – Bayern Munich",
+  "kickoff": "2026-10-25T16:30:00+00:00",
+  "market": "home",
+  "selection": "SC Freiburg Sieg (90 Min.)",
+  "odds": 8.0,
+  "fair": 7.577291104984626,
+  "min_odds": 7.804609838134166,
+  "home": [
+   "SC Freiburg",
+   "SC Freiburg",
+   "Freiburg",
+   "SCF"
+  ],
+  "away": [
+   "Bayern Munich",
+   "Bayern Munich",
+   "Bayern",
+   "MUN"
   ]
  }
 ]
