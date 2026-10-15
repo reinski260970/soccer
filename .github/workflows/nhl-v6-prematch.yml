@@ -6,6 +6,7 @@ on:
     paths:
       - "oddswatch/nhl_v6_feature_bridge.py"
       - "oddswatch/nhl_v6_prematch.py"
+      - "oddswatch/nhl_v6_live_run.py"
       - "tests/test_nhl_v6_feature_bridge.py"
       - ".github/workflows/nhl-v6-prematch.yml"
 
