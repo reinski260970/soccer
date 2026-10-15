@@ -8,6 +8,7 @@ from datetime import date,timedelta
 from pathlib import Path
 from .nhl_v6_feature_bridge import build
 from .nhl_v6_prematch import score_games
+from .nhl_moneypuck_features import load_mp_games, SBR_TO_MP, PRIORS, _ema
 
 def main():
     p=argparse.ArgumentParser()
@@ -27,6 +28,25 @@ def main():
         except (ValueError,KeyError,TypeError) as e:
             skipped.append({"game":target,"reason":str(e)})
     result=score_games(features) if features else []
+    # Actual rolling xG/xGA per team, using completed games only.
+    mp_games=load_mp_games(args.moneypuck)
+    for game in result:
+        cutoff=date.fromisoformat(game['date'])
+        codes={side:SBR_TO_MP[game[side]] for side in ('home','away')}
+        states={code:dict(PRIORS) for code in codes.values()}
+        for mp in mp_games:
+            if mp['date']>=cutoff: break
+            for code,stats in ((mp['home_code'],mp['home_stats']),(mp['away_code'],mp['away_stats'])):
+                if code in states:
+                    for metric in ('xgfall','xgaall','xgf5','xga5'):
+                        states[code][metric]=_ema(states[code][metric],stats[metric],.10)
+        for side,code in codes.items():
+            game[side+'_xg_all']=round(states[code]['xgfall'],3)
+            game[side+'_xga_all']=round(states[code]['xgaall'],3)
+            game[side+'_xg_5v5']=round(states[code]['xgf5'],3)
+            game[side+'_xga_5v5']=round(states[code]['xga5'],3)
+        game['first_period_status']='NO_MODEL_UNTIL_PERIOD_VALIDATION'
+        game['value_status']='NO_MARKET_ODDS'
     path=Path(args.out);path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps({"scheduled":len(targets),"scored":len(result),
