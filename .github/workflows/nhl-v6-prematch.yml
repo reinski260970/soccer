@@ -9,6 +9,7 @@ on:
       - "oddswatch/nhl_v6_live_run.py"
       - "oddswatch/nhl_first_period.py"
       - "oddswatch/nhl_p1_backtest.py"
+      - "oddswatch/nhl_first_period.py"
       - "oddswatch/nhl_v6_espn_results.py"
       - "tests/test_nhl_v6_feature_bridge.py"
       - ".github/workflows/nhl-v6-prematch.yml"
