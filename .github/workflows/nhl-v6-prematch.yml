@@ -8,6 +8,7 @@ on:
       - "oddswatch/nhl_v6_prematch.py"
       - "oddswatch/nhl_v6_live_run.py"
       - "oddswatch/nhl_first_period.py"
+      - "oddswatch/nhl_p1_backtest.py"
       - "oddswatch/nhl_v6_espn_results.py"
       - "tests/test_nhl_v6_feature_bridge.py"
       - ".github/workflows/nhl-v6-prematch.yml"
@@ -40,6 +41,8 @@ jobs:
 
       - name: Fetch verified ESPN NHL results
         run: python -m oddswatch.nhl_v6_espn_results --start 2025-10
+      - name: Walk-forward validate first-period model
+        run: python -m oddswatch.nhl_p1_backtest --results data/hockey/nhl_espn_results.csv
       - name: Build current MoneyPuck feature history
         run: python -m oddswatch.nhl_v6_moneypuck_convert --out data/hockey/market/nhl_moneypuck_games_live.csv
       - name: Calculate NHL V6 independent fair odds
@@ -48,4 +51,6 @@ jobs:
         if: always()
         with:
           name: nhl-v6-fair-odds
-          path: data/hockey/nhl_v6_fair_today.json
+          path: |
+            data/hockey/nhl_v6_fair_today.json
+            data/hockey/nhl_p1_walkforward.json
