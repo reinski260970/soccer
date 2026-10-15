@@ -47,7 +47,13 @@ def convert(text):
             continue
         key=(gid,venue,row["situation"])
         if key in games[(gid,d)]:
-            raise ValueError(f"Duplicate team row: {key}")
+            # Some MoneyPuck team-level exports repeat a team/situation.
+            # Accept exact metric duplicates; reject inconsistent records.
+            prev=games[(gid,d)][key]
+            cols=FIELDS5 if row["situation"]=="5on5" else FIELDS_ALL
+            if any(prev.get(c)!=row.get(c) for c in cols):
+                raise ValueError(f"Conflicting team row: {key}")
+            continue
         games[(gid,d)][key]=row
     wide=[];results=[];rejected=0
     for (gid,d), parts in sorted(games.items(),key=lambda x:x[0][1]):
