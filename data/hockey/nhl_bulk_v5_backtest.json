@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T17:13:01.443984+00:00",
+  "generated_at": "2026-10-15T04:45:07.123197+00:00",
   "source_odds_rows": 13661,
   "matched_rows": 12539,
   "slow_unmatched": 1122,
@@ -156,7 +156,7 @@
       "test_n": 1316,
       "C": 1.0,
       "shrink": 0.9,
-      "calibration_logloss": 0.676391,
+      "calibration_logloss": 0.67639,
       "model_logloss": 0.676105,
       "market_logloss": 0.669477,
       "logloss_gain_vs_market": -0.006628,
