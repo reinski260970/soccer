@@ -36,6 +36,7 @@ FIELDS_ALL=("xGoalsFor","xGoalsAgainst","shotsOnGoalFor","shotsOnGoalAgainst",
 
 def convert(text):
     games=defaultdict(dict)
+    conflicting=set()
     for row in csv.DictReader(io.StringIO(text)):
         if row.get("position")!="Team Level" or row.get("situation") not in ("5on5","all"):
             continue
@@ -52,11 +53,14 @@ def convert(text):
             prev=games[(gid,d)][key]
             cols=FIELDS5 if row["situation"]=="5on5" else FIELDS_ALL
             if any(prev.get(c)!=row.get(c) for c in cols):
-                raise ValueError(f"Conflicting team row: {key}")
+                conflicting.add((gid,d))
             continue
         games[(gid,d)][key]=row
     wide=[];results=[];rejected=0
     for (gid,d), parts in sorted(games.items(),key=lambda x:x[0][1]):
+        if (gid,d) in conflicting:
+            rejected+=1
+            continue
         try:
             season=int(next(iter(parts.values()))["season"])
             pair={}
@@ -90,7 +94,7 @@ def convert(text):
             # do NOT emit a fake regulation-goals archive.
         except (ValueError,KeyError,TypeError):
             rejected+=1
-    return wide,{"wide_games":len(wide),"rejected_games":rejected,
+    return wide,{"wide_games":len(wide),"rejected_games":rejected,"conflicting_games":len(conflicting),
                  "results_generated":0,"reason":"regulation_goals_unavailable"}
 
 
