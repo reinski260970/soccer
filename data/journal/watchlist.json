@@ -98,25 +98,25 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "bundesliga",
-  "event": "SC Freiburg – Bayern Munich",
-  "kickoff": "2026-10-25T16:30:00+00:00",
-  "market": "home",
-  "selection": "SC Freiburg Sieg (90 Min.)",
-  "odds": 8.0,
-  "fair": 7.577291104984626,
-  "min_odds": 7.804609838134166,
+  "league": "nhl",
+  "event": "Tampa Bay Lightning – Seattle Kraken",
+  "kickoff": "2026-10-15T23:00:00+00:00",
+  "market": "away",
+  "selection": "Seattle Kraken Sieg (inkl. OT)",
+  "odds": 3.75,
+  "fair": 3.553066277062401,
+  "min_odds": 3.659658265374273,
   "home": [
-   "SC Freiburg",
-   "SC Freiburg",
-   "Freiburg",
-   "SCF"
+   "Tampa Bay Lightning",
+   "Tampa Bay",
+   "Lightning",
+   "TB"
   ],
   "away": [
-   "Bayern Munich",
-   "Bayern Munich",
-   "Bayern",
-   "MUN"
+   "Seattle Kraken",
+   "Seattle",
+   "Kraken",
+   "SEA"
   ]
  }
 ]
