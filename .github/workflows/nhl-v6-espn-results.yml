@@ -1,0 +1,27 @@
+name: NHL V6 ESPN Recent Results
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v6_espn_results.py"
+      - ".github/workflows/nhl-v6-espn-results.yml"
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch NHL regulation results and fixtures
+        run: python -m oddswatch.nhl_v6_espn_results --start 2025-10
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-v6-espn-recent-results
+          path: |
+            data/hockey/nhl_espn_results.csv
+            data/hockey/nhl_espn_schedule.json
+          retention-days: 14
