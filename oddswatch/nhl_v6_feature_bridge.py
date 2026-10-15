@@ -21,7 +21,6 @@ import json
 from datetime import date, timedelta
 from pathlib import Path
 
-from .nhl_bulk_backtest import load_rows
 from .nhl_bulk_features import build_features
 from .nhl_moneypuck_features import (
     SBR_TO_MP, METRICS, PRIORS, _ema, load_mp_games,
@@ -30,6 +29,26 @@ from .nhl_bulk_v5 import MP_BASE
 from .nhl_bulk_v6 import FEATURES, _augment_interactions
 
 DEFENSIVE = {"xga5","soga5","caa5","hdxga5","xgaall","sogaall","svaxga"}
+
+
+def load_completed_results(path):
+    """Results-only input; no bookmaker odds required or consumed."""
+    rows = []
+    with Path(path).open(encoding="utf-8-sig",newline="") as fh:
+        for r in csv.DictReader(fh):
+            try:
+                d=str(r["date"])
+                day=date(int(d[:4]),int(d[4:6]),int(d[6:8])) if len(d)==8 and d.isdigit() else date.fromisoformat(d[:10])
+                row={"date":day,"season":int(r["season"]),
+                     "home":r["home_team"].strip(),"away":r["away_team"].strip(),
+                     "reg_home":int(r["reg_home"]),"reg_away":int(r["reg_away"]),
+                     "final_home":int(r["final_home"]),"final_away":int(r["final_away"]),
+                     "home_open":2.0,"away_open":2.0,"home_close":2.0,"away_close":2.0}
+                if row["home"]!=row["away"] and row["final_home"]!=row["final_away"]:
+                    rows.append(row)
+            except (KeyError,TypeError,ValueError):
+                continue
+    return sorted(rows,key=lambda r:(r["date"],r["home"],r["away"]))
 
 
 def _mp_snapshot(states, home, away):
@@ -65,7 +84,7 @@ def _states_before(mp_games, cutoff, alpha):
 
 
 def build(targets, results_path, mp_path, max_age_days=7):
-    results = load_rows(Path(results_path))
+    results = load_completed_results(results_path)
     mp_games = load_mp_games(Path(mp_path))
     if not results or not mp_games:
         raise ValueError("Empty results or MoneyPuck history")
