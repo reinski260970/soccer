@@ -19,7 +19,7 @@ SBR_TO_MP={
     "Maple Leafs":"TOR","Oilers":"EDM","Panthers":"FLA","Penguins":"PIT",
     "Phoenix":"ARI","Predators":"NSH","Rangers":"NYR","Red Wings":"DET",
     "Sabres":"BUF","Senators":"OTT","Sharks":"S.J","St.Louis":"STL",
-    "Stars":"DAL","Wild":"MIN",
+    "Stars":"DAL","Wild":"MIN","Mammoth":"UTA","Blues":"STL",
 }
 
 METRICS=(
