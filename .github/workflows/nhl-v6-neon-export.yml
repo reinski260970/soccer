@@ -1,0 +1,31 @@
+name: NHL V6 Neon Results Export
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "oddswatch/nhl_v6_neon_export.py"
+      - ".github/workflows/nhl-v6-neon-export.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Export existing Neon NHL results
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m oddswatch.nhl_v6_neon_export --out data/hockey/neon_nhl_final_scores.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nhl-v6-neon-results
+          path: data/hockey/neon_nhl_final_scores.csv
+          retention-days: 7
