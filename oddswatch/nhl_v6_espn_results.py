@@ -11,6 +11,8 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import urlopen
+from urllib.error import URLError, HTTPError
+import time
 
 BASE = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
 ALIASES = {"Utah Hockey Club":"Mammoth","Utah Mammoth":"Mammoth",
@@ -28,8 +30,13 @@ def team_name(competitor):
 
 def fetch(month):
     url=BASE+"?"+urlencode({"dates":month,"limit":250})
-    with urlopen(url,timeout=35) as response:
-        return json.load(response).get("events",[])
+    for attempt in range(4):
+        try:
+            with urlopen(url,timeout=35) as response:
+                return json.load(response).get("events",[])
+        except (URLError, HTTPError, TimeoutError, ConnectionResetError):
+            if attempt==3: raise
+            time.sleep(2**attempt)
 
 def parse(events, today):
     results, schedule = [], []
