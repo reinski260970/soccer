@@ -16,7 +16,12 @@ from .. import fetch, matching
 from ..selection import Offer
 
 BASE = "https://external-api.kalshi.com/trade-api/v2"
-SUPPORTED = {"nfl", "nhl", "nba", "euroleague", "eurocup"}
+# del/nl/khl have series tickers below (HOCKEY_SERIES) but were missing from
+# SUPPORTED, so attach() silently never priced them even though the fixture
+# discovery side (hockey_fixtures()) already used those same tickers. They
+# are intentionally reference-only here (no KALSHI_EXECUTABLE flip): these
+# are thin niche markets, unverified for PLAY-grade liquidity.
+SUPPORTED = {"nfl", "nhl", "nba", "euroleague", "eurocup", "del", "nl", "khl"}
 HOCKEY_SERIES = {
     "del": "KXDELGAME",
     "nl": "KXNLGAME",
@@ -201,7 +206,7 @@ def attach(fixtures, issues: list[str]) -> int:
     generic_events: list[dict] | None = None
 
     for fx in rows:
-        series = BASKETBALL_SERIES.get(fx.league)
+        series = BASKETBALL_SERIES.get(fx.league) or HOCKEY_SERIES.get(fx.league)
         if series:
             if series not in cache:
                 cache[series], err = series_events(series)
