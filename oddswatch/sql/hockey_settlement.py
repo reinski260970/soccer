@@ -81,10 +81,26 @@ _DEL_NAMES = {
     "dusseldorfer eg": "Düsseldorf",
 }
 
+# Verified 2026-10-15 directly against hockeyarchives.info/Suisse2027.htm
+# (live fetch): the National League results page uses French club names
+# that differ from the English/German names stored on sports.events.
+_NL_NAMES = {
+    "bern": "Berne",
+    "ehc biel": "Bienne",
+    "ev zug": "Zoug",
+    "rapperswiljona lakers": "Rapperswil",
+    # norm() deletes hyphens instead of spacing them, so the DB's spaced
+    # "Genève Servette" otherwise fails to match the source's hyphenated
+    # "Genève-Servette" (one token vs. two after normalization).
+    "geneve servette": "Genève-Servette",
+}
+
 
 def _hockeyarchives_team(name: str, league: str) -> str:
     if league == "del":
         return _DEL_NAMES.get(matching.norm(name), name)
+    if league == "nl":
+        return _NL_NAMES.get(matching.norm(name), name)
     return name
 
 
