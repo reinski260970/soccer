@@ -177,17 +177,31 @@ def attach(fixtures, issues: list[str]) -> int:
     odds_cache: dict[int, dict[str, dict[str, float]]] = {}
     matched = 0
     now = datetime.now(timezone.utc)
+    # Per-league visibility: attach() previously skipped an unmatched fixture
+    # silently, so a league that API-Hockey simply doesn't cover (or whose
+    # team names never match ours) produced NO_PRICE every run with nothing
+    # in `issues` explaining why. Track attempts/matches/API-side game counts
+    # per league so a persistent gap is diagnosable from the report instead
+    # of looking identical to "no games today".
+    league_attempts: dict[str, int] = {}
+    league_matches: dict[str, int] = {}
+    league_api_days: dict[str, set[str]] = {}
     for fx in rows:
         day = fx.game.kickoff.astimezone(timezone.utc).date().isoformat()
         if day not in day_cache:
             day_cache[day], err = games_on(day)
             if err:
                 issues.append(err)
+        league_attempts[fx.league] = league_attempts.get(fx.league, 0) + 1
+        league_api_days.setdefault(fx.league, set()).add(
+            f"{day}:{len(day_cache.get(day, []))}"
+        )
         g = find_game(day_cache.get(day, []), fx.game.home.aliases(), fx.game.away.aliases(),
                       fx.game.kickoff)
         if not g:
             continue
         matched += 1
+        league_matches[fx.league] = league_matches.get(fx.league, 0) + 1
         if g.id not in odds_cache:
             odds_cache[g.id], err = odds(g.id)
             if err:
@@ -228,6 +242,24 @@ def attach(fixtures, issues: list[str]) -> int:
                     observed_at=now.isoformat(), ref=f"api-hockey:{g.id}:{side}:{book}",
                     league=fx.league, executable=is_exec,
                 ))
+
+    for league, attempts in league_attempts.items():
+        hits = league_matches.get(league, 0)
+        if hits:
+            continue
+        api_counts = sorted(league_api_days.get(league, set()))
+        seen_any_games = any(int(part.split(":", 1)[1]) > 0 for part in api_counts)
+        if seen_any_games:
+            issues.append(
+                f"API-Hockey: {league} 0/{attempts} Spiele zugeordnet, obwohl die API an "
+                f"diesen Tagen Spiele listet ({', '.join(api_counts)}) – Team-/Datumsabgleich "
+                "prüfen (find_game)."
+            )
+        else:
+            issues.append(
+                f"API-Hockey: {league} 0/{attempts} Spiele zugeordnet, API liefert an diesen "
+                f"Tagen keine Spiele ({', '.join(api_counts)}) – Liga vermutlich nicht abgedeckt."
+            )
     return matched
 
 
