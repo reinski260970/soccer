@@ -1,5 +1,29 @@
 [
  {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Athletic Club – Getafe",
+  "kickoff": "2026-10-25T13:00:00+00:00",
+  "market": "away",
+  "selection": "Getafe Sieg (90 Min.)",
+  "odds": 5.5,
+  "fair": 4.934020038579737,
+  "min_odds": 5.08204063973713,
+  "home": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
+  ],
+  "away": [
+   "Getafe",
+   "Getafe",
+   "Getafe",
+   "GET"
+  ]
+ },
+ {
   "source": "bet365",
   "status": "WATCH",
   "league": "del",
@@ -18,21 +42,75 @@
   ]
  },
  {
-  "source": "bet365",
+  "source": "betfair",
   "status": "WATCH",
-  "league": "del",
-  "event": "Augsburger Panther – Adler Mannheim",
-  "kickoff": "2026-10-16T17:30:00+00:00",
-  "market": "away",
-  "selection": "Adler Mannheim Sieg (inkl. OT)",
-  "odds": 1.65,
-  "fair": 1.6077406891232129,
-  "min_odds": 1.6559729097969094,
+  "league": "ucl",
+  "event": "AS Roma – Slovan Bratislava",
+  "kickoff": "2026-10-20T19:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 9.0,
+  "fair": 8.622131476754985,
+  "min_odds": 8.880795421057636,
   "home": [
-   "Augsburger Panther"
+   "AS Roma",
+   "AS Roma",
+   "AS Roma",
+   "ROMA"
   ],
   "away": [
-   "Adler Mannheim"
+   "Slovan Bratislava",
+   "Slovan Bratislava",
+   "S Bratislava",
+   "SLB"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Levante – Athletic Club",
+  "kickoff": "2026-10-21T18:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.4,
+  "fair": 3.259980809810447,
+  "min_odds": 3.35778023410476,
+  "home": [
+   "Levante",
+   "Levante",
+   "Levante",
+   "LEV"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "ligue1",
+  "event": "AS Monaco – Lille",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.6,
+  "fair": 3.4534210182751677,
+  "min_odds": 3.557023648823423,
+  "home": [
+   "AS Monaco",
+   "AS Monaco",
+   "Monaco",
+   "MON"
+  ],
+  "away": [
+   "Lille",
+   "Lille",
+   "Lille",
+   "LILL"
   ]
  }
 ]
