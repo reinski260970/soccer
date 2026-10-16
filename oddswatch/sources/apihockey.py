@@ -7,6 +7,7 @@ probabilities are never sent to the provider; prices are attached only afterward
 from __future__ import annotations
 
 import os
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 
@@ -16,6 +17,30 @@ from ..selection import Offer
 BASE = "https://v1.hockey.api-sports.io"
 EXEC_BOOKS = {"bet365", "betfair", "unibet", "bwin", "1xbet", "10bet"}
 REF_BOOKS = {"pinnacle"}
+
+# The API-Sports free plan allows 10 requests/minute. attach() previously
+# fired odds() once per matched game with no pacing, so any run with more
+# than ~10 games burned the rest of its quota on 429s instead of data.
+# A per-process sliding window keeps every _get() call (games_on, odds,
+# find_league_id, league_games) under that cap with a small safety margin.
+_RATE_LIMIT_PER_MIN = 9
+_request_times: list[float] = []
+
+
+def _throttle() -> None:
+    now = time.monotonic()
+    cutoff = now - 60.0
+    while _request_times and _request_times[0] < cutoff:
+        _request_times.pop(0)
+    if len(_request_times) >= _RATE_LIMIT_PER_MIN:
+        wait = 60.0 - (now - _request_times[0]) + 0.1
+        if wait > 0:
+            time.sleep(wait)
+        now = time.monotonic()
+        cutoff = now - 60.0
+        while _request_times and _request_times[0] < cutoff:
+            _request_times.pop(0)
+    _request_times.append(now)
 
 
 def api_key() -> str:
@@ -30,6 +55,7 @@ def _get(path: str) -> tuple[dict | None, str | None]:
     key = api_key()
     if not key:
         return None, "API-Hockey: APIKEY nicht gesetzt"
+    _throttle()
     data, err = fetch.get_json(BASE + path, headers={"x-apisports-key": key}, retries=1)
     if err:
         return None, f"API-Hockey {path}: {err.split(': ', 1)[-1]}"
