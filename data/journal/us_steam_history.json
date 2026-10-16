@@ -39,6 +39,26 @@
     "Polymarket": 1.7699115044247788,
     "ESPN/DK": 1.6756756756756757
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Jacksonville Jaguars – Houston Texans",
+   "kickoff": "2026-10-18T13:30:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Jacksonville Jaguars ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.565,
+    "ESPN/DK": 0.5767508206717658
+   },
+   "odds": {
+    "Polymarket": 1.7699115044247788,
+    "ESPN/DK": 1.6756756756756757
+   }
   }
  ],
  "us:nfl:401872996:away": [
@@ -64,6 +84,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Jacksonville Jaguars – Houston Texans",
+   "kickoff": "2026-10-18T13:30:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Houston Texans ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.435,
+    "ESPN/DK": 0.42324917932823425
+   },
+   "odds": {
+    "Polymarket": 2.2988505747126435,
+    "ESPN/DK": 2.24
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Jacksonville Jaguars – Houston Texans",
    "kickoff": "2026-10-18T13:30:00+00:00",
    "league": "nfl",
@@ -123,6 +163,26 @@
     "Polymarket": 2.0202020202020203,
     "ESPN/DK": 1.9803921568627452
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Atlanta Falcons – Chicago Bears",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Atlanta Falcons ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.495,
+    "ESPN/DK": 0.4814245062798449
+   },
+   "odds": {
+    "Polymarket": 2.0202020202020203,
+    "ESPN/DK": 1.9803921568627452
+   }
   }
  ],
  "us:nfl:401872999:away": [
@@ -148,6 +208,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Atlanta Falcons – Chicago Bears",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Chicago Bears ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.505,
+    "ESPN/DK": 0.5185754937201552
+   },
+   "odds": {
+    "Polymarket": 1.9801980198019802,
+    "ESPN/DK": 1.847457627118644
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Atlanta Falcons – Chicago Bears",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "nfl",
@@ -207,6 +287,26 @@
     "Polymarket": 2.8985507246376816,
     "ESPN/DK": 2.7
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Cleveland Browns – Baltimore Ravens",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Cleveland Browns ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.385,
+    "ESPN/DK": 0.40071360029037373
+   },
+   "odds": {
+    "Polymarket": 2.5974025974025974,
+    "ESPN/DK": 2.3600000000000003
+   }
   }
  ],
  "us:nfl:401872997:away": [
@@ -248,6 +348,26 @@
    "odds": {
     "Polymarket": 1.5267175572519083,
     "ESPN/DK": 1.4878048780487805
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Cleveland Browns – Baltimore Ravens",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Baltimore Ravens ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.615,
+    "ESPN/DK": 0.5992863997096265
+   },
+   "odds": {
+    "Polymarket": 1.6260162601626016,
+    "ESPN/DK": 1.617283950617284
    }
   }
  ],
@@ -291,6 +411,26 @@
     "Polymarket": 1.342281879194631,
     "ESPN/DK": 1.2816901408450705
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Indianapolis Colts – Tennessee Titans",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Indianapolis Colts ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.735,
+    "ESPN/DK": 0.7598195285770454
+   },
+   "odds": {
+    "Polymarket": 1.3605442176870748,
+    "ESPN/DK": 1.289855072463768
+   }
   }
  ],
  "us:nfl:401873003:away": [
@@ -333,6 +473,26 @@
     "Polymarket": 3.9215686274509802,
     "ESPN/DK": 3.8
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Indianapolis Colts – Tennessee Titans",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Tennessee Titans ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.265,
+    "ESPN/DK": 0.2401804714229546
+   },
+   "odds": {
+    "Polymarket": 3.773584905660377,
+    "ESPN/DK": 3.75
+   }
   }
  ],
  "us:nfl:401873001:home": [
@@ -358,6 +518,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "New England Patriots – New York Jets",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "New England Patriots ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.755,
+    "ESPN/DK": 0.7598195285770454
+   },
+   "odds": {
+    "Polymarket": 1.3245033112582782,
+    "ESPN/DK": 1.289855072463768
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "New England Patriots – New York Jets",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "nfl",
@@ -417,6 +597,26 @@
     "Polymarket": 4.081632653061225,
     "ESPN/DK": 3.75
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New England Patriots – New York Jets",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "New York Jets ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.245,
+    "ESPN/DK": 0.2401804714229546
+   },
+   "odds": {
+    "Polymarket": 4.081632653061225,
+    "ESPN/DK": 3.75
+   }
   }
  ],
  "us:nfl:401873000:home": [
@@ -458,6 +658,26 @@
    "odds": {
     "Polymarket": 2.061855670103093,
     "ESPN/DK": 1.925925925925926
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New York Giants – New Orleans Saints",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "New York Giants ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.485,
+    "ESPN/DK": 0.5000000000000001
+   },
+   "odds": {
+    "Polymarket": 2.061855670103093,
+    "ESPN/DK": 1.9090909090909092
    }
   }
  ],
@@ -501,6 +721,26 @@
     "Polymarket": 1.941747572815534,
     "ESPN/DK": 1.8928571428571428
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New York Giants – New Orleans Saints",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "New Orleans Saints ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.515,
+    "ESPN/DK": 0.5000000000000001
+   },
+   "odds": {
+    "Polymarket": 1.941747572815534,
+    "ESPN/DK": 1.9090909090909092
+   }
   }
  ],
  "us:nfl:401872998:home": [
@@ -542,6 +782,26 @@
    "odds": {
     "Polymarket": 2.73972602739726,
     "ESPN/DK": 2.54
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia Eagles – Carolina Panthers",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Philadelphia Eagles ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.365,
+    "ESPN/DK": 0.3834067557103053
+   },
+   "odds": {
+    "Polymarket": 2.73972602739726,
+    "ESPN/DK": 2.45
    }
   }
  ],
@@ -585,6 +845,26 @@
     "Polymarket": 1.574803149606299,
     "ESPN/DK": 1.5405405405405406
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia Eagles – Carolina Panthers",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Carolina Panthers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.635,
+    "ESPN/DK": 0.6165932442896949
+   },
+   "odds": {
+    "Polymarket": 1.574803149606299,
+    "ESPN/DK": 1.5714285714285714
+   }
   }
  ],
  "us:nfl:401873002:home": [
@@ -610,6 +890,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Tampa Bay Buccaneers – Pittsburgh Steelers",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Tampa Bay Buccaneers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.445,
+    "ESPN/DK": 0.42324917932823425
+   },
+   "odds": {
+    "Polymarket": 2.247191011235955,
+    "ESPN/DK": 2.24
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Tampa Bay Buccaneers – Pittsburgh Steelers",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "nfl",
@@ -669,6 +969,26 @@
     "Polymarket": 1.8018018018018016,
     "ESPN/DK": 1.6756756756756757
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Tampa Bay Buccaneers – Pittsburgh Steelers",
+   "kickoff": "2026-10-18T17:00:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Pittsburgh Steelers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.555,
+    "ESPN/DK": 0.5767508206717658
+   },
+   "odds": {
+    "Polymarket": 1.8018018018018016,
+    "ESPN/DK": 1.6756756756756757
+   }
   }
  ],
  "us:nfl:401873006:home": [
@@ -710,6 +1030,26 @@
    "odds": {
     "Polymarket": 1.2738853503184713,
     "ESPN/DK": 1.2127659574468086
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Kansas City Chiefs – Los Angeles Chargers",
+   "kickoff": "2026-10-18T20:25:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Kansas City Chiefs ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.785,
+    "ESPN/DK": 0.7949142857884268
+   },
+   "odds": {
+    "Polymarket": 1.2738853503184713,
+    "ESPN/DK": 1.2352941176470589
    }
   }
  ],
@@ -753,6 +1093,26 @@
     "Polymarket": 4.651162790697675,
     "ESPN/DK": 4.6
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Kansas City Chiefs – Los Angeles Chargers",
+   "kickoff": "2026-10-18T20:25:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Los Angeles Chargers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.215,
+    "ESPN/DK": 0.20508571421157346
+   },
+   "odds": {
+    "Polymarket": 4.651162790697675,
+    "ESPN/DK": 4.3
+   }
   }
  ],
  "us:nfl:401873005:home": [
@@ -778,6 +1138,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Las Vegas Raiders – Buffalo Bills",
+   "kickoff": "2026-10-18T20:25:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Las Vegas Raiders ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.325,
+    "ESPN/DK": 0.3202717393520512
+   },
+   "odds": {
+    "Polymarket": 3.0769230769230766,
+    "ESPN/DK": 2.9
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Las Vegas Raiders – Buffalo Bills",
    "kickoff": "2026-10-18T20:25:00+00:00",
    "league": "nfl",
@@ -837,6 +1217,26 @@
     "Polymarket": 1.4814814814814814,
     "ESPN/DK": 1.434782608695652
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Las Vegas Raiders – Buffalo Bills",
+   "kickoff": "2026-10-18T20:25:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Buffalo Bills ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.675,
+    "ESPN/DK": 0.6797282606479488
+   },
+   "odds": {
+    "Polymarket": 1.4814814814814814,
+    "ESPN/DK": 1.434782608695652
+   }
   }
  ],
  "us:nfl:401873007:home": [
@@ -878,6 +1278,26 @@
    "odds": {
     "Polymarket": 1.941747572815534,
     "ESPN/DK": 1.847457627118644
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Green Bay Packers – Dallas Cowboys",
+   "kickoff": "2026-10-19T00:20:00+00:00",
+   "league": "nfl",
+   "market": "home",
+   "selection": "Green Bay Packers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.515,
+    "ESPN/DK": 0.5116044544982121
+   },
+   "odds": {
+    "Polymarket": 1.941747572815534,
+    "ESPN/DK": 1.8695652173913042
    }
   }
  ],
@@ -921,6 +1341,26 @@
     "Polymarket": 2.061855670103093,
     "ESPN/DK": 1.9803921568627452
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Green Bay Packers – Dallas Cowboys",
+   "kickoff": "2026-10-19T00:20:00+00:00",
+   "league": "nfl",
+   "market": "away",
+   "selection": "Dallas Cowboys ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.485,
+    "ESPN/DK": 0.488395545501788
+   },
+   "odds": {
+    "Polymarket": 2.061855670103093,
+    "ESPN/DK": 1.9523809523809523
+   }
   }
  ],
  "us:nhl:401892517:home": [
@@ -962,6 +1402,26 @@
    "odds": {
     "Polymarket": 1.5267175572519083,
     "ESPN/DK": 1.5208333333333335
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Colorado Avalanche – Pittsburgh Penguins",
+   "kickoff": "2026-10-17T01:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Colorado Avalanche ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.655,
+    "ESPN/DK": 0.6540447510380856
+   },
+   "odds": {
+    "Polymarket": 1.5267175572519083,
+    "ESPN/DK": 1.4878048780487805
    }
   }
  ],
@@ -1005,6 +1465,26 @@
     "Polymarket": 2.8985507246376816,
     "ESPN/DK": 2.6
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Colorado Avalanche – Pittsburgh Penguins",
+   "kickoff": "2026-10-17T01:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Pittsburgh Penguins ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.345,
+    "ESPN/DK": 0.3459552489619146
+   },
+   "odds": {
+    "Polymarket": 2.8985507246376816,
+    "ESPN/DK": 2.7
+   }
   }
  ],
  "us:nhl:401892518:home": [
@@ -1046,6 +1526,26 @@
    "odds": {
     "Polymarket": 2.061855670103093,
     "ESPN/DK": 1.925925925925926
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Anaheim Ducks – Boston Bruins",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Anaheim Ducks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.495,
+    "ESPN/DK": 0.5046406578884406
+   },
+   "odds": {
+    "Polymarket": 2.0202020202020203,
+    "ESPN/DK": 1.8928571428571428
    }
   }
  ],
@@ -1089,6 +1589,26 @@
     "Polymarket": 1.941747572815534,
     "ESPN/DK": 1.8928571428571428
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Anaheim Ducks – Boston Bruins",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Boston Bruins ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.505,
+    "ESPN/DK": 0.4953593421115595
+   },
+   "odds": {
+    "Polymarket": 1.9801980198019802,
+    "ESPN/DK": 1.925925925925926
+   }
   }
  ],
  "us:nba:401898406:home": [
@@ -1129,6 +1649,26 @@
    },
    "odds": {
     "Polymarket": 1.7391304347826089,
+    "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Orlando Magic – Miami Heat",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Orlando Magic ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.585,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.7094017094017095,
     "ESPN/DK": 1.704225352112676
    }
   }
@@ -1173,6 +1713,26 @@
     "Polymarket": 2.3529411764705883,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Orlando Magic – Miami Heat",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Miami Heat ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.415,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.4096385542168677,
+    "ESPN/DK": 2.2
+   }
   }
  ],
  "us:nba:401898407:home": [
@@ -1214,6 +1774,26 @@
    "odds": {
     "Polymarket": 1.5503875968992247,
     "ESPN/DK": 1.5050505050505052
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia 76ers – Boston Celtics",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Philadelphia 76ers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.605,
+    "ESPN/DK": 0.6165932442896949
+   },
+   "odds": {
+    "Polymarket": 1.6528925619834711,
+    "ESPN/DK": 1.5714285714285714
    }
   }
  ],
@@ -1257,6 +1837,26 @@
     "Polymarket": 2.8169014084507045,
     "ESPN/DK": 2.6399999999999997
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia 76ers – Boston Celtics",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Boston Celtics ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.395,
+    "ESPN/DK": 0.3834067557103053
+   },
+   "odds": {
+    "Polymarket": 2.531645569620253,
+    "ESPN/DK": 2.45
+   }
   }
  ],
  "us:nba:401908946:home": [
@@ -1298,6 +1898,26 @@
    "odds": {
     "Polymarket": 1.2738853503184713,
     "ESPN/DK": 1.2439024390243902
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Detroit Pistons – Toronto Raptors",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Detroit Pistons ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.78,
+    "ESPN/DK": 0.800349945263178
+   },
+   "odds": {
+    "Polymarket": 1.282051282051282,
+    "ESPN/DK": 1.2272727272727273
    }
   }
  ],
@@ -1341,6 +1961,26 @@
     "Polymarket": 4.651162790697675,
     "ESPN/DK": 4.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Detroit Pistons – Toronto Raptors",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Toronto Raptors ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.22,
+    "ESPN/DK": 0.19965005473682204
+   },
+   "odds": {
+    "Polymarket": 4.545454545454546,
+    "ESPN/DK": 4.4
+   }
   }
  ],
  "us:nba:401914126:home": [
@@ -1381,6 +2021,26 @@
    },
    "odds": {
     "Polymarket": 1.3605442176870748,
+    "ESPN/DK": 1.3225806451612903
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Indiana Pacers – Milwaukee Bucks",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Indiana Pacers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.715,
+    "ESPN/DK": 0.7402138056317711
+   },
+   "odds": {
+    "Polymarket": 1.3986013986013988,
     "ESPN/DK": 1.3225806451612903
    }
   }
@@ -1425,6 +2085,26 @@
     "Polymarket": 3.773584905660377,
     "ESPN/DK": 3.5
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Indiana Pacers – Milwaukee Bucks",
+   "kickoff": "2026-10-16T23:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Milwaukee Bucks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.28500000000000003,
+    "ESPN/DK": 0.2597861943682291
+   },
+   "odds": {
+    "Polymarket": 3.508771929824561,
+    "ESPN/DK": 3.5
+   }
   }
  ],
  "us:nba:401909088:home": [
@@ -1450,6 +2130,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Detroit Pistons – Boston Celtics",
+   "kickoff": "2026-10-20T19:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Detroit Pistons ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.495,
+    "ESPN/DK": 0.5116044544982121
+   },
+   "odds": {
+    "Polymarket": 2.0202020202020203,
+    "ESPN/DK": 1.8695652173913042
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Detroit Pistons – Boston Celtics",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "nba",
@@ -1509,6 +2209,26 @@
     "Polymarket": 1.9801980198019802,
     "ESPN/DK": 1.9523809523809523
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Detroit Pistons – Boston Celtics",
+   "kickoff": "2026-10-20T19:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Boston Celtics ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.505,
+    "ESPN/DK": 0.488395545501788
+   },
+   "odds": {
+    "Polymarket": 1.9801980198019802,
+    "ESPN/DK": 1.9523809523809523
+   }
   }
  ],
  "us:nba:401909089:home": [
@@ -1550,6 +2270,26 @@
    "odds": {
     "Polymarket": 1.5503875968992247,
     "ESPN/DK": 1.4878048780487805
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New York Knicks – Philadelphia 76ers",
+   "kickoff": "2026-10-20T23:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "New York Knicks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.645,
+    "ESPN/DK": 0.6458638608509292
+   },
+   "odds": {
+    "Polymarket": 1.5503875968992247,
+    "ESPN/DK": 1.5050505050505052
    }
   }
  ],
@@ -1593,6 +2333,26 @@
     "Polymarket": 2.8169014084507045,
     "ESPN/DK": 2.7
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New York Knicks – Philadelphia 76ers",
+   "kickoff": "2026-10-20T23:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Philadelphia 76ers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.355,
+    "ESPN/DK": 0.354136139149071
+   },
+   "odds": {
+    "Polymarket": 2.8169014084507045,
+    "ESPN/DK": 2.6399999999999997
+   }
   }
  ],
  "us:nba:401909090:home": [
@@ -1618,6 +2378,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "San Antonio Spurs – Oklahoma City Thunder",
+   "kickoff": "2026-10-21T01:30:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "San Antonio Spurs ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.555,
+    "ESPN/DK": 0.545402735444426
+   },
+   "odds": {
+    "Polymarket": 1.8018018018018016,
+    "ESPN/DK": 1.7692307692307692
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "San Antonio Spurs – Oklahoma City Thunder",
    "kickoff": "2026-10-21T01:30:00+00:00",
    "league": "nba",
@@ -1677,6 +2457,26 @@
     "Polymarket": 2.247191011235955,
     "ESPN/DK": 2.1
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "San Antonio Spurs – Oklahoma City Thunder",
+   "kickoff": "2026-10-21T01:30:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Oklahoma City Thunder ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.445,
+    "ESPN/DK": 0.45459726455557437
+   },
+   "odds": {
+    "Polymarket": 2.247191011235955,
+    "ESPN/DK": 2.1
+   }
   }
  ],
  "us:nba:401898408:home": [
@@ -1702,6 +2502,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Dallas Mavericks – Atlanta Hawks",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Dallas Mavericks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.515,
+    "ESPN/DK": 0.5116044544982121
+   },
+   "odds": {
+    "Polymarket": 1.941747572815534,
+    "ESPN/DK": 1.8695652173913042
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Dallas Mavericks – Atlanta Hawks",
    "kickoff": "2026-10-17T00:00:00+00:00",
    "league": "nba",
@@ -1761,6 +2581,26 @@
     "Polymarket": 2.061855670103093,
     "ESPN/DK": 1.9523809523809523
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Dallas Mavericks – Atlanta Hawks",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Atlanta Hawks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.485,
+    "ESPN/DK": 0.488395545501788
+   },
+   "odds": {
+    "Polymarket": 2.061855670103093,
+    "ESPN/DK": 1.9523809523809523
+   }
   }
  ],
  "us:nba:401898843:home": [
@@ -1802,6 +2642,26 @@
    "odds": {
     "Polymarket": 1.1428571428571428,
     "ESPN/DK": 1.1
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "San Antonio Spurs – Sacramento Kings",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "San Antonio Spurs ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.845,
+    "ESPN/DK": 0.8826661195242046
+   },
+   "odds": {
+    "Polymarket": 1.183431952662722,
+    "ESPN/DK": 1.1176470588235294
    }
   }
  ],
@@ -1845,6 +2705,26 @@
     "Polymarket": 8.0,
     "ESPN/DK": 7.5
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "San Antonio Spurs – Sacramento Kings",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Sacramento Kings ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.155,
+    "ESPN/DK": 0.11733388047579552
+   },
+   "odds": {
+    "Polymarket": 6.451612903225807,
+    "ESPN/DK": 6.75
+   }
   }
  ],
  "us:nba:401901822:home": [
@@ -1886,6 +2766,26 @@
    "odds": {
     "Polymarket": 2.061855670103093,
     "ESPN/DK": 1.9523809523809523
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Memphis Grizzlies – Charlotte Hornets",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Memphis Grizzlies ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.54,
+    "ESPN/DK": 0.5278394447975963
+   },
+   "odds": {
+    "Polymarket": 1.8518518518518516,
+    "ESPN/DK": 1.819672131147541
    }
   }
  ],
@@ -1929,6 +2829,26 @@
     "Polymarket": 1.941747572815534,
     "ESPN/DK": 1.8695652173913042
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Memphis Grizzlies – Charlotte Hornets",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Charlotte Hornets ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.45999999999999996,
+    "ESPN/DK": 0.47216055520240385
+   },
+   "odds": {
+    "Polymarket": 2.173913043478261,
+    "ESPN/DK": 2.02
+   }
   }
  ],
  "us:nba:401906509:home": [
@@ -1970,6 +2890,26 @@
    "odds": {
     "Polymarket": 2.247191011235955,
     "ESPN/DK": 2.1
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New Orleans Pelicans – Washington Wizards",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "New Orleans Pelicans ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.455,
+    "ESPN/DK": 0.4453295209107215
+   },
+   "odds": {
+    "Polymarket": 2.1978021978021975,
+    "ESPN/DK": 2.1399999999999997
    }
   }
  ],
@@ -2013,6 +2953,26 @@
     "Polymarket": 1.8018018018018016,
     "ESPN/DK": 1.7692307692307692
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "New Orleans Pelicans – Washington Wizards",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Washington Wizards ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.545,
+    "ESPN/DK": 0.5546704790892787
+   },
+   "odds": {
+    "Polymarket": 1.8348623853211008,
+    "ESPN/DK": 1.7407407407407407
+   }
   }
  ],
  "us:nba:401908943:home": [
@@ -2054,6 +3014,26 @@
    "odds": {
     "Polymarket": 2.1052631578947367,
     "ESPN/DK": 2.05
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Chicago Bulls – Minnesota Timberwolves",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Chicago Bulls ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.605,
+    "ESPN/DK": 0.5992863997096265
+   },
+   "odds": {
+    "Polymarket": 1.6528925619834711,
+    "ESPN/DK": 1.617283950617284
    }
   }
  ],
@@ -2097,6 +3077,26 @@
     "Polymarket": 1.9047619047619047,
     "ESPN/DK": 1.8
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Chicago Bulls – Minnesota Timberwolves",
+   "kickoff": "2026-10-17T00:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Minnesota Timberwolves ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.395,
+    "ESPN/DK": 0.40071360029037373
+   },
+   "odds": {
+    "Polymarket": 2.531645569620253,
+    "ESPN/DK": 2.3600000000000003
+   }
   }
  ],
  "us:nba:401898409:home": [
@@ -2138,6 +3138,26 @@
    "odds": {
     "Polymarket": 2.4691358024691357,
     "ESPN/DK": 2.4
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Golden State Warriors – Portland Trail Blazers",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Golden State Warriors ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.415,
+    "ESPN/DK": 0.42324917932823425
+   },
+   "odds": {
+    "Polymarket": 2.4096385542168677,
+    "ESPN/DK": 2.24
    }
   }
  ],
@@ -2181,6 +3201,26 @@
     "Polymarket": 1.680672268907563,
     "ESPN/DK": 1.6024096385542168
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Golden State Warriors – Portland Trail Blazers",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Portland Trail Blazers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.585,
+    "ESPN/DK": 0.5767508206717658
+   },
+   "odds": {
+    "Polymarket": 1.7094017094017095,
+    "ESPN/DK": 1.6756756756756757
+   }
   }
  ],
  "us:nba:401908948:home": [
@@ -2206,6 +3246,26 @@
   },
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Phoenix Suns – Utah Jazz",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Phoenix Suns ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.615,
+    "ESPN/DK": 0.6239778220823534
+   },
+   "odds": {
+    "Polymarket": 1.6260162601626016,
+    "ESPN/DK": 1.5555555555555556
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Phoenix Suns – Utah Jazz",
    "kickoff": "2026-10-17T02:00:00+00:00",
    "league": "nba",
@@ -2265,6 +3325,26 @@
     "Polymarket": 2.5974025974025974,
     "ESPN/DK": 2.5
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Phoenix Suns – Utah Jazz",
+   "kickoff": "2026-10-17T02:00:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Utah Jazz ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.385,
+    "ESPN/DK": 0.3760221779176465
+   },
+   "odds": {
+    "Polymarket": 2.5974025974025974,
+    "ESPN/DK": 2.5
+   }
   }
  ],
  "us:nba:401898719:home": [
@@ -2306,6 +3386,26 @@
    "odds": {
     "Polymarket": 1.5037593984962405,
     "ESPN/DK": 1.4587155963302751
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Los Angeles Lakers – Denver Nuggets",
+   "kickoff": "2026-10-17T02:30:00+00:00",
+   "league": "nba",
+   "market": "home",
+   "selection": "Los Angeles Lakers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.705,
+    "ESPN/DK": 0.7130572795227861
+   },
+   "odds": {
+    "Polymarket": 1.4184397163120568,
+    "ESPN/DK": 1.3703703703703702
    }
   }
  ],
@@ -2349,6 +3449,26 @@
     "Polymarket": 2.9850746268656714,
     "ESPN/DK": 2.8
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Los Angeles Lakers – Denver Nuggets",
+   "kickoff": "2026-10-17T02:30:00+00:00",
+   "league": "nba",
+   "market": "away",
+   "selection": "Denver Nuggets ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.295,
+    "ESPN/DK": 0.2869427204772141
+   },
+   "odds": {
+    "Polymarket": 3.3898305084745766,
+    "ESPN/DK": 3.2
+   }
   }
  ],
  "us:nhl:401892519:home": [
@@ -2370,6 +3490,26 @@
    "odds": {
     "Polymarket": 1.8691588785046729,
     "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Washington Capitals – New Jersey Devils",
+   "kickoff": "2026-10-17T17:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Washington Capitals ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.525,
+    "ESPN/DK": 0.5345862274328823
+   },
+   "odds": {
+    "Polymarket": 1.9047619047619047,
+    "ESPN/DK": 1.8
    }
   }
  ],
@@ -2393,6 +3533,26 @@
     "Polymarket": 2.1505376344086025,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Washington Capitals – New Jersey Devils",
+   "kickoff": "2026-10-17T17:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "New Jersey Devils ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.475,
+    "ESPN/DK": 0.4654137725671179
+   },
+   "odds": {
+    "Polymarket": 2.1052631578947367,
+    "ESPN/DK": 2.05
+   }
   }
  ],
  "us:nhl:401892520:home": [
@@ -2414,6 +3574,26 @@
    "odds": {
     "Polymarket": 2.6666666666666665,
     "ESPN/DK": 2.24
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Winnipeg Jets – Carolina Hurricanes",
+   "kickoff": "2026-10-17T19:30:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Winnipeg Jets ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.385,
+    "ESPN/DK": 0.38953217994854766
+   },
+   "odds": {
+    "Polymarket": 2.5974025974025974,
+    "ESPN/DK": 2.42
    }
   }
  ],
@@ -2437,6 +3617,26 @@
     "Polymarket": 1.6,
     "ESPN/DK": 1.6756756756756757
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Winnipeg Jets – Carolina Hurricanes",
+   "kickoff": "2026-10-17T19:30:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Carolina Hurricanes ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.615,
+    "ESPN/DK": 0.6104678200514524
+   },
+   "odds": {
+    "Polymarket": 1.6260162601626016,
+    "ESPN/DK": 1.5882352941176472
+   }
   }
  ],
  "us:nhl:401892521:home": [
@@ -2457,6 +3657,26 @@
    },
    "odds": {
     "Polymarket": 1.3157894736842106,
+    "ESPN/DK": 1.263157894736842
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Tampa Bay Lightning – Vancouver Canucks",
+   "kickoff": "2026-10-17T20:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Tampa Bay Lightning ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.765,
+    "ESPN/DK": 0.7767259939980099
+   },
+   "odds": {
+    "Polymarket": 1.3071895424836601,
     "ESPN/DK": 1.263157894736842
    }
   }
@@ -2481,11 +3701,51 @@
     "Polymarket": 4.166666666666667,
     "ESPN/DK": 4.0
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Tampa Bay Lightning – Vancouver Canucks",
+   "kickoff": "2026-10-17T20:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Vancouver Canucks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.235,
+    "ESPN/DK": 0.22327400600199038
+   },
+   "odds": {
+    "Polymarket": 4.25531914893617,
+    "ESPN/DK": 4.0
+   }
   }
  ],
  "us:nhl:401892522:home": [
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Florida Panthers – Seattle Kraken",
+   "kickoff": "2026-10-17T22:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Florida Panthers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.645,
+    "ESPN/DK": 0.6303940339016127
+   },
+   "odds": {
+    "Polymarket": 1.5503875968992247,
+    "ESPN/DK": 1.5405405405405406
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Florida Panthers – Seattle Kraken",
    "kickoff": "2026-10-17T22:00:00+00:00",
    "league": "nhl",
@@ -2525,11 +3785,51 @@
     "Polymarket": 2.8169014084507045,
     "ESPN/DK": 2.54
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Florida Panthers – Seattle Kraken",
+   "kickoff": "2026-10-17T22:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Seattle Kraken ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.355,
+    "ESPN/DK": 0.3696059660983874
+   },
+   "odds": {
+    "Polymarket": 2.8169014084507045,
+    "ESPN/DK": 2.54
+   }
   }
  ],
  "us:nhl:401892523:home": [
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Toronto Maple Leafs – New York Islanders",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Toronto Maple Leafs ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.555,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.8018018018018016,
+    "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Toronto Maple Leafs – New York Islanders",
    "kickoff": "2026-10-17T23:00:00+00:00",
    "league": "nhl",
@@ -2569,6 +3869,26 @@
     "Polymarket": 2.247191011235955,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Toronto Maple Leafs – New York Islanders",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "New York Islanders ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.445,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.247191011235955,
+    "ESPN/DK": 2.2
+   }
   }
  ],
  "us:nhl:401892524:home": [
@@ -2590,6 +3910,26 @@
    "odds": {
     "Polymarket": 1.7699115044247788,
     "ESPN/DK": 1.7407407407407407
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Montreal Canadiens – Buffalo Sabres",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Montreal Canadiens ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.565,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.7699115044247788,
+    "ESPN/DK": 1.704225352112676
    }
   }
  ],
@@ -2613,11 +3953,51 @@
     "Polymarket": 2.2988505747126435,
     "ESPN/DK": 2.1399999999999997
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Montreal Canadiens – Buffalo Sabres",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Buffalo Sabres ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.435,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.2988505747126435,
+    "ESPN/DK": 2.2
+   }
   }
  ],
  "us:nhl:401892525:home": [
   {
    "ts": "2026-10-16T15:31:36.711291+00:00",
+   "event": "Detroit Red Wings – San Jose Sharks",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Detroit Red Wings ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.565,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.7699115044247788,
+    "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
    "event": "Detroit Red Wings – San Jose Sharks",
    "kickoff": "2026-10-17T23:00:00+00:00",
    "league": "nhl",
@@ -2657,6 +4037,26 @@
     "Polymarket": 2.2988505747126435,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Detroit Red Wings – San Jose Sharks",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "San Jose Sharks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.435,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.2988505747126435,
+    "ESPN/DK": 2.2
+   }
   }
  ],
  "us:nhl:401892526:home": [
@@ -2678,6 +4078,26 @@
    "odds": {
     "Polymarket": 2.2988505747126435,
     "ESPN/DK": 2.1
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia Flyers – Ottawa Senators",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Philadelphia Flyers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.425,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.3529411764705883,
+    "ESPN/DK": 2.2
    }
   }
  ],
@@ -2701,6 +4121,26 @@
     "Polymarket": 1.7699115044247788,
     "ESPN/DK": 1.7692307692307692
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Philadelphia Flyers – Ottawa Senators",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Ottawa Senators ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.575,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.7391304347826089,
+    "ESPN/DK": 1.704225352112676
+   }
   }
  ],
  "us:nhl:401892527:home": [
@@ -2722,6 +4162,26 @@
    "odds": {
     "Polymarket": 1.8348623853211008,
     "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Columbus Blue Jackets – New York Rangers",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Columbus Blue Jackets ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.555,
+    "ESPN/DK": 0.5546704790892787
+   },
+   "odds": {
+    "Polymarket": 1.8018018018018016,
+    "ESPN/DK": 1.7407407407407407
    }
   }
  ],
@@ -2745,6 +4205,26 @@
     "Polymarket": 2.1978021978021975,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Columbus Blue Jackets – New York Rangers",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "New York Rangers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.445,
+    "ESPN/DK": 0.4453295209107215
+   },
+   "odds": {
+    "Polymarket": 2.247191011235955,
+    "ESPN/DK": 2.1399999999999997
+   }
   }
  ],
  "us:nhl:401892528:home": [
@@ -2766,6 +4246,26 @@
    "odds": {
     "Polymarket": 2.7777777777777777,
     "ESPN/DK": 2.6
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Chicago Blackhawks – Dallas Stars",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Chicago Blackhawks ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.365,
+    "ESPN/DK": 0.354136139149071
+   },
+   "odds": {
+    "Polymarket": 2.73972602739726,
+    "ESPN/DK": 2.6399999999999997
    }
   }
  ],
@@ -2789,6 +4289,26 @@
     "Polymarket": 1.5625,
     "ESPN/DK": 1.5208333333333335
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Chicago Blackhawks – Dallas Stars",
+   "kickoff": "2026-10-17T23:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Dallas Stars ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.635,
+    "ESPN/DK": 0.6458638608509292
+   },
+   "odds": {
+    "Polymarket": 1.574803149606299,
+    "ESPN/DK": 1.5050505050505052
+   }
   }
  ],
  "us:nhl:401892529:home": [
@@ -2810,6 +4330,26 @@
    "odds": {
     "Polymarket": 2.0202020202020203,
     "ESPN/DK": 1.8695652173913042
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Nashville Predators – St. Louis Blues",
+   "kickoff": "2026-10-18T00:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Nashville Predators ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.495,
+    "ESPN/DK": 0.5000000000000001
+   },
+   "odds": {
+    "Polymarket": 2.0202020202020203,
+    "ESPN/DK": 1.9090909090909092
    }
   }
  ],
@@ -2833,6 +4373,26 @@
     "Polymarket": 1.9801980198019802,
     "ESPN/DK": 1.9523809523809523
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Nashville Predators – St. Louis Blues",
+   "kickoff": "2026-10-18T00:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "St. Louis Blues ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.505,
+    "ESPN/DK": 0.5000000000000001
+   },
+   "odds": {
+    "Polymarket": 1.9801980198019802,
+    "ESPN/DK": 1.9090909090909092
+   }
   }
  ],
  "us:nhl:401892530:home": [
@@ -2853,6 +4413,26 @@
    },
    "odds": {
     "Polymarket": 1.8181818181818181,
+    "ESPN/DK": 1.704225352112676
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Los Angeles Kings – Boston Bruins",
+   "kickoff": "2026-10-18T01:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Los Angeles Kings ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.565,
+    "ESPN/DK": 0.5674365390167734
+   },
+   "odds": {
+    "Polymarket": 1.7699115044247788,
     "ESPN/DK": 1.704225352112676
    }
   }
@@ -2877,6 +4457,26 @@
     "Polymarket": 2.2222222222222223,
     "ESPN/DK": 2.2
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Los Angeles Kings – Boston Bruins",
+   "kickoff": "2026-10-18T01:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Boston Bruins ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.435,
+    "ESPN/DK": 0.4325634609832266
+   },
+   "odds": {
+    "Polymarket": 2.2988505747126435,
+    "ESPN/DK": 2.2
+   }
   }
  ],
  "us:nhl:401892531:home": [
@@ -2898,6 +4498,26 @@
    "odds": {
     "Polymarket": 1.8018018018018016,
     "ESPN/DK": 1.7407407407407407
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Utah Mammoth – Edmonton Oilers",
+   "kickoff": "2026-10-18T02:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Utah Mammoth ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.565,
+    "ESPN/DK": 0.5767508206717658
+   },
+   "odds": {
+    "Polymarket": 1.7699115044247788,
+    "ESPN/DK": 1.6756756756756757
    }
   }
  ],
@@ -2921,6 +4541,26 @@
     "Polymarket": 2.247191011235955,
     "ESPN/DK": 2.1399999999999997
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Utah Mammoth – Edmonton Oilers",
+   "kickoff": "2026-10-18T02:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Edmonton Oilers ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.435,
+    "ESPN/DK": 0.42324917932823425
+   },
+   "odds": {
+    "Polymarket": 2.2988505747126435,
+    "ESPN/DK": 2.24
+   }
   }
  ],
  "us:nhl:401892532:home": [
@@ -2943,6 +4583,26 @@
     "Polymarket": 1.5503875968992247,
     "ESPN/DK": 1.434782608695652
    }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Vegas Golden Knights – Pittsburgh Penguins",
+   "kickoff": "2026-10-18T02:00:00+00:00",
+   "league": "nhl",
+   "market": "home",
+   "selection": "Vegas Golden Knights ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.655,
+    "ESPN/DK": 0.6797282606479488
+   },
+   "odds": {
+    "Polymarket": 1.5267175572519083,
+    "ESPN/DK": 1.434782608695652
+   }
   }
  ],
  "us:nhl:401892532:away": [
@@ -2963,6 +4623,26 @@
    },
    "odds": {
     "Polymarket": 2.8169014084507045,
+    "ESPN/DK": 2.9
+   }
+  },
+  {
+   "ts": "2026-10-16T18:59:33.569872+00:00",
+   "event": "Vegas Golden Knights – Pittsburgh Penguins",
+   "kickoff": "2026-10-18T02:00:00+00:00",
+   "league": "nhl",
+   "market": "away",
+   "selection": "Pittsburgh Penguins ML",
+   "lead_source": "Polymarket",
+   "slow_sources": [
+    "ESPN/DK"
+   ],
+   "probs": {
+    "Polymarket": 0.345,
+    "ESPN/DK": 0.3202717393520512
+   },
+   "odds": {
+    "Polymarket": 2.8985507246376816,
     "ESPN/DK": 2.9
    }
   }
