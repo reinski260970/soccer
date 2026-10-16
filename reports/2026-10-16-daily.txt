@@ -1,0 +1,48 @@
+🗞 Tagesbericht Fr 16.10. 13:38 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• La Liga · So 25.10. 14:00 MEZ
+🆚 Athletic Club – Getafe
+➡️ Getafe Sieg (90 Min.) spielbar ab 5,08 (jetzt 5,50)
+• Champions League · Di 20.10. 21:00 MESZ
+🆚 AS Roma – Slovan Bratislava
+➡️ Unentschieden (90 Min.) spielbar ab 8,88 (jetzt 9,00)
+• La Liga · Mi 21.10. 20:00 MESZ
+🆚 Levante – Athletic Club
+➡️ Unentschieden (90 Min.) spielbar ab 3,36 (jetzt 3,40)
+• Ligue 1 · So 25.10. 15:00 MEZ
+🆚 AS Monaco – Lille
+➡️ Unentschieden (90 Min.) spielbar ab 3,56 (jetzt 3,60)
+• Serie A · So 25.10. 15:00 MEZ
+🆚 Genoa – Venezia
+➡️ Unentschieden (90 Min.) spielbar ab 3,47 (jetzt 3,50)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 72 | Marktreferenz 73 | 0 PLAY
+   • AS Roma – Slovan Bratislava · Di 20.10. 21:00 MESZ: Unentschieden (90 Min.) @ 9,00, spielbar ab 8,88 (EV 4,4 %)
+   • Levante – Athletic Club · Mi 21.10. 20:00 MESZ: Unentschieden (90 Min.) @ 3,40, spielbar ab 3,36 (EV 4,3 %)
+🏒 Eishockey Europa: 95 Spiele | ausführbare Preise 0 | Marktreferenz 38 | 0 PLAY
+🏒 NHL: 47 Spiele | ausführbare Preise 0 | Marktreferenz 47 | 0 PLAY
+🏀 NBA: 16 Spiele | ausführbare Preise 0 | Marktreferenz 16 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 1 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Hamza Reguig S. vs Wiedenmann L. · ATP · Catania challenger · ATP Challenger · hard · Fr 16.10. 12:30 (Zeit unbestätigt): Hamza Reguig S. @ 4,12 (EV 88,2 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
