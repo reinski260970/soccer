@@ -1,5 +1,29 @@
 [
  {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "ligue1",
+  "event": "AS Monaco – Lille",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.6,
+  "fair": 3.41955870604423,
+  "min_odds": 3.522145467225557,
+  "home": [
+   "AS Monaco",
+   "AS Monaco",
+   "Monaco",
+   "MON"
+  ],
+  "away": [
+   "Lille",
+   "Lille",
+   "Lille",
+   "LILL"
+  ]
+ },
+ {
   "source": "betfair",
   "status": "WATCH",
   "league": "ucl",
@@ -45,30 +69,6 @@
    "Athletic Club",
    "Athletic",
    "ATH"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "ligue1",
-  "event": "AS Monaco – Lille",
-  "kickoff": "2026-10-25T14:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.6,
-  "fair": 3.4534210182751677,
-  "min_odds": 3.557023648823423,
-  "home": [
-   "AS Monaco",
-   "AS Monaco",
-   "Monaco",
-   "MON"
-  ],
-  "away": [
-   "Lille",
-   "Lille",
-   "Lille",
-   "LILL"
   ]
  },
  {
