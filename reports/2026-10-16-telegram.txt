@@ -1,0 +1,24 @@
+📊 CEO-Update 16.10.2026 06:57 MESZ
+⛔ NO PLAY: kein belegter Vorteil.
+
+👀 WATCH (nicht freigegeben)
+
+• DEL · Fr 16.10. 19:30 MESZ
+🆚 Schwenninger Wild Wings – ERC Ingolstadt
+➡️ ERC Ingolstadt Sieg (inkl. OT) @ 2,10 | spielbar ab 2,06 | EV 5,0 %
+   Grund: SHADOW/Schätzung: keine validierte Freigabe, nur WATCH
+
+• DEL · Fr 16.10. 19:30 MESZ
+🆚 Augsburger Panther – Adler Mannheim
+➡️ Adler Mannheim Sieg (inkl. OT) @ 1,65 | spielbar ab 1,66 | EV 2,6 %
+   Grund: SHADOW/Schätzung: keine validierte Freigabe, nur WATCH
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: keine Spiele in 7 Tagen
+🏒 Eishockey Europa: 72 Spiele | ausführbare Preise 7 | Marktreferenz 7 | 0 PLAY
+   • Schwenninger Wild Wings – ERC Ingolstadt · Fr 16.10. 19:30 MESZ: ERC Ingolstadt Sieg (inkl. OT) @ 2,10, spielbar ab 2,06 (EV 5,0 %)
+   • Augsburger Panther – Adler Mannheim · Fr 16.10. 19:30 MESZ: Adler Mannheim Sieg (inkl. OT) @ 1,65, spielbar ab 1,66 (EV 2,6 %)
+🏒 NHL: keine Spiele in 7 Tagen
+🏀 NBA: keine Spiele in 7 Tagen
+🏈 NFL: keine Spiele in 7 Tagen
+🎾 Tennis: keine Daten (Tennis-System vorhanden; Mongo-Zugang in diesem Workflow fehlt (erwartet MONGODB_URI oder MONGO_URI))

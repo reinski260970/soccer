@@ -2,121 +2,37 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "bundesliga",
-  "event": "Borussia Dortmund – Eintracht Frankfurt",
-  "kickoff": "2026-10-24T16:30:00+00:00",
+  "league": "del",
+  "event": "Schwenninger Wild Wings – ERC Ingolstadt",
+  "kickoff": "2026-10-16T17:30:00+00:00",
   "market": "away",
-  "selection": "Eintracht Frankfurt Sieg (90 Min.)",
-  "odds": 7.5,
-  "fair": 6.476640829849913,
-  "min_odds": 6.670940054745411,
+  "selection": "ERC Ingolstadt Sieg (inkl. OT)",
+  "odds": 2.1,
+  "fair": 2.0,
+  "min_odds": 2.06,
   "home": [
-   "Borussia Dortmund",
-   "Borussia Dortmund",
-   "Dortmund",
-   "DOR"
+   "Schwenninger Wild Wings"
   ],
   "away": [
-   "Eintracht Frankfurt",
-   "Eintracht Frankfurt",
-   "Frankfurt",
-   "SGE"
+   "ERC Ingolstadt"
   ]
  },
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "bundesliga",
-  "event": "FC Augsburg – 1. FC Union Berlin",
-  "kickoff": "2026-10-24T13:30:00+00:00",
+  "league": "del",
+  "event": "Augsburger Panther – Adler Mannheim",
+  "kickoff": "2026-10-16T17:30:00+00:00",
   "market": "away",
-  "selection": "1. FC Union Berlin Sieg (90 Min.)",
-  "odds": 4.33,
-  "fair": 3.897053056769003,
-  "min_odds": 4.013964648472073,
+  "selection": "Adler Mannheim Sieg (inkl. OT)",
+  "odds": 1.65,
+  "fair": 1.6077406891232129,
+  "min_odds": 1.6559729097969094,
   "home": [
-   "FC Augsburg",
-   "FC Augsburg",
-   "Augsburg",
-   "FCA"
+   "Augsburger Panther"
   ],
   "away": [
-   "1. FC Union Berlin",
-   "1. FC Union Berlin",
-   "Union Berlin",
-   "FCU"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "bundesliga",
-  "event": "TSG Hoffenheim – Bayer Leverkusen",
-  "kickoff": "2026-10-25T14:30:00+00:00",
-  "market": "home",
-  "selection": "TSG Hoffenheim Sieg (90 Min.)",
-  "odds": 3.0,
-  "fair": 2.8111833948212808,
-  "min_odds": 2.8955188966659193,
-  "home": [
-   "TSG Hoffenheim",
-   "TSG Hoffenheim",
-   "Hoffenheim",
-   "TSG"
-  ],
-  "away": [
-   "Bayer Leverkusen",
-   "Bayer Leverkusen",
-   "Leverkusen",
-   "B04"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "laliga",
-  "event": "Athletic Club – Getafe",
-  "kickoff": "2026-10-25T13:00:00+00:00",
-  "market": "away",
-  "selection": "Getafe Sieg (90 Min.)",
-  "odds": 6.25,
-  "fair": 5.880870657299495,
-  "min_odds": 6.057296777018479,
-  "home": [
-   "Athletic Club",
-   "Athletic Club",
-   "Athletic",
-   "ATH"
-  ],
-  "away": [
-   "Getafe",
-   "Getafe",
-   "Getafe",
-   "GET"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Tampa Bay Lightning – Seattle Kraken",
-  "kickoff": "2026-10-15T23:00:00+00:00",
-  "market": "away",
-  "selection": "Seattle Kraken Sieg (inkl. OT)",
-  "odds": 3.75,
-  "fair": 3.553066277062401,
-  "min_odds": 3.659658265374273,
-  "home": [
-   "Tampa Bay Lightning",
-   "Tampa Bay",
-   "Lightning",
-   "TB"
-  ],
-  "away": [
-   "Seattle Kraken",
-   "Seattle",
-   "Kraken",
-   "SEA"
+   "Adler Mannheim"
   ]
  }
 ]
