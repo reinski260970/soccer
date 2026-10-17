@@ -26,78 +26,6 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "scotland",
-  "event": "Kilmarnock – Motherwell",
-  "kickoff": "2026-10-17T14:00:00+00:00",
-  "market": "home",
-  "selection": "Kilmarnock Sieg (90 Min.)",
-  "odds": 3.25,
-  "fair": 3.0181000931887243,
-  "min_odds": 3.108643095984386,
-  "home": [
-   "Kilmarnock",
-   "Kilmarnock",
-   "Kilmarnock",
-   "KIL"
-  ],
-  "away": [
-   "Motherwell",
-   "Motherwell",
-   "Motherwell",
-   "MOT"
-  ]
- },
- {
-  "source": "1xbet",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Vegas Golden Knights – Pittsburgh Penguins",
-  "kickoff": "2026-10-18T02:00:00+00:00",
-  "market": "home",
-  "selection": "Vegas Golden Knights Sieg (inkl. OT)",
-  "odds": 1.61,
-  "fair": 1.4977457543591228,
-  "min_odds": 1.5426781269898966,
-  "home": [
-   "Vegas Golden Knights",
-   "Vegas",
-   "Golden Knights",
-   "VGK"
-  ],
-  "away": [
-   "Pittsburgh Penguins",
-   "Pittsburgh",
-   "Penguins",
-   "PIT"
-  ]
- },
- {
-  "source": "1xbet",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Nashville Predators – St. Louis Blues",
-  "kickoff": "2026-10-18T00:00:00+00:00",
-  "market": "away",
-  "selection": "St. Louis Blues Sieg (inkl. OT)",
-  "odds": 2.06,
-  "fair": 1.954635052935206,
-  "min_odds": 2.013274104523262,
-  "home": [
-   "Nashville Predators",
-   "Nashville",
-   "Predators",
-   "NSH"
-  ],
-  "away": [
-   "St. Louis Blues",
-   "St. Louis",
-   "Blues",
-   "STL"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "ligue1",
   "event": "AS Monaco – Lille",
   "kickoff": "2026-10-25T14:00:00+00:00",
@@ -117,6 +45,78 @@
    "Lille",
    "Lille",
    "LILL"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Levante – Athletic Club",
+  "kickoff": "2026-10-21T18:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.4,
+  "fair": 3.259980809810447,
+  "min_odds": 3.35778023410476,
+  "home": [
+   "Levante",
+   "Levante",
+   "Levante",
+   "LEV"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "seriea",
+  "event": "Genoa – Venezia",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.3731865033376565,
+  "min_odds": 3.4743820984377862,
+  "home": [
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
+  ],
+  "away": [
+   "Venezia",
+   "Venezia",
+   "Venezia",
+   "VEN"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "greece",
+  "event": "Panathinaikos – Asteras Tripoli",
+  "kickoff": "2026-10-18T14:30:00+00:00",
+  "market": "home",
+  "selection": "Panathinaikos Sieg (90 Min.)",
+  "odds": 1.25,
+  "fair": 1.2106254311897005,
+  "min_odds": 1.2469441941253916,
+  "home": [
+   "Panathinaikos",
+   "Panathinaikos",
+   "Panathinaikos",
+   "PAO"
+  ],
+  "away": [
+   "Asteras Tripoli",
+   "Asteras Tripoli",
+   "Asteras Trip",
+   "AST"
   ]
  }
 ]
