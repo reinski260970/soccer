@@ -1,29 +1,5 @@
 [
  {
-  "source": "1xbet",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Vegas Golden Knights – Pittsburgh Penguins",
-  "kickoff": "2026-10-18T02:00:00+00:00",
-  "market": "home",
-  "selection": "Vegas Golden Knights Sieg (inkl. OT)",
-  "odds": 1.61,
-  "fair": 1.4566357378856427,
-  "min_odds": 1.500334810022212,
-  "home": [
-   "Vegas Golden Knights",
-   "Vegas",
-   "Golden Knights",
-   "VGK"
-  ],
-  "away": [
-   "Pittsburgh Penguins",
-   "Pittsburgh",
-   "Penguins",
-   "PIT"
-  ]
- },
- {
   "source": "bet365",
   "status": "WATCH",
   "league": "ucl",
@@ -50,25 +26,49 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "championship",
-  "event": "Millwall – Lincoln City",
-  "kickoff": "2026-10-17T11:30:00+00:00",
-  "market": "away",
-  "selection": "Lincoln City Sieg (90 Min.)",
-  "odds": 5.75,
-  "fair": 5.418942007370571,
-  "min_odds": 5.581510267591689,
+  "league": "scotland",
+  "event": "Kilmarnock – Motherwell",
+  "kickoff": "2026-10-17T14:00:00+00:00",
+  "market": "home",
+  "selection": "Kilmarnock Sieg (90 Min.)",
+  "odds": 3.25,
+  "fair": 3.0181000931887243,
+  "min_odds": 3.108643095984386,
   "home": [
-   "Millwall",
-   "Millwall",
-   "Millwall",
-   "MIL"
+   "Kilmarnock",
+   "Kilmarnock",
+   "Kilmarnock",
+   "KIL"
   ],
   "away": [
-   "Lincoln City",
-   "Lincoln City",
-   "Lincoln City",
-   "LCN"
+   "Motherwell",
+   "Motherwell",
+   "Motherwell",
+   "MOT"
+  ]
+ },
+ {
+  "source": "1xbet",
+  "status": "WATCH",
+  "league": "nhl",
+  "event": "Vegas Golden Knights – Pittsburgh Penguins",
+  "kickoff": "2026-10-18T02:00:00+00:00",
+  "market": "home",
+  "selection": "Vegas Golden Knights Sieg (inkl. OT)",
+  "odds": 1.61,
+  "fair": 1.4977457543591228,
+  "min_odds": 1.5426781269898966,
+  "home": [
+   "Vegas Golden Knights",
+   "Vegas",
+   "Golden Knights",
+   "VGK"
+  ],
+  "away": [
+   "Pittsburgh Penguins",
+   "Pittsburgh",
+   "Penguins",
+   "PIT"
   ]
  },
  {
