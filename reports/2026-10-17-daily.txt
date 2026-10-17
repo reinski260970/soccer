@@ -1,0 +1,51 @@
+🗞 Tagesbericht Sa 17.10. 12:52 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• NHL · So 18.10. 04:00 MESZ
+🆚 Vegas Golden Knights – Pittsburgh Penguins
+➡️ Vegas Golden Knights Sieg (inkl. OT) spielbar ab 1,50 (jetzt 1,61)
+• Champions League · Mi 21.10. 21:00 MESZ
+🆚 Aston Villa – VIKING FK
+➡️ Unentschieden (90 Min.) spielbar ab 5,63 (jetzt 6,00)
+• Championship · Sa 17.10. 13:30 MESZ
+🆚 Millwall – Lincoln City
+➡️ Lincoln City Sieg (90 Min.) spielbar ab 5,58 (jetzt 5,75)
+• NHL · So 18.10. 02:00 MESZ
+🆚 Nashville Predators – St. Louis Blues
+➡️ St. Louis Blues Sieg (inkl. OT) spielbar ab 2,01 (jetzt 2,06)
+• Ligue 1 · So 25.10. 15:00 MEZ
+🆚 AS Monaco – Lille
+➡️ Unentschieden (90 Min.) spielbar ab 3,52 (jetzt 3,60)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 107 Spiele | ausführbare Preise 70 | Marktreferenz 87 | 0 PLAY
+   • Aston Villa – VIKING FK · Mi 21.10. 21:00 MESZ: Unentschieden (90 Min.) @ 6,00, spielbar ab 5,63 (EV 9,7 %)
+   • Levante – Athletic Club · Mi 21.10. 20:00 MESZ: Unentschieden (90 Min.) @ 3,40, spielbar ab 3,36 (EV 4,3 %)
+🏒 Eishockey Europa: 79 Spiele | ausführbare Preise 16 | Marktreferenz 34 | 0 PLAY
+   • Linköping HC – Färjestad BK · Sa 17.10. 15:15 MESZ: Färjestad BK Sieg (inkl. OT) @ 1,46, spielbar ab 1,49 (EV 0,7 %)
+   • HC Lausanne – EHC Kloten · Sa 17.10. 19:45 MESZ: HC Lausanne Sieg (inkl. OT) @ 1,34, spielbar ab 1,38 (EV 0,3 %)
+🏒 NHL: 47 Spiele | ausführbare Preise 14 | Marktreferenz 47 | 0 PLAY
+   • Vegas Golden Knights – Pittsburgh Penguins · So 18.10. 04:00 MESZ: Vegas Golden Knights Sieg (inkl. OT) @ 1,61, spielbar ab 1,50 (EV 10,5 %)
+   • Nashville Predators – St. Louis Blues · So 18.10. 02:00 MESZ: St. Louis Blues Sieg (inkl. OT) @ 2,06, spielbar ab 2,01 (EV 5,4 %)
+🏀 NBA: 28 Spiele | ausführbare Preise 0 | Marktreferenz 28 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
