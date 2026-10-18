@@ -21,7 +21,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – Sunderland",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -63,7 +63,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – Sunderland",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -105,7 +105,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – Sunderland",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -147,7 +147,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Brighton & Hove Albion – Crystal Palace",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -189,7 +189,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Brighton & Hove Albion – Crystal Palace",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -231,7 +231,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Brighton & Hove Albion – Crystal Palace",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -273,7 +273,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Leeds United – Manchester United",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -315,7 +315,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Leeds United – Manchester United",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -357,7 +357,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Leeds United – Manchester United",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "epl",
@@ -399,7 +399,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Nottingham Forest – Arsenal",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "epl",
@@ -410,12 +410,12 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.1517398465273598,
-    "Bet365": 0.14715352949287064
+    "Pinnacle": 0.14003129006730736,
+    "Bet365": 0.14088382436605545
    },
    "odds": {
-    "Pinnacle": 6.17,
-    "Bet365": 6.0
+    "Pinnacle": 6.58,
+    "Bet365": 6.25
    }
   }
  ],
@@ -441,7 +441,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Nottingham Forest – Arsenal",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "epl",
@@ -452,12 +452,12 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2377607714927474,
-    "Bet365": 0.22703849801994666
+    "Pinnacle": 0.23538708724401536,
+    "Bet365": 0.23329052923381463
    },
    "odds": {
     "Pinnacle": 4.0,
-    "Bet365": 4.0
+    "Bet365": 3.9
    }
   }
  ],
@@ -483,7 +483,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Nottingham Forest – Arsenal",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "epl",
@@ -494,11 +494,11 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.610499381979893,
-    "Bet365": 0.625807972487183
+    "Pinnacle": 0.6245816226886775,
+    "Bet365": 0.6258256464001302
    },
    "odds": {
-    "Pinnacle": 1.61,
+    "Pinnacle": 1.57,
     "Bet365": 1.55
    }
   }
@@ -525,7 +525,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -567,7 +567,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -609,7 +609,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -651,7 +651,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -693,7 +693,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -735,7 +735,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -777,7 +777,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -819,7 +819,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -861,7 +861,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -903,7 +903,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -945,7 +945,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -987,7 +987,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -1029,7 +1029,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -1071,7 +1071,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -1113,7 +1113,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -1155,7 +1155,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -1197,7 +1197,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -1239,7 +1239,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -1281,7 +1281,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1323,7 +1323,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1365,7 +1365,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1407,7 +1407,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1449,7 +1449,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1491,7 +1491,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1533,7 +1533,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1575,7 +1575,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1617,7 +1617,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1659,7 +1659,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1701,7 +1701,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1743,7 +1743,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1785,7 +1785,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1827,7 +1827,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1869,7 +1869,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1911,7 +1911,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -1953,7 +1953,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -1995,7 +1995,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -2103,7 +2103,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Estrela – Casa Pia",
    "kickoff": "2026-10-24T14:30:00+00:00",
    "league": "primeira",
@@ -2145,7 +2145,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Estrela – Casa Pia",
    "kickoff": "2026-10-24T14:30:00+00:00",
    "league": "primeira",
@@ -2187,7 +2187,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Estrela – Casa Pia",
    "kickoff": "2026-10-24T14:30:00+00:00",
    "league": "primeira",
@@ -2229,7 +2229,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alverca – Arouca",
    "kickoff": "2026-10-24T17:00:00+00:00",
    "league": "primeira",
@@ -2271,7 +2271,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alverca – Arouca",
    "kickoff": "2026-10-24T17:00:00+00:00",
    "league": "primeira",
@@ -2313,7 +2313,7 @@
    }
   },
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alverca – Arouca",
    "kickoff": "2026-10-24T17:00:00+00:00",
    "league": "primeira",
@@ -2333,9 +2333,75 @@
    }
   }
  ],
+ "soccer:bundesliga:401884771:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Bayer Leverkusen – SC Freiburg",
+   "kickoff": "2026-10-18T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "Bayer Leverkusen",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.5965772475803458,
+    "Bet365": 0.5978154756881321
+   },
+   "odds": {
+    "Pinnacle": 1.65,
+    "Bet365": 1.62
+   }
+  }
+ ],
+ "soccer:bundesliga:401884771:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Bayer Leverkusen – SC Freiburg",
+   "kickoff": "2026-10-18T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.20765595869324083,
+    "Bet365": 0.201092262155934
+   },
+   "odds": {
+    "Pinnacle": 4.59,
+    "Bet365": 4.5
+   }
+  }
+ ],
+ "soccer:bundesliga:401884771:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Bayer Leverkusen – SC Freiburg",
+   "kickoff": "2026-10-18T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "SC Freiburg",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.1957667937264132,
+    "Bet365": 0.201092262155934
+   },
+   "odds": {
+    "Pinnacle": 4.86,
+    "Bet365": 4.5
+   }
+  }
+ ],
  "soccer:bundesliga:401884768:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Mönchengladbach – TSG Hoffenheim",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "bundesliga",
@@ -2357,7 +2423,7 @@
  ],
  "soccer:bundesliga:401884768:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Mönchengladbach – TSG Hoffenheim",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "bundesliga",
@@ -2379,7 +2445,7 @@
  ],
  "soccer:bundesliga:401884768:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Mönchengladbach – TSG Hoffenheim",
    "kickoff": "2026-10-18T15:30:00+00:00",
    "league": "bundesliga",
@@ -2399,9 +2465,75 @@
    }
   }
  ],
+ "soccer:bundesliga:401884761:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "VfB Stuttgart – Borussia Mönchengladbach",
+   "kickoff": "2026-10-23T18:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "VfB Stuttgart",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.7020453432118425,
+    "Bet365": 0.704892353304471
+   },
+   "odds": {
+    "Pinnacle": 1.39,
+    "Bet365": 1.38
+   }
+  }
+ ],
+ "soccer:bundesliga:401884761:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "VfB Stuttgart – Borussia Mönchengladbach",
+   "kickoff": "2026-10-23T18:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.15926537136596283,
+    "Bet365": 0.17421113709422809
+   },
+   "odds": {
+    "Pinnacle": 5.53,
+    "Bet365": 5.0
+   }
+  }
+ ],
+ "soccer:bundesliga:401884761:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "VfB Stuttgart – Borussia Mönchengladbach",
+   "kickoff": "2026-10-23T18:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "Borussia Mönchengladbach",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.138689285422195,
+    "Bet365": 0.12089650960130105
+   },
+   "odds": {
+    "Pinnacle": 6.29,
+    "Bet365": 7.0
+   }
+  }
+ ],
  "soccer:bundesliga:401884758:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Augsburg – 1. FC Union Berlin",
    "kickoff": "2026-10-24T13:30:00+00:00",
    "league": "bundesliga",
@@ -2423,7 +2555,7 @@
  ],
  "soccer:bundesliga:401884758:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Augsburg – 1. FC Union Berlin",
    "kickoff": "2026-10-24T13:30:00+00:00",
    "league": "bundesliga",
@@ -2445,7 +2577,7 @@
  ],
  "soccer:bundesliga:401884758:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Augsburg – 1. FC Union Berlin",
    "kickoff": "2026-10-24T13:30:00+00:00",
    "league": "bundesliga",
@@ -2465,9 +2597,273 @@
    }
   }
  ],
+ "soccer:bundesliga:401884756:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "FC Cologne – Schalke 04",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "FC Cologne",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.48088602318889007,
+    "Bet365": 0.4792581783158502
+   },
+   "odds": {
+    "Pinnacle": 2.01,
+    "Bet365": 2.0
+   }
+  }
+ ],
+ "soccer:bundesliga:401884756:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "FC Cologne – Schalke 04",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.23678610908864114,
+    "Bet365": 0.2296884014826273
+   },
+   "odds": {
+    "Pinnacle": 3.95,
+    "Bet365": 4.0
+   }
+  }
+ ],
+ "soccer:bundesliga:401884756:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "FC Cologne – Schalke 04",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "Schalke 04",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.2823278677224691,
+    "Bet365": 0.2910534202015225
+   },
+   "odds": {
+    "Pinnacle": 3.34,
+    "Bet365": 3.2
+   }
+  }
+ ],
+ "soccer:bundesliga:401884757:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Mainz – Werder Bremen",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "Mainz",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.5818638495068132,
+    "Bet365": 0.5781223601073493
+   },
+   "odds": {
+    "Pinnacle": 1.67,
+    "Bet365": 1.67
+   }
+  }
+ ],
+ "soccer:bundesliga:401884757:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Mainz – Werder Bremen",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.218078378171705,
+    "Bet365": 0.2214212551707997
+   },
+   "odds": {
+    "Pinnacle": 4.23,
+    "Bet365": 4.1
+   }
+  }
+ ],
+ "soccer:bundesliga:401884757:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "Mainz – Werder Bremen",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "Werder Bremen",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.20005777232148195,
+    "Bet365": 0.20045638472185098
+   },
+   "odds": {
+    "Pinnacle": 4.59,
+    "Bet365": 4.5
+   }
+  }
+ ],
+ "soccer:bundesliga:401884762:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "RB Leipzig – SV Elversberg",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "RB Leipzig",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.7083298598638403,
+    "Bet365": 0.71035577765422
+   },
+   "odds": {
+    "Pinnacle": 1.38,
+    "Bet365": 1.38
+   }
+  }
+ ],
+ "soccer:bundesliga:401884762:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "RB Leipzig – SV Elversberg",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.16941290115351657,
+    "Bet365": 0.17192238899840723
+   },
+   "odds": {
+    "Pinnacle": 5.25,
+    "Bet365": 5.25
+   }
+  }
+ ],
+ "soccer:bundesliga:401884762:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "RB Leipzig – SV Elversberg",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "SV Elversberg",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.1222572389826433,
+    "Bet365": 0.1177218333473731
+   },
+   "odds": {
+    "Pinnacle": 7.12,
+    "Bet365": 7.5
+   }
+  }
+ ],
+ "soccer:bundesliga:401884755:home": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "SC Paderborn 07 – Hamburg SV",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "home",
+   "selection": "SC Paderborn 07",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.4000639624297959,
+    "Bet365": 0.4203097323295975
+   },
+   "odds": {
+    "Pinnacle": 2.4,
+    "Bet365": 2.25
+   }
+  }
+ ],
+ "soccer:bundesliga:401884755:draw": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "SC Paderborn 07 – Hamburg SV",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.25947044731446994,
+    "Bet365": 0.24698873899317494
+   },
+   "odds": {
+    "Pinnacle": 3.63,
+    "Bet365": 3.7
+   }
+  }
+ ],
+ "soccer:bundesliga:401884755:away": [
+  {
+   "ts": "2026-10-18T10:54:03.897184+00:00",
+   "event": "SC Paderborn 07 – Hamburg SV",
+   "kickoff": "2026-10-24T13:30:00+00:00",
+   "league": "bundesliga",
+   "market": "away",
+   "selection": "Hamburg SV",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365"
+   ],
+   "probs": {
+    "Pinnacle": 0.34046559025573453,
+    "Bet365": 0.33270152867722774
+   },
+   "odds": {
+    "Pinnacle": 2.8,
+    "Bet365": 2.8
+   }
+  }
+ ],
  "soccer:bundesliga:401884763:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Dortmund – Eintracht Frankfurt",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "bundesliga",
@@ -2489,7 +2885,7 @@
  ],
  "soccer:bundesliga:401884763:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Dortmund – Eintracht Frankfurt",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "bundesliga",
@@ -2511,7 +2907,7 @@
  ],
  "soccer:bundesliga:401884763:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Borussia Dortmund – Eintracht Frankfurt",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "bundesliga",
@@ -2533,7 +2929,7 @@
  ],
  "soccer:bundesliga:401884760:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Bayer Leverkusen",
    "kickoff": "2026-10-25T14:30:00+00:00",
    "league": "bundesliga",
@@ -2555,7 +2951,7 @@
  ],
  "soccer:bundesliga:401884760:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Bayer Leverkusen",
    "kickoff": "2026-10-25T14:30:00+00:00",
    "league": "bundesliga",
@@ -2577,7 +2973,7 @@
  ],
  "soccer:bundesliga:401884760:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Bayer Leverkusen",
    "kickoff": "2026-10-25T14:30:00+00:00",
    "league": "bundesliga",
@@ -2599,7 +2995,7 @@
  ],
  "soccer:bundesliga:401884759:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Freiburg – Bayern Munich",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "bundesliga",
@@ -2610,18 +3006,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.14365086063899346,
+    "Pinnacle": 0.1821055945096568,
     "Bet365": 0.14496498366355084
    },
    "odds": {
-    "Pinnacle": 6.12,
+    "Pinnacle": 4.92,
     "Bet365": 6.0
    }
   }
  ],
  "soccer:bundesliga:401884759:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Freiburg – Bayern Munich",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "bundesliga",
@@ -2632,18 +3028,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.15357394195382762,
+    "Pinnacle": 0.13049169724390347,
     "Bet365": 0.1592186106944821
    },
    "odds": {
-    "Pinnacle": 5.75,
+    "Pinnacle": 6.72,
     "Bet365": 5.5
    }
   }
  ],
  "soccer:bundesliga:401884759:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Freiburg – Bayern Munich",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "bundesliga",
@@ -2654,18 +3050,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.702775197407179,
+    "Pinnacle": 0.6874027082464397,
     "Bet365": 0.6958164056419672
    },
    "odds": {
-    "Pinnacle": 1.39,
+    "Pinnacle": 1.42,
     "Bet365": 1.4
    }
   }
  ],
  "soccer:2bundesliga:401885086:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arminia Bielefeld – VfL Osnabruck",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2687,7 +3083,7 @@
  ],
  "soccer:2bundesliga:401885086:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arminia Bielefeld – VfL Osnabruck",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2709,7 +3105,7 @@
  ],
  "soccer:2bundesliga:401885086:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Arminia Bielefeld – VfL Osnabruck",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2731,7 +3127,7 @@
  ],
  "soccer:2bundesliga:401885088:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dynamo Dresden – 1. FC Magdeburg",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2753,7 +3149,7 @@
  ],
  "soccer:2bundesliga:401885088:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dynamo Dresden – 1. FC Magdeburg",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2775,7 +3171,7 @@
  ],
  "soccer:2bundesliga:401885088:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dynamo Dresden – 1. FC Magdeburg",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2797,7 +3193,7 @@
  ],
  "soccer:2bundesliga:401885089:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Karlsruher SC – SV Darmstadt 98",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2819,7 +3215,7 @@
  ],
  "soccer:2bundesliga:401885089:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Karlsruher SC – SV Darmstadt 98",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2841,7 +3237,7 @@
  ],
  "soccer:2bundesliga:401885089:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Karlsruher SC – SV Darmstadt 98",
    "kickoff": "2026-10-18T11:30:00+00:00",
    "league": "2bundesliga",
@@ -2863,7 +3259,7 @@
  ],
  "soccer:championship:401880277:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Wolverhampton Wanderers – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "championship",
@@ -2885,7 +3281,7 @@
  ],
  "soccer:championship:401880277:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Wolverhampton Wanderers – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "championship",
@@ -2907,7 +3303,7 @@
  ],
  "soccer:championship:401880277:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Wolverhampton Wanderers – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "championship",
@@ -2929,7 +3325,7 @@
  ],
  "soccer:championship:401880207:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bolton Wanderers – Middlesbrough",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "championship",
@@ -2951,7 +3347,7 @@
  ],
  "soccer:championship:401880207:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bolton Wanderers – Middlesbrough",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "championship",
@@ -2973,7 +3369,7 @@
  ],
  "soccer:championship:401880207:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bolton Wanderers – Middlesbrough",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "championship",
@@ -2995,7 +3391,7 @@
  ],
  "soccer:laliga:401882840:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Osasuna – Racing Santander",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "laliga",
@@ -3017,7 +3413,7 @@
  ],
  "soccer:laliga:401882840:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Osasuna – Racing Santander",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "laliga",
@@ -3039,7 +3435,7 @@
  ],
  "soccer:laliga:401882840:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Osasuna – Racing Santander",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "laliga",
@@ -3061,7 +3457,7 @@
  ],
  "soccer:laliga:401882845:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Alavés",
    "kickoff": "2026-10-18T14:15:00+00:00",
    "league": "laliga",
@@ -3083,7 +3479,7 @@
  ],
  "soccer:laliga:401882845:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Alavés",
    "kickoff": "2026-10-18T14:15:00+00:00",
    "league": "laliga",
@@ -3105,7 +3501,7 @@
  ],
  "soccer:laliga:401882845:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Alavés",
    "kickoff": "2026-10-18T14:15:00+00:00",
    "league": "laliga",
@@ -3127,7 +3523,7 @@
  ],
  "soccer:laliga:401882841:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Málaga – Real Sociedad",
    "kickoff": "2026-10-18T16:30:00+00:00",
    "league": "laliga",
@@ -3138,18 +3534,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.30629677337022676,
-    "Bet365": 0.3145559331765308
+    "Pinnacle": 0.2816163577007204,
+    "Bet365": 0.29066103388907966
    },
    "odds": {
-    "Pinnacle": 3.17,
-    "Bet365": 3.0
+    "Pinnacle": 3.41,
+    "Bet365": 3.25
    }
   }
  ],
  "soccer:laliga:401882841:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Málaga – Real Sociedad",
    "kickoff": "2026-10-18T16:30:00+00:00",
    "league": "laliga",
@@ -3160,18 +3556,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2680727438334231,
-    "Bet365": 0.2596197419516537
+    "Pinnacle": 0.26704244649943837,
+    "Bet365": 0.26110892778271816
    },
    "odds": {
-    "Pinnacle": 3.61,
+    "Pinnacle": 3.59,
     "Bet365": 3.6
    }
   }
  ],
  "soccer:laliga:401882841:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Málaga – Real Sociedad",
    "kickoff": "2026-10-18T16:30:00+00:00",
    "league": "laliga",
@@ -3182,18 +3578,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.42563048279635035,
-    "Bet365": 0.42582432487181576
+    "Pinnacle": 0.45134119579984133,
+    "Bet365": 0.44823003832820235
    },
    "odds": {
-    "Pinnacle": 2.3,
-    "Bet365": 2.25
+    "Pinnacle": 2.16,
+    "Bet365": 2.15
    }
   }
  ],
  "soccer:laliga:401882839:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – Sevilla",
    "kickoff": "2026-10-18T19:00:00+00:00",
    "league": "laliga",
@@ -3215,7 +3611,7 @@
  ],
  "soccer:laliga:401882839:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – Sevilla",
    "kickoff": "2026-10-18T19:00:00+00:00",
    "league": "laliga",
@@ -3237,7 +3633,7 @@
  ],
  "soccer:laliga:401882839:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – Sevilla",
    "kickoff": "2026-10-18T19:00:00+00:00",
    "league": "laliga",
@@ -3259,7 +3655,7 @@
  ],
  "soccer:laliga:401882842:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Getafe – Rayo Vallecano",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "laliga",
@@ -3281,7 +3677,7 @@
  ],
  "soccer:laliga:401882842:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Getafe – Rayo Vallecano",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "laliga",
@@ -3303,7 +3699,7 @@
  ],
  "soccer:laliga:401882842:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Getafe – Rayo Vallecano",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "laliga",
@@ -3325,7 +3721,7 @@
  ],
  "soccer:laliga:401882870:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "laliga",
@@ -3347,7 +3743,7 @@
  ],
  "soccer:laliga:401882870:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "laliga",
@@ -3369,7 +3765,7 @@
  ],
  "soccer:laliga:401882870:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "laliga",
@@ -3391,7 +3787,7 @@
  ],
  "soccer:laliga:401882836:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alavés – Málaga",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "laliga",
@@ -3413,7 +3809,7 @@
  ],
  "soccer:laliga:401882836:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alavés – Málaga",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "laliga",
@@ -3435,7 +3831,7 @@
  ],
  "soccer:laliga:401882836:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Alavés – Málaga",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "laliga",
@@ -3457,7 +3853,7 @@
  ],
  "soccer:laliga:401882830:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rayo Vallecano – Elche",
    "kickoff": "2026-10-24T12:00:00+00:00",
    "league": "laliga",
@@ -3479,7 +3875,7 @@
  ],
  "soccer:laliga:401882830:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rayo Vallecano – Elche",
    "kickoff": "2026-10-24T12:00:00+00:00",
    "league": "laliga",
@@ -3501,7 +3897,7 @@
  ],
  "soccer:laliga:401882830:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rayo Vallecano – Elche",
    "kickoff": "2026-10-24T12:00:00+00:00",
    "league": "laliga",
@@ -3523,7 +3919,7 @@
  ],
  "soccer:laliga:401882831:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Racing Santander – Espanyol",
    "kickoff": "2026-10-24T14:15:00+00:00",
    "league": "laliga",
@@ -3545,7 +3941,7 @@
  ],
  "soccer:laliga:401882831:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Racing Santander – Espanyol",
    "kickoff": "2026-10-24T14:15:00+00:00",
    "league": "laliga",
@@ -3567,7 +3963,7 @@
  ],
  "soccer:laliga:401882831:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Racing Santander – Espanyol",
    "kickoff": "2026-10-24T14:15:00+00:00",
    "league": "laliga",
@@ -3589,7 +3985,7 @@
  ],
  "soccer:laliga:401882827:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Valencia – Villarreal",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "laliga",
@@ -3611,7 +4007,7 @@
  ],
  "soccer:laliga:401882827:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Valencia – Villarreal",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "laliga",
@@ -3633,7 +4029,7 @@
  ],
  "soccer:laliga:401882827:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Valencia – Villarreal",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "laliga",
@@ -3655,7 +4051,7 @@
  ],
  "soccer:laliga:401882835:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Athletic Club – Getafe",
    "kickoff": "2026-10-25T13:00:00+00:00",
    "league": "laliga",
@@ -3666,18 +4062,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.5998178504832816,
-    "Bet365": 0.5994393894542481
+    "Pinnacle": 0.5845348242103617,
+    "Bet365": 0.5918855084577028
    },
    "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.6
+    "Pinnacle": 1.66,
+    "Bet365": 1.62
    }
   }
  ],
  "soccer:laliga:401882835:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Athletic Club – Getafe",
    "kickoff": "2026-10-25T13:00:00+00:00",
    "league": "laliga",
@@ -3688,18 +4084,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.21805936374601276,
-    "Bet365": 0.2272077421590551
+    "Pinnacle": 0.22313004331857272,
+    "Bet365": 0.2342725181253782
    },
    "odds": {
-    "Pinnacle": 4.21,
-    "Bet365": 3.9
+    "Pinnacle": 4.12,
+    "Bet365": 3.8
    }
   }
  ],
  "soccer:laliga:401882835:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Athletic Club – Getafe",
    "kickoff": "2026-10-25T13:00:00+00:00",
    "league": "laliga",
@@ -3710,18 +4106,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.18212278577070587,
-    "Bet365": 0.17335286838669697
+    "Pinnacle": 0.19233513247106565,
+    "Bet365": 0.17384197341691893
    },
    "odds": {
-    "Pinnacle": 4.99,
+    "Pinnacle": 4.74,
     "Bet365": 5.0
    }
   }
  ],
  "soccer:laliga:401882833:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Real Betis",
    "kickoff": "2026-10-25T15:15:00+00:00",
    "league": "laliga",
@@ -3743,7 +4139,7 @@
  ],
  "soccer:laliga:401882833:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Real Betis",
    "kickoff": "2026-10-25T15:15:00+00:00",
    "league": "laliga",
@@ -3765,7 +4161,7 @@
  ],
  "soccer:laliga:401882833:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celta Vigo – Real Betis",
    "kickoff": "2026-10-25T15:15:00+00:00",
    "league": "laliga",
@@ -3787,7 +4183,7 @@
  ],
  "soccer:laliga:401882829:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Sociedad – Levante",
    "kickoff": "2026-10-25T17:30:00+00:00",
    "league": "laliga",
@@ -3809,7 +4205,7 @@
  ],
  "soccer:laliga:401882829:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Sociedad – Levante",
    "kickoff": "2026-10-25T17:30:00+00:00",
    "league": "laliga",
@@ -3831,7 +4227,7 @@
  ],
  "soccer:laliga:401882829:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Sociedad – Levante",
    "kickoff": "2026-10-25T17:30:00+00:00",
    "league": "laliga",
@@ -3853,7 +4249,7 @@
  ],
  "soccer:laliga:401882832:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Barcelona – Real Madrid",
    "kickoff": "2026-10-25T20:00:00+00:00",
    "league": "laliga",
@@ -3864,7 +4260,7 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.6534287043420053,
+    "Pinnacle": 0.6535302522719904,
     "Bet365": 0.6581877597365665
    },
    "odds": {
@@ -3875,7 +4271,7 @@
  ],
  "soccer:laliga:401882832:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Barcelona – Real Madrid",
    "kickoff": "2026-10-25T20:00:00+00:00",
    "league": "laliga",
@@ -3886,18 +4282,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.16312337739007202,
+    "Pinnacle": 0.15798858644121327,
     "Bet365": 0.16222427983861012
    },
    "odds": {
-    "Pinnacle": 5.47,
+    "Pinnacle": 5.64,
     "Bet365": 5.5
    }
   }
  ],
  "soccer:laliga:401882832:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Barcelona – Real Madrid",
    "kickoff": "2026-10-25T20:00:00+00:00",
    "league": "laliga",
@@ -3908,18 +4304,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.1834479182679228,
+    "Pinnacle": 0.18848116128679646,
     "Bet365": 0.17958796042482356
    },
    "odds": {
-    "Pinnacle": 4.9,
+    "Pinnacle": 4.78,
     "Bet365": 5.0
    }
   }
  ],
  "soccer:laliga:401882828:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sevilla – Osasuna",
    "kickoff": "2026-10-26T20:00:00+00:00",
    "league": "laliga",
@@ -3941,7 +4337,7 @@
  ],
  "soccer:laliga:401882828:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sevilla – Osasuna",
    "kickoff": "2026-10-26T20:00:00+00:00",
    "league": "laliga",
@@ -3963,7 +4359,7 @@
  ],
  "soccer:laliga:401882828:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sevilla – Osasuna",
    "kickoff": "2026-10-26T20:00:00+00:00",
    "league": "laliga",
@@ -3985,7 +4381,7 @@
  ],
  "soccer:seriea:401874774:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Fiorentina – Como",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "seriea",
@@ -4007,7 +4403,7 @@
  ],
  "soccer:seriea:401874774:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Fiorentina – Como",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "seriea",
@@ -4029,7 +4425,7 @@
  ],
  "soccer:seriea:401874774:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Fiorentina – Como",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "seriea",
@@ -4051,7 +4447,7 @@
  ],
  "soccer:seriea:401874978:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AC Milan – Atalanta",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "seriea",
@@ -4073,7 +4469,7 @@
  ],
  "soccer:seriea:401874978:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AC Milan – Atalanta",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "seriea",
@@ -4095,7 +4491,7 @@
  ],
  "soccer:seriea:401874978:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AC Milan – Atalanta",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "seriea",
@@ -4117,7 +4513,7 @@
  ],
  "soccer:seriea:401874765:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Lazio",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "seriea",
@@ -4128,18 +4524,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.6223979404175876,
-    "Bet365": 0.627837305144837
+    "Pinnacle": 0.5976381849642787,
+    "Bet365": 0.5996343988997277
    },
    "odds": {
-    "Pinnacle": 1.58,
-    "Bet365": 1.55
+    "Pinnacle": 1.64,
+    "Bet365": 1.62
    }
   }
  ],
  "soccer:seriea:401874765:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Lazio",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "seriea",
@@ -4150,18 +4546,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2287279076938037,
-    "Bet365": 0.2293755199041883
+    "Pinnacle": 0.24007120073895996,
+    "Bet365": 0.23626196243641756
    },
    "odds": {
-    "Pinnacle": 4.15,
-    "Bet365": 4.0
+    "Pinnacle": 3.94,
+    "Bet365": 3.9
    }
   }
  ],
  "soccer:seriea:401874765:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Lazio",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "seriea",
@@ -4172,18 +4568,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.14887415188860878,
-    "Bet365": 0.14278717495097495
+    "Pinnacle": 0.16229061429676137,
+    "Bet365": 0.16410363866385472
    },
    "odds": {
-    "Pinnacle": 6.28,
-    "Bet365": 6.25
+    "Pinnacle": 5.74,
+    "Bet365": 5.5
    }
   }
  ],
  "soccer:seriea:401874762:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Monza – Cagliari",
    "kickoff": "2026-10-19T16:30:00+00:00",
    "league": "seriea",
@@ -4205,7 +4601,7 @@
  ],
  "soccer:seriea:401874762:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Monza – Cagliari",
    "kickoff": "2026-10-19T16:30:00+00:00",
    "league": "seriea",
@@ -4227,7 +4623,7 @@
  ],
  "soccer:seriea:401874762:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Monza – Cagliari",
    "kickoff": "2026-10-19T16:30:00+00:00",
    "league": "seriea",
@@ -4249,7 +4645,7 @@
  ],
  "soccer:seriea:401874784:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Parma – Torino",
    "kickoff": "2026-10-19T18:45:00+00:00",
    "league": "seriea",
@@ -4271,7 +4667,7 @@
  ],
  "soccer:seriea:401874784:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Parma – Torino",
    "kickoff": "2026-10-19T18:45:00+00:00",
    "league": "seriea",
@@ -4293,7 +4689,7 @@
  ],
  "soccer:seriea:401874784:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Parma – Torino",
    "kickoff": "2026-10-19T18:45:00+00:00",
    "league": "seriea",
@@ -4315,7 +4711,7 @@
  ],
  "soccer:seriea:401874957:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Torino – Monza",
    "kickoff": "2026-10-23T18:45:00+00:00",
    "league": "seriea",
@@ -4337,7 +4733,7 @@
  ],
  "soccer:seriea:401874957:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Torino – Monza",
    "kickoff": "2026-10-23T18:45:00+00:00",
    "league": "seriea",
@@ -4359,7 +4755,7 @@
  ],
  "soccer:seriea:401874957:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Torino – Monza",
    "kickoff": "2026-10-23T18:45:00+00:00",
    "league": "seriea",
@@ -4381,7 +4777,7 @@
  ],
  "soccer:seriea:401874958:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Cagliari – Bologna",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4403,7 +4799,7 @@
  ],
  "soccer:seriea:401874958:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Cagliari – Bologna",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4425,7 +4821,7 @@
  ],
  "soccer:seriea:401874958:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Cagliari – Bologna",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4447,7 +4843,7 @@
  ],
  "soccer:seriea:401874961:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Sassuolo",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4469,7 +4865,7 @@
  ],
  "soccer:seriea:401874961:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Sassuolo",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4491,7 +4887,7 @@
  ],
  "soccer:seriea:401874961:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Sassuolo",
    "kickoff": "2026-10-24T13:00:00+00:00",
    "league": "seriea",
@@ -4513,7 +4909,7 @@
  ],
  "soccer:seriea:401874948:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – AS Roma",
    "kickoff": "2026-10-24T16:00:00+00:00",
    "league": "seriea",
@@ -4535,7 +4931,7 @@
  ],
  "soccer:seriea:401874948:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – AS Roma",
    "kickoff": "2026-10-24T16:00:00+00:00",
    "league": "seriea",
@@ -4557,7 +4953,7 @@
  ],
  "soccer:seriea:401874948:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – AS Roma",
    "kickoff": "2026-10-24T16:00:00+00:00",
    "league": "seriea",
@@ -4579,7 +4975,7 @@
  ],
  "soccer:seriea:401874955:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lazio – Parma",
    "kickoff": "2026-10-24T18:45:00+00:00",
    "league": "seriea",
@@ -4601,7 +4997,7 @@
  ],
  "soccer:seriea:401874955:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lazio – Parma",
    "kickoff": "2026-10-24T18:45:00+00:00",
    "league": "seriea",
@@ -4623,7 +5019,7 @@
  ],
  "soccer:seriea:401874955:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lazio – Parma",
    "kickoff": "2026-10-24T18:45:00+00:00",
    "league": "seriea",
@@ -4645,7 +5041,7 @@
  ],
  "soccer:seriea:401875036:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Fiorentina",
    "kickoff": "2026-10-25T11:30:00+00:00",
    "league": "seriea",
@@ -4667,7 +5063,7 @@
  ],
  "soccer:seriea:401875036:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Fiorentina",
    "kickoff": "2026-10-25T11:30:00+00:00",
    "league": "seriea",
@@ -4689,7 +5085,7 @@
  ],
  "soccer:seriea:401875036:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Fiorentina",
    "kickoff": "2026-10-25T11:30:00+00:00",
    "league": "seriea",
@@ -4711,7 +5107,7 @@
  ],
  "soccer:seriea:401874972:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Atalanta – Frosinone",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4733,7 +5129,7 @@
  ],
  "soccer:seriea:401874972:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Atalanta – Frosinone",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4755,7 +5151,7 @@
  ],
  "soccer:seriea:401874972:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Atalanta – Frosinone",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4777,7 +5173,7 @@
  ],
  "soccer:seriea:401874952:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Genoa – Venezia",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4799,7 +5195,7 @@
  ],
  "soccer:seriea:401874952:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Genoa – Venezia",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4821,7 +5217,7 @@
  ],
  "soccer:seriea:401874952:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Genoa – Venezia",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "seriea",
@@ -4843,7 +5239,7 @@
  ],
  "soccer:seriea:401874772:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lecce – Juventus",
    "kickoff": "2026-10-25T17:00:00+00:00",
    "league": "seriea",
@@ -4865,7 +5261,7 @@
  ],
  "soccer:seriea:401874772:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lecce – Juventus",
    "kickoff": "2026-10-25T17:00:00+00:00",
    "league": "seriea",
@@ -4887,7 +5283,7 @@
  ],
  "soccer:seriea:401874772:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lecce – Juventus",
    "kickoff": "2026-10-25T17:00:00+00:00",
    "league": "seriea",
@@ -4909,7 +5305,7 @@
  ],
  "soccer:seriea:401874779:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Udinese – AC Milan",
    "kickoff": "2026-10-25T19:45:00+00:00",
    "league": "seriea",
@@ -4931,7 +5327,7 @@
  ],
  "soccer:seriea:401874779:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Udinese – AC Milan",
    "kickoff": "2026-10-25T19:45:00+00:00",
    "league": "seriea",
@@ -4953,7 +5349,7 @@
  ],
  "soccer:seriea:401874779:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Udinese – AC Milan",
    "kickoff": "2026-10-25T19:45:00+00:00",
    "league": "seriea",
@@ -4975,7 +5371,7 @@
  ],
  "soccer:ligue1:401876439:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Marseille",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "ligue1",
@@ -4997,7 +5393,7 @@
  ],
  "soccer:ligue1:401876439:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Marseille",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "ligue1",
@@ -5019,7 +5415,7 @@
  ],
  "soccer:ligue1:401876439:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Marseille",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "ligue1",
@@ -5041,7 +5437,7 @@
  ],
  "soccer:ligue1:401876438:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Le Havre AC – AJ Auxerre",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5063,7 +5459,7 @@
  ],
  "soccer:ligue1:401876438:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Le Havre AC – AJ Auxerre",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5085,7 +5481,7 @@
  ],
  "soccer:ligue1:401876438:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Le Havre AC – AJ Auxerre",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5107,7 +5503,7 @@
  ],
  "soccer:ligue1:401876435:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lorient – AS Monaco",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5118,18 +5514,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.25345927387840145,
-    "Bet365": 0.25575134572699326
+    "Pinnacle": 0.2538258996474848,
+    "Bet365": 0.26184557806312364
    },
    "odds": {
-    "Pinnacle": 3.8,
-    "Bet365": 3.7
+    "Pinnacle": 3.78,
+    "Bet365": 3.6
    }
   }
  ],
  "soccer:ligue1:401876435:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lorient – AS Monaco",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5140,18 +5536,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.28245726440217844,
-    "Bet365": 0.2710005320646167
+    "Pinnacle": 0.28312667932582775,
+    "Bet365": 0.27797996407638875
    },
    "odds": {
-    "Pinnacle": 3.42,
-    "Bet365": 3.5
+    "Pinnacle": 3.4,
+    "Bet365": 3.4
    }
   }
  ],
  "soccer:ligue1:401876435:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lorient – AS Monaco",
    "kickoff": "2026-10-18T15:15:00+00:00",
    "league": "ligue1",
@@ -5162,18 +5558,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.4640834617194202,
-    "Bet365": 0.4732481222083901
+    "Pinnacle": 0.46304742102668767,
+    "Bet365": 0.4601744578604878
    },
    "odds": {
     "Pinnacle": 2.11,
-    "Bet365": 2.05
+    "Bet365": 2.1
    }
   }
  ],
  "soccer:ligue1:401876434:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lyon – Nice",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "ligue1",
@@ -5195,7 +5591,7 @@
  ],
  "soccer:ligue1:401876434:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lyon – Nice",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "ligue1",
@@ -5217,7 +5613,7 @@
  ],
  "soccer:ligue1:401876434:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lyon – Nice",
    "kickoff": "2026-10-18T18:45:00+00:00",
    "league": "ligue1",
@@ -5239,7 +5635,7 @@
  ],
  "soccer:ligue1:401876423:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Toulouse – Troyes",
    "kickoff": "2026-10-24T15:15:00+00:00",
    "league": "ligue1",
@@ -5261,7 +5657,7 @@
  ],
  "soccer:ligue1:401876423:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Toulouse – Troyes",
    "kickoff": "2026-10-24T15:15:00+00:00",
    "league": "ligue1",
@@ -5283,7 +5679,7 @@
  ],
  "soccer:ligue1:401876423:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Toulouse – Troyes",
    "kickoff": "2026-10-24T15:15:00+00:00",
    "league": "ligue1",
@@ -5305,7 +5701,7 @@
  ],
  "soccer:ligue1:401876425:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Monaco – Lille",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "ligue1",
@@ -5327,7 +5723,7 @@
  ],
  "soccer:ligue1:401876425:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Monaco – Lille",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "ligue1",
@@ -5349,7 +5745,7 @@
  ],
  "soccer:ligue1:401876425:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Monaco – Lille",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "ligue1",
@@ -5371,7 +5767,7 @@
  ],
  "soccer:ligue1:401876429:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AJ Auxerre – Le Mans",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5393,7 +5789,7 @@
  ],
  "soccer:ligue1:401876429:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AJ Auxerre – Le Mans",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5415,7 +5811,7 @@
  ],
  "soccer:ligue1:401876429:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AJ Auxerre – Le Mans",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5437,7 +5833,7 @@
  ],
  "soccer:ligue1:401876430:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Lorient",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5449,17 +5845,17 @@
    ],
    "probs": {
     "Pinnacle": 0.36683748478555883,
-    "Bet365": 0.376075145064163
+    "Bet365": 0.3647913065019722
    },
    "odds": {
     "Pinnacle": 2.61,
-    "Bet365": 2.5
+    "Bet365": 2.55
    }
   }
  ],
  "soccer:ligue1:401876430:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Lorient",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5471,7 +5867,7 @@
    ],
    "probs": {
     "Pinnacle": 0.29357290703267924,
-    "Bet365": 0.2842246545412699
+    "Bet365": 0.2809059373796826
    },
    "odds": {
     "Pinnacle": 3.23,
@@ -5481,7 +5877,7 @@
  ],
  "soccer:ligue1:401876430:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Angers – Lorient",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5493,17 +5889,17 @@
    ],
    "probs": {
     "Pinnacle": 0.33958960818176226,
-    "Bet365": 0.3397002003945672
+    "Bet365": 0.3543027561183451
    },
    "odds": {
     "Pinnacle": 2.81,
-    "Bet365": 2.75
+    "Bet365": 2.62
    }
   }
  ],
  "soccer:ligue1:401876426:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Marseille – Le Havre AC",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5525,7 +5921,7 @@
  ],
  "soccer:ligue1:401876426:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Marseille – Le Havre AC",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5547,7 +5943,7 @@
  ],
  "soccer:ligue1:401876426:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Marseille – Le Havre AC",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5569,7 +5965,7 @@
  ],
  "soccer:ligue1:401876424:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Stade Rennais – Strasbourg",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5591,7 +5987,7 @@
  ],
  "soccer:ligue1:401876424:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Stade Rennais – Strasbourg",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5613,7 +6009,7 @@
  ],
  "soccer:ligue1:401876424:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Stade Rennais – Strasbourg",
    "kickoff": "2026-10-25T16:15:00+00:00",
    "league": "ligue1",
@@ -5635,7 +6031,7 @@
  ],
  "soccer:eredivisie:401875576:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Cambuur – AZ Alkmaar",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "eredivisie",
@@ -5657,7 +6053,7 @@
  ],
  "soccer:eredivisie:401875576:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Cambuur – AZ Alkmaar",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "eredivisie",
@@ -5679,7 +6075,7 @@
  ],
  "soccer:eredivisie:401875576:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SC Cambuur – AZ Alkmaar",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "eredivisie",
@@ -5701,7 +6097,7 @@
  ],
  "soccer:eredivisie:401875575:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Groningen – Ajax Amsterdam",
    "kickoff": "2026-10-18T14:45:00+00:00",
    "league": "eredivisie",
@@ -5723,7 +6119,7 @@
  ],
  "soccer:eredivisie:401875575:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Groningen – Ajax Amsterdam",
    "kickoff": "2026-10-18T14:45:00+00:00",
    "league": "eredivisie",
@@ -5745,7 +6141,7 @@
  ],
  "soccer:eredivisie:401875575:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Groningen – Ajax Amsterdam",
    "kickoff": "2026-10-18T14:45:00+00:00",
    "league": "eredivisie",
@@ -5767,7 +6163,7 @@
  ],
  "soccer:eredivisie:401875577:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Twente – FC Utrecht",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5789,7 +6185,7 @@
  ],
  "soccer:eredivisie:401875577:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Twente – FC Utrecht",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5811,7 +6207,7 @@
  ],
  "soccer:eredivisie:401875577:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Twente – FC Utrecht",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5833,7 +6229,7 @@
  ],
  "soccer:eredivisie:401875581:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NEC Nijmegen – Fortuna Sittard",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5855,7 +6251,7 @@
  ],
  "soccer:eredivisie:401875581:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NEC Nijmegen – Fortuna Sittard",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5877,7 +6273,7 @@
  ],
  "soccer:eredivisie:401875581:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NEC Nijmegen – Fortuna Sittard",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "eredivisie",
@@ -5899,7 +6295,7 @@
  ],
  "soccer:eredivisie:401875571:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "ADO Den Haag – Heerenveen",
    "kickoff": "2026-10-24T19:00:00+00:00",
    "league": "eredivisie",
@@ -5921,7 +6317,7 @@
  ],
  "soccer:eredivisie:401875571:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "ADO Den Haag – Heerenveen",
    "kickoff": "2026-10-24T19:00:00+00:00",
    "league": "eredivisie",
@@ -5943,7 +6339,7 @@
  ],
  "soccer:eredivisie:401875571:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "ADO Den Haag – Heerenveen",
    "kickoff": "2026-10-24T19:00:00+00:00",
    "league": "eredivisie",
@@ -5965,7 +6361,7 @@
  ],
  "soccer:eredivisie:401875568:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PSV Eindhoven – Feyenoord Rotterdam",
    "kickoff": "2026-10-25T13:30:00+00:00",
    "league": "eredivisie",
@@ -5987,7 +6383,7 @@
  ],
  "soccer:eredivisie:401875568:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PSV Eindhoven – Feyenoord Rotterdam",
    "kickoff": "2026-10-25T13:30:00+00:00",
    "league": "eredivisie",
@@ -6009,7 +6405,7 @@
  ],
  "soccer:eredivisie:401875568:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PSV Eindhoven – Feyenoord Rotterdam",
    "kickoff": "2026-10-25T13:30:00+00:00",
    "league": "eredivisie",
@@ -6031,7 +6427,7 @@
  ],
  "soccer:turkey:401888272:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kocaelispor – Goztepe",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "turkey",
@@ -6053,7 +6449,7 @@
  ],
  "soccer:turkey:401888272:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kocaelispor – Goztepe",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "turkey",
@@ -6075,7 +6471,7 @@
  ],
  "soccer:turkey:401888272:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kocaelispor – Goztepe",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "turkey",
@@ -6097,7 +6493,7 @@
  ],
  "soccer:turkey:401888275:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Istanbul Basaksehir – Gaziantep FK",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "turkey",
@@ -6108,18 +6504,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.5762769156284403,
-    "Bet365": 0.5785596163296849
+    "Pinnacle": 0.6011908198243361,
+    "Bet365": 0.5927735151632372
    },
    "odds": {
-    "Pinnacle": 1.7,
-    "Bet365": 1.65
+    "Pinnacle": 1.63,
+    "Bet365": 1.62
    }
   }
  ],
  "soccer:turkey:401888275:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Istanbul Basaksehir – Gaziantep FK",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "turkey",
@@ -6130,18 +6526,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2192625084823595,
-    "Bet365": 0.21984124631832555
+    "Pinnacle": 0.21172303929141337,
+    "Bet365": 0.22252344916352326
    },
    "odds": {
-    "Pinnacle": 4.31,
+    "Pinnacle": 4.44,
     "Bet365": 4.0
    }
   }
  ],
  "soccer:turkey:401888275:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Istanbul Basaksehir – Gaziantep FK",
    "kickoff": "2026-10-18T16:00:00+00:00",
    "league": "turkey",
@@ -6152,18 +6548,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.20446057588920025,
-    "Bet365": 0.20159913735198962
+    "Pinnacle": 0.18708614088425074,
+    "Bet365": 0.1847030356732397
    },
    "odds": {
-    "Pinnacle": 4.61,
-    "Bet365": 4.33
+    "Pinnacle": 5.0,
+    "Bet365": 4.75
    }
   }
  ],
  "soccer:turkey:401888277:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Trabzonspor – Besiktas",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "turkey",
@@ -6185,7 +6581,7 @@
  ],
  "soccer:turkey:401888277:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Trabzonspor – Besiktas",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "turkey",
@@ -6207,7 +6603,7 @@
  ],
  "soccer:turkey:401888277:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Trabzonspor – Besiktas",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "turkey",
@@ -6229,7 +6625,7 @@
  ],
  "soccer:scotland:401878362:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dundee United – Aberdeen",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6251,7 +6647,7 @@
  ],
  "soccer:scotland:401878362:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dundee United – Aberdeen",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6273,7 +6669,7 @@
  ],
  "soccer:scotland:401878362:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dundee United – Aberdeen",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6295,7 +6691,7 @@
  ],
  "soccer:scotland:401878361:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Falkirk – Kilmarnock",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6317,7 +6713,7 @@
  ],
  "soccer:scotland:401878361:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Falkirk – Kilmarnock",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6339,7 +6735,7 @@
  ],
  "soccer:scotland:401878361:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Falkirk – Kilmarnock",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6361,7 +6757,7 @@
  ],
  "soccer:scotland:401878358:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rangers – St Johnstone",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6383,7 +6779,7 @@
  ],
  "soccer:scotland:401878358:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rangers – St Johnstone",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6405,7 +6801,7 @@
  ],
  "soccer:scotland:401878358:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rangers – St Johnstone",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6427,7 +6823,7 @@
  ],
  "soccer:scotland:401878357:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "St Mirren – Dundee",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6438,7 +6834,7 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.44618387283712146,
+    "Pinnacle": 0.44566645274802263,
     "Bet365": 0.47263494287213204
    },
    "odds": {
@@ -6449,7 +6845,7 @@
  ],
  "soccer:scotland:401878357:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "St Mirren – Dundee",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6460,18 +6856,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.24086326312604656,
+    "Pinnacle": 0.2397240180093376,
     "Bet365": 0.2430296564949816
    },
    "odds": {
-    "Pinnacle": 3.89,
+    "Pinnacle": 3.9,
     "Bet365": 3.7
    }
   }
  ],
  "soccer:scotland:401878357:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "St Mirren – Dundee",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "scotland",
@@ -6482,18 +6878,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.312952864036832,
+    "Pinnacle": 0.31460952924263996,
     "Bet365": 0.28433540063288626
    },
    "odds": {
-    "Pinnacle": 3.03,
+    "Pinnacle": 3.01,
     "Bet365": 3.2
    }
   }
  ],
  "soccer:greece:401896817:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kalamata – OFI Crete",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "greece",
@@ -6504,18 +6900,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.3283608424374874,
+    "Pinnacle": 0.3365860374247684,
     "Bet365": 0.3223203698898567
    },
    "odds": {
-    "Pinnacle": 2.93,
+    "Pinnacle": 2.86,
     "Bet365": 2.9
    }
   }
  ],
  "soccer:greece:401896817:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kalamata – OFI Crete",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "greece",
@@ -6526,18 +6922,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2939919134837899,
+    "Pinnacle": 0.29482677500962207,
     "Bet365": 0.30025335595305297
    },
    "odds": {
-    "Pinnacle": 3.26,
+    "Pinnacle": 3.25,
     "Bet365": 3.1
    }
   }
  ],
  "soccer:greece:401896817:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kalamata – OFI Crete",
    "kickoff": "2026-10-18T13:00:00+00:00",
    "league": "greece",
@@ -6548,18 +6944,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.3776472440787229,
+    "Pinnacle": 0.3685871875656098,
     "Bet365": 0.3774262741570903
    },
    "odds": {
-    "Pinnacle": 2.56,
+    "Pinnacle": 2.62,
     "Bet365": 2.5
    }
   }
  ],
  "soccer:greece:401896746:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Panathinaikos – Asteras Tripoli",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "greece",
@@ -6570,18 +6966,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.8209621218045311,
-    "Bet365": 0.7988868684372568
+    "Pinnacle": 0.8272577455781953,
+    "Bet365": 0.782151740504293
    },
    "odds": {
-    "Pinnacle": 1.2,
-    "Bet365": 1.22
+    "Pinnacle": 1.19,
+    "Bet365": 1.25
    }
   }
  ],
  "soccer:greece:401896746:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Panathinaikos – Asteras Tripoli",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "greece",
@@ -6592,18 +6988,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.12234679972034444,
-    "Bet365": 0.14588360416873386
+    "Pinnacle": 0.11875643518262836,
+    "Bet365": 0.1530298620780918
    },
    "odds": {
-    "Pinnacle": 6.97,
+    "Pinnacle": 7.06,
     "Bet365": 5.5
    }
   }
  ],
  "soccer:greece:401896746:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Panathinaikos – Asteras Tripoli",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "greece",
@@ -6614,18 +7010,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.05669107847512472,
-    "Bet365": 0.05522952739400957
+    "Pinnacle": 0.05398581923917633,
+    "Bet365": 0.06481839741761528
    },
    "odds": {
-    "Pinnacle": 14.19,
-    "Bet365": 13.0
+    "Pinnacle": 14.55,
+    "Bet365": 12.0
    }
   }
  ],
  "soccer:greece:401896748:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kifisia – Aris",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "greece",
@@ -6636,18 +7032,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.31026253494080425,
+    "Pinnacle": 0.31184404175393576,
     "Bet365": 0.3125986552418397
    },
    "odds": {
-    "Pinnacle": 3.09,
+    "Pinnacle": 3.08,
     "Bet365": 3.0
    }
   }
  ],
  "soccer:greece:401896748:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kifisia – Aris",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "greece",
@@ -6658,18 +7054,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.27757969936418053,
+    "Pinnacle": 0.27727012231347015,
     "Bet365": 0.2826016409190772
    },
    "odds": {
-    "Pinnacle": 3.44,
+    "Pinnacle": 3.45,
     "Bet365": 3.3
    }
   }
  ],
  "soccer:greece:401896748:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Kifisia – Aris",
    "kickoff": "2026-10-18T17:00:00+00:00",
    "league": "greece",
@@ -6680,18 +7076,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.41215776569501555,
+    "Pinnacle": 0.41088583593259437,
     "Bet365": 0.4047997038390832
    },
    "odds": {
-    "Pinnacle": 2.35,
+    "Pinnacle": 2.36,
     "Bet365": 2.35
    }
   }
  ],
  "soccer:greece:401896816:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PAOK – Iraklis",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "greece",
@@ -6702,7 +7098,7 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.7687187020926018,
+    "Pinnacle": 0.7691362388601868,
     "Bet365": 0.7691397827294162
    },
    "odds": {
@@ -6713,7 +7109,7 @@
  ],
  "soccer:greece:401896816:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PAOK – Iraklis",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "greece",
@@ -6724,18 +7120,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.15366151875695364,
+    "Pinnacle": 0.15313364138459923,
     "Bet365": 0.14647085839562635
    },
    "odds": {
-    "Pinnacle": 5.8,
+    "Pinnacle": 5.84,
     "Bet365": 5.75
    }
   }
  ],
  "soccer:greece:401896816:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "PAOK – Iraklis",
    "kickoff": "2026-10-18T18:00:00+00:00",
    "league": "greece",
@@ -6746,18 +7142,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.0776197791504447,
+    "Pinnacle": 0.07773011975521427,
     "Bet365": 0.08438935887495744
    },
    "odds": {
-    "Pinnacle": 11.01,
+    "Pinnacle": 11.05,
     "Bet365": 9.5
    }
   }
  ],
  "soccer:austria:401881772:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "RB Salzburg – SC Rheindorf Altach",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "austria",
@@ -6779,7 +7175,7 @@
  ],
  "soccer:austria:401881772:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "RB Salzburg – SC Rheindorf Altach",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "austria",
@@ -6801,7 +7197,7 @@
  ],
  "soccer:austria:401881772:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "RB Salzburg – SC Rheindorf Altach",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "austria",
@@ -6823,7 +7219,7 @@
  ],
  "soccer:austria:401881773:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Grazer AK",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "austria",
@@ -6845,7 +7241,7 @@
  ],
  "soccer:austria:401881773:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Grazer AK",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "austria",
@@ -6867,7 +7263,7 @@
  ],
  "soccer:austria:401881773:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Grazer AK",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "austria",
@@ -6889,7 +7285,7 @@
  ],
  "soccer:austria:401881765:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rapid Vienna – Austria Lustenau",
    "kickoff": "2026-10-24T17:30:00+00:00",
    "league": "austria",
@@ -6911,7 +7307,7 @@
  ],
  "soccer:austria:401881765:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rapid Vienna – Austria Lustenau",
    "kickoff": "2026-10-24T17:30:00+00:00",
    "league": "austria",
@@ -6933,7 +7329,7 @@
  ],
  "soccer:austria:401881765:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Rapid Vienna – Austria Lustenau",
    "kickoff": "2026-10-24T17:30:00+00:00",
    "league": "austria",
@@ -6955,7 +7351,7 @@
  ],
  "soccer:sweden:401842843:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "IK Sirius – IF Elfsborg",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -6977,7 +7373,7 @@
  ],
  "soccer:sweden:401842843:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "IK Sirius – IF Elfsborg",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -6999,7 +7395,7 @@
  ],
  "soccer:sweden:401842843:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "IK Sirius – IF Elfsborg",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -7021,7 +7417,7 @@
  ],
  "soccer:sweden:401842842:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Västerås SK – Mjällby AIF",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -7043,7 +7439,7 @@
  ],
  "soccer:sweden:401842842:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Västerås SK – Mjällby AIF",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -7065,7 +7461,7 @@
  ],
  "soccer:sweden:401842842:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Västerås SK – Mjällby AIF",
    "kickoff": "2026-10-18T12:00:00+00:00",
    "league": "sweden",
@@ -7087,7 +7483,7 @@
  ],
  "soccer:sweden:401842844:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Malmö FF – BK Häcken",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7109,7 +7505,7 @@
  ],
  "soccer:sweden:401842844:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Malmö FF – BK Häcken",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7131,7 +7527,7 @@
  ],
  "soccer:sweden:401842844:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Malmö FF – BK Häcken",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7153,7 +7549,7 @@
  ],
  "soccer:sweden:401842849:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Örgryte IS – GAIS",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7175,7 +7571,7 @@
  ],
  "soccer:sweden:401842849:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Örgryte IS – GAIS",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7197,7 +7593,7 @@
  ],
  "soccer:sweden:401842849:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Örgryte IS – GAIS",
    "kickoff": "2026-10-18T14:30:00+00:00",
    "league": "sweden",
@@ -7219,7 +7615,7 @@
  ],
  "soccer:sweden:401842846:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Degerfors IF – Kalmar FF",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "sweden",
@@ -7241,7 +7637,7 @@
  ],
  "soccer:sweden:401842846:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Degerfors IF – Kalmar FF",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "sweden",
@@ -7263,7 +7659,7 @@
  ],
  "soccer:sweden:401842846:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Degerfors IF – Kalmar FF",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "sweden",
@@ -7285,7 +7681,7 @@
  ],
  "soccer:norway:401843461:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sarpsborg FK – Rosenborg",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "norway",
@@ -7307,7 +7703,7 @@
  ],
  "soccer:norway:401843461:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sarpsborg FK – Rosenborg",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "norway",
@@ -7329,7 +7725,7 @@
  ],
  "soccer:norway:401843461:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sarpsborg FK – Rosenborg",
    "kickoff": "2026-10-18T12:30:00+00:00",
    "league": "norway",
@@ -7351,7 +7747,7 @@
  ],
  "soccer:norway:401843463:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Molde – IK Start",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7373,7 +7769,7 @@
  ],
  "soccer:norway:401843463:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Molde – IK Start",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7395,7 +7791,7 @@
  ],
  "soccer:norway:401843463:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Molde – IK Start",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7417,7 +7813,7 @@
  ],
  "soccer:norway:401843466:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Vålerenga – SK Brann",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7439,7 +7835,7 @@
  ],
  "soccer:norway:401843466:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Vålerenga – SK Brann",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7461,7 +7857,7 @@
  ],
  "soccer:norway:401843466:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Vålerenga – SK Brann",
    "kickoff": "2026-10-18T15:00:00+00:00",
    "league": "norway",
@@ -7483,7 +7879,7 @@
  ],
  "soccer:norway:401843460:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tromso – KFUM Oslo",
    "kickoff": "2026-10-18T17:15:00+00:00",
    "league": "norway",
@@ -7505,7 +7901,7 @@
  ],
  "soccer:norway:401843460:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tromso – KFUM Oslo",
    "kickoff": "2026-10-18T17:15:00+00:00",
    "league": "norway",
@@ -7527,7 +7923,7 @@
  ],
  "soccer:norway:401843460:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Tromso – KFUM Oslo",
    "kickoff": "2026-10-18T17:15:00+00:00",
    "league": "norway",
@@ -7549,7 +7945,7 @@
  ],
  "soccer:denmark:401874524:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viborg FF – FC Midtjylland",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "denmark",
@@ -7571,7 +7967,7 @@
  ],
  "soccer:denmark:401874524:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viborg FF – FC Midtjylland",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "denmark",
@@ -7593,7 +7989,7 @@
  ],
  "soccer:denmark:401874524:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viborg FF – FC Midtjylland",
    "kickoff": "2026-10-19T17:00:00+00:00",
    "league": "denmark",
@@ -7615,7 +8011,7 @@
  ],
  "soccer:ucl:401915404:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sabah FK – Borussia Dortmund",
    "kickoff": "2026-10-20T16:45:00+00:00",
    "league": "ucl",
@@ -7637,7 +8033,7 @@
  ],
  "soccer:ucl:401915404:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sabah FK – Borussia Dortmund",
    "kickoff": "2026-10-20T16:45:00+00:00",
    "league": "ucl",
@@ -7659,7 +8055,7 @@
  ],
  "soccer:ucl:401915404:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sabah FK – Borussia Dortmund",
    "kickoff": "2026-10-20T16:45:00+00:00",
    "league": "ucl",
@@ -7681,7 +8077,7 @@
  ],
  "soccer:ucl:401915402:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Roma – Slovan Bratislava",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7703,7 +8099,7 @@
  ],
  "soccer:ucl:401915402:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Roma – Slovan Bratislava",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7725,7 +8121,7 @@
  ],
  "soccer:ucl:401915402:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AS Roma – Slovan Bratislava",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7747,7 +8143,7 @@
  ],
  "soccer:ucl:401915398:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Porto – PSV Eindhoven",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7769,7 +8165,7 @@
  ],
  "soccer:ucl:401915398:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Porto – PSV Eindhoven",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7791,7 +8187,7 @@
  ],
  "soccer:ucl:401915398:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "FC Porto – PSV Eindhoven",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7813,7 +8209,7 @@
  ],
  "soccer:ucl:401915397:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Villarreal",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7835,7 +8231,7 @@
  ],
  "soccer:ucl:401915397:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Villarreal",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7857,7 +8253,7 @@
  ],
  "soccer:ucl:401915397:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Liverpool – Villarreal",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7879,7 +8275,7 @@
  ],
  "soccer:ucl:401915401:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester City – AEK Athens",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7901,7 +8297,7 @@
  ],
  "soccer:ucl:401915401:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester City – AEK Athens",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7923,7 +8319,7 @@
  ],
  "soccer:ucl:401915401:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Manchester City – AEK Athens",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7945,7 +8341,7 @@
  ],
  "soccer:ucl:401915400:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – Bodo/Glimt",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7967,7 +8363,7 @@
  ],
  "soccer:ucl:401915400:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – Bodo/Glimt",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -7989,7 +8385,7 @@
  ],
  "soccer:ucl:401915400:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Napoli – Bodo/Glimt",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8011,7 +8407,7 @@
  ],
  "soccer:ucl:401915399:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Paris Saint-Germain – Barcelona",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8033,7 +8429,7 @@
  ],
  "soccer:ucl:401915399:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Paris Saint-Germain – Barcelona",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8055,7 +8451,7 @@
  ],
  "soccer:ucl:401915399:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Paris Saint-Germain – Barcelona",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8077,7 +8473,7 @@
  ],
  "soccer:ucl:401915392:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "VfB Stuttgart – Atlético Madrid",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8099,7 +8495,7 @@
  ],
  "soccer:ucl:401915392:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "VfB Stuttgart – Atlético Madrid",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8121,7 +8517,7 @@
  ],
  "soccer:ucl:401915392:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "VfB Stuttgart – Atlético Madrid",
    "kickoff": "2026-10-20T19:00:00+00:00",
    "league": "ucl",
@@ -8143,7 +8539,7 @@
  ],
  "soccer:ucl:401915395:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Manchester United",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8165,7 +8561,7 @@
  ],
  "soccer:ucl:401915395:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Manchester United",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8187,7 +8583,7 @@
  ],
  "soccer:ucl:401915395:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Como – Manchester United",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8209,7 +8605,7 @@
  ],
  "soccer:ucl:401915396:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lille – Galatasaray",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8231,7 +8627,7 @@
  ],
  "soccer:ucl:401915396:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lille – Galatasaray",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8253,7 +8649,7 @@
  ],
  "soccer:ucl:401915396:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lille – Galatasaray",
    "kickoff": "2026-10-21T16:45:00+00:00",
    "league": "ucl",
@@ -8275,7 +8671,7 @@
  ],
  "soccer:ucl:401915394:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – VIKING FK",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8297,7 +8693,7 @@
  ],
  "soccer:ucl:401915394:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – VIKING FK",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8319,7 +8715,7 @@
  ],
  "soccer:ucl:401915394:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Aston Villa – VIKING FK",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8341,7 +8737,7 @@
  ],
  "soccer:ucl:401915312:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bayern Munich – Arsenal",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8363,7 +8759,7 @@
  ],
  "soccer:ucl:401915312:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bayern Munich – Arsenal",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8385,7 +8781,7 @@
  ],
  "soccer:ucl:401915312:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Bayern Munich – Arsenal",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8407,7 +8803,7 @@
  ],
  "soccer:ucl:401915388:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Club Brugge – Lens",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8429,7 +8825,7 @@
  ],
  "soccer:ucl:401915388:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Club Brugge – Lens",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8451,7 +8847,7 @@
  ],
  "soccer:ucl:401915388:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Club Brugge – Lens",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8473,7 +8869,7 @@
  ],
  "soccer:ucl:401915390:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Shakhtar Donetsk",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8495,7 +8891,7 @@
  ],
  "soccer:ucl:401915390:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Shakhtar Donetsk",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8517,7 +8913,7 @@
  ],
  "soccer:ucl:401915390:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Internazionale – Shakhtar Donetsk",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8539,7 +8935,7 @@
  ],
  "soccer:ucl:401915389:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Betis – Feyenoord Rotterdam",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8561,7 +8957,7 @@
  ],
  "soccer:ucl:401915389:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Betis – Feyenoord Rotterdam",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8583,7 +8979,7 @@
  ],
  "soccer:ucl:401915389:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Betis – Feyenoord Rotterdam",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8605,7 +9001,7 @@
  ],
  "soccer:ucl:401915313:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – RB Leipzig",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8627,7 +9023,7 @@
  ],
  "soccer:ucl:401915313:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – RB Leipzig",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8649,7 +9045,7 @@
  ],
  "soccer:ucl:401915313:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Real Madrid – RB Leipzig",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8671,7 +9067,7 @@
  ],
  "soccer:ucl:401915391:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sporting CP – LASK Linz",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8693,7 +9089,7 @@
  ],
  "soccer:ucl:401915391:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sporting CP – LASK Linz",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8715,7 +9111,7 @@
  ],
  "soccer:ucl:401915391:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Sporting CP – LASK Linz",
    "kickoff": "2026-10-21T19:00:00+00:00",
    "league": "ucl",
@@ -8737,7 +9133,7 @@
  ],
  "soccer:uel:401915548:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ararat-Armenia – AZ Alkmaar",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8759,7 +9155,7 @@
  ],
  "soccer:uel:401915548:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ararat-Armenia – AZ Alkmaar",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8781,7 +9177,7 @@
  ],
  "soccer:uel:401915548:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Ararat-Armenia – AZ Alkmaar",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8803,7 +9199,7 @@
  ],
  "soccer:uel:401915556:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dinamo Zagreb – NEC Nijmegen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8825,7 +9221,7 @@
  ],
  "soccer:uel:401915556:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dinamo Zagreb – NEC Nijmegen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8847,7 +9243,7 @@
  ],
  "soccer:uel:401915556:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Dinamo Zagreb – NEC Nijmegen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8869,7 +9265,7 @@
  ],
  "soccer:uel:401915547:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Stade Rennais",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8891,7 +9287,7 @@
  ],
  "soccer:uel:401915547:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Stade Rennais",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8913,7 +9309,7 @@
  ],
  "soccer:uel:401915547:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Juventus – Stade Rennais",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8935,7 +9331,7 @@
  ],
  "soccer:uel:401915546:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lech Poznan – Sunderland",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8957,7 +9353,7 @@
  ],
  "soccer:uel:401915546:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lech Poznan – Sunderland",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -8979,7 +9375,7 @@
  ],
  "soccer:uel:401915546:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lech Poznan – Sunderland",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9001,7 +9397,7 @@
  ],
  "soccer:uel:401915559:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "OFI Crete – Bayer Leverkusen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9023,7 +9419,7 @@
  ],
  "soccer:uel:401915559:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "OFI Crete – Bayer Leverkusen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9045,7 +9441,7 @@
  ],
  "soccer:uel:401915559:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "OFI Crete – Bayer Leverkusen",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9067,7 +9463,7 @@
  ],
  "soccer:uel:401915557:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Marseille",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9089,7 +9485,7 @@
  ],
  "soccer:uel:401915557:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Marseille",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9111,7 +9507,7 @@
  ],
  "soccer:uel:401915557:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "SK Sturm Graz – Marseille",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9133,7 +9529,7 @@
  ],
  "soccer:uel:401915545:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Union St.-Gilloise – Hapoel Be'er",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9155,7 +9551,7 @@
  ],
  "soccer:uel:401915545:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Union St.-Gilloise – Hapoel Be'er",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9177,7 +9573,7 @@
  ],
  "soccer:uel:401915545:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Union St.-Gilloise – Hapoel Be'er",
    "kickoff": "2026-10-22T16:45:00+00:00",
    "league": "uel",
@@ -9199,7 +9595,7 @@
  ],
  "soccer:uel:401915552:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – AC Milan",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9221,7 +9617,7 @@
  ],
  "soccer:uel:401915552:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – AC Milan",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9243,7 +9639,7 @@
  ],
  "soccer:uel:401915552:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "AFC Bournemouth – AC Milan",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9265,7 +9661,7 @@
  ],
  "soccer:uel:401915553:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Besiktas – Crystal Palace",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9287,7 +9683,7 @@
  ],
  "soccer:uel:401915553:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Besiktas – Crystal Palace",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9309,7 +9705,7 @@
  ],
  "soccer:uel:401915553:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Besiktas – Crystal Palace",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9331,7 +9727,7 @@
  ],
  "soccer:uel:401915555:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celtic – Celta Vigo",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9353,7 +9749,7 @@
  ],
  "soccer:uel:401915555:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celtic – Celta Vigo",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9375,7 +9771,7 @@
  ],
  "soccer:uel:401915555:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Celtic – Celta Vigo",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9397,7 +9793,7 @@
  ],
  "soccer:uel:401915542:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Jagiellonia Bialystok – Anderlecht",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9419,7 +9815,7 @@
  ],
  "soccer:uel:401915542:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Jagiellonia Bialystok – Anderlecht",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9441,7 +9837,7 @@
  ],
  "soccer:uel:401915542:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Jagiellonia Bialystok – Anderlecht",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9463,7 +9859,7 @@
  ],
  "soccer:uel:401915540:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lillestrom – Real Sociedad",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9485,7 +9881,7 @@
  ],
  "soccer:uel:401915540:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lillestrom – Real Sociedad",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9507,7 +9903,7 @@
  ],
  "soccer:uel:401915540:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Lillestrom – Real Sociedad",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9529,7 +9925,7 @@
  ],
  "soccer:uel:401915541:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NK Celje – RB Salzburg",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9551,7 +9947,7 @@
  ],
  "soccer:uel:401915541:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NK Celje – RB Salzburg",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9573,7 +9969,7 @@
  ],
  "soccer:uel:401915541:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "NK Celje – RB Salzburg",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9595,7 +9991,7 @@
  ],
  "soccer:uel:401915544:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Omonia Nicosia – Benfica",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9617,7 +10013,7 @@
  ],
  "soccer:uel:401915544:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Omonia Nicosia – Benfica",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9639,7 +10035,7 @@
  ],
  "soccer:uel:401915544:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Omonia Nicosia – Benfica",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9661,7 +10057,7 @@
  ],
  "soccer:uel:401915543:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Lyon",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9683,7 +10079,7 @@
  ],
  "soccer:uel:401915543:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Lyon",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9705,7 +10101,7 @@
  ],
  "soccer:uel:401915543:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "TSG Hoffenheim – Lyon",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9727,7 +10123,7 @@
  ],
  "soccer:uel:401915539:home": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viktoria Plzen – Levski Sofia",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9749,7 +10145,7 @@
  ],
  "soccer:uel:401915539:draw": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viktoria Plzen – Levski Sofia",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
@@ -9771,7 +10167,7 @@
  ],
  "soccer:uel:401915539:away": [
   {
-   "ts": "2026-10-18T11:09:00.618154+00:00",
+   "ts": "2026-10-18T10:54:03.897184+00:00",
    "event": "Viktoria Plzen – Levski Sofia",
    "kickoff": "2026-10-22T19:00:00+00:00",
    "league": "uel",
