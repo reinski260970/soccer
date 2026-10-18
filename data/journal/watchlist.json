@@ -2,25 +2,49 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "ucl",
-  "event": "Aston Villa – VIKING FK",
-  "kickoff": "2026-10-21T19:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
+  "league": "bundesliga",
+  "event": "SC Freiburg – Bayern Munich",
+  "kickoff": "2026-10-25T16:30:00+00:00",
+  "market": "home",
+  "selection": "SC Freiburg Sieg (90 Min.)",
   "odds": 6.0,
-  "fair": 5.470373597645376,
-  "min_odds": 5.634484805574738,
+  "fair": 5.491319487974168,
+  "min_odds": 5.656059072613393,
   "home": [
-   "Aston Villa",
-   "Aston Villa",
-   "Aston Villa",
-   "AVL"
+   "SC Freiburg",
+   "SC Freiburg",
+   "Freiburg",
+   "SCF"
   ],
   "away": [
-   "VIKING FK",
-   "VIKING FK",
-   "VIKING FK",
-   "Viking FK"
+   "Bayern Munich",
+   "Bayern Munich",
+   "Bayern",
+   "MUN"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "championship",
+  "event": "Bolton Wanderers – Middlesbrough",
+  "kickoff": "2026-10-23T19:00:00+00:00",
+  "market": "home",
+  "selection": "Bolton Wanderers Sieg (90 Min.)",
+  "odds": 5.0,
+  "fair": 4.735870115242691,
+  "min_odds": 4.877946218699972,
+  "home": [
+   "Bolton Wanderers",
+   "Bolton Wanderers",
+   "Bolton",
+   "BOL"
+  ],
+  "away": [
+   "Middlesbrough",
+   "Middlesbrough",
+   "Boro",
+   "MID"
   ]
  },
  {
@@ -50,6 +74,30 @@
  {
   "source": "bet365",
   "status": "WATCH",
+  "league": "ucl",
+  "event": "Napoli – Bodo/Glimt",
+  "kickoff": "2026-10-20T19:00:00+00:00",
+  "market": "away",
+  "selection": "Bodo/Glimt Sieg (90 Min.)",
+  "odds": 5.5,
+  "fair": 5.246354903682215,
+  "min_odds": 5.4037455507926815,
+  "home": [
+   "Napoli",
+   "Napoli",
+   "Napoli",
+   "NAP"
+  ],
+  "away": [
+   "Bodo/Glimt",
+   "Bodo/Glimt",
+   "Bodo/Glimt",
+   "BODO"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
   "league": "laliga",
   "event": "Levante – Athletic Club",
   "kickoff": "2026-10-21T18:00:00+00:00",
@@ -69,54 +117,6 @@
    "Athletic Club",
    "Athletic",
    "ATH"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "seriea",
-  "event": "Genoa – Venezia",
-  "kickoff": "2026-10-25T14:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.5,
-  "fair": 3.3731865033376565,
-  "min_odds": 3.4743820984377862,
-  "home": [
-   "Genoa",
-   "Genoa",
-   "Genoa",
-   "GEN"
-  ],
-  "away": [
-   "Venezia",
-   "Venezia",
-   "Venezia",
-   "VEN"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "greece",
-  "event": "Panathinaikos – Asteras Tripoli",
-  "kickoff": "2026-10-18T14:30:00+00:00",
-  "market": "home",
-  "selection": "Panathinaikos Sieg (90 Min.)",
-  "odds": 1.25,
-  "fair": 1.2106254311897005,
-  "min_odds": 1.2469441941253916,
-  "home": [
-   "Panathinaikos",
-   "Panathinaikos",
-   "Panathinaikos",
-   "PAO"
-  ],
-  "away": [
-   "Asteras Tripoli",
-   "Asteras Tripoli",
-   "Asteras Trip",
-   "AST"
   ]
  }
 ]
