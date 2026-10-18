@@ -1,0 +1,51 @@
+🗞 Tagesbericht So 18.10. 13:18 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Championship · Fr 23.10. 21:00 MESZ
+🆚 Bolton Wanderers – Middlesbrough
+➡️ Bolton Wanderers Sieg (90 Min.) spielbar ab 4,88 (jetzt 5,00)
+• Ligue 1 · So 25.10. 15:00 MEZ
+🆚 AS Monaco – Lille
+➡️ Unentschieden (90 Min.) spielbar ab 3,52 (jetzt 3,60)
+• Champions League · Di 20.10. 21:00 MESZ
+🆚 Napoli – Bodo/Glimt
+➡️ Bodo/Glimt Sieg (90 Min.) spielbar ab 5,40 (jetzt 5,50)
+• La Liga · Mi 21.10. 20:00 MESZ
+🆚 Levante – Athletic Club
+➡️ Unentschieden (90 Min.) spielbar ab 3,36 (jetzt 3,40)
+• Champions League · Mi 21.10. 21:00 MESZ
+🆚 Real Madrid – RB Leipzig
+➡️ RB Leipzig Sieg (90 Min.) spielbar ab 10,89 (jetzt 11,00)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 73 | Marktreferenz 82 | 0 PLAY
+   • Napoli – Bodo/Glimt · Di 20.10. 21:00 MESZ: Bodo/Glimt Sieg (90 Min.) @ 5,50, spielbar ab 5,40 (EV 4,8 %)
+   • Levante – Athletic Club · Mi 21.10. 20:00 MESZ: Unentschieden (90 Min.) @ 3,40, spielbar ab 3,36 (EV 4,3 %)
+🏒 Eishockey Europa: 80 Spiele | ausführbare Preise 4 | Marktreferenz 25 | 0 PLAY
+   • Krefeld Pinguine – Eisbären Berlin · So 18.10. 14:00 MESZ: Eisbären Berlin Sieg (inkl. OT) @ 1,39, spielbar ab 1,44 (EV -0,7 %)
+   • Adler Mannheim – Schwenninger Wild Wings · So 18.10. 16:30 MESZ: Adler Mannheim Sieg (inkl. OT) @ 1,26, spielbar ab 1,31 (EV -0,8 %)
+🏒 NHL: 45 Spiele | ausführbare Preise 1 | Marktreferenz 45 | 0 PLAY
+   • Minnesota Wild – Columbus Blue Jackets · Mo 19.10. 00:00 MESZ: Minnesota Wild Sieg (inkl. OT) @ 1,59, spielbar ab 1,63 (EV 0,2 %)
+   • Minnesota Wild – Columbus Blue Jackets · Mo 19.10. 00:00 MESZ: Columbus Blue Jackets Sieg (inkl. OT) @ 2,48, spielbar ab 2,79 (EV -8,3 %)
+🏀 NBA: 36 Spiele | ausführbare Preise 0 | Marktreferenz 36 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 0 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
