@@ -2,6 +2,54 @@
  {
   "source": "bet365",
   "status": "WATCH",
+  "league": "greece",
+  "event": "Aris – Atromitos",
+  "kickoff": "2026-10-25T17:30:00+00:00",
+  "market": "home",
+  "selection": "Aris Sieg (90 Min.)",
+  "odds": 1.8,
+  "fair": 1.675791655932781,
+  "min_odds": 1.7260654056107645,
+  "home": [
+   "Aris",
+   "Aris",
+   "Aris",
+   "ARI"
+  ],
+  "away": [
+   "Atromitos",
+   "Atromitos",
+   "Atromitos",
+   "ATRO"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "eredivisie",
+  "event": "NEC Nijmegen – FC Groningen",
+  "kickoff": "2026-10-25T13:30:00+00:00",
+  "market": "away",
+  "selection": "FC Groningen Sieg (90 Min.)",
+  "odds": 3.1,
+  "fair": 2.9197735183367794,
+  "min_odds": 3.007366723886883,
+  "home": [
+   "NEC Nijmegen",
+   "NEC Nijmegen",
+   "NEC",
+   "NEC"
+  ],
+  "away": [
+   "FC Groningen",
+   "FC Groningen",
+   "FC Groningen",
+   "GRO"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
   "league": "championship",
   "event": "Bolton Wanderers – Middlesbrough",
   "kickoff": "2026-10-23T19:00:00+00:00",
@@ -50,30 +98,6 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "ucl",
-  "event": "Napoli – Bodo/Glimt",
-  "kickoff": "2026-10-20T19:00:00+00:00",
-  "market": "away",
-  "selection": "Bodo/Glimt Sieg (90 Min.)",
-  "odds": 5.5,
-  "fair": 5.246354903682215,
-  "min_odds": 5.4037455507926815,
-  "home": [
-   "Napoli",
-   "Napoli",
-   "Napoli",
-   "NAP"
-  ],
-  "away": [
-   "Bodo/Glimt",
-   "Bodo/Glimt",
-   "Bodo/Glimt",
-   "BODO"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "laliga",
   "event": "Levante – Athletic Club",
   "kickoff": "2026-10-21T18:00:00+00:00",
@@ -93,30 +117,6 @@
    "Athletic Club",
    "Athletic",
    "ATH"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "ucl",
-  "event": "Real Madrid – RB Leipzig",
-  "kickoff": "2026-10-21T19:00:00+00:00",
-  "market": "away",
-  "selection": "RB Leipzig Sieg (90 Min.)",
-  "odds": 11.0,
-  "fair": 10.577488224159811,
-  "min_odds": 10.894812870884605,
-  "home": [
-   "Real Madrid",
-   "Real Madrid",
-   "Real Madrid",
-   "RMA"
-  ],
-  "away": [
-   "RB Leipzig",
-   "RB Leipzig",
-   "RB Leipzig",
-   "RBL"
   ]
  }
 ]
