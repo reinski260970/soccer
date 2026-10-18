@@ -2,30 +2,6 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "bundesliga",
-  "event": "SC Freiburg – Bayern Munich",
-  "kickoff": "2026-10-25T16:30:00+00:00",
-  "market": "home",
-  "selection": "SC Freiburg Sieg (90 Min.)",
-  "odds": 6.0,
-  "fair": 5.491319487974168,
-  "min_odds": 5.656059072613393,
-  "home": [
-   "SC Freiburg",
-   "SC Freiburg",
-   "Freiburg",
-   "SCF"
-  ],
-  "away": [
-   "Bayern Munich",
-   "Bayern Munich",
-   "Bayern",
-   "MUN"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
   "league": "championship",
   "event": "Bolton Wanderers – Middlesbrough",
   "kickoff": "2026-10-23T19:00:00+00:00",
@@ -117,6 +93,30 @@
    "Athletic Club",
    "Athletic",
    "ATH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "ucl",
+  "event": "Real Madrid – RB Leipzig",
+  "kickoff": "2026-10-21T19:00:00+00:00",
+  "market": "away",
+  "selection": "RB Leipzig Sieg (90 Min.)",
+  "odds": 11.0,
+  "fair": 10.577488224159811,
+  "min_odds": 10.894812870884605,
+  "home": [
+   "Real Madrid",
+   "Real Madrid",
+   "Real Madrid",
+   "RMA"
+  ],
+  "away": [
+   "RB Leipzig",
+   "RB Leipzig",
+   "RB Leipzig",
+   "RBL"
   ]
  }
 ]
