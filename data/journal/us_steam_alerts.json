@@ -8,5 +8,25 @@
   "ts": "2026-10-07T19:33:02.779084+00:00",
   "direction": "DRIFTING",
   "lead_prob": 0.415
+ },
+ "us:nba:401909838:home": {
+  "ts": "2026-10-18T00:15:49.075103+00:00",
+  "direction": "SHORTENING",
+  "lead_prob": 0.485
+ },
+ "us:nba:401909838:away": {
+  "ts": "2026-10-18T00:15:49.075103+00:00",
+  "direction": "DRIFTING",
+  "lead_prob": 0.515
+ },
+ "us:nba:401909842:home": {
+  "ts": "2026-10-18T00:15:49.075103+00:00",
+  "direction": "SHORTENING",
+  "lead_prob": 0.6
+ },
+ "us:nba:401909842:away": {
+  "ts": "2026-10-18T00:15:49.075103+00:00",
+  "direction": "DRIFTING",
+  "lead_prob": 0.4
  }
 }
