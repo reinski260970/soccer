@@ -26,6 +26,30 @@
  {
   "source": "betfair",
   "status": "WATCH",
+  "league": "laliga",
+  "event": "Racing Santander – Real Madrid",
+  "kickoff": "2026-11-01T15:15:00+00:00",
+  "market": "home",
+  "selection": "Racing Santander Sieg (90 Min.)",
+  "odds": 11.0,
+  "fair": 10.250058698315009,
+  "min_odds": 10.55756045926446,
+  "home": [
+   "Racing Santander",
+   "Racing Santander",
+   "Racing",
+   "RAC"
+  ],
+  "away": [
+   "Real Madrid",
+   "Real Madrid",
+   "Real Madrid",
+   "RMA"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
   "league": "primeira",
   "event": "Alverca – Arouca",
   "kickoff": "2026-10-24T17:00:00+00:00",
@@ -93,30 +117,6 @@
    "Venezia",
    "Venezia",
    "VEN"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "uecl",
-  "event": "Jablonec – Brighton & Hove Albion",
-  "kickoff": "2026-10-22T16:45:00+00:00",
-  "market": "home",
-  "selection": "Jablonec Sieg (90 Min.)",
-  "odds": 10.0,
-  "fair": 9.603471900494736,
-  "min_odds": 9.891576057509578,
-  "home": [
-   "Jablonec",
-   "Jablonec",
-   "Jablonec",
-   "JABL"
-  ],
-  "away": [
-   "Brighton & Hove Albion",
-   "Brighton & Hove Albion",
-   "Brighton",
-   "BHA"
   ]
  }
 ]

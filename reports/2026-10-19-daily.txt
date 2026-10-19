@@ -1,0 +1,53 @@
+🗞 Tagesbericht Mo 19.10. 15:24 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• La Liga · Sa 31.10. 21:00 MEZ
+🆚 Barcelona – Alavés
+➡️ Unentschieden (90 Min.) spielbar ab 8,56 (jetzt 9,00)
+• La Liga · So 01.11. 16:15 MEZ
+🆚 Racing Santander – Real Madrid
+➡️ Racing Santander Sieg (90 Min.) spielbar ab 10,56 (jetzt 11,00)
+• Primeira Liga · Sa 24.10. 19:00 MESZ
+🆚 Alverca – Arouca
+➡️ Unentschieden (90 Min.) spielbar ab 3,41 (jetzt 3,50)
+• Serie A · So 25.10. 15:00 MEZ
+🆚 Genoa – Venezia
+➡️ Unentschieden (90 Min.) spielbar ab 3,44 (jetzt 3,50)
+• Serie A · So 25.10. 15:00 MEZ
+🆚 Genoa – Venezia
+➡️ Unentschieden (90 Min.) spielbar ab 3,44 (jetzt 3,50)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 108 Spiele | ausführbare Preise 90 | Marktreferenz 105 | 0 PLAY
+   • Genoa – Venezia · So 25.10. 15:00 MEZ: Unentschieden (90 Min.) @ 3,50, spielbar ab 3,44 (EV 4,7 %)
+   • Genoa – Venezia · So 25.10. 15:00 MEZ: Unentschieden (90 Min.) @ 3,50, spielbar ab 3,44 (EV 4,7 %)
+🏒 Eishockey Europa: 75 Spiele | ausführbare Preise 1 | Marktreferenz 18 | 0 PLAY
+   • HC Sochi – Shanghai Dragons · Mo 19.10. 18:30 MESZ: Shanghai Dragons Sieg (inkl. OT) @ 1,53, spielbar ab 1,61 (EV -2,1 %)
+   • HC Sochi – Shanghai Dragons · Mo 19.10. 18:30 MESZ: HC Sochi Sieg (inkl. OT) @ 2,65, spielbar ab 2,86 (EV -4,6 %)
+🏒 NHL: 48 Spiele | ausführbare Preise 3 | Marktreferenz 48 | 0 PLAY
+   • Philadelphia Flyers – Colorado Avalanche · Di 20.10. 01:00 MESZ: Colorado Avalanche Sieg (inkl. OT) @ 1,46, spielbar ab 1,50 (EV 0,2 %)
+   • Philadelphia Flyers – Colorado Avalanche · Di 20.10. 01:00 MESZ: Colorado Avalanche Sieg (inkl. OT) @ 1,45, spielbar ab 1,50 (EV -0,5 %)
+🏀 NBA: 43 Spiele | ausführbare Preise 0 | Marktreferenz 43 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 4 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • de Schepper K. vs Trufelli T. · ATP · Fort Worth challenger · ATP Challenger · hard · Mo 19.10. 11:00 (Zeit unbestätigt): Trufelli T. @ 2,66 (EV 48,7 %)
+   • Alves M. vs Pereira J. · ATP · Cali challenger · ATP Challenger · hard · Mo 19.10. 17:00 (Zeit unbestätigt): Pereira J. @ 3,67 (EV 46,3 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
