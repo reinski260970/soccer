@@ -4243,6 +4243,11 @@ icehl,2026/27,2026-10-16,Salzbourg,Linz,0,6,,icehl-api
 icehl,2026/27,2026-10-16,Villach,Graz,2,4,,icehl-api
 icehl,2026/27,2026-10-17,Milano HC,Fehérvár,3,3,OT,icehl-api
 icehl,2026/27,2026-10-17,Vienne,Feldkirch,4,2,,icehl-api
+icehl,2026/27,2026-10-18,Bolzano,Linz,5,0,,icehl-api
+icehl,2026/27,2026-10-18,Ferencváros,Klagenfurt,2,2,OT,icehl-api
+icehl,2026/27,2026-10-18,Innsbruck,Ljubljana,2,5,,icehl-api
+icehl,2026/27,2026-10-18,Milano HC,Fehérvár,3,0,,icehl-api
+icehl,2026/27,2026-10-18,Villach,Pustertal,2,2,OT,icehl-api
 liiga,2022/23,2022-09-13,Sport Vaasa,JYP Jyväskylä,3,1,,hockeyarchives
 liiga,2022/23,2022-09-13,Tappara Tampere,TPS Turku,3,1,,hockeyarchives
 liiga,2022/23,2022-09-14,HIFK Helsinki,HPK Hämeenlinna,4,1,,hockeyarchives
@@ -11679,3 +11684,5 @@ nhl,2026/27,2026-10-17,UTA,EDM,2,6,,nhl-api
 nhl,2026/27,2026-10-17,VGK,PIT,6,2,,nhl-api
 nhl,2026/27,2026-10-17,WPG,CAR,2,3,,nhl-api
 nhl,2026/27,2026-10-17,WSH,NJD,4,2,,nhl-api
+nhl,2026/27,2026-10-18,CGY,CAR,3,2,,nhl-api
+nhl,2026/27,2026-10-18,MIN,CBJ,2,1,,nhl-api
