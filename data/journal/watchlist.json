@@ -48,30 +48,6 @@
   ]
  },
  {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "nhl",
-  "event": "Philadelphia Flyers – Colorado Avalanche",
-  "kickoff": "2026-10-19T23:00:00+00:00",
-  "market": "home",
-  "selection": "Philadelphia Flyers Sieg (inkl. OT)",
-  "odds": 3.4,
-  "fair": 3.189929339806589,
-  "min_odds": 3.2856272200007868,
-  "home": [
-   "Philadelphia Flyers",
-   "Philadelphia",
-   "Flyers",
-   "PHI"
-  ],
-  "away": [
-   "Colorado Avalanche",
-   "Colorado",
-   "Avalanche",
-   "COL"
-  ]
- },
- {
   "source": "betfair",
   "status": "WATCH",
   "league": "seriea",
@@ -117,6 +93,30 @@
    "Arouca",
    "Arouca",
    "FCA"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "seriea",
+  "event": "Genoa – Venezia",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.335836873952581,
+  "min_odds": 3.435911980171159,
+  "home": [
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
+  ],
+  "away": [
+   "Venezia",
+   "Venezia",
+   "Venezia",
+   "VEN"
   ]
  }
 ]
