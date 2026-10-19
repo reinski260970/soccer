@@ -35858,5 +35858,399 @@
     "matches": 10
    }
   ]
+ },
+ "2026-10-19|E0|understat": {
+  "as_of": "2026-10-19T01:18:33.294907+00:00",
+  "league": "E0",
+  "source": "understat",
+  "teams": [
+   {
+    "team": "Arsenal",
+    "xg": 1.806964285714286,
+    "xga": 1.0570355714285715,
+    "xg_home": 2.3268,
+    "xga_home": 0.7290346666666667,
+    "xg_away": 1.4170875,
+    "xga_away": 1.30303625,
+    "matches": 7
+   },
+   {
+    "team": "Coventry",
+    "xg": 1.106636,
+    "xga": 1.8011160000000002,
+    "xg_home": 1.2982233333333335,
+    "xga_home": 1.8145186666666664,
+    "xg_away": 0.9150486666666667,
+    "xga_away": 1.7877133333333333,
+    "matches": 6
+   },
+   {
+    "team": "Hull",
+    "xg": 1.0563228571428571,
+    "xga": 1.7507742857142856,
+    "xg_home": 1.2803683333333333,
+    "xga_home": 2.06996,
+    "xg_away": 0.88828875,
+    "xga_away": 1.511385,
+    "matches": 7
+   },
+   {
+    "team": "Manchester United",
+    "xg": 1.7905982857142857,
+    "xga": 1.5229514285714285,
+    "xg_home": 2.225781,
+    "xga_home": 1.66019,
+    "xg_away": 1.46421125,
+    "xga_away": 1.4200225,
+    "matches": 7
+   },
+   {
+    "team": "Everton",
+    "xg": 1.6743855714285714,
+    "xga": 1.4763287142857142,
+    "xg_home": 1.41518475,
+    "xga_home": 1.4517412500000002,
+    "xg_away": 2.0199866666666666,
+    "xga_away": 1.509112,
+    "matches": 7
+   },
+   {
+    "team": "Crystal Palace",
+    "xg": 1.494273,
+    "xga": 2.29085,
+    "xg_home": 1.3708606666666665,
+    "xga_home": 2.788213333333333,
+    "xg_away": 1.58683225,
+    "xga_away": 1.9178275,
+    "matches": 7
+   },
+   {
+    "team": "Ipswich",
+    "xg": 1.3935288571428572,
+    "xga": 2.2992438571428573,
+    "xg_home": 1.1472239999999998,
+    "xga_home": 1.2333763333333332,
+    "xg_away": 1.5782575,
+    "xga_away": 3.0986445,
+    "matches": 7
+   },
+   {
+    "team": "Sunderland",
+    "xg": 1.5765234857142858,
+    "xga": 2.125662857142857,
+    "xg_home": 1.5007976666666665,
+    "xga_home": 1.551573333333333,
+    "xg_away": 1.63331785,
+    "xga_away": 2.5562300000000002,
+    "matches": 7
+   },
+   {
+    "team": "Nottingham Forest",
+    "xg": 1.8559675714285715,
+    "xga": 1.1678138571428571,
+    "xg_home": 0.8885257499999999,
+    "xga_home": 0.88988925,
+    "xg_away": 3.14589,
+    "xga_away": 1.53838,
+    "matches": 7
+   },
+   {
+    "team": "Leeds",
+    "xg": 1.4049381428571428,
+    "xga": 1.4020794285714289,
+    "xg_home": 1.4839974999999999,
+    "xga_home": 1.1542512500000002,
+    "xg_away": 1.2995256666666668,
+    "xga_away": 1.7325169999999999,
+    "matches": 7
+   },
+   {
+    "team": "Brentford",
+    "xg": 1.807775857142857,
+    "xga": 1.5547792857142857,
+    "xg_home": 2.24136825,
+    "xga_home": 1.3364037500000001,
+    "xg_away": 1.2296526666666665,
+    "xga_away": 1.8459466666666666,
+    "matches": 7
+   },
+   {
+    "team": "Tottenham",
+    "xg": 1.3090166666666667,
+    "xga": 1.6767231666666669,
+    "xg_home": 1.1929986666666668,
+    "xga_home": 1.43976,
+    "xg_away": 1.4250346666666667,
+    "xga_away": 1.9136863333333334,
+    "matches": 6
+   },
+   {
+    "team": "Brighton",
+    "xg": 2.3981342857142858,
+    "xga": 1.446203,
+    "xg_home": 2.6471025000000004,
+    "xga_home": 1.094157,
+    "xg_away": 2.0661766666666668,
+    "xga_away": 1.9155976666666668,
+    "matches": 7
+   },
+   {
+    "team": "Aston Villa",
+    "xg": 1.2728734285714285,
+    "xga": 1.8654011428571429,
+    "xg_home": 1.0694016666666666,
+    "xga_home": 1.8667333333333334,
+    "xg_away": 1.4254772500000001,
+    "xga_away": 1.864402,
+    "matches": 7
+   },
+   {
+    "team": "Manchester City",
+    "xg": 2.376497142857143,
+    "xga": 1.329705857142857,
+    "xg_home": 2.835275,
+    "xga_home": 1.66968525,
+    "xg_away": 1.7647933333333334,
+    "xga_away": 0.8764,
+    "matches": 7
+   },
+   {
+    "team": "Bournemouth",
+    "xg": 2.022818142857143,
+    "xga": 1.2089336285714285,
+    "xg_home": 2.5345565,
+    "xga_home": 0.96081485,
+    "xg_away": 1.3405003333333332,
+    "xga_away": 1.5397586666666667,
+    "matches": 7
+   },
+   {
+    "team": "Newcastle United",
+    "xg": 1.2404305714285715,
+    "xga": 1.869444285714286,
+    "xg_home": 1.1654197499999999,
+    "xga_home": 2.00283,
+    "xg_away": 1.3404449999999999,
+    "xga_away": 1.6915966666666666,
+    "matches": 7
+   },
+   {
+    "team": "Liverpool",
+    "xg": 1.5075227142857142,
+    "xga": 1.3407019999999998,
+    "xg_home": 1.2789,
+    "xga_home": 1.7962843333333334,
+    "xg_away": 1.6789897500000002,
+    "xga_away": 0.99901525,
+    "matches": 7
+   },
+   {
+    "team": "Fulham",
+    "xg": 1.7166175714285714,
+    "xga": 1.6884127142857144,
+    "xg_home": 2.072815,
+    "xga_home": 1.79977475,
+    "xg_away": 1.2416876666666665,
+    "xga_away": 1.53993,
+    "matches": 7
+   },
+   {
+    "team": "Chelsea",
+    "xg": 1.7024712857142856,
+    "xga": 1.7918755714285715,
+    "xg_home": 2.1386133333333333,
+    "xga_home": 1.7568033333333333,
+    "xg_away": 1.3753647500000001,
+    "xga_away": 1.81817975,
+    "matches": 7
+   }
+  ]
+ },
+ "2026-10-19|P1|matchpulse": {
+  "as_of": "2026-10-19T01:18:33.294907+00:00",
+  "league": "P1",
+  "source": "matchpulse",
+  "teams": [
+   {
+    "team": "Benfica",
+    "xg": 2.36,
+    "xga": 0.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "FC Porto",
+    "xg": 2.26,
+    "xga": 0.91,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Vitória SC",
+    "xg": 1.8,
+    "xga": 1.15,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Sporting CP",
+    "xg": 1.54,
+    "xga": 0.92,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Alverca",
+    "xg": 1.49,
+    "xga": 1.26,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Estrela",
+    "xg": 1.46,
+    "xga": 1.52,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Santa Clara",
+    "xg": 1.28,
+    "xga": 0.83,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Estoril",
+    "xg": 1.24,
+    "xga": 1.39,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "SC Braga",
+    "xg": 1.37,
+    "xga": 0.67,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "GIL Vicente",
+    "xg": 1.35,
+    "xga": 0.79,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 7
+   },
+   {
+    "team": "Arouca",
+    "xg": 1.17,
+    "xga": 1.67,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Nacional",
+    "xg": 1.07,
+    "xga": 2.09,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Academico Viseu",
+    "xg": 1.05,
+    "xga": 1.75,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Famalicao",
+    "xg": 1.02,
+    "xga": 1.41,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Rio Ave",
+    "xg": 0.99,
+    "xga": 1.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Maritimo",
+    "xg": 0.89,
+    "xga": 1.5,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Casa Pia",
+    "xg": 0.82,
+    "xga": 1.64,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   },
+   {
+    "team": "Moreirense",
+    "xg": 0.74,
+    "xga": 1.74,
+    "xg_home": null,
+    "xga_home": null,
+    "xg_away": null,
+    "xga_away": null,
+    "matches": 8
+   }
+  ]
  }
 }
