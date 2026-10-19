@@ -1,29 +1,5 @@
 [
  {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "laliga",
-  "event": "Barcelona – Alavés",
-  "kickoff": "2026-10-31T20:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 9.0,
-  "fair": 8.315391275219469,
-  "min_odds": 8.564853013476052,
-  "home": [
-   "Barcelona",
-   "Barcelona",
-   "Barcelona",
-   "BAR"
-  ],
-  "away": [
-   "Alavés",
-   "Alavés",
-   "Alavés",
-   "ALA"
-  ]
- },
- {
   "source": "betfair",
   "status": "WATCH",
   "league": "laliga",
@@ -48,6 +24,78 @@
   ]
  },
  {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "laliga",
+  "event": "Levante – Athletic Club",
+  "kickoff": "2026-10-21T18:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.2703608980007512,
+  "min_odds": 3.368471724940774,
+  "home": [
+   "Levante",
+   "Levante",
+   "Levante",
+   "LEV"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic Club",
+   "Athletic",
+   "ATH"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "nhl",
+  "event": "Philadelphia Flyers – Colorado Avalanche",
+  "kickoff": "2026-10-19T23:00:00+00:00",
+  "market": "home",
+  "selection": "Philadelphia Flyers Sieg (inkl. OT)",
+  "odds": 3.4,
+  "fair": 3.189929339806589,
+  "min_odds": 3.2856272200007868,
+  "home": [
+   "Philadelphia Flyers",
+   "Philadelphia",
+   "Flyers",
+   "PHI"
+  ],
+  "away": [
+   "Colorado Avalanche",
+   "Colorado",
+   "Avalanche",
+   "COL"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "seriea",
+  "event": "Cagliari – Bologna",
+  "kickoff": "2026-10-24T13:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.25,
+  "fair": 3.060085839638418,
+  "min_odds": 3.1518884148275705,
+  "home": [
+   "Cagliari",
+   "Cagliari",
+   "Cagliari",
+   "CAG"
+  ],
+  "away": [
+   "Bologna",
+   "Bologna",
+   "Bologna",
+   "BOL"
+  ]
+ },
+ {
   "source": "betfair",
   "status": "WATCH",
   "league": "primeira",
@@ -69,54 +117,6 @@
    "Arouca",
    "Arouca",
    "FCA"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "seriea",
-  "event": "Genoa – Venezia",
-  "kickoff": "2026-10-25T14:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.5,
-  "fair": 3.3444742098637668,
-  "min_odds": 3.44480843615968,
-  "home": [
-   "Genoa",
-   "Genoa",
-   "Genoa",
-   "GEN"
-  ],
-  "away": [
-   "Venezia",
-   "Venezia",
-   "Venezia",
-   "VEN"
-  ]
- },
- {
-  "source": "betfair",
-  "status": "WATCH",
-  "league": "seriea",
-  "event": "Genoa – Venezia",
-  "kickoff": "2026-10-25T14:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.5,
-  "fair": 3.3444742098637668,
-  "min_odds": 3.44480843615968,
-  "home": [
-   "Genoa",
-   "Genoa",
-   "Genoa",
-   "GEN"
-  ],
-  "away": [
-   "Venezia",
-   "Venezia",
-   "Venezia",
-   "VEN"
   ]
  }
 ]
