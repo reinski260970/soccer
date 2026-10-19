@@ -2,121 +2,121 @@
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "greece",
-  "event": "Aris – Atromitos",
-  "kickoff": "2026-10-25T17:30:00+00:00",
-  "market": "home",
-  "selection": "Aris Sieg (90 Min.)",
-  "odds": 1.8,
-  "fair": 1.675791655932781,
-  "min_odds": 1.7260654056107645,
+  "league": "laliga",
+  "event": "Barcelona – Alavés",
+  "kickoff": "2026-10-31T20:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 9.0,
+  "fair": 8.315391275219469,
+  "min_odds": 8.564853013476052,
   "home": [
-   "Aris",
-   "Aris",
-   "Aris",
-   "ARI"
+   "Barcelona",
+   "Barcelona",
+   "Barcelona",
+   "BAR"
   ],
   "away": [
-   "Atromitos",
-   "Atromitos",
-   "Atromitos",
-   "ATRO"
+   "Alavés",
+   "Alavés",
+   "Alavés",
+   "ALA"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "primeira",
+  "event": "Alverca – Arouca",
+  "kickoff": "2026-10-24T17:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.3125999757584768,
+  "min_odds": 3.4119779750312316,
+  "home": [
+   "Alverca",
+   "Alverca",
+   "Alverca",
+   "ALV"
+  ],
+  "away": [
+   "Arouca",
+   "Arouca",
+   "Arouca",
+   "FCA"
   ]
  },
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "eredivisie",
-  "event": "NEC Nijmegen – FC Groningen",
-  "kickoff": "2026-10-25T13:30:00+00:00",
-  "market": "away",
-  "selection": "FC Groningen Sieg (90 Min.)",
-  "odds": 3.1,
-  "fair": 2.9197735183367794,
-  "min_odds": 3.007366723886883,
-  "home": [
-   "NEC Nijmegen",
-   "NEC Nijmegen",
-   "NEC",
-   "NEC"
-  ],
-  "away": [
-   "FC Groningen",
-   "FC Groningen",
-   "FC Groningen",
-   "GRO"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "championship",
-  "event": "Bolton Wanderers – Middlesbrough",
-  "kickoff": "2026-10-23T19:00:00+00:00",
-  "market": "home",
-  "selection": "Bolton Wanderers Sieg (90 Min.)",
-  "odds": 5.0,
-  "fair": 4.735870115242691,
-  "min_odds": 4.877946218699972,
-  "home": [
-   "Bolton Wanderers",
-   "Bolton Wanderers",
-   "Bolton",
-   "BOL"
-  ],
-  "away": [
-   "Middlesbrough",
-   "Middlesbrough",
-   "Boro",
-   "MID"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "ligue1",
-  "event": "AS Monaco – Lille",
+  "league": "seriea",
+  "event": "Genoa – Venezia",
   "kickoff": "2026-10-25T14:00:00+00:00",
   "market": "draw",
   "selection": "Unentschieden (90 Min.)",
-  "odds": 3.6,
-  "fair": 3.41955870604423,
-  "min_odds": 3.522145467225557,
+  "odds": 3.5,
+  "fair": 3.3444742098637668,
+  "min_odds": 3.44480843615968,
   "home": [
-   "AS Monaco",
-   "AS Monaco",
-   "Monaco",
-   "MON"
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
   ],
   "away": [
-   "Lille",
-   "Lille",
-   "Lille",
-   "LILL"
+   "Venezia",
+   "Venezia",
+   "Venezia",
+   "VEN"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "seriea",
+  "event": "Genoa – Venezia",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.3444742098637668,
+  "min_odds": 3.44480843615968,
+  "home": [
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
+  ],
+  "away": [
+   "Venezia",
+   "Venezia",
+   "Venezia",
+   "VEN"
   ]
  },
  {
   "source": "bet365",
   "status": "WATCH",
-  "league": "laliga",
-  "event": "Levante – Athletic Club",
-  "kickoff": "2026-10-21T18:00:00+00:00",
-  "market": "draw",
-  "selection": "Unentschieden (90 Min.)",
-  "odds": 3.4,
-  "fair": 3.259980809810447,
-  "min_odds": 3.35778023410476,
+  "league": "uecl",
+  "event": "Jablonec – Brighton & Hove Albion",
+  "kickoff": "2026-10-22T16:45:00+00:00",
+  "market": "home",
+  "selection": "Jablonec Sieg (90 Min.)",
+  "odds": 10.0,
+  "fair": 9.603471900494736,
+  "min_odds": 9.891576057509578,
   "home": [
-   "Levante",
-   "Levante",
-   "Levante",
-   "LEV"
+   "Jablonec",
+   "Jablonec",
+   "Jablonec",
+   "JABL"
   ],
   "away": [
-   "Athletic Club",
-   "Athletic Club",
-   "Athletic",
-   "ATH"
+   "Brighton & Hove Albion",
+   "Brighton & Hove Albion",
+   "Brighton",
+   "BHA"
   ]
  }
 ]
