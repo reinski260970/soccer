@@ -1,7 +1,7 @@
 {
  "soccer:epl:401879257:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -9,41 +9,24 @@
    "selection": "Tottenham Hotspur",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6512741439799435,
-    "Bet365": 0.6598048062510019
+    "Pinnacle": 0.6302518304228646,
+    "Bet365": 0.6298215380922151,
+    "Betfair": 0.637243056815506
    },
    "odds": {
-    "Pinnacle": 1.51,
-    "Bet365": 1.48
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Tottenham Hotspur – Coventry City",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Tottenham Hotspur",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6467757788556534,
-    "Bet365": 0.6733016967481585
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.45
+    "Pinnacle": 1.56,
+    "Bet365": 1.55,
+    "Betfair": 1.53
    }
   }
  ],
  "soccer:epl:401879257:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -51,41 +34,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.19894052012965643,
-    "Bet365": 0.2028541129308225
+    "Pinnacle": 0.2055706704233547,
+    "Bet365": 0.204607092949496,
+    "Betfair": 0.19849825902789664
    },
    "odds": {
-    "Pinnacle": 4.72,
-    "Bet365": 4.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Tottenham Hotspur – Coventry City",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20066384574492632,
-    "Bet365": 0.1903709700009547
-   },
-   "odds": {
-    "Pinnacle": 4.68,
-    "Bet365": 4.75
+    "Pinnacle": 4.59,
+    "Bet365": 4.5,
+    "Betfair": 4.6
    }
   }
  ],
  "soccer:epl:401879257:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Tottenham Hotspur – Coventry City",
    "kickoff": "2026-10-19T19:00:00+00:00",
    "league": "epl",
@@ -93,41 +59,24 @@
    "selection": "Coventry City",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.14978533589040022,
-    "Bet365": 0.13734108081817564
+    "Pinnacle": 0.1641774991537809,
+    "Bet365": 0.16557136895828892,
+    "Betfair": 0.16425868415659745
    },
    "odds": {
-    "Pinnacle": 6.2,
-    "Bet365": 6.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Tottenham Hotspur – Coventry City",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Coventry City",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.15256037539942036,
-    "Bet365": 0.13632733325088708
-   },
-   "odds": {
-    "Pinnacle": 6.09,
-    "Bet365": 6.5
+    "Pinnacle": 5.7,
+    "Bet365": 5.5,
+    "Betfair": 5.5
    }
   }
  ],
  "soccer:epl:401879253:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -135,41 +84,24 @@
    "selection": "Ipswich Town",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3096215782348924,
-    "Bet365": 0.29912943497930544
+    "Pinnacle": 0.3059873769466357,
+    "Bet365": 0.29912943497930544,
+    "Betfair": 0.30914696891619525
    },
    "odds": {
-    "Pinnacle": 3.06,
-    "Bet365": 3.1
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Ipswich Town – Nottingham Forest",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Ipswich Town",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.30710043230231493,
-    "Bet365": 0.29912943497930544
-   },
-   "odds": {
-    "Pinnacle": 3.14,
-    "Bet365": 3.1
+    "Pinnacle": 3.15,
+    "Bet365": 3.1,
+    "Betfair": 3.0
    }
   }
  ],
  "soccer:epl:401879253:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -177,41 +109,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.26497831510597925,
-    "Bet365": 0.27983082652277336
+    "Pinnacle": 0.2744593987515327,
+    "Bet365": 0.27983082652277336,
+    "Betfair": 0.2704458395929494
    },
    "odds": {
-    "Pinnacle": 3.55,
-    "Bet365": 3.3
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Ipswich Town – Nottingham Forest",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.27136396507239174,
-    "Bet365": 0.27983082652277336
-   },
-   "odds": {
-    "Pinnacle": 3.54,
-    "Bet365": 3.3
+    "Pinnacle": 3.5,
+    "Bet365": 3.3,
+    "Betfair": 3.4
    }
   }
  ],
  "soccer:epl:401879253:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Ipswich Town – Nottingham Forest",
    "kickoff": "2026-10-23T19:00:00+00:00",
    "league": "epl",
@@ -219,41 +134,24 @@
    "selection": "Nottingham Forest",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4254001066591285,
-    "Bet365": 0.4210397384979213
+    "Pinnacle": 0.4195532243018316,
+    "Bet365": 0.4210397384979213,
+    "Betfair": 0.42040719149085526
    },
    "odds": {
-    "Pinnacle": 2.26,
-    "Bet365": 2.25
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Ipswich Town – Nottingham Forest",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Nottingham Forest",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4215356026252936,
-    "Bet365": 0.4210397384979213
-   },
-   "odds": {
-    "Pinnacle": 2.31,
-    "Bet365": 2.25
+    "Pinnacle": 2.32,
+    "Bet365": 2.25,
+    "Betfair": 2.25
    }
   }
  ],
  "soccer:epl:401879256:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -261,41 +159,24 @@
    "selection": "Aston Villa",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.21067059119098586,
-    "Bet365": 0.19790195950526213
+    "Pinnacle": 0.21215304894825218,
+    "Bet365": 0.20353011280167765,
+    "Betfair": 0.21158637199590835
    },
    "odds": {
-    "Pinnacle": 4.37,
-    "Bet365": 4.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Aston Villa – Manchester City",
-   "kickoff": "2026-10-24T11:30:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Aston Villa",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2106839864970471,
-    "Bet365": 0.19646515931622008
-   },
-   "odds": {
-    "Pinnacle": 4.47,
-    "Bet365": 4.5
+    "Pinnacle": 4.46,
+    "Bet365": 4.33,
+    "Betfair": 4.33
    }
   }
  ],
  "soccer:epl:401879256:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -303,41 +184,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.22534847375820966,
-    "Bet365": 0.23743106349301582
-   },
-   "odds": {
-    "Pinnacle": 4.1,
-    "Bet365": 3.8
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Aston Villa – Manchester City",
-   "kickoff": "2026-10-24T11:30:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22042012421882856,
-    "Bet365": 0.2293631952279467
+    "Pinnacle": 0.2214124691556157,
+    "Bet365": 0.23454301453462595,
+    "Betfair": 0.2185330792272432
    },
    "odds": {
     "Pinnacle": 4.28,
-    "Bet365": 3.9
+    "Bet365": 3.8,
+    "Betfair": 4.2
    }
   }
  ],
  "soccer:epl:401879256:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Aston Villa – Manchester City",
    "kickoff": "2026-10-24T11:30:00+00:00",
    "league": "epl",
@@ -345,41 +209,24 @@
    "selection": "Manchester City",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5639809350508045,
-    "Bet365": 0.5646669770017224
+    "Pinnacle": 0.5664344818961321,
+    "Bet365": 0.5619268726636966,
+    "Betfair": 0.5698805487768487
    },
    "odds": {
-    "Pinnacle": 1.72,
-    "Bet365": 1.7
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Aston Villa – Manchester City",
-   "kickoff": "2026-10-24T11:30:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Manchester City",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5688958892841243,
-    "Bet365": 0.5741716454558334
-   },
-   "odds": {
-    "Pinnacle": 1.72,
-    "Bet365": 1.67
+    "Pinnacle": 1.73,
+    "Bet365": 1.7,
+    "Betfair": 1.7
    }
   }
  ],
  "soccer:epl:401878768:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -387,41 +234,24 @@
    "selection": "Arsenal",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6967803882992081,
-    "Bet365": 0.7034123617556757
+    "Pinnacle": 0.6972198510280657,
+    "Bet365": 0.7123632583733531,
+    "Betfair": 0.7289647698114072
    },
    "odds": {
-    "Pinnacle": 1.4,
-    "Bet365": 1.38
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Arsenal – Everton",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Arsenal",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6926136769919794,
-    "Bet365": 0.7034123617556757
-   },
-   "odds": {
-    "Pinnacle": 1.42,
-    "Bet365": 1.38
+    "Pinnacle": 1.41,
+    "Bet365": 1.36,
+    "Betfair": 1.33
    }
   }
  ],
  "soccer:epl:401878768:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -429,41 +259,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2032534936826333,
-    "Bet365": 0.19341743021230776
+    "Pinnacle": 0.20384857949474225,
+    "Bet365": 0.17930039446972604,
+    "Betfair": 0.17777215478717512
    },
    "odds": {
-    "Pinnacle": 4.41,
-    "Bet365": 4.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Arsenal – Everton",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20644594770403968,
-    "Bet365": 0.19341743021230776
-   },
-   "odds": {
-    "Pinnacle": 4.51,
-    "Bet365": 4.5
+    "Pinnacle": 4.55,
+    "Bet365": 4.75,
+    "Betfair": 4.75
    }
   }
  ],
  "soccer:epl:401878768:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Arsenal – Everton",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -471,41 +284,24 @@
    "selection": "Everton",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.09996611801815886,
-    "Bet365": 0.10317020803201675
+    "Pinnacle": 0.09893156947719209,
+    "Bet365": 0.10833634715692074,
+    "Betfair": 0.09326307540141796
    },
    "odds": {
-    "Pinnacle": 8.54,
-    "Bet365": 8.0
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Arsenal – Everton",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Everton",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.10094037530398117,
-    "Bet365": 0.10317020803201675
-   },
-   "odds": {
-    "Pinnacle": 8.93,
-    "Bet365": 8.0
+    "Pinnacle": 9.06,
+    "Bet365": 7.5,
+    "Betfair": 8.5
    }
   }
  ],
  "soccer:epl:401879255:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -513,41 +309,24 @@
    "selection": "Coventry City",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.32354723636373095,
-    "Bet365": 0.3199976454399638
-   },
-   "odds": {
-    "Pinnacle": 2.94,
-    "Bet365": 2.9
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Coventry City – Fulham",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Coventry City",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.3199546921220721,
-    "Bet365": 0.3199976454399638
+    "Bet365": 0.3199976454399638,
+    "Betfair": 0.3236895233946221
    },
    "odds": {
     "Pinnacle": 3.02,
-    "Bet365": 2.9
+    "Bet365": 2.9,
+    "Betfair": 2.88
    }
   }
  ],
  "soccer:epl:401879255:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -555,41 +334,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2656196801429476,
-    "Bet365": 0.2699088644359314
-   },
-   "odds": {
-    "Pinnacle": 3.55,
-    "Bet365": 3.4
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Coventry City – Fulham",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.26925949292382306,
-    "Bet365": 0.2699088644359314
+    "Bet365": 0.2699088644359314,
+    "Betfair": 0.2551461592638058
    },
    "odds": {
     "Pinnacle": 3.57,
-    "Bet365": 3.4
+    "Bet365": 3.4,
+    "Betfair": 3.6
    }
   }
  ],
  "soccer:epl:401879255:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Coventry City – Fulham",
    "kickoff": "2026-10-24T14:00:00+00:00",
    "league": "epl",
@@ -597,41 +359,24 @@
    "selection": "Fulham",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4108330834933218,
-    "Bet365": 0.410093490124105
-   },
-   "odds": {
-    "Pinnacle": 2.34,
-    "Bet365": 2.3
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Coventry City – Fulham",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Fulham",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.410785814954105,
-    "Bet365": 0.410093490124105
+    "Bet365": 0.410093490124105,
+    "Betfair": 0.42116431734157234
    },
    "odds": {
     "Pinnacle": 2.37,
-    "Bet365": 2.3
+    "Bet365": 2.3,
+    "Betfair": 2.25
    }
   }
  ],
  "soccer:epl:401878767:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -639,41 +384,24 @@
    "selection": "Chelsea",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5353441989355083,
-    "Bet365": 0.5311961110457829
+    "Pinnacle": 0.5594117015072095,
+    "Bet365": 0.562018214392699,
+    "Betfair": 0.5657773050429475
    },
    "odds": {
-    "Pinnacle": 1.81,
-    "Bet365": 1.8
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Chelsea – Tottenham Hotspur",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Chelsea",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5568453882395346,
-    "Bet365": 0.5529899963934457
-   },
-   "odds": {
-    "Pinnacle": 1.76,
-    "Bet365": 1.73
+    "Pinnacle": 1.75,
+    "Bet365": 1.7,
+    "Betfair": 1.7
    }
   }
  ],
  "soccer:epl:401878767:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -681,41 +409,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2280462310152432,
-    "Bet365": 0.2311255773960412
+    "Pinnacle": 0.22109273138496421,
+    "Bet365": 0.22192675596029543,
+    "Betfair": 0.2199190192153334
    },
    "odds": {
-    "Pinnacle": 4.07,
-    "Bet365": 3.9
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Chelsea – Tottenham Hotspur",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22238060796817163,
-    "Bet365": 0.22350500180327715
-   },
-   "odds": {
-    "Pinnacle": 4.27,
-    "Bet365": 4.0
+    "Pinnacle": 4.28,
+    "Bet365": 4.0,
+    "Betfair": 4.1
    }
   }
  ],
  "soccer:epl:401878767:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Chelsea – Tottenham Hotspur",
    "kickoff": "2026-10-24T16:30:00+00:00",
    "league": "epl",
@@ -723,41 +434,24 @@
    "selection": "Tottenham Hotspur",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.23660957004924882,
-    "Bet365": 0.23767831155817615
+    "Pinnacle": 0.21949556710782636,
+    "Bet365": 0.21605502964700574,
+    "Betfair": 0.2143036757417193
    },
    "odds": {
-    "Pinnacle": 3.93,
-    "Bet365": 3.8
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Chelsea – Tottenham Hotspur",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Tottenham Hotspur",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22077400379229392,
-    "Bet365": 0.22350500180327715
-   },
-   "odds": {
-    "Pinnacle": 4.3,
-    "Bet365": 4.0
+    "Pinnacle": 4.31,
+    "Bet365": 4.1,
+    "Betfair": 4.2
    }
   }
  ],
  "soccer:epl:401879254:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -765,41 +459,24 @@
    "selection": "Crystal Palace",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.35914007606999493,
-    "Bet365": 0.3580926915271019
+    "Pinnacle": 0.3269419324106309,
+    "Bet365": 0.3457922339584513,
+    "Betfair": 0.3472337986599874
    },
    "odds": {
-    "Pinnacle": 2.66,
-    "Bet365": 2.6
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Crystal Palace – Newcastle United",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Crystal Palace",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.32779419027650886,
-    "Bet365": 0.3457922339584513
-   },
-   "odds": {
-    "Pinnacle": 2.93,
-    "Bet365": 2.7
+    "Pinnacle": 2.94,
+    "Bet365": 2.7,
+    "Betfair": 2.7
    }
   }
  ],
  "soccer:epl:401879254:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -807,41 +484,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.26394041297300747,
-    "Bet365": 0.26839705469028863
+    "Pinnacle": 0.2642650842945454,
+    "Bet365": 0.2620109809691131,
+    "Betfair": 0.2556049759692774
    },
    "odds": {
-    "Pinnacle": 3.57,
-    "Bet365": 3.4
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Crystal Palace – Newcastle United",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2654981256484884,
-    "Bet365": 0.2620109809691131
-   },
-   "odds": {
-    "Pinnacle": 3.59,
-    "Bet365": 3.5
+    "Pinnacle": 3.61,
+    "Bet365": 3.5,
+    "Betfair": 3.6
    }
   }
  ],
  "soccer:epl:401879254:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Crystal Palace – Newcastle United",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -849,41 +509,24 @@
    "selection": "Newcastle United",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.37691951095699777,
-    "Bet365": 0.37351025378260977
+    "Pinnacle": 0.40879298329482383,
+    "Bet365": 0.3921967850724356,
+    "Betfair": 0.39716122537073556
    },
    "odds": {
-    "Pinnacle": 2.54,
-    "Bet365": 2.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Crystal Palace – Newcastle United",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Newcastle United",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4067076840750029,
-    "Bet365": 0.3921967850724356
-   },
-   "odds": {
-    "Pinnacle": 2.38,
-    "Bet365": 2.4
+    "Pinnacle": 2.37,
+    "Bet365": 2.4,
+    "Betfair": 2.38
    }
   }
  ],
  "soccer:epl:401878766:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -891,41 +534,24 @@
    "selection": "Hull City",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.21460733186909695,
-    "Bet365": 0.2058733046367161
+    "Pinnacle": 0.2077002262058927,
+    "Bet365": 0.2058733046367161,
+    "Betfair": 0.20676406114190876
    },
    "odds": {
-    "Pinnacle": 4.3,
-    "Bet365": 4.33
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Hull City – Brentford",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Hull City",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21567672229191892,
-    "Bet365": 0.21158474312885717
-   },
-   "odds": {
-    "Pinnacle": 4.36,
-    "Bet365": 4.2
+    "Pinnacle": 4.51,
+    "Bet365": 4.33,
+    "Betfair": 4.4
    }
   }
  ],
  "soccer:epl:401878766:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -933,41 +559,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.24115496583861148,
-    "Bet365": 0.2404110273847046
+    "Pinnacle": 0.23788617549246457,
+    "Bet365": 0.2404110273847046,
+    "Betfair": 0.23507535979066999
    },
    "odds": {
-    "Pinnacle": 3.85,
-    "Bet365": 3.75
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Hull City – Brentford",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2422410022348415,
-    "Bet365": 0.24269450312504579
-   },
-   "odds": {
-    "Pinnacle": 3.9,
-    "Bet365": 3.7
+    "Pinnacle": 3.96,
+    "Bet365": 3.75,
+    "Betfair": 3.9
    }
   }
  ],
  "soccer:epl:401878766:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Hull City – Brentford",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -975,41 +584,24 @@
    "selection": "Brentford",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5442377022922918,
-    "Bet365": 0.5537156679785795
+    "Pinnacle": 0.5544135983016426,
+    "Bet365": 0.5537156679785795,
+    "Betfair": 0.5581605790674212
    },
    "odds": {
-    "Pinnacle": 1.78,
-    "Bet365": 1.73
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Hull City – Brentford",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Brentford",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5420822754732395,
-    "Bet365": 0.5457207537460972
-   },
-   "odds": {
-    "Pinnacle": 1.8,
-    "Bet365": 1.75
+    "Pinnacle": 1.76,
+    "Bet365": 1.73,
+    "Betfair": 1.73
    }
   }
  ],
  "soccer:epl:401878765:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1017,41 +609,24 @@
    "selection": "Liverpool",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.46575047385821905,
-    "Bet365": 0.47330462241673665
+    "Pinnacle": 0.44963031884435534,
+    "Bet365": 0.47330462241673665,
+    "Betfair": 0.4507924902081067
    },
    "odds": {
-    "Pinnacle": 2.07,
-    "Bet365": 2.0
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Liverpool – Brighton & Hove Albion",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Liverpool",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4653088733564994,
-    "Bet365": 0.47330462241673665
-   },
-   "odds": {
-    "Pinnacle": 2.09,
-    "Bet365": 2.0
+    "Pinnacle": 2.16,
+    "Bet365": 2.0,
+    "Betfair": 2.1
    }
   }
  ],
  "soccer:epl:401878765:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1059,41 +634,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2375425462993272,
-    "Bet365": 0.25099270749953606
+    "Pinnacle": 0.2403064131797213,
+    "Bet365": 0.25099270749953606,
+    "Betfair": 0.24185887342458665
    },
    "odds": {
-    "Pinnacle": 3.93,
-    "Bet365": 3.6
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Liverpool – Brighton & Hove Albion",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23661176194361871,
-    "Bet365": 0.25099270749953606
-   },
-   "odds": {
-    "Pinnacle": 4.01,
-    "Bet365": 3.6
+    "Pinnacle": 3.95,
+    "Bet365": 3.6,
+    "Betfair": 3.75
    }
   }
  ],
  "soccer:epl:401878765:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Liverpool – Brighton & Hove Albion",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1101,41 +659,24 @@
    "selection": "Brighton & Hove Albion",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2967069798424539,
-    "Bet365": 0.2757026700837272
+    "Pinnacle": 0.31006326797592343,
+    "Bet365": 0.2757026700837272,
+    "Betfair": 0.30734863636730664
    },
    "odds": {
-    "Pinnacle": 3.18,
-    "Bet365": 3.3
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Liverpool – Brighton & Hove Albion",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Brighton & Hove Albion",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29807936469988194,
-    "Bet365": 0.2757026700837272
-   },
-   "odds": {
-    "Pinnacle": 3.21,
-    "Bet365": 3.3
+    "Pinnacle": 3.09,
+    "Bet365": 3.3,
+    "Betfair": 3.0
    }
   }
  ],
  "soccer:epl:401879252:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1143,41 +684,24 @@
    "selection": "Manchester United",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5261502685337281,
-    "Bet365": 0.5333656625501886
-   },
-   "odds": {
-    "Pinnacle": 1.84,
-    "Bet365": 1.8
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Manchester United – AFC Bournemouth",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Manchester United",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5212559376580894,
-    "Bet365": 0.5333656625501886
+    "Pinnacle": 0.5214603370937555,
+    "Bet365": 0.5333656625501886,
+    "Betfair": 0.5332533869768187
    },
    "odds": {
     "Pinnacle": 1.87,
-    "Bet365": 1.8
+    "Bet365": 1.8,
+    "Betfair": 1.8
    }
   }
  ],
  "soccer:epl:401879252:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1185,41 +709,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.23787842580744803,
-    "Bet365": 0.2333171687249057
+    "Pinnacle": 0.2421017660929535,
+    "Bet365": 0.2333171687249057,
+    "Betfair": 0.22697246567249027
    },
    "odds": {
     "Pinnacle": 3.91,
-    "Bet365": 3.9
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Manchester United – AFC Bournemouth",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24189508940702395,
-    "Bet365": 0.2333171687249057
-   },
-   "odds": {
-    "Pinnacle": 3.91,
-    "Bet365": 3.9
+    "Bet365": 3.9,
+    "Betfair": 4.0
    }
   }
  ],
  "soccer:epl:401879252:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Manchester United – AFC Bournemouth",
    "kickoff": "2026-10-25T14:00:00+00:00",
    "league": "epl",
@@ -1227,41 +734,24 @@
    "selection": "AFC Bournemouth",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.23597130565882385,
-    "Bet365": 0.2333171687249057
+    "Pinnacle": 0.23643789681329122,
+    "Bet365": 0.2333171687249057,
+    "Betfair": 0.23977414735069133
    },
    "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.9
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Manchester United – AFC Bournemouth",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "AFC Bournemouth",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2368489729348868,
-    "Bet365": 0.2333171687249057
-   },
-   "odds": {
-    "Pinnacle": 3.99,
-    "Bet365": 3.9
+    "Pinnacle": 4.0,
+    "Bet365": 3.9,
+    "Betfair": 3.8
    }
   }
  ],
  "soccer:epl:401878764:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1269,41 +759,24 @@
    "selection": "Sunderland",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3455455631244882,
-    "Bet365": 0.35131020874015245
+    "Pinnacle": 0.32283598389024215,
+    "Bet365": 0.3371476798009508,
+    "Betfair": 0.32117030694174603
    },
    "odds": {
-    "Pinnacle": 2.76,
-    "Bet365": 2.7
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Sunderland – Leeds United",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "epl",
-   "market": "home",
-   "selection": "Sunderland",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3391572653041421,
-    "Bet365": 0.35131020874015245
-   },
-   "odds": {
-    "Pinnacle": 2.84,
-    "Bet365": 2.7
+    "Pinnacle": 2.98,
+    "Bet365": 2.8,
+    "Betfair": 2.88
    }
   }
  ],
  "soccer:epl:401878764:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1311,41 +784,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.28212487809744186,
-    "Bet365": 0.2755815937968765
-   },
-   "odds": {
-    "Pinnacle": 3.35,
-    "Bet365": 3.4
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Sunderland – Leeds United",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "epl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3006880103404616,
-    "Bet365": 0.2755815937968765
+    "Pinnacle": 0.3008566916795782,
+    "Bet365": 0.2746508285089566,
+    "Betfair": 0.2967624947708305
    },
    "odds": {
     "Pinnacle": 3.19,
-    "Bet365": 3.4
+    "Bet365": 3.4,
+    "Betfair": 3.1
    }
   }
  ],
  "soccer:epl:401878764:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Sunderland – Leeds United",
    "kickoff": "2026-10-25T16:30:00+00:00",
    "league": "epl",
@@ -1353,41 +809,24 @@
    "selection": "Leeds United",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.37232955877807006,
-    "Bet365": 0.37310819746297147
+    "Pinnacle": 0.3763073244301799,
+    "Bet365": 0.38820149169009305,
+    "Betfair": 0.3820671982874237
    },
    "odds": {
     "Pinnacle": 2.57,
-    "Bet365": 2.55
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Sunderland – Leeds United",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "epl",
-   "market": "away",
-   "selection": "Leeds United",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3601547243553965,
-    "Bet365": 0.37310819746297147
-   },
-   "odds": {
-    "Pinnacle": 2.68,
-    "Bet365": 2.55
+    "Bet365": 2.45,
+    "Betfair": 2.45
    }
   }
  ],
  "soccer:primeira:401885480:home": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -1398,38 +837,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.624056678504768,
-    "Bet365": 0.6315115526577485
+    "Pinnacle": 0.619323150668145,
+    "Bet365": 0.6147942661596641
    },
    "odds": {
-    "Pinnacle": 1.56,
-    "Bet365": 1.53
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Braga – Gil Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "primeira",
-   "market": "home",
-   "selection": "Braga",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.624056678504768,
-    "Bet365": 0.6315115526577485
-   },
-   "odds": {
-    "Pinnacle": 1.56,
-    "Bet365": 1.53
+    "Pinnacle": 1.58,
+    "Bet365": 1.57
    }
   }
  ],
  "soccer:primeira:401885480:draw": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -1440,38 +859,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.2336560333948708,
-    "Bet365": 0.23624177583220482
+    "Pinnacle": 0.2322604708189859,
+    "Bet365": 0.24039725222391928
    },
    "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.8
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Braga – Gil Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "primeira",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2336560333948708,
-    "Bet365": 0.23624177583220482
-   },
-   "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.8
+    "Pinnacle": 4.03,
+    "Bet365": 3.75
    }
   }
  ],
  "soccer:primeira:401885480:away": [
   {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Braga – Gil Vicente",
    "kickoff": "2026-10-19T19:15:00+00:00",
    "league": "primeira",
@@ -1482,6098 +881,18 @@
     "Bet365"
    ],
    "probs": {
-    "Pinnacle": 0.14228728810036154,
-    "Bet365": 0.13224667151004676
+    "Pinnacle": 0.14841637851286926,
+    "Bet365": 0.14480848161641696
    },
    "odds": {
-    "Pinnacle": 6.29,
-    "Bet365": 6.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Braga – Gil Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "primeira",
-   "market": "away",
-   "selection": "Gil Vicente",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.14228728810036154,
-    "Bet365": 0.13224667151004676
-   },
-   "odds": {
-    "Pinnacle": 6.29,
-    "Bet365": 6.5
-   }
-  }
- ],
- "soccer:primeira:401885419:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "home",
-   "selection": "Estrela",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5812468501622704,
-    "Bet365": 0.545780103976026
-   },
-   "odds": {
-    "Pinnacle": 1.67,
-    "Bet365": 1.75
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "home",
-   "selection": "Estrela",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5812468501622704,
-    "Bet365": 0.545780103976026
-   },
-   "odds": {
-    "Pinnacle": 1.67,
-    "Bet365": 1.75
-   }
-  }
- ],
- "soccer:primeira:401885419:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24219376075619956,
-    "Bet365": 0.2578009433716153
-   },
-   "odds": {
-    "Pinnacle": 3.82,
-    "Bet365": 3.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24219376075619956,
-    "Bet365": 0.2578009433716153
-   },
-   "odds": {
-    "Pinnacle": 3.82,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:primeira:401885419:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "away",
-   "selection": "Casa Pia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17655938908153007,
-    "Bet365": 0.19641895265235867
-   },
-   "odds": {
-    "Pinnacle": 5.15,
-    "Bet365": 4.5
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Estrela – Casa Pia",
-   "kickoff": "2026-10-24T14:30:00+00:00",
-   "league": "primeira",
-   "market": "away",
-   "selection": "Casa Pia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17655938908153007,
-    "Bet365": 0.19641895265235867
-   },
-   "odds": {
-    "Pinnacle": 5.15,
-    "Bet365": 4.5
-   }
-  }
- ],
- "soccer:primeira:401885420:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "home",
-   "selection": "Alverca",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.44558086006416975,
-    "Bet365": 0.4349400187487985
-   },
-   "odds": {
-    "Pinnacle": 2.16,
-    "Bet365": 2.15
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "home",
-   "selection": "Alverca",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.44558086006416975,
-    "Bet365": 0.4349400187487985
-   },
-   "odds": {
-    "Pinnacle": 2.16,
-    "Bet365": 2.15
-   }
-  }
- ],
- "soccer:primeira:401885420:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3018776813735358,
-    "Bet365": 0.27292779398699485
-   },
-   "odds": {
-    "Pinnacle": 3.13,
-    "Bet365": 3.3
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3018776813735358,
-    "Bet365": 0.27292779398699485
-   },
-   "odds": {
-    "Pinnacle": 3.13,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:primeira:401885420:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "away",
-   "selection": "Arouca",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2525414585622946,
-    "Bet365": 0.2921321872642068
-   },
-   "odds": {
-    "Pinnacle": 3.71,
-    "Bet365": 3.1
-   }
-  },
-  {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
-   "event": "Alverca – Arouca",
-   "kickoff": "2026-10-24T17:00:00+00:00",
-   "league": "primeira",
-   "market": "away",
-   "selection": "Arouca",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2525414585622946,
-    "Bet365": 0.2921321872642068
-   },
-   "odds": {
-    "Pinnacle": 3.71,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:bundesliga:401884761:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Borussia Mönchengladbach",
-   "kickoff": "2026-10-23T18:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "VfB Stuttgart",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7020453432118425,
-    "Bet365": 0.704892353304471
-   },
-   "odds": {
-    "Pinnacle": 1.39,
-    "Bet365": 1.38
-   }
-  }
- ],
- "soccer:bundesliga:401884761:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Borussia Mönchengladbach",
-   "kickoff": "2026-10-23T18:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.15926537136596283,
-    "Bet365": 0.17421113709422809
-   },
-   "odds": {
-    "Pinnacle": 5.53,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:bundesliga:401884761:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Borussia Mönchengladbach",
-   "kickoff": "2026-10-23T18:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Borussia Mönchengladbach",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.138689285422195,
-    "Bet365": 0.12089650960130105
-   },
-   "odds": {
-    "Pinnacle": 6.29,
-    "Bet365": 7.0
-   }
-  }
- ],
- "soccer:bundesliga:401884758:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Augsburg – 1. FC Union Berlin",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "FC Augsburg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5228422908476918,
-    "Bet365": 0.5066988657181998
-   },
-   "odds": {
-    "Pinnacle": 1.85,
-    "Bet365": 1.9
-   }
-  }
- ],
- "soccer:bundesliga:401884758:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Augsburg – 1. FC Union Berlin",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23502768599123203,
-    "Bet365": 0.24316729634561343
-   },
-   "odds": {
-    "Pinnacle": 3.95,
-    "Bet365": 3.8
-   }
-  }
- ],
- "soccer:bundesliga:401884758:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Augsburg – 1. FC Union Berlin",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "1. FC Union Berlin",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24213002316107624,
-    "Bet365": 0.2501338379361872
-   },
-   "odds": {
-    "Pinnacle": 3.84,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:bundesliga:401884756:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Cologne – Schalke 04",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "FC Cologne",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.48088602318889007,
-    "Bet365": 0.4792581783158502
-   },
-   "odds": {
-    "Pinnacle": 2.01,
-    "Bet365": 2.0
-   }
-  }
- ],
- "soccer:bundesliga:401884756:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Cologne – Schalke 04",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23678610908864114,
-    "Bet365": 0.2296884014826273
-   },
-   "odds": {
-    "Pinnacle": 3.95,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:bundesliga:401884756:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Cologne – Schalke 04",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Schalke 04",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2823278677224691,
-    "Bet365": 0.2910534202015225
-   },
-   "odds": {
-    "Pinnacle": 3.34,
-    "Bet365": 3.2
-   }
-  }
- ],
- "soccer:bundesliga:401884757:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Mainz – Werder Bremen",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "Mainz",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5818638495068132,
-    "Bet365": 0.5781223601073493
-   },
-   "odds": {
-    "Pinnacle": 1.67,
-    "Bet365": 1.67
-   }
-  }
- ],
- "soccer:bundesliga:401884757:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Mainz – Werder Bremen",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.218078378171705,
-    "Bet365": 0.2214212551707997
-   },
-   "odds": {
-    "Pinnacle": 4.23,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:bundesliga:401884757:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Mainz – Werder Bremen",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Werder Bremen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20005777232148195,
-    "Bet365": 0.20045638472185098
-   },
-   "odds": {
-    "Pinnacle": 4.59,
-    "Bet365": 4.5
-   }
-  }
- ],
- "soccer:bundesliga:401884762:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "RB Leipzig – SV Elversberg",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "RB Leipzig",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7083298598638403,
-    "Bet365": 0.71035577765422
-   },
-   "odds": {
-    "Pinnacle": 1.38,
-    "Bet365": 1.38
-   }
-  }
- ],
- "soccer:bundesliga:401884762:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "RB Leipzig – SV Elversberg",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16941290115351657,
-    "Bet365": 0.17192238899840723
-   },
-   "odds": {
-    "Pinnacle": 5.25,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:bundesliga:401884762:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "RB Leipzig – SV Elversberg",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "SV Elversberg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1222572389826433,
-    "Bet365": 0.1177218333473731
-   },
-   "odds": {
-    "Pinnacle": 7.12,
-    "Bet365": 7.5
-   }
-  }
- ],
- "soccer:bundesliga:401884755:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Paderborn 07 – Hamburg SV",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "SC Paderborn 07",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4000639624297959,
-    "Bet365": 0.4203097323295975
-   },
-   "odds": {
-    "Pinnacle": 2.4,
-    "Bet365": 2.25
-   }
-  }
- ],
- "soccer:bundesliga:401884755:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Paderborn 07 – Hamburg SV",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.25947044731446994,
-    "Bet365": 0.24698873899317494
-   },
-   "odds": {
-    "Pinnacle": 3.63,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:bundesliga:401884755:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Paderborn 07 – Hamburg SV",
-   "kickoff": "2026-10-24T13:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Hamburg SV",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.34046559025573453,
-    "Bet365": 0.33270152867722774
-   },
-   "odds": {
-    "Pinnacle": 2.8,
-    "Bet365": 2.8
-   }
-  }
- ],
- "soccer:bundesliga:401884763:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Borussia Dortmund – Eintracht Frankfurt",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "Borussia Dortmund",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6723651848170967,
-    "Bet365": 0.6556097889017121
-   },
-   "odds": {
-    "Pinnacle": 1.45,
-    "Bet365": 1.48
-   }
-  }
- ],
- "soccer:bundesliga:401884763:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Borussia Dortmund – Eintracht Frankfurt",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17360121359794858,
-    "Bet365": 0.17671780706613174
-   },
-   "odds": {
-    "Pinnacle": 5.15,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:bundesliga:401884763:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Borussia Dortmund – Eintracht Frankfurt",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Eintracht Frankfurt",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.154033601584955,
-    "Bet365": 0.16767240403215622
-   },
-   "odds": {
-    "Pinnacle": 5.76,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:bundesliga:401884760:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Bayer Leverkusen",
-   "kickoff": "2026-10-25T14:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "TSG Hoffenheim",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.34925662767912924,
-    "Bet365": 0.35955956302700964
-   },
-   "odds": {
-    "Pinnacle": 2.73,
-    "Bet365": 2.62
-   }
-  }
- ],
- "soccer:bundesliga:401884760:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Bayer Leverkusen",
-   "kickoff": "2026-10-25T14:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2347012369040122,
-    "Bet365": 0.2422586354879453
-   },
-   "odds": {
-    "Pinnacle": 3.99,
-    "Bet365": 3.8
-   }
-  }
- ],
- "soccer:bundesliga:401884760:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Bayer Leverkusen",
-   "kickoff": "2026-10-25T14:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Bayer Leverkusen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4160421354168589,
-    "Bet365": 0.398181801485045
-   },
-   "odds": {
-    "Pinnacle": 2.31,
-    "Bet365": 2.38
-   }
-  }
- ],
- "soccer:bundesliga:401884759:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Freiburg – Bayern Munich",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "home",
-   "selection": "SC Freiburg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1439825365285878,
-    "Bet365": 0.14496498366355084
-   },
-   "odds": {
-    "Pinnacle": 6.1,
+    "Pinnacle": 6.18,
     "Bet365": 6.0
-   }
-  }
- ],
- "soccer:bundesliga:401884759:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Freiburg – Bayern Munich",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.15339580427564092,
-    "Bet365": 0.1592186106944821
-   },
-   "odds": {
-    "Pinnacle": 5.75,
-    "Bet365": 5.5
-   }
-  }
- ],
- "soccer:bundesliga:401884759:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Freiburg – Bayern Munich",
-   "kickoff": "2026-10-25T16:30:00+00:00",
-   "league": "bundesliga",
-   "market": "away",
-   "selection": "Bayern Munich",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7026216591957715,
-    "Bet365": 0.6958164056419672
-   },
-   "odds": {
-    "Pinnacle": 1.39,
-    "Bet365": 1.4
-   }
-  }
- ],
- "soccer:championship:401880277:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Wolverhampton Wanderers – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "championship",
-   "market": "home",
-   "selection": "Wolverhampton Wanderers",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6154419095975042,
-    "Bet365": 0.6332664471280819
-   },
-   "odds": {
-    "Pinnacle": 1.58,
-    "Bet365": 1.53
-   }
-  }
- ],
- "soccer:championship:401880277:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Wolverhampton Wanderers – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "championship",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2175294306900431,
-    "Bet365": 0.2140153454439259
-   },
-   "odds": {
-    "Pinnacle": 4.21,
-    "Bet365": 4.2
-   }
-  }
- ],
- "soccer:championship:401880277:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Wolverhampton Wanderers – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "championship",
-   "market": "away",
-   "selection": "Portsmouth",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1670286597124528,
-    "Bet365": 0.15271820742799233
-   },
-   "odds": {
-    "Pinnacle": 5.4,
-    "Bet365": 5.75
-   }
-  }
- ],
- "soccer:championship:401880207:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bolton Wanderers – Middlesbrough",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "championship",
-   "market": "home",
-   "selection": "Bolton Wanderers",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21115443955725013,
-    "Bet365": 0.17320959218406765
-   },
-   "odds": {
-    "Pinnacle": 4.35,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:championship:401880207:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bolton Wanderers – Middlesbrough",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "championship",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2148092598181845,
-    "Bet365": 0.21501038966953742
-   },
-   "odds": {
-    "Pinnacle": 4.28,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:championship:401880207:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bolton Wanderers – Middlesbrough",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "championship",
-   "market": "away",
-   "selection": "Middlesbrough",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5740363006245656,
-    "Bet365": 0.6117800181463949
-   },
-   "odds": {
-    "Pinnacle": 1.69,
-    "Bet365": 1.57
-   }
-  }
- ],
- "soccer:laliga:401882842:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Getafe",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3152967768356708,
-    "Bet365": 0.31725505166588375
-   },
-   "odds": {
-    "Pinnacle": 3.07,
-    "Bet365": 3.0
-   }
-  }
- ],
- "soccer:laliga:401882842:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3262263059557313,
-    "Bet365": 0.31725505166588375
-   },
-   "odds": {
-    "Pinnacle": 2.97,
-    "Bet365": 3.0
-   }
-  }
- ],
- "soccer:laliga:401882842:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Rayo Vallecano",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3584769172085979,
-    "Bet365": 0.3654898966682327
-   },
-   "odds": {
-    "Pinnacle": 2.71,
-    "Bet365": 2.62
-   }
-  }
- ],
- "soccer:laliga:401882870:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Levante",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24905874877016138,
-    "Bet365": 0.2784688862317773
-   },
-   "odds": {
-    "Pinnacle": 3.77,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:laliga:401882870:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3067502719619216,
-    "Bet365": 0.2697079918187682
-   },
-   "odds": {
-    "Pinnacle": 3.09,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:laliga:401882870:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Athletic Club",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4441909792679173,
-    "Bet365": 0.4518231219494547
-   },
-   "odds": {
-    "Pinnacle": 2.17,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:laliga:401882836:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alavés – Málaga",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Alavés",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5231738183762872,
-    "Bet365": 0.5230778383423974
-   },
-   "odds": {
-    "Pinnacle": 1.85,
-    "Bet365": 1.83
-   }
-  }
- ],
- "soccer:laliga:401882836:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alavés – Málaga",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26573283898002614,
-    "Bet365": 0.2692032012841832
-   },
-   "odds": {
-    "Pinnacle": 3.52,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:laliga:401882836:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Alavés – Málaga",
-   "kickoff": "2026-10-23T19:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Málaga",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21109334264368676,
-    "Bet365": 0.2077189603734198
-   },
-   "odds": {
-    "Pinnacle": 4.38,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:laliga:401882830:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rayo Vallecano – Elche",
-   "kickoff": "2026-10-24T12:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Rayo Vallecano",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5504079360722092,
-    "Bet365": 0.5479881217667526
-   },
-   "odds": {
-    "Pinnacle": 1.76,
-    "Bet365": 1.75
-   }
-  }
- ],
- "soccer:laliga:401882830:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rayo Vallecano – Elche",
-   "kickoff": "2026-10-24T12:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24345326580244467,
-    "Bet365": 0.2450584936195206
-   },
-   "odds": {
-    "Pinnacle": 3.81,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:laliga:401882830:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rayo Vallecano – Elche",
-   "kickoff": "2026-10-24T12:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Elche",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20613879812534633,
-    "Bet365": 0.2069533846137269
-   },
-   "odds": {
-    "Pinnacle": 4.46,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:laliga:401882831:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Racing Santander – Espanyol",
-   "kickoff": "2026-10-24T14:15:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Racing Santander",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.383337563635264,
-    "Bet365": 0.38534946910195533
-   },
-   "odds": {
-    "Pinnacle": 2.5,
-    "Bet365": 2.45
-   }
-  }
- ],
- "soccer:laliga:401882831:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Racing Santander – Espanyol",
-   "kickoff": "2026-10-24T14:15:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26022404278804184,
-    "Bet365": 0.25585297546689106
-   },
-   "odds": {
-    "Pinnacle": 3.62,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:laliga:401882831:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Racing Santander – Espanyol",
-   "kickoff": "2026-10-24T14:15:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Espanyol",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3564383935766943,
-    "Bet365": 0.35879755543115394
-   },
-   "odds": {
-    "Pinnacle": 2.68,
-    "Bet365": 2.62
-   }
-  }
- ],
- "soccer:laliga:401882827:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Valencia – Villarreal",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Valencia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.30535858895297224,
-    "Bet365": 0.28428228123147403
-   },
-   "odds": {
-    "Pinnacle": 3.1,
-    "Bet365": 3.25
-   }
-  }
- ],
- "soccer:laliga:401882827:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Valencia – Villarreal",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2529384124855742,
-    "Bet365": 0.26266626083044575
-   },
-   "odds": {
-    "Pinnacle": 3.71,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:laliga:401882827:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Valencia – Villarreal",
-   "kickoff": "2026-10-24T16:30:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Villarreal",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4417029985614538,
-    "Bet365": 0.4530514579380805
-   },
-   "odds": {
-    "Pinnacle": 2.18,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:laliga:401882835:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Athletic Club – Getafe",
-   "kickoff": "2026-10-25T13:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Athletic Club",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5954214565839302,
-    "Bet365": 0.5994393894542481
-   },
-   "odds": {
-    "Pinnacle": 1.63,
-    "Bet365": 1.6
-   }
-  }
- ],
- "soccer:laliga:401882835:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Athletic Club – Getafe",
-   "kickoff": "2026-10-25T13:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2225692599612543,
-    "Bet365": 0.2272077421590551
-   },
-   "odds": {
-    "Pinnacle": 4.12,
-    "Bet365": 3.9
-   }
-  }
- ],
- "soccer:laliga:401882835:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Athletic Club – Getafe",
-   "kickoff": "2026-10-25T13:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Getafe",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18200928345481585,
-    "Bet365": 0.17335286838669697
-   },
-   "odds": {
-    "Pinnacle": 4.98,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:laliga:401882833:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celta Vigo – Real Betis",
-   "kickoff": "2026-10-25T15:15:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Celta Vigo",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.34548909829421065,
-    "Bet365": 0.3458948089515033
-   },
-   "odds": {
-    "Pinnacle": 2.76,
-    "Bet365": 2.7
-   }
-  }
- ],
- "soccer:laliga:401882833:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celta Vigo – Real Betis",
-   "kickoff": "2026-10-25T15:15:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26312831183296426,
-    "Bet365": 0.27035701021676783
-   },
-   "odds": {
-    "Pinnacle": 3.58,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:laliga:401882833:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celta Vigo – Real Betis",
-   "kickoff": "2026-10-25T15:15:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Real Betis",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.39138258987282504,
-    "Bet365": 0.3837481808317288
-   },
-   "odds": {
-    "Pinnacle": 2.45,
-    "Bet365": 2.45
-   }
-  }
- ],
- "soccer:laliga:401882829:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Sociedad – Levante",
-   "kickoff": "2026-10-25T17:30:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Real Sociedad",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5573773244434828,
-    "Bet365": 0.5668156034559338
-   },
-   "odds": {
-    "Pinnacle": 1.74,
-    "Bet365": 1.7
-   }
-  }
- ],
- "soccer:laliga:401882829:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Sociedad – Levante",
-   "kickoff": "2026-10-25T17:30:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22913322094976624,
-    "Bet365": 0.2331404678861813
-   },
-   "odds": {
-    "Pinnacle": 4.04,
-    "Bet365": 3.9
-   }
-  }
- ],
- "soccer:laliga:401882829:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Sociedad – Levante",
-   "kickoff": "2026-10-25T17:30:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Levante",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21348945460675117,
-    "Bet365": 0.2000439286578851
-   },
-   "odds": {
-    "Pinnacle": 4.32,
-    "Bet365": 4.5
-   }
-  }
- ],
- "soccer:laliga:401882832:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Barcelona – Real Madrid",
-   "kickoff": "2026-10-25T20:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Barcelona",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6490011275514034,
-    "Bet365": 0.6581877597365665
-   },
-   "odds": {
-    "Pinnacle": 1.5,
-    "Bet365": 1.48
-   }
-  }
- ],
- "soccer:laliga:401882832:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Barcelona – Real Madrid",
-   "kickoff": "2026-10-25T20:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16528745494769562,
-    "Bet365": 0.16222427983861012
-   },
-   "odds": {
-    "Pinnacle": 5.41,
-    "Bet365": 5.5
-   }
-  }
- ],
- "soccer:laliga:401882832:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Barcelona – Real Madrid",
-   "kickoff": "2026-10-25T20:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Real Madrid",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18571141750090123,
-    "Bet365": 0.17958796042482356
-   },
-   "odds": {
-    "Pinnacle": 4.85,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:laliga:401882828:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sevilla – Osasuna",
-   "kickoff": "2026-10-26T20:00:00+00:00",
-   "league": "laliga",
-   "market": "home",
-   "selection": "Sevilla",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.49561230411899493,
-    "Bet365": 0.5013006220485433
-   },
-   "odds": {
-    "Pinnacle": 1.95,
-    "Bet365": 1.91
-   }
-  }
- ],
- "soccer:laliga:401882828:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sevilla – Osasuna",
-   "kickoff": "2026-10-26T20:00:00+00:00",
-   "league": "laliga",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2762853488099832,
-    "Bet365": 0.2709180554602684
-   },
-   "odds": {
-    "Pinnacle": 3.4,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:laliga:401882828:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sevilla – Osasuna",
-   "kickoff": "2026-10-26T20:00:00+00:00",
-   "league": "laliga",
-   "market": "away",
-   "selection": "Osasuna",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22810234707102195,
-    "Bet365": 0.22778132249118815
-   },
-   "odds": {
-    "Pinnacle": 4.08,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:seriea:401874762:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Monza",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.392096442522658,
-    "Bet365": 0.3982999719306683
-   },
-   "odds": {
-    "Pinnacle": 2.48,
-    "Bet365": 2.38
-   }
-  }
- ],
- "soccer:seriea:401874762:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3024715352438803,
-    "Bet365": 0.30085001403466594
-   },
-   "odds": {
-    "Pinnacle": 3.19,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874762:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Cagliari",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3054320222334618,
-    "Bet365": 0.30085001403466594
-   },
-   "odds": {
-    "Pinnacle": 3.16,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874784:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Parma",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2877445075143855,
-    "Bet365": 0.28611454944867154
-   },
-   "odds": {
-    "Pinnacle": 3.35,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:seriea:401874784:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.31168311442708485,
-    "Bet365": 0.3054910598363179
-   },
-   "odds": {
-    "Pinnacle": 3.1,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874784:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Torino",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4005723780585298,
-    "Bet365": 0.40839439071501055
-   },
-   "odds": {
-    "Pinnacle": 2.43,
-    "Bet365": 2.35
-   }
-  }
- ],
- "soccer:seriea:401874957:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Torino – Monza",
-   "kickoff": "2026-10-23T18:45:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Torino",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4483574898190898,
-    "Bet365": 0.45459594080824134
-   },
-   "odds": {
-    "Pinnacle": 2.15,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:seriea:401874957:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Torino – Monza",
-   "kickoff": "2026-10-23T18:45:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2690601098496222,
-    "Bet365": 0.28122406030457003
-   },
-   "odds": {
-    "Pinnacle": 3.5,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:seriea:401874957:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Torino – Monza",
-   "kickoff": "2026-10-23T18:45:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Monza",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28258240033128823,
-    "Bet365": 0.26417999888718885
-   },
-   "odds": {
-    "Pinnacle": 3.34,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:seriea:401874958:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Cagliari – Bologna",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Cagliari",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29471845007262687,
-    "Bet365": 0.30085001403466594
-   },
-   "odds": {
-    "Pinnacle": 3.22,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874958:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Cagliari – Bologna",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3229564504754551,
-    "Bet365": 0.30085001403466594
-   },
-   "odds": {
-    "Pinnacle": 2.95,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874958:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Cagliari – Bologna",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Bologna",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.382325099451918,
-    "Bet365": 0.3982999719306683
-   },
-   "odds": {
-    "Pinnacle": 2.51,
-    "Bet365": 2.38
-   }
-  }
- ],
- "soccer:seriea:401874961:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Sassuolo",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Como",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6819140537650049,
-    "Bet365": 0.6838014860048477
-   },
-   "odds": {
-    "Pinnacle": 1.43,
-    "Bet365": 1.42
-   }
-  }
- ],
- "soccer:seriea:401874961:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Sassuolo",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1938955445520501,
-    "Bet365": 0.18471886567812318
-   },
-   "odds": {
-    "Pinnacle": 4.63,
-    "Bet365": 4.75
-   }
-  }
- ],
- "soccer:seriea:401874961:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Sassuolo",
-   "kickoff": "2026-10-24T13:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Sassuolo",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.12419040168294508,
-    "Bet365": 0.13147964831702932
-   },
-   "odds": {
-    "Pinnacle": 7.02,
-    "Bet365": 6.5
-   }
-  }
- ],
- "soccer:seriea:401874948:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – AS Roma",
-   "kickoff": "2026-10-24T16:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Napoli",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3280103397150968,
-    "Bet365": 0.30084885979248066
-   },
-   "odds": {
-    "Pinnacle": 2.9,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:seriea:401874948:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – AS Roma",
-   "kickoff": "2026-10-24T16:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2685869805621131,
-    "Bet365": 0.28612884835438773
-   },
-   "odds": {
-    "Pinnacle": 3.51,
-    "Bet365": 3.25
-   }
-  }
- ],
- "soccer:seriea:401874948:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – AS Roma",
-   "kickoff": "2026-10-24T16:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "AS Roma",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4034026797227902,
-    "Bet365": 0.4130222918531317
-   },
-   "odds": {
-    "Pinnacle": 2.38,
-    "Bet365": 2.3
-   }
-  }
- ],
- "soccer:seriea:401874955:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lazio – Parma",
-   "kickoff": "2026-10-24T18:45:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Lazio",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.64049218890765,
-    "Bet365": 0.6337701809334959
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.53
-   }
-  }
- ],
- "soccer:seriea:401874955:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lazio – Parma",
-   "kickoff": "2026-10-24T18:45:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2216837498400861,
-    "Bet365": 0.22611752041324376
-   },
-   "odds": {
-    "Pinnacle": 4.12,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:seriea:401874955:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lazio – Parma",
-   "kickoff": "2026-10-24T18:45:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Parma",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.13782406125226423,
-    "Bet365": 0.14011229865326041
-   },
-   "odds": {
-    "Pinnacle": 6.44,
-    "Bet365": 6.25
-   }
-  }
- ],
- "soccer:seriea:401875036:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Fiorentina",
-   "kickoff": "2026-10-25T11:30:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Internazionale",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7183174193462455,
-    "Bet365": 0.7045079172531581
-   },
-   "odds": {
-    "Pinnacle": 1.36,
-    "Bet365": 1.38
-   }
-  }
- ],
- "soccer:seriea:401875036:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Fiorentina",
-   "kickoff": "2026-10-25T11:30:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1638969891840902,
-    "Bet365": 0.1837032799774421
-   },
-   "odds": {
-    "Pinnacle": 5.37,
-    "Bet365": 4.75
-   }
-  }
- ],
- "soccer:seriea:401875036:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Fiorentina",
-   "kickoff": "2026-10-25T11:30:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Fiorentina",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1177855914696644,
-    "Bet365": 0.11178880276939997
-   },
-   "odds": {
-    "Pinnacle": 7.3,
-    "Bet365": 7.5
-   }
-  }
- ],
- "soccer:seriea:401874972:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Atalanta – Frosinone",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Atalanta",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5817071946528266,
-    "Bet365": 0.5979396415112379
-   },
-   "odds": {
-    "Pinnacle": 1.67,
-    "Bet365": 1.62
-   }
-  }
- ],
- "soccer:seriea:401874972:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Atalanta – Frosinone",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22464057729469122,
-    "Bet365": 0.22221503454114958
-   },
-   "odds": {
-    "Pinnacle": 4.11,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:seriea:401874972:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Atalanta – Frosinone",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Frosinone",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1936522280524822,
-    "Bet365": 0.1798453239476127
-   },
-   "odds": {
-    "Pinnacle": 4.73,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:seriea:401874952:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Genoa – Venezia",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Genoa",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.47064467353884115,
-    "Bet365": 0.45459594080824134
-   },
-   "odds": {
-    "Pinnacle": 2.05,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:seriea:401874952:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Genoa – Venezia",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29295968865188826,
-    "Bet365": 0.26417999888718885
-   },
-   "odds": {
-    "Pinnacle": 3.22,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:seriea:401874952:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Genoa – Venezia",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Venezia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23639563780927095,
-    "Bet365": 0.28122406030457003
-   },
-   "odds": {
-    "Pinnacle": 3.95,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:seriea:401874772:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lecce – Juventus",
-   "kickoff": "2026-10-25T17:00:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Lecce",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.10890194865406351,
-    "Bet365": 0.10502173051443792
-   },
-   "odds": {
-    "Pinnacle": 7.91,
-    "Bet365": 8.0
-   }
-  }
- ],
- "soccer:seriea:401874772:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lecce – Juventus",
-   "kickoff": "2026-10-25T17:00:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2146812304665222,
-    "Bet365": 0.21113275416406535
-   },
-   "odds": {
-    "Pinnacle": 4.2,
-    "Bet365": 4.2
-   }
-  }
- ],
- "soccer:seriea:401874772:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lecce – Juventus",
-   "kickoff": "2026-10-25T17:00:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "Juventus",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6764168208794145,
-    "Bet365": 0.6838455153214971
-   },
-   "odds": {
-    "Pinnacle": 1.44,
-    "Bet365": 1.42
-   }
-  }
- ],
- "soccer:seriea:401874779:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Udinese – AC Milan",
-   "kickoff": "2026-10-25T19:45:00+00:00",
-   "league": "seriea",
-   "market": "home",
-   "selection": "Udinese",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20603858602112307,
-    "Bet365": 0.2016445803227338
-   },
-   "odds": {
-    "Pinnacle": 4.48,
-    "Bet365": 4.5
-   }
-  }
- ],
- "soccer:seriea:401874779:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Udinese – AC Milan",
-   "kickoff": "2026-10-25T19:45:00+00:00",
-   "league": "seriea",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2491961306557658,
-    "Bet365": 0.26350103458842405
-   },
-   "odds": {
-    "Pinnacle": 3.74,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:seriea:401874779:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Udinese – AC Milan",
-   "kickoff": "2026-10-25T19:45:00+00:00",
-   "league": "seriea",
-   "market": "away",
-   "selection": "AC Milan",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5447652833231112,
-    "Bet365": 0.5348543850888425
-   },
-   "odds": {
-    "Pinnacle": 1.78,
-    "Bet365": 1.8
-   }
-  }
- ],
- "soccer:ligue1:401876423:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Toulouse – Troyes",
-   "kickoff": "2026-10-24T15:15:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "Toulouse",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5991570359551113,
-    "Bet365": 0.59602329374589
-   },
-   "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.62
-   }
-  }
- ],
- "soccer:ligue1:401876423:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Toulouse – Troyes",
-   "kickoff": "2026-10-24T15:15:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21900095663389452,
-    "Bet365": 0.2260471065137488
-   },
-   "odds": {
-    "Pinnacle": 4.18,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:ligue1:401876423:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Toulouse – Troyes",
-   "kickoff": "2026-10-24T15:15:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Troyes",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18184200741099435,
-    "Bet365": 0.17792959974036127
-   },
-   "odds": {
-    "Pinnacle": 4.98,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:ligue1:401876425:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Monaco – Lille",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "AS Monaco",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4503134777996027,
-    "Bet365": 0.4650447569879943
-   },
-   "odds": {
-    "Pinnacle": 2.14,
-    "Bet365": 2.05
-   }
-  }
- ],
- "soccer:ligue1:401876425:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Monaco – Lille",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29243539472869795,
-    "Bet365": 0.25507513897831424
-   },
-   "odds": {
-    "Pinnacle": 3.23,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:ligue1:401876425:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Monaco – Lille",
-   "kickoff": "2026-10-25T14:00:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Lille",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2572511274716994,
-    "Bet365": 0.27988010403369157
-   },
-   "odds": {
-    "Pinnacle": 3.65,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:ligue1:401876429:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AJ Auxerre – Le Mans",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "AJ Auxerre",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4544521022619561,
-    "Bet365": 0.44122490515584806
-   },
-   "odds": {
-    "Pinnacle": 2.12,
-    "Bet365": 2.15
-   }
-  }
- ],
- "soccer:ligue1:401876429:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AJ Auxerre – Le Mans",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.25993091082377356,
-    "Bet365": 0.27033841445072343
-   },
-   "odds": {
-    "Pinnacle": 3.61,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:ligue1:401876429:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AJ Auxerre – Le Mans",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Le Mans",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28561698691427034,
-    "Bet365": 0.2884366803934288
-   },
-   "odds": {
-    "Pinnacle": 3.3,
-    "Bet365": 3.2
-   }
-  }
- ],
- "soccer:ligue1:401876430:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Angers – Lorient",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "Angers",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.36683748478555883,
-    "Bet365": 0.376075145064163
-   },
-   "odds": {
-    "Pinnacle": 2.61,
-    "Bet365": 2.5
-   }
-  }
- ],
- "soccer:ligue1:401876430:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Angers – Lorient",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29357290703267924,
-    "Bet365": 0.2842246545412699
-   },
-   "odds": {
-    "Pinnacle": 3.23,
-    "Bet365": 3.25
-   }
-  }
- ],
- "soccer:ligue1:401876430:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Angers – Lorient",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Lorient",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.33958960818176226,
-    "Bet365": 0.3397002003945672
-   },
-   "odds": {
-    "Pinnacle": 2.81,
-    "Bet365": 2.75
-   }
-  }
- ],
- "soccer:ligue1:401876426:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Marseille – Le Havre AC",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "Marseille",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6277808585867014,
-    "Bet365": 0.6062798588754698
-   },
-   "odds": {
-    "Pinnacle": 1.55,
-    "Bet365": 1.6
-   }
-  }
- ],
- "soccer:ligue1:401876426:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Marseille – Le Havre AC",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.19320634271970372,
-    "Bet365": 0.22262200316872566
-   },
-   "odds": {
-    "Pinnacle": 4.7,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:ligue1:401876426:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Marseille – Le Havre AC",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Le Havre AC",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17901279869359482,
-    "Bet365": 0.1710981379558047
-   },
-   "odds": {
-    "Pinnacle": 5.05,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:ligue1:401876424:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Stade Rennais – Strasbourg",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "home",
-   "selection": "Stade Rennais",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5606106774813232,
-    "Bet365": 0.5639432040192999
-   },
-   "odds": {
-    "Pinnacle": 1.73,
-    "Bet365": 1.7
-   }
-  }
- ],
- "soccer:ligue1:401876424:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Stade Rennais – Strasbourg",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21279945909421383,
-    "Bet365": 0.21802839799035018
-   },
-   "odds": {
-    "Pinnacle": 4.33,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:ligue1:401876424:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Stade Rennais – Strasbourg",
-   "kickoff": "2026-10-25T16:15:00+00:00",
-   "league": "ligue1",
-   "market": "away",
-   "selection": "Strasbourg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22658986342446294,
-    "Bet365": 0.21802839799035018
-   },
-   "odds": {
-    "Pinnacle": 4.08,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:eredivisie:401875571:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "ADO Den Haag – Heerenveen",
-   "kickoff": "2026-10-24T19:00:00+00:00",
-   "league": "eredivisie",
-   "market": "home",
-   "selection": "ADO Den Haag",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2953508857698437,
-    "Bet365": 0.28355441289243183
-   },
-   "odds": {
-    "Pinnacle": 3.2,
-    "Bet365": 3.25
-   }
-  }
- ],
- "soccer:eredivisie:401875571:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "ADO Den Haag – Heerenveen",
-   "kickoff": "2026-10-24T19:00:00+00:00",
-   "league": "eredivisie",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24529730194469726,
-    "Bet365": 0.23989975158180515
-   },
-   "odds": {
-    "Pinnacle": 3.82,
-    "Bet365": 3.8
-   }
-  }
- ],
- "soccer:eredivisie:401875571:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "ADO Den Haag – Heerenveen",
-   "kickoff": "2026-10-24T19:00:00+00:00",
-   "league": "eredivisie",
-   "market": "away",
-   "selection": "Heerenveen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4593518122854591,
-    "Bet365": 0.4765458355257633
-   },
-   "odds": {
-    "Pinnacle": 2.1,
-    "Bet365": 2.0
-   }
-  }
- ],
- "soccer:eredivisie:401875568:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "PSV Eindhoven – Feyenoord Rotterdam",
-   "kickoff": "2026-10-25T13:30:00+00:00",
-   "league": "eredivisie",
-   "market": "home",
-   "selection": "PSV Eindhoven",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4853306173642037,
-    "Bet365": 0.5148691776179664
-   },
-   "odds": {
-    "Pinnacle": 1.99,
-    "Bet365": 1.85
-   }
-  }
- ],
- "soccer:eredivisie:401875568:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "PSV Eindhoven – Feyenoord Rotterdam",
-   "kickoff": "2026-10-25T13:30:00+00:00",
-   "league": "eredivisie",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21708613050512238,
-    "Bet365": 0.2181470335186845
-   },
-   "odds": {
-    "Pinnacle": 4.28,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:eredivisie:401875568:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "PSV Eindhoven – Feyenoord Rotterdam",
-   "kickoff": "2026-10-25T13:30:00+00:00",
-   "league": "eredivisie",
-   "market": "away",
-   "selection": "Feyenoord Rotterdam",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.29758325213067405,
-    "Bet365": 0.26698378886334917
-   },
-   "odds": {
-    "Pinnacle": 3.17,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:turkey:401888277:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Trabzonspor – Besiktas",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "turkey",
-   "market": "home",
-   "selection": "Trabzonspor",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3663492716476006,
-    "Bet365": 0.360193977428781
-   },
-   "odds": {
-    "Pinnacle": 2.61,
-    "Bet365": 2.55
-   }
-  }
- ],
- "soccer:turkey:401888277:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Trabzonspor – Besiktas",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "turkey",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2438868305755026,
-    "Bet365": 0.2549868777208133
-   },
-   "odds": {
-    "Pinnacle": 3.85,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:turkey:401888277:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Trabzonspor – Besiktas",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "turkey",
-   "market": "away",
-   "selection": "Besiktas",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3897638977768968,
-    "Bet365": 0.3848191448504056
-   },
-   "odds": {
-    "Pinnacle": 2.46,
-    "Bet365": 2.4
-   }
-  }
- ],
- "soccer:scotland:401878362:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dundee United – Aberdeen",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "home",
-   "selection": "Dundee United",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.439495627963976,
-    "Bet365": 0.44811561325957017
-   },
-   "odds": {
-    "Pinnacle": 2.19,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:scotland:401878362:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dundee United – Aberdeen",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2737013658218068,
-    "Bet365": 0.25785248148139417
-   },
-   "odds": {
-    "Pinnacle": 3.44,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:scotland:401878362:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dundee United – Aberdeen",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "away",
-   "selection": "Aberdeen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2868030062142174,
-    "Bet365": 0.29403190525903566
-   },
-   "odds": {
-    "Pinnacle": 3.29,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:scotland:401878361:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Falkirk – Kilmarnock",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "home",
-   "selection": "Falkirk",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5261502685337281,
-    "Bet365": 0.5193393699749811
-   },
-   "odds": {
-    "Pinnacle": 1.84,
-    "Bet365": 1.83
-   }
-  }
- ],
- "soccer:scotland:401878361:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Falkirk – Kilmarnock",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23787842580744803,
-    "Bet365": 0.24207907194741554
-   },
-   "odds": {
-    "Pinnacle": 3.91,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:scotland:401878361:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Falkirk – Kilmarnock",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "away",
-   "selection": "Kilmarnock",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23597130565882385,
-    "Bet365": 0.23858155807760326
-   },
-   "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.75
-   }
-  }
- ],
- "soccer:scotland:401878358:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rangers – St Johnstone",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "home",
-   "selection": "Rangers",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.8026703255828908,
-    "Bet365": 0.7757303176806899
-   },
-   "odds": {
-    "Pinnacle": 1.22,
-    "Bet365": 1.25
-   }
-  }
- ],
- "soccer:scotland:401878358:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rangers – St Johnstone",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.12892742188856898,
-    "Bet365": 0.15150145393147832
-   },
-   "odds": {
-    "Pinnacle": 6.38,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:scotland:401878358:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rangers – St Johnstone",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "away",
-   "selection": "St Johnstone",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.06840225252854039,
-    "Bet365": 0.07276822838783185
-   },
-   "odds": {
-    "Pinnacle": 11.32,
-    "Bet365": 10.0
-   }
-  }
- ],
- "soccer:scotland:401878357:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "St Mirren – Dundee",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "home",
-   "selection": "St Mirren",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.44618387283712146,
-    "Bet365": 0.47263494287213204
-   },
-   "odds": {
-    "Pinnacle": 2.16,
-    "Bet365": 2.0
-   }
-  }
- ],
- "soccer:scotland:401878357:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "St Mirren – Dundee",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24086326312604656,
-    "Bet365": 0.2430296564949816
-   },
-   "odds": {
-    "Pinnacle": 3.89,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:scotland:401878357:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "St Mirren – Dundee",
-   "kickoff": "2026-10-24T14:00:00+00:00",
-   "league": "scotland",
-   "market": "away",
-   "selection": "Dundee",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.312952864036832,
-    "Bet365": 0.28433540063288626
-   },
-   "odds": {
-    "Pinnacle": 3.03,
-    "Bet365": 3.2
-   }
-  }
- ],
- "soccer:austria:401881765:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rapid Vienna – Austria Lustenau",
-   "kickoff": "2026-10-24T17:30:00+00:00",
-   "league": "austria",
-   "market": "home",
-   "selection": "Rapid Vienna",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.8102881150887588,
-    "Bet365": 0.7676421107501856
-   },
-   "odds": {
-    "Pinnacle": 1.21,
-    "Bet365": 1.27
-   }
-  }
- ],
- "soccer:austria:401881765:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rapid Vienna – Austria Lustenau",
-   "kickoff": "2026-10-24T17:30:00+00:00",
-   "league": "austria",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.11568406033434592,
-    "Bet365": 0.14439640866067424
-   },
-   "odds": {
-    "Pinnacle": 7.06,
-    "Bet365": 5.75
-   }
-  }
- ],
- "soccer:austria:401881765:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Rapid Vienna – Austria Lustenau",
-   "kickoff": "2026-10-24T17:30:00+00:00",
-   "league": "austria",
-   "market": "away",
-   "selection": "Austria Lustenau",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.07402782457689536,
-    "Bet365": 0.08796148058914044
-   },
-   "odds": {
-    "Pinnacle": 10.58,
-    "Bet365": 9.0
-   }
-  }
- ],
- "soccer:sweden:401842846:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "sweden",
-   "market": "home",
-   "selection": "Degerfors IF",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.31530431410645554,
-    "Bet365": 0.32200005786568514
-   },
-   "odds": {
-    "Pinnacle": 2.99,
-    "Bet365": 2.9
-   }
-  }
- ],
- "soccer:sweden:401842846:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "sweden",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2906658728423897,
-    "Bet365": 0.2806273986859685
-   },
-   "odds": {
-    "Pinnacle": 3.23,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:sweden:401842846:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "sweden",
-   "market": "away",
-   "selection": "Kalmar FF",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.39402981305115486,
-    "Bet365": 0.39737254344834644
-   },
-   "odds": {
-    "Pinnacle": 2.42,
-    "Bet365": 2.38
-   }
-  }
- ],
- "soccer:ucl:401915404:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sabah FK – Borussia Dortmund",
-   "kickoff": "2026-10-20T16:45:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Sabah FK",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.09702609647445826,
-    "Bet365": 0.08271812085361492
-   },
-   "odds": {
-    "Pinnacle": 9.07,
-    "Bet365": 10.0
-   }
-  }
- ],
- "soccer:ucl:401915404:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sabah FK – Borussia Dortmund",
-   "kickoff": "2026-10-20T16:45:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.14535231052731445,
-    "Bet365": 0.13185697833292168
-   },
-   "odds": {
-    "Pinnacle": 6.19,
-    "Bet365": 6.5
-   }
-  }
- ],
- "soccer:ucl:401915404:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sabah FK – Borussia Dortmund",
-   "kickoff": "2026-10-20T16:45:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Borussia Dortmund",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7576215929982274,
-    "Bet365": 0.7854249008134634
-   },
-   "odds": {
-    "Pinnacle": 1.3,
-    "Bet365": 1.25
-   }
-  }
- ],
- "soccer:ucl:401915402:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Roma – Slovan Bratislava",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "AS Roma",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.844082911836864,
-    "Bet365": 0.8628129825104388
-   },
-   "odds": {
-    "Pinnacle": 1.17,
-    "Bet365": 1.14
-   }
-  }
- ],
- "soccer:ucl:401915402:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Roma – Slovan Bratislava",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.10206459630573657,
-    "Bet365": 0.08981234010701908
-   },
-   "odds": {
-    "Pinnacle": 8.28,
-    "Bet365": 8.5
-   }
-  }
- ],
- "soccer:ucl:401915402:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AS Roma – Slovan Bratislava",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Slovan Bratislava",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.053852491857399626,
-    "Bet365": 0.047374677382542446
-   },
-   "odds": {
-    "Pinnacle": 14.97,
-    "Bet365": 15.0
-   }
-  }
- ],
- "soccer:ucl:401915398:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Porto – PSV Eindhoven",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "FC Porto",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5982310796922217,
-    "Bet365": 0.5997647855049805
-   },
-   "odds": {
-    "Pinnacle": 1.64,
-    "Bet365": 1.62
-   }
-  }
- ],
- "soccer:ucl:401915398:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Porto – PSV Eindhoven",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1999947668292508,
-    "Bet365": 0.2185519557536294
-   },
-   "odds": {
-    "Pinnacle": 4.71,
-    "Bet365": 4.2
-   }
-  }
- ],
- "soccer:ucl:401915398:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "FC Porto – PSV Eindhoven",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "PSV Eindhoven",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20177415347852776,
-    "Bet365": 0.18168325874139027
-   },
-   "odds": {
-    "Pinnacle": 4.67,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:ucl:401915397:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Liverpool – Villarreal",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Liverpool",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6594007941088251,
-    "Bet365": 0.6507539629646061
-   },
-   "odds": {
-    "Pinnacle": 1.49,
-    "Bet365": 1.5
-   }
-  }
- ],
- "soccer:ucl:401915397:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Liverpool – Villarreal",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18901292831435887,
-    "Bet365": 0.21163558895911558
-   },
-   "odds": {
-    "Pinnacle": 4.93,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:ucl:401915397:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Liverpool – Villarreal",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Villarreal",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.15158627757681634,
-    "Bet365": 0.13761044807627856
-   },
-   "odds": {
-    "Pinnacle": 6.09,
-    "Bet365": 6.5
-   }
-  }
- ],
- "soccer:ucl:401915401:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Manchester City – AEK Athens",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Manchester City",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.9083631151476788,
-    "Bet365": 0.9146304876910671
-   },
-   "odds": {
-    "Pinnacle": 1.09,
-    "Bet365": 1.08
-   }
-  }
- ],
- "soccer:ucl:401915401:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Manchester City – AEK Athens",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.060823585727487035,
-    "Bet365": 0.056066839911175795
-   },
-   "odds": {
-    "Pinnacle": 12.31,
-    "Bet365": 12.0
-   }
-  }
- ],
- "soccer:ucl:401915401:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Manchester City – AEK Athens",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "AEK Athens",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.030813299124834246,
-    "Bet365": 0.029302672397757322
-   },
-   "odds": {
-    "Pinnacle": 22.65,
-    "Bet365": 21.0
-   }
-  }
- ],
- "soccer:ucl:401915400:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – Bodo/Glimt",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Napoli",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6011419624187239,
-    "Bet365": 0.5979396415112379
-   },
-   "odds": {
-    "Pinnacle": 1.63,
-    "Bet365": 1.62
-   }
-  }
- ],
- "soccer:ucl:401915400:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – Bodo/Glimt",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20824950682821214,
-    "Bet365": 0.22221503454114958
-   },
-   "odds": {
-    "Pinnacle": 4.51,
-    "Bet365": 4.1
-   }
-  }
- ],
- "soccer:ucl:401915400:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Napoli – Bodo/Glimt",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Bodo/Glimt",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.19060853075306408,
-    "Bet365": 0.1798453239476127
-   },
-   "odds": {
-    "Pinnacle": 4.91,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:ucl:401915399:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Paris Saint-Germain – Barcelona",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Paris Saint-Germain",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4066334212413318,
-    "Bet365": 0.3895340016339629
-   },
-   "odds": {
-    "Pinnacle": 2.39,
-    "Bet365": 2.45
-   }
-  }
- ],
- "soccer:ucl:401915399:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Paris Saint-Germain – Barcelona",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20358768265336136,
-    "Bet365": 0.22093199673207445
-   },
-   "odds": {
-    "Pinnacle": 4.67,
-    "Bet365": 4.2
-   }
-  }
- ],
- "soccer:ucl:401915399:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Paris Saint-Germain – Barcelona",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Barcelona",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3897788961053071,
-    "Bet365": 0.3895340016339629
-   },
-   "odds": {
-    "Pinnacle": 2.49,
-    "Bet365": 2.45
-   }
-  }
- ],
- "soccer:ucl:401915392:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Atlético Madrid",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "VfB Stuttgart",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28961786640080917,
-    "Bet365": 0.259194129160634
-   },
-   "odds": {
-    "Pinnacle": 3.32,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:ucl:401915392:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Atlético Madrid",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24787716654642664,
-    "Bet365": 0.259194129160634
-   },
-   "odds": {
-    "Pinnacle": 3.86,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:ucl:401915392:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "VfB Stuttgart – Atlético Madrid",
-   "kickoff": "2026-10-20T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Atlético Madrid",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4625049670527644,
-    "Bet365": 0.4816117416787323
-   },
-   "odds": {
-    "Pinnacle": 2.11,
-    "Bet365": 2.0
-   }
-  }
- ],
- "soccer:ucl:401915395:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Manchester United",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Como",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.42328855490043676,
-    "Bet365": 0.4155136706491146
-   },
-   "odds": {
-    "Pinnacle": 2.3,
-    "Bet365": 2.3
-   }
-  }
- ],
- "soccer:ucl:401915395:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Manchester United",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2434936978097452,
-    "Bet365": 0.25907232846759404
-   },
-   "odds": {
-    "Pinnacle": 3.93,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:ucl:401915395:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Como – Manchester United",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Manchester United",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3332177472898184,
-    "Bet365": 0.3254140008832915
-   },
-   "odds": {
-    "Pinnacle": 2.9,
-    "Bet365": 2.9
-   }
-  }
- ],
- "soccer:ucl:401915396:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lille – Galatasaray",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Lille",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4455683644038862,
-    "Bet365": 0.44662868197322825
-   },
-   "odds": {
-    "Pinnacle": 2.19,
-    "Bet365": 2.15
-   }
-  }
- ],
- "soccer:ucl:401915396:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lille – Galatasaray",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.25308930677092634,
-    "Bet365": 0.2595497861431383
-   },
-   "odds": {
-    "Pinnacle": 3.79,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:ucl:401915396:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lille – Galatasaray",
-   "kickoff": "2026-10-21T16:45:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Galatasaray",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3013423288251875,
-    "Bet365": 0.29382153188363364
-   },
-   "odds": {
-    "Pinnacle": 3.2,
-    "Bet365": 3.2
-   }
-  }
- ],
- "soccer:ucl:401915394:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Aston Villa – Viking FK",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Aston Villa",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7876654280816735,
-    "Bet365": 0.784324634087368
-   },
-   "odds": {
-    "Pinnacle": 1.25,
-    "Bet365": 1.25
-   }
-  }
- ],
- "soccer:ucl:401915394:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Aston Villa – Viking FK",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.13730385464021047,
-    "Bet365": 0.14218084153462981
-   },
-   "odds": {
-    "Pinnacle": 6.4,
-    "Bet365": 6.0
-   }
-  }
- ],
- "soccer:ucl:401915394:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Aston Villa – Viking FK",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Viking FK",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.07503071727811615,
-    "Bet365": 0.07349452437800238
-   },
-   "odds": {
-    "Pinnacle": 11.26,
-    "Bet365": 11.0
-   }
-  }
- ],
- "soccer:ucl:401915312:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bayern Munich – Arsenal",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Bayern Munich",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.45343171430082674,
-    "Bet365": 0.44560123312079586
-   },
-   "odds": {
-    "Pinnacle": 2.15,
-    "Bet365": 2.15
-   }
-  }
- ],
- "soccer:ucl:401915312:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bayern Munich – Arsenal",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23998158085275756,
-    "Bet365": 0.2663584215539048
-   },
-   "odds": {
-    "Pinnacle": 3.98,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:ucl:401915312:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Bayern Munich – Arsenal",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Arsenal",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.30658670484641587,
-    "Bet365": 0.2880403453252992
-   },
-   "odds": {
-    "Pinnacle": 3.14,
-    "Bet365": 3.25
-   }
-  }
- ],
- "soccer:ucl:401915388:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Club Brugge – Lens",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Club Brugge",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.46707182701674416,
-    "Bet365": 0.45627701334357773
-   },
-   "odds": {
-    "Pinnacle": 2.09,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:ucl:401915388:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Club Brugge – Lens",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.24331477249959862,
-    "Bet365": 0.23082124053434427
-   },
-   "odds": {
-    "Pinnacle": 3.93,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:ucl:401915388:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Club Brugge – Lens",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Lens",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28961340048365736,
-    "Bet365": 0.31290174612207833
-   },
-   "odds": {
-    "Pinnacle": 3.32,
-    "Bet365": 3.0
-   }
-  }
- ],
- "soccer:ucl:401915390:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Shakhtar Donetsk",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Internazionale",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.8088501054838482,
-    "Bet365": 0.8195645169110973
-   },
-   "odds": {
-    "Pinnacle": 1.22,
-    "Bet365": 1.2
-   }
-  }
- ],
- "soccer:ucl:401915390:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Shakhtar Donetsk",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.11889997441789954,
-    "Bet365": 0.11958498163008247
-   },
-   "odds": {
-    "Pinnacle": 7.36,
-    "Bet365": 7.0
-   }
-  }
- ],
- "soccer:ucl:401915390:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Internazionale – Shakhtar Donetsk",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Shakhtar Donetsk",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.07224992009825246,
-    "Bet365": 0.06085050145882045
-   },
-   "odds": {
-    "Pinnacle": 11.74,
-    "Bet365": 13.0
-   }
-  }
- ],
- "soccer:ucl:401915389:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Betis – Feyenoord Rotterdam",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Real Betis",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6455342836222059,
-    "Bet365": 0.648594976353621
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.5
-   }
-  }
- ],
- "soccer:ucl:401915389:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Betis – Feyenoord Rotterdam",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.19112942110004452,
-    "Bet365": 0.1894267334371012
-   },
-   "odds": {
-    "Pinnacle": 4.87,
-    "Bet365": 4.75
-   }
-  }
- ],
- "soccer:ucl:401915389:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Betis – Feyenoord Rotterdam",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "Feyenoord Rotterdam",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16333629527774954,
-    "Bet365": 0.16197829020927781
-   },
-   "odds": {
-    "Pinnacle": 5.66,
-    "Bet365": 5.5
-   }
-  }
- ],
- "soccer:ucl:401915313:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Madrid – RB Leipzig",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Real Madrid",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.775850145142743,
-    "Bet365": 0.8056098588600409
-   },
-   "odds": {
-    "Pinnacle": 1.27,
-    "Bet365": 1.22
-   }
-  }
- ],
- "soccer:ucl:401915313:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Madrid – RB Leipzig",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.12960945180429778,
-    "Bet365": 0.12060295854191146
-   },
-   "odds": {
-    "Pinnacle": 6.85,
-    "Bet365": 7.0
-   }
-  }
- ],
- "soccer:ucl:401915313:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Real Madrid – RB Leipzig",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "RB Leipzig",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.09454040305295937,
-    "Bet365": 0.07378718259804788
-   },
-   "odds": {
-    "Pinnacle": 9.22,
-    "Bet365": 11.0
-   }
-  }
- ],
- "soccer:ucl:401915391:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sporting CP – LASK Linz",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "home",
-   "selection": "Sporting CP",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.8014737132455246,
-    "Bet365": 0.8056098588600409
-   },
-   "odds": {
-    "Pinnacle": 1.23,
-    "Bet365": 1.22
-   }
-  }
- ],
- "soccer:ucl:401915391:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sporting CP – LASK Linz",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.11821061650592825,
-    "Bet365": 0.12060295854191146
-   },
-   "odds": {
-    "Pinnacle": 7.37,
-    "Bet365": 7.0
-   }
-  }
- ],
- "soccer:ucl:401915391:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sporting CP – LASK Linz",
-   "kickoff": "2026-10-21T19:00:00+00:00",
-   "league": "ucl",
-   "market": "away",
-   "selection": "LASK Linz",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.08031567024854726,
-    "Bet365": 0.07378718259804788
-   },
-   "odds": {
-    "Pinnacle": 10.58,
-    "Bet365": 11.0
-   }
-  }
- ],
- "soccer:uel:401915548:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Ararat-Armenia – AZ Alkmaar",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Ararat-Armenia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1574884887723714,
-    "Bet365": 0.153396863215329
-   },
-   "odds": {
-    "Pinnacle": 5.7,
-    "Bet365": 5.5
-   }
-  }
- ],
- "soccer:uel:401915548:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Ararat-Armenia – AZ Alkmaar",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.20148026133947033,
-    "Bet365": 0.20635126671619458
-   },
-   "odds": {
-    "Pinnacle": 4.52,
-    "Bet365": 4.2
-   }
-  }
- ],
- "soccer:uel:401915548:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Ararat-Armenia – AZ Alkmaar",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "AZ Alkmaar",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6410312498881585,
-    "Bet365": 0.6402518700684767
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.5
-   }
-  }
- ],
- "soccer:uel:401915556:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dinamo Zagreb – NEC Nijmegen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Dinamo Zagreb",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5781043693619731,
-    "Bet365": 0.571449895835514
-   },
-   "odds": {
-    "Pinnacle": 1.68,
-    "Bet365": 1.67
-   }
-  }
- ],
- "soccer:uel:401915556:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dinamo Zagreb – NEC Nijmegen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2196155101777395,
-    "Bet365": 0.22648904954513882
-   },
-   "odds": {
-    "Pinnacle": 4.2,
-    "Bet365": 3.9
-   }
-  }
- ],
- "soccer:uel:401915556:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Dinamo Zagreb – NEC Nijmegen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "NEC Nijmegen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2022801204602875,
-    "Bet365": 0.2020610546193473
-   },
-   "odds": {
-    "Pinnacle": 4.54,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:uel:401915547:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Juventus – Stade Rennais",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Juventus",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6118391714566569,
-    "Bet365": 0.6246598014100514
-   },
-   "odds": {
-    "Pinnacle": 1.59,
-    "Bet365": 1.53
-   }
-  }
- ],
- "soccer:uel:401915547:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Juventus – Stade Rennais",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21863597817528616,
-    "Bet365": 0.21569282706205692
-   },
-   "odds": {
-    "Pinnacle": 4.2,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:uel:401915547:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Juventus – Stade Rennais",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Stade Rennais",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16952485036805703,
-    "Bet365": 0.159647371527892
-   },
-   "odds": {
-    "Pinnacle": 5.34,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:uel:401915546:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lech Poznan – Sunderland",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Lech Poznan",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18318039794667973,
-    "Bet365": 0.17131435355867775
-   },
-   "odds": {
-    "Pinnacle": 4.97,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:uel:401915546:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lech Poznan – Sunderland",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.21672460852357167,
-    "Bet365": 0.21878919003665476
-   },
-   "odds": {
-    "Pinnacle": 4.24,
-    "Bet365": 4.0
-   }
-  }
- ],
- "soccer:uel:401915546:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lech Poznan – Sunderland",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Sunderland",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6000949935297486,
-    "Bet365": 0.6098964564046678
-   },
-   "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.57
-   }
-  }
- ],
- "soccer:uel:401915559:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "OFI Crete – Bayer Leverkusen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "OFI Crete",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.08090398260712821,
-    "Bet365": 0.08963540581622059
-   },
-   "odds": {
-    "Pinnacle": 10.1,
-    "Bet365": 8.5
-   }
-  }
- ],
- "soccer:uel:401915559:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "OFI Crete – Bayer Leverkusen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.12765295878246133,
-    "Bet365": 0.1327299357218435
-   },
-   "odds": {
-    "Pinnacle": 6.64,
-    "Bet365": 6.0
-   }
-  }
- ],
- "soccer:uel:401915559:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "OFI Crete – Bayer Leverkusen",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Bayer Leverkusen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7914430586104106,
-    "Bet365": 0.777634658461936
-   },
-   "odds": {
-    "Pinnacle": 1.24,
-    "Bet365": 1.25
-   }
-  }
- ],
- "soccer:uel:401915557:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SK Sturm Graz – Marseille",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "SK Sturm Graz",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26839839706316754,
-    "Bet365": 0.283462670463306
-   },
-   "odds": {
-    "Pinnacle": 3.5,
-    "Bet365": 3.2
-   }
-  }
- ],
- "soccer:uel:401915557:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SK Sturm Graz – Marseille",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2560932062360813,
-    "Bet365": 0.257225923259733
-   },
-   "odds": {
-    "Pinnacle": 3.66,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:uel:401915557:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SK Sturm Graz – Marseille",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Marseille",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.47550839670075123,
-    "Bet365": 0.45931140627696115
-   },
-   "odds": {
-    "Pinnacle": 2.03,
-    "Bet365": 2.05
-   }
-  }
- ],
- "soccer:uel:401915545:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Union St.-Gilloise – Hapoel Be'er",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Union St.-Gilloise",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7418567086702712,
-    "Bet365": 0.7549606944072205
-   },
-   "odds": {
-    "Pinnacle": 1.32,
-    "Bet365": 1.28
-   }
-  }
- ],
- "soccer:uel:401915545:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Union St.-Gilloise – Hapoel Be'er",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.15559027444230286,
-    "Bet365": 0.1513504489338987
-   },
-   "odds": {
-    "Pinnacle": 5.64,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:uel:401915545:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Union St.-Gilloise – Hapoel Be'er",
-   "kickoff": "2026-10-22T16:45:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Hapoel Be'er",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.10255301688742606,
-    "Bet365": 0.09368885665888109
-   },
-   "odds": {
-    "Pinnacle": 8.31,
-    "Bet365": 8.0
-   }
-  }
- ],
- "soccer:uel:401915552:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AFC Bournemouth – AC Milan",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "AFC Bournemouth",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4355655682686163,
-    "Bet365": 0.44811561325957017
-   },
-   "odds": {
-    "Pinnacle": 2.21,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:uel:401915552:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AFC Bournemouth – AC Milan",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.25892851776812364,
-    "Bet365": 0.25785248148139417
-   },
-   "odds": {
-    "Pinnacle": 3.63,
-    "Bet365": 3.5
-   }
-  }
- ],
- "soccer:uel:401915552:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "AFC Bournemouth – AC Milan",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "AC Milan",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3055059139632601,
-    "Bet365": 0.29403190525903566
-   },
-   "odds": {
-    "Pinnacle": 3.1,
-    "Bet365": 3.1
-   }
-  }
- ],
- "soccer:uel:401915553:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Besiktas – Crystal Palace",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Besiktas",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4442796328053584,
-    "Bet365": 0.4471463285137925
-   },
-   "odds": {
-    "Pinnacle": 2.17,
-    "Bet365": 2.1
-   }
-  }
- ],
- "soccer:uel:401915553:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Besiktas – Crystal Palace",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2457299664789328,
-    "Bet365": 0.24917888503425498
-   },
-   "odds": {
-    "Pinnacle": 3.82,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:uel:401915553:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Besiktas – Crystal Palace",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Crystal Palace",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.30999040071570916,
-    "Bet365": 0.30367478645195284
-   },
-   "odds": {
-    "Pinnacle": 3.06,
-    "Bet365": 3.0
-   }
-  }
- ],
- "soccer:uel:401915555:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celtic – Celta Vigo",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Celtic",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.32534723018182576,
-    "Bet365": 0.3182858119511589
-   },
-   "odds": {
-    "Pinnacle": 2.92,
-    "Bet365": 2.88
-   }
-  }
- ],
- "soccer:uel:401915555:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celtic – Celta Vigo",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26433908554575375,
-    "Bet365": 0.2659505701044925
-   },
-   "odds": {
-    "Pinnacle": 3.56,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:uel:401915555:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Celtic – Celta Vigo",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Celta Vigo",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4103136842724208,
-    "Bet365": 0.41576361794434863
-   },
-   "odds": {
-    "Pinnacle": 2.34,
-    "Bet365": 2.25
-   }
-  }
- ],
- "soccer:uel:401915542:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Jagiellonia Bialystok – Anderlecht",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Jagiellonia Bialystok",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3143149885376484,
-    "Bet365": 0.305712591237281
-   },
-   "odds": {
-    "Pinnacle": 3.02,
-    "Bet365": 3.0
-   }
-  }
- ],
- "soccer:uel:401915542:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Jagiellonia Bialystok – Anderlecht",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.26380225251357525,
-    "Bet365": 0.2671012347438101
-   },
-   "odds": {
-    "Pinnacle": 3.57,
-    "Bet365": 3.4
-   }
-  }
- ],
- "soccer:uel:401915542:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Jagiellonia Bialystok – Anderlecht",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Anderlecht",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.42188275894877647,
-    "Bet365": 0.427186174018909
-   },
-   "odds": {
-    "Pinnacle": 2.28,
-    "Bet365": 2.2
-   }
-  }
- ],
- "soccer:uel:401915540:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lillestrom – Real Sociedad",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Lillestrom",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16738306799307415,
-    "Bet365": 0.16698920307747311
-   },
-   "odds": {
-    "Pinnacle": 5.37,
-    "Bet365": 5.0
-   }
-  }
- ],
- "soccer:uel:401915540:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lillestrom – Real Sociedad",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.19642145754416987,
-    "Bet365": 0.1959627783499834
-   },
-   "odds": {
-    "Pinnacle": 4.62,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:uel:401915540:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Lillestrom – Real Sociedad",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Real Sociedad",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6361954744627559,
-    "Bet365": 0.6370480185725436
-   },
-   "odds": {
-    "Pinnacle": 1.53,
-    "Bet365": 1.5
-   }
-  }
- ],
- "soccer:uel:401915541:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "NK Celje – RB Salzburg",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "NK Celje",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2205094125049395,
-    "Bet365": 0.22337286199315168
-   },
-   "odds": {
-    "Pinnacle": 4.19,
-    "Bet365": 3.9
-   }
-  }
- ],
- "soccer:uel:401915541:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "NK Celje – RB Salzburg",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23529911748336532,
-    "Bet365": 0.2367066545904675
-   },
-   "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.7
-   }
-  }
- ],
- "soccer:uel:401915541:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "NK Celje – RB Salzburg",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "RB Salzburg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5441914700116954,
-    "Bet365": 0.5399204834163811
-   },
-   "odds": {
-    "Pinnacle": 1.78,
-    "Bet365": 1.75
-   }
-  }
- ],
- "soccer:uel:401915544:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Omonia Nicosia – Benfica",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Omonia Nicosia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1161408156405481,
-    "Bet365": 0.12462829762059921
-   },
-   "odds": {
-    "Pinnacle": 7.42,
-    "Bet365": 6.5
-   }
-  }
- ],
- "soccer:uel:401915544:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Omonia Nicosia – Benfica",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17634116418448323,
-    "Bet365": 0.18762350076311674
-   },
-   "odds": {
-    "Pinnacle": 5.03,
-    "Bet365": 4.5
-   }
-  }
- ],
- "soccer:uel:401915544:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Omonia Nicosia – Benfica",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Benfica",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.7075180201749687,
-    "Bet365": 0.6877482016162841
-   },
-   "odds": {
-    "Pinnacle": 1.38,
-    "Bet365": 1.4
-   }
-  }
- ],
- "soccer:uel:401915543:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Lyon",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "TSG Hoffenheim",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.48791601938797546,
-    "Bet365": 0.494119314036044
-   },
-   "odds": {
-    "Pinnacle": 1.98,
-    "Bet365": 1.91
-   }
-  }
- ],
- "soccer:uel:401915543:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Lyon",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.23126528152184486,
-    "Bet365": 0.23354052554845042
-   },
-   "odds": {
-    "Pinnacle": 4.03,
-    "Bet365": 3.8
-   }
-  }
- ],
- "soccer:uel:401915543:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "TSG Hoffenheim – Lyon",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Lyon",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28081869909017987,
-    "Bet365": 0.27234016041550585
-   },
-   "odds": {
-    "Pinnacle": 3.35,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:uel:401915539:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viktoria Plzen – Levski Sofia",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "home",
-   "selection": "Viktoria Plzen",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.5743070025068964,
-    "Bet365": 0.5619268726636966
-   },
-   "odds": {
-    "Pinnacle": 1.69,
-    "Bet365": 1.7
-   }
-  }
- ],
- "soccer:uel:401915539:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viktoria Plzen – Levski Sofia",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2304253630880346,
-    "Bet365": 0.23454301453462595
-   },
-   "odds": {
-    "Pinnacle": 4.01,
-    "Bet365": 3.8
-   }
-  }
- ],
- "soccer:uel:401915539:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viktoria Plzen – Levski Sofia",
-   "kickoff": "2026-10-22T19:00:00+00:00",
-   "league": "uel",
-   "market": "away",
-   "selection": "Levski Sofia",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.1952676344050691,
-    "Bet365": 0.20353011280167765
-   },
-   "odds": {
-    "Pinnacle": 4.69,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:eredivisie:401875574:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Go Ahead Eagles – Telstar",
-   "kickoff": "2026-10-23T18:00:00+00:00",
-   "league": "eredivisie",
-   "market": "home",
-   "selection": "Go Ahead Eagles",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.611532336021476,
-    "Bet365": 0.6424153624053562
-   },
-   "odds": {
-    "Pinnacle": 1.59,
-    "Bet365": 1.5
-   }
-  }
- ],
- "soccer:eredivisie:401875574:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Go Ahead Eagles – Telstar",
-   "kickoff": "2026-10-23T18:00:00+00:00",
-   "league": "eredivisie",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.22222261951318548,
-    "Bet365": 0.20199659220384023
-   },
-   "odds": {
-    "Pinnacle": 4.13,
-    "Bet365": 4.33
-   }
-  }
- ],
- "soccer:eredivisie:401875574:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Go Ahead Eagles – Telstar",
-   "kickoff": "2026-10-23T18:00:00+00:00",
-   "league": "eredivisie",
-   "market": "away",
-   "selection": "Telstar",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.16624504446533855,
-    "Bet365": 0.1555880453908038
-   },
-   "odds": {
-    "Pinnacle": 5.43,
-    "Bet365": 5.5
-   }
-  }
- ],
- "soccer:eredivisie:401875572:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Willem II – SC Cambuur",
-   "kickoff": "2026-10-24T16:45:00+00:00",
-   "league": "eredivisie",
-   "market": "home",
-   "selection": "Willem II",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.41069944648893536,
-    "Bet365": 0.378935937164753
-   },
-   "odds": {
-    "Pinnacle": 2.34,
-    "Bet365": 2.5
-   }
-  }
- ],
- "soccer:eredivisie:401875572:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Willem II – SC Cambuur",
-   "kickoff": "2026-10-24T16:45:00+00:00",
-   "league": "eredivisie",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2564112321605973,
-    "Bet365": 0.25754531433154004
-   },
-   "odds": {
-    "Pinnacle": 3.67,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:eredivisie:401875572:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Willem II – SC Cambuur",
-   "kickoff": "2026-10-24T16:45:00+00:00",
-   "league": "eredivisie",
-   "market": "away",
-   "selection": "SC Cambuur",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.33288932135046756,
-    "Bet365": 0.3635187485037069
-   },
-   "odds": {
-    "Pinnacle": 2.86,
-    "Bet365": 2.6
-   }
-  }
- ],
- "soccer:eredivisie:401875567:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sparta Rotterdam – Ajax Amsterdam",
-   "kickoff": "2026-10-25T15:45:00+00:00",
-   "league": "eredivisie",
-   "market": "home",
-   "selection": "Sparta Rotterdam",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.17383289488323705,
-    "Bet365": 0.15934756200092082
-   },
-   "odds": {
-    "Pinnacle": 5.19,
-    "Bet365": 5.25
-   }
-  }
- ],
- "soccer:eredivisie:401875567:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sparta Rotterdam – Ajax Amsterdam",
-   "kickoff": "2026-10-25T15:45:00+00:00",
-   "league": "eredivisie",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.18971657521540775,
-    "Bet365": 0.17802803395695044
-   },
-   "odds": {
-    "Pinnacle": 4.78,
-    "Bet365": 4.75
-   }
-  }
- ],
- "soccer:eredivisie:401875567:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Sparta Rotterdam – Ajax Amsterdam",
-   "kickoff": "2026-10-25T15:45:00+00:00",
-   "league": "eredivisie",
-   "market": "away",
-   "selection": "Ajax Amsterdam",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.6364505299013553,
-    "Bet365": 0.6626244040421291
-   },
-   "odds": {
-    "Pinnacle": 1.53,
-    "Bet365": 1.45
-   }
-  }
- ],
- "soccer:austria:401881763:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Rheindorf Altach – Austria Vienna",
-   "kickoff": "2026-10-23T17:30:00+00:00",
-   "league": "austria",
-   "market": "home",
-   "selection": "SC Rheindorf Altach",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.40009354349051185,
-    "Bet365": 0.386462894773224
-   },
-   "odds": {
-    "Pinnacle": 2.38,
-    "Bet365": 2.4
-   }
-  }
- ],
- "soccer:austria:401881763:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Rheindorf Altach – Austria Vienna",
-   "kickoff": "2026-10-23T17:30:00+00:00",
-   "league": "austria",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.28327667184598515,
-    "Bet365": 0.2734748123297096
-   },
-   "odds": {
-    "Pinnacle": 3.3,
-    "Bet365": 3.3
-   }
-  }
- ],
- "soccer:austria:401881763:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "SC Rheindorf Altach – Austria Vienna",
-   "kickoff": "2026-10-23T17:30:00+00:00",
-   "league": "austria",
-   "market": "away",
-   "selection": "Austria Vienna",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.316629784663503,
-    "Bet365": 0.3400622928970666
-   },
-   "odds": {
-    "Pinnacle": 2.97,
-    "Bet365": 2.7
-   }
-  }
- ],
- "soccer:austria:401881766:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "LASK Linz – RB Salzburg",
-   "kickoff": "2026-10-25T16:00:00+00:00",
-   "league": "austria",
-   "market": "home",
-   "selection": "LASK Linz",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4510050994273328,
-    "Bet365": 0.4353563463009282
-   },
-   "odds": {
-    "Pinnacle": 2.12,
-    "Bet365": 2.15
-   }
-  }
- ],
- "soccer:austria:401881766:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "LASK Linz – RB Salzburg",
-   "kickoff": "2026-10-25T16:00:00+00:00",
-   "league": "austria",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2443605919625095,
-    "Bet365": 0.2378936391830167
-   },
-   "odds": {
-    "Pinnacle": 3.78,
-    "Bet365": 3.75
-   }
-  }
- ],
- "soccer:austria:401881766:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "LASK Linz – RB Salzburg",
-   "kickoff": "2026-10-25T16:00:00+00:00",
-   "league": "austria",
-   "market": "away",
-   "selection": "RB Salzburg",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3046343086101578,
-    "Bet365": 0.3267500145160554
-   },
-   "odds": {
-    "Pinnacle": 3.07,
-    "Bet365": 2.8
-   }
-  }
- ],
- "soccer:denmark:401874524:home": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viborg FF – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "denmark",
-   "market": "home",
-   "selection": "Viborg FF",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.3483464774257633,
-    "Bet365": 0.3221153749767939
-   },
-   "odds": {
-    "Pinnacle": 2.74,
-    "Bet365": 2.9
-   }
-  }
- ],
- "soccer:denmark:401874524:draw": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viborg FF – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "denmark",
-   "market": "draw",
-   "selection": "Unentschieden",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.2407738895768954,
-    "Bet365": 0.2559161287869009
-   },
-   "odds": {
-    "Pinnacle": 3.9,
-    "Bet365": 3.6
-   }
-  }
- ],
- "soccer:denmark:401874524:away": [
-  {
-   "ts": "2026-10-18T19:21:26.334815+00:00",
-   "event": "Viborg FF – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "denmark",
-   "market": "away",
-   "selection": "FC Midtjylland",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365"
-   ],
-   "probs": {
-    "Pinnacle": 0.4108796329973413,
-    "Bet365": 0.42196849623630517
-   },
-   "odds": {
-    "Pinnacle": 2.34,
-    "Bet365": 2.25
    }
   }
  ],
  "soccer:primeira:401885412:home": [
   {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Vitória de Guimaraes – Maritimo",
    "kickoff": "2026-10-23T19:45:00+00:00",
    "league": "primeira",
@@ -7581,21 +900,24 @@
    "selection": "Vitória de Guimaraes",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.6403032872052753,
-    "Bet365": 0.6255276927795129
+    "Bet365": 0.6255276927795129,
+    "Betfair": 0.6447317171548135
    },
    "odds": {
     "Pinnacle": 1.52,
-    "Bet365": 1.53
+    "Bet365": 1.53,
+    "Betfair": 1.5
    }
   }
  ],
  "soccer:primeira:401885412:draw": [
   {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Vitória de Guimaraes – Maritimo",
    "kickoff": "2026-10-23T19:45:00+00:00",
    "league": "primeira",
@@ -7603,21 +925,24 @@
    "selection": "Unentschieden",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.21587942994039833,
-    "Bet365": 0.22928564126426673
+    "Bet365": 0.22928564126426673,
+    "Betfair": 0.21150709469705026
    },
    "odds": {
     "Pinnacle": 4.22,
-    "Bet365": 3.8
+    "Bet365": 3.8,
+    "Betfair": 4.2
    }
   }
  ],
  "soccer:primeira:401885412:away": [
   {
-   "ts": "2026-10-19T01:18:33.294907+00:00",
+   "ts": "2026-10-19T10:48:26.941416+00:00",
    "event": "Vitória de Guimaraes – Maritimo",
    "kickoff": "2026-10-23T19:45:00+00:00",
    "league": "primeira",
@@ -7625,15 +950,318 @@
    "selection": "Maritimo",
    "lead_source": "Pinnacle",
    "slow_sources": [
-    "Bet365"
+    "Bet365",
+    "Betfair"
    ],
    "probs": {
     "Pinnacle": 0.14381728285432652,
-    "Bet365": 0.14518666595622046
+    "Bet365": 0.14518666595622046,
+    "Betfair": 0.14376118814813643
    },
    "odds": {
     "Pinnacle": 6.18,
-    "Bet365": 5.75
+    "Bet365": 5.75,
+    "Betfair": 6.0
+   }
+  }
+ ],
+ "soccer:primeira:401885419:home": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estrela – Casa Pia",
+   "kickoff": "2026-10-24T14:30:00+00:00",
+   "league": "primeira",
+   "market": "home",
+   "selection": "Estrela",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5734505844487019,
+    "Bet365": 0.5540432625132192,
+    "Betfair": 0.5672264727523285
+   },
+   "odds": {
+    "Pinnacle": 1.69,
+    "Bet365": 1.73,
+    "Betfair": 1.7
+   }
+  }
+ ],
+ "soccer:primeira:401885419:draw": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estrela – Casa Pia",
+   "kickoff": "2026-10-24T14:30:00+00:00",
+   "league": "primeira",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.24641530643351306,
+    "Bet365": 0.25933094505115406,
+    "Betfair": 0.24357100065700063
+   },
+   "odds": {
+    "Pinnacle": 3.75,
+    "Bet365": 3.5,
+    "Betfair": 3.75
+   }
+  }
+ ],
+ "soccer:primeira:401885419:away": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estrela – Casa Pia",
+   "kickoff": "2026-10-24T14:30:00+00:00",
+   "league": "primeira",
+   "market": "away",
+   "selection": "Casa Pia",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.1801341091177853,
+    "Bet365": 0.18662579243562707,
+    "Betfair": 0.1892025265906711
+   },
+   "odds": {
+    "Pinnacle": 5.04,
+    "Bet365": 4.75,
+    "Betfair": 4.75
+   }
+  }
+ ],
+ "soccer:primeira:401885420:home": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Alverca – Arouca",
+   "kickoff": "2026-10-24T17:00:00+00:00",
+   "league": "primeira",
+   "market": "home",
+   "selection": "Alverca",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.44558086006416975,
+    "Bet365": 0.45967676648454875,
+    "Betfair": 0.45459594080824134
+   },
+   "odds": {
+    "Pinnacle": 2.16,
+    "Bet365": 2.05,
+    "Betfair": 2.1
+   }
+  }
+ ],
+ "soccer:primeira:401885420:draw": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Alverca – Arouca",
+   "kickoff": "2026-10-24T17:00:00+00:00",
+   "league": "primeira",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3018776813735358,
+    "Bet365": 0.27452744124522455,
+    "Betfair": 0.26417999888718885
+   },
+   "odds": {
+    "Pinnacle": 3.13,
+    "Bet365": 3.3,
+    "Betfair": 3.5
+   }
+  }
+ ],
+ "soccer:primeira:401885420:away": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Alverca – Arouca",
+   "kickoff": "2026-10-24T17:00:00+00:00",
+   "league": "primeira",
+   "market": "away",
+   "selection": "Arouca",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.2525414585622946,
+    "Bet365": 0.2657957922702268,
+    "Betfair": 0.28122406030457003
+   },
+   "odds": {
+    "Pinnacle": 3.71,
+    "Bet365": 3.4,
+    "Betfair": 3.3
+   }
+  }
+ ],
+ "soccer:primeira:401885418:home": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estoril – Moreirense",
+   "kickoff": "2026-10-25T15:30:00+00:00",
+   "league": "primeira",
+   "market": "home",
+   "selection": "Estoril",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5298111407374664,
+    "Bet365": 0.5226409950274779,
+    "Betfair": 0.535943509400838
+   },
+   "odds": {
+    "Pinnacle": 1.83,
+    "Bet365": 1.83,
+    "Betfair": 1.8
+   }
+  }
+ ],
+ "soccer:primeira:401885418:draw": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estoril – Moreirense",
+   "kickoff": "2026-10-25T15:30:00+00:00",
+   "league": "primeira",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.24443108921464862,
+    "Bet365": 0.24542328349531323,
+    "Betfair": 0.24596309320009288
+   },
+   "odds": {
+    "Pinnacle": 3.82,
+    "Bet365": 3.7,
+    "Betfair": 3.75
+   }
+  }
+ ],
+ "soccer:primeira:401885418:away": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Estoril – Moreirense",
+   "kickoff": "2026-10-25T15:30:00+00:00",
+   "league": "primeira",
+   "market": "away",
+   "selection": "Moreirense",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.22575777004788522,
+    "Bet365": 0.23193572147720906,
+    "Betfair": 0.21809339739906938
+   },
+   "odds": {
+    "Pinnacle": 4.12,
+    "Bet365": 3.9,
+    "Betfair": 4.2
+   }
+  }
+ ],
+ "soccer:primeira:401885415:home": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Rio Ave – FC Famalicao",
+   "kickoff": "2026-10-25T18:00:00+00:00",
+   "league": "primeira",
+   "market": "home",
+   "selection": "Rio Ave",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.24706455018753912,
+    "Bet365": 0.24220619520639539,
+    "Betfair": 0.259069092853641
+   },
+   "odds": {
+    "Pinnacle": 3.79,
+    "Bet365": 3.75,
+    "Betfair": 3.5
+   }
+  }
+ ],
+ "soccer:primeira:401885415:draw": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Rio Ave – FC Famalicao",
+   "kickoff": "2026-10-25T18:00:00+00:00",
+   "league": "primeira",
+   "market": "draw",
+   "selection": "Unentschieden",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.28210553986793,
+    "Bet365": 0.2823949155755231,
+    "Betfair": 0.2672935706826611
+   },
+   "odds": {
+    "Pinnacle": 3.34,
+    "Bet365": 3.25,
+    "Betfair": 3.4
+   }
+  }
+ ],
+ "soccer:primeira:401885415:away": [
+  {
+   "ts": "2026-10-19T10:48:26.941416+00:00",
+   "event": "Rio Ave – FC Famalicao",
+   "kickoff": "2026-10-25T18:00:00+00:00",
+   "league": "primeira",
+   "market": "away",
+   "selection": "FC Famalicao",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4708299099445309,
+    "Bet365": 0.4753988892180816,
+    "Betfair": 0.4736373364636978
+   },
+   "odds": {
+    "Pinnacle": 2.05,
+    "Bet365": 2.0,
+    "Betfair": 2.0
    }
   }
  ]
