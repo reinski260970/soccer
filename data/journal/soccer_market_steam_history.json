@@ -1,4050 +1,5 @@
 {
- "1550153|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "home",
-   "selection": "Monza Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3818079183344685,
-    "Bet365": 0.37742627415709046,
-    "Betfair": 0.38417544133623655
-   },
-   "odds": {
-    "Pinnacle": 2.55,
-    "Bet365": 2.5,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1550153|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.29844800086219986,
-    "Bet365": 0.3002533559530531,
-    "Betfair": 0.3010457961230976
-   },
-   "odds": {
-    "Pinnacle": 3.24,
-    "Bet365": 3.1,
-    "Betfair": 3.0
-   }
-  }
- ],
- "1550153|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "away",
-   "selection": "Cagliari Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3197440808033319,
-    "Bet365": 0.32232036988985685,
-    "Betfair": 0.3147787625406658
-   },
-   "odds": {
-    "Pinnacle": 3.03,
-    "Bet365": 2.9,
-    "Betfair": 2.88
-   }
-  }
- ],
- "1550153|O1.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O1.25",
-   "selection": "Über 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8001571338221652
-   },
-   "odds": {
-    "Pinnacle": 1.23
-   }
-  }
- ],
- "1550153|U1.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U1.25:no",
-   "selection": "Unter 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.19984286617783484
-   },
-   "odds": {
-    "Pinnacle": 4.46
-   }
-  }
- ],
- "1550153|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7213587557789597,
-    "Bet365": 0.7342909853214629,
-    "Betfair": 0.7387621891782991
-   },
-   "odds": {
-    "Pinnacle": 1.36,
-    "Bet365": 1.33,
-    "Betfair": 1.3
-   }
-  }
- ],
- "1550153|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.27864124422104053,
-    "Bet365": 0.26570901467853736,
-    "Betfair": 0.2612378108217011
-   },
-   "odds": {
-    "Pinnacle": 3.33,
-    "Bet365": 3.4,
-    "Betfair": 3.2
-   }
-  }
- ],
- "1550153|O1.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6806316130755007
-   },
-   "odds": {
-    "Pinnacle": 1.44
-   }
-  }
- ],
- "1550153|U1.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.31936838692449954
-   },
-   "odds": {
-    "Pinnacle": 2.95
-   }
-  }
- ],
- "1550153|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6190070038686853
-   },
-   "odds": {
-    "Pinnacle": 1.58
-   }
-  }
- ],
- "1550153|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3809929961313148
-   },
-   "odds": {
-    "Pinnacle": 2.51
-   }
-  }
- ],
- "1550153|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.519876461968045
-   },
-   "odds": {
-    "Pinnacle": 1.88
-   }
-  }
- ],
- "1550153|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4801235380319551
-   },
-   "odds": {
-    "Pinnacle": 2.03
-   }
-  }
- ],
- "1550153|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4466157032178154,
-    "Bet365": 0.4714572647286174,
-    "Betfair": 0.45940384285039115
-   },
-   "odds": {
-    "Pinnacle": 2.16,
-    "Bet365": 2.0,
-    "Betfair": 2.0
-   }
-  }
- ],
- "1550153|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5533842967821847,
-    "Bet365": 0.5285427352713827,
-    "Betfair": 0.5405961571496092
-   },
-   "odds": {
-    "Pinnacle": 1.76,
-    "Bet365": 1.8,
-    "Betfair": 1.73
-   }
-  }
- ],
- "1550153|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3809929961313148
-   },
-   "odds": {
-    "Pinnacle": 2.51
-   }
-  }
- ],
- "1550153|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6190070038686853
-   },
-   "odds": {
-    "Pinnacle": 1.58
-   }
-  }
- ],
- "1550153|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3009928719780542
-   },
-   "odds": {
-    "Pinnacle": 3.09
-   }
-  }
- ],
- "1550153|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6990071280219461
-   },
-   "odds": {
-    "Pinnacle": 1.4
-   }
-  }
- ],
- "1550153|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.26700924675435
-   },
-   "odds": {
-    "Pinnacle": 3.47
-   }
-  }
- ],
- "1550153|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Monza – Cagliari",
-   "kickoff": "2026-10-19T16:30:00+00:00",
-   "league": "Serie A",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7329907532456502
-   },
-   "odds": {
-    "Pinnacle": 1.34
-   }
-  }
- ],
- "1494299|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "home",
-   "selection": "Degerfors IF Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.30321539103097667,
-    "Bet365": 0.30947902094532465,
-    "Betfair": 0.31863506210166276
-   },
-   "odds": {
-    "Pinnacle": 3.15,
-    "Bet365": 3.0,
-    "Betfair": 2.88
-   }
-  }
- ],
- "1494299|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2944606493143348,
-    "Bet365": 0.2795380250212843,
-    "Betfair": 0.275023622161613
-   },
-   "odds": {
-    "Pinnacle": 3.24,
-    "Bet365": 3.3,
-    "Betfair": 3.3
-   }
-  }
- ],
- "1494299|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "away",
-   "selection": "Kalmar FF Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4023239596546886,
-    "Bet365": 0.41098295403339125,
-    "Betfair": 0.4063413157367242
-   },
-   "odds": {
-    "Pinnacle": 2.4,
-    "Bet365": 2.3,
-    "Betfair": 2.3
-   }
-  }
- ],
- "1494299|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7283102235680913,
-    "Bet365": 0.7290790764028765,
-    "Betfair": 0.7463409831953624
-   },
-   "odds": {
-    "Pinnacle": 1.34,
-    "Bet365": 1.33,
-    "Betfair": 1.29
-   }
-  }
- ],
- "1494299|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2716897764319089,
-    "Bet365": 0.27092092359712366,
-    "Betfair": 0.2536590168046378
-   },
-   "odds": {
-    "Pinnacle": 3.33,
-    "Bet365": 3.25,
-    "Betfair": 3.3
-   }
-  }
- ],
- "1494299|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6236361986747072
-   },
-   "odds": {
-    "Pinnacle": 1.56
-   }
-  }
- ],
- "1494299|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3763638013252928
-   },
-   "odds": {
-    "Pinnacle": 2.51
-   }
-  }
- ],
- "1494299|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5246613105467786
-   },
-   "odds": {
-    "Pinnacle": 1.84
-   }
-  }
- ],
- "1494299|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4753386894532216
-   },
-   "odds": {
-    "Pinnacle": 2.02
-   }
-  }
- ],
- "1494299|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4530136582498061,
-    "Bet365": 0.45695029435061363,
-    "Betfair": 0.45940384285039115
-   },
-   "odds": {
-    "Pinnacle": 2.1,
-    "Bet365": 2.05,
-    "Betfair": 2.0
-   }
-  }
- ],
- "1494299|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5469863417501939,
-    "Bet365": 0.5430497056493866,
-    "Betfair": 0.5405961571496092
-   },
-   "odds": {
-    "Pinnacle": 1.76,
-    "Bet365": 1.75,
-    "Betfair": 1.73
-   }
-  }
- ],
- "1494299|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.387663285270252
-   },
-   "odds": {
-    "Pinnacle": 2.42
-   }
-  }
- ],
- "1494299|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6123367147297483
-   },
-   "odds": {
-    "Pinnacle": 1.58
-   }
-  }
- ],
- "1494299|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3253606263236771
-   },
-   "odds": {
-    "Pinnacle": 2.83
-   }
-  }
- ],
- "1494299|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6746393736763229
-   },
-   "odds": {
-    "Pinnacle": 1.44
-   }
-  }
- ],
- "1494299|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.24156404398816572,
-    "Bet365": 0.24317681709911804,
-    "Betfair": 0.22740475378433245
-   },
-   "odds": {
-    "Pinnacle": 3.7,
-    "Bet365": 3.5,
-    "Betfair": 3.6
-   }
-  }
- ],
- "1494299|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7584359560118344,
-    "Bet365": 0.756823182900882,
-    "Betfair": 0.7725952462156677
-   },
-   "odds": {
-    "Pinnacle": 1.29,
-    "Bet365": 1.28,
-    "Betfair": 1.25
-   }
-  }
- ],
- "1494299|O4.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.10270953671040942,
-    "Bet365": 0.08657569924458287,
-    "Betfair": 0.07292391567533678
-   },
-   "odds": {
-    "Pinnacle": 7.4,
-    "Bet365": 8.0,
-    "Betfair": 7.5
-   }
-  }
- ],
- "1494299|U4.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8972904632895908,
-    "Bet365": 0.9134243007554173,
-    "Betfair": 0.9270760843246634
-   },
-   "odds": {
-    "Pinnacle": 1.1,
-    "Bet365": 1.08,
-    "Betfair": 1.06
-   }
-  }
- ],
- "1549039|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "home",
-   "selection": "Viborg Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3525847266428323,
-    "Bet365": 0.35589493654920296,
-    "Betfair": 0.3457922339584513
-   },
-   "odds": {
-    "Pinnacle": 2.75,
-    "Bet365": 2.62,
-    "Betfair": 2.7
-   }
-  }
- ],
- "1549039|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.25683273990834043,
-    "Bet365": 0.25310399386303145,
-    "Betfair": 0.2620109809691131
-   },
-   "odds": {
-    "Pinnacle": 3.74,
-    "Bet365": 3.6,
-    "Betfair": 3.5
-   }
-  }
- ],
- "1549039|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "away",
-   "selection": "FC Midtjylland Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3905825334488273,
-    "Bet365": 0.39100106958776565,
-    "Betfair": 0.3921967850724356
-   },
-   "odds": {
-    "Pinnacle": 2.49,
-    "Bet365": 2.4,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1549039|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8344520580441986,
-    "Bet365": 0.8598281867286236,
-    "Betfair": 0.8629904567072925
-   },
-   "odds": {
-    "Pinnacle": 1.18,
-    "Bet365": 1.14,
-    "Betfair": 1.13
-   }
-  }
- ],
- "1549039|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.1655479419558015,
-    "Bet365": 0.14017181327137657,
-    "Betfair": 0.1370095432927075
-   },
-   "odds": {
-    "Pinnacle": 5.18,
-    "Bet365": 5.5,
-    "Betfair": 5.2
-   }
-  }
- ],
- "1549039|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6123608464065295,
-    "Bet365": 0.6227736093113602,
-    "Betfair": 0.6305483359918933
-   },
-   "odds": {
-    "Pinnacle": 1.59,
-    "Bet365": 1.53,
-    "Betfair": 1.5
-   }
-  }
- ],
- "1549039|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.38763915359347045,
-    "Bet365": 0.37722639068863983,
-    "Betfair": 0.3694516640081069
-   },
-   "odds": {
-    "Pinnacle": 2.45,
-    "Bet365": 2.4,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1549039|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5645147277947552
-   },
-   "odds": {
-    "Pinnacle": 1.72
-   }
-  }
- ],
- "1549039|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4354852722052451
-   },
-   "odds": {
-    "Pinnacle": 2.2
-   }
-  }
- ],
- "1549039|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5026958895711158
-   },
-   "odds": {
-    "Pinnacle": 1.93
-   }
-  }
- ],
- "1549039|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4973041104288842
-   },
-   "odds": {
-    "Pinnacle": 1.95
-   }
-  }
- ],
- "1549039|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4410798578940032
-   },
-   "odds": {
-    "Pinnacle": 2.18
-   }
-  }
- ],
- "1549039|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5589201421059967
-   },
-   "odds": {
-    "Pinnacle": 1.74
-   }
-  }
- ],
- "1549039|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3913826117225036,
-    "Bet365": 0.39962589966401113,
-    "Betfair": 0.3694516640081069
-   },
-   "odds": {
-    "Pinnacle": 2.43,
-    "Bet365": 2.25,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1549039|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6086173882774966,
-    "Bet365": 0.600374100335989,
-    "Betfair": 0.6305483359918933
-   },
-   "odds": {
-    "Pinnacle": 1.6,
-    "Bet365": 1.57,
-    "Betfair": 1.5
-   }
-  }
- ],
- "1549039|O4.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.20851109271503426,
-    "Bet365": 0.20392962671481782,
-    "Betfair": 0.1692508941962425
-   },
-   "odds": {
-    "Pinnacle": 4.23,
-    "Bet365": 4.0,
-    "Betfair": 4.5
-   }
-  }
- ],
- "1549039|U4.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7914889072849659,
-    "Bet365": 0.7960703732851824,
-    "Betfair": 0.8307491058037575
-   },
-   "odds": {
-    "Pinnacle": 1.24,
-    "Bet365": 1.22,
-    "Betfair": 1.17
-   }
-  }
- ],
- "1553198|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "home",
-   "selection": "Wisla Plock Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.527516716072215,
-    "Bet365": 0.524341489241003,
-    "Betfair": 0.5321229392154432
-   },
-   "odds": {
-    "Pinnacle": 1.85,
-    "Bet365": 1.8,
-    "Betfair": 1.8
-   }
-  }
- ],
- "1553198|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.24359131375052426,
-    "Bet365": 0.24488907588166317,
-    "Betfair": 0.24203777830923603
-   },
-   "odds": {
-    "Pinnacle": 3.89,
-    "Bet365": 3.6,
-    "Betfair": 3.75
-   }
-  }
- ],
- "1553198|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "away",
-   "selection": "Radomiak Radom Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22889197017726087,
-    "Bet365": 0.23076943487733398,
-    "Betfair": 0.22583928247532115
-   },
-   "odds": {
-    "Pinnacle": 4.13,
-    "Bet365": 3.8,
-    "Betfair": 4.0
-   }
-  }
- ],
- "1553198|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8321374342643405,
-    "Bet365": 0.837541601183481,
-    "Betfair": 0.852333004465119
-   },
-   "odds": {
-    "Pinnacle": 1.18,
-    "Bet365": 1.17,
-    "Betfair": 1.14
-   }
-  }
- ],
- "1553198|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.1678625657356597,
-    "Bet365": 0.1624583988165192,
-    "Betfair": 0.1476669955348812
-   },
-   "odds": {
-    "Pinnacle": 4.99,
-    "Bet365": 5.0,
-    "Betfair": 4.8
-   }
-  }
- ],
- "1553198|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5995248574640274,
-    "Bet365": 0.6090604904807742,
-    "Betfair": 0.600374100335989
-   },
-   "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.57,
-    "Betfair": 1.57
-   }
-  }
- ],
- "1553198|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4004751425359728,
-    "Bet365": 0.3909395095192259,
-    "Betfair": 0.39962589966401113
-   },
-   "odds": {
-    "Pinnacle": 2.37,
-    "Bet365": 2.35,
-    "Betfair": 2.25
-   }
-  }
- ],
- "1553198|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5463692457185644
-   },
-   "odds": {
-    "Pinnacle": 1.77
-   }
-  }
- ],
- "1553198|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.45363075428143573
-   },
-   "odds": {
-    "Pinnacle": 2.11
-   }
-  }
- ],
- "1553198|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4768689763382799
-   },
-   "odds": {
-    "Pinnacle": 2.02
-   }
-  }
- ],
- "1553198|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5231310236617203
-   },
-   "odds": {
-    "Pinnacle": 1.85
-   }
-  }
- ],
- "1553198|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4117921064449658
-   },
-   "odds": {
-    "Pinnacle": 2.31
-   }
-  }
- ],
- "1553198|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5882078935550343
-   },
-   "odds": {
-    "Pinnacle": 1.65
-   }
-  }
- ],
- "1553198|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3636611394960319,
-    "Bet365": 0.3787995648949994,
-    "Betfair": 0.3694516640081069
-   },
-   "odds": {
-    "Pinnacle": 2.59,
-    "Bet365": 2.38,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1553198|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6363388605039683,
-    "Bet365": 0.6212004351050009,
-    "Betfair": 0.6305483359918933
-   },
-   "odds": {
-    "Pinnacle": 1.53,
-    "Bet365": 1.53,
-    "Betfair": 1.5
-   }
-  }
- ],
- "1553198|O4.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.18190867012826228,
-    "Bet365": 0.18782153401297694,
-    "Betfair": 0.1692508941962425
-   },
-   "odds": {
-    "Pinnacle": 4.7,
-    "Bet365": 4.33,
-    "Betfair": 4.5
-   }
-  }
- ],
- "1553198|U4.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wisla Plock – Radomiak Radom",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Ekstraklasa",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8180913298717378,
-    "Bet365": 0.812178465987023,
-    "Betfair": 0.8307491058037575
-   },
-   "odds": {
-    "Pinnacle": 1.2,
-    "Bet365": 1.2,
-    "Betfair": 1.17
-   }
-  }
- ],
- "1584438|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "home",
-   "selection": "Trabzonspor Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3951955161470246,
-    "Bet365": 0.3933433406272886,
-    "Betfair": 0.36650514443245075
-   },
-   "odds": {
-    "Pinnacle": 2.46,
-    "Bet365": 2.35,
-    "Betfair": 2.55
-   }
-  }
- ],
- "1584438|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2444099393000001,
-    "Bet365": 0.24687922660280665,
-    "Betfair": 0.24237330418394112
-   },
-   "odds": {
-    "Pinnacle": 3.92,
-    "Bet365": 3.6,
-    "Betfair": 3.75
-   }
-  }
- ],
- "1584438|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "away",
-   "selection": "Beşiktaş Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3603945445529756,
-    "Bet365": 0.35977743276990487,
-    "Betfair": 0.39112155138360827
-   },
-   "odds": {
-    "Pinnacle": 2.69,
-    "Bet365": 2.55,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1584438|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8501420312600666,
-    "Bet365": 0.8598281867286236,
-    "Betfair": 0.9069714452974925
-   },
-   "odds": {
-    "Pinnacle": 1.16,
-    "Bet365": 1.14,
-    "Betfair": 1.08
-   }
-  }
- ],
- "1584438|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.14985796873993348,
-    "Bet365": 0.14017181327137657,
-    "Betfair": 0.09302855470250761
-   },
-   "odds": {
-    "Pinnacle": 5.67,
-    "Bet365": 5.5,
-    "Betfair": 6.5
-   }
-  }
- ],
- "1584438|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6458232352853918,
-    "Bet365": 0.6379213858088065,
-    "Betfair": 0.682656253261916
-   },
-   "odds": {
-    "Pinnacle": 1.51,
-    "Bet365": 1.5,
-    "Betfair": 1.4
-   }
-  }
- ],
- "1584438|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.35417676471460857,
-    "Bet365": 0.3620786141911938,
-    "Betfair": 0.31734374673808396
-   },
-   "odds": {
-    "Pinnacle": 2.66,
-    "Bet365": 2.5,
-    "Betfair": 2.75
-   }
-  }
- ],
- "1584438|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6011421074634108
-   },
-   "odds": {
-    "Pinnacle": 1.62
-   }
-  }
- ],
- "1584438|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3988578925365892
-   },
-   "odds": {
-    "Pinnacle": 2.39
-   }
-  }
- ],
- "1584438|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5430170974559844
-   },
-   "odds": {
-    "Pinnacle": 1.79
-   }
-  }
- ],
- "1584438|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.45698290254401586
-   },
-   "odds": {
-    "Pinnacle": 2.11
-   }
-  }
- ],
- "1584438|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4744628599434417
-   },
-   "odds": {
-    "Pinnacle": 2.04
-   }
-  }
- ],
- "1584438|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5255371400565584
-   },
-   "odds": {
-    "Pinnacle": 1.85
-   }
-  }
- ],
- "1584438|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4204153244687501,
-    "Bet365": 0.41562003296959216,
-    "Betfair": 0.4322639282073178
-   },
-   "odds": {
-    "Pinnacle": 2.28,
-    "Bet365": 2.2,
-    "Betfair": 2.1
-   }
-  }
- ],
- "1584438|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.57958467553125,
-    "Bet365": 0.584379967030408,
-    "Betfair": 0.5677360717926823
-   },
-   "odds": {
-    "Pinnacle": 1.68,
-    "Bet365": 1.62,
-    "Betfair": 1.65
-   }
-  }
- ],
- "1584438|O4.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22748441951725776,
-    "Bet365": 0.22349859889953516,
-    "Betfair": 0.22740475378433245
-   },
-   "odds": {
-    "Pinnacle": 3.94,
-    "Bet365": 3.75,
-    "Betfair": 3.6
-   }
-  }
- ],
- "1584438|U4.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7725155804827424,
-    "Bet365": 0.776501401100465,
-    "Betfair": 0.7725952462156677
-   },
-   "odds": {
-    "Pinnacle": 1.27,
-    "Bet365": 1.25,
-    "Betfair": 1.25
-   }
-  }
- ],
- "1550154|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "home",
-   "selection": "Parma Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.27972470424801843,
-    "Bet365": 0.28437573361307406,
-    "Betfair": 0.2758009804062951
-   },
-   "odds": {
-    "Pinnacle": 3.46,
-    "Bet365": 3.3,
-    "Betfair": 3.3
-   }
-  }
- ],
- "1550154|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.32162898697496145,
-    "Bet365": 0.3144039514492497,
-    "Betfair": 0.3170568038705661
-   },
-   "odds": {
-    "Pinnacle": 3.02,
-    "Bet365": 3.0,
-    "Betfair": 2.9
-   }
-  }
- ],
- "1550154|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "away",
-   "selection": "Torino Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3986463087770201,
-    "Bet365": 0.40122031493767646,
-    "Betfair": 0.4071422157231391
-   },
-   "odds": {
-    "Pinnacle": 2.45,
-    "Bet365": 2.38,
-    "Betfair": 2.3
-   }
-  }
- ],
- "1550154|O1": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O1",
-   "selection": "Über 1 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8420010228511242
-   },
-   "odds": {
-    "Pinnacle": 1.17
-   }
-  }
- ],
- "1550154|U1:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U1:no",
-   "selection": "Unter 1 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.1579989771488759
-   },
-   "odds": {
-    "Pinnacle": 5.39
-   }
-  }
- ],
- "1550154|O1.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O1.25",
-   "selection": "Über 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7300277927965463
-   },
-   "odds": {
-    "Pinnacle": 1.34
-   }
-  }
- ],
- "1550154|U1.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U1.25:no",
-   "selection": "Unter 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2699722072034538
-   },
-   "odds": {
-    "Pinnacle": 3.38
-   }
-  }
- ],
- "1550154|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6420404838728335,
-    "Bet365": 0.6703278303946429,
-    "Betfair": 0.6614475810244684
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.44,
-    "Betfair": 1.44
-   }
-  }
- ],
- "1550154|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3579595161271666,
-    "Bet365": 0.3296721696053572,
-    "Betfair": 0.33855241897553184
-   },
-   "odds": {
-    "Pinnacle": 2.64,
-    "Bet365": 2.75,
-    "Betfair": 2.6
-   }
-  }
- ],
- "1550154|O1.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5833235726155245
-   },
-   "odds": {
-    "Pinnacle": 1.67
-   }
-  }
- ],
- "1550154|U1.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.41667642738447574
-   },
-   "odds": {
-    "Pinnacle": 2.3
-   }
-  }
- ],
- "1550154|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5026614142042428
-   },
-   "odds": {
-    "Pinnacle": 1.94
-   }
-  }
- ],
- "1550154|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.49733858579575735
-   },
-   "odds": {
-    "Pinnacle": 1.96
-   }
-  }
- ],
- "1550154|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.41951920410818894
-   },
-   "odds": {
-    "Pinnacle": 2.29
-   }
-  }
- ],
- "1550154|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5804807958918111
-   },
-   "odds": {
-    "Pinnacle": 1.68
-   }
-  }
- ],
- "1550154|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.35922187514376325,
-    "Bet365": 0.38849996967907074,
-    "Betfair": 0.355377634392807
-   },
-   "odds": {
-    "Pinnacle": 2.62,
-    "Bet365": 2.38,
-    "Betfair": 2.4
-   }
-  }
- ],
- "1550154|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6407781248562368,
-    "Bet365": 0.6115000303209293,
-    "Betfair": 0.644622365607193
-   },
-   "odds": {
-    "Pinnacle": 1.52,
-    "Bet365": 1.57,
-    "Betfair": 1.45
-   }
-  }
- ],
- "1550154|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.29210073599579794
-   },
-   "odds": {
-    "Pinnacle": 3.15
-   }
-  }
- ],
- "1550154|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7078992640042023
-   },
-   "odds": {
-    "Pinnacle": 1.38
-   }
-  }
- ],
- "1550154|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2083178293639225
-   },
-   "odds": {
-    "Pinnacle": 4.24
-   }
-  }
- ],
- "1550154|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7916821706360776
-   },
-   "odds": {
-    "Pinnacle": 1.24
-   }
-  }
- ],
- "1550154|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.21248284345049592
-   },
-   "odds": {
-    "Pinnacle": 4.25
-   }
-  }
- ],
- "1550154|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Parma – Torino",
-   "kickoff": "2026-10-19T18:45:00+00:00",
-   "league": "Serie A",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7875171565495042
-   },
-   "odds": {
-    "Pinnacle": 1.25
-   }
-  }
- ],
- "1557436|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "home",
-   "selection": "Tottenham Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6197915867698519,
-    "Bet365": 0.6271759424597346,
-    "Betfair": 0.6298215380922151
-   },
-   "odds": {
-    "Pinnacle": 1.59,
-    "Bet365": 1.55,
-    "Betfair": 1.55
-   }
-  }
- ],
- "1557436|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.20951646162208584,
-    "Bet365": 0.2016724821657213,
-    "Betfair": 0.204607092949496
-   },
-   "odds": {
-    "Pinnacle": 4.55,
-    "Bet365": 4.5,
-    "Betfair": 4.5
-   }
-  }
- ],
- "1557436|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "away",
-   "selection": "Coventry Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.17069195160806241,
-    "Bet365": 0.1711515753745444,
-    "Betfair": 0.16557136895828892
-   },
-   "odds": {
-    "Pinnacle": 5.55,
-    "Bet365": 5.25,
-    "Betfair": 5.5
-   }
-  }
- ],
- "1557436|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.75816633018978
-   },
-   "odds": {
-    "Pinnacle": 1.29
-   }
-  }
- ],
- "1557436|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.24183366981022025
-   },
-   "odds": {
-    "Pinnacle": 3.69
-   }
-  }
- ],
- "1557436|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6617665640256387
-   },
-   "odds": {
-    "Pinnacle": 1.47
-   }
-  }
- ],
- "1557436|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3382334359743615
-   },
-   "odds": {
-    "Pinnacle": 2.75
-   }
-  }
- ],
- "1557436|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5873331214492359,
-    "Bet365": 0.5936071493942947,
-    "Betfair": 0.5936071493942947
-   },
-   "odds": {
-    "Pinnacle": 1.65,
-    "Bet365": 1.62,
-    "Betfair": 1.62
-   }
-  }
- ],
- "1557436|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4126668785507643,
-    "Bet365": 0.40639285060570535,
-    "Betfair": 0.40639285060570535
-   },
-   "odds": {
-    "Pinnacle": 2.3,
-    "Bet365": 2.3,
-    "Betfair": 2.3
-   }
-  }
- ],
- "1557436|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5336906911916686
-   },
-   "odds": {
-    "Pinnacle": 1.82
-   }
-  }
- ],
- "1557436|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.46630930880833144
-   },
-   "odds": {
-    "Pinnacle": 2.07
-   }
-  }
- ],
- "1557436|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4656154696071844
-   },
-   "odds": {
-    "Pinnacle": 2.09
-   }
-  }
- ],
- "1557436|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5343845303928157
-   },
-   "odds": {
-    "Pinnacle": 1.83
-   }
-  }
- ],
- "1557436|O3.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.40549854687394427
-   },
-   "odds": {
-    "Pinnacle": 2.36
-   }
-  }
- ],
- "1557436|U3.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5945014531260558
-   },
-   "odds": {
-    "Pinnacle": 1.64
-   }
-  }
- ],
- "1557436|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3566731445493139,
-    "Bet365": 0.3697943853555,
-    "Betfair": 0.35535006246594214
-   },
-   "odds": {
-    "Pinnacle": 2.62,
-    "Bet365": 2.5,
-    "Betfair": 2.6
-   }
-  }
- ],
- "1557436|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6433268554506862,
-    "Bet365": 0.6302056146445001,
-    "Betfair": 0.6446499375340581
-   },
-   "odds": {
-    "Pinnacle": 1.51,
-    "Bet365": 1.53,
-    "Betfair": 1.5
-   }
-  }
- ],
- "1557436|O3.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O3.75",
-   "selection": "Über 3.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2937332904637421
-   },
-   "odds": {
-    "Pinnacle": 3.11
-   }
-  }
- ],
- "1557436|U3.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U3.75:no",
-   "selection": "Unter 3.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7062667095362581
-   },
-   "odds": {
-    "Pinnacle": 1.38
-   }
-  }
- ],
- "1557436|O4": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "O4",
-   "selection": "Über 4 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22106359289769736
-   },
-   "odds": {
-    "Pinnacle": 4.04
-   }
-  }
- ],
- "1557436|U4:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Tottenham – Coventry",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "Premier League",
-   "market": "U4:no",
-   "selection": "Unter 4 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7789364071023028
-   },
-   "odds": {
-    "Pinnacle": 1.26
-   }
-  }
- ],
- "1570417|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "home",
-   "selection": "Getafe Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.32102460068323363,
-    "Bet365": 0.32484555855976344,
-    "Betfair": 0.3207713288106954
-   },
-   "odds": {
-    "Pinnacle": 3.03,
-    "Bet365": 2.9,
-    "Betfair": 2.9
-   }
-  }
- ],
- "1570417|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.33342565926077383,
-    "Bet365": 0.32484555855976344,
-    "Betfair": 0.33302023356066607
-   },
-   "odds": {
-    "Pinnacle": 2.92,
-    "Bet365": 2.9,
-    "Betfair": 2.8
-   }
-  }
- ],
- "1570417|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "away",
-   "selection": "Rayo Vallecano Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3455497400559927,
-    "Bet365": 0.35030888288047335,
-    "Betfair": 0.34620843762863873
-   },
-   "odds": {
-    "Pinnacle": 2.82,
-    "Bet365": 2.7,
-    "Betfair": 2.7
-   }
-  }
- ],
- "1570417|O1": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O1",
-   "selection": "Über 1 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8123530704127931
-   },
-   "odds": {
-    "Pinnacle": 1.21
-   }
-  }
- ],
- "1570417|U1:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U1:no",
-   "selection": "Unter 1 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.18764692958720694
-   },
-   "odds": {
-    "Pinnacle": 4.64
-   }
-  }
- ],
- "1570417|O1.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O1.25",
-   "selection": "Über 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6893425234441483
-   },
-   "odds": {
-    "Pinnacle": 1.42
-   }
-  }
- ],
- "1570417|U1.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U1.25:no",
-   "selection": "Unter 1.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.310657476555852
-   },
-   "odds": {
-    "Pinnacle": 3.01
-   }
-  }
- ],
- "1570417|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6011421074634108,
-    "Bet365": 0.6115000303209293,
-    "Betfair": 0.600374100335989
-   },
-   "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.57,
-    "Betfair": 1.57
-   }
-  }
- ],
- "1570417|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3988578925365892,
-    "Bet365": 0.38849996967907074,
-    "Betfair": 0.39962589966401113
-   },
-   "odds": {
-    "Pinnacle": 2.39,
-    "Bet365": 2.38,
-    "Betfair": 2.25
-   }
-  }
- ],
- "1570417|O1.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.531708511637306
-   },
-   "odds": {
-    "Pinnacle": 1.84
-   }
-  }
- ],
- "1570417|U1.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.46829148836269413
-   },
-   "odds": {
-    "Pinnacle": 2.08
-   }
-  }
- ],
- "1570417|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.43829030396387875
-   },
-   "odds": {
-    "Pinnacle": 2.19
-   }
-  }
- ],
- "1570417|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5617096960361215
-   },
-   "odds": {
-    "Pinnacle": 1.73
-   }
-  }
- ],
- "1570417|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3636611394960319
-   },
-   "odds": {
-    "Pinnacle": 2.59
-   }
-  }
- ],
- "1570417|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6363388605039683
-   },
-   "odds": {
-    "Pinnacle": 1.53
-   }
-  }
- ],
- "1570417|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.30943440225656366,
-    "Bet365": 0.3296721696053572,
-    "Betfair": 0.29720865355996245
-   },
-   "odds": {
-    "Pinnacle": 2.97,
-    "Bet365": 2.75,
-    "Betfair": 2.88
-   }
-  }
- ],
- "1570417|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6905655977434365,
-    "Bet365": 0.6703278303946429,
-    "Betfair": 0.7027913464400376
-   },
-   "odds": {
-    "Pinnacle": 1.41,
-    "Bet365": 1.44,
-    "Betfair": 1.36
-   }
-  }
- ],
- "1570417|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.24156404398816572
-   },
-   "odds": {
-    "Pinnacle": 3.7
-   }
-  }
- ],
- "1570417|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7584359560118344
-   },
-   "odds": {
-    "Pinnacle": 1.29
-   }
-  }
- ],
- "1570417|O3": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.17440265259260662
-   },
-   "odds": {
-    "Pinnacle": 4.88
-   }
-  }
- ],
- "1570417|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8255973474073934
-   },
-   "odds": {
-    "Pinnacle": 1.19
-   }
-  }
- ],
- "1575458|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "home",
-   "selection": "SC Braga Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5865904628671488,
-    "Bet365": 0.5850181897884873,
-    "Betfair": 0.5928443113380163
-   },
-   "odds": {
-    "Pinnacle": 1.67,
-    "Bet365": 1.65,
-    "Betfair": 1.62
-   }
-  }
- ],
- "1575458|draw": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.25217478949580086,
-    "Bet365": 0.2537711152370226,
-    "Betfair": 0.24952493205342385
-   },
-   "odds": {
-    "Pinnacle": 3.76,
-    "Bet365": 3.6,
-    "Betfair": 3.6
-   }
-  }
- ],
- "1575458|away": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "away",
-   "selection": "GIL Vicente Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.16123474763705062,
-    "Bet365": 0.1612106949744903,
-    "Betfair": 0.1576307566085599
-   },
-   "odds": {
-    "Pinnacle": 5.78,
-    "Bet365": 5.5,
-    "Betfair": 5.5
-   }
-  }
- ],
- "1575458|O1.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7034355981204193,
-    "Bet365": 0.756823182900882,
-    "Betfair": 0.7083259120436662
-   },
-   "odds": {
-    "Pinnacle": 1.39,
-    "Bet365": 1.28,
-    "Betfair": 1.36
-   }
-  }
- ],
- "1575458|U1.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2965644018795809,
-    "Bet365": 0.24317681709911804,
-    "Betfair": 0.291674087956334
-   },
-   "odds": {
-    "Pinnacle": 3.12,
-    "Bet365": 3.5,
-    "Betfair": 3.0
-   }
-  }
- ],
- "1575458|O1.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6595931871010011
-   },
-   "odds": {
-    "Pinnacle": 1.48
-   }
-  }
- ],
- "1575458|U1.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.34040681289899904
-   },
-   "odds": {
-    "Pinnacle": 2.76
-   }
-  }
- ],
- "1575458|O2": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O2",
-   "selection": "Über 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5982205204823159
-   },
-   "odds": {
-    "Pinnacle": 1.63
-   }
-  }
- ],
- "1575458|U2:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.40177947951768433
-   },
-   "odds": {
-    "Pinnacle": 2.38
-   }
-  }
- ],
- "1575458|O2.25": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5080902699768409
-   },
-   "odds": {
-    "Pinnacle": 1.91
-   }
-  }
- ],
- "1575458|U2.25:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.49190973002315913
-   },
-   "odds": {
-    "Pinnacle": 1.97
-   }
-  }
- ],
- "1575458|O2.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.4410798578940032,
-    "Bet365": 0.48577517972951184,
-    "Betfair": 0.42596410505166415
-   },
-   "odds": {
-    "Pinnacle": 2.18,
-    "Bet365": 1.95,
-    "Betfair": 2.2
-   }
-  }
- ],
- "1575458|U2.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5589201421059967,
-    "Bet365": 0.5142248202704882,
-    "Betfair": 0.5740358949483358
-   },
-   "odds": {
-    "Pinnacle": 1.74,
-    "Bet365": 1.85,
-    "Betfair": 1.67
-   }
-  }
- ],
- "1575458|O2.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.374268129774442
-   },
-   "odds": {
-    "Pinnacle": 2.54
-   }
-  }
- ],
- "1575458|U2.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6257318702255581
-   },
-   "odds": {
-    "Pinnacle": 1.56
-   }
-  }
- ],
- "1575458|O3.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22106359289769736,
-    "Bet365": 0.25435426919334314,
-    "Betfair": 0.19014082551023
-   },
-   "odds": {
-    "Pinnacle": 4.04,
-    "Bet365": 3.4,
-    "Betfair": 4.2
-   }
-  }
- ],
- "1575458|U3.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.7789364071023028,
-    "Bet365": 0.745645730806657,
-    "Betfair": 0.8098591744897702
-   },
-   "odds": {
-    "Pinnacle": 1.26,
-    "Bet365": 1.3,
-    "Betfair": 1.2
-   }
-  }
- ],
- "1494299|O1.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6856112209411174
-   },
-   "odds": {
-    "Pinnacle": 1.42
-   }
-  }
- ],
- "1494299|U1.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Degerfors IF – Kalmar FF",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Allsvenskan",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3143887790588827
-   },
-   "odds": {
-    "Pinnacle": 2.93
-   }
-  }
- ],
  "1563150|home": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "home",
-   "selection": "Wolves Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6038462613523694,
-    "Bet365": 0.6062798588754698,
-    "Betfair": 0.5979396415112379
-   },
-   "odds": {
-    "Pinnacle": 1.62,
-    "Bet365": 1.6,
-    "Betfair": 1.62
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "home",
-   "selection": "Wolves Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6070778342436405,
-    "Bet365": 0.6062798588754698,
-    "Betfair": 0.6249101483593564
-   },
-   "odds": {
-    "Pinnacle": 1.61,
-    "Bet365": 1.6,
-    "Betfair": 1.55
-   }
-  },
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
@@ -4066,57 +21,34 @@
     "Pinnacle": 1.61,
     "Bet365": 1.6,
     "Betfair": 1.55
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "home",
+   "selection": "Wolves Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6094450194546055,
+    "Bet365": 0.6146739568198537,
+    "Betfair": 0.6154122809649332
+   },
+   "odds": {
+    "Pinnacle": 1.61,
+    "Bet365": 1.57,
+    "Betfair": 1.57
    }
   }
  ],
  "1563150|draw": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22300597750275433,
-    "Bet365": 0.22262200316872566,
-    "Betfair": 0.22221503454114958
-   },
-   "odds": {
-    "Pinnacle": 4.2,
-    "Bet365": 4.1,
-    "Betfair": 4.1
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.22113942943936316,
-    "Bet365": 0.22262200316872566,
-    "Betfair": 0.21448450366043983
-   },
-   "odds": {
-    "Pinnacle": 4.22,
-    "Bet365": 4.1,
-    "Betfair": 4.2
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4138,34 +70,34 @@
     "Bet365": 4.1,
     "Betfair": 4.2
    }
-  }
- ],
- "1563150|away": [
+  },
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "Championship",
-   "market": "away",
-   "selection": "Portsmouth Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.1731477611448766,
-    "Bet365": 0.1710981379558047,
-    "Betfair": 0.1798453239476127
+    "Pinnacle": 0.22320673553314985,
+    "Bet365": 0.21820789603489762,
+    "Betfair": 0.22492754575719678
    },
    "odds": {
-    "Pinnacle": 5.35,
-    "Bet365": 5.25,
-    "Betfair": 5.0
+    "Pinnacle": 4.23,
+    "Bet365": 4.1,
+    "Betfair": 4.0
    }
-  },
+  }
+ ],
+ "1563150|away": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "Championship",
@@ -4188,7 +120,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
    "league": "Championship",
@@ -4200,12 +132,12 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.1717827363169966,
-    "Bet365": 0.1710981379558047,
-    "Betfair": 0.16060534798020365
+    "Pinnacle": 0.16734824501224452,
+    "Bet365": 0.167118147145249,
+    "Betfair": 0.15966017327787024
    },
    "odds": {
-    "Pinnacle": 5.37,
+    "Pinnacle": 5.58,
     "Bet365": 5.25,
     "Betfair": 5.5
    }
@@ -4213,52 +145,6 @@
  ],
  "1563150|O1.5": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.784701102309908,
-    "Bet365": 0.7823521322356239,
-    "Betfair": 0.7981180828405287
-   },
-   "odds": {
-    "Pinnacle": 1.25,
-    "Bet365": 1.25,
-    "Betfair": 1.22
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.784701102309908,
-    "Bet365": 0.7823521322356239,
-    "Betfair": 0.7981180828405287
-   },
-   "odds": {
-    "Pinnacle": 1.25,
-    "Bet365": 1.25,
-    "Betfair": 1.22
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4278,58 +164,35 @@
    "odds": {
     "Pinnacle": 1.25,
     "Bet365": 1.25,
+    "Betfair": 1.22
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7782778720214207,
+    "Bet365": 0.8024716828505494,
+    "Betfair": 0.8000687705907769
+   },
+   "odds": {
+    "Pinnacle": 1.26,
+    "Bet365": 1.22,
     "Betfair": 1.22
    }
   }
  ],
  "1563150|U1.5:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.21529889769009214,
-    "Bet365": 0.21764786776437622,
-    "Betfair": 0.20188191715947143
-   },
-   "odds": {
-    "Pinnacle": 4.11,
-    "Bet365": 4.0,
-    "Betfair": 4.1
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.21529889769009214,
-    "Bet365": 0.21764786776437622,
-    "Betfair": 0.20188191715947143
-   },
-   "odds": {
-    "Pinnacle": 4.11,
-    "Bet365": 4.0,
-    "Betfair": 4.1
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4350,49 +213,34 @@
     "Pinnacle": 4.11,
     "Bet365": 4.0,
     "Betfair": 4.1
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.22172212797857932,
+    "Bet365": 0.19752831714945088,
+    "Betfair": 0.19993122940922312
+   },
+   "odds": {
+    "Pinnacle": 4.01,
+    "Bet365": 4.33,
+    "Betfair": 4.2
    }
   }
  ],
  "1563150|O2.25": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6184101520932972
-   },
-   "odds": {
-    "Pinnacle": 1.57
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.619142626360905
-   },
-   "odds": {
-    "Pinnacle": 1.57
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4409,49 +257,30 @@
    },
    "odds": {
     "Pinnacle": 1.57
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6048784087668216
+   },
+   "odds": {
+    "Pinnacle": 1.61
    }
   }
  ],
  "1563150|U2.25:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3815898479067028
-   },
-   "odds": {
-    "Pinnacle": 2.47
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3808573736390951
-   },
-   "odds": {
-    "Pinnacle": 2.48
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4468,57 +297,30 @@
    },
    "odds": {
     "Pinnacle": 2.48
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.39512159123317864
+   },
+   "odds": {
+    "Pinnacle": 2.41
    }
   }
  ],
  "1563150|O2.5": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5435826572395899,
-    "Bet365": 0.5285427352713827,
-    "Betfair": 0.5430497056493866
-   },
-   "odds": {
-    "Pinnacle": 1.78,
-    "Bet365": 1.8,
-    "Betfair": 1.75
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5435826572395899,
-    "Bet365": 0.5285427352713827,
-    "Betfair": 0.5430497056493866
-   },
-   "odds": {
-    "Pinnacle": 1.78,
-    "Bet365": 1.8,
-    "Betfair": 1.75
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4539,57 +341,34 @@
     "Pinnacle": 1.78,
     "Bet365": 1.8,
     "Betfair": 1.75
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5297987575903798,
+    "Bet365": 0.5522897037446599,
+    "Betfair": 0.5522897037446599
+   },
+   "odds": {
+    "Pinnacle": 1.83,
+    "Bet365": 1.73,
+    "Betfair": 1.73
    }
   }
  ],
  "1563150|U2.5:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.45641734276041046,
-    "Bet365": 0.4714572647286174,
-    "Betfair": 0.45695029435061363
-   },
-   "odds": {
-    "Pinnacle": 2.1,
-    "Bet365": 2.0,
-    "Betfair": 2.05
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.45641734276041046,
-    "Bet365": 0.4714572647286174,
-    "Betfair": 0.45695029435061363
-   },
-   "odds": {
-    "Pinnacle": 2.1,
-    "Bet365": 2.0,
-    "Betfair": 2.05
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4610,49 +389,34 @@
     "Pinnacle": 2.1,
     "Bet365": 2.0,
     "Betfair": 2.05
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4702012424096205,
+    "Bet365": 0.44771029625534015,
+    "Betfair": 0.44771029625534015
+   },
+   "odds": {
+    "Pinnacle": 2.05,
+    "Bet365": 2.1,
+    "Betfair": 2.1
    }
   }
  ],
  "1563150|O2.75": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.485058436174223
-   },
-   "odds": {
-    "Pinnacle": 1.99
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.485058436174223
-   },
-   "odds": {
-    "Pinnacle": 1.99
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4669,49 +433,30 @@
    },
    "odds": {
     "Pinnacle": 1.99
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4705849308196228
+   },
+   "odds": {
+    "Pinnacle": 2.06
    }
   }
  ],
  "1563150|U2.75:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.514941563825777
-   },
-   "odds": {
-    "Pinnacle": 1.88
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.514941563825777
-   },
-   "odds": {
-    "Pinnacle": 1.88
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4728,49 +473,30 @@
    },
    "odds": {
     "Pinnacle": 1.88
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.5294150691803772
+   },
+   "odds": {
+    "Pinnacle": 1.84
    }
   }
  ],
  "1563150|O3": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.40801665979929364
-   },
-   "odds": {
-    "Pinnacle": 2.33
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.410068740996844
-   },
-   "odds": {
-    "Pinnacle": 2.33
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4787,49 +513,30 @@
    },
    "odds": {
     "Pinnacle": 2.33
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O3",
+   "selection": "Über 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3935676186699027
+   },
+   "odds": {
+    "Pinnacle": 2.43
    }
   }
  ],
  "1563150|U3:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5919833402007065
-   },
-   "odds": {
-    "Pinnacle": 1.64
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.5899312590031561
-   },
-   "odds": {
-    "Pinnacle": 1.65
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4846,49 +553,30 @@
    },
    "odds": {
     "Pinnacle": 1.65
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6064323813300975
+   },
+   "odds": {
+    "Pinnacle": 1.61
    }
   }
  ],
  "1563150|O3.25": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3554144524601431
-   },
-   "odds": {
-    "Pinnacle": 2.64
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3554144524601431
-   },
-   "odds": {
-    "Pinnacle": 2.64
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4905,49 +593,30 @@
    },
    "odds": {
     "Pinnacle": 2.64
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3436498442904612
+   },
+   "odds": {
+    "Pinnacle": 2.75
    }
   }
  ],
  "1563150|U3.25:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.644585547539857
-   },
-   "odds": {
-    "Pinnacle": 1.51
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.644585547539857
-   },
-   "odds": {
-    "Pinnacle": 1.51
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -4964,57 +633,30 @@
    },
    "odds": {
     "Pinnacle": 1.51
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6563501557095389
+   },
+   "odds": {
+    "Pinnacle": 1.49
    }
   }
  ],
  "1563150|O3.5": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.31391045444630994,
-    "Bet365": 0.3049325268194138,
-    "Betfair": 0.3105970094024869
-   },
-   "odds": {
-    "Pinnacle": 2.94,
-    "Bet365": 3.0,
-    "Betfair": 2.88
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.31391045444630994,
-    "Bet365": 0.3049325268194138,
-    "Betfair": 0.3105970094024869
-   },
-   "odds": {
-    "Pinnacle": 2.94,
-    "Bet365": 3.0,
-    "Betfair": 2.88
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -5034,58 +676,35 @@
    "odds": {
     "Pinnacle": 2.94,
     "Bet365": 3.0,
+    "Betfair": 2.88
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.3022787266633813,
+    "Bet365": 0.3296721696053572,
+    "Betfair": 0.3105970094024869
+   },
+   "odds": {
+    "Pinnacle": 3.06,
+    "Bet365": 2.75,
     "Betfair": 2.88
    }
   }
  ],
  "1563150|U3.5:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6860895455536902,
-    "Bet365": 0.6950674731805864,
-    "Betfair": 0.6894029905975132
-   },
-   "odds": {
-    "Pinnacle": 1.42,
-    "Bet365": 1.4,
-    "Betfair": 1.4
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6860895455536902,
-    "Bet365": 0.6950674731805864,
-    "Betfair": 0.6894029905975132
-   },
-   "odds": {
-    "Pinnacle": 1.42,
-    "Bet365": 1.4,
-    "Betfair": 1.4
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -5105,58 +724,35 @@
    "odds": {
     "Pinnacle": 1.42,
     "Bet365": 1.4,
+    "Betfair": 1.4
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6977212733366189,
+    "Bet365": 0.6703278303946429,
+    "Betfair": 0.6894029905975132
+   },
+   "odds": {
+    "Pinnacle": 1.4,
+    "Bet365": 1.44,
     "Betfair": 1.4
    }
   }
  ],
  "1563150|O4.5": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.14472146551570064,
-    "Bet365": 0.14017181327137657,
-    "Betfair": 0.1299422729188811
-   },
-   "odds": {
-    "Pinnacle": 5.63,
-    "Bet365": 5.5,
-    "Betfair": 6.0
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.14481460195459656,
-    "Bet365": 0.14017181327137657,
-    "Betfair": 0.1299422729188811
-   },
-   "odds": {
-    "Pinnacle": 5.62,
-    "Bet365": 5.5,
-    "Betfair": 6.0
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -5177,57 +773,34 @@
     "Pinnacle": 5.62,
     "Bet365": 5.5,
     "Betfair": 6.0
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O4.5",
+   "selection": "Über 4.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.14206292567169077,
+    "Bet365": 0.1624583988165192,
+    "Betfair": 0.14017181327137657
+   },
+   "odds": {
+    "Pinnacle": 5.93,
+    "Bet365": 5.0,
+    "Betfair": 5.5
    }
   }
  ],
  "1563150|U4.5:no": [
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8552785344842994,
-    "Bet365": 0.8598281867286236,
-    "Betfair": 0.8700577270811191
-   },
-   "odds": {
-    "Pinnacle": 1.15,
-    "Bet365": 1.14,
-    "Betfair": 1.13
-   }
-  },
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Wolves – Portsmouth",
-   "kickoff": "2026-10-20T18:45:00+00:00",
-   "league": "Championship",
-   "market": "U4.5:no",
-   "selection": "Unter 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8551853980454036,
-    "Bet365": 0.8598281867286236,
-    "Betfair": 0.8700577270811191
-   },
-   "odds": {
-    "Pinnacle": 1.15,
-    "Bet365": 1.14,
-    "Betfair": 1.13
-   }
-  },
-  {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Wolves – Portsmouth",
    "kickoff": "2026-10-20T18:45:00+00:00",
@@ -5249,81 +822,12 @@
     "Bet365": 1.14,
     "Betfair": 1.13
    }
-  }
- ],
- "1575458|O3": [
+  },
   {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O3",
-   "selection": "Über 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.3145602703009223
-   },
-   "odds": {
-    "Pinnacle": 2.99
-   }
-  }
- ],
- "1575458|U3:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6854397296990777
-   },
-   "odds": {
-    "Pinnacle": 1.43
-   }
-  }
- ],
- "1575458|O4.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
-   "market": "O4.5",
-   "selection": "Über 4.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.10089717843800895,
-    "Bet365": 0.11402110207845671,
-    "Betfair": 0.06157380755852582
-   },
-   "odds": {
-    "Pinnacle": 7.81,
-    "Bet365": 6.5,
-    "Betfair": 8.5
-   }
-  }
- ],
- "1575458|U4.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "SC Braga – GIL Vicente",
-   "kickoff": "2026-10-19T19:15:00+00:00",
-   "league": "Primeira Liga",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
    "market": "U4.5:no",
    "selection": "Unter 4.5 Tore",
    "lead_source": "Pinnacle",
@@ -5332,225 +836,18 @@
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.8991028215619912,
-    "Bet365": 0.8859788979215435,
-    "Betfair": 0.9384261924414743
+    "Pinnacle": 0.8579370743283095,
+    "Bet365": 0.837541601183481,
+    "Betfair": 0.8598281867286236
    },
    "odds": {
-    "Pinnacle": 1.1,
-    "Bet365": 1.11,
-    "Betfair": 1.05
-   }
-  }
- ],
- "1549039|O5.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "O5.5",
-   "selection": "Über 5.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.10089717843800895,
-    "Bet365": 0.08657569924458287,
-    "Betfair": 0.06285736005055874
-   },
-   "odds": {
-    "Pinnacle": 7.81,
-    "Bet365": 8.0,
-    "Betfair": 8.0
-   }
-  }
- ],
- "1549039|U5.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Viborg – FC Midtjylland",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Superliga",
-   "market": "U5.5:no",
-   "selection": "Unter 5.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.8991028215619912,
-    "Bet365": 0.9134243007554173,
-    "Betfair": 0.9371426399494412
-   },
-   "odds": {
-    "Pinnacle": 1.1,
-    "Bet365": 1.08,
-    "Betfair": 1.05
-   }
-  }
- ],
- "1584438|O3.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O3.75",
-   "selection": "Über 3.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.35858802961167147
-   },
-   "odds": {
-    "Pinnacle": 2.63
-   }
-  }
- ],
- "1584438|U3.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U3.75:no",
-   "selection": "Unter 3.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.6414119703883285
-   },
-   "odds": {
-    "Pinnacle": 1.52
-   }
-  }
- ],
- "1584438|O5.5": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "O5.5",
-   "selection": "Über 5.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.10115181446265409,
-    "Bet365": 0.10465836653976265,
-    "Betfair": 0.09302855470250761
-   },
-   "odds": {
-    "Pinnacle": 7.75,
-    "Bet365": 7.0,
-    "Betfair": 6.5
-   }
-  }
- ],
- "1584438|U5.5:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Trabzonspor – Beşiktaş",
-   "kickoff": "2026-10-19T17:00:00+00:00",
-   "league": "Süper Lig",
-   "market": "U5.5:no",
-   "selection": "Unter 5.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.898848185537346,
-    "Bet365": 0.8953416334602374,
-    "Betfair": 0.9069714452974925
-   },
-   "odds": {
-    "Pinnacle": 1.1,
-    "Bet365": 1.1,
-    "Betfair": 1.08
-   }
-  }
- ],
- "1570417|O0.75": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "O0.75",
-   "selection": "Über 0.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.841679687386101
-   },
-   "odds": {
-    "Pinnacle": 1.17
-   }
-  }
- ],
- "1570417|U0.75:no": [
-  {
-   "ts": "2026-10-19T21:34:46.323022+00:00",
-   "event": "Getafe – Rayo Vallecano",
-   "kickoff": "2026-10-19T19:00:00+00:00",
-   "league": "La Liga",
-   "market": "U0.75:no",
-   "selection": "Unter 0.75 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.15832031261389917
-   },
-   "odds": {
-    "Pinnacle": 5.36
+    "Pinnacle": 1.15,
+    "Bet365": 1.17,
+    "Betfair": 1.14
    }
   }
  ],
  "1570389|home": [
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "La Liga",
-   "market": "home",
-   "selection": "Levante Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.2512407036805814,
-    "Bet365": 0.28122406030457003,
-    "Betfair": 0.26708347888145206
-   },
-   "odds": {
-    "Pinnacle": 3.81,
-    "Bet365": 3.3,
-    "Betfair": 3.5
-   }
-  },
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
@@ -5573,32 +870,32 @@
     "Bet365": 3.3,
     "Betfair": 3.4
    }
-  }
- ],
- "1570389|draw": [
+  },
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "Levante Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3057766500973405,
-    "Bet365": 0.26417999888718885,
-    "Betfair": 0.2753681915514929
+    "Pinnacle": 0.252373488171826,
+    "Bet365": 0.2790982216961252,
+    "Betfair": 0.2763377995703525
    },
    "odds": {
-    "Pinnacle": 3.15,
-    "Bet365": 3.5,
+    "Pinnacle": 3.8,
+    "Bet365": 3.4,
     "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1570389|draw": [
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
@@ -5621,32 +918,32 @@
     "Bet365": 3.5,
     "Betfair": 3.5
    }
-  }
- ],
- "1570389|away": [
+  },
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "away",
-   "selection": "Athletic Club Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.44298264622207845,
-    "Bet365": 0.45459594080824134,
-    "Betfair": 0.45754832956705543
+    "Pinnacle": 0.3062460213753781,
+    "Bet365": 0.2707875740197385,
+    "Betfair": 0.2763377995703525
    },
    "odds": {
-    "Pinnacle": 2.2,
-    "Bet365": 2.1,
-    "Betfair": 2.1
+    "Pinnacle": 3.15,
+    "Bet365": 3.5,
+    "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1570389|away": [
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
@@ -5669,11 +966,34 @@
     "Bet365": 2.1,
     "Betfair": 2.1
    }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Levante – Athletic Club",
+   "kickoff": "2026-10-21T18:00:00+00:00",
+   "league": "La Liga",
+   "market": "away",
+   "selection": "Athletic Club Sieg (90 Min.)",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.4413804904527959,
+    "Bet365": 0.45011420428413645,
+    "Betfair": 0.4473244008592954
+   },
+   "odds": {
+    "Pinnacle": 2.21,
+    "Bet365": 2.15,
+    "Betfair": 2.15
+   }
   }
  ],
  "1570389|O1.5": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5687,16 +1007,16 @@
    "probs": {
     "Pinnacle": 0.754527715209795,
     "Bet365": 0.7487800211174068,
-    "Betfair": 0.745645730806657
+    "Betfair": 0.7527450737790052
    },
    "odds": {
     "Pinnacle": 1.3,
     "Bet365": 1.3,
-    "Betfair": 1.3
+    "Betfair": 1.29
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5721,7 +1041,7 @@
  ],
  "1570389|U1.5:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5735,16 +1055,16 @@
    "probs": {
     "Pinnacle": 0.245472284790205,
     "Bet365": 0.2512199788825934,
-    "Betfair": 0.25435426919334314
+    "Betfair": 0.2472549262209948
    },
    "odds": {
     "Pinnacle": 3.7,
     "Bet365": 3.5,
-    "Betfair": 3.4
+    "Betfair": 3.5
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5769,7 +1089,7 @@
  ],
  "1570389|O1.75": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5788,7 +1108,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5809,7 +1129,7 @@
  ],
  "1570389|U1.75:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5828,7 +1148,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5849,7 +1169,7 @@
  ],
  "1570389|O2": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5868,7 +1188,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5889,7 +1209,7 @@
  ],
  "1570389|U2:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5908,7 +1228,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5929,7 +1249,7 @@
  ],
  "1570389|O2.25": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5948,7 +1268,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5969,7 +1289,7 @@
  ],
  "1570389|U2.25:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -5988,7 +1308,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6009,7 +1329,7 @@
  ],
  "1570389|O2.5": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6032,7 +1352,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6057,7 +1377,7 @@
  ],
  "1570389|U2.5:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6080,7 +1400,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6105,7 +1425,7 @@
  ],
  "1570389|O2.75": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6124,7 +1444,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6145,7 +1465,7 @@
  ],
  "1570389|U2.75:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6164,7 +1484,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6185,7 +1505,7 @@
  ],
  "1570389|O3": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6204,7 +1524,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6225,7 +1545,7 @@
  ],
  "1570389|U3:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6244,7 +1564,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6265,7 +1585,7 @@
  ],
  "1570389|O3.25": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6284,7 +1604,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6305,7 +1625,7 @@
  ],
  "1570389|U3.25:no": [
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6324,7 +1644,7 @@
    }
   },
   {
-   "ts": "2026-10-20T05:23:59.966408+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
@@ -6344,29 +1664,6 @@
   }
  ],
  "1570389|O3.5": [
-  {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "La Liga",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.28007487358039085,
-    "Bet365": 0.26570901467853736,
-    "Betfair": 0.25435426919334314
-   },
-   "odds": {
-    "Pinnacle": 3.29,
-    "Bet365": 3.4,
-    "Betfair": 3.4
-   }
-  },
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
@@ -6389,32 +1686,32 @@
     "Bet365": 3.4,
     "Betfair": 3.5
    }
-  }
- ],
- "1570389|U3.5:no": [
+  },
   {
-   "ts": "2026-10-20T00:43:26.793213+00:00",
+   "ts": "2026-10-20T10:22:36.341974+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7199251264196093,
-    "Bet365": 0.7342909853214629,
-    "Betfair": 0.745645730806657
+    "Pinnacle": 0.28007487358039085,
+    "Bet365": 0.26570901467853736,
+    "Betfair": 0.25435426919334314
    },
    "odds": {
-    "Pinnacle": 1.36,
-    "Bet365": 1.33,
-    "Betfair": 1.3
+    "Pinnacle": 3.29,
+    "Bet365": 3.4,
+    "Betfair": 3.4
    }
-  },
+  }
+ ],
+ "1570389|U3.5:no": [
   {
    "ts": "2026-10-20T05:23:59.966408+00:00",
    "event": "Levante – Athletic Club",
@@ -6436,6 +1733,71 @@
     "Pinnacle": 1.36,
     "Bet365": 1.33,
     "Betfair": 1.29
+   }
+  },
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Levante – Athletic Club",
+   "kickoff": "2026-10-21T18:00:00+00:00",
+   "league": "La Liga",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7199251264196093,
+    "Bet365": 0.7342909853214629,
+    "Betfair": 0.745645730806657
+   },
+   "odds": {
+    "Pinnacle": 1.36,
+    "Bet365": 1.33,
+    "Betfair": 1.3
+   }
+  }
+ ],
+ "1563150|O2": [
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "O2",
+   "selection": "Über 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.6998497916023823
+   },
+   "odds": {
+    "Pinnacle": 1.4
+   }
+  }
+ ],
+ "1563150|U2:no": [
+  {
+   "ts": "2026-10-20T10:22:36.341974+00:00",
+   "event": "Wolves – Portsmouth",
+   "kickoff": "2026-10-20T18:45:00+00:00",
+   "league": "Championship",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.30015020839761786
+   },
+   "odds": {
+    "Pinnacle": 3.11
    }
   }
  ]
