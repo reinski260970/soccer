@@ -1,0 +1,53 @@
+🗞 Tagesbericht Di 20.10. 13:46 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Europa League · Do 22.10. 18:45 MESZ
+🆚 Union St.-Gilloise – Hapoel Be'er
+➡️ Hapoel Be'er Sieg (90 Min.) spielbar ab 10,31 (jetzt 11,00)
+• Conference League · Do 22.10. 18:45 MESZ
+🆚 Trabzonspor – Heart of Midlothian
+➡️ Heart of Midlothian Sieg (90 Min.) spielbar ab 8,06 (jetzt 8,50)
+• La Liga · So 01.11. 16:15 MEZ
+🆚 Racing Santander – Real Madrid
+➡️ Racing Santander Sieg (90 Min.) spielbar ab 10,56 (jetzt 11,00)
+• La Liga · Mi 21.10. 20:00 MESZ
+🆚 Levante – Athletic Club
+➡️ Unentschieden (90 Min.) spielbar ab 3,36 (jetzt 3,50)
+• Ligue 1 · So 25.10. 17:15 MEZ
+🆚 Marseille – Le Havre AC
+➡️ Le Havre AC Sieg (90 Min.) spielbar ab 5,35 (jetzt 5,50)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 92 | Marktreferenz 104 | 0 PLAY
+   • Union St.-Gilloise – Hapoel Be'er · Do 22.10. 18:45 MESZ: Hapoel Be'er Sieg (90 Min.) @ 11,00, spielbar ab 10,31 (EV 9,8 %)
+   • Trabzonspor – Heart of Midlothian · Do 22.10. 18:45 MESZ: Heart of Midlothian Sieg (90 Min.) @ 8,50, spielbar ab 8,06 (EV 8,6 %)
+🏒 Eishockey Europa: 76 Spiele | ausführbare Preise 8 | Marktreferenz 21 | 0 PLAY
+   • Genève Servette – HC Lugano · Di 20.10. 19:45 MESZ: HC Lugano Sieg (inkl. OT) @ 2,40, spielbar ab 2,36 (EV 4,7 %)
+   • Genève Servette – HC Lugano · Di 20.10. 19:45 MESZ: Genève Servette Sieg (inkl. OT) @ 1,79, spielbar ab 1,83 (EV 0,9 %)
+🏒 NHL: 47 Spiele | ausführbare Preise 5 | Marktreferenz 47 | 0 PLAY
+   • Columbus Blue Jackets – Toronto Maple Leafs · Mi 21.10. 01:00 MESZ: Columbus Blue Jackets Sieg (inkl. OT) @ 1,71, spielbar ab 1,72 (EV 2,5 %)
+   • Columbus Blue Jackets – Toronto Maple Leafs · Mi 21.10. 01:00 MESZ: Toronto Maple Leafs Sieg (inkl. OT) @ 2,50, spielbar ab 2,57 (EV 0,2 %)
+🏀 NBA: 52 Spiele | ausführbare Preise 0 | Marktreferenz 52 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 4 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Mannarino A. vs Rublev A. · ATP · Almaty · ATP · hard · Mi 21.10. 08:00 (Zeit unbestätigt): Mannarino A. @ 4,07 (EV 20,4 %)
+   • Mukund S. vs Matsuda R. · ATP · Florence challenger · ATP Challenger · hard · Mi 21.10. 06:30 (Zeit unbestätigt): Matsuda R. @ 1,79 (EV 15,6 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
