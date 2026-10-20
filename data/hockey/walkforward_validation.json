@@ -3,7 +3,7 @@
   "baseline": "training-season 60-minute 1X2 class frequencies (Laplace-smoothed), NOT bookmaker odds",
   "release_eligible": false,
   "validation_status": "HISTORICAL_RESEARCH_AND_FORWARD_DIAGNOSTIC_ONLY",
-  "as_of": "2026-10-18",
+  "as_of": "2026-10-19",
   "leagues": {
     "nhl": {
       "2024/25": {
@@ -95,14 +95,14 @@
       "2026/27": {
         "status": "EVALUATED_RESEARCH",
         "train_n": 5248,
-        "test_n": 136,
-        "scored_n": 136,
+        "test_n": 140,
+        "scored_n": 140,
         "unseen_teams_n": 0,
-        "model_logloss": 0.903719,
-        "base_rate_logloss": 0.913946,
-        "logloss_gain_vs_base": 0.010227,
-        "model_brier_3way": 0.544048,
-        "base_rate_brier_3way": 0.566848,
+        "model_logloss": 0.900005,
+        "base_rate_logloss": 0.907523,
+        "logloss_gain_vs_base": 0.007518,
+        "model_brier_3way": 0.541601,
+        "base_rate_brier_3way": 0.563087,
         "baseline_probabilities_home_draw_away": [
           0.502,
           0.0712,
@@ -111,15 +111,15 @@
         "calibration_top_choice": [
           {
             "bucket": 4,
-            "n": 76,
-            "mean_confidence": 0.4543,
-            "hit_rate": 0.5526
+            "n": 77,
+            "mean_confidence": 0.4545,
+            "hit_rate": 0.5584
           },
           {
             "bucket": 5,
-            "n": 50,
-            "mean_confidence": 0.5412,
-            "hit_rate": 0.58
+            "n": 53,
+            "mean_confidence": 0.5427,
+            "hit_rate": 0.5849
           },
           {
             "bucket": 6,
@@ -635,7 +635,7 @@
       }
     }
   },
-  "evaluated_at_date": "2026-10-19",
+  "evaluated_at_date": "2026-10-20",
   "market_logloss": null,
   "market_clv": null,
   "release_reason": "No paired contemporaneous bookmaker close and no untouched forward CLV cohort"
