@@ -2,54 +2,6 @@
  {
   "source": "betfair",
   "status": "WATCH",
-  "league": "uel",
-  "event": "Union St.-Gilloise – Hapoel Be'er",
-  "kickoff": "2026-10-22T16:45:00+00:00",
-  "market": "away",
-  "selection": "Hapoel Be'er Sieg (90 Min.)",
-  "odds": 11.0,
-  "fair": 10.01377153681867,
-  "min_odds": 10.31418468292323,
-  "home": [
-   "Union St.-Gilloise",
-   "Union St.-Gilloise",
-   "Union SG",
-   "USG"
-  ],
-  "away": [
-   "Hapoel Be'er",
-   "Hapoel Be'er",
-   "Hapoel Be'er",
-   "HBE"
-  ]
- },
- {
-  "source": "bet365",
-  "status": "WATCH",
-  "league": "uecl",
-  "event": "Trabzonspor – Heart of Midlothian",
-  "kickoff": "2026-10-22T16:45:00+00:00",
-  "market": "away",
-  "selection": "Heart of Midlothian Sieg (90 Min.)",
-  "odds": 8.5,
-  "fair": 7.825109743665091,
-  "min_odds": 8.059863035975043,
-  "home": [
-   "Trabzonspor",
-   "Trabzonspor",
-   "Trabzonspor",
-   "TRAB"
-  ],
-  "away": [
-   "Heart of Midlothian",
-   "Heart of Midlothian",
-   "Hearts",
-   "HOM"
-  ]
- },
- {
-  "source": "betfair",
-  "status": "WATCH",
   "league": "laliga",
   "event": "Racing Santander – Real Madrid",
   "kickoff": "2026-11-01T15:15:00+00:00",
@@ -117,6 +69,54 @@
    "Le Havre AC",
    "Le Havre AC",
    "HAC"
+  ]
+ },
+ {
+  "source": "betfair",
+  "status": "WATCH",
+  "league": "primeira",
+  "event": "Alverca – Arouca",
+  "kickoff": "2026-10-24T17:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.3125999757584768,
+  "min_odds": 3.4119779750312316,
+  "home": [
+   "Alverca",
+   "Alverca",
+   "Alverca",
+   "ALV"
+  ],
+  "away": [
+   "Arouca",
+   "Arouca",
+   "Arouca",
+   "FCA"
+  ]
+ },
+ {
+  "source": "bet365",
+  "status": "WATCH",
+  "league": "seriea",
+  "event": "Genoa – Venezia",
+  "kickoff": "2026-10-25T14:00:00+00:00",
+  "market": "draw",
+  "selection": "Unentschieden (90 Min.)",
+  "odds": 3.5,
+  "fair": 3.335836873952581,
+  "min_odds": 3.435911980171159,
+  "home": [
+   "Genoa",
+   "Genoa",
+   "Genoa",
+   "GEN"
+  ],
+  "away": [
+   "Venezia",
+   "Venezia",
+   "Venezia",
+   "VEN"
   ]
  }
 ]

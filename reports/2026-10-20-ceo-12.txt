@@ -1,0 +1,181 @@
+📊 CEO MATCHDAY REPORT · 20.10.2026 17:00 MESZ
+
+📰 CEO NEWS
+Keine neuen materiellen Meldungen (55 Artikel geprüft).
+
+🌐 SPORTS-INTELLIGENCE HEADLINES (24h)
+• HIGH · 2. Bundesliga · Ausfall · "Ein zweiter Stürmer wäre schon wichtig": Kirch gehen die Optionen aus (kicker) · SOURCE_ONLY
+• HIGH · NFL · Ausfall · Terry McLaurin: Season-ending knee injury feared (RotoWire) · SOURCE_ONLY
+• HIGH · Österr. Bundesliga · Sperre · WAC suspendiert Rene Renner nach Vorfall in der Kabine (derStandard) · SOURCE_ONLY
+• HIGH · Champions League · Sperre · Matthäus verteidigt Olise: "Lasst ihn so, wie er ist" (kicker) · SOURCE_ONLY
+• HIGH · NFL · Ausfall · 49ers' Mike Evans ruled out with Achilles injury after leaving game late in first half (CBS Sports) · SOURCE_ONLY
+• HIGH · NFL · Ausfall · From bad to worse for Rams: Davante Adams to miss 6-10 weeks with ruptured hamstring (CBS Sports) · SOURCE_ONLY
+SOURCE_ONLY verändert Fair Odds nicht; Recalc erst nach Bestätigung/Team-Zuordnung.
+
+🗓 TODAY / NEXT 36H
+Fußball: 20 Spiele
+• Champions League · Di 20.10. 18:45 MESZ · Fenerbahce – Slavia Prague · Markt 1 1.51 espn_ref[R] | X 4.70 espn_ref[R] | 2 5.75 espn_ref[R]
+• Champions League · Di 20.10. 18:45 MESZ · Sabah FK – Borussia Dortmund · Markt 1 10.35 pinnacle[R] | X 6.25 bet365[E] | 2 1.29 betfair[E] · ausführbar
+• Championship · Di 20.10. 20:45 MESZ · Wolverhampton Wanderers – Portsmouth · Markt 1 1.59 pinnacle[R] | X 4.30 pinnacle[R] | 2 5.69 pinnacle[R] · ausführbar
+• Champions League · Di 20.10. 21:00 MESZ · AS Roma – Slovan Bratislava · Markt 1 1.13 betfair[E] | X 9.59 pinnacle[R] | 2 23.50 pinnacle[R] · ausführbar
+  + 16 weitere
+Eishockey Europa: 33 Spiele
+• Liiga · Di 20.10. 17:30 MESZ · TPS – Ilves · NO_PRICE
+• Liiga · Di 20.10. 17:30 MESZ · HPK – Pelicans · NO_PRICE
+• Liiga · Di 20.10. 17:30 MESZ · KooKoo – Tappara · Markt 1 2.88 betfair[E] | 2 1.46 1xbet[E] · ausführbar
+• Liiga · Di 20.10. 17:30 MESZ · Lukko – HIFK · NO_PRICE
+  + 29 weitere
+NHL: 13 Spiele
+• NHL · Mi 21.10. 01:00 MESZ · Montreal Canadiens – San Jose Sharks · Markt 1 1.52 polymarket[R] | 2 2.86 polymarket[R] · ausführbar
+• NHL · Mi 21.10. 01:00 MESZ · New Jersey Devils – Colorado Avalanche · Markt 1 1.96 1xbet[E] | 2 2.04 polymarket[R] · ausführbar
+• NHL · Mi 21.10. 01:00 MESZ · New York Islanders – Anaheim Ducks · Markt 1 1.68 1xbet[E] | 2 2.44 polymarket[R] · ausführbar
+• NHL · Mi 21.10. 01:00 MESZ · Washington Capitals – Los Angeles Kings · Markt 1 1.69 polymarket[R] | 2 2.40 bet365[E] · ausführbar
+  + 9 weitere
+NBA: 14 Spiele
+• NBA · Di 20.10. 21:00 MESZ · Detroit Pistons – Boston Celtics · Markt 1 2.04 polymarket[R] | 2 1.92 polymarket[R]
+• NBA · Mi 21.10. 01:00 MESZ · New York Knicks – Philadelphia 76ers · Markt 1 1.61 polymarket[R] | 2 2.56 polymarket[R]
+• NBA · Mi 21.10. 03:30 MESZ · San Antonio Spurs – Oklahoma City Thunder · Markt 1 1.96 polymarket[R] | 2 2.00 polymarket[R]
+• NBA · Do 22.10. 01:00 MESZ · Orlando Magic – Atlanta Hawks · Markt 1 1.80 espn_ref[R] | 2 2.22 polymarket[R]
+  + 10 weitere
+
+⛔ NO PLAY: kein belegter Vorteil.
+
+👀 WATCH (nicht freigegeben)
+
+🔬 MODEL-WATCH · La Liga · So 01.11. 16:15 MEZ
+🆚 Racing Santander – Real Madrid
+➡️ Racing Santander Sieg (90 Min.) @ 11,00
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 8,13 | Pinnacle fair 10,25 | Δ +2,5 pp
+
+🔬 MODEL-WATCH · La Liga · Mi 21.10. 20:00 MESZ
+🆚 Levante – Athletic Club
+➡️ Unentschieden (90 Min.) @ 3,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 3,80 | Pinnacle fair 3,27 | Δ -4,3 pp
+
+🔬 MODEL-WATCH · Ligue 1 · So 25.10. 17:15 MEZ
+🆚 Marseille – Le Havre AC
+➡️ Le Havre AC Sieg (90 Min.) @ 5,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 5,23 | Pinnacle fair 5,20 | Δ -0,1 pp
+
+🔬 MODEL-WATCH · Primeira Liga · Sa 24.10. 19:00 MESZ
+🆚 Alverca – Arouca
+➡️ Unentschieden (90 Min.) @ 3,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 3,71 | Pinnacle fair 3,31 | Δ -3,3 pp
+
+🔬 MODEL-WATCH · Serie A · So 25.10. 15:00 MEZ
+🆚 Genoa – Venezia
+➡️ Unentschieden (90 Min.) @ 3,50
+   ⛔ KEINE EV-FREIGABE – Modell nicht validiert
+   Modell fair 4,02 | Pinnacle fair 3,34 | Δ -5,1 pp
+
+⚽ Fußball-Modellstatus: Research-Gate offen. MODEL-WATCH = Diagnosesignal, keine Einsatzfreigabe.
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 105 Spiele | ausführbare Preise 92 | Marktreferenz 104 | 0 PLAY
+   • Levante – Athletic Club · Mi 21.10. 20:00 MESZ: Unentschieden (90 Min.) @ 3,50, spielbar ab 3,36 (EV 7,2 %)
+   • Genoa – Venezia · So 25.10. 15:00 MEZ: Unentschieden (90 Min.) @ 3,50, spielbar ab 3,44 (EV 4,9 %)
+🏒 Eishockey Europa: 76 Spiele | ausführbare Preise 8 | Marktreferenz 21 | 0 PLAY
+   • Genève Servette – HC Lugano · Di 20.10. 19:45 MESZ: HC Lugano Sieg (inkl. OT) @ 2,40, spielbar ab 2,36 (EV 4,7 %)
+   • EHC Kloten – HC Lausanne · Di 20.10. 19:45 MESZ: HC Lausanne Sieg (inkl. OT) @ 1,42, spielbar ab 1,43 (EV 2,1 %)
+🏒 NHL: 47 Spiele | ausführbare Preise 5 | Marktreferenz 47 | 0 PLAY
+   • Washington Capitals – Los Angeles Kings · Mi 21.10. 01:00 MESZ: Washington Capitals Sieg (inkl. OT) @ 1,68, spielbar ab 1,72 (EV 0,7 %)
+   • Columbus Blue Jackets – Toronto Maple Leafs · Mi 21.10. 01:00 MESZ: Columbus Blue Jackets Sieg (inkl. OT) @ 1,68, spielbar ab 1,72 (EV 0,7 %)
+🏀 NBA: 52 Spiele | ausführbare Preise 0 | Marktreferenz 52 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 4 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Mannarino A. vs Rublev A. · ATP · Almaty · ATP · hard · Mi 21.10. 08:00 (Zeit unbestätigt): Mannarino A. @ 4,07 (EV 20,4 %)
+   • Mukund S. vs Matsuda R. · ATP · Florence challenger · ATP Challenger · hard · Mi 21.10. 06:30 (Zeit unbestätigt): Matsuda R. @ 1,79 (EV 15,6 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
+
+📐 MODELL ↔ MARKTREFERENZ (kein PLAY ohne ausführbaren Preis)
+• Eishockey Europa · HC Sochi – Dinamo Minsk · Dinamo Minsk
+  Modell 79.3% (fair 1.26) · Markt-No-Vig 50.0% (fair 2.00) · Δ +29.3 pp · Marktquote 2.78 (kalshi, Referenz)
+  erw. Tore 2.05:3.92
+• NBA · Brooklyn Nets – Charlotte Hornets · Charlotte Hornets
+  Modell 70.6% (fair 1.42) · Markt-No-Vig 42.3% (fair 2.36) · Δ +28.2 pp · Marktquote 2.33 (polymarket, Referenz)
+  erw. Punkte 107.0:115.2 (Marge -8.2, Total 222.2), Saisonstart: Rating aus Vorsaison
+• NBA · Charlotte Hornets – Washington Wizards · Charlotte Hornets
+  Modell 80.2% (fair 1.25) · Markt-No-Vig 54.0% (fair 1.85) · Δ +26.2 pp
+  erw. Punkte 122.6:109.7 (Marge +12.9, Total 232.3), Saisonstart: Rating aus Vorsaison
+• Eishockey Europa · HK Avangard Omsk – Neftekhimik Nizhnekamsk · HK Avangard Omsk
+  Modell 75.0% (fair 1.33) · Markt-No-Vig 50.0% (fair 2.00) · Δ +25.0 pp · Marktquote 2.38 (kalshi, Referenz)
+  erw. Tore 3.41:1.94
+• NFL · Houston Texans – New York Giants · New York Giants
+  Modell 33.4% (fair 2.99) · Markt-No-Vig 17.5% (fair 5.70) · Δ +15.9 pp · Marktquote 4.90 (espn_ref, Referenz)
+  erw. Punkte 25.0:19.7 (Marge +5.3, Total 44.7)
+• NFL · New York Jets – Miami Dolphins · Miami Dolphins
+  Modell 47.4% (fair 2.11) · Markt-No-Vig 32.0% (fair 3.12) · Δ +15.3 pp · Marktquote 2.90 (espn_ref, Referenz)
+  erw. Punkte 20.7:19.9 (Marge +0.8, Total 40.6)
+
+⚡ SOCCER STEAM / CLV-GATE
+• La Liga · Racing Santander – Real Madrid
+  Racing Santander Sieg (90 Min.) · Modell fair 8.13 · Markt 11.00 (Betfair)
+  Pinnacle no-vig 10.25 · CLV-Ziel +7.3% · EV +7.3%
+  🟡 SHARP GAP+ +2.6pp · noch kein bestätigter Steam
+• La Liga · Levante – Athletic Club
+  Unentschieden (90 Min.) · Modell fair 3.80 · Markt 3.50 (Bet365)
+  Pinnacle no-vig 3.27 · CLV-Ziel +7.2% · EV +7.2%
+  🟡 SHARP GAP+ +3.3pp · noch kein bestätigter Steam
+• Ligue 1 · Marseille – Le Havre AC
+  Le Havre AC Sieg (90 Min.) · Modell fair 5.23 · Markt 5.50 (Bet365)
+  Pinnacle no-vig 5.20 · CLV-Ziel +5.8% · EV +5.8%
+  🟡 SHARP GAP+ +2.6pp · noch kein bestätigter Steam
+• Primeira Liga · Alverca – Arouca
+  Unentschieden (90 Min.) · Modell fair 3.71 · Markt 3.50 (Betfair)
+  Pinnacle no-vig 3.31 · CLV-Ziel +5.7% · EV +5.7%
+  🟡 SHARP GAP+ +3.3pp · noch kein bestätigter Steam
+• Serie A · Genoa – Venezia
+  Unentschieden (90 Min.) · Modell fair 4.02 · Markt 3.50 (Bet365)
+  Pinnacle no-vig 3.34 · CLV-Ziel +4.9% · EV +4.9%
+  🟡 SHARP GAP+ +3.7pp · noch kein bestätigter Steam
+• Serie A · Genoa – Venezia
+  Unentschieden (90 Min.) · Modell fair 4.02 · Markt 3.50 (Bet365)
+  Pinnacle no-vig 3.34 · CLV-Ziel +4.9% · EV +4.9%
+  🟡 SHARP GAP+ +3.7pp · noch kein bestätigter Steam
+• Conference League · Trabzonspor – Heart of Midlothian
+  Heart of Midlothian Sieg (90 Min.) · Modell fair 4.65 · Markt 8.50 (Bet365)
+  Pinnacle no-vig 8.12 · CLV-Ziel +4.7% · EV +4.7%
+  🟡 SHARP GAP+ +2.5pp · noch kein bestätigter Steam
+• La Liga · Levante – Athletic Club
+  Unentschieden (90 Min.) · Modell fair 3.80 · Markt 3.50 (Bet365)
+  Pinnacle no-vig 3.27 · CLV-Ziel +7.2% · EV +4.1%
+  🟡 SHARP GAP+ +3.3pp · noch kein bestätigter Steam
+PLAY-Regel: Fair-Edge + positiver CLV-Case; bestätigter STEAM− blockiert die Freigabe.
+
+💰 VALUEBET-API · EIGENE MODELLPRÜFUNG
+API-Kandidaten 50 · Bet365 BACK vor Anstoß 50 · NO_MATCH 44, NO_MODEL 6
+Kein Kandidat mit eindeutiger eigenständiger Modellbewertung.
+API-/Modellprüfung ist keine OOS-/CLV-Freigabe. Kein PLAY ohne validierte Modellqualität, Preis und exakten Markt.
+
+🏒 EURO-HOCKEY · FAIR vs MARKT
+• Liiga · Di 20.10. 17:30 MESZ · KooKoo – Tappara
+  FAIR: KooKoo 2.02 / Tappara 1.98
+  MARKT: 1 2.88 betfair[E] | 2 1.46 1xbet[E] · erw. Tore 2.90:2.94
+• Liiga · Di 20.10. 17:30 MESZ · SaiPa – Kärpät
+  FAIR: SaiPa 1.36 / Kärpät 3.79
+  MARKT: 1 1.63 1xbet[E] | 2 2.40 bet365[E] · erw. Tore 3.68:2.23
+• KHL · Di 20.10. 18:00 MESZ · Lokomotiv Yaroslavl – Neftekhimik Nizhnekamsk
+  FAIR: Lokomotiv Yaroslavl 1.38 / Neftekhimik Nizhnekamsk 3.62
+  MARKT: 1 3.23 kalshi[R] | 2 3.57 kalshi[R] · erw. Tore 2.75:1.60
+• KHL · Di 20.10. 18:30 MESZ · SKA St. Petersburg – Avtomobilist Yekaterinburg
+  FAIR: SKA St. Petersburg 2.00 / Avtomobilist Yekaterinburg 2.00
+  MARKT: 1 2.38 kalshi[R] | 2 2.44 kalshi[R] · erw. Tore 2.60:2.59
+• KHL · Di 20.10. 18:30 MESZ · HC Dynamo Moscow – Sibir Novosibirsk
+  FAIR: HC Dynamo Moscow 1.55 / Sibir Novosibirsk 2.81
+  MARKT: 1 2.70 kalshi[R] | 2 2.78 kalshi[R] · erw. Tore 2.56:1.84
+• DEL · Di 20.10. 19:30 MESZ · ERC Ingolstadt – Grizzlys Wolfsburg
+  FAIR: ERC Ingolstadt 1.73 / Grizzlys Wolfsburg 2.37
+  MARKT: 1 2.63 kalshi[R] | 2 2.70 kalshi[R] · erw. Tore 3.40:2.93
+Regel: Kein Fair-only Tipp. PLAY nur mit aktuellem, als ausführbar markiertem Marktpreis.
+
+📈 CLV / PERFORMANCE
+Modell-Freigaben: ROI -86.0% · Ø CLV -6.9% (n=8) · 9 abgerechnet
+Gespielt: ROI -100.0% · Ø CLV -3.6% (n=2) · 2 abgerechnet
+CLV ist Freigabemaßstab; kurzfristiger ROI überstimmt schwachen CLV nicht.
+
+CEO: kein freigegebener Tipp, 0 EH.
