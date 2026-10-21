@@ -1,0 +1,53 @@
+🗞 Tagesbericht Mi 21.10. 13:58 MESZ
+
+📋 AUSWERTUNG (letzte 24 h)
+   Keine abgerechneten Wetten.
+   ⏳ 14 gespielt, aber noch nicht abgerechnet
+
+💰 PROFIT-STATUS (gesamt)
+📈 Freigaben (Modell-Portfolio)
+   G/V -2.79 EH (-27.95 $) | Einsatz 3,25 EH | ROI -86,0 %
+   Bilanz 1-8 (9 abgerechnet) | Ø CLV -6.9 % (n=8)
+   Offen: 13 Wetten, 10,25 EH im Risiko
+🎯 Gespielte Wetten
+   G/V -1.25 EH (-12.50 $) | Einsatz 1,25 EH | ROI -100,0 %
+   Bilanz 0-2 (2 abgerechnet) | Ø CLV -3.6 % (n=2)
+   Offen: 1 Wetten, 0,5 EH im Risiko
+
+🔭 AUSBLICK (nächste 7 Tage)
+   Keine offenen Freigaben.
+
+👀 Watchlist
+• Ligue 1 · So 25.10. 17:15 MEZ
+🆚 Marseille – Le Havre AC
+➡️ Le Havre AC Sieg (90 Min.) spielbar ab 5,37 (jetzt 5,75)
+• La Liga · Sa 31.10. 21:00 MEZ
+🆚 Barcelona – Alavés
+➡️ Unentschieden (90 Min.) spielbar ab 8,10 (jetzt 8,50)
+• Serie A · So 25.10. 15:00 MEZ
+🆚 Genoa – Venezia
+➡️ Unentschieden (90 Min.) spielbar ab 3,43 (jetzt 3,60)
+• Ligue 1 · So 25.10. 15:00 MEZ
+🆚 AS Monaco – Lille
+➡️ Unentschieden (90 Min.) spielbar ab 3,45 (jetzt 3,60)
+• Serie A · Sa 24.10. 15:00 MESZ
+🆚 Cagliari – Bologna
+➡️ Unentschieden (90 Min.) spielbar ab 3,15 (jetzt 3,25)
+
+🔭 AUSBLICK NACH SPORTART (nächste 7 Tage)
+⚽ Fußball: 99 Spiele | ausführbare Preise 88 | Marktreferenz 98 | 0 PLAY
+   • Genoa – Venezia · So 25.10. 15:00 MEZ: Unentschieden (90 Min.) @ 3,60, spielbar ab 3,43 (EV 8,0 %)
+   • Cagliari – Bologna · Sa 24.10. 15:00 MESZ: Unentschieden (90 Min.) @ 3,25, spielbar ab 3,15 (EV 6,2 %)
+🏒 Eishockey Europa: 79 Spiele | ausführbare Preise 4 | Marktreferenz 28 | 0 PLAY
+   • Moser Medical Graz99ers – Milano HC · Mi 21.10. 18:30 MESZ: Moser Medical Graz99ers Sieg (inkl. OT) @ 1,38, spielbar ab 1,43 (EV -0,8 %)
+   • Spartak Moscow – CSKA Moscow · Mi 21.10. 18:30 MESZ: CSKA Moscow Sieg (inkl. OT) @ 1,74, spielbar ab 1,83 (EV -2,1 %)
+🏒 NHL: 47 Spiele | ausführbare Preise 2 | Marktreferenz 47 | 0 PLAY
+   • Buffalo Sabres – Philadelphia Flyers · Do 22.10. 01:30 MESZ: Buffalo Sabres Sieg (inkl. OT) @ 1,59, spielbar ab 1,63 (EV 0,2 %)
+   • Buffalo Sabres – Philadelphia Flyers · Do 22.10. 01:30 MESZ: Buffalo Sabres Sieg (inkl. OT) @ 1,56, spielbar ab 1,63 (EV -1,7 %)
+🏀 NBA: 53 Spiele | ausführbare Preise 0 | Marktreferenz 53 | 0 PLAY
+🏈 NFL: 14 Spiele | ausführbare Preise 0 | Marktreferenz 14 | 0 PLAY
+🎾 Tennis: 4 offene Valuebet(s) des Runners (INFO, nicht freigegeben)
+   • Mannarino A. vs Rublev A. · ATP · Almaty · ATP · hard · Mi 21.10. 08:00 (Zeit unbestätigt): Mannarino A. @ 4,07 (EV 20,4 %)
+   • Mukund S. vs Matsuda R. · ATP · Florence challenger · ATP Challenger · hard · Mi 21.10. 06:30 (Zeit unbestätigt): Matsuda R. @ 1,79 (EV 15,6 %)
+ℹ️ Fußball: Freigaben ausgesetzt, bis der Backtest die Liga validiert – nur Watchlist
+ℹ️ Champions/Europa/Conference League nicht bewertet – ClubElo nicht erreichbar
