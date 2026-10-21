@@ -1,29 +1,6 @@
 {
  "1570389|home": [
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
-   "event": "Levante – Athletic Club",
-   "kickoff": "2026-10-21T18:00:00+00:00",
-   "league": "La Liga",
-   "market": "home",
-   "selection": "Levante Sieg (90 Min.)",
-   "lead_source": "Pinnacle",
-   "slow_sources": [
-    "Bet365",
-    "Betfair"
-   ],
-   "probs": {
-    "Pinnacle": 0.25678960152379693,
-    "Bet365": 0.25894638478654985,
-    "Betfair": 0.2626242678964182
-   },
-   "odds": {
-    "Pinnacle": 3.73,
-    "Bet365": 3.6,
-    "Betfair": 3.6
-   }
-  },
-  {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
@@ -45,32 +22,32 @@
     "Bet365": 3.6,
     "Betfair": 3.6
    }
-  }
- ],
- "1570389|draw": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "draw",
-   "selection": "Unentschieden (90 Min.)",
+   "market": "home",
+   "selection": "Levante Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.28960330437341214,
-    "Bet365": 0.28383724339225425,
-    "Betfair": 0.2875930080665216
+    "Pinnacle": 0.26477995606809096,
+    "Bet365": 0.2595497861431383,
+    "Betfair": 0.2615317597540312
    },
    "odds": {
-    "Pinnacle": 3.32,
-    "Bet365": 3.3,
-    "Betfair": 3.3
+    "Pinnacle": 3.65,
+    "Bet365": 3.6,
+    "Betfair": 3.5
    }
-  },
+  }
+ ],
+ "1570389|draw": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -93,32 +70,32 @@
     "Bet365": 3.3,
     "Betfair": 3.3
    }
-  }
- ],
- "1570389|away": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "away",
-   "selection": "Athletic Club Sieg (90 Min.)",
+   "market": "draw",
+   "selection": "Unentschieden (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.45360709410279104,
-    "Bet365": 0.457216371821196,
-    "Betfair": 0.44978272403706027
+    "Pinnacle": 0.3001752689060409,
+    "Bet365": 0.29382153188363364,
+    "Betfair": 0.29781838071607375
    },
    "odds": {
-    "Pinnacle": 2.15,
-    "Bet365": 2.1,
-    "Betfair": 2.15
+    "Pinnacle": 3.23,
+    "Bet365": 3.2,
+    "Betfair": 3.1
    }
-  },
+  }
+ ],
+ "1570389|away": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -141,32 +118,32 @@
     "Bet365": 2.1,
     "Betfair": 2.1
    }
-  }
- ],
- "1570389|O1.5": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O1.5",
-   "selection": "Über 1.5 Tore",
+   "market": "away",
+   "selection": "Athletic Club Sieg (90 Min.)",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7365635223846558,
-    "Bet365": 0.7487800211174068,
-    "Betfair": 0.7290790764028765
+    "Pinnacle": 0.435044775025868,
+    "Bet365": 0.44662868197322825,
+    "Betfair": 0.44064985952989527
    },
    "odds": {
-    "Pinnacle": 1.33,
-    "Bet365": 1.3,
-    "Betfair": 1.33
+    "Pinnacle": 2.25,
+    "Bet365": 2.15,
+    "Betfair": 2.15
    }
-  },
+  }
+ ],
+ "1570389|O1.5": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -189,32 +166,32 @@
     "Bet365": 1.3,
     "Betfair": 1.29
    }
-  }
- ],
- "1570389|U1.5:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U1.5:no",
-   "selection": "Unter 1.5 Tore",
+   "market": "O1.5",
+   "selection": "Über 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.26343647761534417,
-    "Bet365": 0.2512199788825934,
-    "Betfair": 0.27092092359712366
+    "Pinnacle": 0.7161991344525939,
+    "Bet365": 0.7342909853214629,
+    "Betfair": 0.7387621891782991
    },
    "odds": {
-    "Pinnacle": 3.47,
-    "Bet365": 3.5,
-    "Betfair": 3.25
+    "Pinnacle": 1.37,
+    "Bet365": 1.33,
+    "Betfair": 1.3
    }
-  },
+  }
+ ],
+ "1570389|U1.5:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -237,28 +214,32 @@
     "Bet365": 3.5,
     "Betfair": 3.5
    }
-  }
- ],
- "1570389|O1.75": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O1.75",
-   "selection": "Über 1.75 Tore",
+   "market": "U1.5:no",
+   "selection": "Unter 1.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6968490701108774
+    "Pinnacle": 0.2838008655474062,
+    "Bet365": 0.26570901467853736,
+    "Betfair": 0.2612378108217011
    },
    "odds": {
-    "Pinnacle": 1.4
+    "Pinnacle": 3.28,
+    "Bet365": 3.4,
+    "Betfair": 3.2
    }
-  },
+  }
+ ],
+ "1570389|O1.75": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -277,28 +258,28 @@
    "odds": {
     "Pinnacle": 1.38
    }
-  }
- ],
- "1570389|U1.75:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U1.75:no",
-   "selection": "Unter 1.75 Tore",
+   "market": "O1.75",
+   "selection": "Über 1.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.30315092988912296
+    "Pinnacle": 0.6709812747322318
    },
    "odds": {
-    "Pinnacle": 3.04
+    "Pinnacle": 1.46
    }
-  },
+  }
+ ],
+ "1570389|U1.75:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -317,28 +298,28 @@
    "odds": {
     "Pinnacle": 3.23
    }
-  }
- ],
- "1570389|O2": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O2",
-   "selection": "Über 2 Tore",
+   "market": "U1.75:no",
+   "selection": "Unter 1.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6382785007877807
+    "Pinnacle": 0.3290187252677683
    },
    "odds": {
-    "Pinnacle": 1.53
+    "Pinnacle": 2.87
    }
-  },
+  }
+ ],
+ "1570389|O2": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -357,28 +338,28 @@
    "odds": {
     "Pinnacle": 1.48
    }
-  }
- ],
- "1570389|U2:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U2:no",
-   "selection": "Unter 2 Tore",
+   "market": "O2",
+   "selection": "Über 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.3617214992122196
+    "Pinnacle": 0.6071984802763677
    },
    "odds": {
-    "Pinnacle": 2.62
+    "Pinnacle": 1.61
    }
-  },
+  }
+ ],
+ "1570389|U2:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -397,28 +378,28 @@
    "odds": {
     "Pinnacle": 2.8
    }
-  }
- ],
- "1570389|O2.25": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O2.25",
-   "selection": "Über 2.25 Tore",
+   "market": "U2:no",
+   "selection": "Unter 2 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5391664236066085
+    "Pinnacle": 0.3928015197236324
    },
    "odds": {
-    "Pinnacle": 1.8
+    "Pinnacle": 2.44
    }
-  },
+  }
+ ],
+ "1570389|O2.25": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -437,28 +418,28 @@
    "odds": {
     "Pinnacle": 1.74
    }
-  }
- ],
- "1570389|U2.25:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U2.25:no",
-   "selection": "Unter 2.25 Tore",
+   "market": "O2.25",
+   "selection": "Über 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4608335763933915
+    "Pinnacle": 0.5092597047415572
    },
    "odds": {
-    "Pinnacle": 2.09
+    "Pinnacle": 1.92
    }
-  },
+  }
+ ],
+ "1570389|U2.25:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -477,32 +458,28 @@
    "odds": {
     "Pinnacle": 2.21
    }
-  }
- ],
- "1570389|O2.5": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O2.5",
-   "selection": "Über 2.5 Tore",
+   "market": "U2.25:no",
+   "selection": "Unter 2.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4678814316556824,
-    "Bet365": 0.4714572647286174,
-    "Betfair": 0.4714572647286174
+    "Pinnacle": 0.4907402952584429
    },
    "odds": {
-    "Pinnacle": 2.07,
-    "Bet365": 2.0,
-    "Betfair": 2.0
+    "Pinnacle": 1.99
    }
-  },
+  }
+ ],
+ "1570389|O2.5": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -525,32 +502,32 @@
     "Bet365": 2.0,
     "Betfair": 1.9
    }
-  }
- ],
- "1570389|U2.5:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U2.5:no",
-   "selection": "Unter 2.5 Tore",
+   "market": "O2.5",
+   "selection": "Über 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5321185683443176,
-    "Bet365": 0.5285427352713827,
-    "Betfair": 0.5285427352713827
+    "Pinnacle": 0.4390876268184259,
+    "Bet365": 0.4714572647286174,
+    "Betfair": 0.4322639282073178
    },
    "odds": {
-    "Pinnacle": 1.83,
-    "Bet365": 1.8,
-    "Betfair": 1.8
+    "Pinnacle": 2.2,
+    "Bet365": 2.0,
+    "Betfair": 2.1
    }
-  },
+  }
+ ],
+ "1570389|U2.5:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -573,28 +550,32 @@
     "Bet365": 1.8,
     "Betfair": 1.87
    }
-  }
- ],
- "1570389|O2.75": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O2.75",
-   "selection": "Über 2.75 Tore",
+   "market": "U2.5:no",
+   "selection": "Unter 2.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.4046755108616546
+    "Pinnacle": 0.5609123731815744,
+    "Bet365": 0.5285427352713827,
+    "Betfair": 0.5677360717926823
    },
    "odds": {
-    "Pinnacle": 2.37
+    "Pinnacle": 1.74,
+    "Bet365": 1.8,
+    "Betfair": 1.65
    }
-  },
+  }
+ ],
+ "1570389|O2.75": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -613,28 +594,28 @@
    "odds": {
     "Pinnacle": 2.26
    }
-  }
- ],
- "1570389|U2.75:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U2.75:no",
-   "selection": "Unter 2.75 Tore",
+   "market": "O2.75",
+   "selection": "Über 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.5953244891383455
+    "Pinnacle": 0.374268129774442
    },
    "odds": {
-    "Pinnacle": 1.64
+    "Pinnacle": 2.54
    }
-  },
+  }
+ ],
+ "1570389|U2.75:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -653,28 +634,28 @@
    "odds": {
     "Pinnacle": 1.7
    }
-  }
- ],
- "1570389|O3": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O3",
-   "selection": "Über 3 Tore",
+   "market": "U2.75:no",
+   "selection": "Unter 2.75 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.324682006545297
+    "Pinnacle": 0.6257318702255581
    },
    "odds": {
-    "Pinnacle": 2.9
+    "Pinnacle": 1.56
    }
-  },
+  }
+ ],
+ "1570389|O3": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -693,28 +674,28 @@
    "odds": {
     "Pinnacle": 2.74
    }
-  }
- ],
- "1570389|U3:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U3:no",
-   "selection": "Unter 3 Tore",
+   "market": "O3",
+   "selection": "Über 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.6753179934547032
+    "Pinnacle": 0.29453213216615026
    },
    "odds": {
-    "Pinnacle": 1.45
+    "Pinnacle": 3.17
    }
-  },
+  }
+ ],
+ "1570389|U3:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -733,28 +714,28 @@
    "odds": {
     "Pinnacle": 1.5
    }
-  }
- ],
- "1570389|O3.25": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O3.25",
-   "selection": "Über 3.25 Tore",
+   "market": "U3:no",
+   "selection": "Unter 3 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.28191872750927055
+    "Pinnacle": 0.7054678678338497
    },
    "odds": {
-    "Pinnacle": 3.24
+    "Pinnacle": 1.39
    }
-  },
+  }
+ ],
+ "1570389|O3.25": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -773,28 +754,28 @@
    "odds": {
     "Pinnacle": 3.07
    }
-  }
- ],
- "1570389|U3.25:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U3.25:no",
-   "selection": "Unter 3.25 Tore",
+   "market": "O3.25",
+   "selection": "Über 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7180812724907297
+    "Pinnacle": 0.26095179174367156
    },
    "odds": {
-    "Pinnacle": 1.36
+    "Pinnacle": 3.55
    }
-  },
+  }
+ ],
+ "1570389|U3.25:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -813,32 +794,28 @@
    "odds": {
     "Pinnacle": 1.41
    }
-  }
- ],
- "1570389|O3.5": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "O3.5",
-   "selection": "Über 3.5 Tore",
+   "market": "U3.25:no",
+   "selection": "Unter 3.25 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.2520946097526913,
-    "Bet365": 0.2512199788825934,
-    "Betfair": 0.2472549262209948
+    "Pinnacle": 0.7390482082563287
    },
    "odds": {
-    "Pinnacle": 3.6,
-    "Bet365": 3.5,
-    "Betfair": 3.5
+    "Pinnacle": 1.33
    }
-  },
+  }
+ ],
+ "1570389|O3.5": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -861,32 +838,32 @@
     "Bet365": 3.5,
     "Betfair": 3.25
    }
-  }
- ],
- "1570389|U3.5:no": [
+  },
   {
-   "ts": "2026-10-21T11:38:27.364806+00:00",
+   "ts": "2026-10-21T20:13:16.191812+00:00",
    "event": "Levante – Athletic Club",
    "kickoff": "2026-10-21T18:00:00+00:00",
    "league": "La Liga",
-   "market": "U3.5:no",
-   "selection": "Unter 3.5 Tore",
+   "market": "O3.5",
+   "selection": "Über 3.5 Tore",
    "lead_source": "Pinnacle",
    "slow_sources": [
     "Bet365",
     "Betfair"
    ],
    "probs": {
-    "Pinnacle": 0.7479053902473088,
-    "Bet365": 0.7487800211174068,
-    "Betfair": 0.7527450737790052
+    "Pinnacle": 0.23894653638938035,
+    "Bet365": 0.2512199788825934,
+    "Betfair": 0.20835020212846667
    },
    "odds": {
-    "Pinnacle": 1.31,
-    "Bet365": 1.3,
-    "Betfair": 1.29
+    "Pinnacle": 3.8,
+    "Bet365": 3.5,
+    "Betfair": 3.8
    }
-  },
+  }
+ ],
+ "1570389|U3.5:no": [
   {
    "ts": "2026-10-21T16:08:32.602496+00:00",
    "event": "Levante – Athletic Club",
@@ -908,6 +885,71 @@
     "Pinnacle": 1.34,
     "Bet365": 1.3,
     "Betfair": 1.33
+   }
+  },
+  {
+   "ts": "2026-10-21T20:13:16.191812+00:00",
+   "event": "Levante – Athletic Club",
+   "kickoff": "2026-10-21T18:00:00+00:00",
+   "league": "La Liga",
+   "market": "U3.5:no",
+   "selection": "Unter 3.5 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7610534636106199,
+    "Bet365": 0.7487800211174068,
+    "Betfair": 0.7916497978715334
+   },
+   "odds": {
+    "Pinnacle": 1.29,
+    "Bet365": 1.3,
+    "Betfair": 1.22
+   }
+  }
+ ],
+ "1570389|O1.25": [
+  {
+   "ts": "2026-10-21T20:13:16.191812+00:00",
+   "event": "Levante – Athletic Club",
+   "kickoff": "2026-10-21T18:00:00+00:00",
+   "league": "La Liga",
+   "market": "O1.25",
+   "selection": "Über 1.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.7941158908991608
+   },
+   "odds": {
+    "Pinnacle": 1.24
+   }
+  }
+ ],
+ "1570389|U1.25:no": [
+  {
+   "ts": "2026-10-21T20:13:16.191812+00:00",
+   "event": "Levante – Athletic Club",
+   "kickoff": "2026-10-21T18:00:00+00:00",
+   "league": "La Liga",
+   "market": "U1.25:no",
+   "selection": "Unter 1.25 Tore",
+   "lead_source": "Pinnacle",
+   "slow_sources": [
+    "Bet365",
+    "Betfair"
+   ],
+   "probs": {
+    "Pinnacle": 0.20588410910083943
+   },
+   "odds": {
+    "Pinnacle": 4.37
    }
   }
  ]
