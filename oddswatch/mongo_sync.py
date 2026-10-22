@@ -142,7 +142,8 @@ def source_mains(divs: list[str], seasons: list[int]) -> dict[str, list[dict]]:
         for y in seasons:
             text = _get(f"{BASE}/mmz4281/{season_code(y)}/{div}.csv")
             if text:
-                rows += parse_csv(text, "mains")
+                # Manche Saison-URLs liefern eine fremde Liga aus; nur Zeilen der angefragten Liga übernehmen.
+                rows += [r for r in parse_csv(text, "mains") if r.get("Div") == div]
         out[div] = rows
     return out
 
