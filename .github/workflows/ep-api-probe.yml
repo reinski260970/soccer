@@ -1,0 +1,39 @@
+name: ep-api-probe
+
+# Einmalige Probe der Elite-Prospects-API (Gratis-Stufe): welche Endpunkte liefern was.
+# Kein Telegram, keine DB. Der Schlüssel wird nur im Header gesendet, nie ausgegeben.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      EP_API_KEY: ${{ secrets.EP_API_KEY }}
+    steps:
+      - name: Endpunkte testen
+        run: |
+          python3 - > out.txt <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          key = os.environ.get("EP_API_KEY", "")
+          base = "https://api.eliteprospects.com/v1"
+          paths = ["/leagues/del", "/leagues/czechia", "/leagues/czech-extraliga", "/leagues/nl", "/leagues/shl",
+                   "/leagues?limit=5&q=extraliga", "/leagues/del/teams?limit=3", "/teams?league=del&limit=3",
+                   "/leagues/del/standings?limit=3", "/games?league=del&limit=3", "/leagues/del/games?limit=3"]
+          print("key set:", bool(key))
+          for p in paths:
+              req = urllib.request.Request(base + p, headers={"X-Api-Key": key, "Accept": "application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      body = r.read().decode("utf-8", "replace")
+                      st = r.status
+              except urllib.error.HTTPError as e:
+                  st, body = e.code, e.read().decode("utf-8", "replace")
+              except Exception as e:
+                  st, body = "ERR", str(e)
+              print(f"{p} -> {st} :: {' '.join(body.split())[:350]}")
+              time.sleep(7)
+          PY
+          cat out.txt
+          echo "::notice title=ep::$(sed ':a;N;$!ba;s/\n/%0A/g' out.txt)"
