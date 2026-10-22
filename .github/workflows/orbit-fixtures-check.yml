@@ -19,7 +19,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Orbit-Spielplan in Neon
         run: |
-          python - <<'PY'
+          python - > orbit.txt <<'PY'
           from sqlalchemy import text
           from oddswatch.sql_store import engine
           from oddswatch.sources.orbit_fixtures import league_of
@@ -31,5 +31,11 @@ jobs:
               for r in c.execute(text("SELECT competition, home, away FROM sports.orbit_fixtures ORDER BY start_utc")).all():
                   print(f"  {r[0]} | {r[1]} – {r[2]}")
           PY
+          cat orbit.txt
+          echo "::notice title=orbit::$(sed ':a;N;$!ba;s/\n/%0A/g' orbit.txt)"
       - name: Hockey-Trockenlauf (DEL, Extraliga)
-        run: python -m oddswatch scan --sports hockey_eu --days 3 --watch-days 7 --dry 2>&1 | grep -iE "DEL|Extraliga|Orbit|zugeordnet|Ergebnisse" | head -60
+        run: |
+          python -m oddswatch scan --sports hockey_eu --days 3 --watch-days 7 --dry > scan.txt 2>&1 || true
+          grep -iE "DEL|Extraliga|Orbit|zugeordnet|Ergebnisse|Traceback|Error" scan.txt | head -60 > hit.txt || true
+          cat hit.txt
+          echo "::notice title=scan::$(sed ':a;N;$!ba;s/\n/%0A/g' hit.txt)"
