@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 8
     env:
       MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,8 +22,20 @@ jobs:
         run: |
           python - > out.txt 2>&1 <<'PY' || true
           import os, sys, traceback
-          sys.excepthook = lambda t, e, tb: print("FEHLER:", t.__name__, str(e)[:300].replace(os.environ.get("MONGO_SOCCER", "x"), "<uri>"))
-          print("secret gesetzt:", bool(os.environ.get("MONGO_SOCCER")))
+          sys.excepthook = lambda t, e, tb: print("FEHLER:", t.__name__, str(e)[:300].split("@")[-1])
+          def shape(v):
+              v = v or ""
+              return {"len": len(v), "mongodb://": v.strip().startswith("mongodb://"),
+                      "mongodb+srv://": v.strip().startswith("mongodb+srv://"),
+                      "quote_or_space_start": v[:1] in ("'", '"', " ", "\n"), "has_newline": "\n" in v.strip()}
+          print("MONGO_SOCCER:", shape(os.environ.get("MONGO_SOCCER")))
+          print("MONGODB_URI:", shape(os.environ.get("MONGODB_URI")))
+          for name in ("MONGO_SOCCER", "MONGODB_URI"):
+              v = (os.environ.get(name) or "").strip().strip("'\"")
+              if v.startswith("mongodb"):
+                  os.environ["MONGO_SOCCER"] = v
+                  print("verwende", name)
+                  break
           from pymongo import MongoClient
           from oddswatch.sources.football_mongo import choose_database
           c = MongoClient(os.environ["MONGO_SOCCER"], serverSelectionTimeoutMS=15000)
