@@ -21,6 +21,7 @@ jobs:
     timeout-minutes: 40
     env:
       APIKEY: ${{ secrets.APIKEY }}
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
       SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
     steps:
       - uses: actions/checkout@v4

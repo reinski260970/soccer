@@ -46,6 +46,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APIKEY: ${{ secrets.APIKEY }}
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
           MONGODB_URI: ${{ secrets.MONGODB_URI || secrets.MONGO_URI }}
           MONGO_URI: ${{ secrets.MONGO_URI || secrets.MONGODB_URI }}
           MONGODB_DB: tennis_db

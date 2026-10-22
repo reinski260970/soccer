@@ -25,6 +25,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APIKEY: ${{ secrets.APIKEY }}
+          MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
         run: python -m oddswatch quick --full --send
       - name: Journal sichern
         if: always()

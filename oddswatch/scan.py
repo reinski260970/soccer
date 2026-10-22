@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import apihockey, ceskyhokej, clubelo, eloratings, espn, football_data, hockeyarchives, nhl, orbit_fixtures, oddalerts, soccerstats, xg_external
+from .sources import apihockey, ceskyhokej, clubelo, mongo_venue, eloratings, espn, football_data, hockeyarchives, nhl, orbit_fixtures, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
 from .m17_11_external_shadow import fair as external_structural_fair
@@ -345,9 +345,16 @@ def _scan_external_structural_league(
         return []
     xg_external.persist_snapshot(code, snapshots, now)
 
-    venue, verr = soccerstats.team_homeaway(code, cache_days=0.10)
-    if verr and not venue:
-        notes.append(f"{label}: SoccerSTATS Venue nicht verfügbar ({verr})")
+    # Heim/Auswärts zuerst aus der eigenen Mongo (SoccerSTATS blockt per Cloudflare).
+    venue, verr = (mongo_venue.team_homeaway(code) if code in mongo_venue.LEAGUES
+                   else ([], "nicht in Mongo gemappt"))
+    if not venue:
+        venue, sserr = soccerstats.team_homeaway(code, cache_days=0.10)
+        if sserr and not venue:
+            notes.append(f"{label}: Heim/Auswärts nicht verfügbar (Mongo: {verr}; SoccerSTATS: "
+                         f"{sserr.split(' · ')[0][:120]})")
+    elif venue:
+        notes.append(f"{label}: Heim/Auswärts aus Mongo ({len(venue)} Teams)")
 
     if oaerr and not alt:
         notes.append(f"{label}: OddAlerts Crosscheck nicht verfügbar ({oaerr})")
