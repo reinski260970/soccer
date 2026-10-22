@@ -206,6 +206,36 @@ def compare(existing: list[dict], fresh: list[dict], key) -> Counter:
     return c
 
 
+def dedupe(col, fields: list[str]) -> int:
+    """Entfernt exakte Spiel-Dubletten (gleiche Schlüsselfelder), behält je Spiel einen Eintrag."""
+    pipe = [{"$group": {"_id": {f: "$" + f for f in fields}, "ids": {"$push": "$_id"}, "n": {"$sum": 1}}},
+            {"$match": {"n": {"$gt": 1}}}]
+    removed = 0
+    for g in col.aggregate(pipe, allowDiskUse=True):
+        extra_ids = g["ids"][1:]
+        removed += col.delete_many({"_id": {"$in": extra_ids}}).deleted_count
+    return removed
+
+
+MAINS_KEY = ["Div", "Date", "HomeTeam", "AwayTeam"]
+EXTRA_KEY = ["Country", "League", "Season", "Date", "Home", "Away"]
+
+
+def ensure_indexes(mains, extra) -> None:
+    """Eindeutigkeits-Index: dasselbe Spiel kann nicht zweimal gespeichert werden."""
+    from pymongo.errors import OperationFailure
+    for col, fields, name in ((mains, MAINS_KEY, "uniq_match"), (extra, EXTRA_KEY, "uniq_match")):
+        n = dedupe(col, fields)
+        if n:
+            print(f"  {col.name}: {n} Dubletten entfernt")
+        try:
+            col.create_index([(f, 1) for f in fields], unique=True, name=name,
+                             partialFilterExpression={fields[-1]: {"$exists": True}})
+            print(f"  {col.name}: Eindeutigkeits-Index aktiv")
+        except OperationFailure as exc:
+            print(f"  {col.name}: Index nicht angelegt ({exc.code})")
+
+
 def run(apply: bool, full: bool) -> int:
     d = db()
     cur = season_start()
@@ -282,6 +312,9 @@ def run(apply: bool, full: bool) -> int:
         if apply:
             extra.delete_many(flt)
             extra.insert_many(rows, ordered=False)
+
+    if apply:
+        ensure_indexes(mains, extra)
 
     junk = mains.count_documents({"Div": None})
     print(f"Leere Zeilen ohne Liga in mains: {junk}" + (" (werden bei --full entfernt)" if full else ""))
