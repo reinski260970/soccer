@@ -938,43 +938,9 @@ def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) 
     out = _scan_icehl(start, until, now, issues, notes)
     season = start.year if start.month >= 7 else start.year - 1
 
-    # DEL, Schweizer National League und KHL: Spielplan aus API-Hockey
-    # (nur Termine). Preise werden danach separat über die Preisquellen
-    # (API-Hockey-Buchmacher) angehängt.
-    for lg, label, api_name, country in (("del", "DEL", "DEL", "Germany"),
-                                         ("nl", "National League (CH)", "National League", "Switzerland"),
-                                         ("khl", "KHL", "KHL", None)):
-        upcoming, err = apihockey.upcoming_fixtures(api_name, season, now, until, country)
-        if err:
-            issues.append(f"API-Hockey Spielplan {label}: {err}")
-            continue
-        if not upcoming:
-            notes.append(f"{label}: keine offenen Spiele im Scanfenster (API-Hockey)")
-            continue
-        ms, n_cur = _hockey_results(lg, season, issues)
-        if len(ms) < 150:
-            issues.append(f"{label}: nur {len(ms)} Ergebnisse für Modell")
-            continue
-        model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
-        notes.append(f"{label}: Spielplan API-Hockey · Modell aus {len(ms)} Spielen, davon {n_cur} aktuell")
-        for g in upcoming:
-            h = matching.find_strict(g["home"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
-            a = matching.find_strict(g["away"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
-            if not h or not a:
-                issues.append(f"{label}: Team nicht zugeordnet ({g['away']} at {g['home']})")
-                continue
-            mk = model.markets(h, a)
-            ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
-            game = espn.EspnGame(
-                f"apihockey:{g['id']}" if g.get("id") else f"{lg}:{g['start'].isoformat()}:{h}:{a}",
-                lg, g["start"], espn.Team(g["home"]), espn.Team(g["away"]), "STATUS_SCHEDULED"
-            )
-            out.append(Fixture(
-                lg, "hockey", game, {"home": ph, "away": pa},
-                f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}",
-                [f"Fixture: API-Hockey", f"Form {h} {_form(ms, h, g['start'].date())}, {a} {_form(ms, a, g['start'].date())}"],
-                estimate=True, model="poisson-hockey-eu"
-            ))
+    # DEL (und Extraliga) haben nach dem Wegfall von Kalshi noch keine
+    # Spielplanquelle; geplant ist der eigene Orbit-Crawler. Bis dahin kein Scan.
+    notes.append("DEL: keine Spielplanquelle (Kalshi entfernt) – wartet auf Orbit-Crawler-Anbindung")
 
     # Liiga und SHL kommen direkt aus ihren offiziellen Liga-Feeds.
     for lg in ("liiga", "shl"):

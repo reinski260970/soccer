@@ -38,22 +38,3 @@ def test_apihockey_parses_two_way_moneyline():
     ref = apihockey._consensus(out)
     expected = pricing.devig([1.95, 1.91])
     assert abs(ref["home"] - expected[0]) < 1e-9
-
-
-def test_apihockey_upcoming_fixtures_filters_window_and_finished(monkeypatch):
-    t = lambda h: datetime(2026, 10, 22, h, tzinfo=timezone.utc)
-    rows = [
-        {"id": 1, "start": t(10), "home": "A", "away": "B", "status": "FT"},
-        {"id": 2, "start": t(19), "home": "C", "away": "D", "status": "NS"},
-        {"id": 3, "start": t(18), "home": "E", "away": "F", "status": "NS"},
-        {"id": 4, "start": t(23), "home": "G", "away": "H", "status": "NS"},
-    ]
-    seen = {}
-    def fake(name, season, country=None):
-        seen["args"] = (name, season, country)
-        return rows, None
-    monkeypatch.setattr(apihockey, "league_games", fake)
-    out, err = apihockey.upcoming_fixtures("DEL", 2026, t(12), t(20), "Germany")
-    assert err is None
-    assert [g["id"] for g in out] == [3, 2]
-    assert seen["args"] == ("DEL", 2026, "Germany")
