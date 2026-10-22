@@ -97,3 +97,30 @@ def test_upcoming_without_table_reports_error(tmp_path, monkeypatch):
     now = datetime.now(timezone.utc)
     out, err = orbit_fixtures.upcoming("del", now, now + timedelta(days=1))
     assert out == [] and "Orbit-Spielplan" in err
+
+
+def test_exporter_reads_last_prematch_tick(tmp_path, monkeypatch):
+    ex = _load_exporter()
+    db = tmp_path / "orbit_quotes.sqlite3"
+    monkeypatch.setattr(ex, "DB", db)
+    c = sqlite3.connect(db)
+    c.executescript("""
+      CREATE TABLE markets (market_id TEXT PRIMARY KEY, event_id TEXT, event_name TEXT, competition TEXT,
+        sport TEXT, market_type TEXT, start_utc TEXT, total_matched REAL, updated_at TEXT);
+      CREATE TABLE runners (market_id TEXT, selection_id INTEGER, name TEXT, PRIMARY KEY (market_id, selection_id));
+      CREATE TABLE ticks (id INTEGER PRIMARY KEY, ts TEXT NOT NULL, market_id TEXT NOT NULL, selection_id INTEGER NOT NULL,
+        back REAL, back_amount REAL, lay REAL, lay_amount REAL, traded REAL, in_play INTEGER);
+      INSERT INTO markets VALUES ('m1','e1','A v B','German DEL','Eishockey','MATCH_ODDS','2026-10-23T17:30:00+00:00',500,'x');
+      INSERT INTO runners VALUES ('m1',1,'A'),('m1',2,'B');
+      INSERT INTO ticks (ts,market_id,selection_id,back,back_amount,lay,lay_amount,traded,in_play) VALUES
+        ('2026-10-22T08:00:00+00:00','m1',1,2.0,10,2.1,10,100,0),
+        ('2026-10-22T09:00:00+00:00','m1',1,1.9,20,2.0,15,150,0),
+        ('2026-10-23T18:00:00+00:00','m1',1,1.2,5,1.3,5,400,1),
+        ('2026-10-22T09:00:00+00:00','m1',2,2.2,8,2.3,9,90,0);
+    """)
+    c.close()
+    rows = {(r[0], r[1]): r for r in ex.read_prices(["e1"])}
+    assert set(rows) == {("m1", 1), ("m1", 2)}
+    a = rows[("m1", 1)]
+    assert a[4] == "A" and a[5] == 1.9 and a[7] == 2.0   # last pre-match tick, not in-play
+    assert ex.read_prices([]) == []

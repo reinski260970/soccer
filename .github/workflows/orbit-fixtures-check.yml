@@ -30,6 +30,17 @@ jobs:
                   print(f"{r[0]!r:40} n={r[1]:3} -> {league_of(r[0])}  {r[2]} .. {r[3]}  seen {r[4]}")
               for r in c.execute(text("SELECT competition, home, away FROM sports.orbit_fixtures ORDER BY start_utc")).all():
                   print(f"  {r[0]} | {r[1]} – {r[2]}")
+              try:
+                  print("PRICES by market_type:")
+                  for r in c.execute(text("SELECT market_type, count(*), count(DISTINCT event_id), max(tick_ts) "
+                                          "FROM sports.orbit_prices GROUP BY market_type ORDER BY 2 DESC")).all():
+                      print(f"  {r[0]} rows={r[1]} events={r[2]} last={r[3]}")
+                  for r in c.execute(text("SELECT f.competition, f.event_name, p.market_type, p.runner, p.back, p.lay, p.back_amount, p.market_matched "
+                                          "FROM sports.orbit_prices p JOIN sports.orbit_fixtures f USING(event_id) "
+                                          "ORDER BY f.start_utc, p.market_id, p.selection_id LIMIT 24")).all():
+                      print("  " + " | ".join(str(x) for x in r))
+              except Exception as exc:
+                  print("PRICES: " + type(exc).__name__)
           PY
           cat orbit.txt
           echo "::notice title=orbit::$(sed ':a;N;$!ba;s/\n/%0A/g' orbit.txt)"

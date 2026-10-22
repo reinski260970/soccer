@@ -1,9 +1,9 @@
-"""Orbit-Spielplan -> Neon (nur lesen auf Orbit-Seite, nur Termine).
+"""Orbit-Spielplan und letzte Vorspiel-Kurse -> Neon (nur lesen auf Orbit-Seite).
 
 Liest aus orbit_quotes.sqlite3 (vom Orbit Steam-Wächter) alle anstehenden
 Eishockey-Spiele der nächsten Tage und schreibt sie in die Neon-Tabelle
-sports.orbit_fixtures. Die GitHub-Scans (DEL, Extraliga) lesen den Spielplan
-von dort. Es werden keine Quoten übertragen.
+sports.orbit_fixtures. Dazu kommt je Auswahl der letzte Back/Lay-Kurs vor
+Spielbeginn in sports.orbit_prices. Die GitHub-Scans lesen beides von dort.
 
 Einrichtung (einmalig):
   1. In denselben Ordner wie orbit_quotes.sqlite3 legen.
@@ -39,6 +39,23 @@ CREATE TABLE IF NOT EXISTS sports.orbit_fixtures (
   seen_at timestamptz NOT NULL
 );
 CREATE INDEX IF NOT EXISTS orbit_fixtures_start_idx ON sports.orbit_fixtures(start_utc);
+CREATE TABLE IF NOT EXISTS sports.orbit_prices (
+  market_id text NOT NULL,
+  selection_id bigint NOT NULL,
+  event_id text NOT NULL,
+  market_type text,
+  runner text,
+  back double precision,
+  back_amount double precision,
+  lay double precision,
+  lay_amount double precision,
+  traded double precision,
+  market_matched double precision,
+  tick_ts timestamptz NOT NULL,
+  seen_at timestamptz NOT NULL,
+  PRIMARY KEY (market_id, selection_id)
+);
+CREATE INDEX IF NOT EXISTS orbit_prices_event_idx ON sports.orbit_prices(event_id);
 """
 
 
@@ -96,9 +113,44 @@ def read_fixtures(days: int):
     return out
 
 
-def export(days: int) -> int:
+def read_prices(event_ids):
+    """Letzter Vorspiel-Tick je Auswahl (in_play = 0) für die exportierten Spiele."""
+    if not event_ids:
+        return []
+    now = datetime.now(timezone.utc)
+    src = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
+    src.row_factory = sqlite3.Row
+    marks = ",".join("?" * len(event_ids))
+    rows = src.execute(
+        f"""WITH last AS (
+                 SELECT market_id, selection_id, MAX(id) AS tick_id FROM ticks
+                 WHERE in_play = 0 AND market_id IN (SELECT market_id FROM markets WHERE event_id IN ({marks}))
+                 GROUP BY market_id, selection_id)
+            SELECT m.market_id, t.selection_id, m.event_id, m.market_type, r.name AS runner,
+                   t.back, t.back_amount, t.lay, t.lay_amount, t.traded, m.total_matched, t.ts
+            FROM last l
+            JOIN ticks t ON t.id = l.tick_id
+            JOIN markets m ON m.market_id = l.market_id
+            LEFT JOIN runners r ON r.market_id = l.market_id AND r.selection_id = l.selection_id""",
+        list(event_ids),
+    ).fetchall()
+    src.close()
+    out = []
+    for r in rows:
+        try:
+            ts = datetime.fromisoformat(r["ts"])
+        except (TypeError, ValueError):
+            continue
+        out.append((str(r["market_id"]), int(r["selection_id"]), str(r["event_id"]), r["market_type"],
+                    r["runner"], r["back"], r["back_amount"], r["lay"], r["lay_amount"],
+                    r["traded"], r["total_matched"], ts, now))
+    return out
+
+
+def export(days: int) -> tuple[int, int]:
     import psycopg
     rows = read_fixtures(days)
+    prices = read_prices([r[0] for r in rows])
     with psycopg.connect(neon_url()) as conn:
         conn.execute(DDL)
         with conn.cursor() as cur:
@@ -112,8 +164,21 @@ def export(days: int) -> int:
                      total_matched=EXCLUDED.total_matched, seen_at=EXCLUDED.seen_at""",
                 rows,
             )
+            cur.executemany(
+                """INSERT INTO sports.orbit_prices
+                   (market_id, selection_id, event_id, market_type, runner, back, back_amount,
+                    lay, lay_amount, traded, market_matched, tick_ts, seen_at)
+                   VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                   ON CONFLICT (market_id, selection_id) DO UPDATE SET
+                     market_type=EXCLUDED.market_type, runner=EXCLUDED.runner,
+                     back=EXCLUDED.back, back_amount=EXCLUDED.back_amount,
+                     lay=EXCLUDED.lay, lay_amount=EXCLUDED.lay_amount, traded=EXCLUDED.traded,
+                     market_matched=EXCLUDED.market_matched, tick_ts=EXCLUDED.tick_ts,
+                     seen_at=EXCLUDED.seen_at""",
+                prices,
+            )
         conn.commit()
-    return len(rows)
+    return len(rows), len(prices)
 
 
 def main():
@@ -123,8 +188,8 @@ def main():
     a = ap.parse_args()
     while True:
         try:
-            n = export(a.days)
-            print(f"[{time.strftime('%H:%M:%S')}] {n} Eishockey-Spiele nach Neon geschrieben")
+            n, p = export(a.days)
+            print(f"[{time.strftime('%H:%M:%S')}] {n} Eishockey-Spiele und {p} Kurse nach Neon geschrieben")
         except Exception as exc:  # weiterlaufen, nächster Versuch beim nächsten Takt
             print(f"[{time.strftime('%H:%M:%S')}] Fehler: {type(exc).__name__}: {exc}")
             if not a.loop:
