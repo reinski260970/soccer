@@ -1,0 +1,57 @@
+name: football-data-sync
+
+# football-data.co.uk -> eigene Fußball-Mongo (mains, extra_leagues).
+# Manuell: mode=plan (nur zählen) oder apply; full=true baut alle Saisons neu (Reparatur).
+# Vor jedem apply wird eine komplette Sicherung als Artefakt abgelegt (90 Tage).
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "plan oder apply"
+        default: "plan"
+      full:
+        description: "alle Saisons neu aufbauen (true/false)"
+        default: "false"
+
+concurrency:
+  group: football-data-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MODE: ${{ inputs.mode || 'apply' }}
+      FULL: ${{ inputs.full || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Sicherung
+        if: env.MODE == 'apply'
+        run: python -m oddswatch.mongo_sync backup --out backup
+      - name: Sicherung hochladen
+        if: env.MODE == 'apply'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mongo-backup-${{ github.run_id }}
+          path: backup/
+          retention-days: 90
+      - name: Abgleich
+        run: |
+          args=""
+          [ "$FULL" = "true" ] && args="--full"
+          if [ "$MODE" = "apply" ]; then
+            python -m oddswatch.mongo_sync apply $args --confirm > sync.txt 2>&1 || true
+          else
+            python -m oddswatch.mongo_sync plan $args > sync.txt 2>&1 || true
+          fi
+          cat sync.txt
+          grep -vE "^\s*$" sync.txt | tail -60 > tail.txt
+          split -b 3500 tail.txt part_
+          for f in part_*; do echo "::notice title=sync-$f::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
+          grep -q "Traceback" sync.txt && exit 1 || true
