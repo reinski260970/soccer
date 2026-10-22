@@ -56,7 +56,8 @@ UPCOMING = {"NS", "TBD"}
 PRIOR_GOALS = 1.35        # Tore je Team bei gleicher Stärke, neutraler Ort
 PRIOR_HOME = 60.0         # Heimvorteil in Elo-Punkten
 CALIB_PSEUDO = 200.0      # Prior-Gewicht in Spielen
-CALIB_MIN_PREMATCH = 120  # ab so vielen Spielen mit Vor-Spiel-Elo keine Näherung mehr
+CALIB_MIN_PREMATCH = 120
+COMP_SHRINK = 150.0       # Pseudo-Spiele für den Torniveau-Faktor je Wettbewerb  # ab so vielen Spielen mit Vor-Spiel-Elo keine Näherung mehr
 RHO = -0.05               # Dixon-Coles
 XG_SHARE = 0.5            # Anteil des xG-Residuums, der ins Elo geht
 XG_SHRINK = 10.0          # Pseudo-Spiele
@@ -94,6 +95,7 @@ API_ALIASES = {
     "Austria Vienna": "Austria Wien", "Sturm Graz": "Sturm Graz",
     "Heart Of Midlothian": "Hearts", "Heart of Midlothian": "Hearts",
     "Sint-Truiden": "St Truiden", "AZ Alkmaar": "AZ",
+    "Ferencvarosi TC": "Ferencvaros", "Ferencvaros": "Ferencvaros", "KuPS": "Kuopio",
 }
 FED_SYNONYMS = {"czech republic": "czechia", "bosnia": "bosnia and herzegovina",
                 "macedonia": "north macedonia", "turkiye": "turkey"}
@@ -147,6 +149,7 @@ class Calibration:
     fit_goals: float | None = None
     fit_home: float | None = None
     diag: dict = field(default_factory=dict)
+    comp_factor: dict = field(default_factory=dict)  # Torniveau je Wettbewerb
 
     @property
     def a(self) -> float:
@@ -469,7 +472,10 @@ def calibrate(finished: list[UefaFixture], cmap: dict[int, str],
         rs = [r for r in rows if r[5] == comp]
         exp_g = sum(sum(cal.lambdas(r[0], r[1], r[2])) for r in rs) / len(rs)
         act_g = sum(r[3] + r[4] for r in rs) / len(rs)
+        w = len(rs) / (len(rs) + COMP_SHRINK)
+        cal.comp_factor[comp] = 1 + w * (act_g / exp_g - 1) if exp_g > 0 else 1.0
         cal.diag[comp] = {"n": len(rs), "tore_ist": round(act_g, 2), "tore_modell": round(exp_g, 2),
+                          "faktor": round(cal.comp_factor[comp], 3),
                           "heimsiege_ist": round(sum(r[3] > r[4] for r in rs) / len(rs), 3)}
     return cal
 
@@ -711,7 +717,8 @@ def run(start: date, days: int, with_odds: bool = True, out_dir: Path = Path("re
             continue
         ah, aa = adjs[h], adjs[a]
         eh, ea = clubs[h].elo + ah.elo_adj, clubs[a].elo + aa.elo_adj
-        lh, la = cal.lambdas(eh, ea, f.neutral, tempo=math.sqrt(ah.tempo * aa.tempo))
+        lh, la = cal.lambdas(eh, ea, f.neutral, tempo=math.sqrt(ah.tempo * aa.tempo)
+                             * cal.comp_factor.get(f.comp, 1.0))
         probs = markets_from_matrix(PoissonModel(rho=RHO).score_matrix(lh, la), lh, la)
         books = {}
         if with_odds:
@@ -768,10 +775,11 @@ def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched
              f"Richtung Prior {PRIOR_GOALS} / {PRIOR_HOME:.0f} geschrumpft" if cal.fit_goals else ""),
           f"- xG: Liga-xG für {len(dom)} Teams, Europapokal-xG aus {len(xg_u)} Spielen", ""]
     if cal.diag:
-        L += ["| Wettbewerb | Spiele | Tore/Spiel ist | Modell | Heimsiege |", "|---|---|---|---|---|"]
+        L += ["| Wettbewerb | Spiele | Tore/Spiel ist | Modell (vor Faktor) | Torfaktor | Heimsiege |",
+              "|---|---|---|---|---|---|"]
         for comp, d in cal.diag.items():
             lab = next(v[1] for v in COMPS.values() if v[0] == comp)
-            L.append(f"| {lab} | {d['n']} | {d['tore_ist']:.2f} | {d['tore_modell']:.2f} | "
+            L.append(f"| {lab} | {d['n']} | {d['tore_ist']:.2f} | {d['tore_modell']:.2f} | ×{d['faktor']:.3f} | "
                      f"{d['heimsiege_ist'] * 100:.0f} % |")
         L.append("")
 

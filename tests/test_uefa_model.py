@@ -213,3 +213,11 @@ def test_full_run_with_simulated_sources(tmp_path, monkeypatch):
     assert calls["stats"] == before
     assert (tmp_path / "data/journal/uefa_predictions.json").exists()
     assert (tmp_path / "data/journal/uefa_clubelo_snapshots.json").exists()
+
+
+def test_competition_goal_factor_shrinks_toward_one():
+    clubs = {"A": U.Club("A", 1700, "Spain"), "B": U.Club("B", 1700, "Italy")}
+    fx = [U.UefaFixture(i, "ucl", datetime(2025, 10, 1, tzinfo=timezone.utc), "A", "B", 1, 2, "FT", "", 3, 2)
+          for i in range(40)]
+    cal = U.calibrate(fx, {1: "A", 2: "B"}, clubs, {})
+    assert 1.0 < cal.comp_factor["ucl"] < 5 / cal.diag["ucl"]["tore_modell"]
