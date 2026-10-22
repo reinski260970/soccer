@@ -40,3 +40,19 @@ def test_football_data_primary(monkeypatch):
     monkeypatch.setattr(mongo_venue, "season_label", lambda fmt, today=None: "2026")
     rows, err = mongo_venue.team_homeaway("SWE")
     assert err is None and rows[0].team == "Malmo FF" and rows[0].source == "football-data"
+
+
+
+def test_main_division_from_football_data(monkeypatch):
+    from oddswatch import fetch
+    head = "Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR\n"
+    body = "".join(f"D2,0{i+1}/09/26,Hertha,X{i},2,1,H\nD2,1{i}/09/26,Y{i},Hertha,0,0,D\n" for i in range(3))
+    seen = {}
+    def fake(url, **kw):
+        seen["url"] = url
+        return head + body, None
+    monkeypatch.setattr(fetch, "get", fake)
+    rows, err = mongo_venue.team_homeaway("D2")
+    assert err is None and "mmz4281" in seen["url"] and seen["url"].endswith("/D2.csv")
+    h = {r.team: r for r in rows}["Hertha"]
+    assert (h.home_gp, h.home_ppg, h.away_ppg) == (3, 3.0, 1.0)

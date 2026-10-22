@@ -346,8 +346,9 @@ def _scan_external_structural_league(
     xg_external.persist_snapshot(code, snapshots, now)
 
     # Heim/Auswärts: football-data.co.uk, sonst eigene Mongo (SoccerSTATS blockt per Cloudflare).
-    venue, verr = (mongo_venue.team_homeaway(code) if code in mongo_venue.LEAGUES
-                   else ([], "nicht in Mongo gemappt"))
+    venue, verr = (mongo_venue.team_homeaway(code)
+                   if code in mongo_venue.LEAGUES or code in mongo_venue.MAIN_DIVS
+                   else ([], "keine Venue-Quelle gemappt"))
     if not venue:
         venue, sserr = soccerstats.team_homeaway(code, cache_days=0.10)
         if sserr and not venue:

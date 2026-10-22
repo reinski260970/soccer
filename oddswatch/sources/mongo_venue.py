@@ -1,15 +1,10 @@
-"""Heim-/Auswärtsstärke für SWE/NOR/DEN – football-data.co.uk direkt, Mongo als Ersatz.
+"""Heim-/Auswärtsstärke je Team (Ersatz für SoccerSTATS, dort Cloudflare-Sperre).
 
-Primär: die aktuellen CSVs von football-data.co.uk (new/SWE.csv usw.); aus dieser
-Quelle stammt auch der Mongo-Bestand, ist dort aber nicht aktuell. Ersatz: die
-eigene Fußball-Mongo (euro_football.extra_leagues).
-
-Ersatz für SoccerSTATS (dort inzwischen Cloudflare-Sperre). Gerechnet wird je Team
-über die laufende Saison: Spiele, Tore/Gegentore pro Spiel und Punkte pro Spiel,
-getrennt nach Heim und Auswärts. Gelesen wird nur; Secret MONGO_SOCCER.
-
-Hinweis zur Datenqualität: Das Datumsfeld in extra_leagues hat bei Tagen <= 12
-Tag und Monat vertauscht. Deshalb wird über das Feld Season gefiltert, nicht über Date.
+Primär: die aktuellen CSVs von football-data.co.uk – Hauptligen über
+mmz4281/<Saison>/<Div>.csv, Zusatzligen über new/<CODE>.csv. Ersatz: die eigene
+Fußball-Mongo (euro_football.extra_leagues), die täglich aus derselben Quelle
+abgeglichen wird. Gerechnet wird über die laufende Saison: Spiele, Tore/Gegentore
+und Punkte pro Spiel, getrennt nach Heim und Auswärts. Nur lesend.
 """
 from __future__ import annotations
 
@@ -24,7 +19,11 @@ LEAGUES = {
     "NOR": ("Norway", "Eliteserien", "calendar"),
     "DEN": ("Denmark", "Superliga", "split"),
 }
-FD_FILES = {"SWE": "SWE", "NOR": "NOR", "DEN": "DNK"}
+FD_FILES = {"SWE": "SWE", "NOR": "NOR", "DEN": "DNK", "AUT": "AUT", "SUI": "SWZ", "POL": "POL"}
+LEAGUES.update({"AUT": ("Austria", "Bundesliga", "split"), "SUI": ("Switzerland", "Super League", "split"),
+                "POL": ("Poland", "Ekstraklasa", "split")})
+# Hauptligen von football-data.co.uk (Scan-Code = Div)
+MAIN_DIVS = {"D1", "D2", "E0", "E1", "SP1", "I1", "F1", "N1", "P1", "B1", "T1", "SC0", "G1"}
 FD_URL = "https://www.football-data.co.uk/new/{}.csv"
 MIN_GAMES = 3
 
@@ -84,7 +83,23 @@ def from_football_data(code: str) -> tuple[list[TeamVenuePrior], str | None]:
     return (priors, None) if priors else ([], f"football-data {code}: keine Saison {season}")
 
 
+def from_main_division(code: str, today: date | None = None) -> tuple[list[TeamVenuePrior], str | None]:
+    from .. import fetch
+    from .football_data import csv_url, parse
+    today = today or date.today()
+    start = today.year if today.month >= 7 else today.year - 1
+    text, err = fetch.get(csv_url(code, start), cache_days=0.25)
+    if err or not text:
+        return [], f"football-data {code}: {err or 'leer'}"
+    matches, _ = parse(text)
+    rows = [{"Home": m.home, "Away": m.away, "HG": m.home_goals, "AG": m.away_goals} for m in matches]
+    priors = [p.__class__(**{**p.__dict__, "source": "football-data"}) for p in aggregate(rows)]
+    return (priors, None) if priors else ([], f"football-data {code}: zu wenige Spiele")
+
+
 def team_homeaway(code: str) -> tuple[list[TeamVenuePrior], str | None]:
+    if code in MAIN_DIVS:
+        return from_main_division(code)
     priors, err = from_football_data(code)
     if priors:
         return priors, None
