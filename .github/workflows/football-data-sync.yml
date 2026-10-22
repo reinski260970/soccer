@@ -4,6 +4,9 @@ name: football-data-sync
 # Manuell: mode=plan (nur zählen) oder apply; full=true baut alle Saisons neu (Reparatur).
 # Vor jedem apply wird eine komplette Sicherung als Artefakt abgelegt (90 Tage).
 on:
+  # Täglicher Abgleich der laufenden Saison aller Ligen (ca. 07:00 Wien).
+  schedule:
+    - cron: "3 5 * * *"
   workflow_dispatch:
     inputs:
       mode:
