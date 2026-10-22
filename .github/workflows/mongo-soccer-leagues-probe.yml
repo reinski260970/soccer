@@ -1,0 +1,51 @@
+name: mongo-soccer-leagues-probe
+
+# Einmalige Probe: welche Ligen/Zeiträume liegen in MONGO_SOCCER (mains, extra_leagues)?
+# Gibt nur Feldnamen, Liga-Bezeichnungen, Anzahlen und Datumsbereiche aus.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install "pymongo>=4.6"
+      - name: Probe
+        run: |
+          python - > out.txt 2>&1 <<'PY'
+          import os
+          from pymongo import MongoClient
+          from oddswatch.sources.football_mongo import choose_database
+          c = MongoClient(os.environ["MONGO_SOCCER"], serverSelectionTimeoutMS=15000)
+          try:
+              db = c.get_default_database()
+          except Exception:
+              db = None
+          if db is None:
+              db = c[choose_database(c.list_database_names())]
+          print("db:", db.name, "collections:", db.list_collection_names())
+          for coll in ("mains", "extra_leagues"):
+              col = db[coll]
+              doc = col.find_one(sort=[("_id", -1)]) or {}
+              print(f"== {coll}: {col.estimated_document_count()} docs; fields: {sorted(doc.keys())}")
+              key = next((k for k in ("Div", "league", "League", "competition", "Country", "country") if k in doc), None)
+              date = next((k for k in ("Date", "date", "match_date", "kickoff") if k in doc), None)
+              print("  group by", key, "date field", date)
+              if not key:
+                  continue
+              pipe = [{"$group": {"_id": "$" + key, "n": {"$sum": 1},
+                                  "first": {"$min": "$" + date} if date else {"$first": None},
+                                  "last": {"$max": "$" + date} if date else {"$first": None}}},
+                      {"$sort": {"_id": 1}}]
+              for r in col.aggregate(pipe, maxTimeMS=20000):
+                  print(f"  {r['_id']!s:30} n={r['n']:6}  {r['first']} .. {r['last']}")
+          PY
+          cat out.txt
+          echo "::notice title=mongo::$(sed ':a;N;$!ba;s/\n/%0A/g' out.txt | cut -c1-60000)"
