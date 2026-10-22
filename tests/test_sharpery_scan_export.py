@@ -26,6 +26,7 @@ def test_export_scan_writes_bets_and_forecasts(tmp_path):
     assert list(bets[0]) == COLUMNS
     row = dict(zip(COLUMNS, bets[1]))
     assert row["Sport"] == "Ice Hockey" and row["League"] == "National League"
+    assert row["Stake"] > 0
     assert row["Bookmaker"] == "Orbit" and row["Bet Odds"] == 1.6 and row["Result"] == "pending"
     prog = list(wb["Prognosen"].values)
     assert prog[1][2] == "HC Davos – SC Bern" and prog[1][3] == 68.0 and prog[1][9] == 1.6

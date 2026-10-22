@@ -158,7 +158,8 @@ def _candidate_row(c, now_iso: str) -> dict:
         "Closing Novig Odds": None,
         "EV %": round(c.ev * 100, 2),
         "CLV %": None,
-        "Stake": round(c.stake_eh * SHARPERY_EH_EUR, 2) if play else 0,
+        # Sharpery verlangt einen positiven Einsatz: Modellvorschlag, sonst 1 EH (= 10 EUR).
+        "Stake": round(max(c.stake_eh or 0, 1.0) * SHARPERY_EH_EUR, 2),
         "Result": "pending",
         "Liquidity": c.liquidity,
         "Live": "no",
