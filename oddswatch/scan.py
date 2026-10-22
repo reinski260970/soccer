@@ -869,7 +869,8 @@ HOCKEY_ALIASES = {
               "Kärpät": "Kärpät Oulu", "Lukko": "Lukko Rauma", "Pelicans": "Pelicans Lahti",
               "SaiPa": "SaiPa Lappeenranta", "Sport": "Sport Vaasa", "TPS": "TPS Turku",
               "Tappara": "Tappara Tampere", "Ässät": "Ässät Pori"},
-    "extraliga": {"Mountfield HK": "Hradec Králové"},
+    "extraliga": {"Mountfield HK": "Hradec Králové", "HC Kometa Brno": "Brno",
+                  "HC Vitkovice": "Vítkovice"},
     "khl": {"Avtomobilist Yekaterinburg": "Avtomobilist Ekaterinburg", "CSKA Moscow": "CSKA Moscou",
             "HC Barys": "Barys Astana", "HC Dynamo Moscow": "Dynamo Moscou", "HC Sochi": "HK Sotchi",
             "HK Avangard Omsk": "Avangard Omsk", "Kunlun Red Star": "Shanghai Dragons",
@@ -878,7 +879,8 @@ HOCKEY_ALIASES = {
             "Spartak Moscow": "Spartak Moscou", "Torpedo Nizhny Novgorod": "Torpedo Nijni Novgorod"},
 }
 # Schreibvarianten innerhalb von hockeyarchives vereinheitlichen
-HA_CANON = {"Rapperswil-Jona": "Rapperswil", "Bietigheim-Bissingen": "Bietigheim"}
+HA_CANON = {"Rapperswil-Jona": "Rapperswil", "Bietigheim-Bissingen": "Bietigheim",
+            "Kometa Brno": "Brno"}
 
 
 def _hockey_results(lg: str, season_start: int, issues: list[str]
