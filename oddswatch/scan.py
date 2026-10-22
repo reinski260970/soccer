@@ -850,7 +850,11 @@ HOCKEY_ALIASES = {
            "Fribourg Gottéron": "Fribourg", "Genève Servette": "Genève-Servette", "HC Ajoie": "Ajoie",
            "HC Ambri-Piotta": "Ambrì-Piotta", "HC Davos": "Davos", "HC Lausanne": "Lausanne",
            "HC Lugano": "Lugano", "SC Bern": "Berne", "SC Langnau Tigers": "Langnau",
-           "SC Rapperswil-Jona Lakers": "Rapperswil", "ZSC Lions": "ZSC Lions"},
+           "SC Rapperswil-Jona Lakers": "Rapperswil", "ZSC Lions": "ZSC Lions",
+           # Orbit-Schreibweisen
+           "ZSC Lions Zurich": "ZSC Lions", "SCL Tigers Langnau": "Langnau",
+           "HC Ajoie Porrentruy": "Ajoie", "Geneve-Servette HC": "Genève-Servette",
+           "HC Fribourg-Gotteron": "Fribourg", "HC Ambri-Piotta": "Ambrì-Piotta"},
     "shl": {"Brynas IF": "Brynäs", "Djurgardens IF": "Djurgården", "Frolunda HC": "Frölunda",
             "Färjestad": "Färjestad", "HC Orebro": "Örebro", "HV71": "HV 71",
             "IF Bjorkloven": "Björklöven", "Linkoping HC": "Linköping", "Lulea Hockey": "Luleå",
@@ -941,9 +945,10 @@ def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) 
     out = _scan_icehl(start, until, now, issues, notes)
     season = start.year if start.month >= 7 else start.year - 1
 
-    # DEL und tschechische Extraliga: Spielplan aus dem eigenen Orbit-Crawler
+    # DEL, tschechische Extraliga und Schweizer NLA: Spielplan aus dem eigenen Orbit-Crawler
     # (Neon sports.orbit_fixtures, nur Termine). Preise kommen separat.
-    for lg, label in (("del", "DEL"), ("extraliga", "Extraliga (CZ)")):
+    for lg, label in (("del", "DEL"), ("extraliga", "Extraliga (CZ)"),
+                      ("nl", "National League (CH)")):
         upcoming, err = orbit_fixtures.upcoming(lg, now, until)
         if err:
             issues.append(f"{label}: {err}")

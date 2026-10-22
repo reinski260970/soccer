@@ -25,6 +25,8 @@ def test_league_mapping():
     assert orbit_fixtures.league_of("Slovakian Extraliga") is None
     assert orbit_fixtures.league_of("Swedish SHL") == "shl"
     assert orbit_fixtures.league_of("NHL") == "nhl"
+    assert orbit_fixtures.league_of("Swiss NLA") == "nl"
+    assert orbit_fixtures.league_of("Finnish SM-Liiga") == "liiga"
 
 
 def test_exporter_splits_team_names():

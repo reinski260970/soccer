@@ -1,0 +1,32 @@
+name: hockey-orbit-shadow
+
+# Eishockey-Schattenlauf: Modell gegen Orbit-Kurse (DEL, Extraliga, NLA, Liiga, SHL, ICEHL).
+# Schreibt Prognosen und Kurs-Snapshots nach Neon (für die spätere Validierung),
+# kein Telegram, kein Journal-Commit. Zwei kurze Läufe pro Tag schonen das Neon-Kontingent.
+on:
+  schedule:
+    - cron: "41 6,14 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: hockey-orbit-shadow
+  cancel-in-progress: false
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Hockey-Scan (nur Neon, kein Versand)
+        run: |
+          python -m oddswatch scan --sports hockey_eu --days 3 --watch-days 7 --dry > scan.txt 2>&1 || true
+          grep -E "Eishockey Europa|am nächsten an spielbar|Orbit|Spielplan|zugeordnet|Neon Hockey|Traceback|Error" scan.txt | head -40 > hit.txt || true
+          cat hit.txt
+          echo "::notice title=shadow::$(sed ':a;N;$!ba;s/\n/%0A/g' hit.txt)"

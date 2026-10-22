@@ -25,6 +25,10 @@ def league_of(competition: str | None) -> str | None:
         return "del"
     if "extraliga" in c and "slovak" not in c and "slowak" not in c:
         return "extraliga"
+    if ("swiss" in c or "schweiz" in c) and ("nla" in c or "national league" in c):
+        return "nl"
+    if "liiga" in c and "mestis" not in c:
+        return "liiga"
     if re.search(r"\bshl\b", c) or ("swed" in c and "allsvenskan" not in c):
         return "shl"
     if re.search(r"\bnhl\b", c):
