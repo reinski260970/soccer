@@ -20,13 +20,13 @@ COLUMNS = ["Placed At", "Kickoff", "Event", "Sport", "League", "Market", "Select
 
 SPORT = {"nfl": "American Football", "nba": "Basketball", "nhl": "Ice Hockey",
          "del": "Ice Hockey", "icehl": "Ice Hockey", "shl": "Ice Hockey", "liiga": "Ice Hockey",
-         "nl": "Ice Hockey", "khl": "Ice Hockey"}
+         "nl": "Ice Hockey", "khl": "Ice Hockey", "extraliga": "Ice Hockey"}
 LEAGUE = {"bundesliga": "Bundesliga", "2bundesliga": "2. Bundesliga",
           "austria": "Austrian Bundesliga", "ucl": "UEFA Champions League",
           "uel": "UEFA Europa League", "uecl": "UEFA Conference League",
           "nations": "UEFA Nations League", "nfl": "NFL", "nba": "NBA", "nhl": "NHL",
           "del": "DEL", "icehl": "ICE Hockey League", "shl": "SHL", "liiga": "Liiga",
-          "nl": "National League", "khl": "KHL"}
+          "nl": "National League", "khl": "KHL", "extraliga": "Czech Extraliga"}
 RESULT = {"win": "won", "loss": "lost", "void": "void"}
 
 # Sharpery-Bankrollkonvention: 1 Einsatz-Einheit (EH) = 10 EUR.
@@ -131,6 +131,95 @@ def export(journal_root: str = "data/journal", out: str = "exports/sharpery") ->
     ws.freeze_panes = "A2"
     wb.save(xlsx_path)
     return xlsx_path, csv_path, len(rows)
+
+
+def _candidate_row(c, now_iso: str) -> dict:
+    lg = c.league or ""
+    soccer = lg not in SPORT
+    play = (c.stake_eh or 0) > 0 and not c.flags
+    notes = f"fair {c.fair_odds:.2f}, spielbar ab {c.min_odds:.2f}; Modell {c.p_model * 100:.1f} %"
+    if c.source == "orbit":
+        notes += "; Quote nach 3 % Orbit-Kommission"
+    if c.reason:
+        notes += f"; {c.reason}"
+    tags = [lg, "PLAY" if play else "MODELL"] + (["Schaetzung"] if c.estimate else [])
+    return {
+        "Placed At": now_iso,
+        "Kickoff": _iso_z(c.kickoff),
+        "Event": c.event.replace(" – ", " vs "),
+        "Sport": "Soccer" if soccer else SPORT[lg],
+        "League": LEAGUE.get(lg, lg.upper()),
+        "Market": "1X2" if soccer else "Moneyline",
+        "Selection": c.selection,
+        "Period": "Regular Time" if soccer else "Game",
+        "Bookmaker": (c.source or "").capitalize(),
+        "Opening Odds": None,
+        "Bet Odds": round(c.odds, 2),
+        "Closing Novig Odds": None,
+        "EV %": round(c.ev * 100, 2),
+        "CLV %": None,
+        "Stake": round(c.stake_eh * SHARPERY_EH_EUR, 2) if play else 0,
+        "Result": "pending",
+        "Liquidity": c.liquidity,
+        "Live": "no",
+        "Side": c.market,
+        "Notes": notes[:250],
+        "Tags": ";".join(t for t in tags if t),
+    }
+
+
+FORECAST_COLUMNS = ["Liga", "Anstoß (Wien)", "Spiel", "Modell Heim %", "Modell Remis %", "Modell Gast %",
+                    "Fair Heim", "Fair Remis", "Fair Gast", "Bester Kurs Heim", "Bester Kurs Gast",
+                    "Quelle", "Kennzahlen"]
+
+
+def _forecast_row(fx) -> list:
+    from zoneinfo import ZoneInfo
+    p = fx.probs or {}
+    def fair(k):
+        return round(1 / p[k], 2) if p.get(k) else None
+    def best(side):
+        offers = (fx.market_quotes or {}).get(side) or (fx.offers or {}).get(side) or []
+        offers = [o for o in offers if getattr(o, "executable", True)]
+        return max((o for o in offers), key=lambda o: o.odds, default=None)
+    bh, ba = best("home"), best("away")
+    ko = fx.game.kickoff.astimezone(ZoneInfo("Europe/Vienna")).strftime("%d.%m. %H:%M")
+    pct = lambda k: round(p[k] * 100, 1) if p.get(k) is not None else None
+    return [LEAGUE.get(fx.league, fx.league), ko, fx.game.title, pct("home"), pct("draw"), pct("away"),
+            fair("home"), fair("draw"), fair("away"),
+            round(bh.odds, 2) if bh else None, round(ba.odds, 2) if ba else None,
+            ", ".join(sorted({o.source for o in (bh, ba) if o})), fx.detail]
+
+
+def export_scan(result, out: str) -> tuple[Path, int, int]:
+    """Spieltags-Scan als Sharpery-Excel: Blatt 'Bets' (EV > 0) + Blatt 'Prognosen' (alle Spiele)."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Font
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    cands = sorted((c for c in result.candidates if c.ev > 0), key=lambda c: -c.ev)
+    rows = [_candidate_row(c, now_iso) for c in cands]
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Bets"
+    ws.append(COLUMNS)
+    for r in rows:
+        ws.append([r[k] for k in COLUMNS])
+    ws2 = wb.create_sheet("Prognosen")
+    ws2.append(FORECAST_COLUMNS)
+    fx_sorted = sorted(result.fixtures, key=lambda f: (f.game.kickoff, f.league))
+    for fx in fx_sorted:
+        ws2.append(_forecast_row(fx))
+    for sheet in (ws, ws2):
+        for c in sheet[1]:
+            c.font = Font(bold=True)
+        for col in sheet.columns:
+            width = max(len(str(c.value or "")) for c in col)
+            sheet.column_dimensions[col[0].column_letter].width = min(max(width + 2, 10), 60)
+        sheet.freeze_panes = "A2"
+    path = Path(out).with_suffix(".xlsx")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(path)
+    return path, len(rows), len(fx_sorted)
 
 
 def main() -> None:

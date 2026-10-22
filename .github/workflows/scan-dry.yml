@@ -1,7 +1,7 @@
 name: scan-dry
 
 # Spieltags-Scan auf Abruf: Modelle + Preise, Ausgabe nur im Lauf (Notice).
-# Kein Telegram, kein Journal-Commit.
+# Kein Telegram, kein Journal-Commit. Sharpery-Excel landet auf dem Branch "exports".
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +11,9 @@ on:
       days:
         description: "Tage voraus"
         default: "1"
+
+permissions:
+  contents: write
 
 jobs:
   scan:
@@ -27,8 +30,20 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Scan
         run: |
-          python -m oddswatch scan --sports "${{ inputs.sports }}" --days "${{ inputs.days }}" --watch-days 3 --dry > scan.txt 2>&1 || true
+          python -m oddswatch scan --sports "${{ inputs.sports }}" --days "${{ inputs.days }}" --watch-days 3 --dry --sharpery out/sharpery-scan > scan.txt 2>&1 || true
           wc -l scan.txt
           cat scan.txt
           split -l 120 scan.txt part_
           for f in part_*; do echo "::notice title=scan-$f::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
+      - name: Sharpery-Excel auf Branch exports ablegen
+        if: always()
+        run: |
+          [ -f out/sharpery-scan.xlsx ] || exit 0
+          stamp=$(TZ=Europe/Vienna date +%Y-%m-%d_%H%M)
+          mkdir pub && cp out/sharpery-scan.xlsx "pub/sharpery-scan-$stamp.xlsx" && cp out/sharpery-scan.xlsx pub/sharpery-scan-latest.xlsx
+          cd pub
+          git init -q -b exports
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add . && git commit -qm "Sharpery-Export $stamp"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" exports

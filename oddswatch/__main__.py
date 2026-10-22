@@ -64,6 +64,10 @@ def _scan(a) -> int:
     (out / f"{stem}-telegram.txt").write_text(tg, encoding="utf-8")
     print(md)
     print("--- Telegram ---\n" + tg)
+    if getattr(a, "sharpery", None):
+        from .export_sharpery import export_scan
+        path, nb, nf = export_scan(res, a.sharpery)
+        print(f"Sharpery-Excel: {path} ({nb} Bets mit EV > 0, {nf} Prognosen)")
     if a.send:
         r = telegram.send(tg)
         print(f"Telegram: {'gesendet, message_id ' + str(r['message_ids']) if r['sent'] else 'NICHT gesendet – ' + r['error']}")
@@ -344,6 +348,7 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--sports", default="soccer,nfl,nhl,nba,hockey_eu")
     s.add_argument("--send", action="store_true")
     s.add_argument("--dry", action="store_true", help="nichts ins Journal schreiben")
+    s.add_argument("--sharpery", default="", help="Pfad für Sharpery-Excel (Bets + Prognosen)")
     s.set_defaults(fn=_scan)
     d = sub.add_parser("daily")
     d.add_argument("--no-scan", action="store_true", help="nur Journal auswerten, kein neuer Scan")
