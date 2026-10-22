@@ -196,7 +196,12 @@ def compare(existing: list[dict], fresh: list[dict], key) -> Counter:
             c["vertauscht"] += 1
         else:
             c["neu"] += 1
+    src_keys = {key(r) for r in fresh}
+    uniq = {key(e) for e in existing}
     c["bestand"] = len(existing)
+    c["bestand_eindeutig"] = len(uniq)
+    c["doppelt"] = len(existing) - len({(key(e), e.get("Date")) for e in existing})
+    c["nur_im_bestand"] = len(uniq - src_keys)
     c["quelle"] = len(fresh)
     return c
 
@@ -236,9 +241,10 @@ def run(apply: bool, full: bool) -> int:
                          if _key_m(e) in keys]
         c = compare(existing, rows, _key_m)
         total.update({f"mains_{k}": v for k, v in c.items()})
-        print(f"  mains {div}: Quelle {c['quelle']}, Bestand {c['bestand']} | richtig {c['richtig']}, "
+        print(f"  mains {div}: Quelle {c['quelle']}, Bestand {c['bestand']} (doppelt {c['doppelt']}, "
+              f"nur im Bestand {c['nur_im_bestand']}) | richtig {c['richtig']}, "
               f"vertauscht {c['vertauscht']}, neu {c['neu']}")
-        if apply and full and c["quelle"] < 0.95 * (c["bestand"] or 0):
+        if apply and full and c["quelle"] < 0.95 * (c["bestand_eindeutig"] or 0):
             print(f"  mains {div}: Quelle deutlich kleiner als Bestand – zur Sicherheit übersprungen")
             continue
         if apply:
@@ -268,8 +274,9 @@ def run(apply: bool, full: bool) -> int:
         c = compare(existing, rows, _key_e)
         total.update({f"extra_{k}": v for k, v in c.items()})
         print(f"  extra {country}: Saisons {seasons_src[0]}..{seasons_src[-1]} Quelle {c['quelle']}, "
-              f"Bestand {c['bestand']} | richtig {c['richtig']}, vertauscht {c['vertauscht']}, neu {c['neu']}")
-        if apply and c["quelle"] < 0.95 * (c["bestand"] or 0):
+              f"Bestand {c['bestand']} (doppelt {c['doppelt']}, nur im Bestand {c['nur_im_bestand']}) | "
+              f"richtig {c['richtig']}, vertauscht {c['vertauscht']}, neu {c['neu']}")
+        if apply and c["quelle"] < 0.95 * (c["bestand_eindeutig"] or 0):
             print(f"  extra {country}: Quelle deutlich kleiner als Bestand – zur Sicherheit übersprungen")
             continue
         if apply:
