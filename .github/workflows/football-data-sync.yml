@@ -23,6 +23,7 @@ jobs:
     timeout-minutes: 90
     env:
       MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGO_SOCCER_RW: ${{ secrets.MONGO_SOCCER_RW }}
       MODE: ${{ inputs.mode || 'apply' }}
       FULL: ${{ inputs.full || 'false' }}
     steps:

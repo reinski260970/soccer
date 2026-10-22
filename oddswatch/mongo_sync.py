@@ -106,7 +106,9 @@ def _get(url: str) -> str | None:
 
 def db():
     from pymongo import MongoClient
-    uri = (os.environ.get("MONGO_SOCCER") or os.environ.get("MONGODB_URI") or "").strip().strip("'\"")
+    # Schreiben braucht einen Nutzer mit readWrite; die Scans behalten den Lese-Zugang MONGO_SOCCER.
+    uri = (os.environ.get("MONGO_SOCCER_RW") or os.environ.get("MONGO_SOCCER")
+           or os.environ.get("MONGODB_URI") or "").strip().strip("'\"")
     if not uri.startswith("mongodb"):
         raise SystemExit("MONGO_SOCCER fehlt oder ist keine Mongo-Adresse")
     client = MongoClient(uri, serverSelectionTimeoutMS=20000, appname="oddswatch-football-data-sync")
