@@ -137,8 +137,8 @@ def test_orbit_prices_attach_moneyline_only(tmp_path, monkeypatch):
     tick = now - timedelta(minutes=20)
     prices = [
         # e1: 2-way moneyline + a 3-way 60-min market
-        {"market_id": "ml", "selection_id": 1, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Adler Mannheim", "back": 1.50, "back_amount": 300, "tick_ts": tick},
-        {"market_id": "ml", "selection_id": 2, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Lowen Frankfurt", "back": 2.80, "back_amount": 200, "tick_ts": tick},
+        {"market_id": "ml", "selection_id": 1, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Adler Mannheim", "back": 1.50, "lay": 1.52, "back_amount": 300, "tick_ts": tick},
+        {"market_id": "ml", "selection_id": 2, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Lowen Frankfurt", "back": 2.80, "lay": 2.90, "back_amount": 200, "tick_ts": tick},
         {"market_id": "mo", "selection_id": 1, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "Adler Mannheim", "back": 1.9, "back_amount": 50, "tick_ts": tick},
         {"market_id": "mo", "selection_id": 3, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "The Draw", "back": 4.5, "back_amount": 50, "tick_ts": tick},
         {"market_id": "mo", "selection_id": 2, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "Lowen Frankfurt", "back": 3.6, "back_amount": 50, "tick_ts": tick},
@@ -159,3 +159,31 @@ def test_orbit_prices_attach_moneyline_only(tmp_path, monkeypatch):
     assert f1.offers["away"][0].source == "orbit"
     assert not f2.offers
     assert any("60-Min-1X2" in i for i in issues)
+
+
+def test_orbit_prices_freshness_and_spread(monkeypatch):
+    from oddswatch.sources import orbit_prices
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.scan import Fixture
+    now = datetime.now(timezone.utc)
+    ko = now + timedelta(hours=8)
+    old_tick = now - timedelta(hours=11)
+    fx = [{"event_id": "e1", "home": "A Team", "away": "B Team", "start_utc": ko}]
+    def rows(seen, lay_a):
+        return [
+            {"market_id": "ml", "selection_id": 1, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "A Team",
+             "back": 2.0, "lay": 2.04, "back_amount": 50, "tick_ts": old_tick, "market_seen": seen},
+            {"market_id": "ml", "selection_id": 2, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "B Team",
+             "back": 1.9, "lay": lay_a, "back_amount": 50, "tick_ts": old_tick, "market_seen": seen},
+        ]
+    g = EspnGame("orbit:e1", "del", ko, Team("A Team"), Team("B Team"), "STATUS_SCHEDULED")
+    # old tick, crawler not seen recently -> stale
+    monkeypatch.setattr(orbit_prices, "_load", lambda: (fx, rows(old_tick, 1.95)))
+    f = Fixture("del", "hockey", g, {"home": .5, "away": .5}, ""); issues = []
+    assert orbit_prices.attach([f], issues) == 0 and any("veraltet" in i for i in issues)
+    # unchanged price but crawler saw market 10 min ago -> fresh; B spread too wide
+    monkeypatch.setattr(orbit_prices, "_load", lambda: (fx, rows(now - timedelta(minutes=10), 2.5)))
+    f = Fixture("del", "hockey", g, {"home": .5, "away": .5}, ""); issues = []
+    assert orbit_prices.attach([f], issues) == 1
+    assert "home" in f.offers and "away" not in f.offers
+    assert any("Spanne" in i for i in issues)

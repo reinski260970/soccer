@@ -14,7 +14,8 @@ from ..selection import Offer
 from .orbit_fixtures import _ts
 
 COMMISSION = 0.03                 # Orbit-Kommission auf Nettogewinne
-MAX_TICK_AGE = timedelta(hours=3)
+MAX_TICK_AGE = timedelta(hours=3)   # gemessen am letzten Crawler-Kontakt
+MAX_SPREAD = 0.10                   # (Lay - Back) / Back; breiter = zu dünner Markt
 MATCH_WINDOW = timedelta(hours=3)
 _DRAW = {"the draw", "draw", "unentschieden", "x"}
 _SKIP_TYPES = ("OVER", "UNDER", "HANDICAP", "TOTAL", "PERIOD", "BOTH")
@@ -32,7 +33,7 @@ def _load():
             "SELECT event_id, home, away, start_utc FROM sports.orbit_fixtures")).mappings().all()
         px = conn.execute(text(
             "SELECT market_id, selection_id, event_id, market_type, runner, back, back_amount, "
-            "tick_ts FROM sports.orbit_prices")).mappings().all()
+            "lay, tick_ts, market_seen FROM sports.orbit_prices")).mappings().all()
     return fx, px
 
 
@@ -85,7 +86,7 @@ def attach(fixtures, issues: list[str]) -> int:
     by_event: dict[str, list] = {}
     for p in prices:
         by_event.setdefault(str(p["event_id"]), []).append(p)
-    attached = three_way_only = 0
+    attached = three_way_only = stale = thin = 0
     for fx in hockey:
         ev = _event_for(fx, orbit_fx)
         if not ev or ev not in by_event:
@@ -95,8 +96,15 @@ def attach(fixtures, issues: list[str]) -> int:
             three_way_only += 1
             continue
         for side, r in ml.items():
-            back, ts = r["back"], _ts(r["tick_ts"])
-            if not back or back <= 1.01 or ts is None or now - ts > MAX_TICK_AGE:
+            back, lay, ts = r["back"], r.get("lay"), _ts(r["tick_ts"])
+            seen = max([t for t in (ts, _ts(r.get("market_seen"))) if t is not None], default=None)
+            if not back or back <= 1.01 or ts is None:
+                continue
+            if seen is None or now - seen > MAX_TICK_AGE:
+                stale += 1
+                continue
+            if not lay or (lay - back) / back > MAX_SPREAD:
+                thin += 1
                 continue
             team = fx.game.home.name if side == "home" else fx.game.away.name
             fx.offers.setdefault(side, []).append(Offer(
@@ -106,6 +114,10 @@ def attach(fixtures, issues: list[str]) -> int:
                 ref=f"orbit:{r['market_id']}:{r['selection_id']}", league=fx.league,
             ))
             attached += 1
+    if stale:
+        issues.append(f"Orbit: {stale} Kurse veraltet (Crawler länger als 3 Std. ohne Kontakt)")
+    if thin:
+        issues.append(f"Orbit: {thin} Kurse übersprungen, Back/Lay-Spanne über 10 %")
     if three_way_only:
         issues.append(f"Orbit: {three_way_only} Spiele nur mit 60-Min-1X2, noch nicht ausgewertet")
     return attached

@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS sports.orbit_prices (
   PRIMARY KEY (market_id, selection_id)
 );
 CREATE INDEX IF NOT EXISTS orbit_prices_event_idx ON sports.orbit_prices(event_id);
+ALTER TABLE sports.orbit_prices ADD COLUMN IF NOT EXISTS market_seen timestamptz;
 """
 
 
@@ -127,7 +128,8 @@ def read_prices(event_ids):
                  WHERE in_play = 0 AND market_id IN (SELECT market_id FROM markets WHERE event_id IN ({marks}))
                  GROUP BY market_id, selection_id)
             SELECT m.market_id, t.selection_id, m.event_id, m.market_type, r.name AS runner,
-                   t.back, t.back_amount, t.lay, t.lay_amount, t.traded, m.total_matched, t.ts
+                   t.back, t.back_amount, t.lay, t.lay_amount, t.traded, m.total_matched, t.ts,
+                   m.updated_at
             FROM last l
             JOIN ticks t ON t.id = l.tick_id
             JOIN markets m ON m.market_id = l.market_id
@@ -141,9 +143,15 @@ def read_prices(event_ids):
             ts = datetime.fromisoformat(r["ts"])
         except (TypeError, ValueError):
             continue
+        try:
+            # Ticks werden nur bei Änderung geschrieben; updated_at zeigt, dass der
+            # Crawler den Markt zuletzt noch gesehen hat (Kurs also noch aktuell).
+            market_seen = datetime.fromisoformat(r["updated_at"])
+        except (TypeError, ValueError):
+            market_seen = None
         out.append((str(r["market_id"]), int(r["selection_id"]), str(r["event_id"]), r["market_type"],
                     r["runner"], r["back"], r["back_amount"], r["lay"], r["lay_amount"],
-                    r["traded"], r["total_matched"], ts, now))
+                    r["traded"], r["total_matched"], ts, now, market_seen))
     return out
 
 
@@ -167,14 +175,14 @@ def export(days: int) -> tuple[int, int]:
             cur.executemany(
                 """INSERT INTO sports.orbit_prices
                    (market_id, selection_id, event_id, market_type, runner, back, back_amount,
-                    lay, lay_amount, traded, market_matched, tick_ts, seen_at)
-                   VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                    lay, lay_amount, traded, market_matched, tick_ts, seen_at, market_seen)
+                   VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                    ON CONFLICT (market_id, selection_id) DO UPDATE SET
                      market_type=EXCLUDED.market_type, runner=EXCLUDED.runner,
                      back=EXCLUDED.back, back_amount=EXCLUDED.back_amount,
                      lay=EXCLUDED.lay, lay_amount=EXCLUDED.lay_amount, traded=EXCLUDED.traded,
                      market_matched=EXCLUDED.market_matched, tick_ts=EXCLUDED.tick_ts,
-                     seen_at=EXCLUDED.seen_at""",
+                     seen_at=EXCLUDED.seen_at, market_seen=EXCLUDED.market_seen""",
                 prices,
             )
         conn.commit()
