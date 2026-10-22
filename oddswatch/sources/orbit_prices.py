@@ -74,7 +74,7 @@ def _moneyline(rows, fixture):
 
 
 def attach(fixtures, issues: list[str]) -> int:
-    hockey = [f for f in fixtures if f.sport == "hockey"]
+    hockey = [f for f in fixtures if f.sport in ("hockey", "nhl") or f.league == "nhl"]
     if not hockey:
         return 0
     try:
