@@ -34,7 +34,13 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Sicherung
         if: env.MODE == 'apply'
-        run: python -m oddswatch.mongo_sync backup --out backup
+        run: |
+          if ! python -m oddswatch.mongo_sync backup --out backup > backup.txt 2>&1; then
+            grep -vE "^\s+(File|\^)" backup.txt | tail -8 | sed -E 's#mongodb(\+srv)?://[^@ ]*@#mongodb://***@#g' > err.txt
+            echo "::notice title=backup-error::$(sed ':a;N;$!ba;s/\n/%0A/g' err.txt)"
+            exit 1
+          fi
+          cat backup.txt
       - name: Sicherung hochladen
         if: env.MODE == 'apply'
         uses: actions/upload-artifact@v4
