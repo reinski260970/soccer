@@ -27,5 +27,16 @@ def test_unmapped_and_missing_secret(monkeypatch):
     assert mongo_venue.team_homeaway("XXX")[1]
     monkeypatch.delenv("MONGO_SOCCER", raising=False)
     monkeypatch.delenv("MONGODB_URI", raising=False)
-    rows, err = mongo_venue.team_homeaway("SWE")
+    rows, err = mongo_venue.from_mongo("SWE")
     assert rows == [] and "MONGO_SOCCER" in err
+
+
+def test_football_data_primary(monkeypatch):
+    from oddswatch import fetch
+    head = "Country,League,Season,Date,Time,Home,Away,HG,AG,Res\n"
+    body = "".join(f"Sweden,Allsvenskan,2026,0{i+1}/09/2026,18:00,Malmo FF,X{i},2,0,H\n"
+                   f"Sweden,Allsvenskan,2026,1{i}/09/2026,18:00,Y{i},Malmo FF,1,1,D\n" for i in range(3))
+    monkeypatch.setattr(fetch, "get", lambda url, **kw: (head + body, None))
+    monkeypatch.setattr(mongo_venue, "season_label", lambda fmt, today=None: "2026")
+    rows, err = mongo_venue.team_homeaway("SWE")
+    assert err is None and rows[0].team == "Malmo FF" and rows[0].source == "football-data"

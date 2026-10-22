@@ -1,4 +1,8 @@
-"""Heim-/Auswärtsstärke aus der eigenen Fußball-Mongo (euro_football.extra_leagues).
+"""Heim-/Auswärtsstärke für SWE/NOR/DEN – football-data.co.uk direkt, Mongo als Ersatz.
+
+Primär: die aktuellen CSVs von football-data.co.uk (new/SWE.csv usw.); aus dieser
+Quelle stammt auch der Mongo-Bestand, ist dort aber nicht aktuell. Ersatz: die
+eigene Fußball-Mongo (euro_football.extra_leagues).
 
 Ersatz für SoccerSTATS (dort inzwischen Cloudflare-Sperre). Gerechnet wird je Team
 über die laufende Saison: Spiele, Tore/Gegentore pro Spiel und Punkte pro Spiel,
@@ -20,6 +24,8 @@ LEAGUES = {
     "NOR": ("Norway", "Eliteserien", "calendar"),
     "DEN": ("Denmark", "Superliga", "split"),
 }
+FD_FILES = {"SWE": "SWE", "NOR": "NOR", "DEN": "DNK"}
+FD_URL = "https://www.football-data.co.uk/new/{}.csv"
 MIN_GAMES = 3
 
 
@@ -62,7 +68,31 @@ def aggregate(rows: list[dict]) -> list[TeamVenuePrior]:
     return out
 
 
+def from_football_data(code: str) -> tuple[list[TeamVenuePrior], str | None]:
+    from .. import fetch
+    from .football_data import parse_new_league
+    spec = LEAGUES.get(code)
+    if not spec or code not in FD_FILES:
+        return [], f"football-data: Liga {code} nicht gemappt"
+    season = season_label(spec[2])
+    text, err = fetch.get(FD_URL.format(FD_FILES[code]), cache_days=0.25)
+    if err or not text:
+        return [], f"football-data {code}: {err or 'leer'}"
+    matches, _ = parse_new_league(text, {season})
+    rows = [{"Home": m.home, "Away": m.away, "HG": m.home_goals, "AG": m.away_goals} for m in matches]
+    priors = [p.__class__(**{**p.__dict__, "source": "football-data"}) for p in aggregate(rows)]
+    return (priors, None) if priors else ([], f"football-data {code}: keine Saison {season}")
+
+
 def team_homeaway(code: str) -> tuple[list[TeamVenuePrior], str | None]:
+    priors, err = from_football_data(code)
+    if priors:
+        return priors, None
+    rows, merr = from_mongo(code)
+    return (rows, None) if rows else ([], f"{err}; {merr}")
+
+
+def from_mongo(code: str) -> tuple[list[TeamVenuePrior], str | None]:
     spec = LEAGUES.get(code)
     if not spec:
         return [], f"Mongo-Venue: Liga {code} nicht gemappt"

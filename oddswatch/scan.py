@@ -345,16 +345,16 @@ def _scan_external_structural_league(
         return []
     xg_external.persist_snapshot(code, snapshots, now)
 
-    # Heim/Auswärts zuerst aus der eigenen Mongo (SoccerSTATS blockt per Cloudflare).
+    # Heim/Auswärts: football-data.co.uk, sonst eigene Mongo (SoccerSTATS blockt per Cloudflare).
     venue, verr = (mongo_venue.team_homeaway(code) if code in mongo_venue.LEAGUES
                    else ([], "nicht in Mongo gemappt"))
     if not venue:
         venue, sserr = soccerstats.team_homeaway(code, cache_days=0.10)
         if sserr and not venue:
-            notes.append(f"{label}: Heim/Auswärts nicht verfügbar (Mongo: {verr}; SoccerSTATS: "
+            notes.append(f"{label}: Heim/Auswärts nicht verfügbar ({verr}; SoccerSTATS: "
                          f"{sserr.split(' · ')[0][:120]})")
     elif venue:
-        notes.append(f"{label}: Heim/Auswärts aus Mongo ({len(venue)} Teams)")
+        notes.append(f"{label}: Heim/Auswärts aus {venue[0].source} ({len(venue)} Teams)")
 
     if oaerr and not alt:
         notes.append(f"{label}: OddAlerts Crosscheck nicht verfügbar ({oaerr})")
