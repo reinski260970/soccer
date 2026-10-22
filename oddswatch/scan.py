@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import apihockey, clubelo, eloratings, espn, football_data, hockeyarchives, nhl, orbit_fixtures, oddalerts, soccerstats, xg_external
+from .sources import apihockey, ceskyhokej, clubelo, eloratings, espn, football_data, hockeyarchives, nhl, orbit_fixtures, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
 from .m17_11_external_shadow import fair as external_structural_fair
@@ -903,6 +903,11 @@ def _hockey_results(lg: str, season_start: int, issues: list[str]
         n = HA_CANON.get(n, n)
         return (matching.find_strict(n, known, al) or n) if api else n
     api = False
+    if not cur and lg == "extraliga":
+        # hockeyarchives hat 2026/27 (noch) nicht: offizielle Ergebnisse von ceskyhokej.cz
+        cur, err2 = ceskyhokej.season_results(season_start)
+        if err2:
+            issues.append(f"Extraliga ceskyhokej.cz: {err2}")
     if not cur and lg in ("liiga", "shl"):
         cur, _, err2 = (hockeyarchives.liiga(season_start + 1) if lg == "liiga"
                         else hockeyarchives.shl(season_start))
