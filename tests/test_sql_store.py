@@ -85,7 +85,8 @@ def test_settlement_updates_play_and_clv(monkeypatch, tmp_path):
     final = EspnGame(
         "g2", "nhl", game.kickoff, Team("Home"), Team("Away"), "STATUS_FINAL",
         home_score=2, away_score=3,
-        ref_line={"ml_home": 1.90, "ml_away": 2.00},
+        ref_line={"ml_home": 1.90, "ml_away": 2.00,
+                  "close_ml_home": 1.90, "close_ml_away": 2.00},
     )
     from oddswatch.sources import espn
     monkeypatch.setattr(espn, "scoreboard_day", lambda league, day: ([final], None))
@@ -99,6 +100,25 @@ def test_settlement_updates_play_and_clv(monkeypatch, tmp_path):
     assert p["closing_fair_odds"] is not None
     assert p["clv"] is not None
 
+
+def test_closing_fair_ignores_opening_line():
+    g = EspnGame("g9", "nhl", datetime(2026, 10, 7, tzinfo=timezone.utc),
+                 Team("H"), Team("A"), "STATUS_FINAL",
+                 ref_line={"ml_home": 1.90, "ml_away": 2.00})  # opener only
+    assert sql_store._closing_fair(g, "home") is None
+    g.ref_line.update(close_ml_home=1.80, close_ml_away=2.10)
+    assert sql_store._closing_fair(g, "home") is not None
+
+
+def test_closing_fair_three_way_needs_draw_close():
+    g = EspnGame("g8", "bundesliga", datetime(2026, 10, 7, tzinfo=timezone.utc),
+                 Team("H"), Team("A"), "STATUS_FINAL",
+                 ref_line={"ml_home": 2.1, "ml_draw": 3.4, "ml_away": 3.5,
+                           "close_ml_home": 2.0, "close_ml_away": 3.6})
+    assert sql_store._closing_fair(g, "home") is None
+    assert sql_store._closing_fair(g, "draw") is None
+    g.ref_line["close_ml_draw"] = 3.5
+    assert sql_store._closing_fair(g, "home") is not None
 
 
 def test_shadow_settlement_updates_predictions_without_play(monkeypatch, tmp_path):

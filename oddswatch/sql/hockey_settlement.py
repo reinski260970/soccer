@@ -198,9 +198,8 @@ def run(conn, now: datetime | None = None, fetch_espn=None, fetch_europe=None):
             "del", season, cache_days=0.02),
         "extraliga": lambda season: hockeyarchives.season_results(
             "extraliga", season, cache_days=0.02),
-        # Swiss National League: scanned via Kalshi (sources/kalshi.py "nl" ->
-        # KXNLGAME) and discoverable on hockeyarchives.info ("Suisse" country
-        # page), but this module never listed "nl" as a settleable league, so
+        # Swiss National League: scanned via API-Hockey schedule and
+        # discoverable on hockeyarchives.info ("Suisse" country page), but this module never listed "nl" as a settleable league, so
         # every NL prediction stayed open forever. hockeyarchives has no
         # _TOP_SECTIONS entry for "nl" (unlike del/extraliga/icehl/shl), so the
         # fetched page is NOT cut down to the top division only; it may also

@@ -3,13 +3,13 @@ from types import SimpleNamespace
 
 from oddswatch import pricing
 from oddswatch.selection import Offer, evaluate, pick
-from oddswatch.sources import apihockey, kalshi
+from oddswatch.sources import apihockey
 
 
 def test_reference_only_offer_never_becomes_play():
     o = Offer(
         event="A – B", kickoff="2026-10-07T18:00:00+00:00", market="home",
-        selection="A ML", odds=3.0, source="polymarket",
+        selection="A ML", odds=3.0, source="orbit",
         observed_at="2026-10-07T06:00:00+00:00", league="nhl", executable=False,
     )
     c = evaluate(o, 0.5, p_final=0.5)
@@ -38,19 +38,3 @@ def test_apihockey_parses_two_way_moneyline():
     ref = apihockey._consensus(out)
     expected = pricing.devig([1.95, 1.91])
     assert abs(ref["home"] - expected[0]) < 1e-9
-
-
-def test_kalshi_side_and_prices():
-    game = SimpleNamespace(
-        home=SimpleNamespace(aliases=lambda: ["Boston Bruins"]),
-        away=SimpleNamespace(aliases=lambda: ["New York Rangers"]),
-    )
-    m = {
-        "yes_sub_title": "Boston Bruins",
-        "no_sub_title": "New York Rangers",
-        "yes_ask_dollars": "0.5400",
-        "no_ask_dollars": "0.4800",
-    }
-    assert kalshi._market_side(m, game) == ("home", "away")
-    assert kalshi._ask(m, "yes") == 0.54
-    assert kalshi._ask(m, "no") == 0.48

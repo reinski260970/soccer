@@ -126,6 +126,11 @@ def parse_scoreboard(data: dict, league: str) -> list[EspnGame]:
                     ln = None
                 od = _ml(str(cur.get("odds", "")).replace("+", "")) if cur.get("odds") else None
                 return ln, od
+            def close_only(block: dict | None) -> float | None:
+                # Strictly the closing quote; never fall back to the opener, so
+                # CLV is not silently measured against the opening line.
+                cur = (block or {}).get("close") or {}
+                return _ml(str(cur.get("odds", "")).replace("+", "")) if cur.get("odds") else None
             ps, tot = o.get("pointSpread") or {}, o.get("total") or {}
             (hs_line, hs_odds), (as_line, as_odds) = line(ps.get("home")), line(ps.get("away"))
             (ov_line, ov_odds), (_, un_odds) = line(tot.get("over")), line(tot.get("under"))
@@ -137,7 +142,13 @@ def parse_scoreboard(data: dict, league: str) -> list[EspnGame]:
                    "spread": o.get("spread"),
                    "ml_home": mline("home", o.get("homeTeamOdds")),
                    "ml_away": mline("away", o.get("awayTeamOdds")),
-                   "ml_draw": mline("draw", o.get("drawOdds"))}
+                   "ml_draw": mline("draw", o.get("drawOdds")),
+                   "close_ml_home": close_only(ml.get("home")),
+                   "close_ml_away": close_only(ml.get("away")),
+                   "close_ml_draw": close_only(ml.get("draw")),
+                   "close_total_line": line(tot.get("over"))[0] if (tot.get("over") or {}).get("close") else None,
+                   "close_ml_over": close_only(tot.get("over")),
+                   "close_ml_under": close_only(tot.get("under"))}
         final = st == "STATUS_FINAL"
         out.append(EspnGame(
             id=str(e["id"]), league=league,

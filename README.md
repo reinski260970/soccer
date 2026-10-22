@@ -1,8 +1,11 @@
 # oddswatch
 
-Sportmodelle, Fußball-Quotenwächter und deutsche Berichte. Kalshi ist aus dem
-aktiven Betrieb entfernt: keine API-Abfragen, Kontozugriffe, Fills, Marktleiter
-oder neuen Snapshots. Historische Journale und Berichte bleiben unverändert.
+Sportmodelle, Fußball-Quotenwächter und deutsche Berichte. Kalshi und
+Polymarket sind vollständig entfernt (keine Quellen, Workflows oder Signale
+mehr); Börsenpreise kommen aus dem eigenen Orbit-Crawler. Spielpläne für DEL und
+tschechische Extraliga kommen aus dem eigenen Orbit-Crawler über Neon
+(`tools/orbit_fixtures_export.py`); NL und KHL sind nicht mehr im Scan. Historische Journale und
+Berichte bleiben unverändert.
 
 ## Befehle
 

@@ -3,14 +3,13 @@
 Sources:
 - Football: API-Football sportsbook odds (Pinnacle ref, Bet365/Betfair offers)
 - Hockey: API-Hockey sportsbook odds, including European leagues where covered
-- NFL/NHL/NBA: public Polymarket and Kalshi prices as extra references; they are
-  PLAY-eligible only when their explicit *_EXECUTABLE switch is enabled.
+- Exchange prices (Orbit) come from the separate Orbit crawler, not from here.
 """
 from datetime import datetime, timezone
 
 from . import pricing
 from .selection import Offer
-from .sources import apifootball, apihockey, kalshi, polymarket
+from .sources import apifootball, apihockey
 
 
 def _attach_soccer(fixtures, issues):
@@ -126,13 +125,5 @@ def attach_prices(fixtures, issues):
         apihockey.attach(fixtures, issues)
     except Exception as exc:
         issues.append(f"API-Hockey: {type(exc).__name__}: {exc}")
-
-    # Prediction markets are additional public price/reference sources. Their
-    # adapters decide whether the installation may treat a quote as executable.
-    for name, source in (("Polymarket", polymarket), ("Kalshi", kalshi)):
-        try:
-            source.attach(fixtures, issues)
-        except Exception as exc:
-            issues.append(f"{name}: {type(exc).__name__}: {exc}")
 
     _capture_and_filter_market_quotes(fixtures)

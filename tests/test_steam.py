@@ -56,20 +56,20 @@ def test_presteam_generic_lead_source(tmp_path):
         "league": "nhl",
         "market": "away",
         "selection": "B ML",
-        "lead_source": "Polymarket",
+        "lead_source": "Orbit",
         "slow_sources": ["ESPN/DK"],
-        "odds": {"Polymarket": 2.0, "ESPN/DK": 2.1},
+        "odds": {"Orbit": 2.0, "ESPN/DK": 2.1},
     }
     r1 = dict(base)
-    r1["probs"] = {"Polymarket": 0.50, "ESPN/DK": 0.48}
+    r1["probs"] = {"Orbit": 0.50, "ESPN/DK": 0.48}
     assert steam.update_many([r1], now=t0, path=p) == []
 
     r2 = dict(base)
-    r2["probs"] = {"Polymarket": 0.525, "ESPN/DK": 0.484}
+    r2["probs"] = {"Orbit": 0.525, "ESPN/DK": 0.484}
     sig = steam.update_many([r2], now=t0 + timedelta(minutes=15), path=p)
     assert len(sig) == 1
     assert sig[0]["direction"] == "SHORTENING"
-    assert sig[0]["lead_source"] == "Polymarket"
+    assert sig[0]["lead_source"] == "Orbit"
 
 
 def test_steam_global_gc_removes_stale_keys_and_caps_snapshots(tmp_path):
