@@ -332,6 +332,11 @@ def _closing_fair(g, market: str) -> float | None:
     m = (market or "").strip().replace("_", "").replace(" ", "").lower()
     if m in {"home", "away", "draw", "1", "2", "x"}:
         h, d, a = r.get("close_ml_home"), r.get("close_ml_draw"), r.get("close_ml_away")
+        # A market with any draw price (or a draw bet) is three-way: no CLV unless
+        # all three closing legs exist; never de-vig only home/away of a 1X2.
+        three_way = bool(d or r.get("ml_draw")) or m in {"draw", "x"}
+        if three_way and not d:
+            return None
         if d and all((x or 0) > 1 for x in (h, d, a)):
             ps = pricing.devig([h, d, a])
             p = {"home": ps[0], "1": ps[0], "draw": ps[1], "x": ps[1],
@@ -553,7 +558,12 @@ def settle_pending() -> dict:
     now = datetime.now(timezone.utc)
     with engine().begin() as conn:
         pending = list(conn.execute(select(plays).where(plays.c.result == "pending")).mappings())
+        from .active import eligible
         for p in pending:
+            # Plays from removed providers (Kalshi/Polymarket) stay untouched.
+            if not eligible({"source": p["source"]}):
+                skipped += 1
+                continue
             league = p["league"]
             if league not in espn.PATHS:
                 skipped += 1

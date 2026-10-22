@@ -110,6 +110,17 @@ def test_closing_fair_ignores_opening_line():
     assert sql_store._closing_fair(g, "home") is not None
 
 
+def test_closing_fair_three_way_needs_draw_close():
+    g = EspnGame("g8", "bundesliga", datetime(2026, 10, 7, tzinfo=timezone.utc),
+                 Team("H"), Team("A"), "STATUS_FINAL",
+                 ref_line={"ml_home": 2.1, "ml_draw": 3.4, "ml_away": 3.5,
+                           "close_ml_home": 2.0, "close_ml_away": 3.6})
+    assert sql_store._closing_fair(g, "home") is None
+    assert sql_store._closing_fair(g, "draw") is None
+    g.ref_line["close_ml_draw"] = 3.5
+    assert sql_store._closing_fair(g, "home") is not None
+
+
 def test_shadow_settlement_updates_predictions_without_play(monkeypatch, tmp_path):
     monkeypatch.setenv("SPORTS_DATABASE_URL", f"sqlite:///{tmp_path / 'sports.db'}")
     kickoff = datetime.now(timezone.utc) - timedelta(hours=3)
