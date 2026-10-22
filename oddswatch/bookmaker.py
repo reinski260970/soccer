@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 from . import pricing
 from .selection import Offer
-from .sources import apifootball, apihockey
+from .sources import apifootball, apihockey, orbit_prices
 
 
 def _attach_soccer(fixtures, issues):
@@ -125,5 +125,11 @@ def attach_prices(fixtures, issues):
         apihockey.attach(fixtures, issues)
     except Exception as exc:
         issues.append(f"API-Hockey: {type(exc).__name__}: {exc}")
+
+    # Eigene Orbit-Börsenkurse (lokaler Crawler -> Neon), 3 % Kommission eingerechnet.
+    try:
+        orbit_prices.attach(fixtures, issues)
+    except Exception as exc:
+        issues.append(f"Orbit-Kurse: {type(exc).__name__}: {exc}")
 
     _capture_and_filter_market_quotes(fixtures)

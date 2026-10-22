@@ -124,3 +124,38 @@ def test_exporter_reads_last_prematch_tick(tmp_path, monkeypatch):
     a = rows[("m1", 1)]
     assert a[4] == "A" and a[5] == 1.9 and a[7] == 2.0   # last pre-match tick, not in-play
     assert ex.read_prices([]) == []
+
+
+def test_orbit_prices_attach_moneyline_only(tmp_path, monkeypatch):
+    from oddswatch.sources import orbit_prices
+    from oddswatch.sources.espn import EspnGame, Team
+    from oddswatch.scan import Fixture
+    now = datetime.now(timezone.utc)
+    ko = now + timedelta(hours=8)
+    orbit_fx = [{"event_id": "e1", "home": "Adler Mannheim", "away": "Lowen Frankfurt", "start_utc": ko},
+                {"event_id": "e2", "home": "Straubing Tigers", "away": "Kolner Haie", "start_utc": ko}]
+    tick = now - timedelta(minutes=20)
+    prices = [
+        # e1: 2-way moneyline + a 3-way 60-min market
+        {"market_id": "ml", "selection_id": 1, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Adler Mannheim", "back": 1.50, "back_amount": 300, "tick_ts": tick},
+        {"market_id": "ml", "selection_id": 2, "event_id": "e1", "market_type": "MONEY_LINE", "runner": "Lowen Frankfurt", "back": 2.80, "back_amount": 200, "tick_ts": tick},
+        {"market_id": "mo", "selection_id": 1, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "Adler Mannheim", "back": 1.9, "back_amount": 50, "tick_ts": tick},
+        {"market_id": "mo", "selection_id": 3, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "The Draw", "back": 4.5, "back_amount": 50, "tick_ts": tick},
+        {"market_id": "mo", "selection_id": 2, "event_id": "e1", "market_type": "MATCH_ODDS", "runner": "Lowen Frankfurt", "back": 3.6, "back_amount": 50, "tick_ts": tick},
+        # e2: only 3-way
+        {"market_id": "m2", "selection_id": 1, "event_id": "e2", "market_type": "MATCH_ODDS", "runner": "Straubing Tigers", "back": 2.4, "back_amount": 50, "tick_ts": tick},
+        {"market_id": "m2", "selection_id": 3, "event_id": "e2", "market_type": "MATCH_ODDS", "runner": "The Draw", "back": 4.4, "back_amount": 50, "tick_ts": tick},
+        {"market_id": "m2", "selection_id": 2, "event_id": "e2", "market_type": "MATCH_ODDS", "runner": "Kolner Haie", "back": 2.6, "back_amount": 50, "tick_ts": tick},
+    ]
+    monkeypatch.setattr(orbit_prices, "_load", lambda: (orbit_fx, prices))
+    g1 = EspnGame("orbit:e1", "del", ko, Team("Adler Mannheim"), Team("Lowen Frankfurt"), "STATUS_SCHEDULED")
+    g2 = EspnGame("orbit:e2", "del", ko, Team("Straubing Tigers"), Team("Kolner Haie"), "STATUS_SCHEDULED")
+    f1 = Fixture("del", "hockey", g1, {"home": 0.7, "away": 0.3}, "")
+    f2 = Fixture("del", "hockey", g2, {"home": 0.5, "away": 0.5}, "")
+    issues = []
+    n = orbit_prices.attach([f1, f2], issues)
+    assert n == 2
+    assert f1.offers["home"][0].odds == round(1 + 0.5 * 0.97, 4)
+    assert f1.offers["away"][0].source == "orbit"
+    assert not f2.offers
+    assert any("60-Min-1X2" in i for i in issues)
