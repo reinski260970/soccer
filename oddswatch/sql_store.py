@@ -134,6 +134,10 @@ plays = Table(
 def database_url() -> str:
     url = os.getenv("SPORTS_DATABASE_URL", "").strip()
     if url:
+        # Neon liefert "postgresql://…"; SQLAlchemy braucht den psycopg-3-Treiber explizit.
+        for prefix in ("postgresql://", "postgres://"):
+            if url.startswith(prefix):
+                return "postgresql+psycopg://" + url[len(prefix):]
         return url
     Path("data").mkdir(exist_ok=True)
     return "sqlite:///data/sports.db"
