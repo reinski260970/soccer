@@ -17,7 +17,7 @@ from .models.fatigue import Effects, Slot, TeamLoad
 from .models.poisson import Match, PoissonModel, hockey_regulation_to_moneyline
 from .models.ratings import Game, PointsModel
 from .selection import Candidate, Offer, evaluate, pick
-from .sources import apihockey, clubelo, eloratings, espn, football_data, hockeyarchives, nhl, oddalerts, soccerstats, xg_external
+from .sources import apihockey, clubelo, eloratings, espn, football_data, hockeyarchives, nhl, orbit_fixtures, oddalerts, soccerstats, xg_external
 from . import fetch, venues
 from . import soccer_steam
 from .m17_11_external_shadow import fair as external_structural_fair
@@ -869,6 +869,7 @@ HOCKEY_ALIASES = {
               "Kärpät": "Kärpät Oulu", "Lukko": "Lukko Rauma", "Pelicans": "Pelicans Lahti",
               "SaiPa": "SaiPa Lappeenranta", "Sport": "Sport Vaasa", "TPS": "TPS Turku",
               "Tappara": "Tappara Tampere", "Ässät": "Ässät Pori"},
+    "extraliga": {"Mountfield HK": "Hradec Králové"},
     "khl": {"Avtomobilist Yekaterinburg": "Avtomobilist Ekaterinburg", "CSKA Moscow": "CSKA Moscou",
             "HC Barys": "Barys Astana", "HC Dynamo Moscow": "Dynamo Moscou", "HC Sochi": "HK Sotchi",
             "HK Avangard Omsk": "Avangard Omsk", "Kunlun Red Star": "Shanghai Dragons",
@@ -938,9 +939,38 @@ def scan_hockey_eu(start: date, days: int, issues: list[str], notes: list[str]) 
     out = _scan_icehl(start, until, now, issues, notes)
     season = start.year if start.month >= 7 else start.year - 1
 
-    # DEL (und Extraliga) haben nach dem Wegfall von Kalshi noch keine
-    # Spielplanquelle; geplant ist der eigene Orbit-Crawler. Bis dahin kein Scan.
-    notes.append("DEL: keine Spielplanquelle (Kalshi entfernt) – wartet auf Orbit-Crawler-Anbindung")
+    # DEL und tschechische Extraliga: Spielplan aus dem eigenen Orbit-Crawler
+    # (Neon sports.orbit_fixtures, nur Termine). Preise kommen separat.
+    for lg, label in (("del", "DEL"), ("extraliga", "Extraliga (CZ)")):
+        upcoming, err = orbit_fixtures.upcoming(lg, now, until)
+        if err:
+            issues.append(f"{label}: {err}")
+            continue
+        if not upcoming:
+            notes.append(f"{label}: keine Spiele im Orbit-Spielplan für das Scanfenster")
+            continue
+        ms, n_cur = _hockey_results(lg, season, issues)
+        if len(ms) < 150:
+            issues.append(f"{label}: nur {len(ms)} Ergebnisse für Modell")
+            continue
+        model = PoissonModel.fit(ms, start, half_life_days=240, xg_weight=0.0, shrink=8.0, rho=0.0)
+        notes.append(f"{label}: Spielplan Orbit · Modell aus {len(ms)} Spielen, davon {n_cur} aktuell")
+        for g in upcoming:
+            h = matching.find_strict(g["home"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
+            a = matching.find_strict(g["away"], list(model.attack), HOCKEY_ALIASES.get(lg, {}))
+            if not h or not a:
+                issues.append(f"{label}: Team nicht zugeordnet ({g['home']} – {g['away']})")
+                continue
+            mk = model.markets(h, a)
+            ph, pa = hockey_regulation_to_moneyline(mk["1"], mk["X"], mk["2"])
+            game = espn.EspnGame(g["id"], lg, g["start"], espn.Team(g["home"]),
+                                 espn.Team(g["away"]), "STATUS_SCHEDULED")
+            out.append(Fixture(
+                lg, "hockey", game, {"home": ph, "away": pa},
+                f"erw. Tore {mk['xg_home']:.2f}:{mk['xg_away']:.2f}",
+                ["Fixture: Orbit", f"Form {h} {_form(ms, h, g['start'].date())}, {a} {_form(ms, a, g['start'].date())}"],
+                estimate=True, model="poisson-hockey-eu"
+            ))
 
     # Liiga und SHL kommen direkt aus ihren offiziellen Liga-Feeds.
     for lg in ("liiga", "shl"):

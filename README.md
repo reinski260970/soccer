@@ -2,8 +2,9 @@
 
 Sportmodelle, Fußball-Quotenwächter und deutsche Berichte. Kalshi und
 Polymarket sind vollständig entfernt (keine Quellen, Workflows oder Signale
-mehr); Börsenpreise kommen aus dem eigenen Orbit-Crawler. DEL hat vorerst
-keinen Spielplan (geplant: Orbit-Crawler); NL und KHL sind nicht mehr im Scan. Historische Journale und
+mehr); Börsenpreise kommen aus dem eigenen Orbit-Crawler. Spielpläne für DEL und
+tschechische Extraliga kommen aus dem eigenen Orbit-Crawler über Neon
+(`tools/orbit_fixtures_export.py`); NL und KHL sind nicht mehr im Scan. Historische Journale und
 Berichte bleiben unverändert.
 
 ## Befehle
