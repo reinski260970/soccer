@@ -1,0 +1,29 @@
+name: ceskyhokej-probe
+
+# Einmalige Probe: lädt zwei Ergebnisseiten von ceskyhokej.cz und legt sie auf
+# dem Branch probe-data ab (zum Entwickeln des Parsers). Kein Telegram, keine DB.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Seiten laden
+        run: |
+          mkdir out
+          curl -sSL -A "Mozilla/5.0 oddswatch" "https://ceskyhokej.cz/competition/games/14" -o out/p1.html
+          curl -sSL -A "Mozilla/5.0 oddswatch" "https://ceskyhokej.cz/competition/games/14?gameListWidget-page=2&do=gameListWidget-changePage" -o out/p2.html
+          ls -la out
+      - name: Auf probe-data ablegen
+        run: |
+          cd out
+          git init -q -b probe-data
+          git config user.name "oddswatch-bot"
+          git config user.email "oddswatch-bot@users.noreply.github.com"
+          git add . && git commit -qm "ceskyhokej probe"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-data
