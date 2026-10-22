@@ -46,21 +46,17 @@ jobs:
           if db is None:
               db = c[choose_database(c.list_database_names())]
           print("db:", db.name, "collections:", db.list_collection_names())
-          for coll in ("mains", "extra_leagues"):
-              col = db[coll]
-              doc = col.find_one(sort=[("_id", -1)]) or {}
-              print(f"== {coll}: {col.estimated_document_count()} docs; fields: {sorted(doc.keys())}")
-              key = next((k for k in ("Div", "league", "League", "competition", "Country", "country") if k in doc), None)
-              date = next((k for k in ("Date", "date", "match_date", "kickoff") if k in doc), None)
-              print("  group by", key, "date field", date)
-              if not key:
-                  continue
-              pipe = [{"$group": {"_id": "$" + key, "n": {"$sum": 1},
-                                  "first": {"$min": "$" + date} if date else {"$first": None},
-                                  "last": {"$max": "$" + date} if date else {"$first": None}}},
-                      {"$sort": {"_id": 1}}]
+          col = db["extra_leagues"]
+          for country in ("Sweden", "Norway", "Denmark"):
+              pipe = [{"$match": {"Country": country}},
+                      {"$group": {"_id": {"l": "$League", "s": "$Season"}, "n": {"$sum": 1},
+                                  "first": {"$min": "$Date"}, "last": {"$max": "$Date"}}},
+                      {"$sort": {"_id.s": -1}}, {"$limit": 3}]
               for r in col.aggregate(pipe, maxTimeMS=20000):
-                  print(f"  {r['_id']!s:30} n={r['n']:6}  {r['first']} .. {r['last']}")
+                  print(f"{country} | {r['_id']} n={r['n']} {r['first']} .. {r['last']}")
+              for d in col.find({"Country": country}, {"_id": 0, "Date": 1, "Time": 1, "Season": 1, "Home": 1, "Away": 1, "HG": 1, "AG": 1, "Res": 1}).sort("_id", -1).limit(3):
+                  print("   ", d)
+          print("Countries:", sorted(str(x) for x in col.distinct("Country")))
           PY
           cat out.txt
           echo "::notice title=mongo::$(sed ':a;N;$!ba;s/\n/%0A/g' out.txt | cut -c1-60000)"
