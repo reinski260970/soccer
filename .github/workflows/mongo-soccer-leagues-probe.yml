@@ -19,8 +19,10 @@ jobs:
       - run: pip install "pymongo>=4.6"
       - name: Probe
         run: |
-          python - > out.txt 2>&1 <<'PY'
-          import os
+          python - > out.txt 2>&1 <<'PY' || true
+          import os, sys, traceback
+          sys.excepthook = lambda t, e, tb: print("FEHLER:", t.__name__, str(e)[:300].replace(os.environ.get("MONGO_SOCCER", "x"), "<uri>"))
+          print("secret gesetzt:", bool(os.environ.get("MONGO_SOCCER")))
           from pymongo import MongoClient
           from oddswatch.sources.football_mongo import choose_database
           c = MongoClient(os.environ["MONGO_SOCCER"], serverSelectionTimeoutMS=15000)
