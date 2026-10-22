@@ -4,26 +4,17 @@ import pytest
 from oddswatch import active, bookmaker, guard, daily, news, settle
 from oddswatch.journal import Journal
 from oddswatch.scan import Fixture, evaluate_fixture
-from oddswatch.sources import kalshi, polymarket
 from oddswatch.sources.espn import EspnGame, Team
 
 
-def test_prediction_markets_are_reference_only_by_default(monkeypatch):
-    monkeypatch.delenv('KALSHI_EXECUTABLE', raising=False)
-    monkeypatch.delenv('POLYMARKET_EXECUTABLE', raising=False)
-    assert kalshi is not None and polymarket is not None
+def test_prediction_markets_are_removed():
+    import importlib.util
+    assert importlib.util.find_spec("oddswatch.sources.kalshi") is None
+    assert importlib.util.find_spec("oddswatch.sources.polymarket") is None
+    # Legacy journal rows from these providers are never eligible again.
     assert not active.eligible({'source': 'kalshi', 'ref': 'kalshi:KXTEST:yes'})
     assert not active.eligible({'source': 'polymarket', 'ref': 'polymarket:test:1'})
-
-
-def test_prediction_market_alerts_require_switch_and_current_ref(monkeypatch):
-    monkeypatch.setenv('KALSHI_EXECUTABLE', '1')
-    monkeypatch.setenv('POLYMARKET_EXECUTABLE', 'true')
-    assert active.eligible({'source': 'kalshi', 'ref': 'kalshi:KXTEST:yes'})
-    assert active.eligible({'source': 'polymarket', 'ref': 'polymarket:test:1'})
-    # Legacy rows without a current provider reference must never be resurrected.
-    assert not active.eligible({'source': 'kalshi'})
-    assert not active.eligible({'source': 'polymarket'})
+    assert active.eligible({'source': 'orbit'})
 
 
 def test_bookmaker_prices_are_separate_from_reference(monkeypatch):
@@ -44,7 +35,6 @@ def test_bookmaker_prices_are_separate_from_reference(monkeypatch):
 
 
 def test_legacy_prediction_market_row_not_republished_and_journal_unchanged(monkeypatch, tmp_path):
-    monkeypatch.delenv('KALSHI_EXECUTABLE', raising=False)
     j = Journal(tmp_path / 'journal')
     row = {'event': 'Old A – Old B', 'market': 'home', 'selection': 'Old A', 'source': 'kalshi', 'league': 'nations', 'kickoff': '2026-10-06T12:00:00+00:00', 'odds': 2, 'stake_eh': 1, 'fair_odds': 1.8, 'min_odds': 1.9}
     j.append('valuebets', [row])
@@ -83,3 +73,14 @@ def test_strict_guard_send_failure_is_red_and_retryable(monkeypatch, tmp_path):
     with pytest.raises(RuntimeError, match='Telegram'):
         guard.run(send=True, strict=True)
     assert (tmp_path / 'state').read_text() == '[]'
+
+
+def test_portfolio_line_excludes_legacy_and_flags_small_sample():
+    from oddswatch import ceo_runner
+    rows = [
+        {'source': 'kalshi', 'result': 'loss', 'stake_eh': '1', 'pnl_eh': '-1', 'clv': '-0.1'},
+        {'source': 'bet365', 'result': 'win', 'stake_eh': '1', 'pnl_eh': '0.9', 'clv': '0.02'},
+    ]
+    line = ceo_runner._portfolio_line(rows, 'X')
+    assert 'ROI +90.0%' in line and '1 abgerechnet' in line
+    assert 'nicht aussagekräftig' in line and '1 Alt-Wetten' in line

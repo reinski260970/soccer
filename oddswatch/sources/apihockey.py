@@ -289,8 +289,9 @@ def attach(fixtures, issues: list[str]) -> int:
     return matched
 
 
-def find_league_id(name: str, season: int | None = None) -> tuple[int | None, str | None]:
-    """Resolve an API-Hockey league id by exact/normalized name."""
+def find_league_id(name: str, season: int | None = None, country: str | None = None
+                   ) -> tuple[int | None, str | None]:
+    """Resolve an API-Hockey league id by exact/normalized name (optionally per country)."""
     from urllib.parse import urlencode
     params = {"search": name}
     if season is not None:
@@ -309,6 +310,11 @@ def find_league_id(name: str, season: int | None = None) -> tuple[int | None, st
         except (TypeError, ValueError, AttributeError):
             continue
         lname = str(lg.get("name") or row.get("name") or "")
+        if country:
+            c = row.get("country") or lg.get("country") or {}
+            cname = str(c.get("name") if isinstance(c, dict) else c or "")
+            if matching.norm(cname) != matching.norm(country):
+                continue
         n = matching.norm(lname)
         if n == target:
             exact.append(lid)
@@ -318,14 +324,15 @@ def find_league_id(name: str, season: int | None = None) -> tuple[int | None, st
     return (hits[0] if len(set(hits)) == 1 else None), None
 
 
-def league_games(league_name: str, season: int) -> tuple[list[dict], str | None]:
+def league_games(league_name: str, season: int, country: str | None = None
+                 ) -> tuple[list[dict], str | None]:
     """Fetch a complete league season from API-Hockey.
 
     Returns normalized rows with kickoff, teams, status and scores. The parser
     is defensive because API-Hockey has used both nested and flat score shapes.
     """
     from urllib.parse import urlencode
-    lid, err = find_league_id(league_name, season)
+    lid, err = find_league_id(league_name, season, country)
     if err or lid is None:
         return [], err or f"API-Hockey: Liga nicht eindeutig gefunden ({league_name})"
     data, err = _get("/games?" + urlencode({"league": lid, "season": season, "timezone": "UTC"}))
@@ -364,3 +371,21 @@ def league_games(league_name: str, season: int) -> tuple[list[dict], str | None]
             "away_goals": ag,
         })
     return out, None
+
+
+_FINISHED = {"FT", "AOT", "AP", "POST", "CANC", "ABD", "AWD", "WO"}
+
+
+def upcoming_fixtures(league_name: str, season: int, start: datetime, until: datetime,
+                      country: str | None = None) -> tuple[list[dict], str | None]:
+    """Schedule-only fixture discovery (replaces the former Kalshi feed).
+
+    Returns dicts with id/start/home/away for games kicking off in (start, until].
+    Prices are attached later by attach(); nothing here is a market quote.
+    """
+    rows, err = league_games(league_name, season, country)
+    if err:
+        return [], err
+    out = [g for g in rows
+           if start < g["start"] <= until and str(g.get("status") or "").upper() not in _FINISHED]
+    return sorted(out, key=lambda g: g["start"]), None

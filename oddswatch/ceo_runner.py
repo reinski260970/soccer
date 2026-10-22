@@ -57,18 +57,31 @@ def _news_lines(alerts: list, article_count: int) -> list[str]:
     return out
 
 
+MIN_SAMPLE = 30
+
+
 def _portfolio_line(rows: list[dict], label: str) -> str:
-    done = [
+    from .active import eligible
+    done_all = [
         r for r in rows
         if r.get("result") and r.get("result") not in ("void", "withdrawn")
     ]
+    # Rows from removed providers (Kalshi/Polymarket) stay in the journal but
+    # do not describe the current system, so they are reported separately.
+    done = [r for r in done_all if eligible(r)]
+    legacy = len(done_all) - len(done)
     stake = sum(_f(r.get("stake_eh")) for r in done)
     pnl = sum(_f(r.get("pnl_eh")) for r in done)
     clv = [_f(r.get("clv")) for r in done if r.get("clv") not in (None, "")]
     roi = pnl / stake if stake else None
     clv_txt = f"{sum(clv) / len(clv) * 100:+.1f}% (n={len(clv)})" if clv else "–"
     roi_txt = f"{roi * 100:+.1f}%" if roi is not None else "–"
-    return f"{label}: ROI {roi_txt} · Ø CLV {clv_txt} · {len(done)} abgerechnet"
+    line = f"{label}: ROI {roi_txt} · Ø CLV {clv_txt} · {len(done)} abgerechnet"
+    if len(done) < MIN_SAMPLE:
+        line += f" · Stichprobe < {MIN_SAMPLE}, nicht aussagekräftig"
+    if legacy:
+        line += f" · {legacy} Alt-Wetten (Kalshi/Polymarket) ausgeklammert"
+    return line
 
 
 def _clv_lines(j: Journal) -> list[str]:

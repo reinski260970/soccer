@@ -318,27 +318,33 @@ def grade_market(market: str, home_score: float, away_score: float) -> bool | No
 
 
 def _closing_fair(g, market: str) -> float | None:
-    """Closing no-vig decimal odds from ESPN when the final scoreboard exposes them."""
+    """Closing no-vig decimal odds from ESPN, only when a real *closing* quote exists.
+
+    Opening lines and legacy single-number fields are deliberately ignored: a
+    CLV against the opener is not a CLV and inflated/deflated the reported values.
+    """
     from . import pricing
     r = g.ref_line or {}
     m = (market or "").strip().replace("_", "").replace(" ", "").lower()
     if m in {"home", "away", "draw", "1", "2", "x"}:
-        if r.get("ml_draw") and all((r.get(k) or 0) > 1 for k in ("ml_home", "ml_draw", "ml_away")):
-            ps = pricing.devig([r["ml_home"], r["ml_draw"], r["ml_away"]])
+        h, d, a = r.get("close_ml_home"), r.get("close_ml_draw"), r.get("close_ml_away")
+        if d and all((x or 0) > 1 for x in (h, d, a)):
+            ps = pricing.devig([h, d, a])
             p = {"home": ps[0], "1": ps[0], "draw": ps[1], "x": ps[1],
                  "away": ps[2], "2": ps[2]}[m]
             return 1.0 / p
-        if all((r.get(k) or 0) > 1 for k in ("ml_home", "ml_away")):
-            ps = pricing.devig([r["ml_home"], r["ml_away"]])
+        if not d and all((x or 0) > 1 for x in (h, a)):
+            ps = pricing.devig([h, a])
             p = {"home": ps[0], "1": ps[0], "away": ps[1], "2": ps[1]}.get(m)
             return 1.0 / p if p else None
+        return None
     mt = _TOTAL_RE.match((market or "").replace(" ", ""))
-    if mt and r.get("total_line") is not None:
+    if mt and r.get("close_total_line") is not None:
         line = float(mt.group(2))
-        if abs(float(r["total_line"]) - line) < 1e-9 and all(
-            (r.get(k) or 0) > 1 for k in ("ml_over", "ml_under")
+        if abs(float(r["close_total_line"]) - line) < 1e-9 and all(
+            (r.get(k) or 0) > 1 for k in ("close_ml_over", "close_ml_under")
         ):
-            ps = pricing.devig([r["ml_over"], r["ml_under"]])
+            ps = pricing.devig([r["close_ml_over"], r["close_ml_under"]])
             return 1.0 / (ps[0] if mt.group(1).upper() == "O" else ps[1])
     return None
 

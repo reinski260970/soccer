@@ -3,13 +3,13 @@ from types import SimpleNamespace
 
 from oddswatch import pricing
 from oddswatch.selection import Offer, evaluate, pick
-from oddswatch.sources import apihockey, kalshi
+from oddswatch.sources import apihockey
 
 
 def test_reference_only_offer_never_becomes_play():
     o = Offer(
         event="A – B", kickoff="2026-10-07T18:00:00+00:00", market="home",
-        selection="A ML", odds=3.0, source="polymarket",
+        selection="A ML", odds=3.0, source="orbit",
         observed_at="2026-10-07T06:00:00+00:00", league="nhl", executable=False,
     )
     c = evaluate(o, 0.5, p_final=0.5)
@@ -40,17 +40,20 @@ def test_apihockey_parses_two_way_moneyline():
     assert abs(ref["home"] - expected[0]) < 1e-9
 
 
-def test_kalshi_side_and_prices():
-    game = SimpleNamespace(
-        home=SimpleNamespace(aliases=lambda: ["Boston Bruins"]),
-        away=SimpleNamespace(aliases=lambda: ["New York Rangers"]),
-    )
-    m = {
-        "yes_sub_title": "Boston Bruins",
-        "no_sub_title": "New York Rangers",
-        "yes_ask_dollars": "0.5400",
-        "no_ask_dollars": "0.4800",
-    }
-    assert kalshi._market_side(m, game) == ("home", "away")
-    assert kalshi._ask(m, "yes") == 0.54
-    assert kalshi._ask(m, "no") == 0.48
+def test_apihockey_upcoming_fixtures_filters_window_and_finished(monkeypatch):
+    t = lambda h: datetime(2026, 10, 22, h, tzinfo=timezone.utc)
+    rows = [
+        {"id": 1, "start": t(10), "home": "A", "away": "B", "status": "FT"},
+        {"id": 2, "start": t(19), "home": "C", "away": "D", "status": "NS"},
+        {"id": 3, "start": t(18), "home": "E", "away": "F", "status": "NS"},
+        {"id": 4, "start": t(23), "home": "G", "away": "H", "status": "NS"},
+    ]
+    seen = {}
+    def fake(name, season, country=None):
+        seen["args"] = (name, season, country)
+        return rows, None
+    monkeypatch.setattr(apihockey, "league_games", fake)
+    out, err = apihockey.upcoming_fixtures("DEL", 2026, t(12), t(20), "Germany")
+    assert err is None
+    assert [g["id"] for g in out] == [3, 2]
+    assert seen["args"] == ("DEL", 2026, "Germany")
