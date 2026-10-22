@@ -1,0 +1,34 @@
+name: scan-dry
+
+# Spieltags-Scan auf Abruf: Modelle + Preise, Ausgabe nur im Lauf (Notice).
+# Kein Telegram, kein Journal-Commit.
+on:
+  workflow_dispatch:
+    inputs:
+      sports:
+        description: "Sportarten (soccer,nhl,hockey_eu,nfl,nba)"
+        default: "soccer,hockey_eu,nhl"
+      days:
+        description: "Tage voraus"
+        default: "1"
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      APIKEY: ${{ secrets.APIKEY }}
+      SPORTS_DATABASE_URL: ${{ secrets.SPORTS_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Scan
+        run: |
+          python -m oddswatch scan --sports "${{ inputs.sports }}" --days "${{ inputs.days }}" --watch-days 3 --dry > scan.txt 2>&1 || true
+          wc -l scan.txt
+          cat scan.txt
+          split -l 120 scan.txt part_
+          for f in part_*; do echo "::notice title=scan-$f::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
