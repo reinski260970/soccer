@@ -7,18 +7,18 @@
   },
   "leagues": {
     "nhl": {
-      "history_games": 5432,
+      "history_games": 5435,
       "seasons": {
         "2022/23": 1312,
         "2023/24": 1312,
         "2024/25": 1312,
         "2025/26": 1312,
-        "2026/27": 184
+        "2026/27": 187
       },
       "substantial_seasons": 4,
       "teams": 33,
       "date_from": "2022-10-07",
-      "date_to": "2026-10-25",
+      "date_to": "2026-10-26",
       "training_data_ready": true,
       "market_closing_rows": 3,
       "market_data_ready": false
