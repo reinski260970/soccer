@@ -4280,6 +4280,13 @@ icehl,2026/27,2026-10-30,Ljubljana,Vienne,3,1,,icehl-api
 icehl,2026/27,2026-10-30,Milano HC,Feldkirch,7,3,,icehl-api
 icehl,2026/27,2026-10-30,Pustertal,Salzbourg,3,1,,icehl-api
 icehl,2026/27,2026-10-31,Innsbruck,Ferencváros,1,4,,icehl-api
+icehl,2026/27,2026-11-01,Feldkirch,Ferencváros,4,4,OT,icehl-api
+icehl,2026/27,2026-11-01,Graz,Villach,4,1,,icehl-api
+icehl,2026/27,2026-11-01,Innsbruck,Pustertal,1,2,,icehl-api
+icehl,2026/27,2026-11-01,Klagenfurt,Linz,7,2,,icehl-api
+icehl,2026/27,2026-11-01,Milano HC,Ljubljana,1,6,,icehl-api
+icehl,2026/27,2026-11-01,Salzbourg,Fehérvár,7,2,,icehl-api
+icehl,2026/27,2026-11-01,Vienne,Bolzano,3,3,SO,icehl-api
 liiga,2022/23,2022-09-13,Sport Vaasa,JYP Jyväskylä,3,1,,hockeyarchives
 liiga,2022/23,2022-09-13,Tappara Tampere,TPS Turku,3,1,,hockeyarchives
 liiga,2022/23,2022-09-14,HIFK Helsinki,HPK Hämeenlinna,4,1,,hockeyarchives
@@ -6377,6 +6384,7 @@ liiga,2026/27,2026-10-31,KooKoo,HIFK,1,3,,liiga-api
 liiga,2026/27,2026-10-31,Kärpät,Jukurit,1,2,,liiga-api
 liiga,2026/27,2026-10-31,Pelicans,K-Espoo,0,3,,liiga-api
 liiga,2026/27,2026-10-31,Sport,Ässät,1,2,,liiga-api
+liiga,2026/27,2026-11-01,Tappara,HPK,0,3,,liiga-api
 nhl,2022/23,2022-10-07,NSH,SJS,4,1,,nhl-api
 nhl,2022/23,2022-10-08,SJS,NSH,2,3,,nhl-api
 nhl,2022/23,2022-10-11,LAK,VGK,3,4,,nhl-api
@@ -11851,3 +11859,8 @@ nhl,2026/27,2026-10-31,NSH,TBL,4,4,,nhl-api
 nhl,2026/27,2026-10-31,NYI,EDM,0,4,,nhl-api
 nhl,2026/27,2026-10-31,SJS,OTT,1,5,,nhl-api
 nhl,2026/27,2026-10-31,VAN,TOR,2,4,,nhl-api
+nhl,2026/27,2026-11-01,ANA,OTT,6,3,,nhl-api
+nhl,2026/27,2026-11-01,CAR,WPG,7,0,,nhl-api
+nhl,2026/27,2026-11-01,NYR,EDM,1,4,,nhl-api
+nhl,2026/27,2026-11-01,PHI,UTA,6,3,,nhl-api
+nhl,2026/27,2026-11-01,WSH,MIN,1,5,,nhl-api
