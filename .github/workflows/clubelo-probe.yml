@@ -1,0 +1,18 @@
+name: clubelo-probe
+on:
+  push:
+    branches: [clubelo-probe]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe ClubElo endpoints
+        run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+          for u in "http://api.clubelo.com/2026-11-02" "https://api.clubelo.com/2026-11-02" "http://api.clubelo.com/Fixtures" "https://clubelo.com/AUT" "http://clubelo.com/AUT"; do
+            for ua in "oddswatch/0.2" "$UA"; do
+              code=$(curl -s -m 25 -A "$ua" -o out.txt -w "%{http_code} %{size_download}" "$u")
+              echo "== $u [$ua] -> $code"; head -c 300 out.txt | tr '\n' ' '; echo
+            done
+          done
