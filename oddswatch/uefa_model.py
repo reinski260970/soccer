@@ -59,7 +59,12 @@ PRIOR_GOALS = 1.35        # Tore je Team bei gleicher Stärke, neutraler Ort
 PRIOR_HOME = 60.0         # Heimvorteil in Elo-Punkten
 CALIB_PSEUDO = 200.0      # Prior-Gewicht in Spielen
 CALIB_MIN_PREMATCH = 120
-COMP_SHRINK = 150.0       # Pseudo-Spiele für den Torniveau-Faktor je Wettbewerb  # ab so vielen Spielen mit Vor-Spiel-Elo keine Näherung mehr
+COMP_SHRINK = 150.0
+# Steigung fest auf ClubElos Siegerwartung: die historischen Vor-Spiel-Werte der
+# eigenen Fortschreibung sind verrauschter als die aktuellen (verankerten) Werte;
+# eine dort geschätzte Steigung wäre zu flach (Regressionsverdünnung) und würde
+# Favoriten in der Prognose systematisch unterschätzen.
+FIT_SLOPE = False       # Pseudo-Spiele für den Torniveau-Faktor je Wettbewerb  # ab so vielen Spielen mit Vor-Spiel-Elo keine Näherung mehr
 RHO = -0.05               # Dixon-Coles
 XG_SHARE = 0.5            # Anteil des xG-Residuums, der ins Elo geht
 XG_SHRINK = 10.0          # Pseudo-Spiele
@@ -500,7 +505,8 @@ def fit_calibration(rows: list[tuple[float, float, bool, int, int]], source: str
     g, m, hf, hd = round(PRIOR_GOALS, 2), 1.0, PRIOR_HOME, PRIOR_HOME
     for _ in range(8):
         g = max(g_grid, key=lambda x: ll(x, m, hf, hd))
-        m = max(m_grid, key=lambda x: ll(g, x, hf, hd))
+        if FIT_SLOPE:
+            m = max(m_grid, key=lambda x: ll(g, x, hf, hd))
         hf = max(h_grid, key=lambda x: ll(g, m, x, hd))
         hd = max(h_grid, key=lambda x: ll(g, m, hf, x))
     w = n / (n + CALIB_PSEUDO)
@@ -900,10 +906,11 @@ def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched
     L += [f"- Kalibrierung ({cal.source}): {cal.n} Spiele"
           + (f", {meta['excluded']} Quali-/Play-off-Spiele ausgeschlossen" if meta.get("excluded") else "")
           + f" → {cal.goals:.2f} Tore je Team bei Gleichstand, Steigung {cal.b:.3f} "
-          f"(×{cal.b_mult:.2f} ggü. ClubElo-Erwartung, {cal.elo_per_goal:.0f} Elo ≈ 1 Tor)",
+          + (f"(×{cal.b_mult:.2f} ggü. ClubElo-Erwartung, " if FIT_SLOPE else "(fest an ClubElo-Siegerwartung, ")
+          + f"{cal.elo_per_goal:.0f} Elo ≈ 1 Tor)",
           f"- Heimvorteil: Heimteam favorisiert {cal.home:.0f} Elo, Heimteam Außenseiter {cal.home_dog:.0f} Elo"
-          + (f" (reiner Fit {cal.fit_home:.0f} / {cal.fit_home_dog:.0f}, Steigung ×{cal.fit_mult:.2f}, "
-             f"Tore {cal.fit_goals:.2f}; Richtung Prior geschrumpft)" if cal.fit_home_dog is not None else ""),
+          + (f" (reiner Fit {cal.fit_home:.0f} / {cal.fit_home_dog:.0f}, Tore {cal.fit_goals:.2f}; "
+             "Richtung Prior geschrumpft)" if cal.fit_home_dog is not None else ""),
           f"- xG: Liga-xG für {len(dom)} Teams, Europapokal-xG aus {len(xg_u)} Spielen", ""]
     comps = [(k, d) for k, d in cal.diag.items() if k in {v[0] for v in COMPS.values()}]
     if comps:
