@@ -272,9 +272,9 @@ def test_engine_anchor_and_league_offset():
     anchor = {1: 1800.0, 5: 1500.0}
     res = E.run_engine(games, anchor, date(2026, 6, 1))
     assert res.current[1] == 1800.0 and res.current[5] == 1500.0   # keine Spiele nach dem Anker
-    # Ligakollegen werden mit der Liga verschoben – bei nur einem Ankerteam
-    # je Liga bewusst zur Mitte geschrumpft (Ankerabstand 300 Elo)
-    assert 50 < res.offsets["L1"] - res.offsets["L2"] < 300
+    # Ligakollegen werden mit der Liga verschoben; ein einzelner Anker zählt
+    # nahezu voll (SD 60 gegen Prior-SD 150)
+    assert res.offsets["L1"] - res.offsets["L2"] > 150
     assert sum(res.current[t] for t in (2, 3, 4)) / 3 > sum(res.current[t] for t in (6, 7, 8)) / 3 + 50
 
 

@@ -31,7 +31,6 @@ K_HIST = 30.0
 K_LIVE = 20.0
 H_ENGINE = 65.0
 MIN_GAMES_FOR_OFFSET = 10
-OFFSET_SHRINK = 2.0
 FINISHED = {"FT", "AET", "PEN"}
 
 TEAM_LEAGUES = Path("data/journal/uefa_team_leagues.json")
@@ -121,40 +120,44 @@ def run_engine(games: list[EGame], anchor: dict[int, float], anchor_date: date) 
     if snap is None:
         snap = dict(r1)
 
-    # Verankerung je Liga
-    diffs: dict[str, list[float]] = defaultdict(list)
-    for t, e in anchor.items():
-        if n_before[t] >= MIN_GAMES_FOR_OFFSET and t in snap:
-            diffs[league_of.get(t, f"T{t}")].append(e - snap[t])
-    alld = [d for v in diffs.values() for d in v]
-    g_off = sum(alld) / len(alld) if alld else 0.0
-    offsets = {lg: (sum(v) + OFFSET_SHRINK * g_off) / (len(v) + OFFSET_SHRINK)
-               for lg, v in diffs.items()}
-
-    # Ligen ohne ClubElo-Anker (z. B. Andorra, Gibraltar): über ihre
-    # Europapokal-Ergebnisse gegen bereits eingeordnete Gegner platzieren.
-    # Teams ohne bekannte Liga bilden eine eigene Gruppe.
+    # Verankerung je Liga: Verschiebung o_L, die zugleich zu den ClubElo-Ankern
+    # der Liga (je Team SD 60) und zu den Europapokal-Ergebnissen ihrer Teams
+    # gegen andere Ligen passt; schwacher Prior (SD 150) um das Gesamtmittel.
+    # So werden auch Ligen mit einem oder keinem Anker (Andorra, Gibraltar)
+    # über ihre echten Ergebnisse eingeordnet statt beim Mittel zu landen.
     def group(t: int) -> str:
         return league_of.get(t, f"T{t}")
 
-    placed: dict[str, tuple[float, int]] = {}
-    pending: dict[str, list[tuple[float, float, float, float]]] = defaultdict(list)
+    diffs: dict[str, list[float]] = defaultdict(list)
+    for t, e in anchor.items():
+        if n_before[t] >= MIN_GAMES_FOR_OFFSET and t in snap:
+            diffs[group(t)].append(e - snap[t])
+    alld = [d for v in diffs.values() for d in v]
+    g_off = sum(alld) / len(alld) if alld else 0.0
+    offsets = {lg: _place(v, [], g_off) for lg, v in diffs.items()}
+
+    cup = []
     for g in gs:
         if g.comp.startswith("L") or g.t.date() >= anchor_date:
             continue
         gh, ga = group(g.h), group(g.a)
-        if (gh in offsets) == (ga in offsets):
+        if gh == ga:
             continue
         h1, a1 = pre1[g.id]
         res = 1.0 if g.hg > g.ag else 0.5 if g.hg == g.ag else 0.0
-        ha = 0.0 if g.neutral else H_ENGINE
-        if gh not in offsets:   # unbekannte Gruppe spielt zu Hause
-            pending[gh].append((h1 + ha, a1 + offsets[ga], res, margin(g.hg - g.ag)))
-        else:
-            pending[ga].append((a1, h1 + offsets[gh] + ha, 1.0 - res, margin(g.hg - g.ag)))
-    for grp, obs in pending.items():
-        placed[grp] = (_place(obs, g_off), len(obs))
-        offsets[grp] = placed[grp][0]
+        cup.append((gh, ga, h1 + (0.0 if g.neutral else H_ENGINE), a1, res, margin(g.hg - g.ag)))
+    n_cup: Counter = Counter()
+    for _ in range(3):
+        obs: dict[str, list[tuple[float, float, float, float]]] = defaultdict(list)
+        for gh, ga, hr, ar, res, w in cup:
+            if ga in offsets:
+                obs[gh].append((hr, ar + offsets[ga], res, w))
+            if gh in offsets:
+                obs[ga].append((ar, hr + offsets[gh], 1.0 - res, w))
+        n_cup = Counter({k: len(v) for k, v in obs.items()})
+        offsets = {grp: _place(diffs.get(grp, []), obs.get(grp, []), g_off)
+                   for grp in set(diffs) | set(obs)}
+    placed = {grp: (offsets[grp], n_cup[grp]) for grp in offsets if grp not in diffs}
 
     def off(t: int) -> float:
         return offsets.get(group(t), g_off)
@@ -185,16 +188,20 @@ def run_engine(games: list[EGame], anchor: dict[int, float], anchor_date: date) 
 PLACE_PRIOR_SD = 150.0
 
 
-def _place(obs: list[tuple[float, float, float, float]], prior: float) -> float:
-    """Verschiebung o, die die Europapokal-Ergebnisse einer Gruppe am besten
-    erklärt: obs = (eigene Wertung inkl. Heimvorteil, Gegner, Ergebnis 1/0.5/0,
-    Gewicht). Bernoulli-Likelihood mit schwachem Prior (SD 150) um das
-    Gesamtmittel."""
+SIGMA_ANCHOR = 60.0
+
+
+def _place(anchors: list[float], obs: list[tuple[float, float, float, float]],
+           prior: float) -> float:
+    """Verschiebung o einer Liga: Anker-Abstände (ClubElo minus Einlaufwert,
+    je SD 60), Europapokal-Ergebnisse obs = (eigene Wertung inkl. Heimvorteil,
+    Gegner, Ergebnis 1/0.5/0, Gewicht) als Bernoulli-Likelihood, Prior SD 150."""
     import math
     best, best_ll = prior, -float("inf")
     for i in range(241):
         o = -800.0 + 5.0 * i
         ll = -((o - prior) / PLACE_PRIOR_SD) ** 2 / 2
+        ll -= sum(((o - d) / SIGMA_ANCHOR) ** 2 / 2 for d in anchors)
         for own, opp, res, w in obs:
             p = min(max(expect(own + o - opp), 1e-6), 1 - 1e-6)
             ll += w * (res * math.log(p) + (1 - res) * math.log(1 - p))
