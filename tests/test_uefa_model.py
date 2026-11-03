@@ -1,6 +1,6 @@
 import math
 import random
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
 
@@ -119,54 +119,71 @@ def test_assess_value_and_divergence():
     assert res2["2"]["status"].startswith("PRÜFEN")  # Modell 45 % vs Pinnacle ~23 %
 
 
-def test_full_run_with_simulated_sources(tmp_path, monkeypatch):
-    monkeypatch.chdir(tmp_path)
+def _sim_world(seed=7):
+    """48 Vereine in 4 Verbänden, je eine Liga; Liga- und Europapokalspiele
+    2024–2026 aus einem bekannten Wahrheitsmodell."""
     clubs, _ = _world(n_matches=0)
     names = list(clubs)
-    rnd = random.Random(7)
+    rnd = random.Random(seed)
     truth = U.Calibration(1.40, 50, U.slope_for(1.40), 0, "truth")
     now = datetime(2026, 10, 22, 6, 0, tzinfo=timezone.utc)
     tid = {n: i + 100 for i, n in enumerate(names)}
+    feds = sorted({c.fed for c in clubs.values()})
+    league_id = {f: 1000 + i for i, f in enumerate(feds)}
+    k = [0]
 
-    def fixtures(season):
+    def fx(fid, ko, lid, h, a, rnd_label, country=""):
+        st, hg, ag = "FT", None, None
+        if ko >= now:
+            st = "NS"
+        else:
+            lh, la = truth.lambdas(clubs[h].elo, clubs[a].elo)
+            hg, ag = _pois(rnd, lh), _pois(rnd, la)
+        return {"fixture": {"id": fid, "date": ko.isoformat(), "status": {"short": st}},
+                "league": {"id": lid, "round": rnd_label, "country": country},
+                "teams": {"home": {"id": tid[h], "name": h}, "away": {"id": tid[a], "name": a}},
+                "goals": {"home": hg, "away": ag}, "score": {"fulltime": {"home": hg, "away": ag}}}
+
+    cup = {}
+    for season in (2024, 2025, 2026):
         out = []
         base = datetime(season, 9, 15, 19, tzinfo=timezone.utc)
-        comps = [(2, 0), (3, 1), (848, 2)]
-        k = 0
-        for lid, ci in comps:
+        for lid in (2, 3, 848):
             for m in range(150):
                 h, a = rnd.sample(names, 2)
-                ko = base + timedelta(days=(m % 30) * 7 // 4)
-                st, hg, ag = "FT", None, None
-                if season == 2026 and ko >= now:
-                    st = "NS"
-                else:
-                    lh, la = truth.lambdas(clubs[h].elo, clubs[a].elo)
-                    hg, ag = _pois(rnd, lh), _pois(rnd, la)
-                k += 1
-                out.append({"fixture": {"id": season * 10000 + k, "date": ko.isoformat(),
-                                        "status": {"short": st}},
-                            "league": {"id": lid, "round": "League Stage - 1"},
-                            "teams": {"home": {"id": tid[h], "name": h}, "away": {"id": tid[a], "name": a}},
-                            "goals": {"home": hg, "away": ag},
-                            "score": {"fulltime": {"home": hg, "away": ag}}})
-        return out
-
-    data = {2026: fixtures(2026), 2025: fixtures(2025)}
-    # Ein Spiel morgen garantiert im Fenster
+                k[0] += 1
+                label = "2nd Qualifying Round" if m < 20 else "League Stage - 1"
+                out.append(fx(season * 100000 + k[0], base + timedelta(days=(m % 30) * 7 // 4), lid, h, a, label))
+        cup[season] = out
+    dom = {}
+    for f, lid in league_id.items():
+        teams = [n for n in names if clubs[n].fed == f]
+        for season in (2024, 2025, 2026):
+            out, day = [], datetime(season, 8, 1, 15, tzinfo=timezone.utc)
+            for h in teams:
+                for a in teams:
+                    if h != a:
+                        k[0] += 1
+                        day += timedelta(days=2)
+                        out.append(fx(9000000 + k[0], day, lid, h, a, "Regular Season", f))
+            dom[(lid, season)] = out
     h, a = names[0], names[1]
-    data[2026].append({"fixture": {"id": 999, "date": (now + timedelta(hours=13)).isoformat(),
-                                   "status": {"short": "NS"}}, "league": {"id": 2, "round": "League Stage - 3"},
-                       "teams": {"home": {"id": tid[h], "name": h}, "away": {"id": tid[a], "name": a}},
-                       "goals": {"home": None, "away": None}, "score": {"fulltime": {}}})
-    by_id = {f["fixture"]["id"]: f for s in data.values() for f in s}
+    cup[2026].append(fx(999, now + timedelta(hours=13), 2, h, a, "League Stage - 3"))
+    return clubs, names, tid, league_id, cup, dom, now
+
+
+def _patch_sources(monkeypatch, clubs, names, tid, league_id, cup, dom, live=True):
+    by_id = {f["fixture"]["id"]: f for s in cup.values() for f in s}
     calls = {"stats": 0}
+    inv = {i: n for n, i in tid.items()}
 
     def fake_api(path, cache_days=0.0):
         if path.startswith("/fixtures?league="):
             lid = int(path.split("league=")[1].split("&")[0])
             season = int(path.split("season=")[1].split("&")[0])
-            return {"response": [f for f in data[season] if f["league"]["id"] == lid]}, None
+            if lid in (2, 3, 848):
+                return {"response": [f for f in cup.get(season, []) if f["league"]["id"] == lid]}, None
+            return {"response": dom.get((lid, season), [])}, None
         if path.startswith("/fixtures/statistics"):
             calls["stats"] += 1
             f = by_id[int(path.split("=")[1])]
@@ -176,9 +193,11 @@ def test_full_run_with_simulated_sources(tmp_path, monkeypatch):
                 {"team": {"id": f["teams"]["away"]["id"]},
                  "statistics": [{"type": "expected_goals", "value": f"{f['goals']['away'] + 0.1:.2f}"}]}]}, None
         if path.startswith("/teams?id="):
-            t = int(path.split("=")[1])
-            n = next(n for n, i in tid.items() if i == t)
+            n = inv[int(path.split("=")[1])]
             return {"response": [{"team": {"country": clubs[n].fed.replace(" ", "-")}}]}, None
+        if path.startswith("/leagues?team="):
+            n = inv[int(path.split("team=")[1].split("&")[0])]
+            return {"response": [{"league": {"id": league_id[clubs[n].fed], "type": "League"}}]}, None
         return None, "unbekannt"
 
     def fake_xg(code, as_of):
@@ -191,33 +210,100 @@ def test_full_run_with_simulated_sources(tmp_path, monkeypatch):
         return {"Pinnacle": {"home": 2.0, "draw": 3.5, "away": 3.9, "O2.5": 1.9, "U2.5:no": 1.95},
                 "Bet365": {"home": 2.1, "draw": 3.4, "away": 3.8, "O2.5": 1.85, "U2.5:no": 1.95}}, None
 
-    monkeypatch.setattr(U, "clubelo_full", lambda: (clubs, []))
+    monkeypatch.setattr(U, "clubelo_full", (lambda: (clubs, [])) if live else (lambda: ({}, ["HTTP 403"])))
     monkeypatch.setattr(U, "_api", fake_api)
     monkeypatch.setattr(U.xg_external, "snapshot", fake_xg)
     monkeypatch.setattr(U.xg_external, "persist_snapshot", lambda *a, **k: None)
     monkeypatch.setattr(U.apifootball, "odds", fake_odds)
-    monkeypatch.setattr(U, "datetime", type("D", (datetime,), {"now": staticmethod(lambda tz=None: now)}))
+    return calls
 
+
+def test_full_run_live_clubelo(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    clubs, names, tid, league_id, cup, dom, now = _sim_world()
+    calls = _patch_sources(monkeypatch, clubs, names, tid, league_id, cup, dom, live=True)
     md, preds = U.run(now.date(), 3, now=now, out_dir=tmp_path / "rep")
     text = md.read_text(encoding="utf-8")
-    assert any(p.fx.id == 999 for p in preds)
-    assert "Kalibrierung" in text and "Champions League" in text
     p = next(p for p in preds if p.fx.id == 999)
     assert abs(p.probs["1"] + p.probs["X"] + p.probs["2"] - 1) < 1e-6
-    assert calls["stats"] > 0
-    # Abruflimit 200 je Lauf: der zweite Lauf holt den Rest, der dritte nichts mehr
+    assert "ClubElo live (48 Teams" in text
+    assert "Quali-/Play-off-Spiele ausgeschlossen" in text
+    # Live-Werte sind der Anker und damit heute exakt die Elo-Werte
+    assert p.elo_h - p.adj_h.elo_adj == pytest.approx(clubs[names[0]].elo, abs=0.06)
     assert calls["stats"] == 200
     U.run(now.date(), 3, now=now, out_dir=tmp_path / "rep")
     before = calls["stats"]
     U.run(now.date(), 3, now=now, out_dir=tmp_path / "rep")
     assert calls["stats"] == before
-    assert (tmp_path / "data/journal/uefa_predictions.json").exists()
-    assert (tmp_path / "data/journal/uefa_clubelo_snapshots.json").exists()
+    assert (tmp_path / "data/journal/uefa_elo_anchor.json").exists()
+
+
+def test_full_run_fallback_when_clubelo_blocked(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    clubs, names, tid, league_id, cup, dom, now = _sim_world()
+    # Nur der alte Namens-Schnappschuss liegt vor (wie im Repo bis 24.10.)
+    snap_day = (now - timedelta(days=10)).date().isoformat()
+    U._save(U.SNAPSHOTS, {snap_day: {n: round(c.elo, 1) for n, c in clubs.items()}})
+    _patch_sources(monkeypatch, clubs, names, tid, league_id, cup, dom, live=False)
+    md, preds = U.run(now.date(), 3, now=now, out_dir=tmp_path / "rep")
+    text = md.read_text(encoding="utf-8")
+    assert "eigene Elo-Rechnung" in text and "48 Teams" in text
+    assert "ClubElo heute nicht erreichbar" in text
+    p = next(p for p in preds if p.fx.id == 999)
+    # 10 Tage Fortschreibung: nahe am Ankerwert, aber nicht identisch erzwungen
+    assert abs((p.elo_h - p.adj_h.elo_adj) - clubs[names[0]].elo) < 60
+    assert U._load(U.ANCHOR, {})["date"] == snap_day
+
+
+def test_engine_anchor_and_league_offset():
+    from oddswatch import uefa_elo as E
+    t0 = datetime(2025, 8, 1, tzinfo=timezone.utc)
+    games, gid = [], 0
+    rnd = random.Random(1)
+    # Liga A (Teams 1-4) und Liga B (5-8): innerhalb gleich stark
+    for lg, teams in (("L1", [1, 2, 3, 4]), ("L2", [5, 6, 7, 8])):
+        for r in range(6):
+            for h in teams:
+                for a in teams:
+                    if h != a:
+                        gid += 1
+                        games.append(E.EGame(gid, t0 + timedelta(days=gid % 300), h, a,
+                                             rnd.randint(0, 2), rnd.randint(0, 2), False, lg))
+    anchor = {1: 1800.0, 5: 1500.0}
+    res = E.run_engine(games, anchor, date(2026, 6, 1))
+    assert res.current[1] == 1800.0 and res.current[5] == 1500.0   # keine Spiele nach dem Anker
+    # Ligakollegen werden mit der Liga verschoben – bei nur einem Ankerteam
+    # je Liga bewusst zur Mitte geschrumpft (Ankerabstand 300 Elo)
+    assert 50 < res.offsets["L1"] - res.offsets["L2"] < 300
+    assert sum(res.current[t] for t in (2, 3, 4)) / 3 > sum(res.current[t] for t in (6, 7, 8)) / 3 + 50
+
+
+def test_calibration_separates_home_fav_and_dog():
+    rnd = random.Random(5)
+    goals, b = 1.35, U.slope_for(1.35)
+    rows = []
+    for _ in range(4000):
+        eh, ea = 1500 + rnd.gauss(0, 150), 1500 + rnd.gauss(0, 150)
+        H = 90.0 if eh >= ea else 20.0
+        d = (eh - ea + H) / 400
+        lh, la = math.exp(math.log(goals) + b * d), math.exp(math.log(goals) - b * d)
+        rows.append((eh, ea, False, _pois(rnd, lh), _pois(rnd, la)))
+    cal = U.fit_calibration(rows, "test")
+    assert cal.fit_home - cal.fit_home_dog > 35
+    assert abs(cal.fit_mult - 1.0) < 0.15
+    assert cal.home_for(10) == cal.home and cal.home_for(-10) == cal.home_dog
+
+
+def test_main_round_filter():
+    assert U.is_main_round("League Stage - 4")
+    assert U.is_main_round("Knockout Round Play-offs")
+    assert U.is_main_round("Round of 16") and U.is_main_round("Final")
+    assert not U.is_main_round("3rd Qualifying Round")
+    assert not U.is_main_round("Play-offs")
+    assert not U.is_main_round("Preliminary Round")
 
 
 def test_competition_goal_factor_shrinks_toward_one():
-    clubs = {"A": U.Club("A", 1700, "Spain"), "B": U.Club("B", 1700, "Italy")}
-    fx = [U.UefaFixture(i, "ucl", datetime(2025, 10, 1, tzinfo=timezone.utc), "A", "B", 1, 2, "FT", "", 3, 2)
-          for i in range(40)]
-    cal = U.calibrate(fx, {1: "A", 2: "B"}, clubs, {})
+    rows = [(1700.0, 1700.0, False, 3, 2, "ucl") for _ in range(40)]
+    cal = U.calibrate(rows, "test")
     assert 1.0 < cal.comp_factor["ucl"] < 5 / cal.diag["ucl"]["tore_modell"]

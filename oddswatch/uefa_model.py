@@ -1,4 +1,4 @@
-"""UEFA-Club v1 – Modell für Champions League, Europa League, Conference League.
+"""UEFA-Club v1.1 – Modell für Champions League, Europa League, Conference League.
 
 Aufbau (jede Stufe ist im Bericht nachvollziehbar):
 
@@ -39,11 +39,13 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import fetch, matching
+from collections import Counter
+
+from . import fetch, matching, uefa_elo
 from .models.poisson import PoissonModel, markets_from_matrix
 from .sources import apifootball, clubelo, xg_external
 
-VERSION = "UEFA-Club v1"
+VERSION = "UEFA-Club v1.1"
 VIENNA = ZoneInfo("Europe/Vienna")
 
 # API-Football Liga-IDs
@@ -105,6 +107,7 @@ SNAPSHOTS = JOURNAL / "uefa_clubelo_snapshots.json"
 XG_CACHE = JOURNAL / "uefa_xg_cache.json"
 TEAM_CACHE = JOURNAL / "uefa_team_countries.json"
 PREDICTIONS = JOURNAL / "uefa_predictions.json"
+ANCHOR = JOURNAL / "uefa_elo_anchor.json"   # letzter ClubElo-Stand je API-Team-ID
 
 
 # ================================================================== Datentypen
@@ -150,25 +153,42 @@ class Calibration:
     fit_home: float | None = None
     diag: dict = field(default_factory=dict)
     comp_factor: dict = field(default_factory=dict)  # Torniveau je Wettbewerb
+    home_dog: float | None = None   # Heimvorteil, wenn das Heimteam schwächer ist
+    b_mult: float = 1.0             # Steigung relativ zur ClubElo-Siegerwartung
+    fit_home_dog: float | None = None
+    fit_mult: float | None = None
+
+    def __post_init__(self):
+        if self.home_dog is None:
+            self.home_dog = self.home
 
     @property
     def a(self) -> float:
         return math.log(self.goals)
 
+    def home_for(self, diff: float) -> float:
+        """Heimvorteil: Heimteam favorisiert (diff >= 0) oder Außenseiter."""
+        return self.home if diff >= 0 else self.home_dog
+
     def lambdas(self, elo_h: float, elo_a: float, neutral: bool = False,
                 tempo: float = 1.0) -> tuple[float, float]:
-        d = (elo_h - elo_a + (0.0 if neutral else self.home)) / 400
+        d = (elo_h - elo_a + (0.0 if neutral else self.home_for(elo_h - elo_a))) / 400
         return (math.exp(self.a + self.b * d) * tempo,
                 math.exp(self.a - self.b * d) * tempo)
 
     def expected_gd(self, elo_diff: float, venue: int) -> float:
-        """Erwartete Tordifferenz. venue: +1 Heim, -1 auswärts, 0 neutral,
-        2 = Mittel aus Heim und Auswärts (Liga-Saison)."""
+        """Erwartete Tordifferenz aus Sicht des Teams mit Elo-Vorsprung elo_diff.
+        venue: +1 Heim, -1 auswärts, 0 neutral, 2 = Mittel Heim/Auswärts (Liga)."""
         if venue == 2:
             return 0.5 * (self.expected_gd(elo_diff, 1) + self.expected_gd(elo_diff, -1))
-        lh, la = self.lambdas(elo_diff, 0.0, neutral=True) if venue == 0 else \
-            self.lambdas(elo_diff + (self.home if venue == 1 else -self.home), 0.0, neutral=True)
-        return lh - la
+        if venue == 0:
+            lh, la = self.lambdas(elo_diff, 0.0, neutral=True)
+            return lh - la
+        if venue == 1:
+            lh, la = self.lambdas(elo_diff, 0.0)
+            return lh - la
+        lh, la = self.lambdas(0.0, elo_diff)
+        return la - lh
 
     @property
     def elo_per_goal(self) -> float:
@@ -375,6 +395,27 @@ def match_club(name: str, country: str, clubs: dict[str, Club],
     return matching.find_strict(name, list(clubs), aliases)
 
 
+def anchor_from_snapshots(info: dict[int, tuple[str, str]], ids: set[int],
+                          aliases: dict[str, str]) -> dict:
+    """Anker aus dem letzten gespeicherten ClubElo-Schnappschuss (ClubElo-Namen)
+    für die Europapokal-Teams; Mehrfachtreffer werden verworfen."""
+    snaps = _load(SNAPSHOTS, {})
+    days = sorted(d for d, v in snaps.items() if v)
+    if not days:
+        return {}
+    vals = snaps[days[-1]]
+    pseudo = {n: Club(n, float(e), "") for n, e in vals.items()}
+    hits: dict[int, str] = {}
+    for tid in ids:
+        if tid in info:
+            h = match_club(info[tid][0], "", pseudo, aliases)
+            if h:
+                hits[tid] = h
+    used = Counter(hits.values())
+    teams = {str(t): pseudo[h].elo for t, h in hits.items() if used[h] == 1}
+    return {"date": days[-1], "source": "ClubElo-Schnappschuss", "teams": teams}
+
+
 # ================================================================== Kalibrierung
 def _we_logistic(d: float) -> float:
     return 1.0 / (1.0 + 10 ** (-d))
@@ -417,56 +458,59 @@ def slope_for(goals: float, rho: float = RHO) -> float:
 
 def fit_calibration(rows: list[tuple[float, float, bool, int, int]], source: str,
                     rho: float = RHO) -> Calibration:
-    """rows: (Elo Heim, Elo Gast, neutral, Tore Heim, Tore Gast)."""
-    if len(rows) < 30:
-        return Calibration(PRIOR_GOALS, PRIOR_HOME, slope_for(PRIOR_GOALS, rho), len(rows),
-                           "Prior (zu wenige Spiele)")
-    best = None
-    for gi in range(41):
-        goals = 1.0 + 0.02 * gi
-        a, b = math.log(goals), slope_for(goals, rho)
-        for hi in range(31):
-            H = 5.0 * hi
-            ll = 0.0
-            for eh, ea, neu, hg, ag in rows:
-                d = (eh - ea + (0.0 if neu else H)) / 400
-                lh, la = math.exp(a + b * d), math.exp(a - b * d)
-                ll += hg * math.log(lh) - lh + ag * math.log(la) - la
-            if best is None or ll > best[0]:
-                best = (ll, goals, H)
-    _, g_fit, h_fit = best
+    """rows: (Elo Heim, Elo Gast, neutral, Tore Heim, Tore Gast).
+
+    Poisson-Maximum-Likelihood für vier Größen: Torniveau, Steigungsfaktor
+    (1 = ClubElo-Siegerwartung), Heimvorteil bei favorisiertem Heimteam und
+    bei Heim-Außenseiter. Koordinatenweise Gittersuche, danach je nach
+    Stichprobe Richtung Prior geschrumpft."""
     n = len(rows)
+    if n < 30:
+        return Calibration(PRIOR_GOALS, PRIOR_HOME, slope_for(PRIOR_GOALS, rho), n,
+                           "Prior (zu wenige Spiele)")
+    import numpy as np
+    eh = np.array([r[0] for r in rows], float)
+    ea = np.array([r[1] for r in rows], float)
+    neu = np.array([bool(r[2]) for r in rows])
+    hg = np.array([r[3] for r in rows], float)
+    ag = np.array([r[4] for r in rows], float)
+    raw = (eh - ea) / 400
+    fav = eh >= ea
+    g_grid = [round(1.0 + 0.02 * i, 2) for i in range(41)]
+    slope = {g: slope_for(g, rho) for g in g_grid}
+    m_grid = [round(0.6 + 0.02 * i, 2) for i in range(61)]
+    h_grid = [-50.0 + 5.0 * i for i in range(51)]
+
+    def ll(g, m, hf, hd):
+        a, b = math.log(g), m * slope[g]
+        d = raw + np.where(neu, 0.0, np.where(fav, hf, hd)) / 400
+        lh, la = np.exp(a + b * d), np.exp(a - b * d)
+        return float(np.sum(hg * np.log(lh) - lh + ag * np.log(la) - la))
+
+    g, m, hf, hd = round(PRIOR_GOALS, 2), 1.0, PRIOR_HOME, PRIOR_HOME
+    for _ in range(8):
+        g = max(g_grid, key=lambda x: ll(x, m, hf, hd))
+        m = max(m_grid, key=lambda x: ll(g, x, hf, hd))
+        hf = max(h_grid, key=lambda x: ll(g, m, x, hd))
+        hd = max(h_grid, key=lambda x: ll(g, m, hf, x))
     w = n / (n + CALIB_PSEUDO)
-    goals = w * g_fit + (1 - w) * PRIOR_GOALS
-    home = w * h_fit + (1 - w) * PRIOR_HOME
-    return Calibration(goals, home, slope_for(goals, rho), n, source,
-                       fit_goals=g_fit, fit_home=h_fit)
+    goals = w * g + (1 - w) * PRIOR_GOALS
+    mult = w * m + (1 - w) * 1.0
+    return Calibration(goals, w * hf + (1 - w) * PRIOR_HOME, mult * slope_for(goals, rho), n, source,
+                       fit_goals=g, fit_home=hf, home_dog=w * hd + (1 - w) * PRIOR_HOME,
+                       b_mult=mult, fit_home_dog=hd, fit_mult=m)
 
 
-def _snapshot_elo(snaps: dict, club: str, day: date) -> float | None:
-    """Letzter Schnappschuss strikt vor dem Spieltag (max. 7 Tage alt)."""
-    for k in range(1, 8):
-        v = snaps.get((day - timedelta(days=k)).isoformat(), {}).get(club)
-        if v is not None:
-            return float(v)
-    return None
+def is_main_round(r: str) -> bool:
+    """Ligaphase und K.-o.-Runde; Qualifikation und Quali-Play-offs zählen nicht."""
+    s = (r or "").strip().lower()
+    return not ("qualifying" in s or "preliminary" in s or s in ("play-offs", "playoffs"))
 
 
-def calibrate(finished: list[UefaFixture], cmap: dict[int, str],
-              clubs: dict[str, Club], snaps: dict) -> Calibration:
-    pre, cur = [], []
-    for f in finished:
-        h, a = cmap.get(f.home_id), cmap.get(f.away_id)
-        if not h or not a:
-            continue
-        d = f.kickoff.date()
-        eh, ea = _snapshot_elo(snaps, h, d), _snapshot_elo(snaps, a, d)
-        if eh is not None and ea is not None:
-            pre.append((eh, ea, f.neutral, f.hg, f.ag, f.comp))
-        cur.append((clubs[h].elo, clubs[a].elo, f.neutral, f.hg, f.ag, f.comp))
-    rows, src = (pre, "Vor-Spiel-Elo") if len(pre) >= CALIB_MIN_PREMATCH else \
-        (cur, "aktuelles Elo (Näherung, bis genug Schnappschüsse vorliegen)")
-    cal = fit_calibration([r[:5] for r in rows], src)
+def calibrate(rows: list[tuple[float, float, bool, int, int, str]], source: str) -> Calibration:
+    """rows: (Vor-Spiel-Elo Heim, Gast, neutral, Tore Heim, Gast, Wettbewerb) –
+    nur Hauptrunden."""
+    cal = fit_calibration([r[:5] for r in rows], source)
     # Diagnose je Wettbewerb: tatsächliche vs. erwartete Tore und Heimsiege
     for comp in sorted({r[5] for r in rows}):
         rs = [r for r in rows if r[5] == comp]
@@ -477,6 +521,17 @@ def calibrate(finished: list[UefaFixture], cmap: dict[int, str],
         cal.diag[comp] = {"n": len(rs), "tore_ist": round(act_g, 2), "tore_modell": round(exp_g, 2),
                           "faktor": round(cal.comp_factor[comp], 3),
                           "heimsiege_ist": round(sum(r[3] > r[4] for r in rs) / len(rs), 3)}
+    # Heim-Favorit vs. Heim-Außenseiter: Siegquote ist vs. Modell
+    for key, sel in (("heim_favorit", lambda r: r[0] >= r[1]), ("heim_aussenseiter", lambda r: r[0] < r[1])):
+        rs = [r for r in rows if sel(r) and not r[2]]
+        if not rs:
+            continue
+        exp_w = 0.0
+        for r in rs:
+            lh, la = cal.lambdas(r[0], r[1], r[2], cal.comp_factor.get(r[5], 1.0))
+            exp_w += markets_from_matrix(PoissonModel(rho=RHO).score_matrix(lh, la), lh, la)["1"]
+        cal.diag[key] = {"n": len(rs), "heimsieg_ist": round(sum(r[3] > r[4] for r in rs) / len(rs), 3),
+                         "heimsieg_modell": round(exp_w / len(rs), 3)}
     return cal
 
 
@@ -504,7 +559,7 @@ def domestic_xg(clubs: dict[str, Club], wanted: set[str], cal: Calibration,
             if hit:
                 mapped[r.team] = hit
         if len(mapped) < MIN_LEAGUE_MATCHED:
-            errs.append(f"Liga-xG {fed}: nur {len(mapped)} Teams in ClubElo zugeordnet – übersprungen")
+            errs.append(f"Liga-xG {fed}: nur {len(mapped)} Teams zugeordnet – übersprungen")
             continue
         lg_elo = sum(clubs[c].elo for c in mapped.values()) / len(mapped)
         lg_tot = sum(r.xg + r.xga for r in rows) / len(rows)
@@ -523,7 +578,8 @@ def domestic_xg(clubs: dict[str, Club], wanted: set[str], cal: Calibration,
 
 def uefa_xg_resid(finished: list[UefaFixture], xg: dict[int, tuple[float, float]],
                   cmap: dict[int, str], clubs: dict[str, Club], cal: Calibration,
-                  season: int) -> dict[str, dict]:
+                  season: int, prematch: dict[int, tuple[float, float]] | None = None
+                  ) -> dict[str, dict]:
     acc: dict[str, list[float]] = {}
     for f in finished:
         if f.id not in xg or season_of(f.kickoff.date()) != season:
@@ -532,7 +588,8 @@ def uefa_xg_resid(finished: list[UefaFixture], xg: dict[int, tuple[float, float]
         if not h or not a:
             continue
         hx, ax = xg[f.id]
-        diff = clubs[h].elo - clubs[a].elo
+        pe = (prematch or {}).get(f.id)
+        diff = (pe[0] - pe[1]) if pe else clubs[h].elo - clubs[a].elo
         exp_h = cal.expected_gd(diff, 0 if f.neutral else 1)
         acc.setdefault(h, []).append((hx - ax) - exp_h)
         acc.setdefault(a, []).append((ax - hx) + exp_h)
@@ -663,14 +720,11 @@ def run(start: date, days: int, with_odds: bool = True, out_dir: Path = Path("re
     issues: list[str] = []
     season = season_of(start)
 
-    clubs, errs = clubelo_full()
-    issues += errs[:5]
-    if not clubs:
-        raise SystemExit("ClubElo nicht erreichbar – kein Modelllauf möglich.\n" + "\n".join(errs[:5]))
-
     fx_now, errs = uefa_fixtures(season, cache_days=0.02)
     issues += errs
     fx_prev, errs = uefa_fixtures(season - 1, cache_days=30)
+    issues += errs
+    fx_old, errs = uefa_fixtures(season - 2, cache_days=30)
     issues += errs
     all_fx = fx_now + fx_prev
     finished = [f for f in all_fx if f.finished]
@@ -678,35 +732,78 @@ def run(start: date, days: int, with_odds: bool = True, out_dir: Path = Path("re
     upcoming = sorted([f for f in fx_now if f.status in UPCOMING and now <= f.kickoff < window_end],
                       key=lambda f: f.kickoff)
 
-    # Teams -> ClubElo
-    ids = {f.home_id for f in all_fx} | {f.away_id for f in all_fx}
-    countries = team_countries({f.home_id for f in fx_now} | {f.away_id for f in fx_now},
-                               max_calls=300, errs=issues)
+    # Heimligen der Europapokal-Teams und deren Ligaspiele (API-Football)
+    cur_ids = sorted({f.home_id for f in fx_now} | {f.away_id for f in fx_now})
+    hist_ids = sorted(({f.home_id for f in fx_prev + fx_old} | {f.away_id for f in fx_prev + fx_old})
+                      - set(cur_ids))
+    countries = team_countries(set(cur_ids), max_calls=300, errs=issues)
+    tl = uefa_elo.team_leagues(cur_ids + hist_ids, season, _api, max_calls=400, errs=issues)
+    leagues = {lg for t in cur_ids + hist_ids for lg in tl.get(t, [])}
+    dom_games, info = uefa_elo.league_games(leagues, [season - 2, season - 1, season], _api, issues)
+    cup_games = [uefa_elo.EGame(f.id, f.kickoff, f.home_id, f.away_id, f.hg, f.ag, f.neutral, f.comp)
+                 for f in fx_old + fx_prev + fx_now if f.finished]
+    for f in fx_old + fx_prev + fx_now:
+        for tid, nm in ((f.home_id, f.home), (f.away_id, f.away)):
+            if tid not in info or not info[tid][1]:
+                info[tid] = (nm, countries.get(tid, info.get(tid, ("", ""))[1]))
+
+    # Elo-Anker: ClubElo live, sonst letzter gespeicherter ClubElo-Stand
     aliases = _aliases()
-    names = {}
-    for f in all_fx:
-        names[f.home_id], names[f.away_id] = f.home, f.away
-    cmap: dict[int, str] = {}
-    for tid in ids:
-        hit = match_club(names[tid], countries.get(tid, ""), clubs, aliases)
-        if hit:
-            cmap[tid] = hit
-    unmatched_now = sorted({names[t] for f in upcoming for t in (f.home_id, f.away_id)
-                            if t not in cmap})
-
-    # Tägliche Elo-Schnappschüsse (nur Europapokal-Teams der Saison)
-    snaps = _load(SNAPSHOTS, {})
     today = now.date().isoformat()
-    snaps[today] = {cmap[t]: round(clubs[cmap[t]].elo, 1)
-                    for t in {f.home_id for f in fx_now} | {f.away_id for f in fx_now} if t in cmap}
-    _save(SNAPSHOTS, snaps)
+    live, errs = clubelo_full()
+    if live:
+        amap = {}
+        for tid, (nm, ct) in info.items():
+            hit = match_club(nm, ct, live, aliases)
+            if hit:
+                amap[tid] = live[hit].elo
+        anchor_doc = {"date": today, "source": "ClubElo", "teams": {str(k): round(v, 1) for k, v in amap.items()}}
+        _save(ANCHOR, anchor_doc)
+        snaps = _load(SNAPSHOTS, {})
+        day: dict[str, float] = {}
+        for t in cur_ids:
+            hit = match_club(info[t][0], info[t][1], live, aliases) if t in info else None
+            if hit:
+                day[hit] = round(live[hit].elo, 1)
+        snaps[today] = day
+        _save(SNAPSHOTS, snaps)
+    else:
+        issues.append("ClubElo heute nicht erreichbar (" + (errs[0][:120] if errs else "?")
+                      + ") – eigene Elo-Rechnung")
+        anchor_doc = _load(ANCHOR, {})
+        if not anchor_doc.get("teams"):
+            anchor_doc = anchor_from_snapshots(info, set(cur_ids), aliases)
+            if anchor_doc.get("teams"):
+                _save(ANCHOR, anchor_doc)
+        if not anchor_doc.get("teams"):
+            raise SystemExit("Weder ClubElo noch gespeicherter ClubElo-Anker verfügbar – kein Modelllauf.")
+    anchor = {int(k): float(v) for k, v in anchor_doc["teams"].items()}
+    res = uefa_elo.run_engine(dom_games + cup_games, anchor, date.fromisoformat(anchor_doc["date"]))
 
-    cal = calibrate(finished, cmap, clubs, snaps)
+    # Teams: eindeutiger Anzeigename je API-Team
+    namecount = Counter(info.get(t, (str(t), ""))[0] for t in res.current)
+    clubs: dict[str, Club] = {}
+    cmap: dict[int, str] = {}
+    for t, e in res.current.items():
+        nm, ct = info.get(t, (f"Team {t}", ""))
+        key = nm if namecount[nm] == 1 else f"{nm} ({ct})"
+        clubs[key] = Club(key, e, ct)
+        cmap[t] = key
+    unmatched_now = sorted({n for f in upcoming for t, n in ((f.home_id, f.home), (f.away_id, f.away))
+                            if t not in cmap})
+    meta = {"anchor_date": anchor_doc["date"], "live": bool(live), "anchored": res.anchored,
+            "games": res.games, "post": res.post_games, "leagues": len(leagues),
+            "teams": len(res.current), "offset": res.global_offset}
+
+    rows = [(*res.prematch[f.id], f.neutral, f.hg, f.ag, f.comp) for f in finished
+            if is_main_round(f.round) and f.id in res.prematch]
+    cal = calibrate(rows, "Vor-Spiel-Elo, nur Ligaphase und K.-o.-Runde")
+    meta["excluded"] = sum(1 for f in finished if not is_main_round(f.round))
 
     needed = {cmap[t] for f in upcoming for t in (f.home_id, f.away_id) if t in cmap}
     xg_u = uefa_match_xg([f for f in fx_now if f.finished], max_calls=200, errs=issues)
     dom = domestic_xg(clubs, needed, cal, now, issues)
-    ures = uefa_xg_resid(finished, xg_u, cmap, clubs, cal, season)
+    ures = uefa_xg_resid(finished, xg_u, cmap, clubs, cal, season, res.prematch)
     adjs = team_adjustments(needed, clubs, dom, ures, cal)
 
     preds: list[Prediction] = []
@@ -744,7 +841,7 @@ def run(start: date, days: int, with_odds: bool = True, out_dir: Path = Path("re
     out_dir.mkdir(parents=True, exist_ok=True)
     md = out_dir / f"{start.isoformat()}-uefa-modell.md"
     md.write_text(render(start, days, now, clubs, cal, preds, dom, xg_u, evaluation, issues,
-                         unmatched_now, len(upcoming)), encoding="utf-8")
+                         unmatched_now, len(upcoming), meta), encoding="utf-8")
     write_csv(out_dir / f"{start.isoformat()}-uefa-modell.csv", preds)
     return md, preds
 
@@ -762,25 +859,48 @@ def _pct(x) -> str:
     return "–" if x is None else f"{x * 100:.0f} %"
 
 
-def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched, n_up) -> str:
+def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched, n_up,
+           meta: dict | None = None) -> str:
+    meta = meta or {}
     L = [f"# {VERSION} – Champions League · Europa League · Conference League",
          f"Stand {now.astimezone(VIENNA):%d.%m.%Y %H:%M} (Wien), Spiele {start:%d.%m.} bis "
          f"{start + timedelta(days=days - 1):%d.%m.%Y}", ""]
-    L += ["## Datenbasis",
-          f"- ClubElo: {len(clubs)} Vereine",
-          f"- Kalibrierung ({cal.source}): {cal.n} Europapokalspiele → "
-          f"{cal.goals:.2f} Tore je Team bei Gleichstand, Heimvorteil {cal.home:.0f} Elo, "
-          f"Steigung {cal.b:.3f} ({cal.elo_per_goal:.0f} Elo ≈ 1 Tor Differenz)"
-          + (f"; reiner Fit {cal.fit_goals:.2f} Tore / {cal.fit_home:.0f} Elo, "
-             f"Richtung Prior {PRIOR_GOALS} / {PRIOR_HOME:.0f} geschrumpft" if cal.fit_goals else ""),
+    ad = meta.get("anchor_date")
+    if meta.get("live"):
+        elo_line = f"- Elo: ClubElo live ({meta.get('anchored', 0)} Teams zugeordnet)"
+    elif ad:
+        elo_line = (f"- Elo: **eigene Elo-Rechnung** (ClubElo von GitHub aus gesperrt), verankert an "
+                    f"ClubElo vom {date.fromisoformat(ad):%d.%m.%Y} ({meta.get('anchored', 0)} Teams), "
+                    f"seither {meta.get('post', 0)} Spiele eingerechnet")
+    else:
+        elo_line = f"- Elo: {len(clubs)} Teams"
+    L += ["## Datenbasis", elo_line]
+    if meta.get("games"):
+        L.append(f"- Ergebnisbasis: {meta['games']} Spiele aus {meta.get('leagues', 0)} Ligen + Europapokal "
+                 f"(API-Football, seit 2024), {meta.get('teams', 0)} Teams")
+    L += [f"- Kalibrierung ({cal.source}): {cal.n} Spiele"
+          + (f", {meta['excluded']} Quali-/Play-off-Spiele ausgeschlossen" if meta.get("excluded") else "")
+          + f" → {cal.goals:.2f} Tore je Team bei Gleichstand, Steigung {cal.b:.3f} "
+          f"(×{cal.b_mult:.2f} ggü. ClubElo-Erwartung, {cal.elo_per_goal:.0f} Elo ≈ 1 Tor)",
+          f"- Heimvorteil: Heimteam favorisiert {cal.home:.0f} Elo, Heimteam Außenseiter {cal.home_dog:.0f} Elo"
+          + (f" (reiner Fit {cal.fit_home:.0f} / {cal.fit_home_dog:.0f}, Steigung ×{cal.fit_mult:.2f}, "
+             f"Tore {cal.fit_goals:.2f}; Richtung Prior geschrumpft)" if cal.fit_home_dog is not None else ""),
           f"- xG: Liga-xG für {len(dom)} Teams, Europapokal-xG aus {len(xg_u)} Spielen", ""]
-    if cal.diag:
+    comps = [(k, d) for k, d in cal.diag.items() if k in {v[0] for v in COMPS.values()}]
+    if comps:
         L += ["| Wettbewerb | Spiele | Tore/Spiel ist | Modell (vor Faktor) | Torfaktor | Heimsiege |",
               "|---|---|---|---|---|---|"]
-        for comp, d in cal.diag.items():
+        for comp, d in comps:
             lab = next(v[1] for v in COMPS.values() if v[0] == comp)
             L.append(f"| {lab} | {d['n']} | {d['tore_ist']:.2f} | {d['tore_modell']:.2f} | ×{d['faktor']:.3f} | "
                      f"{d['heimsiege_ist'] * 100:.0f} % |")
+        L.append("")
+    hv = [(lab, cal.diag[k]) for k, lab in (("heim_favorit", "Heimteam favorisiert"),
+                                            ("heim_aussenseiter", "Heimteam Außenseiter")) if k in cal.diag]
+    if hv:
+        L += ["| Kalibrierungsprobe | Spiele | Heimsiege ist | Modell |", "|---|---|---|---|"]
+        L += [f"| {lab} | {d['n']} | {d['heimsieg_ist'] * 100:.1f} % | {d['heimsieg_modell'] * 100:.1f} % |"
+              for lab, d in hv]
         L.append("")
 
     vals = [(p, v) for p in preds for v in p.values if v["status"].startswith("VALUE")]
@@ -818,7 +938,7 @@ def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched
         L += ["", "<details><summary>Herleitung je Team</summary>", ""]
         for p in ps:
             for club, e, ta in ((p.home_club, p.elo_h, p.adj_h), (p.away_club, p.elo_a, p.adj_a)):
-                L.append(f"- **{club}**: ClubElo {clubs[club].elo:.0f} → {e:.0f}; "
+                L.append(f"- **{club}**: Elo {clubs[club].elo:.0f} → {e:.0f}; "
                          + "; ".join(ta.notes) + (f"; Tempo ×{ta.tempo:.2f}" if ta.tempo != 1 else ""))
         L += ["", "</details>", ""]
     if not preds:
@@ -841,12 +961,14 @@ def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched
 
     if unmatched or issues:
         L += ["## Hinweise"]
-        L += [f"- Nicht in ClubElo zugeordnet (nicht bewertet): {', '.join(unmatched)}"] if unmatched else []
+        L += [f"- Ohne Elo-Wert (nicht bewertet): {', '.join(unmatched)}"] if unmatched else []
         L += [f"- {i}" for i in issues[:25]]
         L.append("")
     L += ["## Methode (Kurzfassung)",
-          "ClubElo-Stärke → Tormatrix (Poisson, Dixon-Coles), Steigung passend zu ClubElos eigener "
-          "Siegerwartung; Torniveau und Heimvorteil an Europapokal-Ergebnissen geschätzt. "
+          "Elo-Stärke (ClubElo, solange gesperrt eigene Fortschreibung ab letztem ClubElo-Stand) → "
+          "Tormatrix (Poisson, Dixon-Coles). Torniveau, Steigung und Heimvorteil (getrennt für Heim-Favorit "
+          "und Heim-Außenseiter) per Maximum Likelihood an Europapokal-Hauptrunden mit Vor-Spiel-Elo "
+          "geschätzt, Qualifikation ausgeschlossen. "
           f"xG-Korrektur: {XG_SHARE:.0%} des Residuums (xG-Differenz minus Elo-Erwartung) × "
           f"n/(n+{XG_SHRINK:.0f}), max. ±{XG_CAP:.0f} Elo. Tempo aus Liga-xG verschiebt nur Über/Unter. "
           "Annahmen (Prior, Anteile) sind im Code als Konstanten markiert und werden über den "
