@@ -307,3 +307,29 @@ def test_competition_goal_factor_shrinks_toward_one():
     rows = [(1700.0, 1700.0, False, 3, 2, "ucl") for _ in range(40)]
     cal = U.calibrate(rows, "test")
     assert 1.0 < cal.comp_factor["ucl"] < 5 / cal.diag["ucl"]["tore_modell"]
+
+
+def test_unanchored_league_placed_by_cup_results():
+    from oddswatch import uefa_elo as E
+    t0 = datetime(2025, 8, 1, tzinfo=timezone.utc)
+    rnd = random.Random(2)
+    games, gid = [], 0
+    strong, weak = [1, 2, 3, 4], [11, 12, 13, 14]
+    for lg, teams in (("L1", strong), ("L9", weak)):
+        for _ in range(4):
+            for h in teams:
+                for a in teams:
+                    if h != a:
+                        gid += 1
+                        games.append(E.EGame(gid, t0 + timedelta(days=gid % 250), h, a,
+                                             rnd.randint(0, 2), rnd.randint(0, 2), False, lg))
+    # Schwache Liga verliert im Europapokal fast immer klar
+    for i in range(30):
+        gid += 1
+        h, a = (weak[i % 4], strong[i % 4]) if i % 2 else (strong[i % 4], weak[i % 4])
+        hg, ag = (0, 3) if h in weak else (3, 0)
+        games.append(E.EGame(gid, t0 + timedelta(days=5 + 8 * i), h, a, hg, ag, False, "ucl"))
+    anchor = {t: 1700.0 for t in strong}
+    res = E.run_engine(games, anchor, date(2026, 6, 1))
+    assert "L9" in res.placed
+    assert sum(res.current[t] for t in weak) / 4 < 1700 - 250   # nicht beim Gesamtmittel

@@ -108,6 +108,7 @@ XG_CACHE = JOURNAL / "uefa_xg_cache.json"
 TEAM_CACHE = JOURNAL / "uefa_team_countries.json"
 PREDICTIONS = JOURNAL / "uefa_predictions.json"
 ANCHOR = JOURNAL / "uefa_elo_anchor.json"   # letzter ClubElo-Stand je API-Team-ID
+CALIB_ROWS = JOURNAL / "uefa_calibration_rows.json"
 
 
 # ================================================================== Datentypen
@@ -265,12 +266,21 @@ def clubelo_full() -> tuple[dict[str, Club], list[str]]:
     return out, errs
 
 
+API_MIN_INTERVAL = 0.25   # s zwischen Abrufen (Minutenlimit API-Football)
+_last_call = [0.0]
+
+
 def _api(path: str, cache_days: float = 0.0) -> tuple[dict | None, str | None]:
     key = apifootball.api_key()
     if not key:
         return None, "API-Football: APIKEY nicht gesetzt"
+    import time
+    wait = API_MIN_INTERVAL - (time.monotonic() - _last_call[0])
+    if wait > 0:
+        time.sleep(wait)
+    _last_call[0] = time.monotonic()
     data, err = fetch.get_json(apifootball.BASE + path, headers={"x-apisports-key": key},
-                               retries=1, cache_days=cache_days)
+                               retries=2, cache_days=cache_days)
     if err:
         return None, f"API-Football {path}: {err.split(': ', 1)[-1]}"
     if isinstance(data, dict) and data.get("errors"):
@@ -799,6 +809,12 @@ def run(start: date, days: int, with_odds: bool = True, out_dir: Path = Path("re
             if is_main_round(f.round) and f.id in res.prematch]
     cal = calibrate(rows, "Vor-Spiel-Elo, nur Ligaphase und K.-o.-Runde")
     meta["excluded"] = sum(1 for f in finished if not is_main_round(f.round))
+    _save(CALIB_ROWS, [[round(r[0], 1), round(r[1], 1), r[2], r[3], r[4], r[5]] for r in rows])
+    lg_names = {}
+    for t, lg in res.league_of.items():
+        lg_names.setdefault(lg, info.get(t, ("", ""))[1])
+    meta["placed"] = sorted(((lg_names.get(g) or (info.get(int(g[1:]), ("?",))[0] if g.startswith("T") else g)),
+                             round(o), n) for g, (o, n) in res.placed.items())
 
     needed = {cmap[t] for f in upcoming for t in (f.home_id, f.away_id) if t in cmap}
     xg_u = uefa_match_xg([f for f in fx_now if f.finished], max_calls=200, errs=issues)
@@ -878,6 +894,9 @@ def render(start, days, now, clubs, cal, preds, dom, xg_u, ev, issues, unmatched
     if meta.get("games"):
         L.append(f"- Ergebnisbasis: {meta['games']} Spiele aus {meta.get('leagues', 0)} Ligen + Europapokal "
                  f"(API-Football, seit 2024), {meta.get('teams', 0)} Teams")
+    if meta.get("placed"):
+        L.append("- Ligen ohne ClubElo-Anker über Europapokal-Ergebnisse eingeordnet: "
+                 + ", ".join(f"{n} ({o:+d} Elo, {k} Sp.)" for n, o, k in meta["placed"]))
     L += [f"- Kalibrierung ({cal.source}): {cal.n} Spiele"
           + (f", {meta['excluded']} Quali-/Play-off-Spiele ausgeschlossen" if meta.get("excluded") else "")
           + f" → {cal.goals:.2f} Tore je Team bei Gleichstand, Steigung {cal.b:.3f} "

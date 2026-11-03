@@ -62,6 +62,7 @@ class EloResult:
     anchored: int
     post_games: int
     games: int
+    placed: dict[str, tuple[float, int]] = field(default_factory=dict)  # Gruppe -> (Verschiebung, Spiele)
 
 
 def margin(gd: int) -> float:
@@ -124,14 +125,39 @@ def run_engine(games: list[EGame], anchor: dict[int, float], anchor_date: date) 
     diffs: dict[str, list[float]] = defaultdict(list)
     for t, e in anchor.items():
         if n_before[t] >= MIN_GAMES_FOR_OFFSET and t in snap:
-            diffs[league_of.get(t, "?")].append(e - snap[t])
+            diffs[league_of.get(t, f"T{t}")].append(e - snap[t])
     alld = [d for v in diffs.values() for d in v]
     g_off = sum(alld) / len(alld) if alld else 0.0
     offsets = {lg: (sum(v) + OFFSET_SHRINK * g_off) / (len(v) + OFFSET_SHRINK)
                for lg, v in diffs.items()}
 
+    # Ligen ohne ClubElo-Anker (z. B. Andorra, Gibraltar): über ihre
+    # Europapokal-Ergebnisse gegen bereits eingeordnete Gegner platzieren.
+    # Teams ohne bekannte Liga bilden eine eigene Gruppe.
+    def group(t: int) -> str:
+        return league_of.get(t, f"T{t}")
+
+    placed: dict[str, tuple[float, int]] = {}
+    pending: dict[str, list[tuple[float, float, float, float]]] = defaultdict(list)
+    for g in gs:
+        if g.comp.startswith("L") or g.t.date() >= anchor_date:
+            continue
+        gh, ga = group(g.h), group(g.a)
+        if (gh in offsets) == (ga in offsets):
+            continue
+        h1, a1 = pre1[g.id]
+        res = 1.0 if g.hg > g.ag else 0.5 if g.hg == g.ag else 0.0
+        ha = 0.0 if g.neutral else H_ENGINE
+        if gh not in offsets:   # unbekannte Gruppe spielt zu Hause
+            pending[gh].append((h1 + ha, a1 + offsets[ga], res, margin(g.hg - g.ag)))
+        else:
+            pending[ga].append((a1, h1 + offsets[gh] + ha, 1.0 - res, margin(g.hg - g.ag)))
+    for grp, obs in pending.items():
+        placed[grp] = (_place(obs, g_off), len(obs))
+        offsets[grp] = placed[grp][0]
+
     def off(t: int) -> float:
-        return offsets.get(league_of.get(t, "?"), g_off)
+        return offsets.get(group(t), g_off)
 
     def start(t: int) -> float:
         return anchor[t] if t in anchor else snap.get(t, INIT) + off(t)
@@ -153,7 +179,28 @@ def run_engine(games: list[EGame], anchor: dict[int, float], anchor_date: date) 
     teams = {g.h for g in gs} | {g.a for g in gs} | set(anchor)
     current = {t: r2.get(t, start(t)) for t in teams}
     return EloResult(current, prematch, league_of, offsets, g_off, anchor_date,
-                     sum(1 for t in anchor if t in teams), post, len(gs))
+                     sum(1 for t in anchor if t in teams), post, len(gs), placed)
+
+
+PLACE_PRIOR_SD = 150.0
+
+
+def _place(obs: list[tuple[float, float, float, float]], prior: float) -> float:
+    """Verschiebung o, die die Europapokal-Ergebnisse einer Gruppe am besten
+    erklärt: obs = (eigene Wertung inkl. Heimvorteil, Gegner, Ergebnis 1/0.5/0,
+    Gewicht). Bernoulli-Likelihood mit schwachem Prior (SD 150) um das
+    Gesamtmittel."""
+    import math
+    best, best_ll = prior, -float("inf")
+    for i in range(241):
+        o = -800.0 + 5.0 * i
+        ll = -((o - prior) / PLACE_PRIOR_SD) ** 2 / 2
+        for own, opp, res, w in obs:
+            p = min(max(expect(own + o - opp), 1e-6), 1 - 1e-6)
+            ll += w * (res * math.log(p) + (1 - res) * math.log(1 - p))
+        if ll > best_ll:
+            best, best_ll = o, ll
+    return best
 
 
 # ------------------------------------------------------------------ Daten
