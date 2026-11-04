@@ -635,7 +635,7 @@
       }
     }
   },
-  "evaluated_at_date": "2026-11-03",
+  "evaluated_at_date": "2026-11-04",
   "market_logloss": null,
   "market_clv": null,
   "release_reason": "No paired contemporaneous bookmaker close and no untouched forward CLV cohort"
