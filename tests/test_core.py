@@ -878,3 +878,9 @@ def test_bfscan_parse_fair_and_settle():
     assert b["Betfair"]["O2.5"][0] * p["O2.5"] - 1 > 0.03    # Betfair 2,10 vs fair 2,00 -> Wert
     assert bfscan.won("AH-0.5:home", 2, 1) and not bfscan.won("AH+0.5:away", 2, 1)
     assert bfscan.won("U2.5", 1, 1) and bfscan.won("draw", 0, 0)
+
+
+def test_tennis_unreachable_uri_reports_error_instead_of_crash(monkeypatch):
+    from oddswatch.sources import tennis_atlas
+    bets, tr, err = tennis_atlas.fetch(uri="mongodb+srv://u:p@cluster0.invalid.example")
+    assert bets == [] and tr is None and "nicht erreichbar" in err

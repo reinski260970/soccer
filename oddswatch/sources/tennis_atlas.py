@@ -125,7 +125,10 @@ def _db(uri: str | None, db_name: str | None):
         from pymongo import MongoClient
     except ImportError:
         return None, "Paket pymongo fehlt (pip install -r requirements.txt)"
-    client = MongoClient(uri, serverSelectionTimeoutMS=15000, appname="oddswatch")
+    try:   # mongodb+srv:// löst schon hier DNS auf – Fehler ehrlich melden statt abbrechen
+        client = MongoClient(uri, serverSelectionTimeoutMS=15000, appname="oddswatch")
+    except Exception as e:  # noqa: BLE001 – Fehlertext ist die Auskunft
+        return None, f"tennis_db nicht erreichbar: {type(e).__name__}: {e}"
     return client[db_name or os.environ.get("MONGODB_DB") or DB_DEFAULT], None
 
 
