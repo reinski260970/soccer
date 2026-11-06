@@ -144,8 +144,11 @@ def proxy_xg(proxy: dict, shots, sot, corners, home: bool) -> float | None:
     return max(0.05, min(5.5, y))
 
 
-def train_proxy() -> dict:
-    """Top-5 2019-2022 Mongo-Schüsse gegen echtes Understat-xG."""
+def train_proxy(years=None) -> dict:
+    """Learn xG proxy using ONLY explicitly allowed past seasons when provided."""
+    selected_years = tuple(PROXY_YEARS if years is None else years)
+    if not selected_years:
+        raise ValueError("at least one completed proxy training season required")
     from pymongo import MongoClient, timeout
 
     uri = (os.environ.get("MONGO_SOCCER") or "").strip()
@@ -162,7 +165,7 @@ def train_proxy() -> dict:
             col = db["mains"]
             for code in TOP5:
                 n = 0
-                for y in PROXY_YEARS:
+                for y in selected_years:
                     start = datetime(y, 7, 1, tzinfo=timezone.utc)
                     end = datetime(y + 1, 7, 1, tzinfo=timezone.utc)
                     docs = list(col.find({
@@ -193,7 +196,7 @@ def train_proxy() -> dict:
                 per_league[code] = n
     p = fit_proxy(samples)
     p["per_league"] = per_league
-    p["train_seasons"] = list(PROXY_YEARS)
+    p["train_seasons"] = list(selected_years)
     return p
 
 
