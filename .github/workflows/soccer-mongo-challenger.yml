@@ -1,0 +1,38 @@
+name: soccer-mongo-logistic-challenger
+on:
+  push:
+    paths:
+      - ".github/mongo-challenger-now.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  challenger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["germany", "top5-other", "europe"]
+    env:
+      MONGO_SOCCER: ${{ secrets.MONGO_SOCCER }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt "scikit-learn>=1.5,<2"
+      - name: Leakage guard unit tests
+        run: python -m pytest -q tests/test_m17_17_temporal_integrity.py
+      - name: Independent multinomial model challenger
+        run: python -m scripts.mongo_logistic_challenger --group "${{ matrix.group }}"
+      - name: Save full independent league audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soccer-challenger-${{ matrix.group }}
+          path: reports/mongo_logistic_challenger_${{ matrix.group }}.json
+          if-no-files-found: warn
