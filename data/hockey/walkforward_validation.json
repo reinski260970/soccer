@@ -3,7 +3,7 @@
   "baseline": "training-season 60-minute 1X2 class frequencies (Laplace-smoothed), NOT bookmaker odds",
   "release_eligible": false,
   "validation_status": "HISTORICAL_RESEARCH_AND_FORWARD_DIAGNOSTIC_ONLY",
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "leagues": {
     "nhl": {
       "2024/25": {
@@ -95,14 +95,14 @@
       "2026/27": {
         "status": "EVALUATED_RESEARCH",
         "train_n": 5248,
-        "test_n": 309,
-        "scored_n": 309,
+        "test_n": 311,
+        "scored_n": 311,
         "unseen_teams_n": 0,
-        "model_logloss": 0.898016,
-        "base_rate_logloss": 0.897537,
-        "logloss_gain_vs_base": -0.000479,
-        "model_brier_3way": 0.54197,
-        "base_rate_brier_3way": 0.560824,
+        "model_logloss": 0.900414,
+        "base_rate_logloss": 0.902998,
+        "logloss_gain_vs_base": 0.002584,
+        "model_brier_3way": 0.543269,
+        "base_rate_brier_3way": 0.56327,
         "baseline_probabilities_home_draw_away": [
           0.502,
           0.0712,
@@ -117,9 +117,9 @@
           },
           {
             "bucket": 5,
-            "n": 106,
-            "mean_confidence": 0.5416,
-            "hit_rate": 0.6038
+            "n": 108,
+            "mean_confidence": 0.5414,
+            "hit_rate": 0.6019
           },
           {
             "bucket": 6,
@@ -363,14 +363,14 @@
       "2026/27": {
         "status": "EVALUATED_RESEARCH",
         "train_n": 1316,
-        "test_n": 120,
-        "scored_n": 102,
+        "test_n": 126,
+        "scored_n": 108,
         "unseen_teams_n": 18,
-        "model_logloss": 0.951785,
-        "base_rate_logloss": 1.05292,
-        "logloss_gain_vs_base": 0.101135,
-        "model_brier_3way": 0.556643,
-        "base_rate_brier_3way": 0.637185,
+        "model_logloss": 0.943696,
+        "base_rate_logloss": 1.044972,
+        "logloss_gain_vs_base": 0.101276,
+        "model_brier_3way": 0.553133,
+        "base_rate_brier_3way": 0.632847,
         "baseline_probabilities_home_draw_away": [
           0.4678,
           0.1857,
@@ -379,15 +379,15 @@
         "calibration_top_choice": [
           {
             "bucket": 4,
-            "n": 37,
-            "mean_confidence": 0.4593,
-            "hit_rate": 0.5676
+            "n": 41,
+            "mean_confidence": 0.4582,
+            "hit_rate": 0.561
           },
           {
             "bucket": 5,
-            "n": 27,
-            "mean_confidence": 0.5548,
-            "hit_rate": 0.4815
+            "n": 28,
+            "mean_confidence": 0.5537,
+            "hit_rate": 0.4643
           },
           {
             "bucket": 6,
@@ -403,9 +403,9 @@
           },
           {
             "bucket": 8,
-            "n": 3,
-            "mean_confidence": 0.8231,
-            "hit_rate": 0.6667
+            "n": 4,
+            "mean_confidence": 0.8301,
+            "hit_rate": 0.75
           }
         ]
       }
@@ -500,14 +500,14 @@
       "2026/27": {
         "status": "EVALUATED_RESEARCH",
         "train_n": 1937,
-        "test_n": 168,
-        "scored_n": 168,
+        "test_n": 175,
+        "scored_n": 175,
         "unseen_teams_n": 0,
-        "model_logloss": 1.076065,
-        "base_rate_logloss": 1.053816,
-        "logloss_gain_vs_base": -0.022249,
-        "model_brier_3way": 0.654529,
-        "base_rate_brier_3way": 0.63796,
+        "model_logloss": 1.075612,
+        "base_rate_logloss": 1.051298,
+        "logloss_gain_vs_base": -0.024315,
+        "model_brier_3way": 0.655684,
+        "base_rate_brier_3way": 0.636619,
         "baseline_probabilities_home_draw_away": [
           0.4438,
           0.2314,
@@ -516,21 +516,21 @@
         "calibration_top_choice": [
           {
             "bucket": 4,
-            "n": 83,
-            "mean_confidence": 0.4503,
-            "hit_rate": 0.3735
+            "n": 87,
+            "mean_confidence": 0.4506,
+            "hit_rate": 0.3793
           },
           {
             "bucket": 5,
-            "n": 64,
-            "mean_confidence": 0.5408,
-            "hit_rate": 0.4375
+            "n": 65,
+            "mean_confidence": 0.5403,
+            "hit_rate": 0.4308
           },
           {
             "bucket": 6,
-            "n": 21,
-            "mean_confidence": 0.6433,
-            "hit_rate": 0.4762
+            "n": 23,
+            "mean_confidence": 0.6415,
+            "hit_rate": 0.4348
           }
         ]
       }
@@ -635,7 +635,7 @@
       }
     }
   },
-  "evaluated_at_date": "2026-11-13",
+  "evaluated_at_date": "2026-11-14",
   "market_logloss": null,
   "market_clv": null,
   "release_reason": "No paired contemporaneous bookmaker close and no untouched forward CLV cohort"
