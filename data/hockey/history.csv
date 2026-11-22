@@ -4305,6 +4305,14 @@ icehl,2026/27,2026-11-15,Vienne,Klagenfurt,2,3,,icehl-api
 icehl,2026/27,2026-11-15,Villach,Fehérvár,7,5,,icehl-api
 icehl,2026/27,2026-11-18,Ferencváros,Villach,7,3,,icehl-api
 icehl,2026/27,2026-11-18,Vienne,Ljubljana,5,1,,icehl-api
+icehl,2026/27,2026-11-20,Fehérvár,Feldkirch,5,3,,icehl-api
+icehl,2026/27,2026-11-20,Ferencváros,Bolzano,6,8,,icehl-api
+icehl,2026/27,2026-11-20,Innsbruck,Linz,1,1,OT,icehl-api
+icehl,2026/27,2026-11-20,Pustertal,Klagenfurt,3,2,,icehl-api
+icehl,2026/27,2026-11-20,Salzbourg,Graz,3,3,OT,icehl-api
+icehl,2026/27,2026-11-20,Villach,Ljubljana,2,6,,icehl-api
+icehl,2026/27,2026-11-21,Graz,Feldkirch,6,2,,icehl-api
+icehl,2026/27,2026-11-21,Milano HC,Vienne,1,1,OT,icehl-api
 liiga,2022/23,2022-09-13,Sport Vaasa,JYP Jyväskylä,3,1,,hockeyarchives
 liiga,2022/23,2022-09-13,Tappara Tampere,TPS Turku,3,1,,hockeyarchives
 liiga,2022/23,2022-09-14,HIFK Helsinki,HPK Hämeenlinna,4,1,,hockeyarchives
@@ -6430,6 +6438,18 @@ liiga,2026/27,2026-11-18,KalPa,Lukko,3,7,,liiga-api
 liiga,2026/27,2026-11-18,TPS,Kärpät,3,6,,liiga-api
 liiga,2026/27,2026-11-18,Ässät,Pelicans,2,5,,liiga-api
 liiga,2026/27,2026-11-19,Tappara,Sport,2,2,OT,liiga-api
+liiga,2026/27,2026-11-20,HPK,Jokerit,2,1,,liiga-api
+liiga,2026/27,2026-11-20,Ilves,Tappara,6,2,,liiga-api
+liiga,2026/27,2026-11-20,JYP,HIFK,2,2,OT,liiga-api
+liiga,2026/27,2026-11-20,KooKoo,Kärpät,4,4,OT,liiga-api
+liiga,2026/27,2026-11-20,Pelicans,Lukko,2,5,,liiga-api
+liiga,2026/27,2026-11-20,SaiPa,TPS,7,2,,liiga-api
+liiga,2026/27,2026-11-21,Jukurit,TPS,1,3,,liiga-api
+liiga,2026/27,2026-11-21,K-Espoo,Ässät,6,1,,liiga-api
+liiga,2026/27,2026-11-21,KalPa,HIFK,2,2,OT,liiga-api
+liiga,2026/27,2026-11-21,Kärpät,Jokerit,3,5,,liiga-api
+liiga,2026/27,2026-11-21,Lukko,HPK,4,3,,liiga-api
+liiga,2026/27,2026-11-21,Sport,Pelicans,0,0,OT,liiga-api
 nhl,2022/23,2022-10-07,NSH,SJS,4,1,,nhl-api
 nhl,2022/23,2022-10-08,SJS,NSH,2,3,,nhl-api
 nhl,2022/23,2022-10-11,LAK,VGK,3,4,,nhl-api
@@ -12036,3 +12056,17 @@ nhl,2026/27,2026-11-19,TOR,LAK,3,3,,nhl-api
 nhl,2026/27,2026-11-19,VGK,DAL,3,3,,nhl-api
 nhl,2026/27,2026-11-19,WPG,NYI,4,3,,nhl-api
 nhl,2026/27,2026-11-19,WSH,BUF,3,6,,nhl-api
+nhl,2026/27,2026-11-21,BOS,WSH,7,5,,nhl-api
+nhl,2026/27,2026-11-21,CAR,EDM,7,4,,nhl-api
+nhl,2026/27,2026-11-21,CGY,CHI,3,4,,nhl-api
+nhl,2026/27,2026-11-21,DET,NYI,2,3,,nhl-api
+nhl,2026/27,2026-11-21,FLA,BUF,4,3,,nhl-api
+nhl,2026/27,2026-11-21,MTL,PHI,3,4,,nhl-api
+nhl,2026/27,2026-11-21,NSH,PIT,4,3,,nhl-api
+nhl,2026/27,2026-11-21,OTT,LAK,4,2,,nhl-api
+nhl,2026/27,2026-11-21,SJS,SEA,4,3,,nhl-api
+nhl,2026/27,2026-11-21,STL,NJD,9,6,,nhl-api
+nhl,2026/27,2026-11-21,TOR,CBJ,3,4,,nhl-api
+nhl,2026/27,2026-11-21,UTA,ANA,3,2,,nhl-api
+nhl,2026/27,2026-11-21,VAN,MIN,3,3,,nhl-api
+nhl,2026/27,2026-11-21,WPG,VGK,4,4,,nhl-api
