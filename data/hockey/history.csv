@@ -4319,6 +4319,13 @@ icehl,2026/27,2026-11-22,Klagenfurt,Ferencváros,4,4,SO,icehl-api
 icehl,2026/27,2026-11-22,Linz,Villach,7,4,,icehl-api
 icehl,2026/27,2026-11-22,Ljubljana,Pustertal,1,1,OT,icehl-api
 icehl,2026/27,2026-11-22,Milano HC,Vienne,2,6,,icehl-api
+icehl,2026/27,2026-11-25,Bolzano,Klagenfurt,0,2,,icehl-api
+icehl,2026/27,2026-11-25,Fehérvár,Vienne,6,3,,icehl-api
+icehl,2026/27,2026-11-25,Feldkirch,Innsbruck,0,0,OT,icehl-api
+icehl,2026/27,2026-11-25,Ferencváros,Linz,6,1,,icehl-api
+icehl,2026/27,2026-11-25,Ljubljana,Graz,4,2,,icehl-api
+icehl,2026/27,2026-11-25,Milano HC,Villach,2,2,SO,icehl-api
+icehl,2026/27,2026-11-25,Salzbourg,Pustertal,1,5,,icehl-api
 liiga,2022/23,2022-09-13,Sport Vaasa,JYP Jyväskylä,3,1,,hockeyarchives
 liiga,2022/23,2022-09-13,Tappara Tampere,TPS Turku,3,1,,hockeyarchives
 liiga,2022/23,2022-09-14,HIFK Helsinki,HPK Hämeenlinna,4,1,,hockeyarchives
@@ -6459,6 +6466,10 @@ liiga,2026/27,2026-11-21,Sport,Pelicans,0,0,OT,liiga-api
 liiga,2026/27,2026-11-24,Ilves,Ässät,4,2,,liiga-api
 liiga,2026/27,2026-11-24,SaiPa,Lukko,6,1,,liiga-api
 liiga,2026/27,2026-11-24,Sport,K-Espoo,2,2,SO,liiga-api
+liiga,2026/27,2026-11-25,HIFK,TPS,3,1,,liiga-api
+liiga,2026/27,2026-11-25,Jokerit,KooKoo,3,4,,liiga-api
+liiga,2026/27,2026-11-25,Kärpät,Pelicans,2,6,,liiga-api
+liiga,2026/27,2026-11-25,Tappara,Jukurit,1,1,OT,liiga-api
 nhl,2022/23,2022-10-07,NSH,SJS,4,1,,nhl-api
 nhl,2022/23,2022-10-08,SJS,NSH,2,3,,nhl-api
 nhl,2022/23,2022-10-11,LAK,VGK,3,4,,nhl-api
@@ -12092,3 +12103,17 @@ nhl,2026/27,2026-11-23,SEA,ANA,3,2,,nhl-api
 nhl,2026/27,2026-11-23,SJS,MIN,2,5,,nhl-api
 nhl,2026/27,2026-11-23,WPG,UTA,4,2,,nhl-api
 nhl,2026/27,2026-11-24,EDM,VGK,3,5,,nhl-api
+nhl,2026/27,2026-11-25,ANA,SJS,7,0,,nhl-api
+nhl,2026/27,2026-11-25,BOS,WPG,2,4,,nhl-api
+nhl,2026/27,2026-11-25,BUF,NYR,5,1,,nhl-api
+nhl,2026/27,2026-11-25,CBJ,NJD,2,2,,nhl-api
+nhl,2026/27,2026-11-25,COL,MTL,6,0,,nhl-api
+nhl,2026/27,2026-11-25,DAL,NSH,1,3,,nhl-api
+nhl,2026/27,2026-11-25,DET,VAN,5,1,,nhl-api
+nhl,2026/27,2026-11-25,FLA,OTT,5,3,,nhl-api
+nhl,2026/27,2026-11-25,MIN,UTA,3,4,,nhl-api
+nhl,2026/27,2026-11-25,NYI,STL,2,2,,nhl-api
+nhl,2026/27,2026-11-25,PIT,CGY,3,6,,nhl-api
+nhl,2026/27,2026-11-25,SEA,CHI,1,3,,nhl-api
+nhl,2026/27,2026-11-25,TBL,CAR,1,3,,nhl-api
+nhl,2026/27,2026-11-25,WSH,PHI,7,3,,nhl-api
