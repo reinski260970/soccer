@@ -150,6 +150,9 @@ scored AS (
   UNION ALL
   SELECT * FROM twoway_scored
 )
+-- CREATE OR REPLACE VIEW must retain the ordinal positions of every existing
+-- output column. PostgreSQL permits adding new columns only at the end.
+-- Migration 008 already exposed the first ten columns in this exact order.
 SELECT
   league,model_id,market,period,source_reference,
   COUNT(DISTINCT event_id) AS matches,

@@ -105,3 +105,28 @@ def test_soccer_threeway_market_baseline(monkeypatch):
             assert float(row["model_logloss"]) == pytest.approx(-math.log(0.55))
             assert float(row["market_logloss"]) == pytest.approx(-math.log(market_home))
             assert float(row["logloss_gain_vs_market"]) > 0
+
+
+def test_market_comparison_migration_preserves_existing_view_column_positions():
+    """PG CREATE OR REPLACE VIEW may append columns, never insert/reorder them."""
+    from pathlib import Path
+
+    script = (
+        Path(__file__).resolve().parents[1]
+        / "oddswatch/sql/migrations/009_soccer_3way_market_baseline.sql"
+    ).read_text(encoding="utf-8")
+    projection = script.rsplit("\nSELECT\n", 1)[1].split("\nFROM scored", 1)[0]
+    columns = [part.strip() for part in projection.replace("\n", " ").split(",")]
+    assert columns == [
+        "league",
+        "model_id",
+        "market",
+        "period",
+        "source_reference",
+        "COUNT(DISTINCT event_id) AS matches",
+        "COUNT(*) AS outcomes",
+        "AVG(model_logloss) AS model_logloss",
+        "AVG(market_logloss) AS market_logloss",
+        "AVG(market_logloss)-AVG(model_logloss) AS logloss_gain_vs_market",
+        "market_structure",
+    ]
